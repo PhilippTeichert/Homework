@@ -1,0 +1,73 @@
+\documentclass[fleqn,12pt, paper=a4,sffamily]{scrreprt}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+% for code samples
+\usepackage{listings}
+\usepackage{caption}
+% font face
+\usepackage{times}
+% for drawings
+\usepackage{tikz}
+% math stuff
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+% custom colors
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+
+
+\lstset{ %
+language=Java,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=b,           					% sets the caption-position to bottom
+breaklines=true,        					% sets automatic line breaking
+xleftmargin=1.5cm,							% space from the left paper edge
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
+\captionsetup[lstlisting]{font={footnotesize},margin=1.5cm,singlelinecheck=false } % removes "Listing 1: "
+\definecolor{light-light-gray}{gray}{0.95}
+\let\stdsection\section
+\renewcommand\section{\stdsection}
+
+\title{Hausaufgabenabgabe 16. April 2015}
+\subtitle{Mathematik für Informatiker II: Analysis und lineare Algebra}
+\author{\\
+    \huge{Louis Kobras}\\\large{6658699}\\\large{4kobras@informatik.uni-hamburg.de} \\ \\
+    \huge{Utz Pöhlmann}\\\large{6663579}\\\large{4poehlma@informatik.uni-hamburg.de}
+    }
+\date{}
+    
+
+\begin{document}
+    \maketitle
+    \newpage
+    \section*{Aufgabenbereich 1}
+        \subsection*{Aufgabe 1}
+            \begin{equation*}
+                \begin{split}
+                    2x_1~+~x_2~+~x_3 &=1
+                \end{split}
+            \end{equation*}
+                
+            
+\end{document}

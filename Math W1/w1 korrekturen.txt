@@ -1,0 +1,3 @@
+a2 und a3 korrigieren
+	a2 rechenfehler
+	a3 nicht eindeutig lösbar weil 0x3=0 => rest abhängig

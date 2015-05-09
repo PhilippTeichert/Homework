@@ -1,0 +1,467 @@
+\documentclass[parskip,12pt,paper=a4,sffamily]{scrartcl}
+%alternate documentclass:
+%\documentclass[parskip,12pt,paper=a4,sffamily]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+% code snippets
+\usepackage{listings}
+% listing captions
+\usepackage{caption}
+% font: times new roman
+\usepackage{times}
+% tikz being tikz
+\usepackage{tikz}
+% import math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% contradiction lightning
+\usepackage{stmaryrd}
+% alignment options
+\usepackage{ragged2e}
+% page margins
+\usepackage[margin=2.5cm]{geometry}
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+
+
+\lstset{ %
+language=Java,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=b,           					% sets the caption-position to bottom
+breaklines=true,        					% sets automatic line breaking
+xleftmargin=1.5cm,							% space from the left paper edge
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
+\captionsetup[lstlisting]{font={footnotesize},margin=1.5cm,singlelinecheck=false } % removes "Listing 1: "
+\definecolor{light-light-gray}{gray}{0.95}
+\let\stdsection\section
+\renewcommand\section{\stdsection}
+
+% add line break for subtitle (size: large)
+\title{Hausaufgaben zum 07. Mai 2015
+    \\\large{
+        Mathematik II für Studierende der Informatik\\
+        (Analysis und Lineare Algebra)
+    }
+}
+\author{~\\
+	\Large{Louis Kobras}\\
+	\large{6658699}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{4kobras@informatik.uni-hamburg.de}\\
+	\\
+	\Large{Utz Pöhlmann}\\
+	\large{4poehlma@informatik.uni-hamburg.de}\\
+	\large{6663579} \\{}
+}
+
+% leave empty for no date on title page
+% comment for auto-generated date
+\date{06.05.2015}
+
+
+\begin{document}
+	\maketitle
+	\newpage
+	\section*{Aufgabe 1}
+	\label{sec:a1}
+	    %%%%AUFGABE%%%%
+	    Bestätigen Sie für die Matrizen
+	    \[
+	        A=\begin{pmatrix}
+	            5&7\\9&-1\\8&2
+	        \end{pmatrix},~~~
+	        B=\begin{pmatrix}
+	            1&-1\\3&2
+	        \end{pmatrix},~~~
+	        C=\begin{pmatrix}
+	            1&2\\3&6
+	        \end{pmatrix}
+	    \]
+	    die Gültigkeit des Assoziativgesetzes $A(BC)=(AB)C$.
+	    %%%%RECHNUNG%%%%
+	    \begin{equation*}
+	    	\begin{array}{c|c}
+	    		\begin{split}
+	    			\begin{array}{l}
+	    				Berechnung~von~BC:\\
+			    		\begin{pmatrix}
+	        			    1&-1\\3&2
+				        \end{pmatrix}
+				        ~~\cdot~~
+						\begin{pmatrix}
+				            1&2\\3&6
+				        \end{pmatrix}\\
+				        =~~
+				        \begin{pmatrix}
+			        		-5&-10\\9&18
+						\end{pmatrix}\\ \\
+						Multiplikation~mit~A:\\
+						\begin{pmatrix}
+			    	        5&7\\9&-1\\8&2
+				        \end{pmatrix}
+						~~\cdot~~
+						\begin{pmatrix}
+				        	-5&-10\\9&18
+						\end{pmatrix}\\
+						=~~
+						\begin{pmatrix}
+							38&76\\-54&-108\\-22&-44
+						\end{pmatrix}
+	    			\end{array}
+	    		\end{split}
+	    		{}~~~~~&~~~~~{}
+	    		\begin{split}
+	    			\begin{array}{l}
+	    				Berechnung~von~AB:\\
+	    				\begin{pmatrix}
+			    	        5&7\\9&-1\\8&2
+				        \end{pmatrix}
+				        ~~\cdot~~
+				        \begin{pmatrix}
+				            1&-1\\3&2
+				        \end{pmatrix}\\
+				        =~~
+				        \begin{pmatrix}
+				        	26&4\\6&-20\\14&-12
+				        \end{pmatrix}\\ \\
+	    				Multiplikation~mit~C:\\
+	    				\begin{pmatrix}
+				        	26&4\\6&-20\\14&-12
+				        \end{pmatrix}
+				        ~~\cdot~~
+				        \begin{pmatrix}
+				            1&2\\3&6
+				        \end{pmatrix}\\
+	        			=~~
+	        			\begin{pmatrix}
+	        				38&76\\-54&-108\\-22&-44
+	        			\end{pmatrix}
+	    			\end{array}
+	    		\end{split}
+	    	\end{array}
+	    \end{equation*}
+	    Wie man hier sehen kann, kommt bei beiden Rechnungen die gleiche Matrix heraus.
+	    Ergo ist $A(BC)=(AB)C$, und somit gilt hier das Assoziativgesetz.
+	\section*{Aufgabe 2}
+	\label{sec:a2}
+	    %%%%AUFGABE%%%%
+	    Gegeben seien die Matrizen
+	    \[
+	        A=\begin{pmatrix}
+	            1&2\\3&5
+	        \end{pmatrix},~~~
+	        B=\begin{pmatrix}
+	            1&-1\\3&2
+	        \end{pmatrix},~~~
+	        C=\begin{pmatrix}
+	            5&7\\7&-1\\8&2
+	        \end{pmatrix}.
+	    \]
+	    Bestätigen Sie für diese Matrizen die Gültigkeit des Distributivgesetzes
+	    \[
+	        C(A+B)=CA+CB
+	    \]
+	    %%%%RECHNUNG%%%%
+	    \begin{equation*}
+	    	\begin{array}{c|c}
+	    		\begin{split}
+	    			\begin{array}{l}
+	    				Berechnen~von~A+B:\\
+	    					\begin{pmatrix}
+					            1&2\\3&5
+					        \end{pmatrix}
+					        ~~+~~
+					        \begin{pmatrix}
+					        	1&-1\\3&2
+					        \end{pmatrix}\\
+					        =~~
+					        \begin{pmatrix}
+					        	2&1\\6&7
+					        \end{pmatrix}\\ \\
+	    				Multiplizieren~mit~C:\\
+	    					\begin{pmatrix}
+					        	2&1\\6&7
+					        \end{pmatrix}
+					        ~~\cdot~~
+					        \begin{pmatrix}
+					            5&7\\7&-1\\8&2
+					        \end{pmatrix}\\
+					        =~~
+					        \begin{pmatrix}
+					        	52&54\\8&0\\28&22
+					        \end{pmatrix}
+	    			\end{array}
+	    		\end{split}
+	    		{}~~~~~&~~~~~{}
+	    		\begin{split}
+	    			\begin{array}{l}
+	    				Berechnen~von~CA:\\
+	    					\begin{pmatrix}
+					            5&7\\7&-1\\8&2
+					        \end{pmatrix}
+					        ~~\cdot~~
+					        \begin{pmatrix}
+					            1&2\\3&5
+					        \end{pmatrix}\\
+					        =~~
+					        \begin{pmatrix}
+					        	26&45\\4&9\\14&26
+							\end{pmatrix}\\ \\
+	    				Berechnen~von~CB:\\
+	    					\begin{pmatrix}
+					            5&7\\7&-1\\8&2
+					        \end{pmatrix}
+					        ~~\cdot~~
+					        \begin{pmatrix}
+					        	1&-1\\3&2
+					        \end{pmatrix}\\
+					        =~~
+					        \begin{pmatrix}
+					        	26&9\\4&-9\\14&-4
+							\end{pmatrix}\\ \\
+	    				Addieren~von~CA~und~CB:\\
+	    					\begin{pmatrix}
+	    						26&45\\4&9\\14&26
+	    					\end{pmatrix}
+	    					~~+~~
+	    					\begin{pmatrix}
+	    						26&9\\4&-9\\14&-4
+							\end{pmatrix} \\
+							=~~
+					        \begin{pmatrix}
+					        	52&54\\8&0\\28&22
+							\end{pmatrix}\\ \\
+	    			\end{array}
+	    		\end{split}
+	    	\end{array}
+	    \end{equation*}
+	    Wir sehen, dass in beiden Fällen die gleiche Matrix herauskommt.
+	    Folglich gilt das Distributivgesetz.
+	\newpage
+	\section*{Aufgabe 3}
+	\label{sec:a3}
+	    %%%%AUFGABE%%%%
+	    Bestimmen Sie den Zeilenrang und den Spaltenrang der folgenden Matrix, indem Sie eine maximale
+        Menge von linear unabhängigen Zeilen und eine maximale Menge von linear unabhängigen Spalten
+        auswählen.
+        \[
+            \begin{pmatrix}
+                3 & 4 & 5 & 6 \\
+                2 & 3 & 4 & 5 \\
+                1 & 2 & 3 & 4 \\
+                4 & 7 & 6 & 4 
+            \end{pmatrix}                        
+        \]
+	    %%%%RECHNUNG%%%%
+	    \[v_1(3,4,5,6)\]
+	    \[v_2(2,3,4,5)\]
+	    \[v_3(1,2,3,4)\]
+	    \[v_4(4,7,6,4)\]
+	    \[v_1~~\Rightarrow~~lin.~unabh.\]
+	    \[v_1,~v_2:\]
+	    \begin{equation*}
+	        \begin{array}{c|c}
+	            \begin{split}
+	                \begin{array}{l}
+	                    \begin{array}{lcccl}
+	                        I~~~~&3&2&0&~~~~~~~~(I:3)\\
+	                        II~~~&4&3&0&~\\
+	                        III~~&5&4&0&~\\
+	                        IV~~~&6&5&0&~
+	                    \end{array}\\\\
+	                    \begin{array}{lcccl}
+	                        I~~~~&1&\frac{2}{3}&0&~\\
+	                        II~~~&4&3&0&~~~~~~~~(II-4\cdot I)\\
+	                        III~~&5&4&0&~~~~~~~~(III-5\cdot I)\\
+	                        IV~~~&6&5&0&~~~~~~~~(IV-6\cdot I)
+	                    \end{array}\\\\
+	                    \begin{array}{lcccl}
+	                        I~~~~&1&\frac{2}{3}&0&~\\
+	                        II~~~&0&\frac{1}{2}&0&~~~~~~~~(II\cdot 3)\\
+	                        III~~&0&\frac{2}{3}&0&~\\
+	                        IV~~~&0&1&0&~
+	                    \end{array}
+	                \end{array}
+	            \end{split}
+	        {}~~~~~&~~~~~{}
+	            \begin{split}
+	                \begin{array}{l}
+    	                \begin{array}{lcccl}
+	                        I~~~~&1&\frac{2}{3}&0&~\\
+	                        II~~~&0&1&0&~\\
+	                        III~~&0&\frac{2}{3}&0&~~~~~~~~(III-\frac{2}{3}II)\\
+	                        IV~~~&0&1&0&~~~~~~~~(IV-II)
+	                    \end{array}\\\\
+	                    \begin{array}{lcccl}
+	                        I~~~~&1&\frac{2}{3}&0&~\\
+	                        II~~~&0&1&0&~\\
+	                        III~~&0&0&0&~\\
+	                        IV~~~&0&0&0&~
+	                    \end{array}
+	                \end{array}
+	            \end{split}
+	        \end{array}
+	    \end{equation*}
+	    Einzige Lösung: $\lambda_1=\lambda_2=0~~\Rightarrow~~v_1,~v_2~lin.~unabh.$\\
+	    \newpage
+	    \[v_1,~v_2,~v_3:\]
+	    \begin{equation*}
+	        \begin{array}{c|c}
+	            \begin{split}
+	            \begin{array}{l}	            
+	                \begin{array}{lccccl}
+	                    I~~~~&3&2&1&0&~~~~~~~~(I:3) \\
+	                    II~~~&4&3&2&0&~ \\
+	                    III~~&5&4&3&0&~ \\
+	                    IV~~~&6&5&4&0&~ \\
+	                \end{array}\\\\
+	                \begin{array}{lccccl}
+	                    I~~~~&1&\frac{2}{3}&0&~ \\
+	                    II~~~&4&3&2&0&~~~~~~~~(II-4\cdot I) \\
+	                    III~~&5&4&3&0&~~~~~~~~(III-5\cdot I) \\
+	                    IV~~~&6&5&4&0&~~~~~~~~(IV-6\cdot I) \\
+	                \end{array}\\\\
+	                \begin{array}{lccccl}
+	                    I~~~~&1&\frac{2}{3}&\frac{1}{3}&0&~ \\
+	                    II~~~&0&\frac{1}{3}&\frac{2}{3}&0&~~~~~~~~(II\cdot 3) \\
+	                    III~~&0&\frac{2}{3}&\frac{4}{3}&0&~ \\
+	                    IV~~~&0&1&2&0&~ \\
+	                \end{array}
+	                \end{array}
+	            \end{split}
+	        {}~~~~~&~~~~~{}
+	            \begin{split}
+	                \begin{array}{l}
+	                \begin{array}{lccccl}
+	                    I~~~~&1&\frac{2}{3}&\frac{1}{3}&0&~ \\
+	                    II~~~&0&1&2&0&~ \\
+	                    III~~&0&\frac{2}{3}&\frac{4}{3}&0&~~~~~~~~(III-\frac{2}{3}\cdot II) \\
+	                    IV~~~&0&1&2&0&~~~~~~~~(IV-II) \\
+	                \end{array}\\\\
+	                \begin{array}{lccccl}
+	                    I~~~~&1&\frac{2}{3}&\frac{1}{3}&0&~~~~~~~~(I-\frac{2}{3}\cdot II) \\
+	                    II~~~&0&1&2&0&~ \\
+	                    III~~&0&0&0&0&~ \\
+	                    IV~~~&0&0&0&0&~ \\
+	                \end{array}\\\\
+	                \begin{array}{lccccl}
+	                    I~~~~&1&0&-1&0&~ \\
+	                    II~~~&0&1&2&0&~ \\
+	                    III~~&0&0&0&0&~ \\
+	                    IV~~~&0&0&0&0&~ \\
+	                \end{array}
+	                \end{array}
+	            \end{split}
+	        \end{array}
+	    \end{equation*}
+	    Es gibt nicht-triviale Lösungen ($x-z=0,~y+2z=0$): $\Rightarrow~~v_1,~v_2,~v_3~~lin.abh.$\\
+	    \\
+%	    \[v_1,~v_2,~v_4\]
+%	    \begin{equation*}
+%	        \begin{array}{c|c}
+%	            \begin{split}
+%	                \begin{array}{l}
+%	                    \begin{array}{lccccl}
+%	                        I~~~~&&0&~\\
+%	                        II~~~&&0&~\\
+%	                        III~~&&0&~\\
+%	                        IV~~~&&0&~
+%	                    \end{array}\\\\
+%	                    \begin{array}{lccccl}
+%	                        I~~~~&&0&~\\
+%	                        II~~~&&0&~\\
+%	                        III~~&&0&~\\
+%	                        IV~~~&&0&~
+%	                    \end{array}\\\\
+%	                    \begin{array}{lccccl}
+%	                        I~~~~&&0&~\\
+%	                        II~~~&&0&~\\
+%	                        III~~&&0&~\\
+%	                        IV~~~&&0&~
+%	                    \end{array}\\\\
+%	                    \begin{array}{lccccl}
+%	                        I~~~~&&0&~\\
+%	                        II~~~&&0&~\\
+%	                        III~~&&0&~\\
+%	                        IV~~~&&0&~
+%	                    \end{array}\\\\ 
+%	                    \begin{array}{lccccl}
+%	                        I~~~~&&0&~\\
+%	                        II~~~&&0&~\\
+%	                        III~~&&0&~\\
+%	                        IV~~~&&0&~
+%	                    \end{array}
+%	                \end{array}
+%	            \end{split}
+%	            {}~~~~~&~~~~~{}
+%	            \begin{split}
+%	                \begin{array}{l}
+%        	            \begin{array}{lccccl}
+%	                        I~~~~&&0&~\\
+%	                        II~~~&&0&~\\
+%	                        III~~&&0&~\\
+%	                        IV~~~&&0&~
+%	                    \end{array}\\\\
+%	                    \begin{array}{lccccl}
+%	                        I~~~~&&0&~\\
+%	                        II~~~&&0&~\\
+%	                        III~~&&0&~\\
+%	                        IV~~~&&0&~
+%	                    \end{array}\\\\
+%	                    \begin{array}{lccccl}
+%	                        I~~~~&&0&~\\
+%	                        II~~~&&0&~\\
+%	                        III~~&&0&~\\
+%	                        IV~~~&&0&~
+%	                    \end{array}\\\\
+%	                    \begin{array}{lccccl}
+%	                        I~~~~&&0&~\\
+%	                        II~~~&&0&~\\
+%	                        III~~&&0&~\\
+%	                        IV~~~&&0&~
+%	                    \end{array}
+%	                    \begin{array}{lccccl}
+%	                    \end{array}
+%	                \end{array}
+%	            \end{split}
+%	        \end{array}
+%	    \end{equation*}
+%	\section*{Aufgabe 4}
+%	\label{sec:a4}
+%	    %%%%AUFGABE%%%%
+%	    Bestimmen Sie den Zeilenrang und den Spaltenrang der Matrix aus Hausaufgabe 3,
+%	    indem Sie die Matrix mit Hilfe des Gauß-Jordan-Verfahrens auf Zeilenstufenform bringen.
+%	    %%%%RECHNUNG%%%%
+%	\section*{Aufgabe 5}
+%	\label{sec:a5}
+%	    %%%%AUFGABE%%%%
+%	    %%%%RECHNUNG%%%%
+%	    In der Vorlesung wurde gezeigt, dass eine lineare Abbildung $f: V \rightarrow W$ eindeutig bestimmt ist
+%        durch die Bilder einer der Elemente einer Basis von $V$ . Wir betrachten die lineare Abbildung $f: \mathbb{R}^2 \rightarrow \mathbb{R}^2$
+%        mit $f((1,1))=(3,4)$ und $f((-2,2))=(2,0)$. Geben Sie eine $(2 \times 2)$-Matrix $A$, so dass
+%        für alle $x  \in \mathbb{R}^2$ die Gleichung $Ax = f(x)$ gilt. \\
+%        Hinweis: Ermitteln Sie zunächst Bilder $f(e_1)$ und $f(e_2)$ der Einheitsvektoren $e_1 = (1,0)$ und $e_2 =
+%        (0, 1)$ unter der Abbildung $f$.
+\end{document}

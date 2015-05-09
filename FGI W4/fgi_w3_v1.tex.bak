@@ -1,0 +1,142 @@
+\documentclass[parskip,12pt,paper=a4,sffamily]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+% code snippets
+\usepackage{listings}
+% listing captions
+\usepackage{caption}
+% font: times new roman
+\usepackage{times}
+% tikz being tikz
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usepackage{pgf}
+% import math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% contradiction lightning
+\usepackage{stmaryrd}
+% alignment options
+\usepackage{ragged2e}
+% page margins
+\usepackage[margin=2.5cm]{geometry}
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+
+
+\lstset{ %
+language=Java,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=b,           					% sets the caption-position to bottom
+breaklines=true,        					% sets automatic line breaking
+xleftmargin=1.5cm,							% space from the left paper edge
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
+\captionsetup[lstlisting]{font={footnotesize},margin=1.5cm,singlelinecheck=false } % removes "Listing 1: "
+\definecolor{light-light-gray}{gray}{0.95}
+\let\stdsection\section
+\renewcommand\section{\stdsection}
+
+% add line break for subtitle (size: large)
+\title{Hausaufgabe der dritten Woche
+    \\\large{
+        Formale Grundlagen der Informatik I: Übungsgruppe 19
+    }
+}
+\author{~\\
+	\Large{Louis Kobras}\\
+	\large{6658699}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{4kobras@informatik.uni-hamburg.de} \\
+	\\
+	\Large{Utz Pöhlmann}\\
+	\large{6663579} \\
+	\large{4poehlma@informatik.uni-hamburg.de}
+}
+
+% leave empty for no date on title page
+% comment for auto-generated date
+\date{}
+
+
+\begin{document}
+	\maketitle
+	\newpage
+	\section*{Aufgabe 3.3}
+	\label{sec:a3.3}
+	$w \in \{0,1\}*$;~~~~$|w|_0=|w|_1$\\
+	Angenommen, \texttt{L} $\in$ \texttt{REG}, $\Rightarrow$Pumping-Lemma gilt.\\
+	Sei $k$ die Zahl des Pumping-Lemmas. Wir betrachten die Zahl $a^k b^k$.\\
+	$uv=1^s~~~~|~s \le k~~~~~~~~~~~~~(|uv|=s)$\\
+	$w=1^t~~~~|t \le s; t \ge 1~~~~~(|v|=t)$\\ \\
+	(3) 
+	\begin{align*}
+		\Rightarrow~~&1^{s+t^i} \\
+		\Rightarrow~~&1^{s+t=k}~~~~~~|i=1 \\
+		\Rightarrow~~&1^{k+t}~~~~~~~~|i=2 \\
+		\Rightarrow~~&1^{k+t\cdot (i-1)}~~~~~|i \in \mathbb{N}
+	\end{align*}
+	Für das Wort $1^{k+t\cdot (i-1)}a^k$ gilt $|1|=|w| \Leftrightarrow i=1$.\\
+	Für zum Beispiel $i=0$ gilt es \textit{nicht}, da $k+t\cdot (0-1)=k+t\cdot(-1)=k-t$ ist und \texttt{L}$\ge1$ (laut (2)) sein muss.\\
+	$\Rightarrow$mind. 1 Zerlegung gefunden$\Rightarrow$\texttt{L}$\notin$ \texttt{REG}.
+	\section*{Aufgabe 3.4}
+	\label{sec:a3.4}
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+	    \node[initial, state]   (A)                 {$z_0$}
+	    \node[state]            (B) [right to=A]    {$z_1$}
+	
+	    \path (A) edge [loop above] node {$\lambda, \perp|\lambda$}
+	\end{tikzpicture}
+	$L_\lambda(A) \subset M_1$: \\
+	Sei $\omega \in L_\lambda(A)$, so wurde $\omega$ akzeptiert.
+	Nach der Konstruktion von A und da nur mit $1,\perp$ nach $z_1$ gewechselt werden kann, bleibt der Automat in $z_0$, solange mehr 0en als 1en gelesen wurden.
+	Dies wird genau dann erreicht, wenn mit einer 1 gestartet wurde oder durch lesen von mehr 1en als 0en alle \textit{a}s vom Stack genommen wurden.\\
+	Werden dann nach dem Leeren des Stacks weiter 1en gelesen, wird der Stack in $z_1$ mit \textit{b}s gefüllt, welche durch das Lesen von 0en wieder gelöscht werden.
+	Tritt dann wieder der Fall ein, dass mehr 0en als 1en gelesen werden, so geht der Automat zurück nach $z_0$, wo durch 0en wieder \textit{a}s hochgezählt werden. \\
+	Dies wird solange wiederholt, bis nach dem Lesen von genau gleich vielen 0en und 1en der Keller leer und gleichzeitig das Wort zuende sind. \\
+	$\Rightarrow L(a) \subset M_1$. \\
+	\\
+	$M_1 \subset L_\lambda(A)$:\\
+	Sei $\omega \in M_1$, so ist $|\omega|_0=|\omega|_1$. $\omega$ ist eine Konkatenation von Worten $\omega_1,...,\omega_n; n \in \mathbb{N}^{+}$, für die gilt: $|\omega_i|_0=|\omega_i|_1;i > 1; \omega_i$ kann nicht geteilt werden, ohne dass diese Bedingungen verletzt werden. \\
+	Nach Konstruktion gilt: Für jedes $\omega_i$ wird bei einer gelesenen 0 ein \textit{a} auf den Stack gepusht; für eine gelesene 1 wird ein \textit{a} gepopt.\\
+	Wird $1,\perp$ gelesen, so findet ein Zustandswechsel von $z_0$ nach $z_1$ statt, wo dann für jede gelesene 1 ein \textit{b} gepusht und für jede gelesene 0 ein \textit{b} gepopt wird.\\
+	Bei $0,\perp$ findet dann wiederum ein Zustandswechsel von $z_1$ nach $z_0$ statt, wo wiederum nach o.g. Verfahren mit \textit{a} auf dem Stack gearbeitet wird. \\
+	Bei $\lambda, \perp$, wird $\perp$ gepopt und der Automat ist fertig, also wird das Wort akzeptiert.\\
+	$\Rightarrow L_\lambda(A) \subset M_1~~~~\Rightarrow~~M_1=L_\lambda[A]$.
+	\section*{Aufgabe 3.5}
+	\label{sec:a3.5}
+		\subsection*{3.5.1}
+		\label{ssec:3.5.1}
+			\[\delta(\{z_s,z_0\},01)=\delta(\{z_s,z_0,z_e\},1)=\delta(\{z_s,z_1,z_e\},\lambda)=\{z_s,z_1,z_e\} \]
+			\[\delta(\{z_0,z_1\},01)=\delta(\{z_e \},1)=\delta(\{z_e \},\lambda)=\{z_e\}\]
+		\subsection*{3.5.2}
+		\label{ssec:3.5.2}
+		NFA \textit{A}$=(\{z_s,z_0,z_1,z_e\},\{0,1\},Z \times \Sigma \rightarrow Z, z_s, Z_{End})$
+		\subsection*{3.5.3}
+		\label{ssec:3.5.3}
+		Wir können weder Start- noch Endzustand rekonstruieren, da wir nicht wissen, ob das Wort vom Automaten akzeptiert wird, oder ob es sich überhaupt um ein vollständiges Wort handelt bzw. ob es ein Teilwort ist.\\
+		Wir können zudem die \textit{a}-Kanten von $z_2$ und $z_3$ nicht bestimmen, ebenso wie die \textit{b}-Kante von $z_1$, da keine entsprechenden Rechnungen vorliegen.\\
+		Ebenfalls können wir nicht wissen, ob es noch weitere Zustände gibt.\\
+		Wir wissen lediglich, dass $z_0$ keine \textit{b}-Kante besitzt.
+\end{document}

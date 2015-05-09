@@ -1,0 +1,393 @@
+\documentclass[parskip,fleqn,12pt,paper=a4,sffamily]{scrreprt}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+\usepackage{xparse}
+% code snippets
+\usepackage{listings}
+% listing captions
+\usepackage{caption}
+\usepackage{times} % font
+\usepackage{tikz}
+% import math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+
+
+\lstset{ %
+language=Java,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=b,           					% sets the caption-position to bottom
+breaklines=true,        					% sets automatic line breaking
+xleftmargin=1.5cm,							% space from the left paper edge
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
+\captionsetup[lstlisting]{font={footnotesize},margin=1.5cm,singlelinecheck=false } % removes "Listing 1: "
+\definecolor{light-light-gray}{gray}{0.95}
+\let\stdsection\section
+\renewcommand\section{\stdsection}
+
+\title{Übungsaufgaben zum\\16. April 2015}
+\subtitle{Mathematik II für Studierende der Informatik\\(Analysis und Lineare Algebra)}
+\author{~\\
+	\huge{Louis Kobras}\\\large{6658699}\\\large{4kobras@informatik.uni-hamburg.de}\\\\
+	\huge{Utz Pöhlmann}\\\large{6663579}\\\large{4poehlma@informatik.uni-hamburg.de}
+}
+\date{}
+
+\begin{document}
+    \maketitle
+    \newpage
+    \section*{Aufgabenbereich 1}
+    \label{ab1}
+        Für die folgenden linearen Gleichungssysteme stelle man die zugehörige erweiterte Koeffizientenmatrix auf und bestimme die allgemeine Lösung mit dem Gauß-Verfahren.\\ \\
+        \textit{\textbf{Anmerkung:} Ein Lineares Gleichungssystem wird im Folgenden als 'LGS' bezeichnet werden. Des Weiteren stehe 'EKM' für den Begriff 'erweiterte Koeffizientenmatrix' sowie 'GL' für 'Lösung durch Anwendung des Gauß-Verfahrens'}
+        % AUFGABE 1
+        \subsection*{Aufgabe 1}
+        \label{a1}
+            LGS:
+            \begin{equation*}
+            \label{m1}
+                \begin{split}
+                    2x_1~+~x_2~+~x_3 & = ~1\\
+                    x_1~-~x_2~+~x_3 & = ~4\\
+                    3x_1~+~x_2~+~2x_3 & = -1
+                \end{split}
+            \end{equation*}
+            \\EKM:
+            \[
+                \left(
+                    \begin{array}{cccc}
+                        2 & 1 & 1 & ~~ 1\\
+                        1 & -1 & 1 & ~~ 4 \\
+                        3 & 1 & 2 & ~~ -1
+                    \end{array}
+                \right)
+            \]
+            \\GL:
+            \[
+                \begin{array}{lccccl}
+                    I~~~~ & 2 & 1  & 1 &~~~~ 1 &~~~~(:2)\\
+                    II~~~ & 1 & -1 & 1 &~~~~ 4 &~\\ 
+                    III~~ & 3 & 1  & 2 &~~~~ -1 &~~~~ (:3)                
+                \end{array}
+            \]
+            \\
+            \[
+            	\begin{array}{lccccl}
+            		I~~~~ & 1 & \frac{1}{2} & \frac{1}{2} & ~~~~\frac{1}{2}  & \\
+            		II~~~ & 1 & -1 			& 1 		  & ~~~~4 			 & ~~~~ II~-~I\\
+            		III~~ & 1 & \frac{1}{3} & \frac{2}{3} & ~~~~-\frac{1}{3} & ~~~~ III~-~I
+            	\end{array}
+            \]
+            \\
+            \[
+                \begin{array}{lccccl}
+                    I~~~~ & 1 & \frac{1}{2}  & \frac{1}{2} &~~~~ \frac{1}{2}  & ~ \\
+                    II~~~ & 0 & -\frac{3}{2} & \frac{1}{2} &~~~~ \frac{7}{2}  & ~~~~ \left(\cdot \left(-\frac{2}{3}\right)\right) \\ 
+                    III~~ & 0 & -\frac{1}{6} & \frac{1}{6} &~~~~ -\frac{5}{6} & ~~~~ (\cdot (-6) )                
+                \end{array}                
+            \]
+            \\
+            \[
+                \begin{array}{lccccl}
+                    I~~~~ & 1 & \frac{1}{2}  & \frac{1}{2}  &~~~~ \frac{1}{2}  & ~ \\
+                    II~~~ & 0 & 1 			 & -\frac{1}{3} &~~~~ -\frac{7}{3} & ~ \\ 
+                    III~~ & 0 & 1  			 & -1 			&~~~~ 5            & ~~~~ III~-~II
+                \end{array}                
+            \]
+            \\
+            \[
+                \begin{array}{lccccl}
+                    I~~~~ & 1 & \frac{1}{2}  & \frac{1}{2}  &~~~~ \frac{1}{2}  & ~ \\
+                    II~~~ & 0 & 1 			 & -\frac{1}{3} &~~~~ -\frac{7}{3} & ~ \\
+                    III~~ & 0 & 0            & -\frac{2}{3} &~~~~ \frac{22}{3} & ~~~~ \left( \cdot \left(-\frac{3}{2}\right)\right)
+                \end{array}
+            \]
+            \\
+            \[
+                \begin{array}{lcccc}
+                    I~~~~ & 1 & \frac{1}{2}  & \frac{1}{2}  &~~~~ \frac{1}{2}  \\
+                    II~~~ & 0 & 1 			 & -\frac{1}{3} &~~~~ -\frac{7}{3} \\
+                    III~~ & 0 & 0            & 1            &~~~~ -11
+                \end{array}
+            \]
+            \\
+            \begin{equation*}
+            	\begin{split}
+            	    \underline{\underline{x_3~=~-11}}
+            	\end{split}
+            \end{equation*}
+            \\
+            \begin{equation*}
+                \begin{split}
+            	    &-\frac{7}{3}~=~x_2~-~\frac{1}{3}\cdot 11  \\
+            	    &-\frac{7}{3}~=~x_2~+~\frac{11}{3} \\
+            	    &\underline{\underline{x_2~=~-\frac{18}{3}~=~-6}}
+            	\end{split}
+            \end{equation*}
+            \\
+            \begin{equation*}
+                \begin{split}
+                    &\frac{1}{2}~=~x_1~+~\frac{1}{2}\cdot(-6)~+~\frac{1}{2}\cdot(-11) \\
+                    &\frac{1}{2}~=~x_1~-~3~-~5.5 \\
+                    &\underline{\underline{x_1~=~9}}
+            	\end{split}
+            \end{equation*}
+        % AUFGABE 2
+        \newpage
+        \subsection*{Aufgabe 2}
+        \label{a2}
+            LGS:
+            \begin{equation*}
+            \label{m2}
+                \begin{split}
+                    2x_1~+~x_2~+~x_3 & = 1\\
+                    x_1~-~x_2~+~x_3 & = 4\\
+                    3x_1~+~2x_2 & = 4
+                \end{split}
+            \end{equation*}
+            \\EKM:
+            \[
+                \left(
+                    \begin{array}{cccc}
+                        2 & 1  & 1 & 1 \\
+                        1 & -1 & 1 & 4 \\
+                        3 & 0  & 2 & 4
+                    \end{array}
+                \right)
+            \]
+            \\GL:
+            \[
+                \begin{array}{lccccl}
+                    I~~~~ & 2 &  1 & 1 & 1 & ~~~~\left(:2\right) \\
+                    II~~~ & 1 & -1 & 1 & 4 & ~      \\
+                    III~~ & 3 &  0 & 2 & 2 & ~~~~\left(:3\right)
+                \end{array}
+            \]
+            \\
+            \[
+                \begin{array}{lccccl}
+                    I~~~~ & 1 & \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & ~           \\
+                    II~~~ & 1 & -1          & 1           & 4           & ~~~~\left(II~-~I\right) \\
+                    III~~ & 1 & 0           & \frac{2}{3} & \frac{4}{2} & ~~~~\left(III~-~I\right)
+                \end{array}
+            \]
+            \\
+            \[
+                \begin{array}{lccccl}
+                    I~~~~ & 1 & \frac{1}{2}  & \frac{1}{2} & \frac{1}{2} & ~           \\
+                    II~~~ & 0 & -\frac{3}{2} & \frac{1}{2} & \frac{4}{3} & ~~~~\left(\cdot\left(-\frac{2}{3}\right)\right) \\
+                    III~~ & 0 & -\frac{1}{2} & \frac{1}{6} & \frac{5}{6} & ~~~~\left(\cdot(-2)\right)
+                \end{array}
+            \]
+            \\
+            \[
+                \begin{array}{lccccl}
+                    I~~~~ & 1 & \frac{1}{2} &  \frac{1}{2} &  \frac{1}{2} & ~           \\
+                    II~~~ & 0 & 1           & -\frac{1}{3} & -\frac{7}{3} & ~           \\
+                    III~~ & 0 & 1           & -\frac{1}{3} & -\frac{5}{3} & ~~~~\left(III~-~II\right)
+                \end{array}
+            \]
+            \\
+            \[
+                \begin{array}{lccccl}
+                    I~~~~ & 1 & \frac{1}{2} &  \frac{1}{2} &  \frac{1}{2} & ~ \\
+                    II~~~ & 0 & 1           & -\frac{1}{3} & -\frac{7}{3} & ~ \\
+                    III~~ & 0 & 0           & 0            &  \frac{2}{3} & ~
+                \end{array}
+            \]
+            \\
+            \begin{equation*}
+                0~\neq~\frac{2}{3}~~\Rightarrow~\underline{\underline{k.L.}}
+            \end{equation*}
+        \newpage
+        % AUFGABE 3
+        \subsection*{Aufgabe 3}
+        \label{a3}
+            LGS:
+            \begin{equation*}
+            \label{m3}
+                \begin{split}
+                    2x_1~+~x_2~+~x_3 & = 1\\
+                    x_1~-~x_2~+~x_3 & = 4\\
+                    3x_1~+~2x_3 & = 5
+                \end{split}
+            \end{equation*}
+            EKM:
+            \[
+                \left(
+                    \begin{array}{cccc}
+                        2 & 1 & 1 & 1 \\
+                        1 & -1 & 1 & 4\\
+                        3 & 0 & 2 & 5
+                    \end{array}
+                \right)
+            \]
+            GL:
+            \[
+            	\begin{array}{lccccl}
+            	    I~~~~ & 2 &  1 & 1 & 1 & ~~~~\left(:2\right) \\
+            	    II~~~ & 1 & -1 & 1 & 4 & ~ \\
+            	    III~~ & 3 &  0 & 2 & 5 & ~~~~\left(:3\right)
+            	\end{array}
+            \]
+            \\
+            \[
+            	\begin{array}{lccccl}
+            	    I~~~~ & 1 &  \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & ~                        \\
+            	    II~~~ & 1 & -1           & 1           & 4           & ~~~~\left(II~-~I\right)            \\
+            	    III~~ & 1 &  0           & \frac{2}{3} & \frac{5}{3} & ~~~~\left(III~-~I\right)
+            	\end{array}
+            \]
+            \\
+            \[
+            	\begin{array}{lccccl}
+            	    I~~~~ & 1 &  \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & ~           \\
+            	    II~~~ & 0 & -\frac{3}{2} & \frac{1}{2} & \frac{7}{2} & ~~~~\left(~\cdot~\left(-\frac{2}{3}\right)\right)  \\
+            	    III~~ & 0 & -\frac{1}{2} & \frac{1}{6} & \frac{7}{6} & ~~~~\left(~\cdot~\left(-2\right)\right)
+            	\end{array}
+            \]
+            \\      
+            \[
+            	\begin{array}{lccccl}
+            	    I~~~~ & 1 & \frac{1}{2} &  \frac{1}{2} &  \frac{1}{2} & ~   \\
+            	    II~~~ & 0 & 1           & -\frac{1}{3} & -\frac{7}{3} & ~   \\
+            	    III~~ & 0 & 1           & -\frac{1}{3} & -\frac{7}{3} & ~~~~\left(III~-~II\right)
+            	\end{array}
+            \]
+            \\ 
+            \[
+            	\begin{array}{lccccl}
+            	    I~~~~ & 1 & \frac{1}{2} &  \frac{1}{2} &  \frac{1}{2} & ~  \\
+            	    II~~~ & 0 & 1           & -\frac{1}{3} & -\frac{7}{3} & ~  \\
+            	    III~~ & 0 & 0           &  0           & 0            & ~
+            	\end{array}
+            \]
+            \\
+            \begin{equation*}
+                \begin{split}
+                     0~          &=~0 \cdot x_3 \\
+                    -\frac{7}{3} &=~x_2~-~\frac{1}{3}x_3 \\
+                     \frac{1}{2} &=~x_1~+~\frac{1}{2}x_2~+~\frac{1}{2}x_3
+                \end{split}
+            \end{equation*}
+            \\
+            \begin{equation*}
+                \begin{split}
+                    x_2~&=~-\frac{7}{3}~+~\frac{1}{3}x_3 \\
+                    x_1~&=~ \frac{1}{2}~+~\frac{7}{6}~-~\frac{1}{6}x_3~-~\frac{1}{6}x_3~~=~~\frac{10}{6}~-~\frac{1}{3}x_3
+                \end{split}
+            \end{equation*} 
+            \\ \\
+            Einsetzen von $x_1$ und $x_2$ in I:
+            \begin{equation*}
+                \begin{split}
+                    \frac{1}{2}~&=~\frac{10}{6}~-~\frac{2}{6}x_3~-~\frac{7}{6}~+~\frac{1}{6}x_3~+~\frac{3}{6}x_3 \\
+                                &=~\frac{1}{2}~+~\frac{1}{3}x_3~~~~\Rightarrow~~\frac{1}{3}x_3~=~0~~\Rightarrow~\underline{\underline{x_3~=~0}}
+                \end{split}
+            \end{equation*}      
+            \\ \\
+            Einsetzen von $x_3$ in $x_2$, anschließend $x_3$ und $x_2$ in $x_1$:
+            \begin{equation*}
+                \begin{split}
+                    x_2~&=~-\frac{7}{3}~+~\frac{1}{3}\cdot 0~~~\Rightarrow~~\underline{\underline{x_2~=~-\frac{7}{3}}} \\
+                \end{split}
+            \end{equation*}
+            \begin{equation*}
+                \begin{split}
+                    x_1~=~\frac{1}{2}~+~\frac{7}{6}~-~\frac{0}{2}~~~~\Rightarrow~~\underline{\underline{x_1~=~\frac{5}{3}}}
+                \end{split}
+            \end{equation*}
+    \newpage	
+    \section*{Aufgabenbereich 2}
+    \label{ab2}
+        Wir gehen davon aus, dass die erweiterte Koeffizientenmatrix eines linearen Gleichungssystems durch elementare Zeilenumformung auf die folgende Zeilenstufenform gebracht wurde:\\
+        \[~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            \begin{pmatrix}
+                1 & 2 & 3 & -1 & -1 &  2 &  1 \\
+                0 & 1 & 3 &  2 &  0 &  0 &  1 \\
+                0 & 0 & 0 &  0 &  1 & -3 & -2 \\
+                0 & 0 & 0 &  0 &  0 &  0 &  0
+            \end{pmatrix}
+        \]
+        Welches sind die führenden und welches sind die freien Variablen? Man bestimme die allgemeine Lösung.
+        \\ \\ \\
+        \textit{Die \textbf{führenden} Variablen sind $x_1$, $x_2$. $x_5$.}\\
+        \textit{Die \textbf{freien} Variablen sind $x_3$, $x_4$, $x_6$.}
+        % AUFGABE 4
+        \subsection*{Aufgabe 4: Lösung durch Rückwärtssubstitution ("Gauß-Verfahren")}
+        \label{a4}
+            \begin{equation*}
+                \begin{split}
+                    x_5~&=~  3x_6~-~2 \\
+                    x_2~&=~-~3x_3~-~2x_4~+~1 \\
+                    x_1~&=~-~2x_2~-~3x_3~+~x_4~+~x_5~-~2x_6~+~1 \\
+                        &=~-~2\left(-3x_3~-2x_4~+1 \right)~-~3x_3~+~x_4~+~3x_6~-~2~-~2x_6~+~1 \\
+                        &=~  6x_3~+~4x_4~-~2~-~3x_3~+~x_4~+~3x_6~-~2~-~2x_6~+~1 \\
+                        &=~  3x_3~+~5x_4~+~x_6~-~3
+                \end{split}
+            \end{equation*}
+            Lösungsmenge: $\{(3t+5u+v-3, -3t-2u+1, t, u, 3v-2, v) ~|~t,u,v\in\mathbb{R}  \}~\subseteq~\mathbb{R}^6$
+        \newpage
+        %AUFGABE 5
+        \subsection*{Aufgabe 5: Lösung durch Anwendung des Gauß-Jordan-Verfahrens}
+        \label{a5}
+            \[
+                \begin{pmatrix}
+                    1 & 2 & 3 & -1 & -1 &  2 &  1 \\
+                    0 & 1 & 3 &  2 &  0 &  0 &  1 \\
+                    0 & 0 & 0 &  0 &  1 & -3 & -2 \\
+                    0 & 0 & 0 &  0 &  0 &  0 &  0
+                \end{pmatrix}
+            \] \\
+            Addieren von III auf I:
+            \[
+                \begin{pmatrix}
+                    1 & 2 & 3 & -1 & 0 & -1 & -1 \\
+                    0 & 1 & 3 &  2 & 0 &  0 &  1 \\
+                    0 & 0 & 0 &  0 & 1 & -3 & -2 \\
+                    0 & 0 & 0 &  0 & 0 &  0 &  0
+                \end{pmatrix}
+            \] \\
+            Subtrahieren von 2$\cdot$II von I:
+            \[
+                \begin{pmatrix}
+                    1 & 0 & -3 & -5 & 0 & -1 & -3 \\
+                    0 & 1 &  3 &  2 & 0 &  0 &  1 \\
+                    0 & 0 &  0 &  0 & 1 & -3 & -2 \\
+                    0 & 0 &  0 &  0 & 0 &  0 &  0
+                \end{pmatrix}
+            \]
+            \\
+            \begin{equation*}
+                \begin{split}
+                    x_1~&=~3_x3~+~5_x4~+~x_6~-~3 \\
+                    x_2~&=~-3x_3~-~2x_4~+~1 \\
+                    x_5~&=~3x_6~-~2
+                \end{split}
+            \end{equation*}
+            \\
+            Lösungsmenge: $\{(3t+5u+v-3, -3t-2u+1, t, u, 3v-2, v) ~|~t,u,v\in\mathbb{R}  \}~\subseteq~\mathbb{R}^6$
+\end{document}

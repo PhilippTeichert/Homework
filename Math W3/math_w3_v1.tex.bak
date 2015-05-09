@@ -1,0 +1,374 @@
+\documentclass[parskip,12pt,paper=a4,sffamily]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+% code snippets
+\usepackage{listings}
+% listing captions
+\usepackage{caption}
+\usepackage{times} % font
+\usepackage{tikz}
+% import math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% contradiction lightning
+\usepackage{stmaryrd}
+% multiple authors
+\usepackage{authblk}
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+
+
+\lstset{ %
+language=Java,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=b,           					% sets the caption-position to bottom
+breaklines=true,        					% sets automatic line breaking
+xleftmargin=1.5cm,							% space from the left paper edge
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
+\captionsetup[lstlisting]{font={footnotesize},margin=1.5cm,singlelinecheck=false } % removes "Listing 1: "
+\definecolor{light-light-gray}{gray}{0.95}
+\let\stdsection\section
+\renewcommand\section{\stdsection}
+
+\title{Übungsaufgaben zum\\23. April 2015\\\large{
+Analysis und Lineare Algebra: Mathematik für Informatiker II}}
+\author{~\\
+	\Large{Louis Kobras}\\\large{6658699}\\\large{4kobras@informatik.uni-hamburg.de}\\
+	\Large{Utz Pöhlmann}\\\large{6663579}\\\large{4poehlma@informatik.uni-hamburg.de}
+}
+\date{22.04.2015}
+
+
+\begin{document}
+	\maketitle
+	\newpage
+	\section*{Aufgabe 1}
+	\label{a1}
+		Sei $V$ der Vektorraum aller Abbildungen von $\mathbb{R}$ nach $\mathbb{R}$. Dabei sind die Summen zweier Funktionen und skalare Vielfache von Funktionen wie in Beispiel 2.4 im Skript definiert. Zeigen Sie, dass die Menge
+		\[
+			U=\{f \in V : \forall x \in \mathbb{R}(f(x)=f(-x))\}
+		\]
+		ein Unterraum von $V$ ist. \\
+		\\
+		\\
+		$V: \mathbb{R} \rightarrow \mathbb{R}$ \\
+		$Seien f(x), f(-x) \in V.$
+		\begin{proof}
+		    \[f(x)=f(-x)\]
+		    \[f(y)=f(-y)\]
+		    \[f(x)+f(y)=f(x+y)=f(-x-y)=f-x)+f(-y)\]
+		    \[f(x) \in V \wedge \lambda \in \mathbb{R}\]
+		    \[\lambda f(x) = f(\lambda \cdot x)\]
+		    Wir wissen:
+		    \[f(x)=f(-x)\Rightarrow\lambda f(x)=\lambda f(-x)\]
+		    \[\Rightarrow \lambda f(x) \in \mathbb{R}\]
+		\end{proof}
+	\newpage
+	\section*{Aufgabe 2}
+	\label{a2}
+		Man untersuche, für welche $c \in \mathbb{R}$ die Menge
+		\[
+			U_c :=\{(x_1, x_2, x_3) \in \mathbb{R}^3:x_1+x_2+x_3=c\}
+		\]
+		ein Unterraum von$\mathbb{R}^3$ ist.\\ \\ \\
+		Für alle, denn für jedes $c \in \mathbb{R}|x_1 = c-1; x_2 = 0.4; x_3=0.6$ und somit auch eine Gleichung $x_1+x_2+x_3=c$, also
+		\[(c-1)+0.4+0.6=c\]
+		\[c-1+1=c\]
+		\[c=c\]
+		\begin{equation*}
+		    \begin{pmatrix}
+		        x_1 \\
+		        x_2 \\
+		        x_3
+    	    \end{pmatrix}
+    	    \wedge
+    	    \begin{pmatrix}
+    	        x_1' \\
+    	        x_2' \\
+    	        x_3'
+    	    \end{pmatrix}
+    	    \in \mathbb{R}^3 : x_1+x_2+x_3=c|c \in \mathbb{R} \wedge x_1'+x_2'+x_3'=c'|c' \in \mathbb{R}
+    	\end{equation*}
+    	\begin{equation*}
+    	    \begin{pmatrix}
+    	        x_1 \\
+		        x_2 \\
+		        x_3
+    	    \end{pmatrix}
+    	    +
+    	    \begin{pmatrix}
+    	        x_1' \\
+    	        x_2' \\
+    	        x_3'
+    	    \end{pmatrix}
+    	    =
+    	    \begin{pmatrix}
+    	        x_1+x_1' \\
+    	        x_2+x_2' \\
+    	        x_3+x_3'
+    	    \end{pmatrix} \in \mathbb{R}^3, da~c_1+x_2+x_3+x_1'+x_2'+x_3'=c+c' \in \mathbb{R}
+		\end{equation*}
+		\begin{equation*}
+		    \begin{pmatrix}
+    	        x_1 \\
+    	        x_2 \\
+    	        x_3
+    	    \end{pmatrix} \in \mathbb{R}^3 \wedge \lambda \in \mathbb{R} \\
+    	\end{equation*}
+    	\begin{equation*}
+    	    \lambda\begin{pmatrix}
+    	        x_1 \\
+    	        x_2 \\
+    	        x_3
+    	    \end{pmatrix}
+    	    =
+    	    \begin{pmatrix}
+    	        \lambda x_1 \\
+    	        \lambda x_2 \\
+    	        \lambda x_3
+    	    \end{pmatrix}
+		\end{equation*}
+		\begin{equation*}
+		    \lambda (x_1+x_2+x_3=\lambda c \\
+		    \lambda x_1 + \lambda x_2 + \lambda x_3 = \lambda c
+		\end{equation*}
+	\newpage
+	\section*{Aufgabe 3}
+	\label{a3}
+		Seien $U$ und $W$ Untervektorräume eines $K$-Vektorraums $V$. Zeigen Sie, dass
+		\[
+			U+W=\{u+w : u \in U \and w \in W\}
+		\]
+		ein Unterraum von $V$ ist. \\
+		\\
+		\\
+		Seien $U, V \in \wedge w, x \in W$. \\
+		Sei außerdem $u+w \in U+W$, $u+v \in U$, $w+x \in W$. \\
+		\\
+		\[(u+w)\in U+W \wedge (v+z) \in U+W\]
+		\[(u+w)+(v+x) = u+w~+~v+x=u+v+w+x = (u+v)+(w+x)\]
+		\[(u+v) \in U \wedge (w+x) \in W\]
+		\[
+		    \lambda(u+w)=\lambda u +\lambda w
+		\]
+		\[
+		    \lambda u \in U \wedge \lambda w \in W \Rightarrow (\lambda u + \lambda w) \in U+W
+		\]
+	\newpage
+	\section*{Aufgabe 4}
+	\label{a4}
+		Sei $K=\mathbb{Z}_3$. Wir betrachten die Vektoren $v_1=$(1,1,0,0) und $v_2=$(1,0,1,0) in $K^4$. Bestimmen Sie Lin$(v_1, v_2)$. \\
+		Hinweis: Da $K^4$ in diesem Fall endlich ist, kann der von $v_1$ und $v_2$ erzeugte Unterraum explizit angegeben werden. \\
+		\\
+		\\
+		Lin($v_1, v_2$) $:= \forall v \in \mathbb{Z}^3:\exists \lambda_1, \lambda_2 \in \mathbb{Z}^3$ mit $v=\lambda \cdot v_1 + \lambda \cdot v_2$ \\
+		\textit{Die Ziffern über den Vektoren mögen für $\lambda_1$ und $\lambda_2$ stehen, respektive.} \\
+		\[
+    		\lambda_1 \cdot \begin{pmatrix}
+                1 \\ 1 \\ 0 \\ 0
+    		\end{pmatrix}
+    		+
+    		\lambda_2 \cdot \begin{pmatrix}
+    		    1 \\ 0 \\ 1 \\ 0
+    		\end{pmatrix}
+    		=
+    		\left[
+    	    \overset{00}{\begin{pmatrix}
+    	        0 \\ 0 \\ 0 \\ 0
+    	    \end{pmatrix}};
+    	    \overset{10}{\begin{pmatrix}
+    	        1 \\ 1 \\ 0 \\ 0
+    	    \end{pmatrix}};
+    	    \overset{01}{\begin{pmatrix}
+    	        1 \\ 0 \\ 1 \\ 1
+    	    \end{pmatrix}};
+    	    \overset{11}{\begin{pmatrix}
+    	        2 \\ 1 \\ 1 \\ 0
+    	    \end{pmatrix}};
+    	    \overset{21}{\begin{pmatrix}
+    	        0 \\ 2 \\ 1 \\ 0
+    	    \end{pmatrix}};
+    	    \overset{12}{\begin{pmatrix}
+    	        0 \\ 1 \\ 2 \\ 0
+    	    \end{pmatrix}};
+    	    \overset{22}{\begin{pmatrix}
+    	        1 \\ 2 \\ 2 \\ 0
+    	    \end{pmatrix}};
+    	    \overset{20}{\begin{pmatrix}
+    	        2 \\ 2 \\ 0 \\ 0
+    	    \end{pmatrix}};
+    	    \overset{02}{\begin{pmatrix}
+    	        2 \\ 0 \\ 2 \\ 0
+    	    \end{pmatrix}}
+    	    \right]
+        \]
+        Lin($v_1, v_2$) = 
+        \begin{align*}
+            \begin{split}
+                \{
+                    &(0,0,0,0),(1,1,0,0),(1,0,1,0),(2,1,1,0),(0,2,1,0), \\
+                    &(0,1,2,0),(1,2,2,0),(2,2,0,0),(2,0,2,0)
+                \}
+            \end{split}
+        \end{align*}
+	\newpage
+	\section*{Aufgabe 5}
+	\label{a5}
+		Sei $K = \mathbb{R}$. Wir betrachten die Vektoren $v_1=$ (2,0,2), $v_2= $(1,-2,3), $v_3=$ (0,1,-2) und $v_4=$ (2,1,1). Sind die Vektoren $v_1$,...,$v_4$ linear unabhängig? Erzeugen die Vektoren $v_1$,...,$v_4$ den Vektorraum $\mathbb{R}^3$? Sind die Vektoren $v_1$, $v_2$ linear unabhängig? Erzeugen die Vektoren $v_1$, $v_2$ den Vektorraum $\mathbb{R}^3$?
+		\begin{align*}
+		    \begin{split}
+		        2x_1 +  x_2        + 2x_4 &= 0 \\
+		             - 2x_2 +  x_3 + x_4  &= 0 \\
+		        3x_1 + 3x_2 - 2x_3 + x_4  &= 0 \\
+		        \\
+		        x_1 + \frac{1}{2} x_2 + x_4 &= 0 \\
+		        x_2 - \frac{1}{2}x_3 - \frac{1}{2}x_4  &= 0 \\
+		        \frac{1}{2}x_2 - 2x_3 - 2x_4  &= 0 \\
+		        \\
+		        x_1 + \frac{1}{2} x_2 + x_4 &= 0 \\
+		        x_2 - \frac{1}{2} x_3 - \frac{1}{2}x_4  &= 0 \\
+		        x_2 - 4x_3 - 4x_4  &= 0 \\
+		        \\
+		        x_1 + \frac{1}{2} x_2 + x_4 &= 0 \\
+		        x_2 - \frac{1}{2} x_3 - \frac{1}{2}x_4  &= 0 \\
+		        -\frac{7}{2}2x_3 - \frac{7}{2}x_4  &= 0
+		    \end{split}
+		    ~~~~~~~~~~~~~~~~~~~~~~~~~
+		    \begin{split}
+		        x_1 + \frac{1}{2} x_2 + x_4 &= 0 \\
+		        x_2 - \frac{1}{2} x_3 - \frac{1}{2}x_4  &= 0 \\
+		        x_3 + x_4  &= 0 \\
+		        \\
+		        x_1 + \frac{1}{4} x_3 + \frac{5}{4}x_4 &= 0 \\
+		        x_2 &= 0 \\
+		        x_3 + x_4  &= 0 \\
+		        \\
+		        x_1 + x_4 &= 0 \\
+		        x_2  &= 0 \\
+		        x_3 + x_4  &= 0
+		    \end{split}
+		\end{align*}
+		\subsection*{Sind die Vektoren $v_1$,...,$v_4$ linear unabhängig?}
+		\label{ssec:5.1}
+		    $
+		        \lambda_1\cdot\begin{pmatrix}
+		        2\\0\\3
+		        \end{pmatrix}
+		    +
+		        \lambda_2\cdot\begin{pmatrix}
+		        1\\-2\\3
+		        \end{pmatrix}
+		    +
+		        \lambda_3\cdot\begin{pmatrix}
+		        0\\1\\-2
+		        \end{pmatrix}
+		    +
+		        \lambda_4\cdot\begin{pmatrix}
+		        2\\1\\1
+		        \end{pmatrix}
+		    =
+		        \begin{pmatrix}
+		        0\\0\\0
+		        \end{pmatrix}
+		    $
+		    \begin{align*}
+		        \begin{split}
+		            2x_1 +  x_2        + 2x_4 &= 0 \\
+		             - 2x_2 +  x_3 + x_4  &= 0 \\
+		            3x_1 + 3x_2 - 2x_3 + x_4  &= 0
+		        \end{split}
+		    \end{align*}
+		    \begin{align*}
+		    \begin{split}
+		        x_1 + x_4 &= 0 \\
+		        x_2  &= 0 \\
+		        x_3 + x_4  &= 0
+		    \end{split}
+		    ~~~~~~~~~~\Rightarrow x_1=x_3=-x_4=0
+		    \end{align*}
+		    Sie sind nicht linear unabhängig, da $\lambda_1=1 \wedge \lambda_2=0\lambda_3=1\wedge\lambda_4=1$.
+		\subsection*{Erzeugen die Vektoren $v_1$...,$v_4$ den Vektorraum $\mathbb{R}^3$?}
+		\label{ssec:5.2}
+    		Nein, da sie nicht linear unabhängig sind.
+		\subsection*{Sind die Vektoren $v_1$, $v_2$ linear unabhängig?}
+		\label{ssec:5.3}
+		    $\lambda_1\cdot\begin{pmatrix}
+		    2\\0\\3
+		    \end{pmatrix}
+		    +
+		    \lambda_2\cdot\begin{pmatrix}
+		    1\\-2\\3
+		    \end{pmatrix}
+		    =
+		    \begin{pmatrix}
+		    0\\0\\0
+		    \end{pmatrix}
+		    $
+		    \begin{align*}
+		        \begin{split}
+		            2x_1+x_2&=0 \\
+		            -2x_2&=0 \\
+		            3x_1+3x_3&=0
+		        \end{split}
+		        ~~~~~~~~~~\overset{II.}{\Rightarrow}x_2=0~~~~~\overset{I.}{\Rightarrow}x_1=0~~~~~\Rightarrow \text{ Ja, sind sie.}
+		    \end{align*}
+		\subsection*{Erzeugen die Vektoren $v_1$, $v_2$ den Vektorraum $\mathbb{R}^3$?}
+		\label{ssec:5.4}
+		    \begin{align*}
+		        \begin{split}
+		            2x_1+x_2&=a_1 \\
+		            -2x_2&=a_2 \\
+		            3x_1+3x_2&=a_3
+		        \end{split}
+		        \begin{split}
+		            x_1+\frac{1}{2}x_2&=\frac{a_1}{2} \\
+		            x_2&=-\frac{a_2}{2} \\
+		            x_1+x_2&=\frac{a_3}{3}
+		        \end{split}
+		        ~~~~~~~~~~~\Rightarrow~~~\text{nein}
+		    \end{align*}
+		    Beispiel:
+		    $
+    		    \begin{pmatrix}
+        		    1\\2\\3
+    		    \end{pmatrix}
+    		    \in \mathbb{R}^3
+    		$
+		    \begin{equation*}
+    		    \begin{split}
+    		        2x_1+x_2&=1 \\
+    		        -2x_2&=2 \\    
+                    3x_1+3x_2&=3
+                \end{split}
+                ~~~~~\overset{II.}{\Rightarrow}~~~x_2=-1~~~~~\overset{I.}{\Rightarrow}~~~x_1=1~~~~~\overset{III.}{\Rightarrow}~~~~~
+                \begin{split}
+                    3\cdot 1 + 3 \cdot (-1) &= 3 \\
+                    3-3&=3 \\
+                    0&=3 \lightning
+                \end{split}
+		    \end{equation*}
+		    Nein, sie erzeugen \textbf{nicht} den Vektorraum $\mathbb{R}^3$.
+\end{document}

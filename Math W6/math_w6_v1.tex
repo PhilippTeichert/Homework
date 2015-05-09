@@ -1,0 +1,189 @@
+\documentclass[parskip,12pt,paper=a4,sffamily]{scrartcl}
+%alternate documentclass:
+%\documentclass[parskip,12pt,paper=a4,sffamily]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+% code snippets
+\usepackage{listings}
+% listing captions
+\usepackage{caption}
+% font: times new roman
+\usepackage{times}
+% tikz being tikz
+\usepackage{tikz}
+% import math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% contradiction lightning
+\usepackage{stmaryrd}
+% alignment options
+\usepackage{ragged2e}
+% page margins
+\usepackage[margin=2.5cm]{geometry}
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+
+
+\lstset{ %
+language=Java,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=b,           					% sets the caption-position to bottom
+breaklines=true,        					% sets automatic line breaking
+xleftmargin=1.5cm,							% space from the left paper edge
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
+\captionsetup[lstlisting]{font={footnotesize},margin=1.5cm,singlelinecheck=false } % removes "Listing 1: "
+\definecolor{light-light-gray}{gray}{0.95}
+\let\stdsection\section
+\renewcommand\section{\stdsection}
+
+% add line break for subtitle (size: large)
+\title{Hausaufgaben zum 14. Mai 2015
+    \\\large{
+        Mathematik für Studierende der Informatik II\\
+        (Analysis und Lineare Algebra)
+    }
+}
+\author{~\\
+	\Large{Louis Kobras}\\
+	\large{6658699}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{4kobras@informatik.uni-hamburg.de} \\
+	\\
+	\Large{Utz Pöhlmann}\\
+	\large{6663579}\\
+	\large{4poehlma@informatik.uni-hamburg.de}\\
+	\\
+	\Large{Jennifer Hartmann}\\
+	\large{6706472}\\
+	\large{fwuy089@studium.uni-hamburg.de}
+}
+
+% leave empty for no date on title page
+% comment for auto-generated date
+\date{\today}
+
+
+\begin{document}
+	\maketitle
+	\newpage
+	\section*{Aufgabe 1}
+	\label{sec:a1}
+	%%%%---AUFGABE---%%%%
+	Berechnen Sie das Inverse der Matrix
+	\[
+	    A=
+	    \begin{pmatrix}
+	        1 & 1 & -1 \\
+	        0 & 1 &  1 \\
+	        2 & 2 &  1
+	    \end{pmatrix}.
+	\]\\\\
+	%%%%---RECHNUNG---%%%%
+	Um eine Matrix zu invertieren, ist ebenjene Matrix $B$ gesucht, mit der die gegebene Matrix multipliziert werden muss, um die Einheitsmatrix zu erhalten.\\
+	\begin{table}[h]
+	    \centering
+        \begin{tabular}{cc}
+                 & $\begin{pmatrix}a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\a_{31}&a_{32}&a_{33}\end{pmatrix}$ \\
+            $\begin{pmatrix}1&1&-1\\0&1&1\\2&2&1 \end{pmatrix}$  & $\begin{pmatrix}1~~~&0~~~&0\\0~~~&1~~~&0\\0~~~&0~~~&1 \end{pmatrix}$
+        \end{tabular}
+    \end{table}\\
+    Daraus ergeben sich folgende neun Gleichungen:\\
+    \[
+        \begin{array}{lll}
+           % first line times undefined matrix
+            I~~~~~~&1=1\cdot a_{11}+1\cdot a_{21}+(-1)\cdot a_{31}~~~&\Rightarrow a_{31}+1=a_{11}+a_{21}\\
+            II~~~~~&0=1\cdot a_{12}+1\cdot a_{22}+(-1)\cdot a_{32}~~~&\Rightarrow a_{32}=a_{12}+a_{22}\\
+            III~~~~&0=1\cdot a_{13}+1\cdot a_{23}+(-1)\cdot a_{33}~~~&\Rightarrow a_{33}=a_{13}+a_{23}\\
+        \\ % second line times undefined matrix
+            IV~~~~~&0=0\cdot a_{11}+1\cdot a_{21}+1\cdot a_{31}~~~&\Rightarrow a_{21}=-a_{31} \\
+            V~~~~~~&1=0\cdot a_{12}+1\cdot a_{22}+1\cdot a_{32} \\
+            VI~~~~~&0=0\cdot a_{13}+1\cdot a_{23}+1\cdot a_{33}~~~&\Rightarrow a_{23}=-a_{33} \\
+        \\ % third line times undefined matrix
+            VII~~~~&0=2\cdot a_{11}+2\cdot a_{21}+1\cdot a_{31} \\
+            VIII~~~&0=2\cdot a_{12}+2\cdot a_{22}+1\cdot a_{32} \\
+            IX~~~~~&1=2\cdot a_{13}+2\cdot a_{23}+1\cdot a_{33} \\
+        \end{array}
+    \]
+    Durch die offensichtlichen Umformungen und das Einsetzen von Gleichungen ineinander ermitteln wir nun die Werte $(a_{ij})_{i,j\in[1,2,3]}$ als Lösungen dieses Gleichungssystems.\\
+        \begin{align*}
+            Wir~beginnen~mit~der~&ersten~Spalte:\\
+                Einsetzen~von~&IV~in~I:\\
+                    a_{31}+1&=a_{11}+(-a_{31})\\
+                    \Rightarrow~~a_{11}&=a_{31}+a_{31}+1=2\cdot a_{31}+1\\
+                Einsetzen~von~&a_{11}~und~a_{21}~in~VII:\\
+                    0&=2\cdot (2\cdot a_{31}+1)+2\cdot(-a_{31})+1\cdot a_{31}=4\cdot a_{31}+2-2\cdot a_{31}+a_{31}\\
+                    &=2+3\cdot a_{31}\\
+                    \Rightarrow~~a_{31}&=-\frac{2}{3}\\
+                Einsetzen~von~&a_{31}~in~a_{i1}:\\
+                    a_{21}&=-a_{31}=\frac{2}{3}\\
+                    a_{11}&=2\cdot a_{31}+1=\frac{7}{3}\\
+            Fortfahren~mit~der~&zweiten~Spalte:\\
+                Einsetzen~von~&II~in~VIII:\\
+                    0&=2\cdot a_{12}+2\cdot a_{22}+1\cdot (a_{12}+a_{22})\\
+                    &=3\cdot a_{12}+3\cdot a_{22}\\
+                    \Rightarrow~~a_{12}&=-a_{22}\\
+                Einsetzen~von~&a_{32}in~V:\\
+                    1&=1\cdot a_{22}+1\cdot(a_{22}-a_{22})\\
+                    \Rightarrow~~&a_{22}=1\\
+                Einsetzen~von~&a_{22}~in~a_{i2}:\\
+                    a_{12}&=-a_{22}=-1\\
+                    a_{32}&=a_{22}-a_{22}=1-1=0\\
+            Fortfahren mit der~&dritten~Spalten:\\
+                Einsetzen~von~&VI~in~III
+        \end{align*}
+	\section*{Aufgabe 2}
+	\label{sec:a2}
+	%%%%---AUFGABE---%%%%
+	Lösen Sie das lineare Gleichungssystem
+	\[
+	    Ax=\begin{pmatrix}
+	        1\\2\\3
+	    \end{pmatrix},
+	\]
+	wobei $A$ die Matrix aus Aufgabe 1 ist.
+	%%%%---RECHNUNG---%%%%
+	\section*{Aufgabe 3}
+	\label{sec:a3}
+	%%%%---AUFGABE---%%%%
+	Zeigen Soe, dass für zwei ($2~\times~2$)-Matrizen $A$ und $B$ tatsächlich die Formel
+	\[
+	    Det(A)Det(B)=Det(AB)
+	\]
+	gilt.
+	%%%%---RECHNUNG---%%%%
+	\section*{Aufgabe 4}
+	\label{sec:a4}
+	%%%%---AUFGABE---%%%%
+	Die Folge $(\frac{1}{n}+\frac{1}{n^2})_{n\in\mathbb{N}}$ konvergiert gegen 0.
+	Damit existiert $n_0\in\mathbb{N}$, so dass für alle $n \ge n_0$ die Ungleichung $|\frac{1}{n}+\frac{1}{n^2}|<\frac{1}{3}$ gilt.
+	Bestimmen Sie das kleinste $n_0\in\mathbb{N}$, das das leistet.
+	%%%%---RECHNUNG---%%%%
+	\section*{Aufgabe 5}
+	\label{sec:a5}
+	%%%%---AUFGABE---%%%%
+	Es sei $a\in\mathbb{R}$ irgendeine Zahl und $(a_n)_{n\in\mathbb{N}}$ eine Folge reeller Zahlen mit $a_n\rightarrow0$ für $n\rightarrow\infty$.
+	Man zeige nur unter Benutzung der Definition von Konvergenz, dass die Folge $(a+a_n)_{n\in\mathbb{N}7}$ gegen $a$ konvergiert.
+	%%%%---RECHNUNG---%%%%
+\end{document}

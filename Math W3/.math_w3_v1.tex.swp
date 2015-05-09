@@ -1,0 +1,97 @@
+\documentclass[parskip,12pt,paper=a4,sffamily]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+% code snippets
+\usepackage{listings}
+% listing captions
+\usepackage{caption}
+\usepackage{times} % font
+\usepackage{tikz}
+% import math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+% multiple authors
+\usepackage{authblk}
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+
+
+\lstset{ %
+language=Java,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=b,           					% sets the caption-position to bottom
+breaklines=true,        					% sets automatic line breaking
+xleftmargin=1.5cm,							% space from the left paper edge
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
+\captionsetup[lstlisting]{font={footnotesize},margin=1.5cm,singlelinecheck=false } % removes "Listing 1: "
+\definecolor{light-light-gray}{gray}{0.95}
+\let\stdsection\section
+\renewcommand\section{\stdsection}
+
+\title{Übungsaufgaben zum\\23. April 2015\\\large{
+Analysis und Lineare Algebra: Mathematik für Informatiker II}}
+\author{~\\
+	\Large{Louis Kobras}\\\large{6658699}\\\large{4kobras@informatik.uni-hamburg.de}\\
+	\Large{Utz Pöhlmann}\\\large{6663579}\\\large{4poehlma@informatik.uni-hamburg.de}
+}
+\date{22.04.2015}
+
+
+\begin{document}
+	\maketitle
+	\newpage
+	\section{Aufgabe 1}
+	\label{a1}
+		Sei $V$ der Vektorraum aller Abbildungen von $\mathbb{R}$ nach $\mathbb{R}$. Dabei sind die Summen zweier Funktionen und skalare Vielfache von Funktionen wie in Beispiel 2.4 im Skript definiert. Zeigen Sie, dass die Menge
+		\[
+			U=\{f \in V : \forall x \in \mathbb{R}(f(x)=f(-x))\}
+		\]
+		ein Unterraum von $V$ ist.
+	\newpage
+	\section{Aufgabe 2}
+	\label{a2}
+		Man untersuche, für welche $c \in \mathbb{R}$ die Menge
+		\[
+			U_e :=\{(x_1, x_2, x_3) \in \mathbb{R}^3:x_1+x_2+x_3=c\}
+		\]
+		ein Unterraum von$\mathbb{R}^3$ ist.
+	\newpage
+	\section{Aufgabe 3}
+	\label{a3}
+		Seien $U$ und $W$ Untervektorräume eines $K$-Vektorraums $V$. Zeigen Sie, dass
+		\[
+			U+W=\{u+w : u \in U \and w \in W\}
+		\]
+		ein Unterraum von $V$ ist.
+	\newpage
+	\section{Aufgabe 4}
+	\label{a4}
+		Sei $K=\mathbb{Z}_3$. Wir betrachten die Vektoren $v_1=$(1,1,0,0) und $v_2=$(1,0,1,0) in $K^4$. Bestimmen Sie Lin$(v_1, v_2)$. \\
+		Hinweis: Da $K^4$ in diesem Fall endlich ist, kann der von $v_1$ und $v_2$ erzeugte Unterraum explizit angegeben werden.
+	\newpage
+	\section{Aufgabe 5}
+	\label{a5}
+		Sei $K = \mathbb{R}$. Wir betrachten die Vektoren $v_1=$ (2,0,2), $v_2= $(1,-2,3), $v_3=$ (0,1,-2) und $v_4=$ (2,1,1). Sind die Vektoren $v_1$,...,$v_4$ linear unabhängig? Erzeugen die Vektoren $v_1$,...,$v_4$ den Vektorraum $\mathbb{R}^3$? Sind die Vektoren $v_1$, $v_2$ linear unabhängig? Erzeugen die Vektoren $v_1$, $v_2$ den Vektorraum $\mathbb{R}^3$?
+\end{document}
