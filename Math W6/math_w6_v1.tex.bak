@@ -179,6 +179,7 @@ literate=%
             $\begin{pmatrix}1&1&-1\\0&1&1\\2&2&1 \end{pmatrix}$  & $\begin{pmatrix}1~~~&0~~~&0\\0~~~&1~~~&0\\0~~~&0~~~&1 \end{pmatrix}$
         \end{tabular}
     \end{table}\\
+    Damit ist die Probe gemacht.
 	\section*{Aufgabe 2}
 	\label{sec:a2}
 	%%%%---AUFGABE---%%%%
