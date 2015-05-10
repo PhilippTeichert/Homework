@@ -136,7 +136,7 @@ literate=%
                     0&=2\cdot (2\cdot a_{31}+1)+2\cdot(-a_{31})+1\cdot a_{31}=4\cdot a_{31}+2-2\cdot a_{31}+a_{31}\\
                     &=2+3\cdot a_{31}\\
                     \Rightarrow~~a_{31}&=-\frac{2}{3}\\
-                Einsetzen~von~&a_{31}~in~a_{i1}:\\
+                Einsetzen~von~&a_{31}~in~a_{11}~und~a_{21}:\\
                     a_{21}&=-a_{31}=\frac{2}{3}\\
                     a_{11}&=2\cdot a_{31}+1=\frac{7}{3}\\
             Fortfahren~mit~der~&zweiten~Spalte:\\
@@ -144,15 +144,41 @@ literate=%
                     0&=2\cdot a_{12}+2\cdot a_{22}+1\cdot (a_{12}+a_{22})\\
                     &=3\cdot a_{12}+3\cdot a_{22}\\
                     \Rightarrow~~a_{12}&=-a_{22}\\
-                Einsetzen~von~&a_{32}in~V:\\
+                Einsetzen~von~&a_{32}~in~V:\\
                     1&=1\cdot a_{22}+1\cdot(a_{22}-a_{22})\\
                     \Rightarrow~~&a_{22}=1\\
-                Einsetzen~von~&a_{22}~in~a_{i2}:\\
+                Einsetzen~von~&a_{22}~in~a_{12}~un~a_{32}:\\
                     a_{12}&=-a_{22}=-1\\
                     a_{32}&=a_{22}-a_{22}=1-1=0\\
-            Fortfahren mit der~&dritten~Spalten:\\
-                Einsetzen~von~&VI~in~III
+            Fortfahren~mit~der~&dritten~Spalten:\\
+                Einsetzen~von~&VI~in~III:\\
+                    0&=1\cdot a_{13}+1\cdot(-a_{33}+(-1)\cdot a_{33}\\
+                    \Rightarrow~~&a_{13}=2\cdot a_{33}\\
+                Einsetzen~von~&a_{13}~und~a_{23}~in~IX:\\
+                    1&=2\cdot(2\cdot a_{33})+2\cdot(-a_{33})+1\cdot a_{33}=4\cdot a_{33}-2\cdot a_{33}+1\cdot a_{33}=3 \cdot a_{33}\\
+                    \Rightarrow~~&a_{33}=\frac{1}{3}\\
+                Einsetzen~von~&a_{33}~in~a_{13}~und~a_{23}:\\
+                    a_{13}&=2\cdot a_{33}=\frac{2}{3}\\
+                    a_{23}&=-a_{33}=-\frac{1}{3}
         \end{align*}
+    Anhand dieser Werte für $a_{ij}$ stellen wir nun die Matrix $B$ auf:
+    \[
+        \begin{pmatrix}
+             \frac{7}{3} & -1 &  \frac{2}{3}\\
+             \frac{2}{3} &  1 & -\frac{1}{3}\\
+            -\frac{2}{3} &  0 &  \frac{1}{3}
+        \end{pmatrix}.
+    \]
+    Bei dieser Matrix handelt es sich um das Inverse der Matrix $A$ aus der Aufgabe.\\
+    \\
+    \textit{Probe:}\\
+    \begin{table}[h]
+	    \centering
+        \begin{tabular}{cc}
+                 & $\begin{pmatrix}\frac{7}{3} & -1 &  \frac{2}{3}\\ \frac{2}{3} &  1 & -\frac{1}{3}\\ -\frac{2}{3} &  0 &  \frac{1}{3}\end{pmatrix}$ \\
+            $\begin{pmatrix}1&1&-1\\0&1&1\\2&2&1 \end{pmatrix}$  & $\begin{pmatrix}1~~~&0~~~&0\\0~~~&1~~~&0\\0~~~&0~~~&1 \end{pmatrix}$
+        \end{tabular}
+    \end{table}\\
 	\section*{Aufgabe 2}
 	\label{sec:a2}
 	%%%%---AUFGABE---%%%%
