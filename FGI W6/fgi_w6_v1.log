@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.11.6)  14 MAY 2015 21:48
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.11.6)  14 MAY 2015 21:54
 entering extended mode
 **fgi_w6_v1.tex
 ("D:\Dropbox\Unikrams\FS2\Homework\FGI W6\fgi_w6_v1.tex"
@@ -1105,31 +1105,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 103--111
 
  []
 
-[3]
-! You can't use `macro parameter character #' in math mode.
-<recently read> ##
-                  
-l.137 ...and 2 ausschließlich $C$ (und etwaige $#
-                                                  $) stehen.
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-! You can't use `macro parameter character #' in math mode.
-l.142 ...n Endzustand, wenn Band in der Form $C^+#
-                                                  ^*$ vorliegt und das Wort ...
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-! Double superscript.
-l.142 ... Endzustand, wenn Band in der Form $C^+#^
-                                                  *$ vorliegt und das Wort z...
-I treat `x^1^2' essentially like `x^1{}^2'.
-
-
+[3] 
 AED: lastpage setting LastPage
 [4]
 
@@ -1146,11 +1122,11 @@ Package rerunfilecheck Info: File `fgi_w6_v1.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 143.
  ) 
 Here is how much of TeX's memory you used:
- 20776 strings out of 493921
- 375487 string characters out of 3144873
+ 20779 strings out of 493921
+ 375516 string characters out of 3144873
  504791 words of memory out of 3000000
- 23698 multiletter control sequences out of 15000+200000
- 22055 words of font info for 59 fonts, out of 3000000 for 9000
+ 23699 multiletter control sequences out of 15000+200000
+ 23739 words of font info for 61 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  64i,7n,61p,411b,342s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
@@ -1162,10 +1138,11 @@ es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files
 MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiK
 TeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files (x86)/
 MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2
-.9/fonts/type1/urw/times/utmr8a.pfb>
-Output written on fgi_w6_v1.pdf (4 pages, 99516 bytes).
+.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
+pe1/urw/times/utmri8a.pfb>
+Output written on fgi_w6_v1.pdf (4 pages, 103837 bytes).
 PDF statistics:
- 70 PDF objects out of 1000 (max. 8388607)
+ 74 PDF objects out of 1000 (max. 8388607)
  10 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

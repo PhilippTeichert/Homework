@@ -60,9 +60,9 @@ literate=%
 \renewcommand\section{\stdsection}
 
 % add line break for subtitle (size: large)
-\title{Some Title
+\title{Formale Grundlagen der Informatik I
     \\\large{
-        Some Subtitle
+        Abgabe der Hausaufgaben in Übungsgruppe 19
     }
 }
 \author{~\\
@@ -74,7 +74,7 @@ literate=%
 	\large{6663579}\\
 	\large{4poehlma@informatik.uni-hamburg.de}\\
 	\\
-	\Large{Philipp Quach}
+	\Large{Philipp Quach} \\
 	\large{6706421}\\
 	\large{4quach@informatik.uni-hamburg.de}
 }
@@ -134,10 +134,10 @@ literate=%
 	Daraus folgt ein Wortaufbau in der Form $a^*b^*c^*$.\\
 	Sollten nun beispielsweise bei einem $b$ (analog dazu $c$) mehr $b$s folgen, als $A$s auf Band 2 stehen, wird $Z_{ERROR}$ aufgerufen.\\
 	$\Rightarrow a^nb^mc^o|n\ge m\ge o$\\
-	Am Ende wird nur noch geprüft, ob auf Band 2 ausschließlich $C$ (und etwaige $#$) stehen.
+	Am Ende wird nur noch geprüft, ob auf Band 2 ausschließlich $C$ (und etwaige \textit{\#}) stehen.
 	Wenn ja, so wurden alle $A$s in $B$s und alle $B$s in $C$s konvertiert, woraus folgt, dass es jeweils gleich viele gewesen sein müssen.
 	$\Rightarrow a^nb^mc^o|n=m=o$.\\
 	Ist dies nicht der Fall, bestand das Wort aus mehr $a$s als $b$s oder aus mehr $b$s als $c$s.
 	Folglich wird das Wort nicht akzeptiert.
-	Der Automat geht nur in einen Endzustand, wenn Band in der Form $C^+#^*$ vorliegt und das Wort zu Ende gelesen wurde.
+	Der Automat geht nur in einen Endzustand, wenn Band in der Form $C^+$ mit beliebig vielen anschließenden \textit{\#} vorliegt und das Wort zu Ende gelesen wurde.
 \end{document}
