@@ -1,4 +1,4 @@
-\documentclass[parskip,12pt,paper=a4,sffamily]{scrartcl}
+\documentclass{scrartcl}
 %alternate documentclass:
 %\documentclass[parskip,12pt,paper=a4,sffamily]{article}
 \usepackage[utf8]{inputenc}
@@ -14,6 +14,8 @@
 \usepackage{times}
 % tikz being tikz
 \usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usepackage{pgf}
 % import math packages
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -89,10 +91,55 @@ literate=%
 	\newpage
 	\section*{Aufgabe 5.4}
 	\label{sec:a5.4}
-%	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
-%	    \node [initial, state]
-%	    \node [state]
-%	\end{tikzpicture}
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.0cm,semithick]
+	    \node [initial, state]    (A)              {$z_0$};
+	    \node [state]             (B) [right of=A] {$z_1$};
+	    \node [state]             (C) [right of=B] {$z_2$};
+	    \node [accepting, state]  (D) [below of=C] {$z_{END}$};
+	    \node [state]             (E) [left of=D]  {$z_{3.1}$};
+	    \node [state]             (F) [right of=D] {$z_{3.2}$};
+	    \node [state]             (G) [below of=D] {$z_4$};
+	    \node [state]             (H) [below of=G] {$z_5$};
+	    \node [state]             (I) [below of=H] {$z_{ERR}$};
+	    
+	    \path
+	        (A) edge                 node [align=left] {a,A,R \\ b,B,R}   (B)
+	        (B) edge [loop above]    node [align=left] {a,a,R \\ b,b,R}   (B)
+	        (B) edge                 node [align=left] {\#,X,L}          (C)
+	        (C) edge [loop above]    node [align=left] {a,a,L \\ b,b,L}   (C) 
+	        (C) edge                 node [align=left] {A,S,R}            (E)
+	        (C) edge                 node [align=left] {B,S,R}            (F)
+	        (E) edge [loop left]     node [align=left] {\#,\#,R \\ a,a,R} (E)
+	        (E) edge                 node [align=left] {b,\#,L}           (G)
+	        (E) edge                 node [align=left] {X,X,R}            (D)
+	        (F) edge [loop right]    node [align=left] {\#,\#,R \\ b,b,R} (F)
+	        (F) edge                 node [align=left] {a,\#,L}           (G)
+	        (F) edge                 node [align=left] {X,X,R}            (D)
+	        (G) edge                 node [align=left] {S,S,R}            (H)
+	        (H) edge [loop right]    node [align=left] {\#,\#,R}          (H)
+	        (H) edge                 node [align=left] {X,X,R}            (I)
+	        (H) edge [bend left=20]  node [align=left] {a,\#,R}           (E)
+	        (H) edge [bend right=20] node [align=left] {b,\#,R}           (F)
+	    ;
+	\end{tikzpicture}\\
+	$L\underline{\subset}L(A)$:\\
+	Unser Wort fängt entweder mit $a$ oder mit $b$ an.
+	Wir zeigen OBDA, dass es für $a$ eine Erfolgsrechnung gibt (der Beweis für $b$ ist analog hierzu):
+	Wir ersetzen den Startbuchstaben durch den entsprechenden Großbuchstaben, um ihn später wiederzufinden.
+	Dann gehen wir das Wort bis zum Ende durch und setzen uns einen Marker $X$.
+	Danach gehen wir wieder an den Anfang zurück.
+	Dort ersetzen wir das $A$ durch ein $S$, um es als Wortanfang wiederzufinden.\\
+	\textbf{\textit{F}:} Danach suchen wir uns das erste $b$ und ersetzen es durch eine \textit{\#}.
+	Anschließend gehen zur zu dem $S$ zurück und suchen uns das nächste Zeichen $\neq$ \textit{\#}.
+	Sei es OBDA ein $a$ (analog $b$).
+	Verfahre nach \textit{F}.\\
+	Wenn man innerhalb von \textit{F} an das $X$ gelangt, hat das Wort mindestens ein $a$ (analog $b$) mehr als $b$s und akzeptiert, andernfalls nicht.\\
+	\\
+	$L(A)\underline{\subset}L$:\\
+	Wir markieren den ersten Buchstaben, schreiben an das Ende des Wortes ein $X$ und gehen zurück an den Anfang.
+	\textbf{\textit{G}:} Dort ersetzen wir jetzt das $A$ (analog $B$), welches sich dort befindet, durch ein $S$ und löscht das nächste $b$ (analog $a$).
+	Danach geht man wieder zurück zu $S$ und wiederholt \textit{G}.\\
+	Sollte man während der Ausführung von \textit{G} auf $X$ treffen, hat man mindestens ein $a$ (analog $b$) mehr als $b$s gefunden und akzeptiert das Wort damit, andernfalls nicht.
 	\newpage
 	\section*{Aufgabe 5.5}
 	\label{sec:a5.5}
