@@ -1,0 +1,5 @@
+\select@language {ngerman}
+\contentsline {section}{\numberline {1}Einf\IeC {\"u}hrung}{2}{section.1}
+\contentsline {section}{\numberline {2}Was ist nat\IeC {\"u}rliche Sprache?}{2}{section.2}
+\contentsline {section}{\numberline {3}Methoden der Sprachanalyse}{2}{section.3}
+\contentsline {section}{\numberline {4}Schlussfolgerung}{2}{section.4}
