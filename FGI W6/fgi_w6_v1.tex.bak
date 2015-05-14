@@ -60,9 +60,9 @@ literate=%
 \renewcommand\section{\stdsection}
 
 % add line break for subtitle (size: large)
-\title{Some Title
+\title{Formale Grundlagen der Informatik I
     \\\large{
-        Some Subtitle
+        Abgabe der Hausaufgaben in Übungsgruppe 19
     }
 }
 \author{~\\
@@ -74,7 +74,7 @@ literate=%
 	\large{6663579}\\
 	\large{4poehlma@informatik.uni-hamburg.de}\\
 	\\
-	\Large{Philipp Quach}
+	\Large{Philipp Quach} \\
 	\large{6706421}\\
 	\large{4quach@informatik.uni-hamburg.de}
 }
@@ -89,6 +89,10 @@ literate=%
 	\newpage
 	\section*{Aufgabe 5.4}
 	\label{sec:a5.4}
+%	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+%	    \node [initial, state]
+%	    \node [state]
+%	\end{tikzpicture}
 	\newpage
 	\section*{Aufgabe 5.5}
 	\label{sec:a5.5}
@@ -99,45 +103,55 @@ literate=%
 	\[S:=S\]
 	\[P:=\{S \rightarrow ABC,~A\rightarrow aA|\lambda,~B\rightarrow aBb|\lambda,~C\rightarrow bCc|\lambda\}\]
 	\\
-	$L_1 \subset L(G)$\\
-	\[L_1=\{a^j a^i b^k c^k~|~i,j,k \ge 0\}\]
+	$L_1 \underline{\subset} L(G)L(G)~(G~erzeugt~jedes~Wort~aus~L_1)$\\
+	\[L_1=\{a^j a^i b^i b^k c^k~|~i,j,k \ge 0\}\]
 	Es werden erst beliebig viele $a$s (I), dann $a^xb^x$ (II) und zum Schluss $b^yc^y$ (III) gelesen ($x,y\in \mathbb{N} _0$).\\
-	I ist gegeben durch $S\rightarrow ABC~\cap~A\rightarrow aA|\lambda$\\
+	I ist gegeben durch $S\rightarrow ABC~\wedge~A\rightarrow aA|\lambda$\\
 	\-~~~~$\Rightarrow$ für A kann man schreiben $a^n|n\in\mathbb{N}_0~~(\hat{=}a^j)$ \\
-    II ist gegeben durch $S\rightarrow ABC~\cap~B\rightarrow aBb|\lambda$\\
+    II ist gegeben durch $S\rightarrow ABC~\wedge~B\rightarrow aBb|\lambda$\\
     \-~~~~$\Rightarrow$ für B kann man schreiben $a^nb^n|n\in\mathbb{N}_0~~(\hat{=}a^i b^i)$ \\
-    III ist gegeben durch $S\rightarrow ABC~\cap~C\rightarrow bCc|\lambda$\\
-    \-~~~~$\Rightarrow$ für C kann man schreiben $b^nc^n|n\in\mathbb{N}_0~~(\hat{=}k^kc^k)$\\
-    \[\Rightarrow a^j a^i b^i b^k c^k~=~a^{i+j}b^{i+k}c^k~~~~|i,j,k \ge 0 ist gegeben\]
+    III ist gegeben durch $S\rightarrow ABC~\wedge~C\rightarrow bCc|\lambda$\\
+    \-~~~~$\Rightarrow$ für C kann man schreiben $b^nc^n|n\in\mathbb{N}_0~~(\hat{=}b^kc^k)$\\
+    \[\Rightarrow (a^j) (a^i b^i) (b^k c^k)~=~a^{i+j}b^{i+k}c^k~~~~|i,j,k \ge 0~ist~gegeben\]
     \[\Rightarrow L_1=L(G)~~und~insb.\]
-    \[L_1 \subset L(G)~(G~erzeugt~jedes~Wort~aus~L_1)\]
-	\newpage
+    \[L_1 \underline{\subset}L(A)\]
+    \\
+    $L(G) \underline{\subset} L_1~(Jedes~von~G~erzeugte~Wort~ist~auch~in~L_1$\\
+    Durch $S\rightarrow ABC$ wird jedes Wort in drei Teilworte aufgeteilt: $A$ (I), $B$ (II), und $C$ (III).\\
+    I. Aus $A$ wird $aA$ oder $\lambda~~\Rightarrow a^n|n\in\mathbb{N}_0$, da auch beim ersten Aufruf gleich die $\lambda$-Variante genommen werden kann. ($\hat{=}a^j$)\\
+    II. Aus $B$ wird $aBb$ oder $\lambda~~\Rightarrow a^nb^n|n\in\mathbb{N}_0$, da $\lambda$ von I. ($\hat{=}a^ib^i$)\\
+    III. Aus $C$ wird $bCc$ oder $\lambda~~\Rightarrow b^nc^n|n\in\mathbb{N}_0$, da $\lambda$. ($\hat{=}b^kc^k$)\\
+    \[\Rightarrow (a^j) (a^i b^i) (b^k c^k)~=~a^{i+j}b^{i+k}c^k|i,j,k \ge 0\]
+    \[L(G)=L_1~~und insb.\]
+    \[L(G)\underline{\subset}L_1\]
+   	\newpage
 	\section*{Aufgabe 5.6}
 	\label{sec:a5.6}
 	\subsection*{Teilaufgabe 1.}
 	\label{ssec:5.6.1}
-	Die einfachste Möglichkeit wäre es, eine TM mit zwei Bändern zu benutzen.
+	Die einfachste Möglichkeit wäre es, eine rechtsunendliche TM mit zwei Bändern zu benutzen.
 	Dann kann das zweite Band wie ein Keller (i.F. 'Stack') behandelt werden:\\
-	Wird etwas auf den Stack gepusht, fährt der Automat zu der entsprechenden Position auf dem zweiten Band und schreibt, um danach wieder zurück zu der Stelle im Wort zurückzugehen, von der aus der Stack aufgerufen wurde.
+	Wird etwas auf den Stack gepusht, fährt der Automat zu der entsprechenden Position auf dem zweiten Band und schreibt, um danach wieder zurück zu der Stelle im Wort zu gehen, von der aus der Stack aufgerufen wurde.
 	Wird etwas gepopt, so fährt der Automat wieder zu der entsprechenden Stelle und löscht; anschließend fährt er zurück zu der Stelle im Wort, von der aus der Stack aufgerufen wurde. \\
 	Da zu jedem PDA, der mit leerem Keller akzeptiert, ein PDA existiert, welcher mit Endzuständen akzeptiert, nimmt man nun jenen mit Endzustand.
-	Da jede Kante des PDA mehrere Kanten der TM ersetzt wurde, nämlich eine für den Schreibvorgang, eine für den Löschvorgang und jeweils ausreichend, um zu den jeweiligen Stellen auf Band 2 zu gelangen, gelangt der Automat letztendlich auch in einen Endzustand.
+	Da jede Kante des PDA mehrere Kanten der TM ersetzt wurde, nämlich eine für den Schreibvorgang, eine für den Löschvorgang und jeweils ausreichend, um zu den jeweiligen Stellen auf Band 2 zu gelangen, gelangt die TM letztendlich auch in einen Endzustand.
 	\subsection*{Teilaufgabe 2.}
 	\label{ssec:5.6.2}
+	Es handelt sich wiederum um eine TM mit zwei rechtsunendliche Bändern.\\
 	Zunächst werden $n~a$s gelesen.
 	Für jedes $a$ wird ein $A$ auf Band 2 geschrieben.\\
 	Für jedes $b$ wird ein $A$ auf Band 2 in ein $B$ konvertiert.\\
 	Analog dazu wird für jedes gelesene $c$ ein $B$ in ein $C$ konvertiert.\\
 	Nachdem das erste $b$ gelesen wurde, kann kein $A$ mehr geschrieben werden.
-	Mit $a*b*a$ fährt der Automat in einen Fehlerzustand $Z_{ERROR}$.\\
+	Mit $a^*b^*a$ fährt der Automat in einen Fehlerzustand $Z_{ERROR}$.\\
 	Analog für $c$ in Abhängigkeit von $b$ und $a$.\\
 	Daraus folgt ein Wortaufbau in der Form $a^*b^*c^*$.\\
 	Sollten nun beispielsweise bei einem $b$ (analog dazu $c$) mehr $b$s folgen, als $A$s auf Band 2 stehen, wird $Z_{ERROR}$ aufgerufen.\\
 	$\Rightarrow a^nb^mc^o|n\ge m\ge o$\\
-	Am Ende wird nur noch geprüft, ob auf Band 2 ausschließlich $C$ (und etwaige $#$) stehen.
+	Am Ende wird nur noch geprüft, ob auf Band 2 ausschließlich $C$ (und etwaige \textit{\#}) stehen.
 	Wenn ja, so wurden alle $A$s in $B$s und alle $B$s in $C$s konvertiert, woraus folgt, dass es jeweils gleich viele gewesen sein müssen.
 	$\Rightarrow a^nb^mc^o|n=m=o$.\\
 	Ist dies nicht der Fall, bestand das Wort aus mehr $a$s als $b$s oder aus mehr $b$s als $c$s.
 	Folglich wird das Wort nicht akzeptiert.
-	Der Automat geht nur in einen Endzustand, wenn Band in der Form $C^+#^*$ vorliegt und das Wort zu Ende gelesen wurde.
+	Der Automat geht nur in einen Endzustand, wenn Band in der Form $C^*$ mit beliebig vielen anschließenden \textit{\#} vorliegt und das Wort zu Ende gelesen wurde.
 \end{document}
