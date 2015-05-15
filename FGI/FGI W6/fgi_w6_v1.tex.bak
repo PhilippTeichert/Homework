@@ -64,7 +64,9 @@ literate=%
 % add line break for subtitle (size: large)
 \title{Formale Grundlagen der Informatik I
     \\\large{
-        Abgabe der Hausaufgaben in Übungsgruppe 19
+        Abgabe der Hausaufgaben in Übungsgruppe 24
+    }\\\large{
+        Abgabedatum: \today
     }
 }
 \author{~\\
@@ -122,7 +124,7 @@ literate=%
 	        (H) edge [bend right=20] node [align=left] {b,\#,R}           (F)
 	    ;
 	\end{tikzpicture}\\
-	$L\underline{\subset}L(A)$\\
+	$L\underline{\subset}L(A)$:\\
 	Unser Wort fängt entweder mit $a$ oder mit $b$ an.
 	Wir zeigen OBDA, dass es für $a$ eine Erfolgsrechnung gibt (der Beweis für $b$ ist analog hierzu):
 	Wir ersetzen den Startbuchstaben durch den entsprechenden Großbuchstaben, um ihn später wiederzufinden.
@@ -133,11 +135,13 @@ literate=%
 	Anschließend gehen zur zu dem $S$ zurück und suchen uns das nächste Zeichen $\neq$ \textit{\#}.
 	Sei es OBDA ein $a$ (analog $b$).
 	Verfahre nach \textit{F}.\\
-	Wenn man innerhalb von \textit{F} an das $X$ gelangt, hat das Wort mindestens ein $a$ (analog $b$) mehr als $b$s und akzeptiert.
-	Andernfalls nicht.\\
+	Wenn man innerhalb von \textit{F} an das $X$ gelangt, hat das Wort mindestens ein $a$ (analog $b$) mehr als $b$s und akzeptiert, andernfalls nicht.\\
 	\\
-	$L(A)\underline{\subset}L$\\
+	$L(A)\underline{\subset}L$:\\
 	Wir markieren den ersten Buchstaben, schreiben an das Ende des Wortes ein $X$ und gehen zurück an den Anfang.
+	\textbf{\textit{G}:} Dort ersetzen wir jetzt das $A$ (analog $B$), welches sich dort befindet, durch ein $S$ und löscht das nächste $b$ (analog $a$).
+	Danach geht man wieder zurück zu $S$ und wiederholt \textit{G}.\\
+	Sollte man während der Ausführung von \textit{G} auf $X$ treffen, hat man mindestens ein $a$ (analog $b$) mehr als $b$s gefunden und akzeptiert das Wort damit, andernfalls nicht.
 	\newpage
 	\section*{Aufgabe 5.5}
 	\label{sec:a5.5}
