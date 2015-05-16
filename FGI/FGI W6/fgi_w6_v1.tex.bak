@@ -93,8 +93,7 @@ literate=%
 	\newpage
 	\section*{Aufgabe 5.4}
 	\label{sec:a5.4}
-	Es handelt sich um einen DTM mit einem rechtsunendlichen Band.\\
-	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.5cm,semithick]
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.0cm,semithick]
 	    \node [initial, state]    (A)              {$z_0$};
 	    \node [state]             (B) [right of=A] {$z_1$};
 	    \node [state]             (C) [right of=B] {$z_2$};
@@ -106,24 +105,23 @@ literate=%
 	    \node [state]             (I) [below of=H] {$z_{ERR}$};
 	    
 	    \path
-	        (A) edge                 node [align=left] {a,A,R \\ b,B,R}   			(B)
-	        (B) edge [loop above]    node [align=left] {a,a,R \\ b,b,R}   			(B)
-	        (B) edge                 node [align=left] {\#,X,L}          			(C)
-	        (C) edge [loop above]    node [align=left] {a,a,L \\ b,b,L}   			(C) 
-	        (C) edge                 node [align=left] {A,S,R}            			(E)
-	        (C) edge                 node [align=left] {B,S,R}            			(F)
-	        (E) edge [loop left]     node [align=left] {\#,\#,R \\ a,a,R} 			(E)
-	        (E) edge                 node [align=left] {b,\#,L}           			(G)
-	        (E) edge                 node [align=left] {X,X,R}            			(D)
-	        (F) edge [loop right]    node [align=left] {\#,\#,R \\ b,b,R} 			(F)
-	        (F) edge                 node [align=left] {a,\#,L}           			(G)
-	        (F) edge                 node [align=left] {X,X,R}            			(D)
-	        (G) edge                 node [align=left] {S,S,R}            			(H)
-	        (G) edge [loop above]	 node [align=left] {a,a,L \\ b,b,L \\ \#,\#,L}	(G)
-	        (H) edge [loop right]    node [align=left] {\#,\#,R}          			(H)
-	        (H) edge                 node [align=left] {X,X,R}            			(I)
-	        (H) edge [bend left=20]  node [align=left] {a,\#,R}           			(E)
-	        (H) edge [bend right=20] node [align=left] {b,\#,R}           			(F)
+	        (A) edge                 node [align=left] {a,A,R \\ b,B,R}   (B)
+	        (B) edge [loop above]    node [align=left] {a,a,R \\ b,b,R}   (B)
+	        (B) edge                 node [align=left] {\#,X,L}          (C)
+	        (C) edge [loop above]    node [align=left] {a,a,L \\ b,b,L}   (C) 
+	        (C) edge                 node [align=left] {A,S,R}            (E)
+	        (C) edge                 node [align=left] {B,S,R}            (F)
+	        (E) edge [loop left]     node [align=left] {\#,\#,R \\ a,a,R} (E)
+	        (E) edge                 node [align=left] {b,\#,L}           (G)
+	        (E) edge                 node [align=left] {X,X,R}            (D)
+	        (F) edge [loop right]    node [align=left] {\#,\#,R \\ b,b,R} (F)
+	        (F) edge                 node [align=left] {a,\#,L}           (G)
+	        (F) edge                 node [align=left] {X,X,R}            (D)
+	        (G) edge                 node [align=left] {S,S,R}            (H)
+	        (H) edge [loop right]    node [align=left] {\#,\#,R}          (H)
+	        (H) edge                 node [align=left] {X,X,R}            (I)
+	        (H) edge [bend left=20]  node [align=left] {a,\#,R}           (E)
+	        (H) edge [bend right=20] node [align=left] {b,\#,R}           (F)
 	    ;
 	\end{tikzpicture}\\
 	$L\underline{\subset}L(A)$:\\
@@ -134,16 +132,17 @@ literate=%
 	Danach gehen wir wieder an den Anfang zurück.
 	Dort ersetzen wir das $A$ durch ein $S$, um es als Wortanfang wiederzufinden.\\
 	\textbf{\textit{F}:} Danach suchen wir uns das erste $b$ und ersetzen es durch eine \textit{\#}.
-	Anschließend gehen wir zu dem $S$ zurück und suchen uns das nächste Zeichen $\neq$ \textit{\#}.
+	Anschließend gehen zur zu dem $S$ zurück und suchen uns das nächste Zeichen $\neq$ \textit{\#}.
 	Sei es OBDA ein $a$ (analog $b$).
 	Verfahre nach \textit{F}.\\
 	Wenn man innerhalb von \textit{F} an das $X$ gelangt, hat das Wort mindestens ein $a$ (analog $b$) mehr als $b$s und akzeptiert, andernfalls nicht.\\
 	\\
 	$L(A)\underline{\subset}L$:\\
-	Man markiert den ersten Buchstaben, schreibt an das Ende des Wortes ein $X$ und geht zurück an den Anfang.
-	\textbf{\textit{G}:} Dort ersetzt man jetzt das $A$ (analog $B$), welches sich dort befindet, durch ein $S$ und löscht das nächste $b$ (analog $a$).
+	Wir markieren den ersten Buchstaben, schreiben an das Ende des Wortes ein $X$ und gehen zurück an den Anfang.
+	\textbf{\textit{G}:} Dort ersetzen wir jetzt das $A$ (analog $B$), welches sich dort befindet, durch ein $S$ und löscht das nächste $b$ (analog $a$).
 	Danach geht man wieder zurück zu $S$ und wiederholt \textit{G}.\\
 	Sollte man während der Ausführung von \textit{G} auf $X$ treffen, hat man mindestens ein $a$ (analog $b$) mehr als $b$s gefunden und akzeptiert das Wort damit, andernfalls nicht.
+	\newpage
 	\section*{Aufgabe 5.5}
 	\label{sec:a5.5}
 	\[ G=\{V_N,V_T,P,S\} \]
@@ -153,7 +152,7 @@ literate=%
 	\[S:=S\]
 	\[P:=\{S \rightarrow ABC,~A\rightarrow aA|\lambda,~B\rightarrow aBb|\lambda,~C\rightarrow bCc|\lambda\}\]
 	\\
-	$L_1 \underline{\subset} L(G)~(G~erzeugt~jedes~Wort~aus~L_1)$\\
+	$L_1 \underline{\subset} L(G)L(G)~(G~erzeugt~jedes~Wort~aus~L_1)$\\
 	\[L_1=\{a^j a^i b^i b^k c^k~|~i,j,k \ge 0\}\]
 	Es werden erst beliebig viele $a$s (I), dann $a^xb^x$ (II) und zum Schluss $b^yc^y$ (III) gelesen ($x,y\in \mathbb{N} _0$).\\
 	I ist gegeben durch $S\rightarrow ABC~\wedge~A\rightarrow aA|\lambda$\\
@@ -164,9 +163,9 @@ literate=%
     \-~~~~$\Rightarrow$ für C kann man schreiben $b^nc^n|n\in\mathbb{N}_0~~(\hat{=}b^kc^k)$\\
     \[\Rightarrow (a^j) (a^i b^i) (b^k c^k)~=~a^{i+j}b^{i+k}c^k~~~~|i,j,k \ge 0~ist~gegeben\]
     \[\Rightarrow L_1=L(G)~~und~insb.\]
-    \[L_1 \underline{\subset}L(G)\]
+    \[L_1 \underline{\subset}L(A)\]
     \\
-    $L(G) \underline{\subset} L_1~(Jedes~von~G~erzeugte~Wort~ist~auch~in~L_1)$\\
+    $L(G) \underline{\subset} L_1~(Jedes~von~G~erzeugte~Wort~ist~auch~in~L_1$\\
     Durch $S\rightarrow ABC$ wird jedes Wort in drei Teilworte aufgeteilt: $A$ (I), $B$ (II), und $C$ (III).\\
     I. Aus $A$ wird $aA$ oder $\lambda~~\Rightarrow a^n|n\in\mathbb{N}_0$, da auch beim ersten Aufruf gleich die $\lambda$-Variante genommen werden kann. ($\hat{=}a^j$)\\
     II. Aus $B$ wird $aBb$ oder $\lambda~~\Rightarrow a^nb^n|n\in\mathbb{N}_0$, da $\lambda$ von I. ($\hat{=}a^ib^i$)\\
