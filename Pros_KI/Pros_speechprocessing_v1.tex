@@ -36,6 +36,9 @@
 \usepackage[outer=3.15cm]{geometry} 	% Type area (size, margins...) !!!Draft version
 \geometry{a4paper,body={5.8in,9in}}
 
+% changing font
+%\usepackage{times}
+
 \usepackage{graphicx}                   % Inclusion of graphics
 %\usepackage{latexsym}                  % Special symbols
 \usepackage{longtable}					% Allow tables over several parges
@@ -231,10 +234,7 @@ die einzelnd analysiert und in dieser Form von nichtkomplexen Automaten verarbei
 \label{sec:def_lang}
 \textit{„By "natural language" we mean a language that is used for everyday communication by humans; languages such as English, Hindi, or Portuguese.
         In contrast to artificial languages such as programming languages and mathematical notations, natural languages have evolved as they pass from generation to generation.
-        and are hard to pin down with explicit rules.“}
-\begin{flushright}
-    \textit{-~~Steven Bird et.al., 2009}
-\end{flushright}
+        and are hard to pin down with explicit rules.“} \cite{Bird2009}
 \begin{itemize}
     \item Analyse des Zitates mit Interpretation
     \item Auflistung und minimale Erläuterung der sechs zu erarbeitenden Eigenschaften
@@ -309,7 +309,8 @@ R2D2 und C3PO sind wohl zwei der bekanntesten Roboter der Filmgeschichte.
 %
 \newpage
 \bibliographystyle{plain}
-\addcontentsline{toc}{chapter}{Bibliography}% Add to the TOC
+\addcontentsline{toc}{section}{Quellenverzeichnis}% Add to the TOC
 \bibliography{bib}
+\nocite{*}
 
 \end{document}
