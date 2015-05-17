@@ -1,4 +1,12 @@
 \BOOKMARK [1][-]{section.1}{Einf\374hrung}{}% 1
 \BOOKMARK [1][-]{section.2}{Was ist nat\374rliche Sprache?}{}% 2
-\BOOKMARK [1][-]{section.3}{Methoden der Sprachanalyse}{}% 3
-\BOOKMARK [1][-]{section.4}{Schlussfolgerung}{}% 4
+\BOOKMARK [1][-]{section.3}{Schrittweise Verarbeitung nat\374rlicher Sprache}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Parsing der Morphologie}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Analyse der Syntax}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Interpretation der Semantik}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{Erfassung der Pragmatik}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.5}{Inbetrachtziehen des Diskurs}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.6}{Aufl\366sung von Mehrdeutigkeit}{section.3}% 9
+\BOOKMARK [1][-]{section.4}{\334ber Haushaltsroboter bis C3PO}{}% 10
+\BOOKMARK [1][-]{section.5}{Schlussfolgerung}{}% 11
+\BOOKMARK [0][-]{section.5}{Bibliography}{}% 12

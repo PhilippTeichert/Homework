@@ -6,7 +6,7 @@
 \newcommand{\trauthor}{Louis Kobras}
 \newcommand{\trtype}{Seminararbeit} %{Seminararbeit} %{Proseminararbeit}
 \newcommand{\trcourse}{Proseminar: Künstliche Intelligenz}
-\newcommand{\trtitle}{Realisierung der Verarbeitung natürlicher Sprache als Verarbeitungskette}
+\newcommand{\trtitle}{Insert witty title here}
 \newcommand{\trmatrikelnummer}{6658699}
 \newcommand{\tremail}{4kobras@informatik.uni-hamburg.de}
 \newcommand{\trarbeitsbereich}{Knowledge Technology, WTM}
@@ -193,7 +193,12 @@ literate=%
 
 % Abstract gives a brief summary of the main points of a paper:
 \section*{Abstract}
-  Your text here...
+Seit Jahrzehnten schon beschäftigen sich Forscher damit, den Computer dem Menschen näher zu bringen.
+Ein wichtiger Bestandteil dieses Prozesses ist dabei die Sprachverarbeitung.
+Ziel dieser Arbeit ist, Licht auf den Prozess des Verständnisses eines Computers von natürlicher Sprache zu werfen.
+Zu diesem Zweck wird der Begriff der natürlichen Sprache in seine Komponenten zerlegt,
+die einzelnd analysiert und in dieser Form von nichtkomplexen Automaten verarbeitet werden können.\\
+\textit{Einbindung der Ergebnisse.}
 
 % Lists:
 \setcounter{tocdepth}{2} 					% depth of the table of contents (for Seminars 2 is recommented)
@@ -210,15 +215,59 @@ literate=%
 
 \section{Einführung}
 \label{sec:intro}
+	\textit{„Ich wünschte, du würdest das nicht tun.
+	Was ist, wenn ein integrierter Schaltkreis versagt und ich nicht rechtzeitig eingreifen kann?“\\
+	„Ach, Andromeda, das würde dir ja nie passieren, denn dann brauchst du ja einen neuen Captain.“}
+	\begin{flushright}
+		\textit{-~~Andromeda und Captain Dylan Hunt, \textsc{'Andromeda'} (2005), Episode 1x01 'Die lange Nacht'}
+	\end{flushright}
+	\begin{itemize}
+	    \item Kurzer Abriss der Geschichte
+	    \item Erwähnung von ELIZA
+	    \item Eingehen auf Rommie (und Cmdr. Data/HAL?)
+	\end{itemize}
 
 \section{Was ist natürliche Sprache?}
 \label{sec:def_lang}
+\begin{itemize}
+    \item Zitat von Bird
+    \item Analyse des Zitates mit Interpretation
+    \item Auflistung und minimale Erläuterung der sechs zu erarbeitenden Eigenschaften
+\end{itemize}
 
-\section{Methoden der Sprachanalyse}
+\section{Schrittweise Verarbeitung natürlicher Sprache}
 \label{sec:meth}
+tiefergehende Erläuterung der Begriffe und Begründung der gewählten Reihenfolge
 
+\subsection{Parsing der Morphologie}
+\label{ssec:morph}
+
+\subsection{Analyse der Syntax}
+\label{ssec:syntax}
+
+\subsection{Interpretation der Semantik}
+\label{sec:sem}
+
+\subsection{Erfassung der Pragmatik}
+\label{ssec:prag}
+
+\subsection{Inbetrachtziehen des Diskurs}
+\label{ssec:disc}
+
+\subsection{Auflösung von Mehrdeutigkeit}
+\label{ssec:ambi}
+
+\section{Über Haushaltsroboter bis C3PO}
+\label{sec:ausb}
+\begin{itemize}
+    \item Intelligentes Haus (Beispiel \textit{Sarah})
+    \item Rechercheunterstützende Computer
+    \item Über Haushaltsroboter bis C3PO
+\end{itemize}
 \section{Schlussfolgerung}
 \label{sec:concl}
+\textit{evtl mit Ausblick zusammenziehen}\\
+
 
 
 
@@ -235,5 +284,3 @@ literate=%
 \bibliography{bib}
 
 \end{document}
-
-

@@ -1,5 +1,13 @@
 \select@language {ngerman}
 \contentsline {section}{\numberline {1}Einf\IeC {\"u}hrung}{2}{section.1}
 \contentsline {section}{\numberline {2}Was ist nat\IeC {\"u}rliche Sprache?}{2}{section.2}
-\contentsline {section}{\numberline {3}Methoden der Sprachanalyse}{2}{section.3}
-\contentsline {section}{\numberline {4}Schlussfolgerung}{2}{section.4}
+\contentsline {section}{\numberline {3}Schrittweise Verarbeitung nat\IeC {\"u}rlicher Sprache}{2}{section.3}
+\contentsline {subsection}{\numberline {3.1}Parsing der Morphologie}{2}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Analyse der Syntax}{2}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Interpretation der Semantik}{2}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Erfassung der Pragmatik}{2}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Inbetrachtziehen des Diskurs}{2}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Aufl\IeC {\"o}sung von Mehrdeutigkeit}{2}{subsection.3.6}
+\contentsline {section}{\numberline {4}\IeC {\"U}ber Haushaltsroboter bis C3PO}{2}{section.4}
+\contentsline {section}{\numberline {5}Schlussfolgerung}{3}{section.5}
+\contentsline {chapter}{Bibliography}{4}{section.5}
