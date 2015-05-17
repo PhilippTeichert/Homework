@@ -257,17 +257,36 @@ tiefergehende Erläuterung der Begriffe und Begründung der gewählten Reihenfol
 \subsection{Auflösung von Mehrdeutigkeit}
 \label{ssec:ambi}
 
+\section{Simon, Sirius, Jasper}
+\label{sec:software}
+
 \section{Über Haushaltsroboter bis C3PO}
 \label{sec:ausb}
-\begin{itemize}
-    \item Intelligentes Haus (Beispiel \textit{Sarah})
-    \item Rechercheunterstützende Computer
-    \item Über Haushaltsroboter bis C3PO
-\end{itemize}
+Es wurde gezeigt, wie Sprachverarbeitung ausgesehen hat (\ref{sec:intro}) und wie das Verständnis natürlicher Sprache funktioniert (\ref{sec:meth}).
+Doch was kommt nun?
+Was hat man davon, dass Computer Menschen verstehen können?
+An drei Beispielen aus der Fiktion werden nun mögliche Anwendungsgebiete gezeigt.
+\subsection{Das intelligente Haus}
+\label{ssec:sarah}
+\textit{Sarah} ist ein Haus aus der Science Fiction-Serie \textsc{Eureka}.
+Tatsächlich ist \textit{Sarah} weniger Fiction als Science.
+Es, oder Sie, ist tatsächlich eine künstliche Intelligenz, die in ein Haus eingebaut wurde.
+\textit{Sarah} verwaltet dabei sämtliche Funktionen des Hauses: Lüftung, Raumtemperatur, Küche, Multimedia, Türen.
+Sie kommuniziert mit den Bewohnern des Hauses durch gesprochene Sprache.
+So bittet der Hausherr sie zum Beispiel mit dem Aufruf \textit{„Sarah, Tür!“} darum, die Tür zu öffnen oder zu schließen.
+Doch über rudimentäre Befehle hinaus können die Bewohner auch komplexe Unterhaltungen über den Beruf, die Schule oder die Gefühle führen.
+Nun wird viel nötig sein, um Empathie oder Emotionen simulieren zu können.
+Jedoch ist es nicht unrealistisch, davon auszugehen, dass in nicht allzu ferner Zukunft solche Gespräche zwischen Mensch und Maschine möglich sind.
+\subsection{Rechercheunterstützende Computer}
+\label{ssec:data}
+Recht früh in der Serie \textit{Star Trek: The Next Generation} gibt es eine Folge, in der der Android Data dem Computer des Raumschiffes \textit{Enterprise} eine Rechercheanweisung gibt.
+\subsection{R2D2 und C3PO}
+\label{ssec:r2d2}
+R2D2 und C3PO sind wohl zwei der bekanntesten Roboter der Filmgeschichte.
+
 \section{Schlussfolgerung}
 \label{sec:concl}
-\textit{evtl mit Ausblick zusammenziehen}\\
-
+\textit{evtl mit Ausblick zusammenziehen}
 
 
 
