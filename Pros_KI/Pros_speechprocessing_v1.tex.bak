@@ -1,6 +1,8 @@
 \documentclass[12pt,twoside]{article}
-\usepackage[ngerman]{babel} 
+\usepackage[ngerman]{babel}
+%\usepackage{lmodern}
 \usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Meta informations:
 \newcommand{\trauthor}{Louis Kobras}
