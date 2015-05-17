@@ -77,6 +77,11 @@
 % Tables with a nicer padding:
 \renewcommand{\arraystretch}{1.2}
 
+% custom titles for TOC and References
+\renewcommand{\contentsname}{whatever}
+\renewcommand{\refname}{WASD-Force}
+%\renewcommand{\bibname}{DSAW-Force}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Additional 'theorem' and 'definition' blocks:
 \theoremstyle{plain}
@@ -289,7 +294,10 @@ Nun wird viel nötig sein, um Empathie oder Emotionen simulieren zu können.
 Jedoch ist es nicht unrealistisch, davon auszugehen, dass in nicht allzu ferner Zukunft solche Gespräche zwischen Mensch und Maschine möglich sind.
 \subsection{Rechercheunterstützende Computer}
 \label{ssec:data}
+\textit{„Computer, erbitte alle verfügbaren Informationen über die fiktive Figur 'Dixon Hill'.“\\
+        „Bitte warten. Die Figur tauchte zum ersten Mal in dem Magazin 'Erstaunliche Detektivgeschichten' auf, [...]“}
 Recht früh in der Serie \textit{Star Trek: The Next Generation} gibt es eine Folge, in der der Android Data dem Computer des Raumschiffes \textit{Enterprise} eine Rechercheanweisung gibt.
+
 \subsection{R2D2 und C3PO}
 \label{ssec:r2d2}
 R2D2 und C3PO sind wohl zwei der bekanntesten Roboter der Filmgeschichte.
@@ -308,8 +316,8 @@ R2D2 und C3PO sind wohl zwei der bekanntesten Roboter der Filmgeschichte.
 % ``bib.bib''
 %
 \newpage
-\bibliographystyle{plain}
-\addcontentsline{toc}{chapter}{Quellenverzeichnis}% Add to the TOC
+\bibliographystyle{alpha}
+\addcontentsline{toc}{section}{Quellenverzeichnis}% Add to the TOC
 \bibliography{bib}
 \nocite{*}
 
