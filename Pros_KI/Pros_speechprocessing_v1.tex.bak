@@ -6,9 +6,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Meta informations:
 \newcommand{\trauthor}{Louis Kobras}
-\newcommand{\trtype}{Eine Keksdatei} %{Seminararbeit} %{Proseminararbeit}
+\newcommand{\trtype}{Proseminararbeit} %{Paper} %{Seminararbeit} %{Proseminararbeit}
 \newcommand{\trcourse}{Proseminar: Künstliche Intelligenz}
-\newcommand{\trtitle}{Insert witty title here}
+\newcommand{\trtitle}{SARAH, ELIZA, und Andromeda; oder was Frauen verstehen, wenn Menschen reden}
 \newcommand{\trmatrikelnummer}{6658699}
 \newcommand{\tremail}{4kobras@informatik.uni-hamburg.de}
 \newcommand{\trarbeitsbereich}{Knowledge Technology, WTM}
@@ -20,7 +20,8 @@
 \usepackage{algorithmic}				% Algorithms and Pseudocode
 \usepackage{algorithm}					% Algorithms and Pseudocode
 \usepackage{amsfonts}                   % AMS Math Packet (Fonts)
-\usepackage{amsmath}                    % AMS Math Packet\usepackage{amssymb}                    % Additional mathematical symbols
+\usepackage{amsmath}                    % AMS Math Packet
+\usepackage{amssymb}                    % Additional mathematical symbols
 \usepackage{amsthm}
 \usepackage{booktabs}                   % Nicer tables
 %\usepackage[font=small,labelfont=bf]{caption} % Numbered captions for figures
@@ -228,9 +229,10 @@ die einzelnd analysiert und in dieser Form von nichtkomplexen Automaten verarbei
 	Was ist, wenn ein integrierter Schaltkreis versagt und ich nicht rechtzeitig eingreifen kann?“\\
 	„Ach, Andromeda, das würde dir ja nie passieren, denn dann brauchst du ja einen neuen Captain.“}
 	\begin{flushright}
-		\textit{-~~Andromeda und Captain Dylan Hunt, \cite{ADA102}}
+		\textit{-~~Andromeda und Dylan Hunt, \cite{ADA101}}
 	\end{flushright}
 	\begin{itemize}
+		\item Erläuterung und Inkontextsetzung des Zitates
 	    \item Kurzer Abriss der Geschichte
 	    \item Erwähnung von ELIZA
 	    \item Eingehen auf Rommie (und Cmdr. Data/HAL?)
@@ -282,7 +284,7 @@ An drei Beispielen aus der Fiktion werden nun mögliche Anwendungsgebiete gezeig
 \textit{„Herzlich Willkommen.“ - „Was ist das?“ - „DAS war Sarah.“\\
         „Selbstständig arbeitendes, rundum automatisiertes Haus. Kurz: S.A.R.A.H.“}
 \begin{flushright}
-    \textit{-~~Sarah, Jack Carter und Douglas Fargo, \cite{EUR102}}
+    \textit{-~~Sarah, Jack Carter und Douglas Fargo, \cite{EUR103}}
 \end{flushright}
 \textit{Sarah} ist ein Haus aus der Science Fiction-Serie \textsc{Eureka}.
 Tatsächlich ist \textit{Sarah} weniger Fiction als Science.
@@ -298,7 +300,7 @@ Jedoch ist es nicht unrealistisch, davon auszugehen, dass in nicht allzu ferner 
 \textit{„Computer, erbitte alle verfügbaren Informationen über die fiktive Figur 'Dixon Hill'.“\\
         „Bitte warten. Die Figur tauchte zum ersten Mal in dem Magazin 'Erstaunliche Detektivgeschichten' auf, [...]“}
 \begin{flushright}
-    \textit{-~~Commander Data, \cite{TNG112}}
+    \textit{-~~Commander Data und der Schiffscomputer; \cite{TNG112}}
 \end{flushright}
 Recht früh in der Serie \textit{Star Trek: The Next Generation} gibt es eine Folge, in der der Android Data dem Computer des Raumschiffes \textit{Enterprise} eine Rechercheanweisung gibt.
 
@@ -306,7 +308,7 @@ Recht früh in der Serie \textit{Star Trek: The Next Generation} gibt es eine Fo
 \label{ssec:r2d2}
 \textit{„Er ist ein Protokoll-Droide und soll Mom helfen.[...]“ - „Oh! Hallo! Ich bin C-3PO, Roboter-Mensch-Kontakter.“}
 \begin{flushright}
-    \textit{-~~Anakin Skywalker, \cite{SWEP1}}
+    \textit{-~~Anakin Skywalker und C-3PO; \cite{SWEP1}}
 \end{flushright}
 Das \textit{Star Wars}-Universum wimmelt von Droiden.
 Und unter diesen Droiden finden sich R2D2 und C3PO, wohl zwei der bekanntesten Roboter der Filmgeschichte.
@@ -325,7 +327,7 @@ Und unter diesen Droiden finden sich R2D2 und C3PO, wohl zwei der bekanntesten R
 % ``bib.bib''
 %
 \newpage
-\bibliographystyle{alpha}
+\bibliographystyle{plain}
 \addcontentsline{toc}{section}{Quellenverzeichnis}% Add to the TOC
 \bibliography{bib}
 \nocite{*}
