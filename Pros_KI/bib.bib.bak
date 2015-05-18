@@ -1,0 +1,50 @@
+% This file was created with JabRef 2.10.
+% Encoding: Cp1252
+
+
+@Book{Bird2009,
+  Title                    = {Natural language processing with Python},
+  Author                   = {Ewan Klein; Edward Loper; Steven Bird},
+  Publisher                = {O'Reilly Media, Inc},
+  Year                     = {2009}
+}
+
+@Misc{EUR102,
+  Title                    = {EUReKA: Many Happy Returns},
+
+  Author                   = {Jaime Paglia; Andrew Cosby},
+  Month                    = {July},
+  Year                     = {2006}
+}
+
+@Misc{SWEP1,
+  Title                    = {Star Wars Episode I: The Phantom Menace},
+
+  Author                   = {George Lucas},
+  Month                    = {May},
+  Year                     = {1999}
+}
+
+@Conference{Ploom2014,
+  Title                    = {Processing Chains in System of Systems},
+  Author                   = {Iain Last; Axel Glaser; Stefan Scheit; Tarmo Ploom},
+  Booktitle                = {Mesoca 2014: 8th IEEE International Symposium on the Maintenance and Evolution of Service-Oriented and Cloud-Based Systems},
+  Year                     = {2014}
+}
+
+@Misc{HansDieter,
+  Title                    = {Star Trek: The Next Genereation: The Big Goodbye},
+
+  Author                   = {Tracy Tormé},
+  Month                    = {January},
+  Year                     = {1988}
+}
+
+@Misc{ADA101,
+  Title                    = {Andromeda: Under the Night},
+
+  Author                   = {Robert Hewitt Wolfe},
+  Month                    = {October},
+  Year                     = {2000}
+}
+

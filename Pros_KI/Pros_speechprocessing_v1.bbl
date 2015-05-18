@@ -1,0 +1,30 @@
+\begin{thebibliography}{1}
+
+\bibitem{Bird2009}
+Ewan Klein; Edward Loper;~Steven Bird.
+\newblock {\em Natural language processing with Python}.
+\newblock O'Reilly Media, Inc, 2009.
+
+\bibitem{EUR103}
+Jaime Paglia;~Andrew Cosby.
+\newblock Eureka: Many happy returns, July 2006.
+
+\bibitem{SWEP1}
+George Lucas.
+\newblock Star wars episode i: The phantom menace, May 1999.
+
+\bibitem{Ploom2014}
+Iain Last; Axel Glaser; Stefan Scheit;~Tarmo Ploom.
+\newblock Processing chains in system of systems.
+\newblock In {\em Mesoca 2014: 8th IEEE International Symposium on the
+  Maintenance and Evolution of Service-Oriented and Cloud-Based Systems}, 2014.
+
+\bibitem{TNG112}
+Tracy Torme.
+\newblock Star trek: The next genereation: The big goodbye, January 1988.
+
+\bibitem{ADA101}
+Robert~Hewitt Wolfe.
+\newblock Andromeda: Under the night, October 2000.
+
+\end{thebibliography}
