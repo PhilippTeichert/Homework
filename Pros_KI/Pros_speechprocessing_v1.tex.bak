@@ -12,7 +12,7 @@
 \newcommand{\trmatrikelnummer}{6658699}
 \newcommand{\tremail}{4kobras@informatik.uni-hamburg.de}
 \newcommand{\trarbeitsbereich}{Knowledge Technology, WTM}
-\newcommand{\trdate}{01.04.2014}
+\newcommand{\trdate}{\today}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bind packages:
@@ -231,12 +231,23 @@ die einzelnd analysiert und in dieser Form von nichtkomplexen Automaten verarbei
 	\begin{flushright}
 		\textit{-~~Andromeda und Dylan Hunt, \cite{ADA101}}
 	\end{flushright}
-	\begin{itemize}
-		\item Erläuterung und Inkontextsetzung des Zitates
-	    \item Kurzer Abriss der Geschichte
-	    \item Erwähnung von ELIZA
-	    \item Eingehen auf Rommie (und Cmdr. Data/HAL?)
-	\end{itemize}
+	Was wir hier vor Augen haben ist der erste Dialog zwischen der KI des Raumschiffes \textit{Andromeda Ascendant} und ihrem Captain, den die Zuschauer der Serie von Gene Roddenberry zu hören bekommen.
+	Der Captain springt einen tiefen Schacht herunter, um kurz vor Aufschlag mit einem Raketengürtel seinen Fall abzubremsen.\\
+	Ein physikalisch interessantes Scenario, doch warum wird es hier eingebracht?\\
+	Die KI dieses Raumschiffes, die im Folgenden nach ihrem androiden Avatar \textit{Rommie} bezeichnet wird, ist in der Lage, mit den Besatzungsmitgliedern des Schiffes durch direkte, natürliche Sprache und das Ausdrücken von Emotionen zu kommunizieren.
+	Dies ist zweifelsohne ein erstrebenswertes Ziel der Forschung an der Künstlichen Intelligenz.
+	Doch wo es Ziele gibt, gibt es auch Wege zum Ziel.
+	Diese Arbeit wird sich mit dem Verarbeiten natürlicher Sprache in Textform beschäftigen.
+	Zwar ist Kommunikation durch Texteingabe nicht so schnell und dynamisch anwendbar wie gesprochene Anweisungen, dennoch aber ist sie ein wichtiger Schritt dorthin.
+	Wir werden sehen, wie natürliche Sprache aufgebaut ist, wie sie durch Verwendung von Deterministischen Automaten und Markov-Ketten analysiert werden kann, und wie mit den erhaltenen Informationen verfahren werden kann.
+	\subsection{Was bisher geschah: Sprachverarbeitung im Kontext der historischen Artificial Intelligence}
+	\label{ssec:history}
+	\subsection{ELIZA als Beispiel für frühe Sprachverarbeitung}
+	\label{ssec:eliza}
+	\subsection{Rommie als Beispiel für fiktive Interpretationen und mögliche Entwicklungen}
+	\label{ssec:rommie}
+		evtl. auch Erwähnung von TARS (\textit{Interstellar}), Commander Data (\textit{Star Trek}) oder HAL (\textit{2001})\\
+		möglicherweise Zusammenlegung mit \ref{sec:ausb}
 
 \section{Was ist natürliche Sprache?}
 \label{sec:def_lang}
@@ -250,29 +261,39 @@ die einzelnd analysiert und in dieser Form von nichtkomplexen Automaten verarbei
 
 \section{Schrittweise Verarbeitung natürlicher Sprache}
 \label{sec:meth}
-tiefergehende Erläuterung der Begriffe und Begründung der gewählten Reihenfolge
-
-\subsection{Parsing der Morphologie}
-\label{ssec:morph}
-
-\subsection{Analyse der Syntax}
-\label{ssec:syntax}
-
-\subsection{Interpretation der Semantik}
-\label{sec:sem}
-
-\subsection{Erfassung der Pragmatik}
-\label{ssec:prag}
-
-\subsection{Inbetrachtziehen des Diskurs}
-\label{ssec:disc}
-
-\subsection{Auflösung von Mehrdeutigkeit}
-\label{ssec:ambi}
+tiefergehende Erläuterung der Begriffe und Begründung der gewählten Reihenfolge\\
+hauptsächlich Eingehen auf \cite{Jur2009}
+	\subsection{Parsing der Morphologie}
+	\label{ssec:morph}
+	\subsection{Analyse der Syntax}
+	\label{ssec:syntax}
+	\subsection{Interpretation der Semantik}
+	\label{sec:sem}
+	\subsection{Erfassung der Pragmatik}
+	\label{ssec:prag}
+	\subsection{Inbetrachtziehen des Diskurs}
+	\label{ssec:disc}
+	\subsection{Auflösung von Mehrdeutigkeit}
+	\label{ssec:ambi}
 
 \section{Simon, Sirius, Jasper}
+Diese drei Namen sind die Namen von Text-to-Speech Open Source Software-Paketen.
+Wir werden diese drei Pakete untersuchen und ihre Gemeinsamkeiten bezüglich der Sprachanalyse ermitteln.
 \label{sec:software}
+	\subsection{Simon listens}
+	\label{ssec:simon}
+	KDE-basierendes Programm\\
+	Sprache: C++
+	\subsection{Sirius}
+	\label{ssec:sirius}
+	Für die meisten Linux-Distributionen verwendbar\\
+	Sprache: Python, C++, Shell
+	\subsection{The Jasper Project}
+	\label{ssec:jasper}
+	Software für Raspberry Pi\\
+	Sprache: Python
 
+\newpage
 \section{Über Haushaltsroboter bis C3PO}
 \label{sec:ausb}
 Es wurde gezeigt, wie Sprachverarbeitung ausgesehen hat (\ref{sec:intro}) und wie das Verständnis natürlicher Sprache funktioniert (\ref{sec:meth}).
@@ -303,15 +324,27 @@ Jedoch ist es nicht unrealistisch, davon auszugehen, dass in nicht allzu ferner 
     \textit{-~~Commander Data und der Schiffscomputer; \cite{TNG112}}
 \end{flushright}
 Recht früh in der Serie \textit{Star Trek: The Next Generation} gibt es eine Folge, in der der Android Data dem Computer des Raumschiffes \textit{Enterprise} eine Rechercheanweisung gibt.
-
+Der Computer nimmt einen Suchbegriff entgegen und scannt die komplette Datenbank der Föderation nach allen möglichen Treffern.
+Hierbei muss er differenzieren, was als möglicher Treffer und was als tatsächlicher Treffer gilt.
+Tatsächlich kann der Computer nur anhand dieser Anweisung nicht entscheiden, welcher \textit{Dixon Hill} gemeint ist, sollten mehrere existieren.
+Hierbei müssen Wahrscheinlichkeiten verglichen und der Kontext analysiert werden.
+Dies in diesem Ausmaße in absehbarer Zeit serientauglich zu machen, halte ich für unwahrscheinlich. Dennoch, möglich wäre es.\\
+(Der Computer hier hatte ein wenig Hilfe - Der Captain des Raumschiffes hatte kurz zuvor ein Unterhaltungsprogramm mit Fokus auf den Privatdetektiv Dixon Hill geladen.)
 \subsection{R2D2 und C3PO}
 \label{ssec:r2d2}
 \textit{„Er ist ein Protokoll-Droide und soll Mom helfen.[...]“ - „Oh! Hallo! Ich bin C-3PO, Roboter-Mensch-Kontakter.“}
 \begin{flushright}
     \textit{-~~Anakin Skywalker und C-3PO; \cite{SWEP1}}
 \end{flushright}
-Das \textit{Star Wars}-Universum wimmelt von Droiden.
-Und unter diesen Droiden finden sich R2D2 und C3PO, wohl zwei der bekanntesten Roboter der Filmgeschichte.
+Das \textit{Star Wars}-Universum wimmelt von Robotern, oder, wie sie dort heißen, Droiden.
+Und unter diesen Droiden finden sich R2D2 und C3PO, wohl zwei der bekanntesten Roboter der Filmgeschichte, vielleicht nur übertroffen vom Tin Man aus Oz.
+Während die Hauptfunktionsweise von R2D2 ist, verbale Befehle in simple Arbeitsanweisungen zu übersetzen und auszuführen, so arbeitet 3PO auf einem anderen Niveau:
+C-3PO akzeptiert eine (nahezu) beliebige Menschen-, Alien- oder Maschinensprache und kann sie in (nahezu) jede andere Sprache übersetzen.
+Er wurde dazu konzipiert, die Kommunikation zwischen künstlichen und natürlichen Intelligenzen zu vereinfachen.\\
+Beide nehmen sprachliche Anweisungen entgegen.
+Während R2 diese Anweisungen lediglich auf Befehle parst, die er kennt, analysiert 3PO seine erhaltenen Anweisungen und überführt sie in eine andere Sprache.
+Somit erfolgt bei R2 eine Reaktion auf Anweisungen und bei 3PO eine Umwandlung von Anweisungen.\\
+Dies war zwar nicht vor langer, langer Zeit denkbar - zumindest nicht in dieser Galaxis - dürfte jedoch mehr als denkbar sein für die nicht allzu ferne Zukunft.
 
 \section{Schlussfolgerung}
 \label{sec:concl}
