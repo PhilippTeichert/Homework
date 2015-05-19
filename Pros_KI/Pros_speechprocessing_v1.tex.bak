@@ -8,7 +8,7 @@
 \newcommand{\trauthor}{Louis Kobras}
 \newcommand{\trtype}{Proseminararbeit} %{Paper} %{Seminararbeit} %{Proseminararbeit}
 \newcommand{\trcourse}{Proseminar: Künstliche Intelligenz}
-\newcommand{\trtitle}{Erfassung natürlicher Sprache in Textform am Beispiel von Python und C++}
+\newcommand{\trtitle}{Erfassen natürlicher Sprache in Textform am Beispiel von Python und C++}
 \newcommand{\trmatrikelnummer}{6658699}
 \newcommand{\tremail}{4kobras@informatik.uni-hamburg.de}
 \newcommand{\trarbeitsbereich}{Knowledge Technology, WTM}
@@ -204,8 +204,8 @@ literate=%
 % Abstract gives a brief summary of the main points of a paper:
 \section*{Abstract}
 Seit Jahrzehnten schon beschäftigen sich Forscher damit, den Computer dem Menschen näher zu bringen.
-Ein wichtiger Bestandteil dieses Prozesses ist dabei die Sprachverarbeitung.
-Ziel dieser Arbeit ist, Licht auf den Prozess des Verständnisses eines Computers von natürlicher Sprache zu werfen.
+Ein wichtiger Bestandteil dieses Prozesses ist dabei die Sprachverarbeitung.\\
+Ziel dieser Arbeit ist, Licht auf den Prozess des Verständnisses eines Computers von natürlicher Sprache zu werfen.\\
 Zu diesem Zweck wird der Begriff der natürlichen Sprache in seine Komponenten zerlegt,
 die einzelnd analysiert und in dieser Form von nichtkomplexen Automaten verarbeitet werden können.\\
 \textit{Einbindung der Ergebnisse.}
@@ -268,18 +268,33 @@ Was gestrichen wird, sollte der Text zu lang werden (in dieser Reihenfolge, ggf.
 	\label{ssec:rommie}
 		evtl. auch Erwähnung von TARS (\textit{Interstellar}), Commander Data (\textit{Star Trek}) oder HAL (\textit{2001})\\
 		möglicherweise Zusammenlegung mit \ref{sec:ausb}
-
 \section{Was ist natürliche Sprache?}
 \label{sec:def_lang}
 \textit{„By 'natural language' we mean a language that is used for everyday communication by humans; languages such as English, Hindi, or Portuguese.
         In contrast to artificial languages such as programming languages and mathematical notations, natural languages have evolved as they pass from generation to generation.
         and are hard to pin down with explicit rules.“} \cite{Bird2009}\\
-TODO:
-\begin{itemize}
-    \item Analyse des Zitates mit Interpretation
-    \item Auflistung und minimale Erläuterung der sechs zu erarbeitenden Eigenschaften (siehe \ref{sec:meth})
-\end{itemize}
-
+So definieren Steven Bird et. al. den Begriff \textit{natürliche Sprache}.
+Eine Sprache ist eine Konvention zur Kommunikation bestehend aus einer Grammatik, einem Vokabular und einem Verwendungskontext. \\
+Eine natürliche Sprache ist eine Sprache, die sich im Verlauf der Zeit aus der Kommunikation zwischen Menschen entwickelt hat.
+Durch die permanente Entwicklung einer Sprache verändert sich permanent die Bedeutung und Verwendung von Wörtern, andere Wörter werden neu hinzugefügt, wieder andere fallen heraus.
+So wurde zum Beispiel das Wort \texttt{Gebäudereinigungsfachkraft} erst vor relativ kurzer Zeit in den aktiven Wortschatz seiner Sprache aufgenommen, während das wort \texttt{archaistich} für 'veraltet' oder 'altertümlich' kaum noch Verwendung findet.
+Das erste Beispiel hat aus Gründen der politischen Korrektheit nicht nur Einzug in die deutsche Sprache als neue Bezeichnung gefunden, sondern auch seinen Vorgänger ersetzt.\\
+Bird et. al. nahmen ebenfalls Bezug auf künstiche Sprachen.
+Programmiersprachen und mathematische Notationen sind, ebenso wie natürliche Sprachen, als Verbindung aus Grammatik, Wortschatz und Verwendung darstellbar.
+Der Unterschied zu den natürlichen Sprachen ist jedoch, dass diese Sprachen feststehen.
+In der Sprache der Mathematik findet außer in Fachkreisen kaum noch eine Veränderung statt.
+Ebenso verhält es sich mit dem täglich verwendeten Java.
+Mit jedem Update gibt es eine handvoll Änderungen, jedoch nimmt kaum eine dieser Änderungen Einfluss auf den alltäglichen Gebrauch der Sprache.\\
+Die Eigenschaft von natürlichen Sprachen, dynamisch zu sein, macht es schwer, sie in kompakten Regeln klar zu formulieren.
+Um es dennoch zu können, wird eine Sprache in folgende sechs Teilgebiete aufgeteilt, die jedes für sich erfasst und bearbeitet werden können:
+Morphologie, Syntax, Semantik, Pragmatik, Diskurs und Mehrdeutigkeit.\\
+Für die gesprochene Sprache kommt der Punkt der Phonologie hinzu: Je nach Aussprache kann sich die Bedeutung eines Wortes ändern.\\
+Unter \textbf{Morphologie} verstehen wir die Veränderung des Wortes nach Anwendung der Grammatik. \\
+Unter \textbf{Syntax} verstehen wir [...]\\
+Unter \textbf{Semantik} verstehen wir [...]\\
+Unter \textbf{Pragmatik} verstehen wir [...]\\
+Unter \textbf{Diskurs} verstehen wir [...]\\
+Unter \textbf{Mehrdeutigkeit} verstehen wir, dass ein Wort verschiedene Bedeutungen abhängig vom Kontext haben kann.
 \section{Schrittweise Verarbeitung natürlicher Sprache}
 \label{sec:meth}
 TODO:\\
@@ -299,7 +314,7 @@ hauptsächlich Eingehen auf \cite{Jur2009}
 	\label{ssec:ambi}
 
 \section{Simon, Sirius, Jasper}
-Diese drei Namen sind die Namen von Text-to-Speech Open Source Software-Paketen.
+Diese drei Namen sind Namen von Open Source Sprachverarbeitungssoftware.
 Wir werden diese drei Pakete untersuchen und ihre Gemeinsamkeiten bezüglich der Sprachanalyse ermitteln.
 \label{sec:software}
 	\subsection{Simon listens}
@@ -368,7 +383,13 @@ Dies war zwar nicht vor langer, langer Zeit denkbar - zumindest nicht in dieser 
 
 \section{Schlussfolgerung}
 \label{sec:concl}
-\textit{evtl mit Ausblick zusammenziehen}
+\textit{evtl mit Ausblick zusammenziehen}\\
+\begin{itemize}
+	\item Fazit: Status Quo
+	\item Heutige Möglichkeiten
+	\item theoretische Möglichkeiten
+	\item Ansätze für Weiterentwicklung
+\end{itemize}
 
 
 
