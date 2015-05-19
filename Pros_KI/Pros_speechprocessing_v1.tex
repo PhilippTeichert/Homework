@@ -8,7 +8,7 @@
 \newcommand{\trauthor}{Louis Kobras}
 \newcommand{\trtype}{Proseminararbeit} %{Paper} %{Seminararbeit} %{Proseminararbeit}
 \newcommand{\trcourse}{Proseminar: Künstliche Intelligenz}
-\newcommand{\trtitle}{SARAH, ELIZA, und Andromeda; oder was Frauen verstehen, wenn Menschen reden}
+\newcommand{\trtitle}{Erfassen natürlicher Sprache in Textform am Beispiel von Python und C++}
 \newcommand{\trmatrikelnummer}{6658699}
 \newcommand{\tremail}{4kobras@informatik.uni-hamburg.de}
 \newcommand{\trarbeitsbereich}{Knowledge Technology, WTM}
@@ -204,8 +204,8 @@ literate=%
 % Abstract gives a brief summary of the main points of a paper:
 \section*{Abstract}
 Seit Jahrzehnten schon beschäftigen sich Forscher damit, den Computer dem Menschen näher zu bringen.
-Ein wichtiger Bestandteil dieses Prozesses ist dabei die Sprachverarbeitung.
-Ziel dieser Arbeit ist, Licht auf den Prozess des Verständnisses eines Computers von natürlicher Sprache zu werfen.
+Ein wichtiger Bestandteil dieses Prozesses ist dabei die Sprachverarbeitung.\\
+Ziel dieser Arbeit ist, Licht auf den Prozess des Verständnisses eines Computers von natürlicher Sprache zu werfen.\\
 Zu diesem Zweck wird der Begriff der natürlichen Sprache in seine Komponenten zerlegt,
 die einzelnd analysiert und in dieser Form von nichtkomplexen Automaten verarbeitet werden können.\\
 \textit{Einbindung der Ergebnisse.}
@@ -222,7 +222,12 @@ die einzelnd analysiert und in dieser Form von nichtkomplexen Automaten verarbei
 % the actual content, usually separated over a number of sections
 % each section is assigned a label, in order to be able to put a
 % crossreference to it
-
+Was gestrichen wird, sollte der Text zu lang werden (in dieser Reihenfolge, ggf. noch mehr):
+\begin{itemize}
+	\item 1.1 und 1.3
+	\item 5.1
+	\item 4.1
+\end{itemize}
 \section{Einführung}
 \label{sec:intro}
 	\textit{„Ich wünschte, du würdest das nicht tun.
@@ -233,7 +238,7 @@ die einzelnd analysiert und in dieser Form von nichtkomplexen Automaten verarbei
 	\end{flushright}
 	Was wir hier vor Augen haben ist der erste Dialog zwischen der KI des Raumschiffes \textit{Andromeda Ascendant} und ihrem Captain, den die Zuschauer der Serie von Gene Roddenberry zu hören bekommen.
 	Der Captain springt einen tiefen Schacht herunter, um kurz vor Aufschlag mit einem Raketengürtel seinen Fall abzubremsen.\\
-	Ein physikalisch interessantes Scenario, doch warum wird es hier eingebracht?\\
+	Ein physikalisch interessantes Szenario, doch warum wird es hier eingebracht?\\
 	Die KI dieses Raumschiffes, die im Folgenden nach ihrem androiden Avatar \textit{Rommie} bezeichnet wird, ist in der Lage, mit den Besatzungsmitgliedern des Schiffes durch direkte, natürliche Sprache und das Ausdrücken von Emotionen zu kommunizieren.
 	Dies ist zweifelsohne ein erstrebenswertes Ziel der Forschung an der Künstlichen Intelligenz.
 	Doch wo es Ziele gibt, gibt es auch Wege zum Ziel.
@@ -242,25 +247,41 @@ die einzelnd analysiert und in dieser Form von nichtkomplexen Automaten verarbei
 	Wir werden sehen, wie natürliche Sprache aufgebaut ist, wie sie durch Verwendung von Deterministischen Automaten und Markov-Ketten analysiert werden kann, und wie mit den erhaltenen Informationen verfahren werden kann.
 	\subsection{Was bisher geschah: Sprachverarbeitung im Kontext der historischen Artificial Intelligence}
 	\label{ssec:history}
+	Die Grundsteine für Künstliche Intelligenz wurden 1936 von Turing und darauf aufbauend in den 40ern und 50ern gelegt (McCulloch und Pitts (1943), Chomsky (1956) et. al.).\\
+	Ende der 50er Jahre hatten sich daraus zwei parallele Zweige für die Sprachverarbeitung gebildet: Das formale Paradigma und der stochastische Ansatz (\cite{Jur2009}).\\
+	Während das formale Paradigma seinen Schwerpunkt auf formale Sprachen und das Parsen von Schlüsselwörtern gelegt hatte, lag der Schwerpunkt des anderen Ansatzes auf der Berechnung der Wahrscheinlichkeit des Auftretens bestimmter Wörter anhand eines umfassenden Lexikons und der Anwendung Bayesscher Methoden auf die einzelnen Zeichen.\\
+	Während der stochastische Zweig weitestgehend erhalten blieb, teilte sich der formale Zweig zu Beginn der 70er Jahre in drei Pfade auf.
+	Der stochastische Zweig begann, versteckte Markov-Modelle (HMM) bei seiner Analyse zu nutzen.
+	Ein Logik-basierender Zweig befasste sich mit der Vereinheitlichung der Struktur von Sprache und nutzte dabei eine sog. \textit{Definite Clause Grammar}, woraus sich später Prolog entwickeln würde.
+	Der Zweig, der sich mit natürlicher Sprache befasste, versuchte, Text-Kommandos und Konzepte so umzusetzen, dass Maschinen eine semantische Grundlage mitgegeben werden konnte, auf der die Interpretation aufbauen würde.
+	Der Diskurs-Zweig verwendete die Betrachtung von Substrukturen im Diskurs von Sprachen und der Automatisierung von Referenzen.\\
+	Die 80er und 90er Jahre beschäftigten sich Whahrscheinlichkeitsmodellen und Modellen, die sich deterministische, endliche Automaten zur Analyse zu Nutzen machten.\\
+	Ende des 20. Jahrhunderts hatte sich das Wahrscheinlichkeitsmodell als Standard durchgesetzt. Die Forschung in diesem Feld wurde durch das Aufkommen des Internet und auf kommerzieller Basis durch Entwicklung der Technologie weiter vorangetrieben.
 	\subsection{ELIZA als Beispiel für frühe Sprachverarbeitung}
 	\label{ssec:eliza}
+	ELIZA ist ein frühes Programm zur Sprachverarbeitung (Weizenbaum, 1966).
+	Das Programm wendet simples Parsing und Mustererkennung an, um Schlüsselwörter aus einem gegebenen Satz zu extrahieren und darauf aufbauend eine Antwort zu generieren.
+	ELIZA arbeitet als Rogativer Psychologe, d.h. man erzählt ihr etwas und sie stellt eine darauf basierende Frage.\\
+	Das Programm ist sehr simpel, und ELIZA benötigt fast keine Informationen, um zu funktionieren.
+	Durch ihre Arbeitsweise kann sie ein natürliches Gespräch mit einem Psychologen nur durch das Wiederholen von Sätzen in Frageform erfolgreich simulieren.
 	\subsection{Rommie als Beispiel für fiktive Interpretationen und mögliche Entwicklungen}
 	\label{ssec:rommie}
 		evtl. auch Erwähnung von TARS (\textit{Interstellar}), Commander Data (\textit{Star Trek}) oder HAL (\textit{2001})\\
 		möglicherweise Zusammenlegung mit \ref{sec:ausb}
-
 \section{Was ist natürliche Sprache?}
 \label{sec:def_lang}
 \textit{„By 'natural language' we mean a language that is used for everyday communication by humans; languages such as English, Hindi, or Portuguese.
         In contrast to artificial languages such as programming languages and mathematical notations, natural languages have evolved as they pass from generation to generation.
-        and are hard to pin down with explicit rules.“} \cite{Bird2009}
+        and are hard to pin down with explicit rules.“} \cite{Bird2009}\\
+TODO:
 \begin{itemize}
     \item Analyse des Zitates mit Interpretation
-    \item Auflistung und minimale Erläuterung der sechs zu erarbeitenden Eigenschaften
+    \item Auflistung und minimale Erläuterung der sechs zu erarbeitenden Eigenschaften (siehe \ref{sec:meth})
 \end{itemize}
 
 \section{Schrittweise Verarbeitung natürlicher Sprache}
 \label{sec:meth}
+TODO:\\
 tiefergehende Erläuterung der Begriffe und Begründung der gewählten Reihenfolge\\
 hauptsächlich Eingehen auf \cite{Jur2009}
 	\subsection{Parsing der Morphologie}
@@ -277,7 +298,7 @@ hauptsächlich Eingehen auf \cite{Jur2009}
 	\label{ssec:ambi}
 
 \section{Simon, Sirius, Jasper}
-Diese drei Namen sind die Namen von Text-to-Speech Open Source Software-Paketen.
+Diese drei Namen sind Namen von Open Source Sprachverarbeitungssoftware.
 Wir werden diese drei Pakete untersuchen und ihre Gemeinsamkeiten bezüglich der Sprachanalyse ermitteln.
 \label{sec:software}
 	\subsection{Simon listens}
@@ -292,8 +313,6 @@ Wir werden diese drei Pakete untersuchen und ihre Gemeinsamkeiten bezüglich der
 	\label{ssec:jasper}
 	Software für Raspberry Pi\\
 	Sprache: Python
-
-\newpage
 \section{Über Haushaltsroboter bis C3PO}
 \label{sec:ausb}
 Es wurde gezeigt, wie Sprachverarbeitung ausgesehen hat (\ref{sec:intro}) und wie das Verständnis natürlicher Sprache funktioniert (\ref{sec:meth}).
@@ -337,7 +356,7 @@ Dies in diesem Ausmaße in absehbarer Zeit serientauglich zu machen, halte ich f
     \textit{-~~Anakin Skywalker und C-3PO; \cite{SWEP1}}
 \end{flushright}
 Das \textit{Star Wars}-Universum wimmelt von Robotern, oder, wie sie dort heißen, Droiden.
-Und unter diesen Droiden finden sich R2D2 und C3PO, wohl zwei der bekanntesten Roboter der Filmgeschichte, vielleicht nur übertroffen vom Tin Man aus Oz.
+Unter diesen Droiden finden sich R2D2 und C3PO, wohl zwei der bekanntesten Roboter der Filmgeschichte, vielleicht nur übertroffen vom Tin Man aus Oz.
 Während die Hauptfunktionsweise von R2D2 ist, verbale Befehle in simple Arbeitsanweisungen zu übersetzen und auszuführen, so arbeitet 3PO auf einem anderen Niveau:
 C-3PO akzeptiert eine (nahezu) beliebige Menschen-, Alien- oder Maschinensprache und kann sie in (nahezu) jede andere Sprache übersetzen.
 Er wurde dazu konzipiert, die Kommunikation zwischen künstlichen und natürlichen Intelligenzen zu vereinfachen.\\
@@ -348,7 +367,13 @@ Dies war zwar nicht vor langer, langer Zeit denkbar - zumindest nicht in dieser 
 
 \section{Schlussfolgerung}
 \label{sec:concl}
-\textit{evtl mit Ausblick zusammenziehen}
+\textit{evtl mit Ausblick zusammenziehen}\\
+\begin{itemize}
+	\item Fazit: Status Quo
+	\item Heutige Möglichkeiten
+	\item theoretische Möglichkeiten
+	\item Ansätze für Weiterentwicklung
+\end{itemize}
 
 
 
