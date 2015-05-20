@@ -318,4 +318,17 @@ literate=%
 	Es sei $a\in\mathbb{R}$ irgendeine Zahl und $(a_n)_{n\in\mathbb{N}}$ eine Folge reeller Zahlen mit $a_n\rightarrow0$ für $n\rightarrow\infty$.
 	Man zeige nur unter Benutzung der Definition von Konvergenz, dass die Folge $(a+a_n)_{n\in\mathbb{N}7}$ gegen $a$ konvergiert.
 	%%%%---RECHNUNG---%%%%
+	\begin{table}[h]
+    	\centering
+    	\begin{tabular}{cccc}
+			$a\in\mathbb{R}$ ~~~~&~~~~ $(a_n)_{n\in\mathbb{N}}$ ~~~~&~~~~ $\underset{n\rightarrow\infty}{lim}$ ~~~~&~~~~ $a_n=0^+\vee 0^-$
+		\end{tabular}
+	\end{table}
+	$(a_n)$ konvergiert gegen $0$, wenn $n$ gegen $\infty$ geht.\\
+	$\Rightarrow$ rechnen wir zu jedem Wert $a_n$ eine Zahl a hinzu, konvergiert diese neue Folge $a_n+a$ gegen $a$, da $a_n$ gegen 0 geht und $0+a=a$.
+	\begin{equation*}
+		\underset{n\rightarrow\infty}{lim}a=a \wedge
+		\underset{n\rightarrow\infty}{lim}a_n=0	\Rightarrow
+		\underset{n\rightarrow\infty}{lim}a+a_n=a
+	\end{equation*}
 \end{document}
