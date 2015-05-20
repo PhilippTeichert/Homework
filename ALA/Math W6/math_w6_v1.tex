@@ -250,6 +250,7 @@ literate=%
 	\end{split}
 	\end{equation*}\\
 	\[\mathbb{L}~=~\{-\frac{1}{3}t,\frac{5}{3}t,\frac{1}{3}t\}\]
+	\newpage
 	\section*{Aufgabe 3}
 	\label{sec:a3}
 	%%%%---AUFGABE---%%%%
@@ -257,8 +258,53 @@ literate=%
 	\[
 	    Det(A)Det(B)=Det(AB)
 	\]
-	gilt.
+	gilt.\\\\
 	%%%%---RECHNUNG---%%%%
+	Zunächst werden die Determinanten von $A$ und $B$ und dann deren Produkt bestimmt.
+	\[
+		A~=~\begin{pmatrix}
+			a_{11}&a_{12}\\
+			a_{21}&a_{22}
+		\end{pmatrix}~~~~
+		B~=~\begin{pmatrix}
+			b_{11}&b_{12}\\
+			b_{21}&b_{22}
+		\end{pmatrix}
+	\]\\
+	\[Det(A)~=~a_{11}a_{22}~-~a_{12}a_{21}\]
+	\[Det(B)~=~b_{11}b_{22}~-~b_{21}b_{12}\]
+	\begin{align*}
+		Det(AB)~&=~(a_{11}a_{22}~-~a_{12}a_{21})(b_{11}b_{22}~-~b_{21}b_{12})\\
+				\\
+				&=a_{11}a_{22}b_{11}b_{22}~+~a_{12}a_{21}b_{12}b_{21}\\
+				&-~a_{11}a_{22}b_{12}b_{21}~-~a_{12}a_{21}b_{11}b_{22}
+	\end{align*}
+	Nun wird zunächst das Produkt der Matrizen $A$ und $B$ bestimmt, anschließend die Determinante des Produktes:\\
+	\[
+		AB~=~\begin{pmatrix}
+			(a_{11}b_{11}+a_{12}b_{21})&(a_{21}b_{11}+a_{22}b_{21})\\
+			(a_{11}b_{12}+a_{12}b_{22})&(a_{21}b_{12}+a_{22}b_{22})
+		\end{pmatrix}
+	\]
+	\begin{align*}
+		Det(AB)&=~(a_{11}b_{11}+a_{12}b_{21})~\cdot~(a_{21}b_{12}+a_{22}b_{22})\\
+			   &-~(a_{11}b_{12}+a_{12}b_{22})~\cdot~(a_{21}b_{11}+a_{22}b_{21})\\
+			   \\
+			   &=~a_{11}b_{11}a_{21}b_{12}~+~a_{11}b_{11}a_{22}b_{22}\\
+			   &+~a_{12}b_{21}a_{12}b_{11}~+~a_{12}b_{21}a_{22}b_{22}\\
+			   &-~a_{11}b_{12}a_{12}b_{11}~-~a_{11}b_{12}a_{22}b_{21}\\
+			   &-~a_{12}b_{12}a_{21}b_{11}~-~a_{21}b_{22}a_{22}b_{21}\\
+			   \\
+			   &=~a_{11}a_{21}b_{11}b_{22}~+~a_{11}a_{22}b_{11}b_{22}\\
+			   &+~a_{12}a_{21}b_{12}b_{21}~+~a_{12}a_{22}b_{21}b_{22}\\
+			   &-~a_{11}a_{21}b_{11}b_{12}~-~a_{11}a_{22}b_{12}b_{21}\\
+			   &-~a_{12}a_{21}b_{11}b_{22}~-~a_{12}a_{22}b_{21}b_{22}\\
+			   \\
+			   &=~a_{11}a_{22}b_{11}b_{22}~+~a_{12}a_{21}b_{12}b_{21}\\
+			   &-~a_{11}a_{22}b_{12}b_{21}~-~a_{12}a_{21}b_{11}b_{22}
+	\end{align*}
+	Damit ist gezeigt, dass $Det(A)Det(B)=Det(AB)$.
+	\newpage
 	\section*{Aufgabe 4}
 	\label{sec:a4}
 	%%%%---AUFGABE---%%%%
