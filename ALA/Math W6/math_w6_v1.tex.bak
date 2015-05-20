@@ -176,7 +176,7 @@ literate=%
 	    \centering
         \begin{tabular}{cc}
                  & $\begin{pmatrix}-\frac{1}{3} & -1 &  \frac{2}{3}\\ \frac{2}{3} &  1 & -\frac{1}{3}\\ -\frac{2}{3} &  0 &  \frac{1}{3}\end{pmatrix}$ \\
-            $\begin{pmatrix}1&1&-1\\0&1&1\\2&2&1 \end{pmatrix}$  & $\begin{pmatrix}a_{11}~~~&a_{12}~~~&a_{13}\\a_{21}~~~&a_{22}~~~&a_{23}\\a_{31}~~~&a_{32}~~~&a_{33} \end{pmatrix}$
+            $\begin{pmatrix}1&1&-1\\0&1&1\\2&2&1 \end{pmatrix}$  & $\begin{pmatrix}a_{11}~&a_{12}~&a_{13}\\a_{21}~&a_{22}~&a_{23}\\a_{31}~&a_{32}~&a_{33} \end{pmatrix}$
         \end{tabular}
     \end{table}\\
     \begin{table}[h]
@@ -195,7 +195,7 @@ literate=%
         $IX$   &    $a_{11}=$ & $\frac{2}{3}\cdot 2~-~\frac{1}{3}\cdot 2~+~\frac{1}{3}\cdot 1 $		&	$=~~\frac{4}{3}~-~\frac{2}{3}~+~\frac{1}{3}$	&	$=~~~~1$
         \end{tabular}
     \end{table}\\
-    \[\Rightarrow~~~~\begin{pmatrix}a_{11}~~~&a_{12}~~~&a_{13}\\a_{21}~~~&a_{22}~~~&a_{23}\\a_{31}~~~&a_{32}~~~&a_{33} \end{pmatrix}~~~~=~~~~~
+    \[\Rightarrow~~~~\begin{pmatrix}a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\a_{31}&a_{32}&a_{33} \end{pmatrix}~~~~=~~~~~\begin{pmatrix} 1&0&0\\0&1&0\\0&0&1   \end{pmatrix}\]
     Damit ist die Probe gemacht.
 	\section*{Aufgabe 2}
 	\label{sec:a2}
@@ -206,8 +206,47 @@ literate=%
 	        1\\2\\3
 	    \end{pmatrix},
 	\]
-	wobei $A$ die Matrix aus Aufgabe 1 ist.
+	wobei $A$ die Matrix aus Aufgabe 1 ist.\\\\
 	%%%%---RECHNUNG---%%%%
+	\[\begin{pmatrix}1&1&-1\\0&1&1\\2&2&1 \end{pmatrix}~~\times~~\begin{pmatrix} 1\\2\\3 \end{pmatrix}\]
+	\begin{equation*}
+		\begin{split}
+			\begin{array}{l}
+				\begin{array}{lccccl}
+					I~~~~&1&1&-1&1&~	\\
+					II~~~&0&1& 1&2&~	\\
+					III~~&2&2& 1&3&~~~~(III-2\cdot I)	
+				\end{array}\\
+				\\
+				\begin{array}{lccccl}
+					I~~~~&1&1&-1&1&~	\\
+					II~~~&0&1& 1&2&~	\\
+					III~~&0&0& 3&1&~~~~(:3)	
+				\end{array}\\
+				\\
+				\begin{array}{lccccl}
+					I~~~~&1&1&-1&1&~~~~(I~-~II)	\\
+					II~~~&0&1& 1&2&~	\\
+					III~~&0&0& 1&\frac{1}{3}	
+				\end{array}
+			\end{array}
+			{}~~~~~&~~~~~{}
+			\begin{array}{l}
+				\begin{array}{lccccl}
+					I~~~~&1&0&-2&-1&~~~~(I~+~2\cdot II)	\\
+					II~~~&0&1& 1& 2&~~~~(II~-~III)	\\
+					III~~&0&0& 1& \frac{1}{3}
+				\end{array}\\
+				\\
+				\begin{array}{lccccl}
+					I~~~~&	\\
+					II~~~&	\\
+					III~~&	
+				\end{array}
+			\end{array}
+		\end{split}
+	\end{equation*}
+	\[\mathbb{L}~=~\{-\frac{1}{3}t,\frac{5}{3}t,\frac{1}{3}t\}\]
 	\section*{Aufgabe 3}
 	\label{sec:a3}
 	%%%%---AUFGABE---%%%%
