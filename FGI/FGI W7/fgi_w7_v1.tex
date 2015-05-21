@@ -135,6 +135,31 @@ literate=%
 	Sobald danach noch ein Buchstabe kommt, brechen wir ab, somit sind wir fertig.
 	\subsection*{Aufgabe 6.4.2}
 	\label{ssec:a6.4.2}
+	\[L\underline{\subset}L(A)\]
+	\begin{equation*}
+		\begin{array}{ll}
+			\begin{split}
+				\begin{array}{ll}
+					G:=		& \{V_N,V_T,P,S\}\\
+					S:=		& S\\
+					V_T:=	& \{a,b\}\\
+					V_N:=	& \{S,A,B\}\\
+					P:=		& \{S\rightarrow AB,~~A\rightarrow aA|\lambda,~~B\rightarrow bbBa|\lambda\}
+				\end{array}
+			\end{split}
+		{}&{}
+			\begin{split}
+				\begin{array}{lll}
+					A \rightarrow				&	aA|\lambda			&	\Rightarrow a^x|x\in \mathbb{N}_0\\
+					B \rightarrow				&	bbBa|\lambda		&	\Rightarrow b^{2y} a^y | y \in \mathbb{N}_0\\
+					S \rightarrow				&	AB					&	\Rightarrow~erst~A,~dann~B\\
+					\Rightarrow a^x b^{2y} a^y	& |x,y \in\mathbb{N}_0	&	\hat{=} a^n b^{2m} a^m|n,m \ge 0\\
+					\-
+				\end{array}
+			\end{split}
+		\end{array}
+	\end{equation*}
+	\[\Rightarrow~~L\underline{\subset}L(G)~~\wedge~~L(G)\underline{\subset}L~~\Rightarrow~~L~=~L(A)\]\qed
 	%-------------------------------------------------%
 	\newpage
 	\section*{Aufgabe 6.5}
