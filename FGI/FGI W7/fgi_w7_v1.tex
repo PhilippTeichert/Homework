@@ -161,17 +161,90 @@ literate=%
 	\end{equation*}
 	\[\Rightarrow~~L\underline{\subset}L(G)~~\wedge~~L(G)\underline{\subset}L~~\Rightarrow~~L~=~L(A)\]\qed
 	%-------------------------------------------------%
-	\newpage
 	\section*{Aufgabe 6.5}
 	\label{sec:a6.5}
 	\subsection*{Aufgabe 6.5.1}
 	\label{ssec:a6.5.1}
+	Seien $L_1$, $L_2$ entscheidbar~~~~$\Rightarrow$\\
+	$L_1$:
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.0cm,semithick]
+		\node	(A) [initial, state] 					{$z_{L1.1}$};	
+		\node	(B)	[accepting, state]	[right of=A]	{$z_{L1.END}$};
+		
+		\path (A) edge node [align=left] {$*$} (B);
+	\end{tikzpicture}
+	\[\Rightarrow ist~entscheidbar\]\\
+	$L_2$:
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.0cm,semithick]
+		\node	(A) [initial, state] 					{$z_{L2.1}$};	
+		\node	(B)	[accepting, state]	[right of=A]	{$z_{L2.END}$};
+		
+		\path (A) edge node [align=left] {$*$} (B);
+	\end{tikzpicture}
+	\[\Rightarrow ist~entscheidbar\]
+	Wir konstruieren also einen Automaten, der als Teilautomaten $L_1$ und $L_2$ hat:\\
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1in,semithick]
+		\node	(A) [initial, state] 					{$z_{start}$};	
+		\node	(B)	[state]				[right of=A]	{$L_1$};
+		\node	(C)	[state]				[below of=B]	{$L_2$};
+		\node	(D)	[accepting, state]	[right of=B]	{$z_{end}$};
+		
+		\path
+			(A) edge node [align=left] {$\lambda_a$} (B)
+			(A) edge node [align=left] {$\lambda_a$} (C)
+			(B) edge node [align=left] {$\lambda_b$} (D)
+			(C) edge node [align=left] {$\lambda_b$} (D)
+		;
+	\end{tikzpicture}\\
+	$\lambda_a$ steht für: Diese Kante führt zu den jeweiligen Startzuständen\\
+	$\lambda_b$ steht für: Diese Kante kommt von den jeweiligen Endzuständen\\
+	$\lambda$ steht generell für: Diese Kante wird als Erstes gegangen, bevor das Wort angefangen wird zu lesen, oder aber als Letztes, nachdem das Wort fertig gelesen wurde.\\
+	Dieser Automat ist klar auch entscheidbar.
 	\subsection*{Aufgabe 6.5.2}
 	\label{ssec:a6.5.2}
+	Seien $L_3$, $L_4$ aufzählbar. (Wie in \ref{ssec:a6.5.1}, da DTM $\Leftrightarrow$ NTM).\\
+	Wir konstruieren also einen Automaten, der als Teilautomaten $L_3$ und $L_4$ hat:\\
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1in,semithick]
+		\node	(A) [initial, state] 					{$z_{start}$};	
+		\node	(B)	[state]				[right of=A]	{$L_3$};
+		\node	(C)	[state]				[below of=B]	{$L_4$};
+		\node	(D)	[accepting, state]	[right of=B]	{$z_{end}$};
+		
+		\path
+			(A) edge node [align=left] {$a$} (B)
+			(A) edge node [align=left] {$b$} (C)
+			(B) edge node [align=left] {$a$} (D)
+			(C) edge node [align=left] {$b$} (D)
+		;
+	\end{tikzpicture}\\
+	Die $a$-Kanten sind zu gehen, wenn das Wort aus $L_3$ kommt.
+	Ist das Wort $\in L_4$, so sind die $b$-Kanten zu gehen.
 	\subsection*{Aufgabe 6.5.3}
 	\label{ssec:a6.5.3}
+	Nein.
+	Sei $TM~A$ aufzählbar.
+	Dazu soll es eine $TM~A'$ geben.
+	Sei $L(A')=\overline{L(A)}$.
+	$A'$ ist nicht aufzählbar, da $L(A')$ auch Wörter enthält, auf die $TM~A'$ nicht hält.
 	%-------------------------------------------------%
-	\newpage
-	\section*{Aufgabe 6.5}
-	\label{sec:a6.5}
+	\section*{Aufgabe 6.6}
+	\label{sec:a6.6}
+	Sei $F$ eine TM mit $F:\{<M,w>|$die TM hört irgendwann auf, zu rechnen$\}$.\\
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1in,semithick]
+		\node	(A) [initial, state] 					{$z_1$};	
+		\node	(B)	[accepting, state]	[right of=A]	{$z_{Eirgenwas}$};
+		\node	(C)	[accepting, state]	[below of=B]	{$z_{END}$};
+		\node	(D)	[accepting, state]	[right of=B]	{$z_{NEU}$};
+		
+		\path
+			(A) edge node [align=left] {} (B)
+			(A) edge node [align=left] {} (C)
+			(B) edge node [align=left] {} (D)
+			(C) edge node [align=left] {} (D)
+		;
+	\end{tikzpicture}\\
+	Hängen wir nun an jedes $z_{END}$ aus $F$ eine Kante zu je einem weiteren Zustand $Z_{NEU}$ mit jeder möglichen Kantenbeschriftung und machen diese Zustände $z_{NEU}$ zu den einzigen Endzuständen.\\
+	Für jedes Mal, wenn ein Kantenübergang nach $z_{NEU}$ genutzt wird, schreibe eine 1 auf Band 2.
+	Die Anzahl der 1 auf Band ist das $n$.
+	Damit wäre jedoch das Entscheidungsproblem gelöst, somit kann $L$ nicht entscheidbar sein.
 \end{document}
