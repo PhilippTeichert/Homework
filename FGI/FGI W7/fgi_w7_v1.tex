@@ -100,8 +100,8 @@ literate=%
 		\node [initial, state]		(A)					{$z_1$};
 		\node [state]				(B) [right of=A]	{$z_2$};
 		\node [state]				(C) [right of=B]	{$z_3$};
-		\node [accepting, state]	(D) [right of=C]	{$z_4$};
-		\node [state]				(E) [right of=D]	{$z_{ERR}$};
+		\node [accepting, state]	(D) [right of=C]	{$z_E$};
+		\node [state]				(E) [right of=D]	{$z_{F}$};
 		
 		\path
 			(A) edge [loop above]		node [align=left]	{$a,\perp|\perp$}						(A)
@@ -114,7 +114,25 @@ literate=%
 			(C) edge					node [align=left]	{$\lambda,\perp|\perp$} 				(D)
 			(D) edge					node [align=left]	{$b,\perp|\perp$ \\ $a,\perp|\perp$}	(E)
 		;
-	\end{tikzpicture}
+	\end{tikzpicture}\\
+	$z_E$ ist ein Endzustand und $z_F$ ist ein Fehlerzustand.\\
+	\\
+	$L\underline{\subset}L(A)$\\
+	In $z_1$ wird $a^n$ gelesen: $n\in\mathbb{N}$\\
+	In $z_2$ wird $b^{2m}$ gelesen und alle 2 $b$s ein $B$ auf den Stack gepusht.\\
+	Nach $z_2$ kann ein $\lambda$ gelesen werden für den Fall $n=0$ und ein $b$ für den Fall $m\in\mathbb{N}$.
+	Für $m=0$ gibt es eine $\lambda$-Kante nach $z_E$ von $z_1$.
+	Sonst geht es mit $a,B|\lambda$ nach $z_3$, wo für jedes $a$ ein $B$ gelöscht wird.
+	Wenn dann der Stack leer ist, geht es in $z_E$.
+	Sollte dann das Wort nicht zu Ende gelesen sein, geht es in $z_F$.\\
+	\\
+	$L(A)\underline{\subset}L$\\
+	Zuerst werden beliebig viele $a$s gelesen (auch $0$)($\Rightarrow a^n|n\in\mathbb{N}_0$),
+	danach bielebig viele $b$s (auch $0$ möglich durch $\lambda,\perp|\perp$ nach $z_E$)
+	und alle 2 $b$s ein $B$ auf das Band geschrieben. ($\Rightarrow b^{2m}|m\in\mathbb{N}_0$).\\
+	Dann kann für jedes $B$ wieder ein $a$ gelesen werden, bei einer ungeraden Anzahl $b$s und einem $a$ dahinter wird abgebrochen.\\
+	Dann wird für jedes $B$ ein $a$ gelesen ($\Rightarrow a^m$).
+	Sobald danach noch ein Buchstabe kommt, brechen wir ab, somit sind wir fertig.
 	\subsection*{Aufgabe 6.4.2}
 	\label{ssec:a6.4.2}
 	%-------------------------------------------------%
