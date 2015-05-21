@@ -96,6 +96,25 @@ literate=%
 	\label{sec:a6.4}
 	\subsection*{Aufgabe 6.4.1}
 	\label{ssec:a6.4.1}
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.0cm,semithick]
+		\node [initial, state]		(A)					{$z_1$};
+		\node [state]				(B) [right of=A]	{$z_2$};
+		\node [state]				(C) [right of=B]	{$z_3$};
+		\node [accepting, state]	(D) [right of=C]	{$z_4$};
+		\node [state]				(E) [right of=D]	{$z_{ERR}$};
+		
+		\path
+			(A) edge [loop above]		node [align=left]	{$a,\perp|\perp$}						(A)
+			(A) edge					node [align=left]	{$b,\perp|b\perp$}						(B)
+			(A) edge [bend right=30]	node [align=left]	{$\lambda,\perp|\perp$}					(D)
+			(B) edge [loop above]		node [align=left]	{$b,b|B$ \\ $b,B|bB$}					(B)
+			(B) edge					node [align=left]	{$a,B|\lambda$}							(C)
+			(B) edge [bend right=30]	node [align=left]	{$a,b|\lambda$}							(E)
+			(C) edge [loop above]		node [align=left]	{$a,B|\lambda$}							(C)
+			(C) edge					node [align=left]	{$\lambda,\perp|\perp$} 				(D)
+			(D) edge					node [align=left]	{$b,\perp|\perp$ \\ $a,\perp|\perp$}	(E)
+		;
+	\end{tikzpicture}
 	\subsection*{Aufgabe 6.4.2}
 	\label{ssec:a6.4.2}
 	%-------------------------------------------------%
