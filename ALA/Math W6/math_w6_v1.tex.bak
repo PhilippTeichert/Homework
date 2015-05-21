@@ -323,12 +323,12 @@ literate=%
 			n~\approx~3.79
 		\end{array}
 	\end{equation*}\\
+	Da die kleinstmögliche ganze Zahl $n$ gesucht wird, und $3<3.79$ und somit herausfällt, sowie alle Zahlen kleiner $3$, ergibt sich für $n$ der Minimalwert $n_0=4$.\\
 	Probe:
 	\begin{align*}
-		n=3:~~~&\frac{1}{3}+\frac{1}{3^2}~=~\frac{4}{9}>\fr\\
-		n=4:~~~&\frac{1}{4}+\frac{1}{4^2}~=~
+		n=3:~~~&\frac{1}{3}+\frac{1}{3^2}~=~\frac{4}{9}>\frac{1}{3}\\
+		n=4:~~~&\frac{1}{4}+\frac{1}{4^2}~=~\frac{5}{16}<\frac{1}{3}
 	\end{align*}
-	Da die kleinstmögliche ganze Zahl $n$ gesucht wird, und $3<3.79$ und somit herausfällt, sowie alle Zahlen kleiner $3$, ergibt sich für $n$ der Minimalwert $n_0=4$.
 	\section*{Aufgabe 5}
 	\label{sec:a5}
 	%%%%---AUFGABE---%%%%
