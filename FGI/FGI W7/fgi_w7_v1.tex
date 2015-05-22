@@ -92,160 +92,43 @@ literate=%
 \begin{document}
 	\maketitle
 	\newpage
-	\section*{Aufgabe 6.4}
-	\label{sec:a6.4}
-	\subsection*{Aufgabe 6.4.1}
-	\label{ssec:a6.4.1}
-	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.0cm,semithick]
-		\node [initial, state]		(A)					{$z_1$};
-		\node [state]				(B) [right of=A]	{$z_2$};
-		\node [state]				(C) [right of=B]	{$z_3$};
-		\node [accepting, state]	(D) [right of=C]	{$z_E$};
-		\node [state]				(E) [right of=D]	{$z_{F}$};
-		
-		\path
-			(A) edge [loop above]		node [align=left]	{$a,\perp|\perp$}						(A)
-			(A) edge					node [align=left]	{$b,\perp|b\perp$}						(B)
-			(A) edge [bend right=30]	node [align=left]	{$\lambda,\perp|\perp$}					(D)
-			(B) edge [loop above]		node [align=left]	{$b,b|B$ \\ $b,B|bB$}					(B)
-			(B) edge					node [align=left]	{$a,B|\lambda$}							(C)
-			(B) edge [bend right=30]	node [align=left]	{$a,b|\lambda$}							(E)
-			(C) edge [loop above]		node [align=left]	{$a,B|\lambda$}							(C)
-			(C) edge					node [align=left]	{$\lambda,\perp|\perp$} 				(D)
-			(D) edge					node [align=left]	{$b,\perp|\perp$ \\ $a,\perp|\perp$}	(E)
-		;
-	\end{tikzpicture}\\
-	$z_E$ ist ein Endzustand und $z_F$ ist ein Fehlerzustand.\\
+	\section*{Aufgabe 7.3}
+	\label{sec:a7.3}
+	\subsection*{Aufgabe 7.3.1}
+	\label{ssec:a7.3.1}
+	Sei $\mu$ in $L_1 \cap L_2$.
+	Dann ist $\mu$ in $L_1$ oder $L_2$, aber auch in $P$.\\
+	Sei $\mu$ in $L_1$.
+	Dann ist $\mu$ in $P$, aber auch in $L_1 \cap L_2$.\\
+	Sei $\mu$ in $L_2$.
+	Dann ist $\mu$ in $P$, aber auch in $L_1 \cap L_2$.\\
+	Daraus folgt, dass $L_1,L_2 \in P\Rightarrow L_1 \cap L_2 \in P.$\\
 	\\
-	$L\underline{\subset}L(A)$\\
-	In $z_1$ wird $a^n$ gelesen: $n\in\mathbb{N}$\\
-	In $z_2$ wird $b^{2m}$ gelesen und alle 2 $b$s ein $B$ auf den Stack gepusht.\\
-	Nach $z_2$ kann ein $\lambda$ gelesen werden für den Fall $n=0$ und ein $b$ für den Fall $m\in\mathbb{N}$.
-	Für $m=0$ gibt es eine $\lambda$-Kante nach $z_E$ von $z_1$.
-	Sonst geht es mit $a,B|\lambda$ nach $z_3$, wo für jedes $a$ ein $B$ gelöscht wird.
-	Wenn dann der Stack leer ist, geht es in $z_E$.
-	Sollte dann das Wort nicht zu Ende gelesen sein, geht es in $z_F$.\\
-	\\
-	$L(A)\underline{\subset}L$\\
-	Zuerst werden beliebig viele $a$s gelesen (auch $0$)($\Rightarrow a^n|n\in\mathbb{N}_0$),
-	danach bielebig viele $b$s (auch $0$ möglich durch $\lambda,\perp|\perp$ nach $z_E$)
-	und alle 2 $b$s ein $B$ auf das Band geschrieben. ($\Rightarrow b^{2m}|m\in\mathbb{N}_0$).\\
-	Dann kann für jedes $B$ wieder ein $a$ gelesen werden, bei einer ungeraden Anzahl $b$s und einem $a$ dahinter wird abgebrochen.\\
-	Dann wird für jedes $B$ ein $a$ gelesen ($\Rightarrow a^m$).
-	Sobald danach noch ein Buchstabe kommt, brechen wir ab, somit sind wir fertig.
-	\subsection*{Aufgabe 6.4.2}
-	\label{ssec:a6.4.2}
-	\[L\underline{\subset}L(A)\]
-	\begin{equation*}
-		\begin{array}{ll}
-			\begin{split}
-				\begin{array}{ll}
-					G:=		& \{V_N,V_T,P,S\}\\
-					S:=		& S\\
-					V_T:=	& \{a,b\}\\
-					V_N:=	& \{S,A,B\}\\
-					P:=		& \{S\rightarrow AB,~~A\rightarrow aA|\lambda,~~B\rightarrow bbBa|\lambda\}
-				\end{array}
-			\end{split}
-		{}&{}
-			\begin{split}
-				\begin{array}{lll}
-					A \rightarrow				&	aA|\lambda			&	\Rightarrow a^x|x\in \mathbb{N}_0\\
-					B \rightarrow				&	bbBa|\lambda		&	\Rightarrow b^{2y} a^y | y \in \mathbb{N}_0\\
-					S \rightarrow				&	AB					&	\Rightarrow~erst~A,~dann~B\\
-					\Rightarrow a^x b^{2y} a^y	& |x,y \in\mathbb{N}_0	&	\hat{=} a^n b^{2m} a^m|n,m \ge 0\\
-					\-
-				\end{array}
-			\end{split}
-		\end{array}
-	\end{equation*}
-	\[\Rightarrow~~L\underline{\subset}L(G)~~\wedge~~L(G)\underline{\subset}L~~\Rightarrow~~L~=~L(A)\]\qed
+	Sei $L_1 \underline{\subset} P$. 
+	Dann gilt: $L_1=P \setminus \overline{L_1}$.
+	Daraus ergibt sich $\overline{L_1} = P \setminus L_1~~~\Rightarrow~\overline{L_1}\in P$.
+	\subsection*{Aufgabe 7.3.2}
+	\label{ssec:a7.3.2}
+	Sei $\mu$ in $L_1 \cap L_2$.
+	Dann ist $\mu$ in $L_1$ oder $L_2$, aber auch $NP$.\\
+	Sei $\mu$ in $L_1$.
+	Dann ist $\mu$ in $NP$, aber auch in $L_1 \cap L_2$.\\
+	Sei $\mu$ in $L_2$.
+	Dann ist $\mu$ in $NP$, aber auch in $L_1 \cap L_2$.\\
+	Daraus folgt, dass $L_1,L_2 \in NP\Rightarrow L_1 \cap L_2 \in NP.$\\
 	%-------------------------------------------------%
-	\section*{Aufgabe 6.5}
-	\label{sec:a6.5}
-	\subsection*{Aufgabe 6.5.1}
-	\label{ssec:a6.5.1}
-	Seien $L_1$, $L_2$ entscheidbar~~~~$\Rightarrow$\\
-	$L_1$:
-	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.0cm,semithick]
-		\node	(A) [initial, state] 					{$z_{L1.1}$};	
-		\node	(B)	[accepting, state]	[right of=A]	{$z_{L1.END}$};
-		
-		\path (A) edge node [align=left] {$*$} (B);
-	\end{tikzpicture}
-	\[\Rightarrow ist~entscheidbar\]\\
-	$L_2$:
-	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.0cm,semithick]
-		\node	(A) [initial, state] 					{$z_{L2.1}$};	
-		\node	(B)	[accepting, state]	[right of=A]	{$z_{L2.END}$};
-		
-		\path (A) edge node [align=left] {$*$} (B);
-	\end{tikzpicture}
-	\[\Rightarrow ist~entscheidbar\]
-	Wir konstruieren also einen Automaten, der als Teilautomaten $L_1$ und $L_2$ hat:\\
-	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1in,semithick]
-		\node	(A) [initial, state] 					{$z_{start}$};	
-		\node	(B)	[state]				[right of=A]	{$L_1$};
-		\node	(C)	[state]				[below of=B]	{$L_2$};
-		\node	(D)	[accepting, state]	[right of=B]	{$z_{end}$};
-		
-		\path
-			(A) edge node [align=left] {$\lambda_a$} (B)
-			(A) edge node [align=left] {$\lambda_a$} (C)
-			(B) edge node [align=left] {$\lambda_b$} (D)
-			(C) edge node [align=left] {$\lambda_b$} (D)
-		;
-	\end{tikzpicture}\\
-	$\lambda_a$ steht für: Diese Kante führt zu den jeweiligen Startzuständen\\
-	$\lambda_b$ steht für: Diese Kante kommt von den jeweiligen Endzuständen\\
-	$\lambda$ steht generell für: Diese Kante wird als Erstes gegangen, bevor das Wort angefangen wird zu lesen, oder aber als Letztes, nachdem das Wort fertig gelesen wurde.\\
-	Dieser Automat ist klar auch entscheidbar.
-	\subsection*{Aufgabe 6.5.2}
-	\label{ssec:a6.5.2}
-	Seien $L_3$, $L_4$ aufzählbar. (Wie in \ref{ssec:a6.5.1}, da DTM $\Leftrightarrow$ NTM).\\
-	Wir konstruieren also einen Automaten, der als Teilautomaten $L_3$ und $L_4$ hat:\\
-	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1in,semithick]
-		\node	(A) [initial, state] 					{$z_{start}$};	
-		\node	(B)	[state]				[right of=A]	{$L_3$};
-		\node	(C)	[state]				[below of=B]	{$L_4$};
-		\node	(D)	[accepting, state]	[right of=B]	{$z_{end}$};
-		
-		\path
-			(A) edge node [align=left] {$a$} (B)
-			(A) edge node [align=left] {$b$} (C)
-			(B) edge node [align=left] {$a$} (D)
-			(C) edge node [align=left] {$b$} (D)
-		;
-	\end{tikzpicture}\\
-	Die $a$-Kanten sind zu gehen, wenn das Wort aus $L_3$ kommt.
-	Ist das Wort $\in L_4$, so sind die $b$-Kanten zu gehen.
-	\subsection*{Aufgabe 6.5.3}
-	\label{ssec:a6.5.3}
-	Nein.
-	Sei $TM~A$ aufzählbar.
-	Dazu soll es eine $TM~A'$ geben.
-	Sei $L(A')=\overline{L(A)}$.
-	$A'$ ist nicht aufzählbar, da $L(A')$ auch Wörter enthält, auf die $TM~A'$ nicht hält.
+	\section*{Aufgabe 7.4}
+	\label{ssec:a7.4}
 	%-------------------------------------------------%
-	\section*{Aufgabe 6.6}
-	\label{sec:a6.6}
-	Sei $F$ eine TM mit $F:\{<M,w>|$die TM hört irgendwann auf, zu rechnen$\}$.\\
-	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1in,semithick]
-		\node	(A) [initial, state] 					{$z_1$};	
-		\node	(B)	[accepting, state]	[right of=A]	{$z_{END}$};
-		\node	(C)	[accepting, state]	[right of=B]	{$z_{END}$};
-		\node	(D)	[accepting, state]	[right of=C]	{$z_{NEU}$};
-		
-		\path
-			(A) edge 					node [align=left] {$*$} (B)
-			(A) edge [bend left=30]		node [align=left] {$*$} (C)
-			(B) edge [bend right=30]	node [align=left] {} (D)
-			(C) edge 					node [align=left] {} (D)
-		;
-	\end{tikzpicture}\\
-	Hängen wir nun an jedes $z_{END}$ aus $F$ eine Kante zu je einem weiteren Zustand $Z_{NEU}$ mit jeder möglichen
-	Kantenbeschriftung und machen diese Zustände $z_{NEU}$ zu den einzigen Endzuständen.\\
-	Für jedes Mal, wenn ein Kantenübergang nach $z_{NEU}$ genutzt wird, schreibe eine 1 auf Band 2.
-	Die Anzahl der 1 auf Band ist das $n$.
-	Damit wäre jedoch das Entscheidungsproblem gelöst, somit kann $L$ nicht entscheidbar sein.
+	\section*{Aufgabe 7.5}
+	\label{sec:a7.5}
+	\subsection*{Aufgabe 7.5.0}
+	\label{ssec:a7.5.0}
+	\subsection*{Aufgabe 7.5.1}
+	\label{ssec:a7.5.1}
+	\subsection*{Aufgabe 7.5.2}
+	\label{ssec:a7.5.2}
+	%-------------------------------------------------%
+	\section*{Aufgabe 7.6}
+	\label{sec:a7.6}
 \end{document}
