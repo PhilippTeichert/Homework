@@ -51,6 +51,7 @@ Temporary Items
 *.snm
 *.synctex.gz
 *.toc
+*.dvi
 ##Eclipse
 *.bak
 *.prefs
