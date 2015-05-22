@@ -232,13 +232,13 @@ literate=%
 	Sei $F$ eine TM mit $F:\{<M,w>|$die TM hört irgendwann auf, zu rechnen$\}$.\\
 	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1in,semithick]
 		\node	(A) [initial, state] 					{$z_1$};	
-		\node	(B)	[accepting, state]	[right of=A]	{$z_{Eirgenwas}$};
-		\node	(C)	[accepting, state]	[below of=B]	{$z_{END}$};
-		\node	(D)	[accepting, state]	[right of=B]	{$z_{NEU}$};
+		\node	(B)	[accepting, state]	[right of=A]	{$z_{END}$};
+		\node	(C)	[accepting, state]	[below of=A]	{$z_{END}$};
+		\node	(D)	[accepting, state]	[right of=C]	{$z_{NEU}$};
 		
 		\path
-			(A) edge node [align=left] {} (B)
-			(A) edge node [align=left] {} (C)
+			(A) edge node [align=left] {$*$} (B)
+			(A) edge node [align=left] {$*$} (C)
 			(B) edge node [align=left] {} (D)
 			(C) edge node [align=left] {} (D)
 		;
