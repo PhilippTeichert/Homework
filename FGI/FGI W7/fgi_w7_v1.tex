@@ -233,17 +233,18 @@ literate=%
 	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1in,semithick]
 		\node	(A) [initial, state] 					{$z_1$};	
 		\node	(B)	[accepting, state]	[right of=A]	{$z_{END}$};
-		\node	(C)	[accepting, state]	[below of=A]	{$z_{END}$};
+		\node	(C)	[accepting, state]	[right of=B]	{$z_{END}$};
 		\node	(D)	[accepting, state]	[right of=C]	{$z_{NEU}$};
 		
 		\path
-			(A) edge node [align=left] {$*$} (B)
-			(A) edge node [align=left] {$*$} (C)
-			(B) edge node [align=left] {} (D)
-			(C) edge node [align=left] {} (D)
+			(A) edge 					node [align=left] {$*$} (B)
+			(A) edge [bend left=30]		node [align=left] {$*$} (C)
+			(B) edge [bend right=30]	node [align=left] {} (D)
+			(C) edge 					node [align=left] {} (D)
 		;
 	\end{tikzpicture}\\
-	Hängen wir nun an jedes $z_{END}$ aus $F$ eine Kante zu je einem weiteren Zustand $Z_{NEU}$ mit jeder möglichen Kantenbeschriftung und machen diese Zustände $z_{NEU}$ zu den einzigen Endzuständen.\\
+	Hängen wir nun an jedes $z_{END}$ aus $F$ eine Kante zu je einem weiteren Zustand $Z_{NEU}$ mit jeder möglichen
+	Kantenbeschriftung und machen diese Zustände $z_{NEU}$ zu den einzigen Endzuständen.\\
 	Für jedes Mal, wenn ein Kantenübergang nach $z_{NEU}$ genutzt wird, schreibe eine 1 auf Band 2.
 	Die Anzahl der 1 auf Band ist das $n$.
 	Damit wäre jedoch das Entscheidungsproblem gelöst, somit kann $L$ nicht entscheidbar sein.
