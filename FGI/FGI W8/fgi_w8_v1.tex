@@ -1,0 +1,134 @@
+\documentclass[parskip,12pt,paper=a4,sffamily]{article}
+%alternate documentclass:
+%\documentclass[parskip,12pt,paper=a4,sffamily]{scrartl}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+% code snippets
+\usepackage{listings}
+% listing captions
+\usepackage{caption}
+% font: times new roman
+\usepackage{times}
+% tikz being tikz
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usepackage{pgf}
+% import math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% contradiction lightning
+\usepackage{stmaryrd}
+% alignment options
+\usepackage{ragged2e}
+% page margins
+\usepackage[margin=2.5cm]{geometry}
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+
+
+\lstset{ %
+language=Java,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=b,           					% sets the caption-position to bottom
+breaklines=true,        					% sets automatic line breaking
+xleftmargin=1.5cm,							% space from the left paper edge
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
+\captionsetup[lstlisting]{font={footnotesize},margin=1.5cm,singlelinecheck=false } % removes "Listing 1: "
+\definecolor{light-light-gray}{gray}{0.95}
+\let\stdsection\section
+\renewcommand\section{\stdsection}
+
+% add line break for subtitle (size: large)
+\title{Formale Grundlagen der Informatik I
+    \\\large{
+        Abgabe der Hausaufgaben
+    }
+    \\\large{
+    	Übungsgruppe 24 am \today
+    }
+}
+\author{~\\
+	\Large{Louis Kobras}\\
+	\large{6658699}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{4kobras@informatik.uni-hamburg.de}\\
+	\\
+	\Large{Utz Pöhlmann}\\
+	\large{6663579}\\
+	\large{4poehlma@informatik.uni-hamburg.de}\\
+	\\
+	\Large{}Philipp Quach\\
+	\large{6706421}\\
+	\large{4quach@informatik.uni-hamburg.de}\\
+}
+
+% leave empty for no date on title page
+% comment for auto-generated date
+\date{\today}
+
+
+\begin{document}
+	\maketitle
+	\newpage
+	\section*{Aufgabe 7.3}
+	\label{sec:a7.3}
+	\subsection*{Aufgabe 7.3.1}
+	\label{ssec:a7.3.1}
+	Sei $\mu$ in $L_1 \cap L_2$.
+	Dann ist $\mu$ in $L_1$ oder $L_2$, aber auch in $P$.\\
+	Sei $\mu$ in $L_1$.
+	Dann ist $\mu$ in $P$, aber auch in $L_1 \cap L_2$.\\
+	Sei $\mu$ in $L_2$.
+	Dann ist $\mu$ in $P$, aber auch in $L_1 \cap L_2$.\\
+	Daraus folgt, dass $L_1,L_2 \in P\Rightarrow L_1 \cap L_2 \in P.$\\
+	\\
+	Sei $L_1 \underline{\subset} P$. 
+	Dann gilt: $L_1=P \setminus \overline{L_1}$.
+	Daraus ergibt sich $\overline{L_1} = P \setminus L_1~~~\Rightarrow~\overline{L_1}\in P$.
+	\subsection*{Aufgabe 7.3.2}
+	\label{ssec:a7.3.2}
+	Sei $\mu$ in $L_1 \cap L_2$.
+	Dann ist $\mu$ in $L_1$ oder $L_2$, aber auch $NP$.\\
+	Sei $\mu$ in $L_1$.
+	Dann ist $\mu$ in $NP$, aber auch in $L_1 \cap L_2$.\\
+	Sei $\mu$ in $L_2$.
+	Dann ist $\mu$ in $NP$, aber auch in $L_1 \cap L_2$.\\
+	Daraus folgt, dass $L_1,L_2 \in NP\Rightarrow L_1 \cap L_2 \in NP.$\\
+	%-------------------------------------------------%
+	\section*{Aufgabe 7.4}
+	\label{ssec:a7.4}
+	%-------------------------------------------------%
+	\section*{Aufgabe 7.5}
+	\label{sec:a7.5}
+	\subsection*{Aufgabe 7.5.0}
+	\label{ssec:a7.5.0}
+	\subsection*{Aufgabe 7.5.1}
+	\label{ssec:a7.5.1}
+	\subsection*{Aufgabe 7.5.2}
+	\label{ssec:a7.5.2}
+	%-------------------------------------------------%
+	\section*{Aufgabe 7.6}
+	\label{sec:a7.6}
+\end{document}
