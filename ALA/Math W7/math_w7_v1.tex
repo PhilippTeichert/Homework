@@ -62,15 +62,24 @@ literate=%
 \renewcommand\section{\stdsection}
 
 % add line break for subtitle (size: large)
-\title{Some Title
+\title{Hausaufgaben zum \today
     \\\large{
-        Some Subtitle
+		Mathematik für Studierende der Informatik II\\
+		(Analysis und Lineare Algebra)
     }
 }
 \author{~\\
 	\Large{Louis Kobras}\\
 	\large{6658699}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
-	\large{4kobras@informatik.uni-hamburg.de}
+	\large{4kobras@informatik.uni-hamburg.de}\\
+	\\
+	\Large{Utz Pöhlmann}\\
+	\large{6663579}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{4poehlma@informatik.uni-hamburg.de}\\
+	\\
+	\Large{Jennifer Hartmann}\\
+	\large{6706472}\\
+	\large{fwuy089@studium.uni-hamburg.de}
 }
 
 % leave empty for no date on title page
@@ -81,5 +90,43 @@ literate=%
 \begin{document}
 	\maketitle
 	\newpage
-	
+	\section*{Aufgabe 1}
+	\label{sec:a1}
+	\subsection*{(a)}
+	\label{ssec:a1.a}
+	Untersuchen Sie die Menge
+	\[M=\left\lbrace\frac{n+1}{m}:n,m\in\mathbb{N}\right\rbrace\]
+	auf Beschränktheit nach oben und unten und bestimmen Sie gegebenenfalls Supremum und Infimum.
+	\subsection*{(b)}
+	\label{ssec:a1.b}
+	Untersuchen Sie die Folge $(a_n)$ mit
+	\[a_n=\frac{1}{3}-\frac{1}{2n}\]
+	und bestimmen Sie gegebenenfalls den Grenzwert.
+	\section*{Aufgabe 2}
+	\label{sec:a2}
+	Untersuchen Sie das Konvergenzverhalten der Folge $(a_n)$ mit
+	\[a_n=\left(2+\frac{1}{n}\right)^n\]
+	und bestimmen Sie gegebenenfalls den Grenzwert.
+	\section*{Aufgabe 3}
+	\label{sec:a3}
+	Untersuchen Sie das Konvergenzverhalten der Folgen $(a_n)$ und $(b_n)$ mit
+	\[a_n=\frac{3n^2-3n}{2n^2-1} \text{ und } b_n=\frac{3n^2-3n}{2n	3-1}\]
+	und bestimmen Sie gegebenenfalls den Grenzwert.
+	\section*{Aufgabe 4}
+	\label{sec:a4}
+	Es sei $(a_n)$ eine konvergente Folge reeller Zahlen mit lim$_{n\rightarrow\infty}a_n=2$.
+	Bestimmen Sie den Grenzwert der Folge $(b_n)$ mit
+	\[b_n=(a^2_n-2)^2-3.\]
+	\section*{Aufgabe 5}
+	\label{sec:a5}
+	\subsection*{(a)}
+	\label{ssec:a5.a}
+	Sei $(a_n)$ eine beschränkte Folge.
+	Für jedes $n\in\mathbb{N}$ sei $b_n=\text{sup}\{a_m:m\ge n\}$.
+	Zeigen Sie, dass $(b_n)$ konvergiert.\\
+	Hinweis: Ist die Folge $(b_n)$ monoton? Ist sie beschränkt?
+	\subsection*{(b)}
+	\label{ssec:a5.b}
+	Zeigen Sie, dass jede Cauchy-Folge reeller Zahlen konvergiert.\\
+	Hinweis: Benutzen Sie (a), um einen Kandidaten für den Grenzwert der Cauchy-Folge zu finden.
 \end{document}
