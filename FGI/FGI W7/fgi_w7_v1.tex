@@ -96,6 +96,11 @@ literate=%
 	\label{sec:a7.3}
 	\subsection*{Aufgabe 7.3.1}
 	\label{ssec:a7.3.1}
+	%-----AUFGABE-----%
+	Zeigen Sie, dass aus $L_1,L_2\in P$ auch $L_1\cap L_2 \in P$ und $\overline{L_1}\in P$ folgt, dass also $P$ gegenüber Durchschnitts- und Komplementbildung abgeschlossen ist.\\
+	\\
+	\\
+	%-----LÖSUNG-----%
 	Sei $\mu$ in $L_1 \cap L_2$.
 	Dann ist $\mu$ in $L_1$ oder $L_2$, aber auch in $P$.\\
 	Sei $\mu$ in $L_1$.
@@ -109,6 +114,11 @@ literate=%
 	Daraus ergibt sich $\overline{L_1} = P \setminus L_1~~~\Rightarrow~\overline{L_1}\in P$.
 	\subsection*{Aufgabe 7.3.2}
 	\label{ssec:a7.3.2}
+	%-----AUFGABE-----%
+	Zeigen Sie, dass aus $L_1,L_2\in NP$ auch $L_1 \cap L_2 \in NP$ folgt.\\
+	\\
+	\\
+	%-----LÖSUNG-----%
 	Sei $\mu$ in $L_1 \cap L_2$.
 	Dann ist $\mu$ in $L_1$ oder $L_2$, aber auch $NP$.\\
 	Sei $\mu$ in $L_1$.
@@ -119,16 +129,48 @@ literate=%
 	%-------------------------------------------------%
 	\section*{Aufgabe 7.4}
 	\label{ssec:a7.4}
+	%-----AUFGABE-----%
+	Zeigen Sie, dass das Färbungsproblem (siehe unten) in \textit{NP} liegen,
+	indem Sie einen Verifikationsalgorithmus mit polynomialer Laufzeit fur dieses Problem angeben.
+	Beachten Sie dabei, dass Sie das Zertifikat spezifizieren müssen.
+	\begin{itemize}
+		\item Das Färbungsproblem \\\begin{itemize}
+			\item[-] Eingabe: Ein ungerichteter Graph $G=(V,E)$ und ein $k\in\mathbb{N}$
+			\item[-] Frage: Kann $G$ mit $k$ Farben gefärbt werden, d.h. gibt es eine Funktion $c:V\rightarrow \{1,...,k\}$ derart, dass $c(u)\ne c(v)$ für jede Kante $\{u,v\}\in E$ gilt?
+		\end{itemize}
+	\end{itemize}
+	%-----LÖSUNG-----%
 	%-------------------------------------------------%
 	\section*{Aufgabe 7.5}
 	\label{sec:a7.5}
-	\subsection*{Aufgabe 7.5.0}
-	\label{ssec:a7.5.0}
+	Betrachten Sie das folgende Problem:\\
+	\textbf{Gegeben:} Zwei Graphen $G_1=(V_1,E_1) und G_2=(V_2,E_2)$.\\
+	\textbf{Frage:} Gibt es Teilmengen $V\underline{\subset}V_1$ und $E\underline{\subset}E_1$ derart, dass $|V|=|V_2|$ und $|E|=|E_2|$ gilt und eine bijektive Abbildung
+	$f:V_2\rightarrow V$ existiert mit $\{u,v\}\in E_2$ genau dann, wenn $\{f(u),f(v)\}\in E$?
 	\subsection*{Aufgabe 7.5.1}
 	\label{ssec:a7.5.1}
+	%-----AUFGABE-----%
+	Zeigen Sie, dass das Problem in \textit{NP} liegt, indem Sie einen \textit{NP}-Algorithmus angeben, der das Problem löst.\\
+	\\
+	\\
+	%-----LÖSUNG-----%
 	\subsection*{Aufgabe 7.5.2}
 	\label{ssec:a7.5.2}
+	%-----AUFGABE-----%
+	Beweisen Sie, dass das Problem \textit{NP}-hart (und damit insgesamt \textit{NP}-vollständig) ist, indem Sie eine Reduktion von einem Ihnen bekannten \textit{NP}-vollständigen Problem angeben.
+	\\
+	\\
+	\\
+	%-----LÖSUNG-----%
 	%-------------------------------------------------%
 	\section*{Aufgabe 7.6}
 	\label{sec:a7.6}
+	%-----AUFGABE-----%
+	Sei A ein Algorithmus, der eine konstante Anzahl von Aufrufen von Unterroutinen enthält.
+	Zählt man jeden dieser Aufrufe als einen Schritt, so sei A ein Polynomialzeit-Algorithmus.
+	Zeigen Sie, dass A insgesamt in polynomialer Zeit läuft, wenn die Unterroutinen in polynomialer Zeit laufen.
+	Zeigen Sie ferner, dass ein Algorithmus mit exponentieller Laufzeit entstehen kann, wenn ein Algorithmus eine polynomiale Anzahl von Aufrufen von Unterroutinen mit polynomialer Laufzeit enthält.\\
+	\\
+	\\
+	%-----LÖSUNG-----%
 \end{document}
