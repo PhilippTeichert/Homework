@@ -161,13 +161,54 @@ literate=%
 	\section*{Aufgabe 3}
 	\label{sec:a3}
 	Untersuchen Sie das Konvergenzverhalten der Folgen $(a_n)$ und $(b_n)$ mit
-	\[a_n=\frac{3n^2-3n}{2n^2-1} \text{ und } b_n=\frac{3n^2-3n}{2n	3-1}\]
-	und bestimmen Sie gegebenenfalls den Grenzwert.
+	\[a_n=\frac{3n^2-3n}{2n^2-1} \text{ und } b_n=\frac{3n^2-3n}{2n^3-1}\]
+	und bestimmen Sie gegebenenfalls den Grenzwert.\\
+	\\
+	\\
+	\textbf{Folge $a_n$:}\\
+	\label{ssec:an}
+	Begrenzung:
+	Nach Satz 4.27.(4) im Skript ist der Grenzwert einer Folge, die in Form eines Quotienten vorliegt, eben der Quotient der Grenzwert der einzelnen Folgen im Zähler und im Nenner.
+	\begin{align*}
+		\underset{n\rightarrow+\infty}{lim}(3n^2-3n)&=n(3n-3)\\
+		\underset{n\rightarrow+\infty}{lim}(2n^2-1)&=n\left(2n-\frac{1}{n}\right)
+	\end{align*}
+	Hier kürzt sich $n$ direkt raus, sodass sich als Folgen $(3n-3)$ und $\left(2n-\frac{1}{n}\right)$ ergeben.\\
+	Da für $n\rightarrow+\infty$ der Ausdruck $\frac{1}{n}$ gegen 0 geht, ergibt sich für den Grenzwert von $a_n$ folgende vereinfachte Form:
+	\[\frac{3n-3}{2n}\]
+	Diese Form lässt sich weiter vereinfachen:
+	\[\frac{3n-3}{2n}=\frac{3-\frac{3}{n}}{2}\]
+	Auch hier wissen wir, dass $\frac{3}{n}$ gegen 0 geht.\\
+	Folglich können wir schreiben:
+	\[\underset{n\rightarrow+\infty}{lim}(a_n)=\underset{n\rightarrow+\infty}{lim}\frac{3n^2-3n}{2n^2-1}=\frac{3}{2}\]
+	Dies war der Fall $n\rightarrow+\infty$.
+	Es gilt noch den Fall $n=1$ zu beachten.
+	Hier können wir einfach einsetzen:
+	\[\frac{3n^2-3n}{2n^2-1}|n=1\Rightarrow \frac{3\cdot 1^2-3\cdot 1}{2\cdot 1^2-1}=\frac{3-3}{2-1}=\frac{0}{1}=0\]
+	Konvergenz:\\
+	\-~~~~ Nach Begrenzung geht $a_n$ gegen $1.5^\text{+}$\\
+	Monotonie:\\
+	\-~~~~$a_n$ ist monoton steigend.\\
+	\\
+	\textbf{Folge $b_n$:}\\
+	\label{ssec:bn}
+	Begrenzung:\\
+	Verfahren wie bei $a_n$ nach Satz 4.27.(4) im Skript.\\
+	\[\underset{n\rightarrow+\infty}{lim}b_n~~~=\underset{n\rightarrow+\infty}{lim}~~~\frac{3n^2-3n}{2n^3-1}=\underset{n\rightarrow+\infty}{lim}~~~\frac{n(3n-3)}{n\left(2n^2-\frac{1}{n}\right)}=\underset{n\rightarrow+\infty}{lim}~~~\frac{3n-3}{2n^2}=\underset{n\rightarrow+\infty}{lim}~~~\frac{n\left(3-\frac{3}{n}\right)}{n(2n)}\]
+	\[=\underset{n\rightarrow+\infty}{lim}~~~\frac{3-\frac{3}{n}}{2n}=\underset{n\rightarrow+\infty}{lim}~~~\frac{3}{2n}-\frac{\frac{3}{n}}{2n}=\underset{n\rightarrow+\infty}{lim}~~~0-\frac{n}{3\cdot 2n}=\underset{n\rightarrow+\infty}{lim}~~~\frac{n}{6n}=\frac{1}{6}\]
+	Für $n=1$ ergibt sich wiederum 0.\\
+	Konvergenz:\\
+	\-~~~~ Nach Begrenzung konvergiert $b_n$ gegen $\frac{1}{6}$.\\
+	Monotonie:\\
+	\-~~~~ $b_n$ ist monoton steigend.
 	\section*{Aufgabe 4}
 	\label{sec:a4}
 	Es sei $(a_n)$ eine konvergente Folge reeller Zahlen mit lim$_{n\rightarrow\infty}a_n=2$.
 	Bestimmen Sie den Grenzwert der Folge $(b_n)$ mit
-	\[b_n=(a^2_n-2)^2-3.\]
+	\[b_n=(a^2_n-2)^2-3.\]\\
+	\\
+	Da $a_n\rightarrow 2$, können wir diesen Wert einfach in $b_n$ einsetzen und erhalten dann folgende Gleichung für den Grenzwert $b$ der Folge $b_n$:
+	\[b=(2^2-2)^2-3=(4-2)^2-3=4-3=1\]
 	\section*{Aufgabe 5}
 	\label{sec:a5}
 	\subsection*{(a)}
