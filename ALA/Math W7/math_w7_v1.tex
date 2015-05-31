@@ -96,17 +96,68 @@ literate=%
 	\label{ssec:a1.a}
 	Untersuchen Sie die Menge
 	\[M=\left\lbrace\frac{n+1}{m}:n,m\in\mathbb{N}\right\rbrace\]
-	auf Beschränktheit nach oben und unten und bestimmen Sie gegebenenfalls Supremum und Infimum.
+	auf Beschränktheit nach oben und unten und bestimmen Sie gegebenenfalls Supremum und Infimum.\\
+	\\
+	\begin{equation*}
+		\begin{split}
+		\text{1. Fall: }&n=m=1\\
+			&\frac{1+1}{1}=\frac{2}{1}=2\\
+		\\
+		\text{3. Fall: }&n=1,m\rightarrow+\infty\\
+			&\frac{1+1}{m}=\frac{2}{m}\rightarrow 0\\
+		\end{split}
+		~~~~ ~~~~ ~~~~
+		\begin{split}
+		\text{2. Fall: }&n\rightarrow+\infty;m=1\\
+			&\frac{n+1}{1}\rightarrow\frac{\infty}{1}\rightarrow+\infty\\
+		\\
+		\text{4. Fall: }&n=m\rightarrow+\infty\\
+			&\frac{n+1}{m}\rightarrow\infty
+		\end{split}
+	\end{equation*}\\
+	Somit ergibt sich, dass die Folge nach unten durch 0 beschränkt ist, wohingegen sie nach oben unbeschränkt ist.\\
+	Supremum: $+\infty^\text{-}$\\
+	Infimum: $0$
 	\subsection*{(b)}
 	\label{ssec:a1.b}
 	Untersuchen Sie die Folge $(a_n)$ mit
 	\[a_n=\frac{1}{3}-\frac{1}{2n}\]
-	und bestimmen Sie gegebenenfalls den Grenzwert.
+	und bestimmen Sie gegebenenfalls den Grenzwert.\\
+	\\
+	\\
+	Da $\frac{1}{3}$ konstant ist, ist die Folge allein von $\frac{1}{2n}$ abhängig.
+	\[
+		\begin{cases}
+			\begin{split}
+				n=1: & \frac{1}{2n}=\frac{1}{2}\\
+				n\rightarrow+\infty: & \frac{1}{2n}\rightarrow 0
+			\end{split}
+		\end{cases}
+	\]
+	Somit sind die Beschränkungen der Folge
+	\[
+		\begin{cases}
+			\begin{split}
+				n=1: & \frac{1}{3}-\frac{1}{2}=-\frac{1}{6}\\
+				n\rightarrow+\infty: & \frac{1}{2n}\rightarrow\frac{1}{3}
+			\end{split}
+		\end{cases}
+	\]
+	und der Grenzwert ist dementsprechend $\frac{1}{3}$.
 	\section*{Aufgabe 2}
 	\label{sec:a2}
 	Untersuchen Sie das Konvergenzverhalten der Folge $(a_n)$ mit
 	\[a_n=\left(2+\frac{1}{n}\right)^n\]
-	und bestimmen Sie gegebenenfalls den Grenzwert.
+	und bestimmen Sie gegebenenfalls den Grenzwert.\\
+	\\
+	\\
+	Es ist offensichtlich, dass $\frac{1}{n}$ gegen $0$  geht, je größer \textit{n} wird.
+	Somit nähert sich der Ausdruck in der Klammer $2^\text{+}$ an.
+	Da $2^\text{+}>2$ gilt $a_n>2^n$.
+	$2^n$ ist nach oben nicht beschränkt, somit geht auch $a_n$ gegen $+\infty^\text{-}$ als Grenzwert.
+	Als Infimum wird 3 festgestellt, da $n\geq 1\Rightarrow (2+\frac{1}{n})^n=(2+\frac{1}{1})^1=(2+1)^1=3^1=3$.
+	Die Folge ist streng monoton steigend,
+	begründet ebenfalls durch $2^\text{+}>2 \Rightarrow \forall n| a_n>2^n$ und dadurch, dass $2^n$ streng monoton steigend ist.
 	\section*{Aufgabe 3}
 	\label{sec:a3}
 	Untersuchen Sie das Konvergenzverhalten der Folgen $(a_n)$ und $(b_n)$ mit
