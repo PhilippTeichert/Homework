@@ -300,7 +300,8 @@ Unter \textbf{Phonologie} verstehen wir, dass sich je nach Aussprache die Bedeut
 \label{sec:meth}
 TODO:\\
 tiefergehende Erläuterung der Begriffe und Begründung der gewählten Reihenfolge\\
-hauptsächlich Eingehen auf \cite{Jur2009}
+hauptsächlich Eingehen auf \cite{Jur2009}\\
+wird Code-Beispiel und/oder Automaten enthalten
 	\subsection{Parsing der Morphologie}
 	\label{ssec:morph}
 	\subsection{Analyse der Syntax}

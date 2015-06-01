@@ -215,9 +215,30 @@ literate=%
 	Sei $(a_n)$ eine beschränkte Folge.
 	Für jedes $n\in\mathbb{N}$ sei $b_n=\text{sup}\{a_m:m\ge n\}$.
 	Zeigen Sie, dass $(b_n)$ konvergiert.\\
-	Hinweis: Ist die Folge $(b_n)$ monoton? Ist sie beschränkt?
+	Hinweis: Ist die Folge $(b_n)$ monoton? Ist sie beschränkt?\\
+	\\
+	\\
+	($a_n$) ist beschränkt $\Rightarrow$ Sie hat ein Supremum und ein Infimum.\\
+	Für $b_n$ sei nun das Supremum $\operatorname{sup}(b_n)=\operatorname{sup}\lbrace (a_m)|m\ge n \rbrace$	(Für genügend hohe $n$ muuss auch das $m$ genügend groß gewählt werden).\\
+	Somit kann man sagen: $\operatorname{sup}(b_n)=\operatorname{sup}(a_n)|\operatorname{sup}(a_n)\text{ liegt nicht in }(b_n)$.\\
+	\-~~~~$\Rightarrow (b_n)$ ist nicht beschränkt.
+	\begin{proof}
+	$(b_n)$ ist monoton:\\
+	\[
+		\operatorname{sup}(b_n)=\operatorname{sup}\lbrace (a_m)|m\ge n \rbrace\Rightarrow\operatorname{sup}(b_n)=\operatorname{sup}\left(\underset{m\ge n}{\bigcup}a_m\right)
+	\]
+	Daraus folgt, dass der minimale Wert der Menge immer kleiner wird.
+	\[
+		\operatorname{sup}(b_n)=\operatorname{sup}\lbrace(a_m)|m\ge n\rbrace:=A~~~~\wedge~~~~\operatorname{sup}(b_{n+1})=\operatorname{sup}\lbrace (a_m)|m\ge n+1 \rbrace:=B
+	\]
+	\[\Rightarrow B\underline{\subset}A\]
+	Folglich muss $b_n$ monoton steigend sein, da $b_n\le b_{n+1}$ wegen $B\underline{\subset}A$.
+	Laut Satz 4.23 ist $b_n$ somit beschränkt und monoton $\Rightarrow$ $b_n$ konvergiert auch.
+	\end{proof}
 	\subsection*{(b)}
 	\label{ssec:a5.b}
 	Zeigen Sie, dass jede Cauchy-Folge reeller Zahlen konvergiert.\\
-	Hinweis: Benutzen Sie (a), um einen Kandidaten für den Grenzwert der Cauchy-Folge zu finden.
+	Hinweis: Benutzen Sie (a), um einen Kandidaten für den Grenzwert der Cauchy-Folge zu finden.\\
+	\\
+	\\
 \end{document}
