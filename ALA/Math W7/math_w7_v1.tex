@@ -248,5 +248,9 @@ literate=%
 	Jede Folge, die sowohl monoton als auch beschränkt ist, konvergiert.\\
 	\\
 	Sei $c_n$ eine Cauchy-Folge.\\
-	Sei $\epsilon=1~~~\wedge~~~n_0\in\mathbb{N}$.
+	Sei $\epsilon=1~~~\wedge~~~n_0\in\mathbb{N}~~~\wedge~~~|c_n-c_|<1~\forall n,m\ge n_0$.\\
+	Sei $m=n_0 \Rightarrow |c_n-c_m| < 1\Rightarrow |c_n| < |c_{n_0}+1~\forall n\ge n_0$.\\
+	\[\Rightarrow |c_n|\le \operatorname{sup}\lbrace |c_1|,|c_2|,\cdots,|c_n|,1+|c_n| \rbrace\]
+	Daraus folgt, dass sie beschränkt ist, da sie auch endlich ist.\\
+	Wenn $(c_n)$ nun auch monoton wachsend ist, konvergiert $(c_n)$.
 \end{document}
