@@ -62,7 +62,7 @@ literate=%
 \renewcommand\section{\stdsection}
 
 % add line break for subtitle (size: large)
-\title{LaTeX 101
+\title{Was ist \LaTeX ?
     \\\large{
         Warum Informatiker darunter etwas Anderes verstehen als Menschen
     }
@@ -95,17 +95,40 @@ literate=%
 	\label{ssec:article}
 	\section{Pakete}
 	\label{ssec:package}
-	\section{Ein Quellenverzeichnis erstellen}
-	\label{sec:ref}
 	\section{Mathmode}
 	\label{sec:math}
-	\section{TikZ}
+	Für eine ausgiebige Nutzung des sogenannten \textsc{Mathmode} sollten folgene Pakete genutzt werden:
+	\begin{lstlisting}
+% import math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}	
+	\end{lstlisting}
+	Dieser Code-Abschnitt ist im Präambel einzufügen.
+	Der \textsc{Mathmode} kann in Latex durch verschiedene Methoden initiiert werden.
+	Für Rechnungen, die sich über eine einzelne Zeile erstrecken, eignet sich der Operator \lstinline{\[} zum Öffnen sowie der dazugehörende schließende Operator \lstinline{\]}.
+	Sind nur kurze Abschnitte innerhalb eines Satzes einzufügen, so liegt der \lstinline{$}-Operator nahe. Hier sind der Operator zum Öffnen und der zum Schließen identisch.\\
+	\textit{Anmerkung: In \TeX wird der Operator \lstinline{$$} verwendet. Dies ist in \LaTeX nicht der Fall.}\\
+	Diese beiden Operator-Sets sind in \LaTeX von Grund auf enthalten.
+	Das eben genannte Package \textsc{amsmath} liefert einige Erweiterungen für den \lstinline{\begin}-Befehl, durch welche mehrzeilige Gleichungsblöcke sowie erweiterte Layout- und Formatierungsoptionen zur Verfügung stehen.
+	\section{Source-Code}
+	\label{sec:source}
+	\section{(TikZ)}
 	\label{sec:tikz}
 	Optional, verhandelbar
+	\section{Ein Quellenverzeichnis erstellen}
+	\label{sec:ref}
 	\section{Tools}
 	\label{sec:tools}
+	Selbstverständlich steht man mit \LaTeX nicht alleine da.
+	Das wichtigste Hilfsmittel ist natürlich \textbf{Google} oder eine andere Suchmaschine deines Vertrauens.
+	Doch neben Google geben wir hier zwei sehr nützliche Hilfsmittel, die empfehlenswert sind, wenn man viel und häufig mit \LaTeX arbeitet.
 	\subsection{Detexify}
 	\label{ssec:detex}
-	\subsection{TeXmaker}
+	\textbf{Detexify} ist ein (noch) Web-Service, der die Suche nach den Befehlen für Sonderzeichen erheblich erleichtert.
+	Die Funktionsweise ist einfach: Mit der Maus zeichnet man ein Symbol in ein Feld, der Service interpretiert die Zeichnung und gibt einem die Interpretationen sowie die dazugehörigen Befehle, das den Befehl enthaltende Paket und ob Text- oder Mathmode-Symbol zurück.\\
+	\textit{[Grafiken]Leere Seite - nach Zeichnung}
+	\subsection{\TeX maker}
 	\label{ssec:texmaker}
 \end{document}
