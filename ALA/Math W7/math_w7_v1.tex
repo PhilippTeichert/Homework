@@ -130,7 +130,7 @@ literate=%
 	\label{ssec:a1.b}
 	Untersuchen Sie die Folge $(a_n)$ mit
 	\[a_n=\frac{1}{3}-\frac{1}{2n}\]
-	und bestimmen Sie gegebenenfalls den Grenzwert.\\
+	und Monotonie, Beschränktheit und Konvergenz.\\
 	\\
 	\\
 	Da $\frac{1}{3}$ konstant ist, ist die Folge allein von $\frac{1}{2n}$ abhängig.
@@ -145,13 +145,18 @@ literate=%
 	Somit sind die Beschränkungen der Folge
 	\[
 		\begin{cases}
-			\begin{split}
-				n=1: & \frac{1}{3}-\frac{1}{2}=-\frac{1}{6}\\
-				n\rightarrow+\infty: & \frac{1}{2n}\rightarrow\frac{1}{3}
-			\end{split}
+			\begin{array}{lllll}
+				n=1 & : & \frac{1}{3}-\frac{1}{2} & =-\frac{1}{6}	& \Rightarrow \text{Infimum}\\
+				n\rightarrow+\infty & : & \frac{1}{3}-\frac{1}{2n} & \rightarrow\frac{1}{3}^\text{+} & \Rightarrow \text{Supremum}
+			\end{array}
 		\end{cases}
 	\]
-	und der Grenzwert ist dementsprechend $\frac{1}{3}$.
+	und der Grenzwert, gegen den die Folge konvergiert, ist dementsprechend $\frac{1}{3}$.\\
+	\\
+	Da der abgezogene Betrag mit jeder Stufe geringer wird, ist die Folge streng monoton steigend.
+	
+	
+	
 	\section*{Aufgabe 2}
 	\label{sec:a2}
 	Untersuchen Sie das Konvergenzverhalten der Folge $(a_n)$ mit
@@ -159,11 +164,9 @@ literate=%
 	und bestimmen Sie gegebenenfalls den Grenzwert.\\
 	\\
 	\\
-	Es ist offensichtlich, dass $\frac{1}{n}$ gegen $0$  geht, je größer \textit{n} wird.
-	Somit nähert sich der Ausdruck in der Klammer $2^\text{+}$ an.
-	Da $2^\text{+}>2$ gilt $a_n>2^n$.
-	$2^n$ ist nach oben nicht beschränkt, somit geht auch $a_n$ gegen $+\infty^\text{-}$ als Grenzwert.
-	Als Infimum wird 3 festgestellt, da $n\geq 1\Rightarrow (2+\frac{1}{n})^n=(2+\frac{1}{1})^1=(2+1)^1=3^1=3$.
+	Da sich die Folge $2^n$ annähert, ist sie monoton steigend.
+	Ebenso wie $2^n$ist die Folge $(a_n)$ nicht beschränkt.
+	Der Grenzwert ist dementsprechend $+\infty^\text{-}$
 	\section*{Aufgabe 3}
 	\label{sec:a3}
 	Untersuchen Sie das Konvergenzverhalten der Folgen $(a_n)$ und $(b_n)$ mit
@@ -248,9 +251,12 @@ literate=%
 	Jede Folge, die sowohl monoton als auch beschränkt ist, konvergiert.\\
 	\\
 	Sei $c_n$ eine Cauchy-Folge.\\
-	Sei $\epsilon=1~~~\wedge~~~n_0\in\mathbb{N}~~~\wedge~~~|c_n-c_|<1~\forall n,m\ge n_0$.\\
-	Sei $m=n_0 \Rightarrow |c_n-c_m| < 1\Rightarrow |c_n| < |c_{n_0}+1~\forall n\ge n_0$.\\
+	Sei $\epsilon=1~~~\wedge~~~n_0\in\mathbb{N}~~~\wedge~~~|c_n-c_m|<1~\forall n,m\ge n_0$.\\
+	Sei $m=n_0 \Rightarrow |c_n-c_{n_0}| < 1\Rightarrow |c_n| < |c_{n_0}|+1~\forall n\ge n_0$.\\
 	\[\Rightarrow |c_n|\le \operatorname{sup}\lbrace |c_1|,|c_2|,\cdots,|c_n|,1+|c_n| \rbrace\]
 	Daraus folgt, dass sie beschränkt ist, da sie auch endlich ist.\\
-	Wenn $(c_n)$ nun auch monoton wachsend ist, konvergiert $(c_n)$.
+	Wenn $(c_n)$ nun auch monoton wachsend ist, konvergiert $(c_n)$.\\
+	Laut Satz von Bolzano-Weierstrauß besitzt jede beschränkte Folge eine konvergente Teilfolge.
+	Durch $ |c_n-c| \underline{\subset} |c_n-c_{n_i} |+|c_{n_i} -c|$ ergibt sich, dass a der Grenzwert von ganz $(c_n)$ sein muss.\\
+	\textit{((Dreiecks-Ungleichung) $c_{n_i} :=$ Teilfolge mit $i\in\mathbb{N}$, die gegen a konvergiert.)}
 \end{document}
