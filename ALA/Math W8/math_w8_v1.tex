@@ -1,0 +1,155 @@
+\documentclass[parskip,12pt,paper=a4,sffamily]{article}
+%alternate documentclass:
+%\documentclass[parskip,12pt,paper=a4,sffamily]{scrartl}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+% code snippets
+\usepackage{listings}
+% listing captions
+\usepackage{caption}
+% font: times new roman
+\usepackage{times}
+% tikz being tikz
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usepackage{pgf}
+% import math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% contradiction lightning
+\usepackage{stmaryrd}
+% alignment options
+\usepackage{ragged2e}
+% page margins
+\usepackage[margin=2.5cm]{geometry}
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+
+
+\lstset{ %
+language=Java,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=b,           					% sets the caption-position to bottom
+breaklines=true,        					% sets automatic line breaking
+xleftmargin=1.5cm,							% space from the left paper edge
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
+\captionsetup[lstlisting]{font={footnotesize},margin=1.5cm,singlelinecheck=false } % removes "Listing 1: "
+\definecolor{light-light-gray}{gray}{0.95}
+\let\stdsection\section
+\renewcommand\section{\stdsection}
+
+% add line break for subtitle (size: large)
+\title{Hausaufgaben zum \today
+    \\\large{
+        Mathematik für Studierende der Informatik II\\
+		(Analysis und Lineare Algebra)
+    }
+}
+\author{~\\
+	\Large{Louis Kobras}\\
+	\large{6658699}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{4kobras@informatik.uni-hamburg.de}\\
+	\\
+	\Large{Utz Pöhlmann}\\
+	\large{6663579}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{4poehlma@informatik.uni-hamburg.de}\\
+	\\
+	\Large{Jennifer Hartmann}\\
+	\large{6706472}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{fwuy089@studium.uni-hamburg.de}
+}
+
+% leave empty for no date on title page
+% comment for auto-generated date
+\date{\today}
+
+
+\begin{document}
+	\maketitle
+	\newpage
+	\section*{Aufgabe 1}
+	\label{sec:a1}
+	%-----AUFGABE-----%
+	Berechnen Sie
+	\[
+		\underset{x\rightarrow 1}{\operatorname{lim}} \frac{x^2-x}{x^2-3x+2}.
+	\]
+	\\
+	\\
+	\\
+	%-----RECHNUNG-----%
+	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+	\section*{Aufgabe 2}
+	\label{sec:a2}
+	%-----AUFGABE-----%
+	Bestimmen Sie alle $a\in\mathbb{R}$, so dass die im Folgenden definierte Funktion $f:\mathbb{R}\rightarrow\mathbb{R}$ stetig ist.
+	\[
+		f(x):=
+		\begin{cases}
+			8a+16x\text{, falls }x<2\\
+			a^2(x+2)\text{, falls }x \ge 2
+		\end{cases}
+	\]
+	%-----RECHNUNG-----%
+	\\
+	\\
+	\\
+	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+	\section*{Aufgabe 3}
+	\label{sec:a3}
+	%-----AUFGABE-----%
+	Benutzen Sie die $\epsilon$-$\delta$-Definition der Stetigkeit, um zu zeigen, dass es keine reelle Zahl \textit{a} gibt, so dass die Funktion $f:\mathbb{R}\rightarrow\mathbb{R}$ mit der Definition
+	\[
+		f(x)=
+		\begin{cases}
+			\frac{1}{x}\text{, falls }\neq 0\text{ und}\\
+			a\text{, sonst}
+		\end{cases}
+	\]
+	an der Stelle 0 stetig ist.
+	\\
+	\\
+	\\
+	%-----RECHNUNG-----%
+	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+	\section*{Aufgabe 4}
+	\label{sec:a4}
+	%-----AUFGABE-----%
+	Weisen Sie mit Hilfe der $\epsilon$-$\delta$-Definition der Stetigkeit nach, dass das Produkt zweier stetiger Funktionen $f,g:\mathbb{R}\rightarrow\mathbb{R}$ stetig ist.
+	\\
+	\\
+	\\
+	%-----RECHNUNG-----%
+	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+	\section*{Aufgabe 5}
+	\label{sec:a5}
+	%-----AUFGABE-----%
+	Gegeben sei die Funktion $f:\mathbb{R}\rightarrow\mathbb{R}; x\rightarrow x^3$.
+	Bestimmen Sie die Ableitung von \textit{f} an der Stelle $x_0\in\mathbb{R}$ als Grenzwert des Differenzquotienten.\\
+	Hinweis: Im letzten Semester gab es Fragen, ob Polynomdivision etwas mit Ableitungen zu tun hat.
+	In dieser Aufgabe kann man Polynomdivision benutzen, um die Ableitung zu berechnen.
+	%-----RECHNUNG-----%
+\end{document}
