@@ -62,10 +62,10 @@ literate=%
 \renewcommand\section{\stdsection}
 
 % add line break for subtitle (size: large)
-\title{Mathematik für Studierende der Informatik II\\
-	Analysis und Lineare Algebra\\
-    \-\\\large{
-    	Abgabe der Hausaufgaben zum \today
+\title{Formale Grundlagen der Informatik I
+    \\\large{
+        Abgabe der Hausaufgaben\\
+        Übungsgruppe 24 am \today
     }
 }
 \author{~\\
@@ -77,9 +77,9 @@ literate=%
 	\large{6663579}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
 	\large{4poehlma@informatik.uni-hamburg.de}\\
 	\\
-	\Large{Jennifer Hartmann}\\
-	\large{6706472}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
-	\large{fwuy089@studium.uni-hamburg.de}
+	\Large{Philipp Quach}\\
+	\large{6706421}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{4quach@informatik.uni-hamburg.de}
 }
 
 % leave empty for no date on title page
@@ -91,74 +91,58 @@ literate=%
 	\maketitle
 	\newpage
 	\newgeometry{top=2.5cm, bottom =2.5cm, left=2cm, right=3.5cm}
-	\section*{Aufgabe 1}
-	\label{sec:a1}
+	\section*{Aufgabe 8.3}
+	\label{sec:a8.3}
 	\begin{flushright}
 	\large{[~~~~/4]}
 	\end{flushright}
 	%-----AUFGABE-----%
-	Berechnen Sie
-	\[
-		\underset{x\rightarrow 1}{\operatorname{lim}} \frac{x^2-x}{x^2-3x+2}.
-	\]
+	Geben Sie für jede der folgenden Formeln jeweils an, ob diese erfüllbar ist, falsifizierbar, kontingent, allgemeingültig oder unerfüllbar.
+	\begin{enumerate}
+		\item $((A \Rightarrow B) \Rightarrow A)$
+		\item $((A \land B) \Leftrightarrow (\lnot A \lor \lnot B))$
+		\item $(((((A \land B) \land C) \land D) \land E) \Rightarrow (\lnot A \lor E))$
+		\item $(((C \Rightarrow B) \lor A) \land (A \lor \lnot B))$
+	\end{enumerate}
 	\-\\\\\\
 	%-----RECHNUNG-----%
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
-	\section*{Aufgabe 2}
-	\label{sec:a2}
+	\section*{Aufgabe 8.4}
+	\label{sec:a8.4}
 	\begin{flushright}
-	\large{[~~~~/4]}
+	\large{[~~~~/5]}
 	\end{flushright}
 	%-----AUFGABE-----%
-	Bestimmen Sie alle $a\in\mathbb{R}$, so dass die im Folgenden definierte Funktion $f:\mathbb{R}\rightarrow\mathbb{R}$ stetig ist.
-	\[
-		f(x):=
-		\begin{cases}
-			8a+16x\text{, falls }x<2\\
-			a^2(x+2)\text{, falls }x \ge 2
-		\end{cases}
-	\]
-	%-----RECHNUNG-----%
-	\-\\\\\\
-	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
-	\section*{Aufgabe 3}
-	\label{sec:a3}
-	\begin{flushright}
-	\large{[~~~~/4]}
-	\end{flushright}
-	%-----AUFGABE-----%
-	Benutzen Sie die $\epsilon$-$\delta$-Definition der Stetigkeit, um zu zeigen, dass es keine reelle Zahl \textit{a} gibt, so dass die Funktion $f:\mathbb{R}\rightarrow\mathbb{R}$ mit der Definition
-	\[
-		f(x)=
-		\begin{cases}
-			\frac{1}{x}\text{, falls }\neq 0\text{ und}\\
-			a\text{, sonst}
-		\end{cases}
-	\]
-	an der Stelle 0 stetig ist.
+	Seien \textit{T,K,F,G} und \textit{H} aussagenlogiche Formeln, die keine Aussagensymbole gemein haben.
+	Sei ferner \textit{T} eine Tautologie, \textit{K} eine Kontradiktion und \textit{F,G} und \textit{H} kontingente Formeln.
+	Zu welcher semantischen Kategorie (tautologisch, kontradiktorisch, kontinget) gehören dann die folgenden Formeln?
+	Begründen Sie dabei stets Ihre Aussage!\\
+	\begin{enumerate}
+		\item $(F\lor \lnot G)$
+		\item $(K\Rightarrow(F\lor G))$
+		\item $((F\Rightarrow G)\Rightarrow(F\lor G))$
+		\item $((T\Leftrightarrow \lnot K)\Rightarrow F)$
+		\item $((T\Leftrightarrow K)\Rightarrow(((F\lor\lnot G)\land T)\Leftrightarrow((\lnot F \lor G)\land)G)))$
+	\end{enumerate}
 	\-\\\\\\
 	%-----RECHNUNG-----%
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
-	\section*{Aufgabe 4}
-	\label{sec:a4}
+	\section*{Aufgabe 8.5}
+	\label{sec:a8.5}
 	\begin{flushright}
-	\large{[~~~~/4]}
+	\large{[~~~~/3]}
 	\end{flushright}
 	%-----AUFGABE-----%
-	Weisen Sie mit Hilfe der $\epsilon$-$\delta$-Definition der Stetigkeit nach, dass das Produkt zweier stetiger Funktionen $f,g:\mathbb{R}\rightarrow\mathbb{R}$ stetig ist.
-	\-\\\\\\
-	%-----RECHNUNG-----%
-	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
-	\section*{Aufgabe 5}
-	\label{sec:a5}
-	\begin{flushright}
-	\large{[~~~~/4]}
-	\end{flushright}
-	%-----AUFGABE-----%
-	Gegeben sei die Funktion $f:\mathbb{R}\rightarrow\mathbb{R}; x\rightarrow x^3$.
-	Bestimmen Sie die Ableitung von \textit{f} an der Stelle $x_0\in\mathbb{R}$ als Grenzwert des Differenzquotienten.\\
-	Hinweis: Im letzten Semester gab es Fragen, ob Polynomdivision etwas mit Ableitungen zu tun hat.
-	In dieser Aufgabe kann man Polynomdivision benutzen, um die Ableitung zu berechnen.
+	Gegeben sei eine kontextfreie Grammatik mit den folgenden Produktionen
+	\begin{equation*}
+		\begin{array}{lll}
+			S~&~\rightarrow~~&~~\lnot S|(S \lor S)|(S \land S)|(S \Rightarrow S)|(S \Leftrightarrow S)|T	\\
+			T~&~\rightarrow~~&~~A|B|C|D|E
+		\end{array}
+	\end{equation*}
+	Dabei sollen \textit{A,B,C,D,D,(,),$\lnot$,$\lor$,$l\and$,$\Rightarrow$,$\Leftrightarrow$} Terminale und \textit{S} und \textit{T} Nonterminale sein.\\
+	Diese Grammatik erzeugt alle aussagenlogischen Formeln, die nur die atomaren Formeln \textit{A,B,C,D} und \textit{E} enthalten.\\
+	Beweisen Sie mittels struktureller Induktion eine Richtung dieser Behauptung, nämlich dass jede aussagenlogische Formel, die nur die atomaren Formeln \textit{A,B,C,D} und \textit{E} enthält, von der Grammatik generiert werden kann.
 	\-\\\\\\
 	%-----RECHNUNG-----%
 \end{document}
