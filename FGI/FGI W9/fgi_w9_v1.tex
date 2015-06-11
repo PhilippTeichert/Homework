@@ -11,7 +11,7 @@
 % listing captions
 \usepackage{caption}
 % font: times new roman
-\usepackage{times}
+%\usepackage{times}
 % tikz being tikz
 \usepackage{tikz}
 \usetikzlibrary{arrows,automata}
@@ -62,10 +62,10 @@ literate=%
 \renewcommand\section{\stdsection}
 
 % add line break for subtitle (size: large)
-\title{Mathematik für Studierende der Informatik II\\
-	Analysis und Lineare Algebra\\
-    \-\\\large{
-    	Abgabe der Hausaufgaben zum \today
+\title{Formale Grundlagen der Informatik I
+    \\\large{
+        Abgabe der Hausaufgaben\\
+        Übungsgruppe 24 am Freitag, d. \today
     }
 }
 \author{~\\
@@ -77,9 +77,9 @@ literate=%
 	\large{6663579}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
 	\large{4poehlma@informatik.uni-hamburg.de}\\
 	\\
-	\Large{Jennifer Hartmann}\\
-	\large{6706472}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
-	\large{fwuy089@studium.uni-hamburg.de}
+	\Large{Philipp Quach}\\
+	\large{6706421}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{4quach@informatik.uni-hamburg.de}
 }
 
 % leave empty for no date on title page
@@ -91,77 +91,73 @@ literate=%
 	\maketitle
 	\newpage
 	\newgeometry{top=2.5cm, bottom =2.5cm, left=2cm, right=3.5cm}
-	\section*{Aufgabe 1}
-	\label{sec:a1}
+	\section*{Aufgabe 9.4}
+	\label{sec:a9.4}
 	\begin{flushright}
-	\large{[~~~~/4]}
+	\large{[~~~~/5]}
 	\end{flushright}
 	%-----AUFGABE-----%
-	Berechnen Sie
-	\[
-		\underset{x\rightarrow 1}{\operatorname{lim}} \frac{x^2-x}{x^2-3x+2}.
-	\]
-	\-\\\\\\
+	\subsection*{9.4.1}
+	\label{ssec:9.4.1}
+	Beweisen oder widerlegen Sie die folgende Folgerbarkeitsbeziehung mittels einer Wahrheitstafel:
+	\[ \{ \lnot B, A \Rightarrow B \} \vDash \lnot A \]
+	\-\\
 	%-----RECHNUNG-----%
-	\[
-		\frac{(1+h)^2-(1+h)}{(1+h)^2 -3(1+h)+2}~=~\frac{1+2h+h^2-1-h}{1+2h+h^2-3-3h+2}~=~\frac{h+h^2}{-h+h^2}~=~\underset{h \rightarrow 0}{\operatorname{lim}}~\frac{1+h}{-1+h}~=~-1
-	\]
-	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
-	\section*{Aufgabe 2}
-	\label{sec:a2}
-	\begin{flushright}
-	\large{[~~~~/4]}
-	\end{flushright}
-	%-----AUFGABE-----%
-	Bestimmen Sie alle $a\in\mathbb{R}$, so dass die im Folgenden definierte Funktion $f:\mathbb{R}\rightarrow\mathbb{R}$ stetig ist.
-	\[
-		f(x):=
-		\begin{cases}
-			8a+16x\text{, falls }x<2\\
-			a^2(x+2)\text{, falls }x \ge 2
-		\end{cases}
-	\]
+	\subsection*{9.4.2}
+	\label{ssec:9.4.2}
+	Beweisen oder widerlegen Sie die folgende Äquivalenz mittels einer Wahrheitstafel:
+	\[ ( A \Rightarrow B ) \Rightarrow A \equiv A \Rightarrow ( B \Rightarrow A ) \]
+	\-\\
 	%-----RECHNUNG-----%
-	\-\\\\\\
-	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
-	\section*{Aufgabe 3}
-	\label{sec:a3}
-	\begin{flushright}
-	\large{[~~~~/4]}
-	\end{flushright}
-	%-----AUFGABE-----%
-	Benutzen Sie die $\epsilon$-$\delta$-Definition der Stetigkeit, um zu zeigen, dass es keine reelle Zahl \textit{a} gibt, so dass die Funktion $f:\mathbb{R}\rightarrow\mathbb{R}$ mit der Definition
-	\[
-		f(x)=
-		\begin{cases}
-			\frac{1}{x}\text{, falls }\neq 0\text{ und}\\
-			a\text{, sonst}
-		\end{cases}
-	\]
-	an der Stelle 0 stetig ist.
-	\-\\\\\\
+	\subsection*{9.4.3}
+	\label{ssec:9.4.3}
+	Beweisen oder widerlegen Sie die folgenden Aussagen: Wenn $ F \equiv G $ und $ G \vDash H $ gilt, dann gilt auch $ F \vDash H $.
+	\-\\\\
+	%-----RECHNUNG-----%
+	\subsection*{9.4.4}
+	\label{ssec:9.4.4}
+	Beweisen oder widerlegen Sie die folgenden Aussagen: Wenn $ F \equiv G $ und $ G \vDash H $ gilt, dann gilt auch $ H \vDash F $.
+	\-\\\\
+	%-----RECHNUNG-----%
+	\subsection*{9.4.5}
+	\label{ssec:9.4.5}
+	Beweisen oder widerlegen Sie die folgenden Aussagen: Wenn $ F_1 \equiv F_2 $ und $ G_1 \equiv G_2 $ gilt, dann gilt $ F_1 \vDash G_1 $ genau dann, wenn $ F_2 \vDash G_2 $.
+	\-\\\\
 	%-----RECHNUNG-----%
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
-	\section*{Aufgabe 4}
-	\label{sec:a4}
+	\section*{Aufgabe 9.5}
+	\label{sec:a9.5}
 	\begin{flushright}
 	\large{[~~~~/4]}
 	\end{flushright}
 	%-----AUFGABE-----%
-	Weisen Sie mit Hilfe der $\epsilon$-$\delta$-Definition der Stetigkeit nach, dass das Produkt zweier stetiger Funktionen $f,g:\mathbb{R}\rightarrow\mathbb{R}$ stetig ist.
+	\subsection*{9.5.1}
+	\label{ssec:9.5.1}
+	Bilden Sie zu
+	\[ F := ( \lnot C \Rightarrow \lnot ( \lnot A \lor B ) ) \land ( A \lor C ) \]
+	durch Äquivalenzumformungen nach dem Verfahren aus der Vorlesung eine äquivalente Formel in konjunktiver Normalform.
+	Geben Sie dabei bei jeder Umformung an, welche Umformungsregel Sie anwenden.
+	\-\\\\
+	%-----RECHNUNG-----%
+	\subsection*{9.5.1}
+	\label{ssec:9.5.1}
+	Bilden Sie zu
+	\[ G := ( ( A \Leftrightarrow B ) \lor \lnot B ) \land \lnot C \]
+	eine äquivalente Formel in disjunktiver Normalform mit der in der Vorlesung behandelten Wahrheitstafelmethode.
+	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+	\section*{Aufgabe 9.6}
+	\label{sec:a9.6}
+	\begin{flushright}
+	\large{[~~~~/3]}
+	\end{flushright}
+	%-----AUFGABE-----%
+	Wenden Sie auf die folgenden Hornformeln den Markierungsalgorithmus an, um die Erfüllbarkeit zu prüfen.
+	Geben Sie dabei an in welchem Schritt Aussagesymbole markiert werden und geben sie ferner sofern möglich eine erfüllende Belegung an.
+	\begin{enumerate}
+		\item $ ( \lnot A \lor G \lor \lnot D ) \land ( \lnot B \lor A ) \land ( \lnot E \lor \lnot F ) \land ( \lnot D \lor C \lor \lnot B ) \land ( \lnot D \lor B ) \land D \land ( A \lor \lnot F ) \land ( \lnot C \lor \lnot D \lor E \lor \lnot B ) $
+		\item $ ( \lnot G \lor E \lor \lnot D ) \land ( \lnot F \lor C ) \land ( \lnot B \lor \lnot D \lor \lnot E \lor A ) \land B \land ( F \lor \lnot  G \lor \lnot D ) \land G \land ( D \lor \lnot B ) \land (\lnot E \lor \lnot F ) $
+	\end{enumerate}
 	\-\\\\\\
 	%-----RECHNUNG-----%
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
-	\section*{Aufgabe 5}
-	\label{sec:a5}
-	\begin{flushright}
-	\large{[~~~~/4]}
-	\end{flushright}
-	%-----AUFGABE-----%
-	Gegeben sei die Funktion $f:\mathbb{R}\rightarrow\mathbb{R}; x\rightarrow x^3$.
-	Bestimmen Sie die Ableitung von \textit{f} an der Stelle $x_0\in\mathbb{R}$ als Grenzwert des Differenzquotienten.\\
-	Hinweis: Im letzten Semester gab es Fragen, ob Polynomdivision etwas mit Ableitungen zu tun hat.
-	In dieser Aufgabe kann man Polynomdivision benutzen, um die Ableitung zu berechnen.
-	\-\\\\\\
-	%-----RECHNUNG-----%
 \end{document}
