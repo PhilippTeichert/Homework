@@ -106,6 +106,67 @@ literate=%
 	\end{enumerate}
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	\subsection*{1.}
+	\label{ssec:8.3.1}
+	\begin{equation*}
+		\begin{array}{cc|cc}
+			A & B & A \Rightarrow B & (A\Rightarrow B)\Rightarrow A\\ \hline
+			0 & 0 & 1 & 0 \\
+			0 & 1 & 1 & 0 \\
+			1 & 0 & 0 & 1 \\
+			0 & 1 & 1 & 1
+		\end{array}
+	\end{equation*}
+	Die Formel ist erfüllbar und falsifizierbar, aber insbesondere kontingent.
+	\subsection*{2.}
+	\label{ssec:8.3.2}
+	\begin{equation*}
+		\begin{array}{cc|ccc}
+			A & B & (A \land B) & (\lnot A \lor \lnot B) & (A \land B) \Leftrightarrow (\lnot A \lor \lnot B) \\ \hline
+			0 & 0 & 0 & 1 & 0 \\
+			0 & 1 & 0 & 1 & 0 \\
+			1 & 0 & 0 & 1 & 0 \\
+			1 & 1 & 1 & 0 & 0
+		\end{array}
+	\end{equation*}
+	Die Formel ist falsifizierbar und insbesondere unerfüllbar (Kontradiktion).
+	\subsection*{3.}
+	\label{ssec:8.3.3}
+	$(((A \land B ) \land C ) \land D ) \land E~~:=~~F$
+	\begin{equation*}
+		\begin{array}{ccccc|ccc}
+			A & B & C & D & E & F & (\lnot A \lor E ) & F \Rightarrow (\lnot A \lor E ) \\ \hline
+			1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+			0 & * & * & * & * & 0 & ? & 1 \\
+			* & 0 & * & * & * & 0 & ? & 1 \\
+			* & * & 0 & * & * & 0 & ? & 1 \\
+			* & * & * & 0 & * & 0 & ? & 1 \\
+			* & * & * & * & 0 & 0 & ? & 1
+		\end{array}
+	\end{equation*}
+	Wie hier zu sehen ist, ist der als \textit{F} definierte Ausdruck genau dann wahr, wenn [A-E] wahr ist.
+	Da in diesem Fall auch der Ausdruck $ (\lnot A \lor E ) $ wahr ist, ist die Implikation ebenfalls wahr.
+	Wird nun eines der Literale [A-E] falsch, so wird auch \textit{F} falsch; und da $ 0 \Rightarrow *$ immer wahr ist, ist somit auch der untersuchte Ausdruck$ [F] \Rightarrow (\lnot A \lor E ) $ wahr für alle [A-E], die unwahr sind.
+	Der Zustand von $ (\lnot A \lor E ) $ interessiert dann nicht weiter.
+	Ebenso ist der Zustand der einzelnen Literale uninteressant: Sobald ein einzelnes Literal unwahr ist, ist der gesamte Ausdruck \textit{F} falsch, folglich die \textit{don't care}s. \\
+	Somit ergibt sich: Die Formel ist erfüllbar und insbesondere allgemeingültig (Tautologie).
+	\subsection*{4.}
+	\label{ssec:8.3.4}
+	$((C \Rightarrow B) \lor A)~~:=~~ F$
+	\begin{equation*}
+		\begin{array}{ccc|cccc}
+			A & B & C & (C \Rightarrow B ) & F & (A \lor \lnot B) & F \land (A \lor \lnot B) \\ \hline
+			0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+			0 & 0 & 1 & 0 & 0 & 1 & 0 \\
+			0 & 1 & 0 & 1 & 1 & 0 & 0 \\
+			0 & 1 & 1 & 1 & 1 & 0 & 0 \\
+			1 & 0 & 0 & 1 & 1 & 1 & 1 \\
+			1 & 0 & 1 & 0 & 1 & 1 & 1 \\
+			1 & 1 & 0 & 1 & 1 & 1 & 1 \\
+			1 & 1 & 1 & 1 & 1 & 1 & 1
+		\end{array}
+	\end{equation*}
+	Die Formel ist erfüllbar und falsifizierbar und insbesondere kontingent.
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 	\section*{Aufgabe 8.4}
 	\label{sec:a8.4}
@@ -119,13 +180,35 @@ literate=%
 	Begründen Sie dabei stets Ihre Aussage!\\
 	\begin{enumerate}
 		\item $(F\lor \lnot G)$
-		\item $(K\Rightarrow(F\lor G))$
+		\item $(K\Rightarrow(F\lor \lnot G))$
 		\item $((F\Rightarrow G)\Rightarrow(F\lor G))$
 		\item $((T\Leftrightarrow \lnot K)\Rightarrow F)$
 		\item $((T\Leftrightarrow K)\Rightarrow(((F\lor\lnot G)\land T)\Leftrightarrow((\lnot F \lor G)\land)G)))$
 	\end{enumerate}
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	\subsection*{1.}
+	\label{ssec:8.5.1}
+	\textit{F} ist kontingent.\\
+	\textit{G} ist kontingent $\Rightarrow \lnot G$ ist auch kontingent.\\
+	$\Rightarrow F \lor \lnot G$ ist auch kontingent, weil beide Teilbedingungen kontingent sind.
+	\subsection*{2.}
+	\label{ssec:8.5.2}
+	Die Formel ist eine Tautologie, da \textit{K} immer $0$ ist und $0 \Rightarrow *$ immer wahr ist.
+	\subsection*{3.}
+	\label{ssec:8.5.3}
+	\textit{F} kontingent und \textit{G} kontingent $\Rightarrow (F \lor G)$ auch kontingent.\\
+	\textit{F} kontingent und \textit{G} kontingent $\Rightarrow (F \Rightarrow G)$ auch kontingent. \\
+	Der Ausdruck \textit{Kontingent impliziert Kontingent} ist ebenfalls kontingent.
+	\subsection*{4.}
+	\label{ssec:8.5.4}
+	\textit{K} ist immer falsch, woraus folgt, dass $\lnot K$ immer wahr ist.\\
+	\textit{T} ist immer wahr, woraus folgt, dass $ T \Leftrightarrow \lnot K$ immer wahr ist.\\
+	\textit{wahr} bedeutet, dass ein Ausdruck kontingent ist, da $wahr \Rightarrow wahr$ immer wahr zurückgibt, $ wahr \Rightarrow falsch$ jedoch falsch.
+	\subsection*{5.}
+	\label{ssec:8.5.5}
+	$(T \Leftrightarrow K)$ ist immer falsch, da \textit{K} immer falsch ist und $falsch \Rightarrow *$ immer wahr ist.\\
+	Daraus folgt, dass diese Formel allgemeingültig ist (tautologisch).
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 	\section*{Aufgabe 8.5}
 	\label{sec:a8.5}
@@ -145,4 +228,16 @@ literate=%
 	Beweisen Sie mittels struktureller Induktion eine Richtung dieser Behauptung, nämlich dass jede aussagenlogische Formel, die nur die atomaren Formeln \textit{A,B,C,D} und \textit{E} enthält, von der Grammatik generiert werden kann.
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	\underline{Induktionsanfang:} B:G gilt für jede atomare Formel:\\
+	\-~~~~$S \rightarrow T$\\
+	\-~~~~$T \rightarrow A|B|C|D|E$\\
+	$\Rightarrow G$ gilt für jede atomare Formel aus $\mathbb{D}$ ($\mathbb{D} := $Definitionsbereich)\\
+	\\
+	\underline{Induktionsannahme:} $B(M) \land B(N)$ gilt für zwei Formeln $M,N$ ($B(X) := $ Behauptung für \textit{X}).\\
+	\\
+	\underline{Induktionsschritt:} $B(\lnot M$ ist : $S \rightarrow \lnot S$ und danach $S \rightarrow M$.
+	Dies geht, da $B(M)$ gilt, also möglich ist.\\
+	$B(M \circ N)$ ist: $S \rightarrow S \circ S $, wonach das erste \textit{S} zu $S \rightarrow M$ und das zweite \textit{S} zu $S\rightarrow N$ wird.\\
+	$S \rightarrow M$ geht, da $B(M)$ gilt; und $S \rightarrow N$ geht, da $B(N)$ gilt. \\
+	$ \circ \in \{ \lor, 1, \Rightarrow, \Leftrightarrow \}$
 \end{document}
