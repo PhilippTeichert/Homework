@@ -188,26 +188,27 @@ literate=%
 	\-\\\\\\
 	%-----RECHNUNG-----%
 	\subsection*{1.}
-	\label{ssec:8.5.1}
+	\label{ssec:8.4.1}
 	\textit{F} ist kontingent.\\
 	\textit{G} ist kontingent $\Rightarrow \lnot G$ ist auch kontingent.\\
 	$\Rightarrow F \lor \lnot G$ ist auch kontingent, weil beide Teilbedingungen kontingent sind.
 	\subsection*{2.}
-	\label{ssec:8.5.2}
+	\label{ssec:8.4.2}
 	Die Formel ist eine Tautologie, da \textit{K} immer $0$ ist und $0 \Rightarrow *$ immer wahr ist.
 	\subsection*{3.}
-	\label{ssec:8.5.3}
+	\label{ssec:8.4.3}
 	\textit{F} kontingent und \textit{G} kontingent $\Rightarrow (F \lor G)$ auch kontingent.\\
 	\textit{F} kontingent und \textit{G} kontingent $\Rightarrow (F \Rightarrow G)$ auch kontingent. \\
-	Der Ausdruck \textit{Kontingent impliziert Kontingent} ist ebenfalls kontingent.
+	Der Ausdruck \textit{Kontingent impliziert Kontingent} ist ebenfalls kontingent, da beide Teilbedingungen kontingent sind.
 	\subsection*{4.}
-	\label{ssec:8.5.4}
+	\label{ssec:8.4.4}
 	\textit{K} ist immer falsch, woraus folgt, dass $\lnot K$ immer wahr ist.\\
 	\textit{T} ist immer wahr, woraus folgt, dass $ T \Leftrightarrow \lnot K$ immer wahr ist.\\
-	\textit{wahr} bedeutet, dass ein Ausdruck kontingent ist, da $wahr \Rightarrow wahr$ immer wahr zurückgibt, $ wahr \Rightarrow falsch$ jedoch falsch.
+	$wahr \Rightarrow *$ ist kontingent, da $wahr \Rightarrow wahr$ immer wahr zurückgibt, $ wahr \Rightarrow falsch$ jedoch falsch.
 	\subsection*{5.}
-	\label{ssec:8.5.5}
-	$(T \Leftrightarrow K)$ ist immer falsch, da \textit{K} immer falsch ist und $falsch \Rightarrow *$ immer wahr ist.\\
+	\label{ssec:8.4.5}
+	$(T \Leftrightarrow K)$ ist immer falsch, da \textit{T} immer wahr und \textit{K} immer falsch ist und $wahr \Leftrightarrow falsch$ ist immer falsch.
+	$falsch \Rightarrow *$ ist immer wahr.\\
 	Daraus folgt, dass diese Formel allgemeingültig ist (tautologisch).
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 	\section*{Aufgabe 8.5}
@@ -231,11 +232,11 @@ literate=%
 	\underline{Induktionsanfang:} B:G gilt für jede atomare Formel:\\
 	\-~~~~$S \rightarrow T$\\
 	\-~~~~$T \rightarrow A|B|C|D|E$\\
-	$\Rightarrow G$ gilt für jede atomare Formel aus $\mathbb{D}$ ($\mathbb{D} := $Definitionsbereich)\\
+	$\Rightarrow G$ gilt für jede atomare Formel aus $\{A,B,C,D,E\}$\\
 	\\
-	\underline{Induktionsannahme:} $B(M) \land B(N)$ gilt für zwei Formeln $M,N$ ($B(X) := $ Behauptung für \textit{X}).\\
+	\underline{Induktionsannahme:} $B(M), B(N)$ gilt für zwei Formeln $M,N$ ($B(X) := $ Behauptung für \textit{X}).\\
 	\\
-	\underline{Induktionsschritt:} $B(\lnot M$ ist : $S \rightarrow \lnot S$ und danach $S \rightarrow M$.
+	\underline{Induktionsschritt:} $B(\lnot M)$ ist : $S \rightarrow \lnot S \rightarrow \lnot M$.
 	Dies geht, da $B(M)$ gilt, also möglich ist.\\
 	$B(M \circ N)$ ist: $S \rightarrow S \circ S $, wonach das erste \textit{S} zu $S \rightarrow M$ und das zweite \textit{S} zu $S\rightarrow N$ wird.\\
 	$S \rightarrow M$ geht, da $B(M)$ gilt; und $S \rightarrow N$ geht, da $B(N)$ gilt. \\
