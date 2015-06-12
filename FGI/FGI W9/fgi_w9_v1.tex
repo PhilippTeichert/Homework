@@ -103,17 +103,51 @@ literate=%
 	\[ \{ \lnot B, A \Rightarrow B \} \vDash \lnot A \]
 	\-\\
 	%-----RECHNUNG-----%
+	$A \Rightarrow B~~:=~~F$
+	\begin{equation*}
+		\begin{array}{cc|ccc}
+			A & B & \lnot B & F & \lnot A \\ \hline
+			0 & 0 & 1 & 1 & 1 \\
+			0 & 1 & 0 & 1 & 1 \\
+			1 & 0 & 1 & 0 & 0 \\
+			1 & 1 & 0 & 1 & 0
+		\end{array}
+	\end{equation*}
+	Nur in der ersten Zeile wurden $\lnot B$ und $F$ wahr;
+	dort ist auch $\lnot A$ wahr.
+	Damit ist die Aussage bewiesen.
 	\subsection*{9.4.2}
 	\label{ssec:9.4.2}
 	Beweisen oder widerlegen Sie die folgende Äquivalenz mittels einer Wahrheitstafel:
 	\[ ( A \Rightarrow B ) \Rightarrow A \equiv A \Rightarrow ( B \Rightarrow A ) \]
 	\-\\
 	%-----RECHNUNG-----%
+	$A \Rightarrow B~~:=~~F$\\
+	$F \Rightarrow B~~:=~~G$\\
+	$B \Rightarrow A~~:=~~H$\\
+	$A \Rightarrow H~~:=~~I$
+	\begin{equation*}
+		\begin{array}{cc|cccc}
+			A & B & F & G & H & I \\ \hline
+			0 & 0 & 1 & 0 & 1 & 1 \\
+			0 & 1 & 1 & 0 & 0 & 1 \\
+			1 & 0 & 0 & 1 & 1 & 1 \\
+			1 & 1 & 1 & 1 & 1 & 1
+		\end{array}
+	\end{equation*}
+	$\Rightarrow~~~ (A \Rightarrow B)\Rightarrow A \equiv A$ \\
+	$\Rightarrow~~~ A \Rightarrow (B\Rightarrow A) \equiv T$ \\
+	$ A \not\equiv T~~\Rightarrow$ widerlegt (siehe Spalten 4 und 6).
 	\subsection*{9.4.3}
 	\label{ssec:9.4.3}
 	Beweisen oder widerlegen Sie die folgenden Aussagen: Wenn $ F \equiv G $ und $ G \vDash H $ gilt, dann gilt auch $ F \vDash H $.
 	\-\\\\
 	%-----RECHNUNG-----%
+	$F \equiv G$ bedeutet: Wenn \textit{F} wahr ist, ist \textit{G} auch wahr; wenn \textit{F} falsch ist, ist \textit{G} auch falsch $\Rightarrow H$ bleibt \textit{H}.\\
+	\\
+	$G \vDash H$ bedeutet: Wenn \textit{G} wahr ist und \textit{H} wahr ist, gilt dies; wenn \textit{G} wahr ist, \textit{H} jedoch falsch ist, gilt dies nicht; wenn \textit{H} wahr ist, gilt dies $\Rightarrow A$ und \textit{B} sind identisch.\\
+	\\
+	$F \vDash H$ bedeutet: Wenn \textit{F} wahr ist und \textit{H} wahr ist, gilt dies; wenn \textit{F} wahr ist und \textit{H} falsch ist, gilt dies nicht; wenn \textit{F} falsch ist, gilt dies.
 	\subsection*{9.4.4}
 	\label{ssec:9.4.4}
 	Beweisen oder widerlegen Sie die folgenden Aussagen: Wenn $ F \equiv G $ und $ G \vDash H $ gilt, dann gilt auch $ H \vDash F $.
