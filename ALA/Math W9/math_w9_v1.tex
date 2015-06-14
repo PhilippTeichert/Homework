@@ -99,9 +99,29 @@ literate=%
 	%-----AUFGABE-----%
 	Es seien $x,y,a \in (0, \infty)$.
 	Zeigen Sie
-	\[ log_a \frac{x}{y} =log_a x-log_a y.\]
+	\[ log_a \left(\frac{x}{y}\right) =log_a x-log_a y.\]
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	Anwendung der \textit{log}-Definition:
+	\[
+		\text{(1)}~\begin{cases}
+			log_a(f)=x \Leftrightarrow a^x=f\\
+			log_a(g)=y \Leftrightarrow a^y=g
+		\end{cases}
+	\]
+	Bildung des Quotienten $\frac{f}{g}$:
+	\[
+		\frac{f}{g}=\frac{a^x}{a^y}=a^{x-y}\text{~~~~~~~~~~~~\textit{nach Präsenzaufgabe 8.1}}
+	\]
+	Wiederum Anwenden der \textit{log}-Definition:
+	\[
+		\frac{f}{g}=a^{x-y}~~~~\Leftrightarrow~~~~log_a\left(\frac{f}{g}\right)=x-y
+	\]
+	Einsetzen von (1):
+	\[
+		log_a\left(\frac{f}{g}\right)=x-y=log_a(f)-log_a(g)
+	\]
+	\qed
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 	\section*{Aufgabe 2}
 	\label{sec:a2}
@@ -117,6 +137,20 @@ literate=%
 	\end{itemize}
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	(a).
+	\begin{align*}
+		\frac{d}{dx}(2x^2+3x+1)^4=4 \cdot (2x^2+3x+1)^3 \cdot (4x+3)
+	\end{align*}
+	(b).
+	\begin{align*}
+		\sqrt{2x^2+x-3}&=(2x^2+x-3)^{\frac{1}{2}}\\
+		\frac{d}{dx}(2x^2+x-3)^{\frac{1}{2}}&=\frac{1}{2} \cdot (2x^2+x-3)^{-\frac{1}{2}} \cdot (4x+1)=\frac{4x+1}{2 \cdot \sqrt{(2x^2+x-3)}}
+	\end{align*}
+	(c).
+	\begin{align*}
+		\frac{1}{x^2-1}&=(x^2-1)^{-1}\\
+		\frac{d}{dx}(x^2-1)^{-1}&=-1 \cdot (x^2-1)^{-2} \cdot 2x=-\frac{2x}{(x^2-1)^2}
+	\end{align*}
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 	\section*{Aufgabe 3}
 	\label{sec:a3}
@@ -132,6 +166,21 @@ literate=%
 	\end{itemize}
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	(a). \textit{(Kettenregel)}
+	\begin{align*}
+		e^{x^2}&=e^{(x^2)}\\
+		\frac{d}{dx}e^{(x^2)}&=e^{(x^2)} \cdot 2x
+	\end{align*}
+	(b). \textit{(Kettenregel und Produktregel)}
+	\begin{align*}
+		x\cdot e^{x^2}&=x\cdot e^{(x^2)}\\
+		\frac{d}{dx}x\cdot e^{(x^2)}&=1 \cdot e^{x^2} ~+~x \cdot e^{(x^2)} \cdot 2x=e^{(x^2)}\cdot(2x^2+1)
+	\end{align*}
+	(c). \textit{(Produktregel)}
+	\begin{align*}
+		\frac{\operatorname{ln}x}{x}&=\operatorname{ln}(x) \cdot x^{-1}\\
+		\frac{d}{dx}\operatorname{ln}(x) \cdot x^{-1}&=\frac{1}{x} \cdot x^{-1}~+~\operatorname{ln}(x) \cdot -1 \cdot x^{-2}=\frac{1}{x^2}~-~\operatorname{ln}(x)\cdot\frac{1}{x^2}=\frac{1}{x^2}(1-\operatorname{ln}(x))
+	\end{align*}
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 	\section*{Aufgabe 4}
 	\label{sec:a4}
