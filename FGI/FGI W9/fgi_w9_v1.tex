@@ -143,21 +143,36 @@ literate=%
 	Beweisen oder widerlegen Sie die folgenden Aussagen: Wenn $ F \equiv G $ und $ G \vDash H $ gilt, dann gilt auch $ F \vDash H $.
 	\-\\\\
 	%-----RECHNUNG-----%
+	% C
 	$F \equiv G$ bedeutet: Wenn \textit{F} wahr ist, ist \textit{G} auch wahr; wenn \textit{F} falsch ist, ist \textit{G} auch falsch $\Rightarrow H$ bleibt \textit{H}.\\
 	\\
-	$G \vDash H$ bedeutet: Wenn \textit{G} wahr ist und \textit{H} wahr ist, gilt dies; wenn \textit{G} wahr ist, \textit{H} jedoch falsch ist, gilt dies nicht; wenn \textit{H} wahr ist, gilt dies $\Rightarrow A$ und \textit{B} sind identisch.\\
+	% A
+	$G \vDash H$ bedeutet: Wenn \textit{G} wahr ist und \textit{H} wahr ist, gilt dies; wenn \textit{G} wahr ist, \textit{H} jedoch falsch ist, gilt dies nicht; wenn \textit{H} wahr ist, gilt dies.\\
 	\\
+	% B
 	$F \vDash H$ bedeutet: Wenn \textit{F} wahr ist und \textit{H} wahr ist, gilt dies; wenn \textit{F} wahr ist und \textit{H} falsch ist, gilt dies nicht; wenn \textit{F} falsch ist, gilt dies.
 	\subsection*{9.4.4}
 	\label{ssec:9.4.4}
 	Beweisen oder widerlegen Sie die folgenden Aussagen: Wenn $ F \equiv G $ und $ G \vDash H $ gilt, dann gilt auch $ H \vDash F $.
 	\-\\\\
 	%-----RECHNUNG-----%
+	$H \vDash F$ bedeutet: Wenn \textit{H} wahr ist und \textit{F} wahr ist, gilt dies; wenn \textit{H} wahr ist, \textit{F} jedoch falsch ist, gilt dies nicht; wenn \textit{H} falsch ist, gilt dies.\\
+	\\
+	Dies stimmt nicht überein mit \texttt{9.4.3} und zeigt somit auf, dass die Aussage nicht korrekt ist $\Rightarrow$ widerlegt.
 	\subsection*{9.4.5}
 	\label{ssec:9.4.5}
 	Beweisen oder widerlegen Sie die folgenden Aussagen: Wenn $ F_1 \equiv F_2 $ und $ G_1 \equiv G_2 $ gilt, dann gilt $ F_1 \vDash G_1 $ genau dann, wenn $ F_2 \vDash G_2 $.
 	\-\\\\
 	%-----RECHNUNG-----%
+	$F_1 \equiv F_2$ bedeutet: Wenn $F_1$ wahr ist, ist $F_2$ auch wahr; wenn $F_1$ falsch ist, ist $F_1$ auch falsch $\Rightarrow F_1$ bleibt $F_2$.\\
+	\\
+	$G_1 \equiv G_2$ bedeutet: Wenn $G_1$ wahr ist, ist $G_2$ auch wahr; wenn $G_1$ falsch ist, ist $G_2$ auch falsch $\Rightarrow G_1$ bleibt $G_2$.\\
+	\\
+	$F_1 \vDash G_1$ bedeutet: Wenn $F_1$ wahr ist und $G_1$ wahr ist, gilt dies; wenn $F_1$ wahr ist, $G_1$ jedoch falsch ist, gilt dies nicht; wenn $G_1$ wahr ist, gilt dies.\\
+	\\
+	$F_2 \vDash G_2$ bedeutet: Wenn $F_2$ wahr ist und $G_2$ wahr ist, gilt dies; wenn $F_2$ wahr ist, $G_2$ jedoch falsch ist, gilt dies nicht; wenn $G_2$ wahr ist, gilt dies.\\
+	\\
+	Da der dritte und vierte Absatz zueinander kongruent sind, ist die Aussage bewiesen.
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 	\section*{Aufgabe 9.5}
 	\label{sec:a9.5}
@@ -173,11 +188,39 @@ literate=%
 	Geben Sie dabei bei jeder Umformung an, welche Umformungsregel Sie anwenden.
 	\-\\\\
 	%-----RECHNUNG-----%
-	\subsection*{9.5.1}
-	\label{ssec:9.5.1}
+	\begin{equation*}
+		\begin{array}{ll}
+			(\lnot C \Rightarrow \lnot ( \lnot A \lor B ) ) \land ( A \lor C ) 	& \text{Eliminieren von }\Rightarrow \\
+			(\lnot \lnot C \lor \lnot ( \lnot A \lor B ) ) \land (A \lor C)		& \text{Aufheben von Doppelten Negationen} \\
+			( C \lor \lnot ( \lnot A \lor B ) ) \land ( A \lor C )				& \text{Anwenden des de Morgan-Gesetzes} \\
+			( C \lor ( \lnot \lnot A \land \lnot B ) ) \land ( A \lor C )		& \text{Aufheben von Doppelten Negationen} \\
+			( (  C \lor ( A \land \lnot B ) ) \land ( A \lor C )				& \text{Anwenden des Distributiv-Gesetzes} \\
+			( ( C \lor A ) \land ( C \lor \lnot B ) ) \land ( A \lor C )		& \text{Anwenden des Assoziativgesetzes} \\
+			( C \lor A ) \land ( C \lor \lnot B ) \land ( C \lor A )			& \text{Streichen doppelt vorkommender Terme} \\
+			( C \lor A ) \land 8 C \lor \lnot B )								& \text{\textbf{\underline{HULK FINISH!!}}}
+		\end{array}
+	\end{equation*}
+	\subsection*{9.5.2}
+	\label{ssec:9.5.2}
 	Bilden Sie zu
 	\[ G := ( ( A \Leftrightarrow B ) \lor \lnot B ) \land \lnot C \]
 	eine äquivalente Formel in disjunktiver Normalform mit der in der Vorlesung behandelten Wahrheitstafelmethode.
+	\-\\\\
+	%-----RECHNUNG-----%
+	\begin{equation*}
+		\begin{array}{ll}
+			( ( A \Leftrightarrow B ) \lor \lnot B ) \land \lnot C												& \text{Eliminieren von } \Leftrightarrow \\
+			( ( \lnot A \lor B ) \land ( \lnot B \lor A ) ) \lor \lnot B ) \lnot C								& \text{Anwenden des Distributivgesetzes} \\
+			( ( ( \lnot A \lor B ) \lor \lnot B ) \land ( ( \lnot B \lor A ) \lor \lnot B ) ) \land \lnot C		& \text{Anwenden des Assoziativgesetzes} \\
+			( \lnot A \lor B \lor \lnot B ) \land ( \lnot B \lor A \lor \lnot B ) \land \lnot C					& \text{Kürzen von } \lnot B \\
+			( \lnot A \lor B \lor \lnot B ) \land ( \lnot B \lor A ) \land \lnot C								& (\lnot B \lor B)=1 \Rightarrow~A\text{ kann im ersten Term} \\
+																												& \text{omittiert werden, da der Term immer als 1} \\
+																												& \text{ausgewertet wird} \\
+			( B \lor \lnot B ) \land ( A \lor \lnot B ) \land \lnot C											& \text{Anwenden des Distributivgesetzes} \\
+			\lnot B \lor ( ( A \land B ) \land \lnot C )														& \text{Anwenden des Assoziativgesetzes} \\
+			\lnot B \lor ( A \land B \land \lnot C )															& \text{\textbf{\underline{HULK FINISH!!}}}
+		\end{array}
+	\end{equation*}
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 	\section*{Aufgabe 9.6}
 	\label{sec:a9.6}
@@ -193,5 +236,9 @@ literate=%
 	\end{enumerate}
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	\subsection*{9.6.1}
+	\label{ssec:9.6.1}
+	\subsection*{9.6.2}
+	\label{ssec:9.6.2}
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 \end{document}
