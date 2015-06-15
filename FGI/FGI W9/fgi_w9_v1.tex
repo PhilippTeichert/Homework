@@ -197,7 +197,7 @@ literate=%
 			( (  C \lor ( A \land \lnot B ) ) \land ( A \lor C )				& \text{Anwenden des Distributiv-Gesetzes} \\
 			( ( C \lor A ) \land ( C \lor \lnot B ) ) \land ( A \lor C )		& \text{Anwenden des Assoziativgesetzes} \\
 			( C \lor A ) \land ( C \lor \lnot B ) \land ( C \lor A )			& \text{Streichen doppelt vorkommender Terme} \\
-			( C \lor A ) \land 8 C \lor \lnot B )								& \text{\textbf{\underline{HULK FINISH!!}}}
+			( C \lor A ) \land 8 C \lor \lnot B )								& \text{\textbf{KNF}}
 		\end{array}
 	\end{equation*}
 	\subsection*{9.5.2}
@@ -207,18 +207,27 @@ literate=%
 	eine äquivalente Formel in disjunktiver Normalform mit der in der Vorlesung behandelten Wahrheitstafelmethode.
 	\-\\\\
 	%-----RECHNUNG-----%
+	$((A \Leftrightarrow B) \lor \lnot B)~~:=~~F$
+	\begin{equation*}
+		\begin{array}{ccc|ccccc|ll}
+			A & B & C & \lnot B & \lnot C & A \Leftrightarrow C & F & F \land \lnot C & {} \\ \hline
+			0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & \leftarrow & (\lnot A \land \lnot B \land \lnot C) \\
+			0 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & {} & {} \\
+			0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & {} & ~~~~~~~~\lor \\
+			0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & {} & {} \\
+			1 & 0 & 0 & 1 & 1 & 0 & 1 & 1 & \leftarrow & ( A \land \lnot B \land \lnot C ) \\
+			1 & 0 & 1 & 1 & 0 & 0 & 1 & 0 & {} & ~~~~~~~~\lor \\
+			1 & 1 & 0 & 0 & 1 & 1 & 1 & 1 & \leftarrow & ( A \land B \land \lnot C )\\
+			1 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & {} & {} \\
+		\end{array}
+	\end{equation*}
+	\\
 	\begin{equation*}
 		\begin{array}{ll}
-			( ( A \Leftrightarrow B ) \lor \lnot B ) \land \lnot C												& \text{Eliminieren von } \Leftrightarrow \\
-			( ( \lnot A \lor B ) \land ( \lnot B \lor A ) ) \lor \lnot B ) \lnot C								& \text{Anwenden des Distributivgesetzes} \\
-			( ( ( \lnot A \lor B ) \lor \lnot B ) \land ( ( \lnot B \lor A ) \lor \lnot B ) ) \land \lnot C		& \text{Anwenden des Assoziativgesetzes} \\
-			( \lnot A \lor B \lor \lnot B ) \land ( \lnot B \lor A \lor \lnot B ) \land \lnot C					& \text{Kürzen von } \lnot B \\
-			( \lnot A \lor B \lor \lnot B ) \land ( \lnot B \lor A ) \land \lnot C								& (\lnot B \lor B)=1 \Rightarrow~A\text{ kann im ersten Term} \\
-																												& \text{omittiert werden, da der Term immer als 1} \\
-																												& \text{ausgewertet wird} \\
-			( B \lor \lnot B ) \land ( A \lor \lnot B ) \land \lnot C											& \text{Anwenden des Distributivgesetzes} \\
-			\lnot B \lor ( ( A \land B ) \land \lnot C )														& \text{Anwenden des Assoziativgesetzes} \\
-			\lnot B \lor ( A \land B \land \lnot C )															& \text{\textbf{\underline{HULK FINISH!!}}}
+			( \lnot A \land \lnot B \land \lnot C) \lor ( A \land \lnot B \land \lnot C ) \lor ( A \land B \land \lnot C ) 	& \text{Anwenden des Distributivgesetzes} \\
+			( ( \lnot B \land \lnot C ) \land ( \lnot A \lor A ) ) \lor ( A \land B \land \lnot C )							& (\lnot A \lor A)=1\Rightarrow\text{ kann gekürzt werden} \\
+			( ( \lnot B \land \lnot C ) ) \lor ( A \land B \land \lnot C )													& \text{Omittieren von Klammern} \\
+			( \lnot B \land \lnot C ) \lor ( A \land B \land \lnot C )														& \text{\textbf{DNF}}
 		\end{array}
 	\end{equation*}
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
