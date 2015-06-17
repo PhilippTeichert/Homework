@@ -194,6 +194,27 @@ literate=%
 	\]
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	Quotientenregel:
+	\begin{equation}
+	\label{eq:eq1}
+		\left(\frac{f(x)}{g(x)}\right)'~=~\frac{f'(x) \cdot g(x)~-~f(x) \cdot g'(x)}{(g(x))^2}
+	\end{equation}
+	\begin{proof}
+	\begin{equation*}
+		\begin{array}{lll}
+			{}		& {}																									& \text{\textbf{Berücksichtigen/}} \\
+			{}		& {}																									& \text{\textbf{Anwenden von:}} \\
+			h(x) 	&= \frac{f(x)}{g(x)} =  f(x) \cdot \frac{1}{g(x)} 											~~~~~~~~~~~~& \text{Produktregel} \\
+			h'(x)	&= f'(x) \cdot \frac{1}{g(x)} ~+~f(x) \cdot \frac{1}{g'(x)} 								~~~~~~~~~~~~& \text{Kettenregel} \\
+					&= f'(x) \cdot \frac{1}{g(x)}~+~f(x) \cdot \left(\frac{1}{g'(x)}\right)' \cdot g'(x) 		~~~~~~~~~~~~& \left(\frac{1}{x}\right)'=-\frac{1}{x^2}\\
+					&= f'(x) \cdot \frac{1}{g(x)}~+~f(x) \cdot \left( -\frac{1}{(g(x))^2} \cdot g'(x) \right) 	~~~~~~~~~~~~& \text{Klammern auflösen} \\
+					&= f'(x) \cdot \frac{1}{g(x)}~+~f(x) \cdot - \frac{g(x)}{(g(x))^2}							~~~~~~~~~~~~& \text{multiplizieren} \\
+					&= \frac{f'(x)}{g(x)}~+~-\frac{f(x) \cdot g'(x)}{(g(x))^2}									~~~~~~~~~~~~& \text{Erweitern mit }\frac{g(x)}{g(x)} \\
+					&= \frac{f'(x) \cdot g(x)}{g(x) \cdot g(x)}~-~\frac{f(x) \cdot g'(x)}{g(x) \cdot g(x)}		~~~~~~~~~~~~& \text{Auf einen Bruchstrich schreiben} \\
+					&= \frac{f'(x) \cdot g(x) ~-~ f(x) \cdot g'(x)}{(g(x))^2}									~~~~~~~~~~~~& \text{Dieser Ausdruck ist gleich (\ref{eq:eq1}).}
+		\end{array}
+	\end{equation*}
+	\end{proof}
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 	\section*{Aufgabe 5}
 	\label{sec:a5}
