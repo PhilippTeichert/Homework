@@ -225,4 +225,49 @@ literate=%
 	Berechnen Sie die Ableitung der Funktion $x \mapsto \sqrt[3]{x}$ mit Hilfe der Umkehrregel.
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	\underline{Umkehrfunktion:} $ f^{-1}(x)=\sqrt[3]{x} \Leftrightarrow f(x) = x^3$\\
+	\\
+	\underline{Umstellen nach $f^{-1}(y)$:}
+	\begin{equation*}
+		\begin{array}{lll}
+			f^{-1}(x)	&= \sqrt[3]{x}~&\begin{cases}
+					f(x)=x \Leftrightarrow y=f(y) \\
+					f(x) \hat{=} y \Leftrightarrow f(y) \hat{=} x
+				\end{cases} \\
+			y			&= \sqrt[3]{f^{-1}(y)}	~~~~~~~~~~~~& (\dots)^3	\\
+			y^3			&= f^{-1}(y)
+		\end{array}
+	\end{equation*}
+	\begin{equation*}
+		\begin{split}
+			\text{\underline{Ableiten:}}&\\
+			f(y)	&= y^3 \\
+			f'(y)	&= 3y^2
+		\end{split}
+		{}~~~~~~~~{}
+		\begin{split}
+			\text{\underline{Umkehrregel:}}&\\
+			f^{-1}(y)	&= \frac{1}{f'(x)}
+		\end{split}
+	\end{equation*}
+	\underline{In Umkehrregel:}
+	\[
+		(f^{-1})'(x)=\frac{1}{f'(y)}=\frac{1}{3y^2}
+	\]
+	\underline{Umstellen nach $x$:}
+	\begin{equation*}
+		\begin{array}{lll}
+			(f^{-1})'(x)	&= \frac{1}{3y^2} 								~~~~~~~~~~~~& y\text{ resubstituieren: } y=\sqrt[3]{x}	\\
+			(f^{-1})'(x)	&= \frac{1}{3(\sqrt[3]{x})^2} 					~~~~~~~~~~~~& \sqrt[3]{\dots}=(\dots)^\frac{1}{3}\\
+			(f^{-1})'(x)	&= \frac{1}{3 \cdot x^{\frac{1}{3} \cdot 2}}  	~~~~~~~~~~~~& \\
+			(f^{-1})'(x)	&= \frac{1}{3 \cdot x^\frac{2}{3}}
+		\end{array}
+	\end{equation*}
+	\underline{Probe:}
+	\begin{align*}
+		f^{-1}(x)	&= \sqrt[3]{x} = x^\frac{1}{3}	\\
+		(f^{-1})(x)	&= \frac{1}{3} \cdot x^{-\frac{2}{3}}~~~~~(Potenzregel) \\
+		(f^{-1})(x)	&= \frac{1}{3} \cdot \frac{1}{x^\frac{2}{3}}	\\
+		(f^{-1})(x)	&= \frac{1}{3 \cdot x^\frac{2}{3}}
+	\end{align*}
 \end{document}
