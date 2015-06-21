@@ -1,0 +1,155 @@
+\documentclass[parskip,12pt,paper=a4,sffamily]{article}
+%alternate documentclass:
+%\documentclass[parskip,12pt,paper=a4,sffamily]{scrartl}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+% code snippets
+\usepackage{listings}
+% listing captions
+\usepackage{caption}
+% tikz being tikz
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usepackage{pgf}
+% import math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% contradiction lightning
+\usepackage{stmaryrd}
+% alignment options
+\usepackage{ragged2e}
+% page margins
+\usepackage[margin=2.5cm]{geometry}
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+
+
+\lstset{ %
+language=Java,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=b,           					% sets the caption-position to bottom
+breaklines=true,        					% sets automatic line breaking
+xleftmargin=1.5cm,							% space from the left paper edge
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
+\captionsetup[lstlisting]{font={footnotesize},margin=1.5cm,singlelinecheck=false } % removes "Listing 1: "
+\definecolor{light-light-gray}{gray}{0.95}
+\let\stdsection\section
+\renewcommand\section{\stdsection}
+
+% add line break for subtitle (size: large)
+\title{Formale Grundlagen der Informatik I
+    \\\large{
+        Abgabe der Hausaufgaben\\
+        Übungsgruppe 24 am Freitag, d. \today
+    }
+}
+\author{~\\
+	\Large{Louis Kobras}\\
+	\large{6658699}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{4kobras@informatik.uni-hamburg.de}\\
+	\\
+	\Large{Utz Pöhlmann}\\
+	\large{6663579}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{4poehlma@informatik.uni-hamburg.de}\\
+	\\
+	\Large{Philipp Quach}\\
+	\large{6706421}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{4quach@informatik.uni-hamburg.de}
+}
+
+% leave empty for no date on title page
+% comment for auto-generated date
+\date{\today}
+
+
+\begin{document}
+	\maketitle\thispagestyle{empty}
+	\newpage
+	\pagenumbering{arabic}
+	\newgeometry{top=2.5cm, bottom =2.5cm, left=2cm, right=3.5cm}
+	\section*{Aufgabe 10.4}
+	\label{sec:a10.4}
+	\begin{flushright}
+	\large{[~~~~/2]}
+	\end{flushright}
+	%-----AUFGABE-----%
+	BeweisennSie, dass eine Inferenzregel $R=\frac{F_1,\dots,F_n}{G}$ genau dann korrekt ist,
+	wenn $\{F_1,\dots,F_n\} \vDash G$ gilt.
+	(Nutzen Sie dazu die Definition der Korrektheit einer Inferenzregel auf Folie 31.)
+	\-\\\\\\
+	%-----RECHNUNG-----%
+	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+	\section*{Aufgabe 10.5}
+	\label{sec:a10.5}
+	\begin{flushright}
+	\large{[~~~~/3]}
+	\end{flushright}
+	%-----AUFGABE-----%
+	\subsection*{Aufgabe 10.5.1}
+	\label{ssec:a10.5.1}
+	Seien $F=((A \Leftrightarrow B ) \land B \land \lnot C)$ und $G=((B \lor \lnot C) \Leftrightarrow \lnot C ) \land \lnot C \land \lnot (B \lor \lnot C)$.
+	Geben Sie eine Substitution \textit{sub} an mit $sub(F)=G$ oder begründen Sie, warum dies nicht möglich ist.
+	\-\\\\\\
+	%-----RECHNUNG-----%
+	%-----AUFGABE-----%
+	\subsection*{Aufgabe 10.5.2}
+	\label{ssec:a10.5.2}
+	Zeigen Sie, dass für jede Formel \textit{F} und jede Substitution \textit{sub} gilt:
+	Wenn \textit{F} eine Tautologie ist, dann ist auch $sub(F)$ eine Tautologie.
+	Vervollständigen Sie dazu den Beweis aus der Vorlesung.
+	Führen Sie insb. die dort nicht ausgeführte strukturelle Induktion.
+	\-\\\\\\
+	%-----RECHNUNG-----%
+	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+	\section*{Aufgabe 10.6}
+	\label{sec:a10.6}
+	\begin{flushright}
+	\large{[~~~~/7]}
+	\end{flushright}
+	%-----AUFGABE-----%
+	\subsection*{Aufgabe 10.6.1}
+	\label{ssec:10.6.1}
+	Zeigen oder Widerlegen Sie, dass die folgenden Inferenzregeln korrekt sind:
+	\begin{equation*}
+		\begin{split}
+			\frac{A \Rightarrow B, B \Rightarrow A}{\lnot B \lor A}
+		\end{split}
+		{}~~~~~~~~~~~~~~~~{}
+		\begin{split}
+			\frac{(A \lor B) \Rightarrow C, \lnot C \land \lnot B}{A \lor B}
+		\end{split}
+	\end{equation*}
+	\-\\\\\\
+	%-----RECHNUNG-----%
+	%-----AUFGABE-----%
+	\subsection*{Aufgabe 10.6.2}
+	\label{ssec:10.6.2}
+	Sei $\mathcal{C}=(\mathcal{L}_{AL},Ax,\mathcal{R})$ ein Kalkül der Aussagenlogik mit $Ax=\{A\Rightarrow B(\Rightarrow A)\}$ und $R=\{\frac{F,F\Rightarrow G}{G},\frac{F \land G}{G}\}$.
+	Sei ferner $M=\{A\land B,(C\Rightarrow (A\land B))\Rightarrow (B \land A)\}$.\\
+	Zeigen Sie $M\vdash_{\mathcal{c}}A$ durch Angabe einer Ableitung.
+	\-\\\\\\
+	%-----RECHNUNG-----%
+\end{document}

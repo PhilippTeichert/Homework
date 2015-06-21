@@ -1,0 +1,150 @@
+\documentclass[parskip,12pt,paper=a4,sffamily]{article}
+%alternate documentclass:
+%\documentclass[parskip,12pt,paper=a4,sffamily]{scrartl}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+% code snippets
+\usepackage{listings}
+% listing captions
+\usepackage{caption}
+% tikz being tikz
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usepackage{pgf}
+% import math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% contradiction lightning
+\usepackage{stmaryrd}
+% alignment options
+\usepackage{ragged2e}
+% page margins
+\usepackage[margin=2.5cm]{geometry}
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+
+
+\lstset{ %
+language=Java,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=b,           					% sets the caption-position to bottom
+breaklines=true,        					% sets automatic line breaking
+xleftmargin=1.5cm,							% space from the left paper edge
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
+\captionsetup[lstlisting]{font={footnotesize},margin=1.5cm,singlelinecheck=false } % removes "Listing 1: "
+\definecolor{light-light-gray}{gray}{0.95}
+\let\stdsection\section
+\renewcommand\section{\stdsection}
+
+% add line break for subtitle (size: large)
+\title{Mathematik für Studierende der Informatik II\\
+	Analysis und Lineare Algebra\\
+    \-\\\large{
+    	Abgabe der Hausaufgaben zum \today
+    }
+}
+\author{~\\
+	\Large{Louis Kobras}\\
+	\large{6658699}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{4kobras@informatik.uni-hamburg.de}\\
+	\\
+	\Large{Utz Pöhlmann}\\
+	\large{6663579}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{4poehlma@informatik.uni-hamburg.de}\\
+	\\
+	\Large{Jennifer Hartmann}\\
+	\large{6706472}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{fwuy089@studium.uni-hamburg.de}
+}
+
+% leave empty for no date on title page
+% comment for auto-generated date
+\date{\today}
+
+
+\begin{document}
+	\maketitle\thispagestyle{empty}
+	\newpage
+	\pagenumbering{arabic}
+	\newgeometry{top=2.5cm, bottom =2.5cm, left=2cm, right=3.5cm}
+	\section*{Aufgabe 1}
+	\label{sec:a1}
+	\begin{flushright}
+	\large{[~~~~/4]}
+	\end{flushright}
+	%-----AUFGABE-----%
+	Berechnen Sie die Ableitung der Funktion $f(x)=x^{x^2}$.
+	\-\\\\\\
+	%-----RECHNUNG-----%
+	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+	\section*{Aufgabe 2}
+	\label{sec:a2}
+	\begin{flushright}
+	\large{[~~~~/4]}
+	\end{flushright}
+	%-----AUFGABE-----%
+	Berechnen Sie die Ableitungen:
+	\begin{itemize}
+		\item[(a)] $f(x)=x \cdot \operatorname{sin}5x$
+		\item[(b)] $\frac{\operatorname{sin}x+\operatorname{cos}x}{\operatorname{cos}x}$
+		\item[(c)] $ \operatorname{sin}(\operatorname{cos}(x-5)) $
+		\item[(c)] $ (1-\operatorname{tan}\left(\frac{x}{2}\right))^{-2} $
+	\end{itemize}
+	\-\\\\\\
+	%-----RECHNUNG-----%
+	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+	\section*{Aufgabe 3}
+	\label{sec:a3}
+	\begin{flushright}
+	\large{[~~~~/4]}
+	\end{flushright}
+	%-----AUFGABE-----%
+	Finden Sie die Seitenlänge einer quaderförmigen Streichholzschachtel, die bei gegebenem
+	Volumen von 45cm$^3$ die minimale Oberfläche hat, um den Materialverbrauch möglichst klein zu halten.
+	Dabei soll eine der Seiten die Länge 5cm haben, damit die Streichhölzer hineinpassen.
+	\-\\\\\\
+	%-----RECHNUNG-----%
+	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+	\section*{Aufgabe 4}
+	\label{sec:a4}
+	\begin{flushright}
+	\large{[~~~~/4]}
+	\end{flushright}
+	%-----AUFGABE-----%
+	Welches gleichschenklige Dreieck hat bei gegebenem Umfang \textit{U} die größte Fläche?
+	\-\\\\\\
+	%-----RECHNUNG-----%
+	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+	\section*{Aufgabe 5}
+	\label{sec:a5}
+	\begin{flushright}
+	\large{[~~~~/4]}
+	\end{flushright}
+	%-----AUFGABE-----%
+	Zeigen Sie, dass die Graphen der Funktionen tan und cot keine horizontalen Tangenten haben.
+	\-\\\\\\
+	%-----RECHNUNG-----%
+\end{document}
