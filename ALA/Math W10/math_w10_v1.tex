@@ -10,11 +10,6 @@
 \usepackage{listings}
 % listing captions
 \usepackage{caption}
-<<<<<<< HEAD
-=======
-% font: times new roman
-\usepackage{times}
->>>>>>> 21a8c6cd8f4ae65a4b60804810bf98a1251d878b
 % tikz being tikz
 \usepackage{tikz}
 \usetikzlibrary{arrows,automata}
@@ -101,10 +96,7 @@ literate=%
 	\large{[~~~~/4]}
 	\end{flushright}
 	%-----AUFGABE-----%
-<<<<<<< HEAD
 	Berechnen Sie die Ableitung der Funktion $f(x)=x^{x^2}$.
-=======
->>>>>>> 21a8c6cd8f4ae65a4b60804810bf98a1251d878b
 	\-\\\\\\
 	%-----RECHNUNG-----%
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
@@ -114,7 +106,6 @@ literate=%
 	\large{[~~~~/4]}
 	\end{flushright}
 	%-----AUFGABE-----%
-<<<<<<< HEAD
 	Berechnen Sie die Ableitungen:
 	\begin{itemize}
 		\item[(a)] $f(x)=x \cdot \operatorname{sin}5x$
@@ -122,8 +113,6 @@ literate=%
 		\item[(c)] $ \operatorname{sin}(\operatorname{cos}(x-5)) $
 		\item[(c)] $ (1-\operatorname{tan}\left(\frac{x}{2}\right))^{-2} $
 	\end{itemize}
-=======
->>>>>>> 21a8c6cd8f4ae65a4b60804810bf98a1251d878b
 	\-\\\\\\
 	%-----RECHNUNG-----%
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
@@ -133,12 +122,9 @@ literate=%
 	\large{[~~~~/4]}
 	\end{flushright}
 	%-----AUFGABE-----%
-<<<<<<< HEAD
 	Finden Sie die Seitenlänge einer quaderförmigen Streichholzschachtel, die bei gegebenem
 	Volumen von 45cm$^3$ die minimale Oberfläche hat, um den Materialverbrauch möglichst klein zu halten.
 	Dabei soll eine der Seiten die Länge 5cm haben, damit die Streichhölzer hineinpassen.
-=======
->>>>>>> 21a8c6cd8f4ae65a4b60804810bf98a1251d878b
 	\-\\\\\\
 	%-----RECHNUNG-----%
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
@@ -148,10 +134,7 @@ literate=%
 	\large{[~~~~/4]}
 	\end{flushright}
 	%-----AUFGABE-----%
-<<<<<<< HEAD
 	Welches gleichschenklige Dreieck hat bei gegebenem Umfang \textit{U} die größte Fläche?
-=======
->>>>>>> 21a8c6cd8f4ae65a4b60804810bf98a1251d878b
 	\-\\\\\\
 	%-----RECHNUNG-----%
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
@@ -161,10 +144,49 @@ literate=%
 	\large{[~~~~/4]}
 	\end{flushright}
 	%-----AUFGABE-----%
-<<<<<<< HEAD
 	Zeigen Sie, dass die Graphen der Funktionen tan und cot keine horizontalen Tangenten haben.
-=======
->>>>>>> 21a8c6cd8f4ae65a4b60804810bf98a1251d878b
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	Die Steigung einer horizontalen Tangente ist 0.\\
+	Die Tangentensteigung wird durch die erste Ableitung derjenigen Funktion berechnet, die tangiert wird.
+	\subsection*{Tangens}
+	\label{ssec:tan}
+	Berechnung der ersten Ableitung:
+	\begin{equation*}
+		\begin{array}{ll}
+			f(x) &= \operatorname{x} \\
+			f(x) &= \frac{\operatorname{sin}x}{\operatorname{cos}x} \\
+			f'(x) &= \frac{\operatorname{cos}(x) \cdot \operatorname{cos}(x)~-~\operatorname{sin}(x) \cdot (-)\operatorname{sin}(x)}{\operatorname{cos}^2(x)} \\
+			f'(x) &= \frac{\operatorname{cos}^2 x + \operatorname{sin}^2 x}{\operatorname{cos}^2 x} (\text{Nach Anwendung der Quotientenregel})			
+		\end{array}
+	\end{equation*}
+	Diese Gleichung wird durch Anwendung des Kosinussatzes auf das rechtwinklige Dreieck des Einheitskreises, über welches die Kosinus-Funktion definiert ist, wobei durch die Eigenschaft der Rechtwinkligkeit der Satz von Pythagoras als Vereinfachung verwendet werden kann, weiter vereinfacht:
+	\begin{equation*}
+		\begin{array}{rl}
+			\text{Satz des Pythagoras: } & a^2+b^2=c^2 \\
+			a &:= \operatorname{cos}(x) \\
+			b &:= \operatorname{sin}(x) \\
+			c &:= 1 \text{, da der Radius des Einheitskreises (die Hypothenuse) 1 beträgt}
+		\end{array}
+	\end{equation*}
+	Somit ergibt sich $a^2+b^2=\operatorname{cos}^2(x)+\operatorname{sin}^2(x)=1^2=1$ folgende Gleichung für die erste Ableitung der Tangensfunktion:
+	\[
+		f'(x)=\frac{1}{\operatorname{cos}^2 x}
+	\]
+	Damit die Steigung von $f(x)$ gleich 0 ist und somit eine horizontale Tangente vorliegt, muss der Funktionswert von $f'(x)$ gleich 0 sein. Wie zu erkennen ist, tritt dies nie ein, da $\frac{1}{\operatorname{cos}^2 (x)} \neq 0$.
+	\subsection*{Kotangens}
+	\label{ssec:cot}
+	Verfahren wie beim Tangens.\\
+	Bestimmung der Ableitung der \textit{cot}-Funktion:
+	\begin{equation*}
+		\begin{array}{lll}
+			\frac{d}{dx}\operatorname{cot}(x) &= \frac{d}{dx}\frac{1}{\operatorname{tan}(x)}=\frac{d}{dx}\frac{\operatorname{cos}(x)}{\operatorname{sin}(x)}&\\
+			&= \frac{((\operatorname{cos}(c))' \cdot \operatorname{sin}(x)~-~\operatorname{cos}(x) \cdot (\operatorname{sin}(x))'}{\operatorname{sin}^2(x)}~~~~ ~~~~&\text{ (Nach Quotientenregel)}\\
+			&= \frac{-\operatorname{sin}(x) \cdot \operatorname{sin}(x)~-~\operatorname{cos}(x) \cdot \operatorname{cos}(x)}{\operatorname{sin}^2 (x)} &\\
+			&= \frac{-\operatorname{sin}^2(x)~-~\operatorname{cos}^2(x)}{\operatorname{sin}^2(x)} &\\
+			&= \frac{-(\operatorname{sin}^2(x)~+~\operatorname{cos}^2(x))}{\operatorname{sin}^2(x)}				&\text{ (Nach Anwenden des Satzes von Pythagoras)} \\
+			&= \frac{-1}{\operatorname{sin}^2(x)}
+		\end{array}
+	\end{equation*}
+	Wie eben ist auch hier wieder ersichtlich, dass die Ableitung der \textit{cot}-Funktion niemals gleich 0 werden kann, wodurch auch die \textit{cot}-Funktion keine Steigung von 0 und somit keine horizontale Tangente vorzuweisen hat.
 \end{document}
