@@ -197,6 +197,61 @@ literate=%
 	Dabei soll eine der Seiten die Länge 5cm haben, damit die Streichhölzer hineinpassen.
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	Ein Quader besitzt folgende Gleichungen:
+	\[O=2ab+2ac+2bc\]
+	und
+	\[V=abc,\]
+	wobei \textit{O} die Oberfläche ist, \textit{V} das Volumen und \textit{a, b, c} die Kanten.\\
+	Mit den gegebenen Werten können wir sagen:
+	\[V=45cm \land ( a=5cm \Leftrightarrow bc=9cm^2)\]
+	Folglich kann man \textit{b} ausdrücken als:
+	\[b=\frac{9cm^2}{c}\]
+	Somit ergibt sich für \textit{O} eine rein von \textit{c} abhängige Gleichung:
+	\begin{align*}
+		O	&=2 \cdot 5cm \cdot \frac{9cm^2}{c}	~+~	2 \cdot 5cm \cdot c	~+~	2 \cdot \frac{9cm}{c} \cdot c \\
+			&=\frac{90}{c}cm^2	~+~	c \cdot 10cm^2	~+~	18cm^2
+	\end{align*}
+	Diese Gleichung können wir als Funktion $O(c)$ behandeln.
+	\begin{equation*}
+		\begin{array}{lll}
+			O(c)	&=	\frac{90}{c}+10c+18\\
+			O'(c)	&=	\frac{d}{dx} 90 \cdot c^{-1}+10 \cdot c+18\\
+			O'(c)	&=	-1 \cdot 90 \cdot c^{-2} + 10 \\
+			O'(c)	&=	-\frac{90}{c^2}+10	&	\text{1. Ableitung für notwendige Bedingung}	\\
+			O''(c)	&=	\frac{d}{dx} -90 \cdot c^{-2}+10 \\
+			O''(c)	&=	-2 \cdot -90 c^{-3} \\
+			O''(c)	&=	\frac{180}{c^3}		&	\text{2. Ableitung für hinreichende Bedingung}
+		\end{array}
+	\end{equation*}
+	Da das Minimum der Oberfläche gesucht wird, wird die 1. Ableitung gleich 0 gesetzt.
+	Das so erhaltene \textit{c} wird anschließend in die 2. Ableitung eingesetzt, um zu bestimmen, ob an der Stelle ein Minimum oder ein Maximum vorliegt.
+	Ist ein Minimum bestimmt, so kann der für \textit{c} bestimmte Wert genutzt werden, um \textit{b} und die Oberfläche der Schachtel zu bestimmen.\\
+	\\
+	\underline{Notwendige Bedingung}:
+	\begin{equation*}
+		\begin{array}{lll}
+			0		&=	-\frac{90}{c^2}+10	&	| -10 \\
+			-10		&=	-\frac{90}{c^2}		&	| \cdot c^2 \\
+			-10c^2	&=	-90					&	| :(-10)\\
+			c^2		&=	-\frac{90}{-10}		&	\\
+			c^2		&=	9					&	|\sqrt{()}\\
+			c		&=	\pm 3
+		\end{array}
+	\end{equation*}
+	Es ist anzumerken, dass $-3$ als Lösung ausgeschlossen werden kann, da sonst eine negative Kantenlänge vorläge, welche im vierdimensionalen Raum nicht vorkommen kann.\\
+	\\
+	\underline{Hinreichende Bedingung}:
+	\begin{equation*}
+		\begin{array}{llllllll}
+			O'(3)	&=	&0	&\land	&O''(3)	&>	&0	&\Rightarrow	\underline{Minimum}\\
+		\end{array}
+	\end{equation*}
+	\underline{\textit{c} in \textit{V}}:
+	\[
+		a = 5cm \land c = 3cm \land V = 45cm^3 \Leftrightarrow \underline{b = 3cm}
+	\]
+	\underline{	\textit{b, c} in \textit{O}}:
+	\[O_{min}~=~2 \cdot [5 \cdot 3 ] cm^2~+~2 \cdot [5 \cdot 3]cm^2 ~+~ 2 \cdot [3 \cdot 3]cm^2 ~=~2 \cdot 15cm^2 ~+~2 \cdot 15 cm^2 ~+~2 \cdot 9cm^2 ~=~\underline{\underline{78 cm^2}}\]
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 	\section*{Aufgabe 4}
 	\label{sec:a4}
