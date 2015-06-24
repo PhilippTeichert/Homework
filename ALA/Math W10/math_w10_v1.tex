@@ -140,21 +140,49 @@ literate=%
 	\label{ssec:a2b}
 	\begin{equation*}
 		\begin{array}{lll}
-			f(x)	&= \frac{\operatorname{sin}(x) + \operatorname{cos}(x)}{\operatorname{cos}(x)}	& \begin{array}{l}	{sin}(x)+\operatorname{cos}(x):=u\\	\operatorname{cos}(x):=v	\end{array}	\\
-			f'(x)	&= \frac{d}{dx}\frac{u}{v}														& \text{Quotientenregel}	\\
-			f'(x)	&= fukkit
+			f(x)	&= \frac{\operatorname{sin}(x) + \operatorname{cos}(x)}{\operatorname{cos}(x)}	& \begin{array}{l}	{sin}(x)+\operatorname{cos}(x):=u\\	\operatorname{cos}(x):=v	\end{array}		\\
+			f'(x)	&= \frac{d}{dx}\frac{u}{v} = \frac{u'v~-~uv'}{v^2}								& \text{Quotientenregel}																			\\
+			f'(x)	&= \frac{(\operatorname{sin}(x)+\operatorname{cos}(x))' \cdot \operatorname{cos}(x)		~-~		(\operatorname{sin}(x)+\operatorname{cos}(x)) \cdot \operatorname{cos}(x)'}{\operatorname{cos}^2x}	\\
+			f'(x)	&= \frac{\operatorname{cos}^2(x)-\operatorname{sin}(x) \cdot \operatorname{cos}(x)		~-~		(-\operatorname{sin}(x))(\operatorname{sin}(x)+\operatorname{cos}(x))}{\operatorname{cos}^2x}		\\
+			f'(x)	&= \frac{\operatorname{cos}^2(x)-\operatorname{sin}(x) \cdot \operatorname{cos}(x)		~+~		\operatorname{sin}^2x+\operatorname{sin}(x)\operatorname{cos}x}{\operatorname{cos}^2(x)}	&	\text{Verrechnen betragsgleicher} \\
+					&																																															&	\text{vorzeichenunterschiedlicher Komponenten}\\
+					&																																															&	\text{im Zähler}\\
+			f'(x)	&= \frac{\operatorname{sin}^2x~+~\operatorname{cos}^2 x}{\operatorname{cos}^2 x}																											&	\text{Zusammenfassen (Begründung s. 5.2)} \\
+			f'(x)	&= \frac{1}{\operatorname{cos}^2 x}
+			
 		\end{array}
 	\end{equation*}
 	\subsection*{(c)}
 	\label{ssec:a2c}
 	\begin{equation*}
-		\begin{array}{ll}		
+		\begin{array}{lll}	
+			g(x)	&=	\operatorname{sin}(\operatorname{cos(x-5)})		&	\operatorname{cos}(x-5):=u	\\
+			g(x)	&=	\operatorname{sin}(u)							&	\text{Kettenregel}			\\
+			g'(x)	&=	\operatorname{sin}(u)'															\\
+			g'(x)	&=	\operatorname{cos}(u) \cdot u'					&	u:=\operatorname{cos}(x-5)	\\
+			g'(x)	&=	\operatorname{cos}(\operatorname{cos}(x-5))	\cdot (-\operatorname{sin}(x-5)) \cdot (x-5)'	\\
+			g'(x)	&=	- \operatorname{cos}(\operatorname{cos}(x-5))	\cdot \operatorname{sin}(x-5) \cdot 1 \\
+			g'(x)	&=	- \operatorname{cos}(\operatorname{cos}(x-5))	\cdot \operatorname{sin}(x-5)
 		\end{array}
 	\end{equation*}
 	\subsection*{(d)}
 	\label{ssec:a2d}
 	\begin{equation*}
-		\begin{array}{ll}		
+		\begin{array}{lll}
+			h(x)	&=	\left( 1-\operatorname{tan} \left( \frac{x}{2} \right) \right)^{-2}	&	\text{Umschreiben als Bruch}	\\
+			h(x)	&=	\frac{1}{\left( 1-\operatorname{tan} \left( \frac{x}{2} \right) \right)^2}	&	\text{Quotientenregel: } \begin{array}{ll}
+																																		u &:= 1~~~~\Rightarrow u'=0\\
+																																		v &:= \left( 1-\operatorname{tan} \left( \frac{x}{2} \right) \right)^2
+																																	\end{array} \\
+			h'(x)	&=	\frac{d}{dx}\frac{u}{v}\\
+			h'(x)	&=	\frac{u'v~-~uv'}{v^2}\\
+			h'(x)	&=	\frac{0\cdot\left( 1-\operatorname{tan} \left( \frac{x}{2} \right) \right)^2~-~1 \cdot \left[\left( 1-\operatorname{tan} \left( \frac{x}{2} \right) \right)^2\right]'}{\left(\left( 1-\operatorname{tan} \left( \frac{x}{2} \right) \right)^2\right)^2} \\
+			h'(x)	&=	\frac{-\left[\left( 1-\operatorname{tan} \left( \frac{x}{2} \right) \right)^2\right]'}{\left( 1-\operatorname{tan} \left( \frac{x}{2} \right) \right)^4}	\\
+			h'(x)	&=	-\frac{2 \cdot \left( 1-\operatorname{tan} \left( \frac{x}{2} \right) \right) \cdot \frac{1}{-\operatorname{cos}^2 \left(\frac{x}{2}\right)} \cdot \frac{1}{2}}{\left( 1-\operatorname{tan} \left( \frac{x}{2} \right) \right)^4} \\
+			h'(x)	&=	-\frac{\left( 1-\operatorname{tan} \left( \frac{x}{2} \right) \right) \cdot \frac{1}{-\operatorname{cos}\left(\frac{x}{2}\right)}}{\left( 1-\operatorname{tan} \left( \frac{x}{2} \right) \right)^4}	&	\text{Kürzen}\\
+			h'(x)	&=	-\frac{\frac{1}{-\operatorname{cos}\left(\frac{x}{2}\right)}}{\left( 1-\operatorname{tan} \left( \frac{x}{2} \right) \right)^3}		&	\text{Auflösen des Doppelbruches}	\\
+			h'(x)	&=	-\frac{1}{-\operatorname{cos}\left(\frac{x}{2}\right) \cdot \left( 1-\operatorname{tan} \left( \frac{x}{2} \right) \right)^3}		&	\text{Aufheben des doppelten Minus} \\
+			h'(x)	&=	\frac{1}{\operatorname{cos}\left(\frac{x}{2}\right) \cdot \left( 1-\operatorname{tan} \left( \frac{x}{2} \right) \right)^3}
 		\end{array}
 	\end{equation*}
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
