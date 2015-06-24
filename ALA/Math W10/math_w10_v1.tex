@@ -99,6 +99,18 @@ literate=%
 	Berechnen Sie die Ableitung der Funktion $f(x)=x^{x^2}$.
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	\begin{equation*}
+		\begin{array}{lll}
+			\frac{d}{dx} x^{x^2}	&= \frac{d}{dx} e^{ln(x^{x^2})}													& \text{Ausdrücken als Exponent von }e						\\
+									&= \frac{d}{dx} e^{x^2 ln(x)}													& \text{Anwenden der Potenzgesetze}							\\
+									&= e^{x^2 ln(x)} \cdot \frac{d}{dx} x^2 ln(x)									& \text{Ableiten mithilfe der Kettenregel}					\\
+									&= e^{x^2 ln(x)} \cdot \left( 2x \cdot ln(x)~+~x^2 \cdot \frac{1}{x} \right)	& \text{Ableiten des zweiten Faktors}						\\
+									&= e^{x^2 ln(x)} \cdot (2x \cdot ln(x) + x)										& \text{Kürzen in der Klammer}								\\
+									&= e^{x^2 ln(x)} \cdot (x + 2x \cdot ln(x))										& \text{Drehen der Summanden in der Klammer}				\\
+									&= e^{ln(x^{x^2})} \cdot (x + 2x \cdot ln(x)									& \text{Anwenden der Potenzgesetze auf den ersten Faktor}	\\
+									&= x^{x^2} (x+2x\cdot ln(x))													& \text{Auflösen des Exponenten von \textit{e}, fertige Ableitung}
+		\end{array}
+	\end{equation*}
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 	\section*{Aufgabe 2}
 	\label{sec:a2}
@@ -136,15 +148,13 @@ literate=%
 	\subsection*{(c)}
 	\label{ssec:a2c}
 	\begin{equation*}
-		\begin{array}{ll}
-		
+		\begin{array}{ll}		
 		\end{array}
 	\end{equation*}
 	\subsection*{(d)}
 	\label{ssec:a2d}
 	\begin{equation*}
-		\begin{array}{ll}
-		
+		\begin{array}{ll}		
 		\end{array}
 	\end{equation*}
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
