@@ -101,6 +101,37 @@ literate=%
 	(Nutzen Sie dazu die Definition der Korrektheit einer Inferenzregel auf Folie 31.)
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	Definition: Wenn $M \vdash_R H$ (durch Benutzen von \textit{R} wird aus einer Formel \textit{M} die Formel \textit{H}), dann auch $M \vDash H$ (jede Belegung, die \textit{M} wahr macht, macht auch \textit{H} wahr).\\
+	Daraus folgt, dass $M \vdash_R H$ gleichbedeutend ist mit:\\
+	Wir haben eine Menge aus Formeln $A_1,\dots,A_m$, eine Inferenzregel $R=\frac{B_1,\dots,B_m}{C}$ und eine Formel \textit{H}.\\
+	Wir formen um:\\
+	\begin{table}[h]
+	\centering
+	\begin{tabular}{ll}
+	$R=\frac{B_1,\dots,B_m}{C}$	&	Sei $n \leq m \land A_1,\dots,A_{m-x} \equiv B_1,\dots,B_n~~|x\geq0$	\\
+	$R=\frac{A_1,\dots,A_m}{C}$	&	Da $A_1,\dots,A_{m-x}$ die benutzen Formeln aus \textit{M} sind,		\\
+								&	sei nun \textit{C} die geschlussfolgerte Formel (also H)				\\
+	$R=\frac{A_1,\dots,A_m}{H}$	&	$A_1,\dots,A_{m-x}\in M \Rightarrow M \geq \{A_1,\dots,A_{m-x}\}$ 		\\
+								&	$\Rightarrow$ Für $A_1,\dots,A_{m-x}$ kann auch M eingesetzt werden, 	\\
+								&	da die zusätzlichen Formeln nicht benutzt werden müssen.				\\
+	$R=\frac{M}{H}$
+	\end{tabular}
+	\end{table}\\
+	Am Anfang wurde definiert, dass $M \vDash H$ gilt.
+	Nun ist:
+	\begin{equation*}
+	\begin{split}
+		\frac{F_1,\dots,F_n}{G}=R=\frac{M}{H}
+	\end{split}
+	{}~~~~~{}
+	\begin{split}
+		\text{s. links:}\begin{cases}
+			M=F_1,\dots,F_n\\
+			H=G
+		\end{cases}
+	\end{split}
+	\end{equation*}
+	$\Rightarrow M \vDash H \equiv \{F_1,\dots,F_n\} \vDash H $
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 	\section*{Aufgabe 10.5}
 	\label{sec:a10.5}
@@ -114,6 +145,10 @@ literate=%
 	Geben Sie eine Substitution \textit{sub} an mit $sub(F)=G$ oder begründen Sie, warum dies nicht möglich ist.
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	Da nur atomare Formeln substituiert werden können, muss der Bijunktionspfeil erhalten bleiben, da in beiden Formeln nur jeweils einer vorkommt.
+	$\Rightarrow \operatorname{sup}(A)=(B \lor \lnot C)$\\
+	Die Position der Formeln ergibt dann $\operatorname{dub}(B)=(\lnot C)$.
+	Durch $\operatorname{sub}(C)=(B \lor \lnot C)$ wird aus \textit{F} \textit{G}.
 	%-----AUFGABE-----%
 	\subsection*{Aufgabe 10.5.2}
 	\label{ssec:a10.5.2}
@@ -123,6 +158,18 @@ literate=%
 	Führen Sie insb. die dort nicht ausgeführte strukturelle Induktion.
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	Seien $A_1,\dots,A_n$ die in \textit{F} vorkommenden Aussagensymbole und $\mathcal{A}$ eine Belegung.
+	Sei $\mathcal{A}'$ eine neue Belegung mit $\mathcal{A}'(A_i):=\mathcal{A}(\operatorname{sub}(A_i))$.\\
+	Dies ist möglich, da alle $A_i$ kontingent sind.\\
+	Sei \textit{B} eine Behauptung: $\mathcal{A}'(F)=\mathcal{A}(\operatorname{sub}(F))$.
+	\begin{enumerate}
+		\item Induktionsanfang: B gilt für jede atomare Formel (gegeben durch die Definition von $\mathcal{A}'$)
+		\item Induktionsannahme: $"B(C)" \land "B(D)"$ gelte für $"C" \land "D"$.
+		\item Induktionsschritt: Unter Annahme von (2) gilt:
+	\end{enumerate}
+	$B(\lnot C) \overset{\text{laut Def. v. }\mathcal{A}}{=}\operatorname{sub}(\lnot C)\overset{\text{s. Vl 17 S. 5}}{=}\lnot \operatorname{sub}(C)\overset{l.Def.v.\mathcal{A}}{=}\lnot B(C)\text{ (gilt wegen (2))}$\\
+	$B(C \circ D) \overset{l.Def.v.\mathcal{A}}{=} \operatorname{sub}((C \circ D)\overset{\text{s. Vl 17 S. 5}}{=}\operatorname{sub}(C)\circ\operatorname{sub}(D)\overset{l.Def.v.\mathcal{A}}{=}B(C)\circ B(D)\text{ (gilt wegen (2))}$\\
+	$\circ \in \{\lor, \land, \Rightarrow, \Leftrightarrow\}$
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 	\section*{Aufgabe 10.6}
 	\label{sec:a10.6}
@@ -144,13 +191,47 @@ literate=%
 	\end{equation*}
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	\begin{equation*}
+		\begin{array}{cc|ccccc}
+			A	&	B	&	A \Rightarrow B	&	B \Rightarrow A	&	(B \Rightarrow A) \land (A \Rightarrow B)	&	\lnot B	&	\lnot B \lor A	\\	\hline
+			0	&	0	&	1	&	1	&	1	&	1	&	1	\\
+			0	&	1	&	1	&	0	&	0	&	0	&	0	\\
+			1	&	0	&	0	&	1	&	0	&	1	&	1	\\
+			1	&	1	&	1	&	1	&	1	&	0	&	1
+		\end{array}
+	\end{equation*}
+	$\Rightarrow$ bewiesen, da $(\lnot B \lor A)$ auch dann wahr ist, wenn $((A \Rightarrow B) \land (B \Rightarrow A))$ wahr ist.
+	\begin{equation*}
+		\begin{array}{ccc|ccccc}
+			A	&	B	&	C	&	A \lor B	&	(A \lor B)\Rightarrow C	&	\lnot C	&	\lnot B	&	\lnot C \land \lnot B	\\	\hline
+			0	&	0	&	0	&	0	&	0	&	1	&	1	&	1	\\
+			0	&	0	&	1	&	0	&	1	&	0	&	1	&	0	\\
+			0	&	1	&	0	&	1	&	0	&	1	&	0	&	0	\\
+			0	&	1	&	1	&	1	&	1	&	0	&	0	&	0	\\
+			1	&	0	&	0	&	1	&	0	&	1	&	1	&	1	\\
+			1	&	0	&	1	&	1	&	1	&	0	&	1	&	0	\\
+			1	&	1	&	0	&	1	&	0	&	1	&	0	&	0	\\
+			1	&	1	&	1	&	1	&	1	&	0	&	0	&	0
+		\end{array}
+	\end{equation*}
+	$\Rightarrow$ widerlegt, da $(A\lor B)$ an mindestens einer Stelle wahr ist, an der $(A \lor B)\Rightarrow C$ und $C \land \lnot B$ wahr sind.
 	%-----AUFGABE-----%
 	\subsection*{Aufgabe 10.6.2}
 	\label{ssec:10.6.2}
-	Sei $\mathcal{C}=(\mathcal{L}_{AL},Ax,\mathcal{R})$ ein Kalkül der Aussagenlogik mit $Ax=\{A\Rightarrow B(\Rightarrow A)\}$ und $R=\{\frac{F,F\Rightarrow G}{G},\frac{F \land G}{G}\}$.
-	Sei ferner $M=\{A\land B,(C\Rightarrow (A\land B))\Rightarrow (B \land A)\}$.\\
+	Sei $\mathcal{C}=(\mathcal{L}_{AL},Ax,\mathcal{R})$ ein Kalkül der Aussagenlogik mit $Ax=\{A\Rightarrow (B\Rightarrow A)\}$ und $R=\{\frac{\lnot G,F\Rightarrow G}{\lnot F},\frac{\lnot G, F \land G}{F}\}$.
+	Sei ferner $M=\{A \lor C, \lnot (E \Rightarrow C)\}$.\\
 	Zeigen Sie $M\vdash_{\mathcal{c}}A$ durch Angabe einer Ableitung.
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	$R_1= \frac{\lnot G,F\Rightarrow G}{\lnot F}\hat{=}\text{Modus Tollens (MT)} \land R_2= \frac{\lnot G, F \land G}{F}\hat{=}\text{Disjunktiver Syllogismus (DS)} $\\
+	\begin{equation}
+		\begin{array}{lll}
+			M	&\vdash	(E \Rightarrow C)				& [\text{aus M}] \\
+				&\vdash	C \Rightarrow (E \Rightarrow C)	& [\text{\textit{Ax} mit }\operatorname{sub}(A)=C \land \operatorname{sub}(B)=E]	\\
+				&\vdash	\lnot C							& [\text{MT mit }\operatorname{sub}(G)=(E \Rightarrow C) \land \operatorname{sub}(F)=C]	\\
+				&\vdash	A \lor C						& [\text{aus M}]	\\
+				&\vdash	A	& [\text{DS1 mit }\operatorname{sub}(G)=\lnot C \land \operatorname{sub}(F)=A]
+		\end{array}
+	\end{equation}
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 \end{document}
