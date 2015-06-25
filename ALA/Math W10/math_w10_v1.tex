@@ -1,4 +1,4 @@
-\documentclass[parskip,12pt,paper=a4,sffamily]{article}
+\documentclass[tikz,parskip,12pt,paper=a4,sffamily]{article}
 %alternate documentclass:
 %\documentclass[parskip,12pt,paper=a4,sffamily]{scrartl}
 \usepackage[utf8]{inputenc}
@@ -12,7 +12,7 @@
 \usepackage{caption}
 % tikz being tikz
 \usepackage{tikz}
-\usetikzlibrary{arrows,automata}
+\usetikzlibrary{hobby,arrows,automata,calc,angles,quotes}
 \usepackage{pgf}
 % import math packages
 \usepackage{amsmath}
@@ -238,7 +238,7 @@ literate=%
 			c		&=	\pm 3
 		\end{array}
 	\end{equation*}
-	Es ist anzumerken, dass $-3$ als Lösung ausgeschlossen werden kann, da sonst eine negative Kantenlänge vorläge, welche im vierdimensionalen Raum nicht vorkommen kann.\\
+	Es ist anzumerken, dass $-3$ als Lösung ausgeschlossen werden kann, da sonst eine negative Kantenlänge vorläge, welche im mindestens bis zu vierdimensionalen Raum nicht vorkommen kann.\\
 	\\
 	\underline{Hinreichende Bedingung}:
 	\begin{equation*}
@@ -262,6 +262,82 @@ literate=%
 	Welches gleichschenklige Dreieck hat bei gegebenem Umfang \textit{U} die größte Fläche?
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	\begingroup
+	\centering
+	\begin{tikzpicture}
+		\coordinate [label=left:$A$]	(A) at (0,0);
+		\coordinate [label=right:$B$]	(B) at (4,0);
+		\coordinate [label=above:$C$]	(C)	at (2,5);
+		\coordinate [label=below:$ $]	(D) at (2,0);
+		
+		\node [label=below:$b$] (X) at ($ (A)!.5!(B) $) {};
+		\node [label=right:$a$](Y) at ($ (B)!.5!(C) $) {};
+		\node [label=left:$a$](Z) at ($ (C)!.5!(A) $) {};
+		\node [label=right:$h_b$](W) at ($ (D)!.3!(C) $) {};
+		
+		\draw (A) -- (B) -- (C) -- (A);
+		\draw (D) -- (C);    
+	\end{tikzpicture}\\
+	\endgroup
+	$h_b$ teilt $b$ in der Mitte, also auf der Länge $\frac{b}{2}$. $h_b$ steht rechtwinklig auf $b$.
+	\begin{equation*}
+		\begin{array}{llllllllll}
+			&U &= 2a+b &\Leftrightarrow b=U-2a\\
+			&A &= \frac{b \cdot h}{2} \\
+			&h^2 + \left(\frac{b}{2}\right)^2&=a^2\\
+			\Leftrightarrow& h^2&=a^2-\left(\frac{b}{2}\right)^2\\
+			\Leftrightarrow& h&=\sqrt{a^2- \frac{b^2}{4}}&\Rightarrow h \geq 0\\
+			\text{setze}&\text{\textit{h} in \textit{A} ein:}\\
+			&A(a,b)&=\frac{b \cdot \sqrt{a^2-\frac{b^2}{4}}}{2}	\\
+			\text{setze}&\text{\textit{b} in \textit{A} ein:}\\
+			&A(a)&=\frac{(U-2a)\cdot\sqrt{a^2-\frac{(U-2a)^2}{4}}}{2}\\
+			\Leftrightarrow&A(a)&=\frac{1}{2} \cdot (U-2a)\cdot\sqrt{a^2-\frac{(U-2a)^2}{4}}\\
+			\Leftrightarrow&A(a)&=\frac{U-2a}{2} \cdot \sqrt{a^2-\frac{U^2-4aU+4a^2}{4}}\\
+			\Leftrightarrow&A(a)&=\frac{U-2a}{2} \cdot \sqrt{\frac{4a^2-4U^2+4aU-4a^2}{4}}\\
+			\Leftrightarrow&A(a)&=\frac{U-2a}{2} \cdot \sqrt{\frac{-U^2+4aU}{4}} \\
+			\Leftrightarrow&A(a)&=\frac{U-2a}{2} \cdot \sqrt{\frac{(-1)\cdot (U^2-4aU)}{4}}\\
+			\Leftrightarrow&A(a)&=\frac{U-2a}{2} \cdot \sqrt{-\frac{1}{4} \cdot (U^2-4aU)}\\
+			\Leftrightarrow&A(a)&=\frac{1}{2} \cdot (U-2a) \cdot \sqrt{-\frac{U^2}{4}+aU} \\
+		\end{array}
+	\end{equation*}
+	\begin{equation*}
+		\begin{array}{ll}
+			\text{Wird }-\frac{U^2}{4}\text{ negativ, so}\\
+			\text{tritt eine irrationale Fläche auf.}\\
+			aU=\frac{U^2}{4}\\
+			a=\frac{U}{4}\\
+			\Rightarrow -\frac{U^2}{4}+aU\geq 0
+		\end{array}
+		{}~~~~~{}
+		\begin{array}{ll}
+			\text{Wird }U-2a<0\text{, so wird die}\\
+			\text{Fläche negativ}\\
+			U=2a\\
+			\frac{U}{2}=a\\
+			\Rightarrow U-2a\geq 0
+		\end{array}
+	\end{equation*}
+	Um eine reelle, positive Fläche zu erhalten, muss \textit{a} zwischen o.g. Werten liegen. Daraus ergibt sich der Definitionsbereich:
+	\begin{equation*}
+		\begin{array}{llllllll}
+			\mathbb{D}=\{a\in\mathbb{R}&|\frac{U}{4}\leq a \leq \frac{U}{2}\}\\
+			&	&\Rightarrow \text{Unser gesuchtes Maximum ist nicht nur lokal, sondern global}\\
+			&A'(a)&=\frac{1}{2} \cdot (-2) \cdot \sqrt{-\frac{U^2}{4}+aU}~+~\frac{1}{2} \cdot (U-2a) \cdot \frac{1}{2 \cdot \sqrt{-\frac{U^2}{4}+aU}} \cdot U\\
+			&\Leftrightarrow A'(a)&=\frac{U-2a}{2} \cdot \frac{U}{2 \cdot \sqrt{-\frac{U^2}{4}+aU}} - \sqrt{-\frac{U^2}{4}+aU}\\
+			&\text{Gleich 0 setzen:}\\
+			&&0&=\frac{U-2a}{2} \cdot \frac{U}{2 \cdot \sqrt{-\frac{U^2}{4}+aU}} - \sqrt{-\frac{U^2}{4}+aU}\\
+			&\Leftrightarrow 0&=\frac{U^2-2aU}{4\sqrt{-\frac{U^2}{4}+aU}}-\frac{\left(\sqrt{-\frac{U^2}{4}+aU}\right)^2 \cdot 4}{4 \cdot \sqrt{-\frac{U^2}{4}+aU}}\\
+			&\Leftrightarrow 0		&=U^2-2aU+\left(\frac{U^2}{4}-aU\right) \cdot 4\\
+			&\Leftrightarrow 0		&=U^2-2aU+U^2-4aU\\
+			&\Leftrightarrow	0	&=2U^2-6aU\\
+			&\Leftrightarrow	0	&=2U(U-3a)\\
+			&\Leftrightarrow	0	&=U-3a&|+3a\\
+			&\Leftrightarrow 3a&=U
+		\end{array}
+	\end{equation*}
+	$U=3a$ bedeutet im Klartext eingesetzt in $U=2a+b$, die wir schon kennen:
+	\[2a+b=3a \Leftrightarrow b=a\]
+	$\Rightarrow$ die maximale Flächehat ein gleichschenkliges Dreieck bei gegebenem Umfang, wenn es gleichseitig ist.
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 	\section*{Aufgabe 5}
 	\label{sec:a5}
@@ -270,7 +346,7 @@ literate=%
 	\end{flushright}
 	%-----AUFGABE-----%
 	Zeigen Sie, dass die Graphen der Funktionen tan und cot keine horizontalen Tangenten haben.
-	\-\\\\\\
+%	\-\\\\\\
 	%-----RECHNUNG-----%
 	Die Steigung einer horizontalen Tangente ist 0.\\
 	Die Tangentensteigung wird durch die erste Ableitung derjenigen Funktion berechnet, die tangiert wird.
@@ -298,7 +374,10 @@ literate=%
 	\[
 		f'(x)=\frac{1}{\operatorname{cos}^2 x}
 	\]
-	Damit die Steigung von $f(x)$ gleich 0 ist und somit eine horizontale Tangente vorliegt, muss der Funktionswert von $f'(x)$ gleich 0 sein. Wie zu erkennen ist, tritt dies nie ein, da $\frac{1}{\operatorname{cos}^2 (x)} \neq 0$.
+	Damit die Steigung von $f(x)$ gleich 0 ist und somit eine horizontale Tangente vorliegt, muss der Funktionswert von $f'(x)$ gleich 0 sein. Wie zu erkennen ist, tritt dies nie ein, da $\frac{1}{\operatorname{cos}^2 (x)} \neq 0$:
+	\[
+		0=\frac{1}{\operatorname{cos}^2x}~~~~|\cdot\operatorname{cos}^2x~~~~\Rightarrow~~~~0 \neq 1 \lightning
+	\]
 	\subsection*{Kotangens}
 	\label{ssec:cot}
 	Verfahren wie beim Tangens.\\
@@ -313,5 +392,9 @@ literate=%
 			&= \frac{-1}{\operatorname{sin}^2(x)}
 		\end{array}
 	\end{equation*}
-	Wie eben ist auch hier wieder ersichtlich, dass die Ableitung der \textit{cot}-Funktion niemals gleich 0 werden kann, wodurch auch die \textit{cot}-Funktion keine Steigung von 0 und somit keine horizontale Tangente vorzuweisen hat.
+	Wie eben ist auch hier wieder ersichtlich, dass die Ableitung der \textit{cot}-Funktion niemals gleich 0 werden kann, da
+	\[
+		0=\frac{-1}{\operatorname{sin}^2x}~~~~|\cdot\operatorname{sin}^2x~~~~\Rightarrow~~~~0 \neq -1 \lightning
+	\]
+	wodurch auch die \textit{cot}-Funktion keine Steigung von 0 und somit keine horizontale Tangente vorzuweisen hat.
 \end{document}
