@@ -1,0 +1,150 @@
+\documentclass[parskip,12pt,paper=a4,sffamily]{article}
+%alternate documentclass:
+%\documentclass[parskip,12pt,paper=a4,sffamily]{scrartl}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+% code snippets
+\usepackage{listings}
+% listing captions
+\usepackage{caption}
+% tikz being tikz
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usepackage{pgf}
+% import math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% contradiction lightning
+\usepackage{stmaryrd}
+% alignment options
+\usepackage{ragged2e}
+% page margins
+\usepackage[margin=2.5cm]{geometry}
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+
+
+\lstset{ %
+language=Java,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=b,           					% sets the caption-position to bottom
+breaklines=true,        					% sets automatic line breaking
+xleftmargin=1.5cm,							% space from the left paper edge
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
+\captionsetup[lstlisting]{font={footnotesize},margin=1.5cm,singlelinecheck=false } % removes "Listing 1: "
+\definecolor{light-light-gray}{gray}{0.95}
+\let\stdsection\section
+\renewcommand\section{\stdsection}
+
+% add line break for subtitle (size: large)
+\title{Formale Grundlagen der Informatik I
+    \\\large{
+        Abgabe der Hausaufgaben\\
+        Übungsgruppe 24 am Freitag, d. \today
+    }
+}
+\author{~\\
+	\Large{Louis Kobras}\\
+	\large{6658699}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{4kobras@informatik.uni-hamburg.de}\\
+	\\
+	\Large{Utz Pöhlmann}\\
+	\large{6663579}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{4poehlma@informatik.uni-hamburg.de}\\
+	\\
+	\Large{Philipp Quach}\\
+	\large{6706421}\\ %Matrikelnummer; wenn nicht für Uni, auskommentieren
+	\large{4quach@informatik.uni-hamburg.de}
+}
+
+% leave empty for no date on title page
+% comment for auto-generated date
+\date{\today}
+
+
+\begin{document}
+	\maketitle\thispagestyle{empty}
+	\newpage
+	\pagenumbering{arabic}
+	\newgeometry{top=2.5cm, bottom =2.5cm, left=2cm, right=3.5cm}
+	\section*{Aufgabe 11.4}
+	\label{sec:a11.4}
+	\begin{flushright}
+	\large{[~~~~/*]}
+	\end{flushright}
+	%-----AUFGABE-----%
+	\subsection{11.4.1}
+	\label{ssec:a11.4.1}
+	\-\\\\\\
+	%-----RECHNUNG-----%
+	%-----AUFGABE-----%
+	\subsection{11.4.2}
+	\label{ssec:a11.4.2}
+	\-\\\\\\
+	%-----RECHNUNG-----%
+	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+	\section*{Aufgabe 11.5}
+	\label{sec:a5}
+	\begin{flushright}
+	\large{[~~~~/*]}
+	\end{flushright}
+	%-----AUFGABE-----%
+	Geben Sie kurz und kompakt die wichtigsten Argumente aus dem Beweis des Resolutionssatzes wieder.
+	(Sie sollen hier nicht den Beweis wiedergeben, sondern aus dem Beweis die Vorgehensweise und die wichtigsten Argumente herausarbeiten und diese mit Ihren Worten wiedergeben.)
+	\-\\\\\\
+	%-----RECHNUNG-----%
+	\textbf{Voraussetzungen:} $\square\in Res^*(F)$, die Definition von $Res^*(F)$ und $F \equiv Res^n(F)\text{ mit }n:\square\in Res^n(F)\Rightarrow K_1, K_2 \in Res^n(F); K_1=\{L\} \land K_2=\{\overline{L}\}$, was aus der Definition folgt, sowie das Vorliegen der Struktur als KNF.\\
+	Diese Voraussetzungliste impliziert, dass die Korrektheit der Resolution erforderlich ist.\\
+	\\
+	Mit Induktion kann gezeigt werden, dass $\square\in Res^*(F)$ für jede Formelmenge mit $n$ atomaren Formeln gilt (da für $n=0$ die Formelmenge leer ist, ist sie grundsätzlich nicht erfüllbar).\\
+	Es müssen zwei Umformungen gebildet werden, die zunächst $A_{n+1}$ durch $\epsilon$ ersetzen in dem Sinne, dass bei $F_0$ $A_{n+1}$ gleich 0 gesetzt wird und folglich, da eine KNF vorliegt, jedes Vorkommen von 0 in einer Klausel ignoriert werden kann und jedes Vorkommen von $\lnot0=1$ eine Klausel automatisch wahr macht, Vorkommen von $A_{n+1}$ wegfallen und Vorkommen von $\lnot A_{n+1}$ ihre ganze Klausel wegfallen lassen, da die immer wahr ist.
+	Analog wird bei $F_1$ $A_{n+1}$ gleich 1 gesetzt.
+	Folglich werden Klauseln, die $A_{n+1}$ enthalten, komplett omittiert, während Vorkommen von $\lnot A_{n+1}$ gestrichen werden.\\
+	Somit erhält man zwei Formelmengen $F_0$ und $F_1$, die nur die Fomeln $A_1,\dots,A_n$ enthalten.
+	Für diese Formelmenge wurde der Resolutionssatz bereits gezeigt.
+	Somit ist ersichtlich, dass der Resolutionssatz auch für eine Formelmenge der Größe $n+1$ gilt, unabhängig der Belegung der Formel $A_{n+1}$.
+	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+	\section*{Aufgabe 11.6}
+	\label{sec:a11.6}
+	\begin{flushright}
+	\large{[~~~~/*]}
+	\end{flushright}
+	%-----AUFGABE-----%
+	\subsection{11.6.1}
+	\label{ssec:a11.6.1}
+	\-\\\\\\
+	%-----RECHNUNG-----%
+	%-----AUFGABE-----%
+	\subsection{11.6.2}
+	\label{ssec:a11.6.2}
+	\-\\\\\\
+	%-----RECHNUNG-----%
+	%-----AUFGABE-----%
+	\subsection{11.6.3}
+	\label{ssec:a11.6.3}
+	\-\\\\\\
+	%-----RECHNUNG-----%
+\end{document}
