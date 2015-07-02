@@ -143,8 +143,21 @@ literate=%
 	\[
 		( A \Rightarrow D ) \land \lnot B \land ( A \lor B \lor D ) \vDash ( B \Rightarrow D )
 	\]
-	\-\\\\\\
+	\-\\\\
 	%-----RECHNUNG-----%
+	vgl. 11.2.1:\\
+	$F \vDash G \Leftrightarrow F \land \lnot G \vDash$\\
+	$sub(F)=( A \Rightarrow D ) \land \lnot B \land ( A \lor B \lor D )~~~~\wedge~~~~sub(G)= ( B \Rightarrow D )$\\
+	\begin{equation*}
+		\begin{array}{ll}
+			(A \Rightarrow D) \land \lnot B \land (A\lor B \lor D)\land\lnot(B\Rightarrow D) \vDash			&	\text{Auflösen von }'\Rightarrow'	\\
+			(\lnot A \lor D) \land \lnot B \land (A\lor B \lor D) \land \lnot(\lnot B \lor D) \vDash		&	\text{de Morgan}					\\
+			(\lnot A \lor D) \land \lnot B \land (A\lor B \lor D) \land \lnot\lnot B \lor \lnot D \vDash	&	\text{Aufheben von }\lnot\lnot		\\
+			(\lnot A \lor D) \land \lnot B \land (A\lor B \lor D) \land B \lor \lnot D \vDash
+		\end{array}
+	\end{equation*}
+	An dieser Stelle ist sowohl die Klausel $B$ als auch die Klausel $\lnot B$ zu finden, welche sich direkt zu $\square$ zusammenfassen lassen, da sie eine Kontradiktion sind.
+	Folglich gilt die Folgerbarkeitsbeziehung.
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 	\section*{Aufgabe 11.5}
 	\label{sec:a5}
@@ -178,17 +191,92 @@ literate=%
 	\end{flushright}
 	%-----AUFGABE-----%
 	\subsection*{11.6.1}
-	\label{ssec:a11.6.1}
-	\-\\\\\\
+	\label{ssec:a11.6.1}	
+%	\-\\\\\\
 	%-----RECHNUNG-----%
 	%-----AUFGABE-----%
+	Für jede natürliche Zahl gilt, dass sie entweder gerade oder ungerade ist.
+	Ist sie gerade, so impliziert das, dass sie nicht ungerade ist.
+	Ist $y$ gerade, so ist $P=1 \land Q=0$, andernfalls ($y$ ist ungerade) ist $P=0 \land Q=1$.\\
+	Dies bedingt eine Fallunterscheidung:
+	\begin{equation*}
+		\begin{array}{c|c}
+			\begin{split}
+			\begin{array}{r}
+				\text{1. Fall: }y\operatorname{mod}2=0\\
+				\\
+				\forall y [(P(y)\lor Q(f(y)))\land(P(y)\Rightarrow \lnot Q(y)]\\
+				\\
+				f(y)=y\\
+				\land P(y)=1~(weil~y~gerade)\\
+				\land Q(y)=0~\text{(s.oben)}\\
+				\Rightarrow((1\lor 0)\land(1\Rightarrow\lor \lnot 0))\\
+				1 \land (1 \Rightarrow 1)\\
+				1 \land 1\\
+				1
+			\end{array}
+			\end{split}
+			&
+			\begin{split}
+			\begin{array}{l}
+				\text{2. Fall: }y\operatorname{mod}2=1\\
+				\\
+				\forall y [(P(y)\lor Q(f(y)))\land(P(y)\Rightarrow \lnot Q(y)]\\
+				\\
+				f(y)=y\\
+				\land P(y)=0~(weil~y~gerade)\\
+				\land Q(y)=1~\text{(s.oben)}\\
+				\Rightarrow((0 \lor 1) \land (0 \Rightarrow\lnot 1))\\
+				1 \land (0 \Rightarrow 0 )\\
+				1 \land 1\\
+				1
+			\end{array}
+			\end{split}
+		\end{array}
+	\end{equation*}
 	\subsection*{11.6.2}
 	\label{ssec:a11.6.2}
-	\-\\\\\\
+%	\-\\\\\\
 	%-----RECHNUNG-----%
+	\begin{equation*}
+		\begin{array}{c|c}
+		\begin{split}
+		\begin{array}{r}
+			\mathcal{A}=(U.I)\\
+			U=\mathbb{N}_0\\
+			I(P)=\{n\in\mathbb{N}_0\}\\
+			I(Q)=\{n\in\mathbb{N}_o\}\\
+			I(f)=f'|f':\mathbb{N}\rightarrow\mathbb{N};f'(n)=n
+		\end{array}
+		\end{split}
+		{}~~~~~~&~~~~~~{}
+		\begin{split}
+		\begin{array}{l}
+			\forall y[(P(y) \lor Q(f(y))] \land (P(y)\Rightarrow \lnot Q(y)]\\
+			((1 \lor 1) \land (1 \Rightarrow \lnot 1))\\
+			1 \land 1\Rightarrow 0\\
+			1 \land 0\\
+			0
+		\end{array}
+		\end{split}
+		\end{array}
+	\end{equation*}
 	%-----AUFGABE-----%
 	\subsection*{11.6.3}
 	\label{ssec:a11.6.3}
-	\-\\\\\\
+%	\-\\\\\\
 	%-----RECHNUNG-----%
+	Sei $\mathcal{A}=(U,I)$.\\
+	$U=\{$Schere, Stein, Papier $|$ Schere schlägt Papier, Papier schlägt Stein, Stein schlägt Schere$\}$\\
+	$I(P)=\{(x,y)|x\text{ schläg }y$\\
+	$F=\forall x\exists y P(x,y)~~~~\land G=\exists y \forall x P(x,y)$\\
+	\textit{F} heißt: "Für jedes Element aus \textit{U} gibt es ein anderes Element, dass es schlägt."\\
+	\textit{G} heißt: "Es gibt ein Element aus \textit{U}, welche alle anderen Elemente schlägt."\\
+	Während \textit{F} offensichtlich wahr ist (vgl. Def. v. \textit{U}), ist G offensichtlich falsch.\\
+	\begin{proof}\-\\
+	1. Fall: 'Schere': wird von 'Stein' geschlagen\\
+	2. Fall: 'Stein': wird von 'Papier geschlagen\\
+	3. Fall: 'Papier': wird von 'Schere' geschlagen\\
+	Damit ist für jedes Element aus \textit{U} gezeigt, dass es nicht alle anderen Elemente schlägt.
+	\end{proof}
 \end{document}
