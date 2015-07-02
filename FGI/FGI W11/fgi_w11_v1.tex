@@ -12,7 +12,7 @@
 \usepackage{caption}
 % tikz being tikz
 \usepackage{tikz}
-\usetikzlibrary{arrows,automata}
+\usetikzlibrary{arrows,automata,positioning}
 \usepackage{pgf}
 % import math packages
 \usepackage{amsmath}
@@ -84,6 +84,11 @@ literate=%
 % comment for auto-generated date
 \date{\today}
 
+\newcommand{\n}{\vspace{5pt}\\}
+\newcommand{\tikzmark}[1]{\tikz[baseline,remember picture] \coordinate (#1) {};}
+\newcommand{\tikznode}[2]{\tikz[remember picture] \coordinate (#1)++(#2,-1em) {};}
+\newcommand{\tikznodes}[3]{\tikz[remember picture] \coordinate (#1)++(#3++0.5em,-1em){}; \tikz[remember picture]\coordinate (#2)++(#3++-0.5em,-1em) {};}
+
 
 \begin{document}
 	\maketitle\thispagestyle{empty}
@@ -93,57 +98,96 @@ literate=%
 	\section*{Aufgabe 11.4}
 	\label{sec:a11.4}
 	\begin{flushright}
-	\large{[~~~~/*]}
+	\large{[~~~~/4]}
 	\end{flushright}
 	%-----AUFGABE-----%
-	\subsection{11.4.1}
+	\subsection*{11.4.1}
 	\label{ssec:a11.4.1}
+	Prüfen Sie mittels des Resolutionsverfahrens, ob die Formel
+	\[
+		F = ( A \lor \lnot B \lor C ) \land ( B \lor \lnot C ) \land ( \lnot B \lor \lnot C ) \land ( C \lor \lnot A ) \land ( B \lor C )
+	\]
+	erfüllbar oder unerfüllbar ist.
 	\-\\\\\\
 	%-----RECHNUNG-----%
+	\begin{gather*}  
+		\{A,\neg \tikzmark{a}B, C\}\qquad
+		\{C, \tikzmark{b}\neg A\}\qquad
+		\{B \tikzmark{c},C\}\qquad
+		\{B,\tikzmark{l}\neg C\}\qquad
+		\{\lnot B\tikzmark{k},\lnot C\}
+		\\[5ex]
+		\hspace*{-4cm}\tikznode{e1}{-1.2em}\tikznode{e2}{-3.2em}\{\neg B\tikzmark{d}, C\}
+		\\[5ex]
+		\hspace*{1cm}\{\tikznode{f1}{0.3em}\tikznode{f2}{-0.3em} \tikzmark{nb}C\}
+		\hspace*{3cm}\{\lnot\tikznode{g1}{-0.65em}\tikznode{g2}{0em}\tikzmark{tb}C\}
+		\\[5ex]
+		\hspace*{1.5cm}\tikznode{sq2}{-0.45em}\tikznode{sq1}{-0.25em}\square
+		\tikz[remember picture,overlay]
+		{
+			\draw[->] (a.south)++(.1em,-1ex) to (e1.north) ;
+			\draw[->] (b.south)++(-.3em,-1ex) to (e2.north) ;
+			\draw[->] (c.south)++(.6em,-1ex) to (f2.north) ;
+			\draw[->] (d.south)++(.6em,-1ex) to (f1.north) ;
+			\draw[->] (k.south)++(.1em,-1ex) to (g1.north) ;
+			\draw[->] (l.south)++(.1em,-1ex) to (g2.north) ;
+			\draw[->] (nb.south)++(.1em,-1ex) to (sq1.north) ;
+			\draw[->] (tb.south)++(.1em,-1ex) to (sq2.north) ;
+		}  
+	\end{gather*}
+	$\Rightarrow$ \textbf{unerfüllbar}
 	%-----AUFGABE-----%
-	\subsection{11.4.2}
+	\subsection*{11.4.2}
 	\label{ssec:a11.4.2}
+	Prüfen Sie mittels des Resolutionsverfahrens, ob die folgende Folgerbarkeitsbeziehung gilt:
+	\[
+		( A \Rightarrow D ) \land \lnot B \land ( A \lor B \lor D ) \vDash ( B \Rightarrow D )
+	\]
 	\-\\\\\\
 	%-----RECHNUNG-----%
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 	\section*{Aufgabe 11.5}
 	\label{sec:a5}
 	\begin{flushright}
-	\large{[~~~~/*]}
+	\large{[~~~~/3]}
 	\end{flushright}
 	%-----AUFGABE-----%
 	Geben Sie kurz und kompakt die wichtigsten Argumente aus dem Beweis des Resolutionssatzes wieder.
 	(Sie sollen hier nicht den Beweis wiedergeben, sondern aus dem Beweis die Vorgehensweise und die wichtigsten Argumente herausarbeiten und diese mit Ihren Worten wiedergeben.)
 	\-\\\\\\
 	%-----RECHNUNG-----%
-	\textbf{Voraussetzungen:} $\square\in Res^*(F)$, die Definition von $Res^*(F)$ und $F \equiv Res^n(F)\text{ mit }n:\square\in Res^n(F)\Rightarrow K_1, K_2 \in Res^n(F); K_1=\{L\} \land K_2=\{\overline{L}\}$, was aus der Definition folgt, sowie das Vorliegen der Struktur als KNF.\\
-	Diese Voraussetzungliste impliziert, dass die Korrektheit der Resolution erforderlich ist.\\
+	Voraussetzung ist das Vorliegen der Struktur als KNF.\\
+	Es müssen die \textbf{Korrektheit} und die \textbf{Vollständigkeit} der Resolution gezeigt werden.\\
 	\\
-	Mit Induktion kann gezeigt werden, dass $\square\in Res^*(F)$ für jede Formelmenge mit $n$ atomaren Formeln gilt (da für $n=0$ die Formelmenge leer ist, ist sie grundsätzlich nicht erfüllbar).\\
+	\textbf{Korrektheit:} Sei $\square\in Res^*(F)$. Aus der Definition von $Res^*(F)$ folgt $F \equiv Res^n(F)\text{ mit }n:\square\in Res^n(F)\Rightarrow K_1, K_2 \in Res^n(F); K_1=\{L\} \land K_2=\{\overline{L}\}$.\\
+	Dies alles zeigt die \textit{Korrektheit} der Resolution.\\
+	\\
+	\textbf{Vollständigkeit:} Mit Induktion kann gezeigt werden, dass $\square\in Res^*(F)$ für jede Formelmenge mit $n$ atomaren Formeln gilt (da für $n=0$ die Formelmenge leer ist, ist sie grundsätzlich nicht erfüllbar).\\
 	Es müssen zwei Umformungen gebildet werden, die zunächst $A_{n+1}$ durch $\epsilon$ ersetzen in dem Sinne, dass bei $F_0$ $A_{n+1}$ gleich 0 gesetzt wird und folglich, da eine KNF vorliegt, jedes Vorkommen von 0 in einer Klausel ignoriert werden kann und jedes Vorkommen von $\lnot0=1$ eine Klausel automatisch wahr macht, Vorkommen von $A_{n+1}$ wegfallen und Vorkommen von $\lnot A_{n+1}$ ihre ganze Klausel wegfallen lassen, da die immer wahr ist.
 	Analog wird bei $F_1$ $A_{n+1}$ gleich 1 gesetzt.
 	Folglich werden Klauseln, die $A_{n+1}$ enthalten, komplett omittiert, während Vorkommen von $\lnot A_{n+1}$ gestrichen werden.\\
 	Somit erhält man zwei Formelmengen $F_0$ und $F_1$, die nur die Fomeln $A_1,\dots,A_n$ enthalten.
-	Für diese Formelmenge wurde der Resolutionssatz bereits gezeigt.
-	Somit ist ersichtlich, dass der Resolutionssatz auch für eine Formelmenge der Größe $n+1$ gilt, unabhängig der Belegung der Formel $A_{n+1}$.
+	Für diese Formelmenge wurde der Resolutionssatz bereits im Induktionsanfang gezeigt.
+	Somit ist ersichtlich, dass der Resolutionssatz auch für eine Formelmenge der Größe $n+1$ gilt, unabhängig der Belegung der Formel $A_{n+1}$.\\
+	Dies zeigt die \textit{Vollständigkeit} der Resolution.
 	%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 	\section*{Aufgabe 11.6}
 	\label{sec:a11.6}
 	\begin{flushright}
-	\large{[~~~~/*]}
+	\large{[~~~~/5]}
 	\end{flushright}
 	%-----AUFGABE-----%
-	\subsection{11.6.1}
+	\subsection*{11.6.1}
 	\label{ssec:a11.6.1}
 	\-\\\\\\
 	%-----RECHNUNG-----%
 	%-----AUFGABE-----%
-	\subsection{11.6.2}
+	\subsection*{11.6.2}
 	\label{ssec:a11.6.2}
 	\-\\\\\\
 	%-----RECHNUNG-----%
 	%-----AUFGABE-----%
-	\subsection{11.6.3}
+	\subsection*{11.6.3}
 	\label{ssec:a11.6.3}
 	\-\\\\\\
 	%-----RECHNUNG-----%
