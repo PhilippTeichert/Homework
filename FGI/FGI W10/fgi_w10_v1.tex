@@ -126,8 +126,8 @@ literate=%
 	{}~~~~~{}
 	\begin{split}
 		\text{s. links:}\begin{cases}
-			M=F_1,\dots,F_n\\
-			H=G
+			M\hat{=}F_1,\dots,F_n\\
+			H\hat{=}G
 		\end{cases}
 	\end{split}
 	\end{equation*}
@@ -223,10 +223,10 @@ literate=%
 	Zeigen Sie $M\vdash_{\mathcal{c}}A$ durch Angabe einer Ableitung.
 	\-\\\\\\
 	%-----RECHNUNG-----%
-	$R_1= \frac{\lnot G,F\Rightarrow G}{\lnot F}\hat{=}\text{Modus Tollens (MT)} \land R_2= \frac{\lnot G, F \land G}{F}\hat{=}\text{Disjunktiver Syllogismus (DS)} $\\
+	$R_1= \frac{\lnot G,F\Rightarrow G}{\lnot F}\hat{=}\text{Modus Tollens (MT)} \land R_2= \frac{\lnot G, F \land G}{F}\hat{=}\text{Disjunktiver Syllogismus (DS1)} $\\
 	\begin{equation*}
 		\begin{array}{lll}
-			M	&\vdash	(E \Rightarrow C)				& [\text{aus M}] \\
+			M	&\vdash	\lnot (E \Rightarrow C)				& [\text{aus M}] \\
 				&\vdash	C \Rightarrow (E \Rightarrow C)	& [\text{\textit{Ax} mit }\operatorname{sub}(A)=C \land \operatorname{sub}(B)=E]	\\
 				&\vdash	\lnot C							& [\text{MT mit }\operatorname{sub}(G)=(E \Rightarrow C) \land \operatorname{sub}(F)=C]	\\
 				&\vdash	A \lor C						& [\text{aus M}]	\\
