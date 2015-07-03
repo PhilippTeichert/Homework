@@ -3,17 +3,9 @@
 \contentsline {subsection}{\numberline {1.1}Was bisher geschah: Sprachverarbeitung im Kontext der historischen Artificial Intelligence}{2}{subsection.1.1}
 \contentsline {subsection}{\numberline {1.2}ELIZA als Beispiel f\IeC {\"u}r fr\IeC {\"u}he Sprachverarbeitung}{3}{subsection.1.2}
 \contentsline {section}{\numberline {2}Was ist nat\IeC {\"u}rliche Sprache?}{3}{section.2}
-\contentsline {section}{\numberline {3}Schrittweise Verarbeitung nat\IeC {\"u}rlicher Sprache}{4}{section.3}
-\contentsline {subsection}{\numberline {3.1}Parsing der Morphologie}{4}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Analyse der Syntax}{5}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Interpretation der Semantik}{5}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Erfassung der Pragmatik}{5}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Inbetrachtziehen des Diskurs}{5}{subsection.3.5}
-\contentsline {subsection}{\numberline {3.6}Aufl\IeC {\"o}sung von Mehrdeutigkeit}{5}{subsection.3.6}
-\contentsline {section}{\numberline {4}Simon, Sirius, Jasper}{5}{section.4}
-\contentsline {subsection}{\numberline {4.1}Simon listens}{5}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Sirius}{5}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}The Jasper Project}{5}{subsection.4.3}
-\contentsline {section}{\numberline {5}Praktischer Nutzer der Textverarbeitung}{6}{section.5}
-\contentsline {section}{\numberline {6}Schlussfolgerung}{6}{section.6}
-\contentsline {section}{Quellenverzeichnis}{7}{section.6}
+\contentsline {section}{\numberline {3}Parsing der Morphologie mithilfe von deterministischen endlichen Automaten}{4}{section.3}
+\contentsline {section}{\numberline {4}Morphologie-Analyse am Beispiel von \textit {Sirius}}{6}{section.4}
+\contentsline {subsection}{\numberline {4.1}Sirius}{6}{subsection.4.1}
+\contentsline {section}{\numberline {5}Praktischer Nutzen der Textverarbeitung}{6}{section.5}
+\contentsline {section}{\numberline {6}Schlussfolgerung}{7}{section.6}
+\contentsline {section}{Quellenverzeichnis}{8}{section.6}

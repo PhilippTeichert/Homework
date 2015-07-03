@@ -8,7 +8,7 @@
 \newcommand{\trauthor}{Louis Kobras}
 \newcommand{\trtype}{Proseminararbeit} %{Paper} %{Seminararbeit} %{Proseminararbeit}
 \newcommand{\trcourse}{Proseminar: Künstliche Intelligenz}
-\newcommand{\trtitle}{Erfassen natürlicher Sprache in Textform am Beispiel von Python und C++}
+\newcommand{\trtitle}{Erfassen der Morphologie von in Textform vorliegender natürlicher Sprache}
 \newcommand{\trmatrikelnummer}{6658699}
 \newcommand{\tremail}{4kobras@informatik.uni-hamburg.de}
 \newcommand{\trarbeitsbereich}{Knowledge Technology, WTM}
@@ -57,6 +57,8 @@
 \usepackage{caption}
 % tikz being tikz
 \usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usepackage{pgf}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Configurationen:
 
@@ -152,6 +154,10 @@ literate=%
 \captionsetup[lstlisting]{font={footnotesize},margin=1.5cm,singlelinecheck=false } % removes "Listing 1: "
 \definecolor{light-light-gray}{gray}{0.95}
 
+% decreasing space used above and below figures
+\setlength{\belowcaptionskip}{-10pt}
+\setlength{\abovecaptionskip}{10pt}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Document:
@@ -222,12 +228,6 @@ die einzelnd analysiert und in dieser Form von nichtkomplexen Automaten verarbei
 % the actual content, usually separated over a number of sections
 % each section is assigned a label, in order to be able to put a
 % crossreference to it
-Was gestrichen wird, sollte der Text zu lang werden (in dieser Reihenfolge, ggf. noch mehr):
-\begin{itemize}
-	\item 1.1 und 1.3
-	\item 5.1
-	\item 4.1
-\end{itemize}
 \section{Einführung}
 \label{sec:intro}
 	Schon seit etwa achtzig Jahren beschäftigen sich Forscher mit dem Thema der Künstlichen Intelligenz, und nicht weniger Zeit ist in die Theorie der Sprachverarbeitung investiert worden.
@@ -255,7 +255,13 @@ Was gestrichen wird, sollte der Text zu lang werden (in dieser Reihenfolge, ggf.
 	ELIZA arbeitet als Rogativer Psychologe, d.h. man erzählt ihr etwas und sie stellt eine darauf basierende Frage.\\
 	Das Programm ist sehr simpel, und ELIZA benötigt fast keine Informationen, um zu funktionieren.
 	Durch ihre Arbeitsweise kann sie ein natürliches Gespräch mit einem Psychologen nur durch das Wiederholen von Sätzen in Frageform erfolgreich simulieren.
-	Wir werden im Verlauf dieser Arbeit noch auf die genaue Funktionsweise von ELIZA zurück kommen.
+	Dies tut sie, indem sie mit einem simplen Such-Algorithmus den vom Benutzer eingegebenen Text mit einer Liste von Stichworten vergleicht und anhand derer eine vordefinierte Antwort zurückliefert.
+	Zugegebenermaßen ist die Art der Antworten derart gut konstruiert, dass viele der Probanden, die in den 60er Jahren ersten Kontakt mit ELIZA hatten, der Ansicht waren, sie wäre ein denkendes Programm, fähig zu höherer Intelligenz, und glaubten selbst dann noch an ihre Fähigkeiten, als man ihnen ihre Funktionsweise offenbarte (Weizenbaum, 1976).\\
+	Dennoch ist ihre künstliche Intelligenz in keiner Weise mit tatsächlicher künstlicher Intelligenz zu vergleichen.
+	Während ELIZA ein simples Key-Value-Pair-matching-Verfahren anwendet (sie sucht sich eine Antwort anhand eines erkannten Stichwortes), wird von einer KI erwartet, tatsächlich zu verstehen, was zu ihr gesagt wird.
+	Sie muss also nicht nur ein Wort wiedererkennen, sondern auch wissen, was damit gemeint ist.
+	Desweiteren muss eine KI auch in der Lage sein, Wörter in ihrer flexierten Form wiederzuerkennen, eingebaut in natürliche Sprache.
+	Auf einen Aspekt dieser Erkennung wird sich diese Arbeit beziehen.
 \section{Was ist natürliche Sprache?}
 \label{sec:def_lang}
 \textit{„By 'natural language' we mean a language that is used for everyday communication by humans; languages such as English, Hindi, or Portuguese.
@@ -278,20 +284,15 @@ Um es dennoch zu können, wird eine Sprache in folgende sechs Teilgebiete aufget
 Morphologie, Syntax, Semantik, Pragmatik, Diskurs und Mehrdeutigkeit.\\
 Für die gesprochene Sprache kommt der Punkt der Phonologie hinzu.\\
 Unter \textbf{Morphologie} verstehen wir die Veränderung des Wortes nach Anwendung der Grammatik. \\
-Unter \textbf{Syntax} verstehen wir [...]\\
+Unter \textbf{Syntax} verstehen wir den strukturellen Aufbau eines Satzes, etwa dass ein Verb nie vor einem Subjekt steht.\\
 Unter \textbf{Semantik} verstehen wir [...]\\
 Unter \textbf{Pragmatik} verstehen wir [...]\\
 Unter \textbf{Diskurs} verstehen wir [...]\\
 Unter \textbf{Mehrdeutigkeit} verstehen wir, dass ein Wort verschiedene Bedeutungen abhängig vom Kontext haben kann.\\
-Unter \textbf{Phonologie} verstehen wir, dass sich je nach Aussprache die Bedeutung eines Wortes ändern kann.
-\section{Schrittweise Verarbeitung natürlicher Sprache}
-\label{sec:meth}
-TODO:\\
-tiefergehende Erläuterung der Begriffe und Begründung der gewählten Reihenfolge\\
-hauptsächlich Eingehen auf \cite{Jur2009}\\
-wird Code-Beispiel und/oder Automaten enthalten
-	\subsection{Parsing der Morphologie}
-	\label{ssec:morph}
+Unter \textbf{Phonologie} verstehen wir, dass sich je nach Aussprache die Bedeutung eines Wortes ändern kann.\\
+Aus Gründen der Übersichtlichkeit wird hier nur auf Morphologie eingegangen.
+\section{Parsing der Morphologie mithilfe von deterministischen endlichen Automaten}
+\label{sec:pars}
 Zum Parsing der Morphologie sei zunächst gesagt, was unter dem Begriff der Morphologie zu verstehen ist.
 Die Morphologie ist die Festlegung all jener Regeln, nach denen sich ein Wort unter Flexion verändert.
 Dies geschieht über das Hinzufügen von \textit{Morphemen}.
@@ -307,38 +308,65 @@ Wie man sehen kann, sind mehr Morpheme gelistet, als das Wort Flexionsbausteine 
 Zu den Morphemen zählen ebenfalls Zeichen, die grammatikalische Informationen enthalten wie beispielsweise, dass es sich um ein Nomen handelt (\textit{+N}).
 Mithilfe von Konventionen über die Stelligkeit, also die Reihenfolge, und Nomenklatur der Morpheme ist es möglich, wahlweise kaskadierende oder verkettete endliche, deterministische Automaten (i.F. DFAs) zu konstruieren, deren Zweck darin besteht, ein Wort in seine Morpheme zu zerlegen und uns somit mit sämtlichen grammatikalischen Informationen über dieses Wort zu versorgen.\\
 Es liegt auf der Hand, dass eine Automatenkette, die sämtliche Wörter einer Sprache korrekt erkennen soll, sehr lang ist.
-Wählt man statt der Verkettung die Kaskadierung der Automaten, d.h. man konstruiert einen äquivalenten, größeren Automaten, der mehrere kleinere DFAs zusammenfasst, so wird die Kette zwar kürzer (durch genügend Rekonstruktion lässt sich jede Kette von DFAs in einem großen DFA zusammenfassen), da jedoch die Anzahl der Zustände und Kanten äquivalent ist, wird das Konstrukt ungleich komplexer.
-	\subsection{Analyse der Syntax}
-	\label{ssec:syntax}
-	\subsection{Interpretation der Semantik}
-	\label{sec:sem}
-	\subsection{Erfassung der Pragmatik}
-	\label{ssec:prag}
-	\subsection{Inbetrachtziehen des Diskurs}
-	\label{ssec:disc}
-	\subsection{Auflösung von Mehrdeutigkeit}
-	\label{ssec:ambi}
-
-\section{Simon, Sirius, Jasper}
+Wählt man statt der Verkettung die Kaskadierung der Automaten, d.h. man konstruiert einen äquivalenten, größeren Automaten, der mehrere kleinere DFAs zusammenfasst, so wird die Kette zwar kürzer (durch genügend Rekonstruktion lässt sich jede Kette von DFAs in einem großen DFA zusammenfassen), da jedoch die Anzahl der Zustände und Kanten äquivalent ist, wird das Konstrukt ungleich komplexer.\\
+Zu Veranschaulichung wird an dieser Stelle ein kleiner DFA eingefügt, der das Wort \textit{Nachkommastellen} auf seine Morpheme reduzieren soll.\\
+\begin{figure}[h]
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.0cm,semithick]
+	\node [initial, state]		(q0)					{$q_0$};
+	\node [state]				(q1)	[right of=q0]	{$q_1$};
+	\node [accepting, state]	(q2)	[right of=q1]	{$q_2$};
+	\node [accepting, state]	(q3)	[right of=q2]	{$q_3$};
+	
+	\path
+		(q0)	edge	[bend right=20]	node	[align=center]	{1. Buchstabe \\ groß}	(q1)
+		(q1)	edge	[bend right=20]	node	[align=center]	{Stamm in \\ Nomen}		(q2)
+		(q2)	edge	[bend right=20]	node	[align=center]	{endet auf \\ \textbf{n}}		(q3)
+		(q3)	edge	[loop right]	node	[align=center]	{Gültiges \\ Affix}		(q3)
+	;
+\end{tikzpicture}
+\caption{DFA zur Zerlegung des Wortes \textit{Nachkommastellen} in seine Morpheme}
+\label{dfa1}
+\end{figure}\\
+Dies ist ein sehr allgemeiner DFA, um Nomen zu erkennen.
+Zuerst wird geprüft, ob der erste Buchstabe groß geschrieben ist, was eine Voraussetzung für Nomen in der deutschen Sprache ist und das Morphem \textit{+N} zurückliefert.
+Anschließend wird das Wort nach einer Zeichenkette durchsucht, die in der Liste der dem Programm bekannten Nomen steht.
+Da \textit{komma} vor \textit{stelle} steht, wird es als gültiger Stamm akzeptiert.
+Allerdings ist dies eine Schwachstelle dieses DFA, welcher auch fälschlicherweise \textit{stelle} als Stamm erkennen könnte. Dieser Prozess liefert uns das Stamm-Morphem zurück.\\
+An dieser Stelle hat der Automat erfolgreich ein Nomen erkannt und kann den Prozess beenden, wenn das Wort zu ende ist.
+Ist das Wort noch nicht zu ende, so prüft der Automat die verbliebenen Zeichenketten zunächst darauf, ob das Plural-Morphem vorliegt. 
+In unserem Fall ist dieses Morphem nur der Buchstabe \textit{n}, bei manchen Wörtern kann es sich aber auch um beispielsweise die Zeichenkette \textit{en} handeln.
+Sind dann noch Zeichen übrig, werden diese darauf geprüft, ob es sich um gültige Affixe handelt. Diese werden in $q_3$ allesamt herausgefiltert und liefern ihr Morphem zurück.
+Sind nach dem Prüfen auf Affixe noch Zeichen übrig, bricht der Automat ab und akzeptiert das Wort nicht.
+Dies kann bei der hier gewählte Implementierung sowohl daran liegen, dass ein morphologischer Sonderfall vergessen wurde, als auch daran, dass es sich nicht um ein gültiges Wort handelt.
+Ist das Wort allerdings zu ende, akzeptiert der Automat das Wort und liefert uns dessen Morphem-Kette zurück, welche in unserem Beispiel wie folgt aussieht:
+\begin{equation*}
+\begin{array}{ccccc}
+	\text{N} & \text{nach} & \text{komma} & \text{stelle} & \text{n}	\\
+	N & +Pref & +Stamm & +Suf & +PL
+\end{array}
+\end{equation*}
+Wie hier zu sehen ist, ist bereits bei einem einzelnen Wort viel zu beachten.
+Hinzu kommt, dass hier nur eine Wortklasse abgedeckt wurde.
+Kommen noch andere Wortklassen, wie beispielsweise Verben, hinzu, steigt die Komplexität der Automatenkette exponentiell.\\
+Als Ansatzpunkt wäre hier allerdings anzumerken, dass der DFA mit einer Kante von $q_0$ zu einem nicht angegebenen Zustand versehen werden kann, die als Beschriftung hat: "1. Buchstabe $\lnot$ groß".
+Diese Kante würde eine Kaskade beginnen, durch die ein Wort durch die DFAs für sämtliche Wortklassen durchgereicht wird.\\
+Die Operationen, die erforderlich sind, um einen String derart zu zerlegen, sind in höheren Programmiersprachen bereits enthalten.
+Ebenso können gewissen Morpheme mit regulären Ausdrücken (\textit{regular expressions}/ RegEx) erkannt werden.\\
+\\
+Da nun bekannt ist, wie aus einem gelesenen String ein verarbeitbarer Datensatz geworden ist, folgt ein Einblick in die Implementierung der Textanalyse bei der Open Source-Software \textit{Sirius}.
+\section{Morphologie-Analyse am Beispiel von \textit{Sirius}}
 \label{sec:software}
 Diese drei Namen sind Namen von Open Source Sprachverarbeitungssoftware.
 Wir werden diese drei Pakete untersuchen und ihre Gemeinsamkeiten bezüglich der Sprachanalyse ermitteln. \\
 - wird Code-Beispiele enthalten
-	\subsection{Simon listens}
-	\label{ssec:simon}
-	KDE-basierendes Programm\\
-	Sprache: C++
 	\subsection{Sirius}
 	\label{ssec:sirius}
 	Für die meisten Linux-Distributionen verwendbar\\
 	Sprache: Python, C++, Shell
-	\subsection{The Jasper Project}
-	\label{ssec:jasper}
-	Software für Raspberry Pi\\
-	Sprache: Python
-\section{Praktischer Nutzer der Textverarbeitung}
+\section{Praktischer Nutzen der Textverarbeitung}
 \label{sec:ausb}
-Es wurde gezeigt, wie Sprachverarbeitung ausgesehen hat (\ref{sec:intro}) und wie das Verständnis natürlicher Sprache funktioniert (\ref{sec:meth}).
+Anhand von ELIZA (\ref{ssec:eliza}) wurde gezeigt, wie die Kinderschuhe der Sprachverarbeitung ausgesehen haben.
+Mithilfe von Sirius (\ref{ssec:sirius}) wurde gezeigt, wie ein Teil der Sprachverarbeitung heute aussieht.
 Doch was kommt nun?
 Was hat man davon, dass Computer Menschen verstehen können?
 Ein Beispiel, welches ich an dieser Stelle aus Eigeninteresse an der Thematik vorstellen möchte, ist die Weiterentwicklung des Chat-Bots: Die Künstliche Intelligenz von Videospiel-NPCs.\\

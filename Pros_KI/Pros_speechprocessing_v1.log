@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.11.6)  3 JUL 2015 18:23
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.11.6)  3 JUL 2015 20:21
 entering extended mode
 **Pros_speechprocessing_v1.tex
 
@@ -1084,6 +1084,48 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 s\tikzlibrarytopaths.code.tex"
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.0 (rcs-revision 1.2)
 )))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
+s\tikzlibraryarrows.code.tex"
+File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.0 (rcs-revision 1.1)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.
+code.tex"
+File: pgflibraryarrows.code.tex 2013/09/23 v3.0.0 (rcs-revision 1.16)
+\arrowsize=\dimen217
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
+s\tikzlibraryautomata.code.tex"
+File: tikzlibraryautomata.code.tex 2008/07/14 v3.0.0 (rcs-revision 1.3)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
+s\tikzlibraryshapes.multipart.code.tex"
+File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.0 (rcs-revision 1.1)
+
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibrary
+shapes.multipart.code.tex"
+File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.0 (rcs-revision 1.2)
+\pgfnodepartlowerbox=\box76
+\pgfnodeparttwobox=\box77
+\pgfnodepartthreebox=\box78
+\pgfnodepartfourbox=\box79
+\pgfnodeparttwentybox=\box80
+\pgfnodepartnineteenbox=\box81
+\pgfnodeparteighteenbox=\box82
+\pgfnodepartseventeenbox=\box83
+\pgfnodepartsixteenbox=\box84
+\pgfnodepartfifteenbox=\box85
+\pgfnodepartfourteenbox=\box86
+\pgfnodepartthirteenbox=\box87
+\pgfnodeparttwelvebox=\box88
+\pgfnodepartelevenbox=\box89
+\pgfnodeparttenbox=\box90
+\pgfnodepartninebox=\box91
+\pgfnodeparteightbox=\box92
+\pgfnodepartsevenbox=\box93
+\pgfnodepartsixbox=\box94
+\pgfnodepartfivebox=\box95
+)))
 \c@theorem=\count174
 \c@definition=\count175
 
@@ -1092,21 +1134,21 @@ File: lstlang1.sty 2014/09/06 1.5e listings language file
 )
 (C:\Users\Apollo\Documents\GitHub\Homework\Pros_KI\Pros_speechprocessing_v1.aux
 )
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 158.
-LaTeX Font Info:    ... okay on input line 158.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 158.
-LaTeX Font Info:    ... okay on input line 158.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 158.
-LaTeX Font Info:    ... okay on input line 158.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 158.
-LaTeX Font Info:    ... okay on input line 158.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 158.
-LaTeX Font Info:    ... okay on input line 158.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 158.
-LaTeX Font Info:    ... okay on input line 158.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 158.
-LaTeX Font Info:    ... okay on input line 158.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 158.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 164.
 
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
@@ -1114,13 +1156,13 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count176
-\scratchdimen=\dimen217
-\scratchbox=\box76
+\scratchdimen=\dimen218
+\scratchbox=\box96
 \nofMPsegments=\count177
 \nofMParguments=\count178
 \everyMPshowfont=\toks55
 \MPscratchCnt=\count179
-\MPscratchDim=\dimen218
+\MPscratchDim=\dimen219
 \MPnumerator=\count180
 \makeMPintoPDFobject=\count181
 \everyMPtoPDFconversion=\toks56
@@ -1160,8 +1202,8 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \c@lstlisting=\count182
-\AtBeginShipoutBox=\box77
-Package hyperref Info: Link coloring OFF on input line 158.
+\AtBeginShipoutBox=\box97
+Package hyperref Info: Link coloring OFF on input line 164.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -1170,9 +1212,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count183
 )
-LaTeX Info: Redefining \ref on input line 158.
-LaTeX Info: Redefining \pageref on input line 158.
-LaTeX Info: Redefining \nameref on input line 158.
+LaTeX Info: Redefining \ref on input line 164.
+LaTeX Info: Redefining \pageref on input line 164.
+LaTeX Info: Redefining \nameref on input line 164.
 
 (C:\Users\Apollo\Documents\GitHub\Homework\Pros_KI\Pros_speechprocessing_v1.out
 )
@@ -1185,7 +1227,7 @@ Package caption Info: End \AtBeginDocument code.
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 205.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 211.
 
 (C:\Users\Apollo\Documents\GitHub\Homework\Pros_KI\Pros_speechprocessing_v1.toc
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
@@ -1198,23 +1240,17 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 3.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-))
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 7.
+)
 \tf@toc=\write7
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.217 \clearpage
+l.223 \clearpage
                  [1]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 227.
-
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
-File: omsptm.fd 
-)
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 227.
-
 Overfull \hbox (8.47346pt too wide) in paragraph at lines 233--239
 \OT1/ptm/m/n/12 Schon seit et-wa acht-zig Jah-ren besch[]aftigen sich For-scher
  mit dem The-ma der K[]unstlichen
@@ -1222,90 +1258,114 @@ Overfull \hbox (8.47346pt too wide) in paragraph at lines 233--239
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 239.
+
+Overfull \hbox (11.58557pt too wide) in paragraph at lines 253--265
+\OT1/ptm/m/n/12 tel-li-genz zu ver-glei-chen. W[]ahrend ELI-ZA ein simp-les Key
+-Value-Pair-matching-Verfahren
+ []
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.251 	\subsection
-                  {ELIZA als Beispiel für frühe Sprachverarbeitung} [2
+l.265 \section
+              {Was ist natürliche Sprache?} [2
 
 ]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 268.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 274.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Overfull \hbox (2.9591pt too wide) in paragraph at lines 263--287
+Overfull \hbox (2.9591pt too wide) in paragraph at lines 269--294
 \OT1/ptm/m/n/12 Gram-ma-tik, Wort-schatz und Ver-wen-dung dar-stell-bar. Der Un
 -ter-schied zu den nat[]urlichen
  []
 
 
-Overfull \hbox (1.67107pt too wide) in paragraph at lines 263--287
+Overfull \hbox (1.67107pt too wide) in paragraph at lines 269--294
 \OT1/ptm/m/n/12 Unter \OT1/ptm/b/n/12 Mehr-deu-tig-keit \OT1/ptm/m/n/12 ver-ste
 -hen wir, dass ein Wort ver-schie-de-ne Be-deu-tun-gen abh[]angig
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 295--300
+Underfull \hbox (badness 10000) in paragraph at lines 296--301
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 341--346
+Underfull \hbox (badness 10000) in paragraph at lines 347--357
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 349--350
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <17.28> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 357.
+
+Underfull \hbox (badness 10000) in paragraph at lines 368--374
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 377--378
 
  []
 
 [6]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 379.
+
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 379.
+ [7]
 (C:\Users\Apollo\Documents\GitHub\Homework\Pros_KI\Pros_speechprocessing_v1.bbl
 )
 
-Package caption Warning: Unused \captionsetup[lstlisting] on input line 152.
+Package caption Warning: Unused \captionsetup[lstlisting] on input line 154.
 See the caption package documentation for explanation.
 
-[7]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 372.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 372.
+[8]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 400.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 400.
 
 (C:\Users\Apollo\Documents\GitHub\Homework\Pros_KI\Pros_speechprocessing_v1.aux
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 372.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 372.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 400.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 400.
 Package rerunfilecheck Info: File `Pros_speechprocessing_v1.out' has not change
 d.
-(rerunfilecheck)             Checksum: CC5FD92473EDC871E93451A584A21C2C;1326.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 372.
+(rerunfilecheck)             Checksum: 25682CA585A54E0FA42D934FD5B47ADB;784.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 400.
  )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 300 ({)
+### simple group (level 1) entered at line 301 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 20774 strings out of 493921
- 368880 string characters out of 3144873
- 470798 words of memory out of 3000000
- 23611 multiletter control sequences out of 15000+200000
- 22266 words of font info for 51 fonts, out of 3000000 for 9000
+ 21963 strings out of 493921
+ 405944 string characters out of 3144873
+ 514199 words of memory out of 3000000
+ 24789 multiletter control sequences out of 15000+200000
+ 26538 words of font info for 57 fonts, out of 3000000 for 9000
  842 hyphenation exceptions out of 8191
- 55i,12n,54p,450b,460s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 55i,12n,68p,450b,1007s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.
 enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pf
 b><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><
-C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:
-/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)
-/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9
-/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
-1/urw/times/utmri8a.pfb>
-Output written on Pros_speechprocessing_v1.pdf (9 pages, 135182 bytes).
+C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/P
+rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pro
+gram Files (x86)/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiK
+TeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
+nts/type1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/u
+rw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/ut
+mri8a.pfb>
+Output written on Pros_speechprocessing_v1.pdf (10 pages, 149710 bytes).
 PDF statistics:
- 192 PDF objects out of 1000 (max. 8388607)
- 35 named destinations out of 1000 (max. 500000)
- 157 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 162 PDF objects out of 1000 (max. 8388607)
+ 27 named destinations out of 1000 (max. 500000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 

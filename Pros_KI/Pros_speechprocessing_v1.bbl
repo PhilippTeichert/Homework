@@ -25,12 +25,4 @@ Peter Norvig;~Stuart Russel.
 \newblock {\em Artificial Intelligence: A Modern Approach}.
 \newblock Prentice Hall, 2009.
 
-\bibitem{Jasper}
-Charles Marsh;~Shubhro Saha.
-\newblock Jasper project, 2014.
-
-\bibitem{Simon}
-Adam Nash; Frederik Gladhorn; Mathias Stieger;~Patrick von Reth; Peter~Grasch.
-\newblock Simon listens, 2015.
-
 \end{thebibliography}
