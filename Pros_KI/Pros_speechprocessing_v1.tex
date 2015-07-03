@@ -282,8 +282,8 @@ Unter \textbf{Syntax} verstehen wir [...]\\
 Unter \textbf{Semantik} verstehen wir [...]\\
 Unter \textbf{Pragmatik} verstehen wir [...]\\
 Unter \textbf{Diskurs} verstehen wir [...]\\
-Unter \textbf{Mehrdeutigkeit} verstehen wir, dass ein Wort verschiedene Bedeutungen abhängig vom Kontext haben kann.
-Unter \textbf{Phonologie} verstehen wir, dass sich je nach Aussprache die Bedeutung eines Wortes ändern kann.\\
+Unter \textbf{Mehrdeutigkeit} verstehen wir, dass ein Wort verschiedene Bedeutungen abhängig vom Kontext haben kann.\\
+Unter \textbf{Phonologie} verstehen wir, dass sich je nach Aussprache die Bedeutung eines Wortes ändern kann.
 \section{Schrittweise Verarbeitung natürlicher Sprache}
 \label{sec:meth}
 TODO:\\
@@ -292,6 +292,22 @@ hauptsächlich Eingehen auf \cite{Jur2009}\\
 wird Code-Beispiel und/oder Automaten enthalten
 	\subsection{Parsing der Morphologie}
 	\label{ssec:morph}
+Zum Parsing der Morphologie sei zunächst gesagt, was unter dem Begriff der Morphologie zu verstehen ist.
+Die Morphologie ist die Festlegung all jener Regeln, nach denen sich ein Wort unter Flexion verändert.
+Dies geschieht über das Hinzufügen von \textit{Morphemen}.
+Ein Morphem ist alles das, was als atomarer Bestandteil eines Wortes gelesen werden kann: Wortstamm, Flexionsendungen, Affixe.
+\cite{Jur2009} führt als Beispiel das Wort \textit{fox} sowie dessen Pluralform \textit{foxes} an, welches sich als folgende Kette von Morphemen darstellen lässt:\\
+{\begin{equation*}
+\begin{array}{ccc}
+	fox & & es	\\
+	Stamm & +N & +PL
+\end{array}
+\end{equation*}
+Wie man sehen kann, sind mehr Morpheme gelistet, als das Wort Flexionsbausteine hat.
+Zu den Morphemen zählen ebenfalls Zeichen, die grammatikalische Informationen enthalten wie beispielsweise, dass es sich um ein Nomen handelt (\textit{+N}).
+Mithilfe von Konventionen über die Stelligkeit, also die Reihenfolge, und Nomenklatur der Morpheme ist es möglich, wahlweise kaskadierende oder verkettete endliche, deterministische Automaten (i.F. DFAs) zu konstruieren, deren Zweck darin besteht, ein Wort in seine Morpheme zu zerlegen und uns somit mit sämtlichen grammatikalischen Informationen über dieses Wort zu versorgen.\\
+Es liegt auf der Hand, dass eine Automatenkette, die sämtliche Wörter einer Sprache korrekt erkennen soll, sehr lang ist.
+Wählt man statt der Verkettung die Kaskadierung der Automaten, d.h. man konstruiert einen äquivalenten, größeren Automaten, der mehrere kleinere DFAs zusammenfasst, so wird die Kette zwar kürzer (durch genügend Rekonstruktion lässt sich jede Kette von DFAs in einem großen DFA zusammenfassen), da jedoch die Anzahl der Zustände und Kanten äquivalent ist, wird das Konstrukt ungleich komplexer.
 	\subsection{Analyse der Syntax}
 	\label{ssec:syntax}
 	\subsection{Interpretation der Semantik}
@@ -320,57 +336,13 @@ Wir werden diese drei Pakete untersuchen und ihre Gemeinsamkeiten bezüglich der
 	\label{ssec:jasper}
 	Software für Raspberry Pi\\
 	Sprache: Python
-\section{Über Haushaltsroboter bis C3PO}
+\section{Praktischer Nutzer der Textverarbeitung}
 \label{sec:ausb}
 Es wurde gezeigt, wie Sprachverarbeitung ausgesehen hat (\ref{sec:intro}) und wie das Verständnis natürlicher Sprache funktioniert (\ref{sec:meth}).
 Doch was kommt nun?
 Was hat man davon, dass Computer Menschen verstehen können?
-An drei Beispielen aus der Fiktion werden nun mögliche Anwendungsgebiete gezeigt.
-\subsection{Das intelligente Haus}
-\label{ssec:sarah}
-\textit{„Herzlich Willkommen.“ - „Was ist das?“ - „DAS war Sarah.“\\
-        „Selbstständig arbeitendes, rundum automatisiertes Haus. Kurz: S.A.R.A.H.“}
-\begin{flushright}
-    \textit{-~~Sarah, Jack Carter und Douglas Fargo, \cite{EUR103}}
-\end{flushright}
-\textit{Sarah} ist ein Haus aus der Science Fiction-Serie \textsc{Eureka}.
-Tatsächlich ist \textit{Sarah} weniger Fiction als Science.
-Es, oder Sie, ist tatsächlich eine künstliche Intelligenz, die in ein Haus eingebaut wurde.
-\textit{Sarah} verwaltet dabei sämtliche Funktionen des Hauses: Lüftung, Raumtemperatur, Küche, Multimedia, Türen.
-Sie kommuniziert mit den Bewohnern des Hauses durch gesprochene Sprache.
-So bittet der Hausherr sie zum Beispiel mit dem Aufruf \textit{„Sarah, Tür!“} darum, die Tür zu öffnen oder zu schließen.
-Doch über rudimentäre Befehle hinaus können die Bewohner auch komplexe Unterhaltungen über den Beruf, die Schule oder die Gefühle führen.
-Nun wird viel nötig sein, um Empathie oder Emotionen simulieren zu können.
-Jedoch ist es nicht unrealistisch, davon auszugehen, dass in nicht allzu ferner Zukunft solche Gespräche zwischen Mensch und Maschine möglich sind.
-\subsection{Rechercheunterstützende Computer}
-\label{ssec:data}
-\textit{„Computer, erbitte alle verfügbaren Informationen über die fiktive Figur 'Dixon Hill'.“\\
-        „Bitte warten. Die Figur tauchte zum ersten Mal in dem Magazin 'Erstaunliche Detektivgeschichten' auf, [...]“}
-\begin{flushright}
-    \textit{-~~Commander Data und der Schiffscomputer; \cite{TNG112}}
-\end{flushright}
-Recht früh in der Serie \textit{Star Trek: The Next Generation} gibt es eine Folge, in der der Android Data dem Computer des Raumschiffes \textit{Enterprise} eine Rechercheanweisung gibt.
-Der Computer nimmt einen Suchbegriff entgegen und scannt die komplette Datenbank der Föderation nach allen möglichen Treffern.
-Hierbei muss er differenzieren, was als möglicher Treffer und was als tatsächlicher Treffer gilt.
-Tatsächlich kann der Computer nur anhand dieser Anweisung nicht entscheiden, welcher \textit{Dixon Hill} gemeint ist, sollten mehrere existieren.
-Hierbei müssen Wahrscheinlichkeiten verglichen und der Kontext analysiert werden.
-Dies in diesem Ausmaße in absehbarer Zeit serientauglich zu machen, halte ich für unwahrscheinlich. Dennoch, möglich wäre es.\\
-(Der Computer hier hatte ein wenig Hilfe - Der Captain des Raumschiffes hatte kurz zuvor ein Unterhaltungsprogramm mit Fokus auf den Privatdetektiv Dixon Hill geladen.)
-\subsection{R2D2 und C3PO}
-\label{ssec:r2d2}
-\textit{„Er ist ein Protokoll-Droide und soll Mom helfen.[...]“ - „Oh! Hallo! Ich bin C-3PO, Roboter-Mensch-Kontakter.“}
-\begin{flushright}
-    \textit{-~~Anakin Skywalker und C-3PO; \cite{SWEP1}}
-\end{flushright}
-Das \textit{Star Wars}-Universum wimmelt von Robotern, oder, wie sie dort heißen, Droiden.
-Unter diesen Droiden finden sich R2D2 und C3PO, wohl zwei der bekanntesten Roboter der Filmgeschichte, vielleicht nur übertroffen vom Tin Man aus Oz.
-Während die Hauptfunktionsweise von R2D2 ist, verbale Befehle in simple Arbeitsanweisungen zu übersetzen und auszuführen, so arbeitet 3PO auf einem anderen Niveau:
-C-3PO akzeptiert eine (nahezu) beliebige Menschen-, Alien- oder Maschinensprache und kann sie in (nahezu) jede andere Sprache übersetzen.
-Er wurde dazu konzipiert, die Kommunikation zwischen künstlichen und natürlichen Intelligenzen zu vereinfachen.\\
-Beide nehmen sprachliche Anweisungen entgegen.
-Während R2 diese Anweisungen lediglich auf Befehle parst, die er kennt, analysiert 3PO seine erhaltenen Anweisungen und überführt sie in eine andere Sprache.
-Somit erfolgt bei R2 eine Reaktion auf Anweisungen und bei 3PO eine Umwandlung von Anweisungen.\\
-Dies war zwar nicht vor langer, langer Zeit denkbar - zumindest nicht in dieser Galaxis - dürfte jedoch mehr als denkbar sein für die nicht allzu ferne Zukunft.
+Ein Beispiel, welches ich an dieser Stelle aus Eigeninteresse an der Thematik vorstellen möchte, ist die Weiterentwicklung des Chat-Bots: Die Künstliche Intelligenz von Videospiel-NPCs.\\
+Während ein Chat-Bot eine Sammlung semi-intelligenter, auf Key-Value-Pairing basierender Algorithmen zum Durchsuchen von Speicherdaten, etwa in Form einer Text-Datei, ist, ist ein NPC die Illusion einer lebenden Entität in einer fiktiven Welt. Die Abkürzung \textit{NPC} steht für den englischen Ausdruck \textit{Non-Player-Character}, also eine Figur, die nicht vom Spieler selber gesteuert wird.\\
 
 \section{Schlussfolgerung}
 \label{sec:concl}

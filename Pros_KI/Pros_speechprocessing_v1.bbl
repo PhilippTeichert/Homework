@@ -1,13 +1,9 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{1}
 
 \bibitem{Bird2009}
 Ewan Klein; Edward Loper;~Steven Bird.
 \newblock {\em Natural language processing with Python}.
 \newblock O'Reilly Media, Inc, 2009.
-
-\bibitem{EUR103}
-Jaime Paglia;~Andrew Cosby.
-\newblock Eureka 1x03: Many happy returns, July 2006.
 
 \bibitem{Jur2009}
 James H. Martin;~Daniel Jurafsky.
@@ -17,10 +13,6 @@ James H. Martin;~Daniel Jurafsky.
 \bibitem{Sirius}
 Clarity Lab.
 \newblock Sirius, 2015.
-
-\bibitem{SWEP1}
-George Lucas.
-\newblock Star wars episode i: The phantom menace, May 1999.
 
 \bibitem{Ploom2014}
 Iain Last; Axel Glaser; Stefan Scheit;~Tarmo Ploom.
@@ -37,16 +29,8 @@ Peter Norvig;~Stuart Russel.
 Charles Marsh;~Shubhro Saha.
 \newblock Jasper project, 2014.
 
-\bibitem{TNG112}
-Tracy Torme.
-\newblock Star trek: The next genereation 1x12: The big goodbye, January 1988.
-
 \bibitem{Simon}
 Adam Nash; Frederik Gladhorn; Mathias Stieger;~Patrick von Reth; Peter~Grasch.
 \newblock Simon listens, 2015.
-
-\bibitem{ADA101}
-Robert~Hewitt Wolfe.
-\newblock Andromeda 1x01: Under the night, October 2000.
 
 \end{thebibliography}
