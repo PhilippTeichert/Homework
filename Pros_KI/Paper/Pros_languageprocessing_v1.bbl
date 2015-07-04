@@ -1,0 +1,36 @@
+\begin{thebibliography}{1}
+
+\bibitem{Bird2009}
+Ewan Klein; Edward Loper;~Steven Bird.
+\newblock {\em Natural language processing with Python}.
+\newblock O'Reilly Media, Inc, 2009.
+
+\bibitem{Jur2009}
+James H. Martin;~Daniel Jurafsky.
+\newblock {\em Speech and Language Processing}.
+\newblock Prentice Hall, 2009.
+
+\bibitem{Sirius}
+Clarity Lab.
+\newblock Sirius, 2015.
+
+\bibitem{Ploom2014}
+Iain Last; Axel Glaser; Stefan Scheit;~Tarmo Ploom.
+\newblock Processing chains in system of systems.
+\newblock In {\em Mesoca 2014: 8th IEEE International Symposium on the
+  Maintenance and Evolution of Service-Oriented and Cloud-Based Systems}, 2014.
+
+\bibitem{Rus2009}
+Peter Norvig;~Stuart Russel.
+\newblock {\em Artificial Intelligence: A Modern Approach}.
+\newblock Prentice Hall, 2009.
+
+\bibitem{Jasper}
+Charles Marsh;~Shubhro Saha.
+\newblock Jasper project, 2014.
+
+\bibitem{Simon}
+Adam Nash; Frederik Gladhorn; Mathias Stieger;~Patrick von Reth; Peter~Grasch.
+\newblock Simon listens, 2015.
+
+\end{thebibliography}
