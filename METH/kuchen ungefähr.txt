@@ -1,5 +1,5 @@
 class was ist ein kuchen? [3m]
-	this.moderation = false
+	this.moderation = true
 	lecker = true
 	def __ingredients__():
 		add(mehl)
@@ -11,11 +11,10 @@ class was ist ein kuchen? [3m]
 			add(schuss)
 
 	herzhaft = __herzhaft__(),
-	this.moderation = true
 	this.add(parseIngredient(raw_input("Ergänzungen?\n")))
 
 class die macht des käsekuchens![5m]
-	this.moderation = true
+	this.moderation = false
 	for s in käse.sorten():
 		print s
 		
