@@ -34,10 +34,10 @@
 \usepackage{perpage}					% resets specified settings per page
 \MakePerPage{footnote}					% resetting footnote count per page
 
-%\usepackage[outer=3.35cm]{geometry} 	% Type area (size, margins...) !!!Release version
+\usepackage[outer=3.35cm]{geometry} 	% Type area (size, margins...) !!!Release version
 %\usepackage[outer=2.5cm]{geometry} 	% Type area (size, margins...) !!!Print version
 %\usepackage{geometry} 					% Type area (size, margins...) !!!Proofread version
-\usepackage[outer=3.15cm]{geometry} 	% Type area (size, margins...) !!!Draft version
+%\usepackage[outer=3.15cm]{geometry} 	% Type area (size, margins...) !!!Draft version
 \geometry{a4paper,body={5.8in,9in}}
 
 % changing font
@@ -275,7 +275,7 @@ Eine natürliche Sprache ist eine Sprache, die sich im Verlauf der Zeit aus der 
 Durch die permanente Entwicklung einer Sprache verändert sich permanent die Bedeutung und Verwendung von Wörtern, andere Wörter werden neu hinzugefügt, wieder andere fallen heraus.
 So wurde zum Beispiel das Wort \texttt{Gebäudereinigungsfachkraft} erst vor relativ kurzer Zeit in den aktiven Wortschatz seiner Sprache aufgenommen, während das wort \texttt{archaistich} für 'veraltet' oder 'altertümlich' kaum noch Verwendung findet.
 Das erste Beispiel hat aus Gründen der politischen Korrektheit nicht nur Einzug in die deutsche Sprache als neue Bezeichnung gefunden, sondern auch seinen Vorgänger ersetzt.\\
-Bird et. al. nahmen ebenfalls Bezug auf künstiche Sprachen.
+Bird et. al. nahmen ebenfalls Bezug auf künstliche Sprachen.
 Programmiersprachen und mathematische Notationen sind, ebenso wie natürliche Sprachen, als Verbindung aus Grammatik, Wortschatz und Verwendung darstellbar.
 Der Unterschied zu den natürlichen Sprachen ist jedoch, dass diese Sprachen feststehen.
 In der Sprache der Mathematik findet außer in Fachkreisen kaum noch eine Veränderung statt.
@@ -283,15 +283,15 @@ Ebenso verhält es sich mit dem täglich verwendeten Java.
 Mit jedem Update gibt es eine handvoll Änderungen, jedoch nimmt kaum eine dieser Änderungen Einfluss auf den alltäglichen Gebrauch der Sprache.\\
 Die Eigenschaft von natürlichen Sprachen, dynamisch zu sein, macht es schwer, sie in kompakten Regeln klar zu formulieren.
 Um es dennoch zu können, wird eine Sprache in folgende sechs Teilgebiete aufgeteilt, die jedes für sich erfasst und bearbeitet werden kann:
-Morphologie, Syntax, Semantik, Pragmatik, Diskurs und Mehrdeutigkeit.\\
-Für die gesprochene Sprache kommt der Punkt der Phonologie hinzu.\\
-Unter \textbf{Morphologie} verstehen wir die Veränderung des Wortes nach Anwendung der Grammatik. \\
-Unter \textbf{Syntax} verstehen wir den strukturellen Aufbau eines Satzes, etwa dass ein Verb nie vor einem Subjekt steht.\\
-Unter \textbf{Semantik} verstehen wir [...]\\
-Unter \textbf{Pragmatik} verstehen wir [...]\\
-Unter \textbf{Diskurs} verstehen wir [...]\\
+Morphologie, Syntax, Semantik, Pragmatik, Diskurs und Mehrdeutigkeit (\cite{Jur2009}).\\
+Für die gesprochene Sprache kommt der Punkt der Phonologie hinzu\footnote{Nach den formalen Definitionen in \cite{duden}}.\\
+Unter \textbf{Morphologie} verstehen wir die Lehre der Gestalten und Formen eines Objektes, in unserem Fall die Veränderung eines Wortes nach Flexion\footnote{Konjugation, Steigerung oder Deklination, je nach Wortart} und Komposition\footnote{Zusammenfügen von Wörtern (Beispiel: 'Schiff' + 'Fahrt' $\longrightarrow$ 'Schifffahrt'}). \\
+Unter \textbf{Syntax} verstehen wir die Lehre vom Bau eines Satzes und dessen formaler Struktur.\\
+Unter \textbf{Semantik} verstehen wir die Bedeutung oder den Inhalt eines Wortes, Satzes oder Textes\\\
+Unter \textbf{Pragmatik} verstehen wir die Beziehung zwischen Sprachbausteinen und ihren Anwendungen sowie das Interpretieren von Sprechen und Schreiben als Handlung.\\
+Unter \textbf{Diskurs} verstehen wir die Gesamtheit aller sprachlichen Äußerungen eines Sprechers\footnote{eine Unterhaltung}\\
 Unter \textbf{Mehrdeutigkeit} verstehen wir, dass ein Wort verschiedene Bedeutungen abhängig vom Kontext haben kann.\\
-Unter \textbf{Phonologie} verstehen wir, dass sich je nach Aussprache die Bedeutung eines Wortes ändern kann.\\
+Unter \textbf{Phonologie} verstehen wir die Funktion der Laute in einer Sprache.\\
 Aus Gründen der Übersichtlichkeit wird hier nur auf Morphologie eingegangen.
 \section{Parsing der Morphologie mithilfe von deterministischen endlichen Automaten}
 \label{sec:pars}
@@ -300,7 +300,7 @@ Die Morphologie ist die Festlegung all jener Regeln, nach denen sich ein Wort un
 Dies geschieht über das Hinzufügen von \textit{Morphemen}.
 Ein Morphem ist alles das, was als atomarer Bestandteil eines Wortes gelesen werden kann: Wortstamm, Flexionsendungen, Affixe.
 \cite{Jur2009} führt als Beispiel das Wort \textit{fox} sowie dessen Pluralform \textit{foxes} an, welches sich als folgende Kette von Morphemen darstellen lässt:\\
-{\begin{equation*}
+\begin{equation*}
 \begin{array}{ccc}
 	fox & & es	\\
 	Stamm & +N & +PL
@@ -320,10 +320,10 @@ Zu Veranschaulichung wird an dieser Stelle ein kleiner DFA eingefügt, der das W
 	\node [accepting, state]	(q3)	[right of=q2]	{$q_3$};
 	
 	\path
-		(q0)	edge	[bend right=20]	node	[align=center]	{1. Buchstabe \\ groß}	(q1)
-		(q1)	edge	[bend right=20]	node	[align=center]	{Stamm in \\ Nomen}		(q2)
+		(q0)	edge	[bend right=20]	node	[align=center]	{1. Buchstabe \\ groß}			(q1)
+		(q1)	edge	[bend right=20]	node	[align=center]	{Stamm in \\ Nomen}				(q2)
 		(q2)	edge	[bend right=20]	node	[align=center]	{endet auf \\ \textbf{n}}		(q3)
-		(q3)	edge	[loop right]	node	[align=center]	{Gültiges \\ Affix}		(q3)
+		(q3)	edge	[loop right]	node	[align=center]	{Gültiges \\ Affix}				(q3)
 	;
 \end{tikzpicture}
 \caption{DFA zur Zerlegung des Wortes \textit{Nachkommastellen} in seine Morpheme}
@@ -343,7 +343,7 @@ Dies kann bei der hier gewählte Implementierung sowohl daran liegen, dass ein m
 Ist das Wort allerdings zu ende, akzeptiert der Automat das Wort und liefert uns dessen Morphem-Kette zurück, welche in unserem Beispiel wie folgt aussieht:
 \begin{equation*}
 \begin{array}{ccccc}
-	\text{N} & \text{nach} & \text{komma} & \text{stelle} & \text{n}	\\
+	\text{N} & \text{(n)ach} & \text{komma} & \text{stelle} & \text{n}	\\
 	N & +Pref & +Stamm & +Suf & +PL
 \end{array}
 \end{equation*}
@@ -356,7 +356,8 @@ Die Operationen, die erforderlich sind, um einen String derart zu zerlegen, sind
 Ebenso können gewissen Morpheme mit regulären Ausdrücken (\textit{regular expressions}/ RegEx) erkannt werden.
 \section{RegEx zur Vereinfachung der Parsing-Arbeit}
 \label{sec:regex}
-Es ist allerdings nicht nötig, sämtliche Überprüfungen manuell zu vollziehen. Moderne Programmiersprachen haben ein Hilfsmittel namens \textit{RegEx} implementiert, welches die Analyse eines gegebenen Textes erheblich vereinfacht.
+Es ist allerdings nicht nötig, sämtliche Überprüfungen manuell zu vollziehen.
+Moderne Programmiersprachen implementieren ein Hilfsmittel namens \textit{RegEx}, welches die Analyse eines gegebenen Textes erheblich vereinfacht.
 Die Kante, die eben als Ansatzpunkt für eine Kaskade genannt wurde (\textit{"1. Buchstabe $\lnot$ groß"}) kann mithilfe einer RegEx-Überprüfung ausgelassen werden: Mithilfe des RegEx-Operators "[A-Z]" wird überprüft, ob ein Großbuchstabe vorliegt\footnote{Genauer: Es wird überprüft, ob der gegebene String in der Menge aller Buchstaben von A bis Z liegt, wobei die Menge nur Großbuchstaben enthält.}
 Diese Überprüfung gibt einen Wahrheitswert (boolean) zurück, der dann als Argument in eine Fallunterscheidung eingesetzt werden kann:
 \begin{lstlisting}
@@ -371,7 +372,7 @@ else
 	noun = false;
 }
 \end{lstlisting}
-Hierbei sei \texttt{inputWord} ein Wort des vom Benutzer des Programmes eingegebene Textes; die daran aufgerufene Methode \texttt{substring(0,1)} gibt den ersten Buchstaben dieses Wortes zurück; und die Methode \texttt{matches("[A-Z]")} ist die eben genannte RegEx-Überprüfung.
+Hierbei sei \texttt{inputWord} ein Wort des vom Benutzer des Programmes eingegebene Textes; die daran aufgerufene Methode \texttt{substring(0,1)} gibt den ersten Buchstaben dieses Wortes zurück\footnote{Genauer: Die Zeichenkette, die am Index 0 beginnt und bis einen Index vor 1 geht (was auch 0 ist, womit die Länge der Kette genau 1 ist)}; und die Methode \texttt{matches("[A-Z]")} ist die eben genannte RegEx-Überprüfung.
 Dieser Code ist vereinfachbar auf folgende einzelne Zeile:
 \begin{lstlisting}
 noun = inputWord.subString(0,1).matches("[A-Z]");
@@ -437,7 +438,7 @@ Natürlich ist damit nur ein minimaler Teil der natürlichen Sprache abgedeckt.
 Die Anworten müssen dem Programm immernoch schablonenhaft vorgegeben werden.
 Ohne Implementation der Analyse der restlichen in \ref{sec:def_lang} genannten Aspekte natürlicher Sprache hat das Programm keine Möglichkeit, zu wissen, wovon der Spieler tatsächlich redet.
 Allerdings kann mithilfe der Schablonentechnik von ELIZA (\ref{sec:eliza}) bereits ein größtenteils von der Eingabe des Spielers abhängiges Gespräch stattfinden.
-
+ 
 
 
 

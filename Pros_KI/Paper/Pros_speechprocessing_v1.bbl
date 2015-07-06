@@ -1,5 +1,9 @@
 \begin{thebibliography}{1}
 
+\bibitem{duden}
+{\em Duden - Die deutsche Rechtschreibung}, volume~1 of {\em Duden 1-12}.
+\newblock Dudenredaktion, 26 edition, October 2014.
+
 \bibitem{Bird2009}
 Ewan Klein; Edward Loper;~Steven Bird.
 \newblock {\em Natural language processing with Python}.
@@ -21,8 +25,8 @@ Peter Norvig;~Stuart Russel.
 \newblock {\em Artificial Intelligence: A Modern Approach}.
 \newblock Prentice Hall, 2009.
 
-\bibitem{JosephWeizenbau1966}
-Joseph Weizenbau.
+\bibitem{Weizenbaum1966}
+Joseph Weizenbaum.
 \newblock Eliza - a computer program for the study of natural language
   communication between man and machine.
 \newblock {\em Communications of the ACM}, 9(1):36--45, January 1966.
