@@ -10,10 +10,6 @@ James H. Martin;~Daniel Jurafsky.
 \newblock {\em Speech and Language Processing}.
 \newblock Prentice Hall, 2009.
 
-\bibitem{Sirius}
-Clarity Lab.
-\newblock Sirius, 2015.
-
 \bibitem{Ploom2014}
 Iain Last; Axel Glaser; Stefan Scheit;~Tarmo Ploom.
 \newblock Processing chains in system of systems.
@@ -24,5 +20,11 @@ Iain Last; Axel Glaser; Stefan Scheit;~Tarmo Ploom.
 Peter Norvig;~Stuart Russel.
 \newblock {\em Artificial Intelligence: A Modern Approach}.
 \newblock Prentice Hall, 2009.
+
+\bibitem{JosephWeizenbau1966}
+Joseph Weizenbau.
+\newblock Eliza - a computer program for the study of natural language
+  communication between man and machine.
+\newblock {\em Communications of the ACM}, 9(1):36--45, January 1966.
 
 \end{thebibliography}
