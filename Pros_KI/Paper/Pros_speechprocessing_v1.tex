@@ -388,7 +388,7 @@ Durch Verkettung dieser Code-Zeile mit einer \texttt{for-each-Schleife} und der 
 \begin{lstlisting}
 String[] words = inputString.split("\\s+");
 
-for (String w; words)
+for (String w: words)
 {
 	noun = w.subString(0,1).matches("[A-Z]");
 }
@@ -431,6 +431,12 @@ Die bisherige Interaktion mit NPCs beläuft sich darauf, dass ein Spieler keine 
 Entweder ihm wird eine Antwort in den Mund gelegt, er bekommt eine kleine Auswahl von meist nicht mehr als sechs Antwortmöglichkeiten, oder sein Charakter nimmt gar nicht am Gespräch teil.
 \section{Schlussfolgerung}
 \label{sec:concl}
+Mithilfe der hier erörterten Arbeitsweise ist ein erster Schritt getan, um den Spieler natürliche Sprache anwenden zu lassen, um mit NPCs zu kommunizieren:\\
+Die mithilfe von RegEx und der Java-String-Klasse umgesetzten DFAs führen alle Wörter auf ihre Stammformen und Morpheme zurück, woraufhin ein auf ELIZA-basierendes Programm Antworten generieren kann.\\
+Natürlich ist damit nur ein minimaler Teil der natürlichen Sprache abgedeckt.
+Die Anworten müssen dem Programm immernoch schablonenhaft vorgegeben werden.
+Ohne Implementation der Analyse der restlichen in \ref{sec:def_lang} genannten Aspekte natürlicher Sprache hat das Programm keine Möglichkeit, zu wissen, wovon der Spieler tatsächlich redet.
+Allerdings kann mithilfe der Schablonentechnik von ELIZA (\ref{sec:eliza}) bereits ein größtenteils von der Eingabe des Spielers abhängiges Gespräch stattfinden.
 
 
 
