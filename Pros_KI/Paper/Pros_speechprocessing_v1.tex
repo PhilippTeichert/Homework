@@ -216,7 +216,7 @@ Ein wichtiger Bestandteil dieses Prozesses ist dabei die Sprachverarbeitung.\\
 Ziel dieser Arbeit ist, Licht auf den Prozess des Verständnisses eines Computers von natürlicher Sprache zu werfen.\\
 Zu diesem Zweck wird der Begriff der natürlichen Sprache in seine Komponenten zerlegt,
 die einzelnd analysiert und in dieser Form von nichtkomplexen Automaten verarbeitet werden können.\\
-Mithilfe der \textit{String}-Klasse von Java, der \textit{RexEx}-Konvention und dem ELIZA-Programm wird eine Möglichkeit gezeigt, jeden beliebigen Eingabetext zu analysieren und darauf zu reagieren.
+Im Hinblick auf die Entwicklung von Videospielen wird mithilfe der \textit{String}-Klasse von Java, der \textit{RexEx}-Konvention und dem ELIZA-Programm eine Möglichkeit gezeigt, jeden beliebigen Eingabetext zu analysieren und darauf zu reagieren.
 % Lists:
 \setcounter{tocdepth}{2} 					% depth of the table of contents (for Seminars 2 is recommented)
 \tableofcontents
@@ -312,6 +312,7 @@ Es liegt auf der Hand, dass eine Automatenkette, die sämtliche Wörter einer Sp
 Wählt man statt der Verkettung die Kaskadierung der Automaten, d.h. man konstruiert einen äquivalenten, größeren Automaten, der mehrere kleinere DFAs zusammenfasst, so wird die Kette zwar kürzer (durch genügend Rekonstruktion lässt sich jede Kette von DFAs in einem großen DFA zusammenfassen), da jedoch die Anzahl der Zustände und Kanten äquivalent ist, wird das Konstrukt ungleich komplexer.\\
 Zu Veranschaulichung wird an dieser Stelle ein kleiner DFA eingefügt, der das Wort \textit{Nachkommastellen} auf seine Morpheme reduzieren soll.\\
 \begin{figure}[h]
+\label{fig:dfa}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.0cm,semithick]
 	\node [initial, state]		(q0)					{$q_0$};
 	\node [state]				(q1)	[right of=q0]	{$q_1$};
@@ -472,7 +473,22 @@ Darf sich der Spieler beteiligen, hat er meist sehr begrenzte Möglichkeiten.
 Drei häufig verwendete Mechaniken können herausgearbeitet werden:\\
 \textbf{Parsing.}
 Diese Methode wird bisher bei den meisten Text-Adventures\footnote{Der Spieler bekommt Informationen über Text und reagiert mit Text}.
-
+Der Vorteil ist, dass sie mit den in dieser Arbeit beschriebenen einfachen Mitteln leicht umgesetzt werden kann und aufgrund ihres Alters am meisten ausgereift ist.
+Der Nachteil ist, dass bei schlechter Implementierung nur eine spezifische Kombination von Schlüsselwörtern überhaupt zu einem Ergebnis führt (für ein Beispiel vergleiche Anhang 1 Abbildung 2).\\
+\textbf{Optionsdialog.}\footnote{\cite{npcs} nennt diese Methode "Menu-Driven Conversations"}
+Dem Spieler werden eine handvoll Antworten vorgegeben.
+Diese Methode kann unter Anderem in den \textit{Elder Scrolls}-Spielen betrachtet werden (Beispiel siehe Anhang 1 Abbildung 3).\\
+Vorteilhaft bei dieser Methode ist, dass die Möglichkeiten klar sind und der Spieler nicht experimentieren muss.\\
+Der Nachteil ist, dass der Gesprächsverlauf von vorneherein fest steht und es viel Arbeit ist, viele Gesprächsoptionen zu implementieren, wobei der Aufwand exponentiell zu der Anzahl der Akteure, mit denen der Spieler redet, wächst.\\
+\textbf{Das Hybrid-System}.
+Während \cite{npcs} an dieser Stelle zwei Subsysteme nennt, ist nur eines von Interesse\footnote{\cite{npcs} nennt ebenfalls ein System, welches er \textit{All-Keyword-System} nennt. Der Spieler kann mit jedem Akteur über alles reden. Erhält er neue Informationen, aktualisiert sich die Liste der Gesprächsoptionen. Der Nachteil ist die starre Sammlung an Gesprächsoptionen. Außerdem geht Realismus verloren, wenn man den König auf neue Bettlergerüchte ansprechen kann.}.
+Das zweite System, welches hier genannt wird, ist der tatsächliche Hybrid, der eine handvoll Schlüpsselwörter vorgibt, dem Spieler allerdings auch die Möglichkeit zur Eingabe einer Schlüsselwörter lässt.\\
+Der Vorteil ist die große Freiheit neben den Dialog-Optionen, was dem Spieler erlaubt, im Gespräch zu experimentieren und trotzdem schnell alle gewünschten Informationen zu erhalten.\\
+Der Nachteil bei schlechter Implementierung ist, dass ein Spieler möglicherweise ein Schlüsselwort errät, welches er zu diesem spezifischen Zeitpunkt nicht kennen sollte. Über Flags lässt sich dies allerdings abfangen.\\
+\\
+Wie gerade gezeigt, findet die Textverarbeitung Anwendung in einem breiten Feld von Spielen.
+Was in den meisten Spielen jedoch fehlt, ist eine Implementierung von ELIZA, weswegen die meisten Gespräche und Handlungen starr und vorgeschrieben sind.
+Die Verbindung der aktuell verwendeten Textverarbeitung mit ELIZA ermöglicht ein dynamischeres Spielgeschehen und eine größere Immersion in die Spielwelt.
 \section{Schlussfolgerung}
 \label{sec:concl}
 Mithilfe der hier erörterten Arbeitsweise ist ein erster Schritt getan, um den Spieler natürliche Sprache anwenden zu lassen, um mit NPCs zu kommunizieren:\\
@@ -487,7 +503,6 @@ Ein Spieler hat mehr Freiheit als je zuvor, und die Welt passt sich ihm dynamisc
 Die aufgrund des aktuellen Technologiestandes naheliegende Erweiterung ist zunächst die Phonologie, um aus gesprochener Sprache einen Text zu erhalten, der mit eben diesem Verfahren analysiert werden kann\footnote{Ein großer Schritt in diese Richtung ist die \textit{XBOX Kinect}-Technologie, mit der ein Spieler zum Beispiel im Spiel \textit{Skyrim} seinen Begleitern simple Befehle wie "Greife an'' oder ''Öffne Tür" geben kann - über Sprachsteuerung. Im Gegensatz dazu ist Microsoft mit \textit{Cortana} einen Schritt zurück gegangen, da sich die Benutzung dieses Programmes als langwierig und anstrengend gestaltet (\cite{hauke}, Abschnitt 6: Cortana)}.
 Erst danach lohnt es sich, die vollständige Implementierung des Sprachverständnisses anzustreben.
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % hier werden - zum Ende des Textes - die bibliographischen Referenzen
 % eingebunden
@@ -500,5 +515,19 @@ Erst danach lohnt es sich, die vollständige Implementierung des Sprachverständ
 \addcontentsline{toc}{section}{Quellenverzeichnis}% Add to the TOC
 \bibliography{bib}
 \nocite{*}
+
+\newpage
+\pagenumbering{Roman}
+\addcontentsline{toc}{section}{Anhang 1: Grafiken}
+\section*{Anhang 1: Grafiken}
+\begin{figure}[here]
+\label{fig:ex_pars}
+\includegraphics{images/dialogue.png}
+\caption{Beispieldialog bei der Text-Parsing-Methode; Quelle: Screenshot eines Auszuges aus \cite{npcs}}
+\end{figure}
+\begin{figure}[here]
+\includegraphics{images/options.png}
+\caption{Beispiel für Antwortmöglichkeiten im Optionsdialog; Quelle: Screenshot eines Auszuges aus \cite{npcs}}
+\end{figure}
 
 \end{document}
