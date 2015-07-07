@@ -215,7 +215,7 @@ Seit Jahrzehnten schon beschäftigen sich Forscher damit, den Computer dem Mensc
 Ein wichtiger Bestandteil dieses Prozesses ist dabei die Sprachverarbeitung.\\
 Ziel dieser Arbeit ist, Licht auf den Prozess des Verständnisses eines Computers von natürlicher Sprache zu werfen.\\
 Zu diesem Zweck wird der Begriff der natürlichen Sprache in seine Komponenten zerlegt,
-die einzelnd analysiert und in dieser Form von nichtkomplexen Automaten verarbeitet werden können.\\
+die einzelnd analysiert und in dieser Form von endlichen, deterministischen Automaten verarbeitet werden können.\\
 Im Hinblick auf die Entwicklung von Videospielen wird mithilfe der \textit{String}-Klasse von Java, der \textit{RexEx}-Konvention und dem ELIZA-Programm eine Möglichkeit gezeigt, jeden beliebigen Eingabetext zu analysieren und darauf zu reagieren.
 % Lists:
 \setcounter{tocdepth}{2} 					% depth of the table of contents (for Seminars 2 is recommented)
@@ -232,7 +232,7 @@ Im Hinblick auf die Entwicklung von Videospielen wird mithilfe der \textit{Strin
 \section{Einführung}
 \label{sec:intro}
 	Schon seit etwa achtzig Jahren beschäftigen sich Forscher mit dem Thema der Künstlichen Intelligenz, und nicht weniger Zeit ist in die Theorie der Sprachverarbeitung investiert worden.
-	Sprachverarbeitung liegt in zwei Formen vor, die in ihren jeweiligen Anwendungsgebieten für eine erhebliche Steigerung der Effektivität der Nutzer sorgen können: Verarbeitung \textit{gesprochener Sprache} (Speech Recognition) und \textit{Textverarbeitung} (Text Processing).
+	Sprachverarbeitung liegt in zwei Formen vor:
 	Beide Aspekte fallen unter das \textit{Verarbeiten natürlicher Sprache} (Natural Language Processing).
 	Diese Arbeit wird sich mit dem Verarbeiten natürlicher Sprache in Textform beschäftigen.\\
 	Zwar ist Kommunikation durch Texteingabe nicht so schnell und dynamisch anwendbar wie gesprochene Anweisungen, dennoch aber ist sie ein wichtiger Schritt dorthin.
@@ -242,8 +242,8 @@ Im Hinblick auf die Entwicklung von Videospielen wird mithilfe der \textit{Strin
 	Die Grundsteine für Künstliche Intelligenz wurden 1936 von Turing und darauf aufbauend in den 40ern und 50ern gelegt (McCulloch und Pitts (1943), Chomsky (1956) et. al.).\\
 	Ende der 50er Jahre hatten sich daraus zwei parallele Zweige für die Sprachverarbeitung gebildet: Das formale Paradigma und der stochastische Ansatz (\cite{Jur2009}).\\
 	Während das formale Paradigma seinen Schwerpunkt auf formale Sprachen und das Parsen von Schlüsselwörtern gelegt hatte, lag der Schwerpunkt des anderen Ansatzes auf der Berechnung der Wahrscheinlichkeit des Auftretens bestimmter Wörter anhand eines umfassenden Lexikons und der Anwendung Bayesscher Methoden auf die einzelnen Zeichen.\\
-	Während der stochastische Zweig weitestgehend erhalten blieb, teilte sich der formale Zweig zu Beginn der 70er Jahre in drei Pfade auf.
-	Der stochastische Zweig begann, versteckte Markov-Modelle (HMM) bei seiner Analyse zu nutzen.
+	Der stochastische Zweig blieb weitestgehend erhalten und begann, versteckte Markov-Modelle (HMM) bei seiner Analyse zu nutzen.
+	Im Gegensatz dazu teilte sich der formale Zweig in drei Unterpfade.
 	Ein Logik-basierender Zweig befasste sich mit der Vereinheitlichung der Struktur von Sprache und nutzte dabei eine sog. \textit{Definite Clause Grammar}, woraus sich später Prolog entwickeln würde.
 	Der Zweig, der sich mit natürlicher Sprache befasste, versuchte, Text-Kommandos und Konzepte so umzusetzen, dass Maschinen eine semantische Grundlage mitgegeben werden konnte, auf der die Interpretation aufbauen würde.
 	Der Diskurs-Zweig verwendete die Betrachtung von Substrukturen im Diskurs von Sprachen und der Automatisierung von Referenzen.\\
@@ -259,7 +259,7 @@ Im Hinblick auf die Entwicklung von Videospielen wird mithilfe der \textit{Strin
 	Dies tut sie, indem sie mit einem simplen Such-Algorithmus den vom Benutzer eingegebenen Text mit einer Liste von Stichworten vergleicht und anhand derer eine vordefinierte Antwort zurückliefert.
 	Zugegebenermaßen ist die Art der Antworten derart gut konstruiert, dass viele der Probanden, die in den 60er Jahren ersten Kontakt mit ELIZA hatten, der Ansicht waren, sie wäre ein denkendes Programm, fähig zu höherer Intelligenz, und glaubten selbst dann noch an ihre Fähigkeiten, als man ihnen ihre Funktionsweise offenbarte\footnote{\cite{Jur2009} beruft sich an dieser Stelle auf Weizenbaum, 1976: \textit{Computer Power and Human Reason: From Judgement to Calculation}}.\\
 	Dennoch ist ihre künstliche Intelligenz in keiner Weise mit tatsächlicher künstlicher Intelligenz zu vergleichen.
-	Während ELIZA ein Key-Value-Pair matching-Verfahren anwendet (sie sucht sich eine Antwort anhand eines erkannten Stichwortes), wird von einer KI erwartet, tatsächlich zu verstehen, was zu ihr gesagt wird.
+	Während ELIZA ein erweitertes Key-Value-Pair matching-Verfahren (vgl. \ref{sec:eliza}) anwendet (sie sucht sich eine Antwort anhand eines erkannten Stichwortes), wird von einer KI erwartet, tatsächlich zu verstehen, was zu ihr gesagt wird.
 	Sie muss also nicht nur ein Wort wiedererkennen, sondern auch wissen, was damit gemeint ist.
 	Desweiteren muss eine KI auch in der Lage sein, Wörter in ihrer flexierten Form wiederzuerkennen, eingebaut in natürliche Sprache.
 	Die genaue Arbeitsweise von ELIZA sowie eine Erweiterung dieser zum Erkennen flexierter Wörter wird in dieser Arbeit beleuchtet werden.
@@ -271,7 +271,7 @@ Im Hinblick auf die Entwicklung von Videospielen wird mithilfe der \textit{Strin
 So definieren Steven Bird et. al. den Begriff \textit{natürliche Sprache}.
 Eine Sprache ist eine Konvention zur Kommunikation bestehend aus einer Grammatik, einem Vokabular und einem Verwendungskontext. \\
 Eine natürliche Sprache ist eine Sprache, die sich im Verlauf der Zeit aus der Kommunikation zwischen Menschen entwickelt hat.
-Durch die permanente Entwicklung einer Sprache verändert sich permanent die Bedeutung und Verwendung von Wörtern, andere Wörter werden neu hinzugefügt, wieder andere fallen heraus.
+Durch die fortwährende Entwicklung einer Sprache verändert sich permanent die Bedeutung und Verwendung von Wörtern, andere Wörter werden neu hinzugefügt, wieder andere fallen heraus.
 So wurde zum Beispiel das Wort \texttt{Gebäudereinigungsfachkraft} erst vor relativ kurzer Zeit in den aktiven Wortschatz seiner Sprache aufgenommen, während das wort \texttt{archaistich} für 'veraltet' oder 'altertümlich' kaum noch Verwendung findet.
 Das erste Beispiel hat aus Gründen der politischen Korrektheit nicht nur Einzug in die deutsche Sprache als neue Bezeichnung gefunden, sondern auch seinen Vorgänger ersetzt.\\
 Bird et. al. nahmen ebenfalls Bezug auf künstliche Sprachen.
@@ -283,7 +283,8 @@ Mit jedem Update gibt es eine handvoll Änderungen, jedoch nimmt kaum eine diese
 Die Eigenschaft von natürlichen Sprachen, dynamisch zu sein, macht es schwer, sie in kompakten Regeln klar zu formulieren.
 Um es dennoch zu können, wird eine Sprache in folgende sechs Teilgebiete aufgeteilt, die jedes für sich erfasst und bearbeitet werden kann:
 Morphologie, Syntax, Semantik, Pragmatik, Diskurs und Mehrdeutigkeit (\cite{Jur2009}).\\
-Für die gesprochene Sprache kommt der Punkt der Phonologie hinzu\footnote{Nach den formalen Definitionen in \cite{duden}}.\\
+Für die gesprochene Sprache kommt der Punkt der Phonologie hinzu.
+Es folgt eine formale Definition dieser Begriffe nach den formalen Definitionen in \cite{duden}.\\
 Unter \textbf{Morphologie} verstehen wir die Lehre der Gestalten und Formen eines Objektes, in unserem Fall die Veränderung eines Wortes nach Flexion\footnote{Konjugation, Steigerung oder Deklination, je nach Wortart} und Komposition\footnote{Zusammenfügen von Wörtern (Beispiel: 'Schiff' + 'Fahrt' $\longrightarrow$ 'Schifffahrt'}). \\
 Unter \textbf{Syntax} verstehen wir die Lehre vom Bau eines Satzes und dessen formaler Struktur.\\
 Unter \textbf{Semantik} verstehen wir die Bedeutung oder den Inhalt eines Wortes, Satzes oder Textes\\\
@@ -306,10 +307,10 @@ Ein Morphem ist alles das, was als atomarer Bestandteil eines Wortes gelesen wer
 \end{array}
 \end{equation*}
 Wie man sehen kann, sind mehr Morpheme gelistet, als das Wort Flexionsbausteine hat.
-Zu den Morphemen zählen ebenfalls Zeichen, die grammatikalische Informationen enthalten wie beispielsweise, dass es sich um ein Nomen handelt (\textit{+N}).
+Zu den Morphemen zählen ebenfalls Zeichen, die grammatikalische Informationen enthalten, wie beispielsweise, dass es sich um ein Nomen handelt (\textit{+N}).
 Mithilfe von Konventionen über die Stelligkeit, also die Reihenfolge, und Nomenklatur der Morpheme ist es möglich, wahlweise kaskadierende oder verkettete endliche, deterministische Automaten (i.F. DFAs) zu konstruieren, deren Zweck darin besteht, ein Wort in seine Morpheme zu zerlegen und uns somit mit sämtlichen grammatikalischen Informationen über dieses Wort zu versorgen.\\
 Es liegt auf der Hand, dass eine Automatenkette, die sämtliche Wörter einer Sprache korrekt erkennen soll, sehr lang ist.
-Wählt man statt der Verkettung die Kaskadierung der Automaten, d.h. man konstruiert einen äquivalenten, größeren Automaten, der mehrere kleinere DFAs zusammenfasst, so wird die Kette zwar kürzer (durch genügend Rekonstruktion lässt sich jede Kette von DFAs in einem großen DFA zusammenfassen), da jedoch die Anzahl der Zustände und Kanten äquivalent ist, wird das Konstrukt ungleich komplexer.\\
+Wählt man statt der Verkettung die Kaskadierung der Automaten, d.h. man konstruiert einen äquivalenten, größeren Automaten, der mehrere kleinere DFAs zusammenfasst, so wird die Kette zwar kürzer (durch genügend Rekonstruktion lässt sich jede Kette von DFAs in einem großen DFA zusammenfassen), da jedoch die Vereinigungsmenge von Knoten und Kanten um einiges Größer ist als die eines Automaten für einen einzelnen Schritt, wird das Konstrukt ungleich komplexer.\\
 Zu Veranschaulichung wird an dieser Stelle ein kleiner DFA eingefügt, der das Wort \textit{Nachkommastellen} auf seine Morpheme reduzieren soll.\\
 \begin{figure}[h]
 \label{fig:dfa}
@@ -330,7 +331,7 @@ Zu Veranschaulichung wird an dieser Stelle ein kleiner DFA eingefügt, der das W
 \label{dfa1}
 \end{figure}\\
 Dies ist ein sehr allgemeiner DFA, um Nomen zu erkennen.
-Zuerst wird geprüft, ob der erste Buchstabe groß geschrieben ist, was eine Voraussetzung für Nomen in der deutschen Sprache ist und das Morphem \textit{+N} zurückliefert.
+Zuerst wird geprüft, ob der erste Buchstabe groß geschrieben ist, was eine Voraussetzung für Nomen in der deutschen Sprache ist und das Morphem \textit{N} zurückliefert.
 Anschließend wird das Wort nach einer Zeichenkette durchsucht, die in der Liste der dem Programm bekannten Nomen steht.
 Da \textit{komma} vor \textit{stelle} steht, wird es als gültiger Stamm akzeptiert.
 Allerdings ist dies eine Schwachstelle dieses DFA, welcher auch fälschlicherweise \textit{stelle} als Stamm erkennen könnte. Dieser Prozess liefert uns das Stamm-Morphem zurück.\\
@@ -350,7 +351,7 @@ Ist das Wort allerdings zu ende, akzeptiert der Automat das Wort und liefert uns
 Wie hier zu sehen ist, ist bereits bei einem einzelnen Wort viel zu beachten.
 Hinzu kommt, dass hier nur eine Wortklasse abgedeckt wurde.
 Kommen noch andere Wortklassen, wie beispielsweise Verben, hinzu, steigt die Komplexität der Automatenkette exponentiell.\\
-Als Ansatzpunkt wäre hier allerdings anzumerken, dass der DFA mit einer Kante von $q_0$ zu einem nicht angegebenen Zustand versehen werden kann, die als Beschriftung hat: "1. Buchstabe $\lnot$ groß" (Der erste Buchstabe ist kein Großbuchstabe).
+Als Ansatzpunkt wäre hier allerdings anzumerken, dass der DFA mit einer Kante von $q_0$ zu einem nicht angegebenen Zustand versehen werden kann, die als Beschriftung hat: "$\lnot$ 1. Buchstabe groß" (Der erste Buchstabe ist kein Großbuchstabe).
 Diese Kante würde eine Kaskade beginnen, durch die ein Wort durch die DFAs für sämtliche Wortklassen durchgereicht wird.\\
 Die Operationen, die erforderlich sind, um einen String derart zu zerlegen, sind in höheren Programmiersprachen bereits enthalten.
 Ebenso können gewissen Morpheme mit regulären Ausdrücken (\textit{regular expressions}/ RegEx) erkannt werden.
@@ -358,7 +359,7 @@ Ebenso können gewissen Morpheme mit regulären Ausdrücken (\textit{regular exp
 \label{sec:regex}
 Es ist allerdings nicht nötig, sämtliche Überprüfungen manuell zu vollziehen.
 Moderne Programmiersprachen implementieren ein Hilfsmittel namens \textit{RegEx}, welches die Analyse eines gegebenen Textes erheblich vereinfacht.
-Die Kante, die eben als Ansatzpunkt für eine Kaskade genannt wurde (\textit{"1. Buchstabe $\lnot$ groß"}) kann mithilfe einer RegEx-Überprüfung ausgelassen werden: Mithilfe des RegEx-Operators "[A-Z]" wird überprüft, ob ein Großbuchstabe vorliegt\footnote{Genauer: Es wird überprüft, ob der gegebene String in der Menge aller Buchstaben von A bis Z liegt, wobei die Menge nur Großbuchstaben enthält.}
+Die Kante, die eben als Ansatzpunkt für eine Kaskade genannt wurde (\textit{"$\lnot$ 1. Buchstabe groß"}) kann mithilfe einer RegEx-Überprüfung ausgelassen werden: Mithilfe des RegEx-Operators "[A-Z]" wird überprüft, ob ein Großbuchstabe vorliegt\footnote{Genauer: Es wird überprüft, ob der gegebene String in der Menge aller Buchstaben von A bis Z liegt, wobei die Menge nur Großbuchstaben enthält.}
 Diese Überprüfung gibt einen Wahrheitswert (boolean) zurück, der dann als Argument in eine Fallunterscheidung eingesetzt werden kann:
 \begin{lstlisting}[caption=Überprüfung des ersten Buchstabens (lang)]
 boolean firstLetterCapital = inputWord.substring(0,1)
@@ -396,8 +397,8 @@ for (String w: words)
 \end{lstlisting}
 Hierbei ist anzumerken, dass obiger Code den Speicher \texttt{noun} bei jedem Nomen überschreibt.
 Obige Implementation ohne zusätzliche Speichermaßnahmen ist also wenig hilfreich.
-Eine Lösung ist, einen neuen Typ \texttt{wort} zu erstellen, der als ein Feld das Wort selber als String hat und als anderes Feld ebenjenen boolean \texttt{noun}.
-So kann für jedes Wort im gegebenen String ein neues Objekt erstellt werden, welches für sich als Nomen festgelegt werden kann.
+Eine Lösung ist, einen neuen Typ \texttt{wort} zu erstellen, der als ein Feld das Wort selber als String speichert und als anderes Feld ebenjenen boolean \texttt{noun}.
+So kann für jedes Wort im gegebenen Eingabestring ein neues Objekt erstellt werden, welches für sich als Nomen festgelegt werden kann.
 Diese Lösung ist insofern erweiterbar, dass für jeden Morphemtyp (vgl. \ref{sec:pars}) ein eigenes Feld initialisiert werden kann.
 Ein Klassenkopf sähe beispielsweise so aus:
 \begin{lstlisting}[caption=Beispielhafter Klassenkopf für den Typ 'wort']
@@ -456,7 +457,7 @@ immer genau dann eine Antwort generiert werden, wenn der Benutzer ELIZA direkt a
 Bei der Implementation sollte allerdings darauf geachtet werden, ob es sinnvoll ist, dass eine Gruppe leer sein kann.
 Stünde bei unserem Beispiel das '\textit{you}' am Ende der Eingabe, käme von ELIZA beispielsweise ''\textit{What makes you think I .}'' zurück.
 Dementsprechend müssen leere Gruppen entweder durch Sonderfälle in den Regeln aufgefangen werden, oder sie dürfen vom Parser gar nicht erst zugelassen werden.
-\section{Praktischer Nutzen der Textverarbeitung}
+\section{Praktischer Nutzen der Textverarbeitung in Hinblick auf Spieleentwicklung}
 \label{sec:ausb}
 Anhand von ELIZA (\ref{ssec:eliza}) wurde gezeigt, wie die Anfänge der Sprachverarbeitung ausgesehen haben.
 Mithilfe von DFAs und deren Umsetzung als Java-Code mit Einsatz von RegEx (\ref{sec:pars}) wurde gezeigt, wie ein Teil der Sprachverarbeitung heute aussieht.
@@ -472,7 +473,7 @@ Entweder ihm wird eine Antwort in den Mund gelegt, er bekommt eine kleine Auswah
 Darf sich der Spieler beteiligen, hat er meist sehr begrenzte Möglichkeiten.
 Drei häufig verwendete Mechaniken können herausgearbeitet werden:\\
 \textbf{Parsing.}
-Diese Methode wird bisher bei den meisten Text-Adventures\footnote{Der Spieler bekommt Informationen über Text und reagiert mit Text}.
+Diese Methode wird bisher bei den meisten Text-Adventures\footnote{Der Spieler bekommt Informationen über Text und reagiert mit Text} verwendet.
 Der Vorteil ist, dass sie mit den in dieser Arbeit beschriebenen einfachen Mitteln leicht umgesetzt werden kann und aufgrund ihres Alters am meisten ausgereift ist.
 Der Nachteil ist, dass bei schlechter Implementierung nur eine spezifische Kombination von Schlüsselwörtern überhaupt zu einem Ergebnis führt (für ein Beispiel vergleiche Anhang 1 Abbildung 2).\\
 \textbf{Optionsdialog.}\footnote{\cite{npcs} nennt diese Methode "Menu-Driven Conversations"}
@@ -481,8 +482,8 @@ Diese Methode kann unter Anderem in den \textit{Elder Scrolls}-Spielen betrachte
 Vorteilhaft bei dieser Methode ist, dass die Möglichkeiten klar sind und der Spieler nicht experimentieren muss.\\
 Der Nachteil ist, dass der Gesprächsverlauf von vorneherein fest steht und es viel Arbeit ist, viele Gesprächsoptionen zu implementieren, wobei der Aufwand exponentiell zu der Anzahl der Akteure, mit denen der Spieler redet, wächst.\\
 \textbf{Das Hybrid-System}.
-Während \cite{npcs} an dieser Stelle zwei Subsysteme nennt, ist nur eines von Interesse\footnote{\cite{npcs} nennt ebenfalls ein System, welches er \textit{All-Keyword-System} nennt. Der Spieler kann mit jedem Akteur über alles reden. Erhält er neue Informationen, aktualisiert sich die Liste der Gesprächsoptionen. Der Nachteil ist die starre Sammlung an Gesprächsoptionen. Außerdem geht Realismus verloren, wenn man den König auf neue Bettlergerüchte ansprechen kann.}.
-Das zweite System, welches hier genannt wird, ist der tatsächliche Hybrid, der eine handvoll Schlüpsselwörter vorgibt, dem Spieler allerdings auch die Möglichkeit zur Eingabe einer Schlüsselwörter lässt.\\
+Während \cite{npcs} an dieser Stelle zwei Subsysteme nennt, ist nur eines von Interesse.
+Das zweite System, welches hier genannt wird, ist der tatsächliche Hybrid, der eine handvoll Schlüsselwörter vorgibt, dem Spieler allerdings auch die Möglichkeit zur Eingabe einer Schlüsselwörter lässt\footnote{\cite{npcs} nennt ebenfalls ein System, welches er \textit{All-Keyword-System} nennt. Der Spieler kann mit jedem Akteur über alles reden. Erhält er neue Informationen, aktualisiert sich die Liste der Gesprächsoptionen. Der Nachteil ist die starre Sammlung an Gesprächsoptionen. Außerdem geht Realismus verloren, wenn man einen Akteur auf ein Gerücht ansprechen kann, von dem er rein logisch nicht wissen kann.}.\\
 Der Vorteil ist die große Freiheit neben den Dialog-Optionen, was dem Spieler erlaubt, im Gespräch zu experimentieren und trotzdem schnell alle gewünschten Informationen zu erhalten.\\
 Der Nachteil bei schlechter Implementierung ist, dass ein Spieler möglicherweise ein Schlüsselwort errät, welches er zu diesem spezifischen Zeitpunkt nicht kennen sollte. Über Flags lässt sich dies allerdings abfangen.\\
 \\
