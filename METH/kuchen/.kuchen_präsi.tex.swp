@@ -1,0 +1,190 @@
+\documentclass[pdf]{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{eurosym}
+\usepackage{courier} \raggedright
+\usepackage{nameref}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{tabularx}
+\usepackage{titleref}
+\usepackage{soul}
+\usepackage{xcolor}
+\usepackage{colortbl}
+
+%Für [Seite]/[Anzahl-Seiten] in der unteren rechten ecke
+%\newcommand*\oldmacro{}%
+%\let\oldmacro\insertshorttitle%
+%\renewcommand*\insertshorttitle
+%{
+% \oldmacro\hfill%
+% \thepage\,/\,\pageref{LastPage}
+%}
+%\makeatletter
+%\newcommand*{\currentname}{\TR@currentTitle}
+%\makeatother
+
+\definecolor{light-light-gray}{gray}{0.85}
+
+%\usetheme[compress]{Berlin}
+\usetheme[compress]{Dresden}
+%\usetheme{Hamburg}
+\setbeamerfont{headline}{size=\large}
+\setbeamerfont*{section in head/foot}{size=\tiny}
+\setbeamercovered{transparent}
+\setbeamertemplate{bibliography item}[text]
+\setbeamertemplate{itemize items}[square]
+\setbeamertemplate{itemize subitem}[triangle]
+\setbeamertemplate{section in toc}[square]
+\setbeamertemplate{subsection in toc}[square]
+\setbeamertemplate{caption}[numbered]
+\setbeamercolor*{title}{use=structure,fg=white,bg=structure.fg}
+\setbeamertemplate{title page}[default][colsep=-2bp]
+\setbeamercolor{block title}{bg=darkred2!100,fg=white}
+\setbeamercolor{block body}{bg=darkred3!25,fg=black}
+
+\definecolor{darkred}{rgb}{0,0.55,0.8}
+\definecolor{darkred2}{rgb}{0,0.41,0.6}
+\definecolor{darkred3}{rgb}{0.2,0.4,0.6}
+\usecolortheme[named=darkred]{structure}
+
+\title{Kuchen}
+\subtitle{}
+\author{Utz Pöhlmann, Mirco Frankenberg, Louis Kobras}
+\date{\footnotesize\today}
+%\titlegraphic{\href{http://uni-hamburg.de/}{\includegraphics[height=.15\textheight]{./images/logo}}}
+
+
+\begin{document}
+% Titel und Präambel
+\begin{frame}
+	\titlepage\thispagestyle{empty}
+\end{frame}
+\begin{frame}
+	\centering
+	\Large{Willkommen im Konditorzug}\\
+	\-\\
+	\large{Ihre Stewardessen:}\\
+	\large{Utz Pöhlmann, Mirco Frankenberg, Louis Kobras}
+\end{frame}
+\begin{frame}{Der Fahrplan}
+	\tableofcontents[hidesubsections]
+\end{frame}
+% Content
+	\section{Erste Station: Kuchenau}
+	\subsection*{}
+		\begin{frame}
+			\centering
+			\Large{Was ist ein Kuchen?}
+		\end{frame}
+	\section{Stadtplan: Cake Districts}
+	\subsection{Chrissi's Cheesecake}
+		\begin{frame}
+		\begin{itemize}
+			\item (Mager-)Quark/Philadelphia/Frischkäse
+			\item Eier
+			\item Milch
+			\item Zucker
+			\item Zitronensaft
+			\item Vanillepudding und Vanillezucker
+		\end{itemize}
+		\end{frame}
+	\subsection{New York Fudge}
+		\begin{frame}
+		\begin{itemize}
+			\item Walnüsse
+			\item Butter
+			\item Vanille
+			\item Eier
+			\item Mehl
+		\end{itemize}
+		\end{frame}
+	\subsection{Bienenstich}
+		\begin{frame}
+		\begin{itemize}
+			\item Hefeboden
+			\item Mandelblättchen
+			\item Honig
+			\item Zucker
+			\item Schlagsahne
+		\end{itemize}
+		\end{frame}
+	\subsection{Früchtekuchen}
+		\begin{frame}
+		\begin{itemize}
+			\item Äpfel
+			\item Zitrone
+			\item Vanille
+			\item Mandeln
+		\end{itemize}
+		\end{frame}
+	\subsection{Baumkuchen}
+		\begin{frame}
+		\begin{itemize}
+			\item Mandel
+			\item Rum
+			\item Schokolade
+		\end{itemize}
+		\end{frame}
+	\subsection{Kalter Hund}
+		\begin{frame}
+		\begin{itemize}
+			\item Kokosfett
+			\item Kakaopulver
+			\item Rum (Schuss)
+			\item Butterkekse
+		\end{itemize}
+		\end{frame}
+	\subsection{Donau-Welle}
+		\begin{frame}
+		\begin{itemize}
+			\item Sauerkirschen
+			\item Vanille
+			\item Schokolade
+			\item Nutella
+			\item Kuchenteig
+		\end{itemize}
+		\end{frame}
+	\section{Dritte Station: Tortenhausen}
+		\subsection{Sehenswürdigkeit: Torten}
+			\begin{frame}
+				\frametitle{Torten}
+				\begin{itemize}
+					\item Mürbeteig
+					\item Sahnecreme
+					\item Teig und Creme abwechselnd schichten
+					\item Lagern im Kühlschrank
+				\end{itemize}
+			\end{frame}
+		\subsection{Tourismusbezirk: Schwarzwälder Kirsch-Torte}
+		\begin{frame}
+			\begin{itemize}
+				\item Mürbeteigboden mit Kakao
+				\item Sauerkirschen
+				\item Sahne
+				\item Roter Tortenguss
+				\item Schokoraspeln
+			\end{itemize}
+		\end{frame}
+	\section{Endstation: Lieblingsbezirk}
+	\subsection*{}
+		\begin{frame}
+			\centering
+			\Large{Sammlung: Lieblingsbezirk}
+		\end{frame}
+		\begin{frame}
+			\centering
+			\Large{Sammlung}
+		\end{frame}
+		\begin{frame}
+			\centering
+			\Large{Einigung}
+		\end{frame}
+\end{document}
