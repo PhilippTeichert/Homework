@@ -247,6 +247,14 @@ literate=%
 	\tableofcontents
 }
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%%%%%
 % Your Content
 
@@ -374,7 +382,7 @@ literate=%
 	\begingroup
 	\centering
 	\begin{figure}[h]
-	\label{fig:dfa}
+	\label{tab:morphemes}
 	\begin{tabular}{ccccc}
 		N	&	(n)ach	&	komma	&	stelle	&	n	\\
 		N	&	+pref	&	+stamm	&	+suff	&	+PL	
@@ -390,8 +398,11 @@ literate=%
 		\item	\string[A-Z].*
 		\item	\string[a-z].*
 		\item	.*n
-		\item	.*\textbackslash\textbackslash d+.*
+		\item	.*\textbackslash\textbackslash d+.+
+		\item	.+\textbackslash\textbackslash d+.*
+		\item	.+\textbackslash\textbackslash d+.+
 		\item	.
+		\item	\textbackslash\textbackslash d\textbackslash\textbackslash d*?
 	\end{itemize}
 }
 \frame[t]{
@@ -400,10 +411,21 @@ literate=%
 		\item contains
 		\item indexOf
 		\item substring
+		\item length
 	\end{itemize}
 }
 
 \section{Ergebnis}
+\frame[t]{
+	\frametitle{Folgende Vorgehensweise}
+	\begin{itemize}
+		\item Mithilfe der genannten Hilfsmittel die Wörter der Eingabe auf ihre Grundformen zurückführen
+		\item Diese Grundformen mit der Schlüsselwortliste von ELIZA abgleichen
+		\item Die zusätzlich gewonnen Informationen nutzen, um den Kontext zu interpretieren
+		\item Einen Kontext für eine Antwort schaffen
+		\item Die Regeln von ELIZA anwenden, um eine Antwort zu generieren
+	\end{itemize}
+}
 
 \section{Schlussfolgerung}
 
@@ -457,6 +479,33 @@ literate=%
 	\footnotesize
 	Präsentation und Paper abrufbar auf\\
 	\textcolor{pblue}{\url{https://github.com/4kobras/Homework/blob/master/Pros_KI/}}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%####	ANHANG	####%
+%%%%%%%%%%%%%%%%%%%%%
+
+\frame[plain]{
+	\frametitle{ELIZA}
+	\footnotesize
+	\[
+		(a)\text{ It seems that}~~~~(b)\text{ you}~~~~(c)\text{ hate}~~~~(d)\text{ me}
+	\]
+	\-\\
+	\[
+		(f)\text{What makes you think that}~~~~(d)\text{ I}~~~~(c)\text{ hate}~~~~(b)\text{ you}
+	\]
+	\-\\
+	\[
+		(0)~~~~\text{YOU}~~~~(0)~~~~\text{ME}~~~~\longrightarrow~~~~(0)~~~~\text{I}~~~~(3)~~~~\text{YOU}
+	\]
+	\pause
+	\-\\
+	\-\\
+	\[
+		(0)~~~~\text{YOU}~~~~(0)~~~~\longrightarrow~~~~(0)~~~~\text{I}~~~~(3)
+	\]
 }
 
 
