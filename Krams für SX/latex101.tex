@@ -1,10 +1,12 @@
 \documentclass[parskip,12pt,paper=a4,sffamily]{article}
-%alternate documentclass:
-%\documentclass[parskip,12pt,paper=a4,sffamily]{scrartl}
+% encoding of input set as utf8
 \usepackage[utf8]{inputenc}
+% set german as language
 \usepackage[ngerman]{babel}
 \usepackage{lastpage}
-\usepackage{color}   %May be necessary if you want to color links
+% allows custom colors and usage of those
+\usepackage{color}
+% links to webpages and within the document
 \usepackage{hyperref}
 % code snippets
 \usepackage{listings}
@@ -27,11 +29,16 @@
 \usepackage{ragged2e}
 % page margins
 \usepackage[margin=2.5cm]{geometry}
+% per-page counting
+\usepackage{perpage}
+% count footnotes seperately for each page
+\MakePerPage{footnote}
 
+% custom colors
 \definecolor{pblue}{rgb}{0.13,0.13,1}
 \definecolor{pgreen}{rgb}{0,0.5,0}
 
-
+% parameter definition for lstlistings
 \lstset{ %
 language=Tex,   							% choose the language of the code
 basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
@@ -61,12 +68,14 @@ literate=%
 \let\stdsection\section
 \renewcommand\section{\stdsection}
 
+% title of document
 % add line break for subtitle (size: large)
 \title{Was ist \LaTeX ?
     \\\large{
         Warum Informatiker darunter etwas Anderes verstehen als Menschen
     }
 }
+% author of document
 \author{~\\
 	\Large{Louis Kobras}\\
 	\large{4kobras@informatik.uni-hamburg.de}\\
@@ -79,14 +88,36 @@ literate=%
 % comment for auto-generated date
 \date{\today}
 
+% set so that you don't have to write the capital letters every time
+\newcommand{\latex}{\LaTeX}
+\newcommand{\tex}{\TeX}
+
 
 \begin{document}
 	\maketitle
+	\thispagestyle{empty}
 	\newpage
+	\thispagestyle{empty}
 	\tableofcontents
 	\clearpage
+	\pagenumbering{arabic}
 	\section{Einführung}
 	\label{sec:intro}
+	Was ist \LaTeX ?
+	Eine Geschichtsstunde über die Sprache \latex ~sowie ihre Ursprungsform \tex ~wird es hier nicht geben.
+	Es genügt an dieser Stelle, zu sagen, dass \latex ~ein sehr mächtiges Werkzeug zum Erstellen von Dokumenten ist.
+	Mithilfe von \latex ~lassen sich viele Sachen einfacher gestalten als in gängiger Office-Software, zum Beispiel das Einbinden von Formeln oder Quellcode-Beispielen.
+	Desweiteren übernimmt der \latex ~-Compiler die meisten Layout-Sachen.
+	In vielen Anwendungen reicht es, einfach nur den gewünschten Text einzugeben, so wie in beispielsweise MS Word auch.
+	\\
+	\-\\
+	Ein mithilfe von \latex erstelltes Dokument besitzt immer auch einen Quellcode in einer \texttt{.tex}-Datei.
+	Dieser ist zum Lesen des Dokumentes nicht erforderlich und muss somit auch nicht im Verzeichnis enthalten sein, wenn man sich nur das Ergebnis angucken möchte.
+	Soll das Dokument allerdings bearbeitet werden, so findet dies im Quellcode statt.\\
+	Der \latex -Quellcode besteht aus zwei primären Komponenten: Dem \textit{Präamble} und dem \textit{Document}\footnote{Für den HTML-Kundigen: vergleichbar mit \texttt{head} und \texttt{body}}.\\
+	Das Präamble ist der Teil des Dokumentes, in dem Pakete (\ref{ssec:package}) importiert werden und Parameter für das eigentliche Dokument definiert werden, allen voran die Art des Dokuments (\ref{sec:class}).
+	Das Präamble dieses Scriptes ist im Anhang zu finden, als (recht kleines) Beispiel.\\
+	Das Document ist der Teil, der den eigentlichen Inhalt enthält. Es wird mit der \texttt{\textbackslash begin\{document\}}-Umgebung unterhalb des Präambles gestartet.
 	\section{Dokumentklassen}
 	\label{sec:class}
 	\subsection{Beamer}
@@ -108,12 +139,12 @@ literate=%
 	Dieser Code-Abschnitt ist im Präambel einzufügen.
 	Der \textsc{Mathmode} kann in Latex durch verschiedene Methoden initiiert werden.
 	Für Rechnungen, die sich über eine einzelne Zeile erstrecken, eignet sich der Operator
-	\lstinline{\[} zum Öffnen sowie der dazugehörende schließende Operator \lstinline{\]}.
-	Sind nur kurze Abschnitte innerhalb eines Satzes einzufügen, so liegt der \lstinline{$}-Operator nahe.
+	\texttt{\textbackslash[} zum Öffnen sowie der dazugehörende schließende Operator \texttt{\textbackslash ]}.
+	Sind nur kurze Abschnitte innerhalb eines Satzes einzufügen, so liegt der \texttt{\$}-Operator nahe.
 	Hier sind der Operator zum Öffnen und der zum Schließen identisch.\\
-	\textit{Anmerkung: In \TeX wird der Operator \lstinline{$$} verwendet. Dies ist in \LaTeX nicht der Fall.}\\
+	\textit{Anmerkung: In \TeX wird der Operator \texttt{\$\$} verwendet. Dies ist in \LaTeX nicht der Fall.}\\
 	Diese beiden Operator-Sets sind in \LaTeX von Grund auf enthalten.
-	Das eben genannte Package \textsc{amsmath} liefert einige Erweiterungen für den \lstinline{\begin}-Befehl,
+	Das eben genannte Package \textsc{amsmath} liefert einige Erweiterungen für den \texttt{\textbackslash begin}-Befehl,
 	durch welche mehrzeilige Gleichungsblöcke sowie erweiterte Layout- und Formatierungsoptionen zur Verfügung stehen.
 	\section{Source-Code}
 	\label{sec:source}
@@ -138,4 +169,103 @@ literate=%
 	Nicht mehr und nicht weniger.
 	Dropdown-Menüs für Befehlsreferenzen, mehr Dropdown-Menüs für Zusatzfunktionen, Hotkey für Compile-Aktionen und ein eingebauter Viewer für das Ausgabe-PDF.
 	\TeX maker ist für sämtliche Plattformen frei verfügbar und verfügt über eine Funktion, um importierte Pakete automatisch herunterzuladen, sofern sie auf dem System nicht gefunden wurden.
+	\newpage
+	\pagenumbering{Roman}
+	\addcontentsline{toc}{section}{Anhang I: Präamble}
+	\section*{Anhang I: Präamble}
+	\begin{lstlisting}
+\documentclass[parskip,12pt,paper=a4,sffamily]{article}
+% encoding of input set as utf8
+\usepackage[utf8]{inputenc}
+% set german as language
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+% allows custom colors and usage of those
+\usepackage{color}
+% links to webpages and within the document
+\usepackage{hyperref}
+% code snippets
+\usepackage{listings}
+% listing captions
+\usepackage{caption}
+% font: times new roman
+%\usepackage{times}
+% tikz being tikz
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usepackage{pgf}
+% import math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% contradiction lightning
+\usepackage{stmaryrd}
+% alignment options
+\usepackage{ragged2e}
+% page margins
+\usepackage[margin=2.5cm]{geometry}
+% per-page counting
+\usepackage{perpage}
+% count footnotes seperately for each page
+\MakePerPage{footnote}
+
+% custom colors
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+
+% parameter definition for lstlistings
+\lstset{ %
+language=Tex,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=b,           					% sets the caption-position to bottom
+breaklines=true,        					% sets automatic line breaking
+xleftmargin=1.5cm,							% space from the left paper edge
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
+\captionsetup[lstlisting]{font={footnotesize},margin=1.5cm,singlelinecheck=false } % removes "Listing 1: "
+\definecolor{light-light-gray}{gray}{0.95}
+\let\stdsection\section
+\renewcommand\section{\stdsection}
+
+% title of document
+% add line break for subtitle (size: large)
+\title{Was ist \LaTeX ?
+    \\\large{
+        Warum Informatiker darunter etwas Anderes verstehen als Menschen
+    }
+}
+% author of document
+\author{~\\
+	\Large{Louis Kobras}\\
+	\large{4kobras@informatik.uni-hamburg.de}\\
+	\\
+	\Large{Hauke Stieler}\\
+	\large{4stieler@informatik.uni-hamburg.de}
+}
+
+% leave empty for no date on title page
+% comment for auto-generated date
+\date{\today}
+
+% set so that you don't have to write the capital letters every time
+\newcommand{\latex}{\LaTeX}
+\newcommand{\tex}{\TeX}
+	\end{lstlisting}
 \end{document}
