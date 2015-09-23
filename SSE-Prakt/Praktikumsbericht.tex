@@ -64,6 +64,8 @@
 %\usepackage[font=footnotesize,labelfont=rm]{subfig}	% Pictures in a floating environment
 \usepackage{tabularx}										% Tables with fixed width but variable rows
 \usepackage{url,xspace,boxedminipage}   % Accurate display of URLs
+\usepackage{perpage}
+\MakePerPage{footnote}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Configurationen:
@@ -185,21 +187,43 @@
 \section{Einleitung}
 \label{sec:intro}
 
-Es war einmal ein Spiel namens \textit{Zuul}.
-\textit{Zuul} war ein neues, unglaublich langweiliges Spiel.
-Doch dann begann \dots das Praktikum!\\
-Ein kleines Team unerfahrener Entwickler bekam den Auftrag, aus \textit{Zuul} etwas zu machen.
-Anhand von Kundenwünschen und mit Einspeisen eigener Ideen wurde aus \textit{Zuul} letztendlich ein neues, unglaublich geiles Spiel.\\
-Sein Name ist... \textbf{KUUL}.\\
-\\
-\textit{KUUL} ist ein recht simples Adventure-Spiel mit Unterstützung von Maus- und Tastatursteuerung.
-Das Story-Konzept ist, dass der Spieler in einem Raum aufwacht und entweder durch Finden eines bestimmten Gegenstandes oder durch erfolgreiches Verlassen der Karte das Spiel gewinnt, wobei zum Verlassen der Karte ein anderer bestimmter Gegenstand erforderlich ist.\\
-Anhand der Basis von \textit{Zuul} wurde die erste Welt soweit erweitert, dass es sich um einen Universitäts-Campus handelt, während die zweite Welt nach Kundenwunsch an den Hamburger Kiez angelehnt ist.
-
-
+%Es war einmal ein Spiel namens \textit{Zuul}.
+%\textit{Zuul} war ein neues, unglaublich langweiliges Spiel.
+%Doch dann begann \dots das Praktikum!\\
+%Ein kleines Team unerfahrener Entwickler bekam den Auftrag, aus \textit{Zuul} etwas zu machen.
+%Anhand von Kundenwünschen und mit Einspeisen eigener Ideen wurde aus \textit{Zuul} letztendlich ein neues, unglaublich geiles Spiel.\\
+%Sein Name ist... \textbf{KUUL}.\\
+%\\
+%\textit{KUUL} ist ein recht simples Adventure-Spiel mit Unterstützung von Maus- und Tastatursteuerung.
+%Das Story-Konzept ist, dass der Spieler in einem Raum aufwacht und entweder durch Finden eines bestimmten Gegenstandes oder durch erfolgreiches Verlassen der Karte das Spiel gewinnt, wobei zum Verlassen der Karte ein anderer bestimmter Gegenstand erforderlich ist.\\
+%Anhand der Basis von \textit{Zuul} wurde die erste Welt soweit erweitert, dass es sich um einen Universitäts-Campus handelt, während die zweite Welt nach Kundenwunsch an den Hamburger Kiez angelehnt ist.
+%
+%\-\\
+%\-\\
+Dieser Bericht befasst sich mit dem Praktikum Agile Softwareentwicklung\footnote{STiNE-Veranstaltungsnummer 64-142} (im Folgenden \"ASE") als Teil des Moduls Softwareentwicklungspraktikum\footnote{STiNE-Modulnummer SSE\_PR} (im Folgenden \string"SEP"), absolviert im zweiten Fachsemester (im Folgenden "FS2") des Studiengangs Software-System-Entwicklung (im Folgenden \string"SSE").\\
+Dieser Bericht ist geschrieben aus Sicht der Teilnehmer des Teilkurses 3 (ASE-SEP3), in welchem das Zuul-Ausgangssystem, welches von den Praktikumsbetreuern bereit gestellt wurde, in ein \textit{Point\& Click}-ähnliches \textit{Adventure-Game} weiterentwickelt wurde, welches nun den Titel \textit{KUUL} trägt.\\
+In diesem Bericht wird tiefergehend auf die Implementation von interaktiven Objekten in das \textit{KUUL}-System eingegangen.
+Dies umfasst die Erstellung der Gegenstände, deren Speicherung und die Implementation der Interaktion.
 \section{Hauptteil}
 \label{sec:main}
-
+Wie bereits in der Einleitung angesprochen, wird sich dieser Bericht primär mit dem Umgang mit den Gegenständen in \textit{KUUL} befassen.
+Interaktiv sind diese Gegenstände insofern, als dass sie aufgesammelt, benutzt und kombiniert werden können.\\
+Zunächst wird jedoch festgestellt werden, worum es sich bei \textit{KUUL} handelt.
+\subsection{KUUL}
+\label{ssec:main_kuul}
+\textit{KUUL} ist ein Ausbau des von den Praktikumsbetreuern bereitgestellten Zuul-Ausgangssystems.
+Während Zuul ein konsolenbasiertes Text-Adventure ist, wird \textit{KUUL} mit Maus und Tastatur gesteuert.
+Dies geschieht insofern, als dass Gegenstände, \textit{NPCs}\footnote{\textit{Non-Player-Character}, eine Figur im Spiel, die nicht vom Spieler, sondern vom Spiel kontrolliert wird.} und Türen angeklickt werden können, um mit ihnen zu interagieren.
+Mithilfe der Tastatur kann der \textit{PC}\footnote{\textit{Player-Character}, vgl. \textit{NPC}} durch die Räume in der Welt von \textit{KUUL} bewegt werden, ebenso lassen sich alle Funktionen des Spiels über bestimmte Tasten direkt ansteuern.\\
+Zuul hatte bereits einige wenige Räume vorzuweisen, die durch die Namensgebung erkennen ließen, dass es sich um eine an ein Universitätsgelände angelehnte Welt handelte.
+Dies wurde vom Entwicklerteam aufgegriffen, sodass, während die Anzahl der Räume mehr als verdoppelt wurde, die Umgebung \textit{Universität} beibehalten wurde.
+Auf Wunsch des Kunden hin wurde im Lauf des Praktikums eine weitere Welt hinzugefügt, die sich grob am Hamburger Kiez orientiert.
+\subsection{Entwicklungspozess}
+\label{ssec:main_dev}
+\subsection{Funktionsumfang}
+\label{ssec:main_func}
+\subsection{Inhaltliches}
+\label{ssec:main_cont}
 
 \section{Schluss}
 \label{sec:end}
