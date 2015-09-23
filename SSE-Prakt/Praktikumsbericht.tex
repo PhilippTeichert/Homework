@@ -43,6 +43,9 @@
 \usepackage{color}                      % Enables defining of colors via \definecolor
 \definecolor{uhhRed}{RGB}{254,0,0}		  % Official Uni Hamburg Red
 \definecolor{uhhGrey}{RGB}{122,122,120} % Official Uni Hamburg Grey
+% custom colors
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
 \usepackage{fancybox}                   % Gleichungen einrahmen
 \usepackage{fancyhdr}										% Packet for nicer headers
 %\usepackage{fancyheadings}             % Nicer numbering of headlines
@@ -64,8 +67,13 @@
 %\usepackage[font=footnotesize,labelfont=rm]{subfig}	% Pictures in a floating environment
 \usepackage{tabularx}										% Tables with fixed width but variable rows
 \usepackage{url,xspace,boxedminipage}   % Accurate display of URLs
-\usepackage{perpage}
-\MakePerPage{footnote}
+\usepackage{perpage}					% make something that is usually document-wide per page
+\MakePerPage{footnote}					% make footnotes count per page instead of per document
+% code snippets
+\usepackage{listings}
+% listing captions
+\usepackage{caption}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Configurationen:
@@ -125,6 +133,35 @@
 
 \newcommand{\erdos}{Erd\H{o}s}
 \newcommand{\renyi}{-R\'{e}nyi}
+
+% parameter definition for lstlistings
+\lstset{ %
+language=Java,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=b,           					% sets the caption-position to bottom
+breaklines=true,        					% sets automatic line breaking
+xleftmargin=0.5cm,							% space from the left paper edge
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
+\captionsetup[lstlisting]{font={footnotesize},margin=1.5cm,singlelinecheck=false } % removes "Listing 1: "
+\definecolor{light-light-gray}{gray}{0.95}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Document:
 \begin{document}
@@ -226,9 +263,29 @@ Dies geschieht insofern, als dass Gegenstände, \textit{NPCs}\footnote{\textit{N
 Mithilfe der Tastatur kann der \textit{PC}\footnote{\textit{Player-Character}, vgl. \textit{NPC}} durch die Räume in der Welt von \textit{KUUL} bewegt werden, ebenso lassen sich alle Funktionen des Spiels über bestimmte Tasten direkt ansteuern.\\
 Zuul hatte bereits einige wenige Räume vorzuweisen, die durch die Namensgebung erkennen ließen, dass es sich um eine an ein Universitätsgelände angelehnte Welt handelte.
 Dies wurde vom Entwicklerteam aufgegriffen, sodass, während die Anzahl der Räume mehr als verdoppelt wurde, die Umgebung \textit{Universität} beibehalten wurde.
-Auf Wunsch des Kunden hin wurde im Lauf des Praktikums eine weitere Welt hinzugefügt, die sich grob am Hamburger Kiez orientiert.
+Auf Wunsch des Kunden hin wurde im Lauf des Praktikums eine weitere Welt hinzugefügt, die sich grob am Hamburger Kiez (im Folgenden "Kiez") orientiert.
 \subsection{Entwicklungspozess}
 \label{ssec:main_dev}
+Da zunächst nur die Textwelt von Zuul zur Verfügung stand, wurden die ersten Gegenstände inklusive des provisorischen Gewinngegenstandes\footnote{In \textit{KUUL}, ist es auf zwei Arten möglich, zu gewinnen: Entweder findet der Spieler einen Schlüsselgegenstand, mit dem er einen Raum betreten kann, der als \textit{Siegraum} betitelt wurde, oder er findet einen \textit{Sieggegenstand}} \textit{Handy} in den Räumen platziert, die nach der Erweiterung vorhanden waren.
+Auf Kundenwunsch wurde das Handy als Sieggegenstand recht schnell von der \textit{Goldananas} abgelöst.
+\begin{lstlisting}[caption=Auszug aus dem XML-Parser für Gegenstände, label=code:main_parser]
+if (gegenstandElement.getElementsByTagName("beenden").getLength() != 0)
+{
+	Node beendenNode = gegenstandElement.getElementsByTagName(
+			"beenden").item(0);
+	String nachricht = beendenNode.getTextContent();
+	_beendenCommandListe.put(id, nachricht);
+}
+\end{lstlisting}
+Der hier betrachtete Quellcode ist aus dem in \textit{KUUL} verwendeten XML-Parser entnommen.\\
+Die XML\footnote{\textit{eXtensible Markup Language}, findet Verwendung in der Strukturierung von Daten}-Sprache arbeitet insofern, als dass jedes Dokument eine Reihe von Elementen hat, und diese Elemente haben Attribute (im Folgenden "Tags"), welche wiederum Element-Reihen seien können.
+Im Gegensatz zu HTML\footnote{\textit{HyperText Markup Language}, findet Gebrauch bei der Gestaltung von Web-Oberflächen} ist XML erweiterbar, das heißt es können benutzerdefinierte Tags hinzugefügt werden; die Syntax der beiden Sprachen ist nahezu gleich.\\
+An dieser Stelle wird der Tag des Gegenstands mit der Bezeichnung "beenden\" abgefragt: Ist sie vorhanden (Länge ungleich 0), so handelt es sich um einen Sieggegenstand.
+Anzumerken ist hierbei, dass der verwendete Parser abgefragte Tags immer als eine Form von Liste zurückgibt, weswegen der Tag mit \texttt{.item(0);} abgefragt werden muss.\\
+Die Siegnachricht, welche ebenfalls extern in der XML-Datei gelagert wird, wird ausgelesen und als String gespeichert.
+Der Gegenstand wird als Tupel aus ID und der Siegnachricht in eine Liste gelegt, die an anderen Stellen im Programm aufgerufen werden kann, um festzustellen, ob der gerade verwendete Gegenstand ein Sieggegenstand war.\\
+Wird der Sieggegenstand nun innerhalb des Spiels gefunden, aufgehoben und benutzt, so wird das Spiel beendet und es erscheint ein Popup, welches einen darüber informiert, dass man gewonnen hat, und den String \texttt{nachricht} (vgl. Code 1 l.5) anzeigt.
+Die beiden Welten haben unterschiedliche Sieggegenstände, sodass es auf dem Kiez erforderlich ist, das eigene Portmonnaie wiederzufinden.
 \subsection{Funktionsumfang}
 \label{ssec:main_func}
 \subsection{Inhaltliches}
