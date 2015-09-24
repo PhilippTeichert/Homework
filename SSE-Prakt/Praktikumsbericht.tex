@@ -344,9 +344,9 @@ Messer und Gemälde werden dabei verbraucht.
 
 \subsection{Commands}
 \label{ssec:main_commands}
-Allgemein bekommt ein jeder Gegenstand mindestens ein X-Command\footnote{z.B. Lebenscommand zur Erhöhung der Energie, oder Beendencommand zum Beenden des Spiels} zugeordnet.
+Im Allgemeinen wurde jedem Gegenstand mindestens ein X-Command\footnote{z.B. Lebenscommand zur Erhöhung der Energie, oder Beendencommand zum Beenden des Spiels} zugeordnet.
 Diese Commands werden alle beim Einlesen aus den XML-Dateien in Listen gespeichert und dann den Gegenständen hinzugefügt.
-So hält jeder Gegenstand seine Liste an Commands, die abgefragt werden können, wenn mit dem Gegenstand interagiert wird\footnote{Damit nichts passiert, wenn der Gegenstand sich im selben Raum befindet, aber nicht benutzt wird.}.\\
+Jeder Gegenstand hält damit seine eigene Liste an Commands, die abgefragt werden können, wenn mit dem Gegenstand interagiert wird\footnote{Damit nichts passiert, wenn der Gegenstand sich im selben Raum befindet, aber nicht benutzt wird.}.\\
 Die Gegenstände sollten im Laufe des Praktikums immer mehr verschiedene Funktionen erhalten.
 Dies war insofern schwierig, als dass die zu implementierenden Funktionen immer komplexer wurden\footnote{So gibt es z.B. eine Zeitmaschine, mit der man exakt 5 Räume zurückreisen kann.} und häufig auch ein Gegenstand eine ganz andere Sache können sollte, als bisher, ohne jedoch die alte(n) Funktion(en) einzubüßen.\\
 Dafür wurde sich des Command-Befehlsmusters bedient und eine neue Command-Methode erstellt:
