@@ -320,7 +320,7 @@ if (_verfallszeitpunkt > 1) {
 \end{lstlisting}
 Bei dem Feld \texttt{\_verfallszeitpunkt}\footnote{Nomenklaturregeln nach SE2-Format} handelt es sich um eine Exemplarvariable vom Typ Integer.
 Immer dann, wenn der hier gezeigte Block aufgerufen wird, wird diese Variable geprüft.
-Ist sie auf 0, wird sie inkrementiert; ist sie auf 1, so wird der Effekt des Lebenskommandos\footnote{interne Umsetzung der Energieverwaltung, für die Verwendung der Gegenstände nicht weiter von Bedeutung} decrementiert.
+Ist sie auf 0, wird sie inkrementiert; ist sie auf 1, so wird der Effekt des Lebenskommandos\footnote{interne Umsetzung der Energieverwaltung, für die Verwendung der Gegenstände nicht weiter von Bedeutung} dekrementiert und der \texttt{\_verfallszeitpunkt} wird wieder auf 0 gesetzt.
 Was ebenfalls zu sehen ist, ist, dass ein neues Icon für den Gegenstand gesetzt wird, wenn er 0 Energie-Einheiten erreicht beziehungsweise sobald er anfängt, Energie abzuziehen (siehe den inneren if-Block).
 \subsection{Inhaltliches}
 \label{ssec:main_cont}
