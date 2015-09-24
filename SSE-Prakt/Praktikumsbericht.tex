@@ -247,7 +247,7 @@ literate=%
 %\-\\
 %\-\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Dieser Bericht befasst sich mit dem Praktikum Agile Softwareentwicklung\footnote{STiNE-Veranstaltungsnummer 64-142} (im Folgenden \"ASE") als Teil des Moduls Softwareentwicklungspraktikum\footnote{STiNE-Modulnummer SSE\_PR} (im Folgenden \string"SEP"), absolviert im zweiten Fachsemester (im Folgenden "FS2") des Studiengangs Software-System-Entwicklung (im Folgenden \string"SSE").\\
+Dieser Bericht befasst sich mit dem Praktikum Agile Softwareentwicklung\footnote{STiNE-Veranstaltungsnummer 64-142} (im Folgenden \string"ASE") als Teil des Moduls Softwareentwicklungspraktikum\footnote{STiNE-Modulnummer SSE\_PR} (im Folgenden \string"SEP"), absolviert im zweiten Fachsemester (im Folgenden "FS2") des Studiengangs Software-System-Entwicklung (im Folgenden \string"SSE").\\
 Dieser Bericht ist geschrieben aus Sicht der Teilnehmer des Teilkurses 3 (ASE-SEP3), in welchem das Zuul-Ausgangssystem, welches von den Praktikumsbetreuern bereit gestellt wurde, in ein \textit{Point\& Click}-ähnliches \textit{Adventure-Game} weiterentwickelt wurde, welches nun den Titel \textit{KUUL} trägt.\\
 In diesem Bericht wird tiefergehend auf die Implementation von interaktiven Objekten in das \textit{KUUL}-System eingegangen.
 Dies umfasst die Erstellung der Gegenstände, deren Speicherung und die Implementation der Interaktion.
@@ -281,7 +281,7 @@ if (gegenstandElement.getElementsByTagName("beenden").getLength() != 0)
 Der hier betrachtete Quellcode ist aus dem in \textit{KUUL} verwendeten XML-Parser entnommen.\\
 Die XML\footnote{\textit{eXtensible Markup Language}, findet Verwendung in der Strukturierung von Daten}-Sprache arbeitet insofern, als dass jedes Dokument eine Reihe von Elementen hat, und diese Elemente haben Attribute (im Folgenden "Tags"), welche wiederum Element-Reihen seien können.
 Im Gegensatz zu HTML\footnote{\textit{HyperText Markup Language}, findet Gebrauch bei der Gestaltung von Web-Oberflächen} ist XML erweiterbar, das heißt es können benutzerdefinierte Tags hinzugefügt werden; die Syntax der beiden Sprachen ist nahezu gleich.\\
-An dieser Stelle wird der Tag des Gegenstands mit der Bezeichnung "beenden\" abgefragt: Ist sie vorhanden (Länge ungleich 0), so handelt es sich um einen Sieggegenstand.
+An dieser Stelle wird der Tag des Gegenstands mit der Bezeichnung "beenden\string" abgefragt: Ist sie vorhanden (Länge ungleich 0), so handelt es sich um einen Sieggegenstand.
 Anzumerken ist hierbei, dass der verwendete Parser abgefragte Tags immer als eine Form von Liste zurückgibt, weswegen der Tag mit \texttt{.item(0);} abgefragt werden muss.\\
 Die Siegnachricht, welche ebenfalls extern in der XML-Datei gelagert wird, wird ausgelesen und als String gespeichert.
 Der Gegenstand wird als Tupel aus ID und der Siegnachricht in eine Liste gelegt, die an anderen Stellen im Programm aufgerufen werden kann, um festzustellen, ob der gerade verwendete Gegenstand ein Sieggegenstand war.\\
