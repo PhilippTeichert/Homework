@@ -1,0 +1,48 @@
+ELIZA->String+RegEx
+    
+Natürliche Sprache
+    everyday communication:
+        tägliche Kommunikation
+        das hier jetzt gerade
+    have evolved:
+        Sprachwandel
+        Archaismen und Neologismen
+        Änderungen von Wortbedeutungen
+        "eindeutschen" (i.e.)
+    hard to pin down with explicit rules:
+        irreguläre Fälle
+        Dialekte
+        Ausnahmeregeln
+    Gegensatz: formale Sprachen und Mathe
+    besteht aus mehreren Aspekten:
+        Morphologie:
+            Lehre der Gestalten und Formen eines Objektes (Flexion, Komposition)
+        Syntax:
+            Lehre vom Bau eines Satzes und dessen formaler Struktur
+        Semantik:
+            Bedeutung und Inhalt eines Wortes, Satzes oder Textes
+        Pragmatik:
+            Beziehung zwischen Sprachbausteinen und ihren Anwendungen
+        Diskurs:
+            Gesamtheit aller sprachlichen Äußerungen eines Sprechers
+        Mehrdeutigkeit:
+            verschiedene Bedeutungen abhängig vom Kontext
+        Phonologie:
+            Funktion von Lauten
+
+Beispiel Status Quo
+
+ELIZA
+    Hintergrund
+    Methodik
+        Bei Nachfrage Detour
+DFA
+    kurz erklären
+    zwischen Morphemkette und DFA wechseln, wenn nötig
+RegEx und String
+    fängt mit Großbuchstabe an?
+	fängt mit Kleinbuchstabe an?
+	hört auf 'n' auf? (vgl. Beispiel)
+	enthält Nummer neben Buchstaben?
+	ist nur ein Buchstabe lang? (kürzeste deutsche Wörter 2 BS)
+	nur Zahlen?
