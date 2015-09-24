@@ -288,6 +288,40 @@ Wird der Sieggegenstand nun innerhalb des Spiels gefunden, aufgehoben und benutz
 Die beiden Welten haben unterschiedliche Sieggegenstände, sodass es auf dem Kiez erforderlich ist, das eigene Portmonnaie wiederzufinden.
 \subsection{Funktionsumfang}
 \label{ssec:main_func}
+Wie bereits mehrfach angesprochen, können Gegenstände aufgehoben und genutzt werden.\\
+In \textit{Zuul} funktionierte dies über die Konsolenbefehle.
+Um \textit{KUUL} komfortabler zu machen, sind Gegenstände im Raum anklickbar.
+Ebenso können sie aufgehoben werden, wenn sich der Spieler direkt davor stellt und die Enter-Taste drückt.\\
+Aufgenommene Gegenstände kommen in den \textit{Rucksack}, welcher allerdings nur eine beschränkte Kapazität von vier beliebigen Gegenständen hat.
+Gegenstände, die man im Rucksack hat, können kombiniert werden.
+Allerdings müssen sie dazu in der XML-Datei den Tag "kombinierbar", welcher im Parser als \texttt{boolean} ausgelesen wird, gesetzt bekommen.
+Ist dieser Tag auf den Wert \texttt{"false"} gesetzt, so können die Gegenstände nicht kombiniert werden.\\
+Eine weitere Besonderheit des Rucksack ist es, dass die meisten Gegenstände in der ersten Welt, die einem normalerweise Energie zurückgeben\footnote{Energie wird benötigt, um sich zu bewegen. Der Spieler startet mit 15 Energie-Einheiten. Jeder Raumwechsel verbraucht eine Einheit.}, mit der Zeit verfallen.
+Dies führt dazu, dass sie irgendwann nicht nur keine Energie zurückgeben, sondern Energie abziehen.\\
+Illustriert wird dies erstens durch eine Veränderung des Aussehens des Gegenstandes und zweitens durch eine Änderung des Textes, der bei Nutzung des Gegenstandes angezeigt wird\footnote{So wird z.B. \textit{"Die Ananas stärkt Sie und gibt Ihnen Kraft. Sie erhalten 2 Lebenspunkte. Toll!"} zu \textit{"Die Ananas ist bis auf den Kern vergammelt. Sie verlieren Lebenspunkte!"}, wenn man die Ananas lange genug im Rucksack behält}.
+Graphisch hat jeder Gegenstand höchstens drei Phasen\footnote{Viele Gegenstände, wie zum Beispiel Schlüssel, haben nur eine Phase}, der Abzug der Energie-Einheiten wächst allerdings stetig linear.
+Alle zwei Schritte zieht der Gebrauch eines solchen Gegenstandes eine Einheit mehr ab.
+\begin{lstlisting}[caption=Teilimplementation der Verringerung der Energieregeneration, label=code:main_func]
+if (_verfallszeitpunkt > 1) {
+	_verfallszeitpunkt = 0;
+	lebensCommand.verringereLebenspunkte();
+	if (lebensCommand.getLebensEffekt() == 0) {
+		setIcon("Graphics/Items/Phase2" + "/" + gibName() + "2.png");
+		_verfallStatus = 1;
+		return true;
+	} else if (lebensCommand.getLebensEffekt() < 0) {
+		setIcon("Graphics/Items/Phase3" + "/" + gibName() + "3.png");
+		_verfallStatus = 2;
+		return true;
+	}
+} else {
+	_verfallszeitpunkt++;
+}
+\end{lstlisting}
+Bei dem Feld \texttt{\_verfallszeitpunkt}\footnote{Nomenklaturregeln nach SE2-Format} handelt es sich um eine Exemplarvariable vom Typ Integer.
+Immer dann, wenn der hier gezeigte Block aufgerufen wird, wird diese Variable geprüft.
+Ist sie auf 0, wird sie inkrementiert; ist sie auf 1, so wird der Effekt des Lebenskommandos\footnote{interne Umsetzung der Energieverwaltung, für die Verwendung der Gegenstände nicht weiter von Bedeutung} decrementiert.
+Was ebenfalls zu sehen ist, ist, dass ein neues Icon für den Gegenstand gesetzt wird, wenn er 0 Energie-Einheiten erreicht beziehungsweise sobald er anfängt, Energie abzuziehen (siehe den inneren if-Block).
 \subsection{Inhaltliches}
 \label{ssec:main_cont}
 
