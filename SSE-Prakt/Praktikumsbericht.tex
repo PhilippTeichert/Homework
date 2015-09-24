@@ -81,8 +81,8 @@
 \hyphenation{whe-ther} 									% Manually use: "\-" in a word: Staats\-ver\-trag
 
 %\lstloadlanguages{C}                   % Set the default language for listings
-\DeclareGraphicsExtensions{.pdf,.svg,.jpg,.png,.eps} % first try pdf, then eps, png and jpg
-\graphicspath{{./src/}} 								% Path to a folder where all pictures are located
+\DeclareGraphicsExtensions{.pdf,.svg,.jpg,.png,.eps,.jpeg} % first try pdf, then eps, png and jpg
+\graphicspath{{img/}} 								% Path to a folder where all pictures are located
 \pagestyle{fancy} 											% Use nicer header and footer
 
 % Redefine the environments for floating objects:
@@ -161,6 +161,7 @@ literate=%
 \renewcommand{\lstlistingname}{Code}
 \captionsetup[lstlisting]{font={footnotesize},margin=1.5cm,singlelinecheck=false } % removes "Listing 1: "
 \definecolor{light-light-gray}{gray}{0.95}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Document:
@@ -321,7 +322,24 @@ if (_verfallszeitpunkt > 1) {
 Bei dem Feld \texttt{\_verfallszeitpunkt}\footnote{Nomenklaturregeln nach SE2-Format} handelt es sich um eine Exemplarvariable vom Typ Integer.
 Immer dann, wenn der hier gezeigte Block aufgerufen wird, wird diese Variable geprüft.
 Ist sie auf 0, wird sie inkrementiert; ist sie auf 1, so wird der Effekt des Lebenskommandos\footnote{interne Umsetzung der Energieverwaltung, für die Verwendung der Gegenstände nicht weiter von Bedeutung} dekrementiert und der \texttt{\_verfallszeitpunkt} wird wieder auf 0 gesetzt.
-Was ebenfalls zu sehen ist, ist, dass ein neues Icon für den Gegenstand gesetzt wird, wenn er 0 Energie-Einheiten erreicht beziehungsweise sobald er anfängt, Energie abzuziehen (siehe den inneren if-Block).
+Was ebenfalls zu sehen ist, ist, dass ein neues Icon für den Gegenstand gesetzt wird, wenn er 0 Energie-Einheiten erreicht beziehungsweise sobald er anfängt, Energie abzuziehen (siehe den inneren if-Block).\\
+\\
+Zur bereits angesprochenen Kombinationsfunktion sei gesagt, dass nicht alle Gegenstände kombinierbar sind.
+Es wurde bereits gesagt, dass ein Tag gesetzt werden muss, damit ein Gegenstand vom \textit{Crafting Tool} (vgl. Abb. \ref{fig:main_craft}) akzeptiert wird.
+Desweiteren muss es ein Rezept geben, welches den fraglichen Gegenstand beinhält.
+Befindet sich dann der zweite Gegenstand ebenfalls im Rucksack des Spielers, so kann der Spieler die Kombination ausführen.\\
+Da sich die zweite Welt an den Kiez anlehnt, befinden sich dort primär alkoholische Getränke.
+Alle alkoholischen Getränke können miteinander kombiniert werden; allerdings ist dort die Regelung ein wenig anders: Jedes Rezept hat als Ergebnis eine \textit{Gute Mische}, welche Energie dazu gibt, jedes ungültige Rezept hat als Ergebnis eine \textit{Schlechte Mische}, welche Energie abzieht.
+\begin{figure}[h!bt]
+    \begin{center}
+        \includegraphics[width=0.35\textwidth]{img/craftingUI.png}
+        \label{fig:main_craft}
+    	\caption{Crafting Tool}
+    \end{center}
+\end{figure}
+Die hier betrachtete Konfiguration des \textit{Crafting Tools} entstammt der ersten Welt.
+Das Messer und das Gemälde werden kombiniert, um ein Snickers zu erhalten, welches die Energie vollständig wieder auffüllt.
+Messer und Gemälde werden dabei verbraucht.
 \subsection{Inhaltliches}
 \label{ssec:main_cont}
 
