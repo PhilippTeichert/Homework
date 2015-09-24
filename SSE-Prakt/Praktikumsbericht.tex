@@ -343,6 +343,51 @@ Messer und Gemälde werden dabei verbraucht.
 \subsection{Inhaltliches}
 \label{ssec:main_cont}
 
+\subsection{Commands}
+\label{ssec:main_commands}
+Allgemein bekommt ein jeder Gegenstand mindestens ein X-Command\footnote{z.B. Lebenscommand zur Erhöhung der Energie, oder Beendencommand zum Beenden des Spiels} zugeordnet.
+Diese Commands werden alle beim Einlesen aus den XML-Dateien in Listen gespeichert und dann den Gegenständen hinzugefügt.
+So hält jeder Gegenstand seine Liste an Commands, die abgefragt werden können, wenn mit dem Gegenstand interagiert wird\footnote{Damit nichts passiert, wenn der Gegenstand sich im selben Raum befindet, aber nicht benutzt wird.}.\\
+Die Gegenstände sollten im Laufe des Praktikums immer mehr verschiedene Funktionen erhalten.
+Dies war insofern schwierig, als dass die zu implementierenden Funktionen immer komplexer wurden\footnote{So gibt es z.B. eine Zeitmaschine, mit der man exakt 5 Räume zurückreisen kann.} und häufig auch ein Gegenstand eine ganz andere Sache können sollte, als bisher, ohne jedoch die alte(n) Funktion(en) einzubüßen.\\
+Dafür wurde sich des Command-Befehlsmusters bedient und eine neue Command-Methode erstellt:
+\begin{lstlisting}[caption=Unser Command-Interface, label=code:main_command]
+public interface Command {
+	public void apply();
+}
+\end{lstlisting}
+Diese tut nichts anderes, als als Interface zu dienen, auf welches andere Methoden zugreifen dürfen, ohne zu wissen, was nun wirklich genau im Code passiert.
+Dieses kann nun nämlich in den speziellen Commands festgelegt werden.
+\\
+So sieht z.B. das Lebenscommand, welches natärlich das Interface Command implementiert, so aus:
+\begin{lstlisting}[caption=LebenCommand - eine implementation des Command-Interfaces, label=code:main_lebencommand]
+public LebenCommand(Spieler spieler, int hp)
+    {
+        _hp = hp;
+        _spieler = spieler;
+    }
+
+    @Override
+    public void apply()
+    {
+        _spieler.getLebenspunkte()
+            .veraendereLebenspunkte(_hp);
+    }
+\end{lstlisting}
+In diesem wird die \texttt{apply}-Methode überschrieben und tut jetzt etwas sinnvolles, wie in diesem Fall, das Leben des Spielers verändern.
+So kann jedes Mal, wenn mit einem Gegenstand interagiert wird, die Methode \texttt{benutzeGegenstand} aus der Klasse \texttt{Gegenstand} aufgerufen werden.
+Und dieser ist es egal, um welche Art von Command es sich letztendlich handelt.
+\begin{lstlisting}[caption=die benutzeGegenstand-Methode aus der Klasse Gegenstand, label=code:main_gegenstand]
+	public void benutzeGegenstand() {
+		if (!_commandList.isEmpty()) {
+			ArrayList<Command> iterierListe = _commandList;
+			for (Command command : iterierListe) {
+				command.apply();
+			}
+		}
+	}
+\end{lstlisting}
+Sie geht alle Commands durch, die in dem Gegenstand gespeichert sind, und führt sie nacheinander aus\footnote{Die \texttt{iterierListe} ist nur dazu da, um Fehlern vorzubeugen, die entstehen würden, wenn ein \texttt{Command} in seiner \texttt{apply}-Methode die Liste verändert. So z.B. die vergammelbaren Gegenstände.}, ohne dass ihre konkrete Implementation, also die Funktion, die der Gegenstand hat, von Bedeutung für die Funktionalität dieser Methode ist. Somit lässt sich ganz einfach eine neue Funktion zu einem Gegenstand hinzufügen, indem einfach bei der Erstellung ein weiteres Command der Liste hinzugefügt wird, welches nun beim Benutzen des Gegenstandes abgearbeitet wird.
 
 \section{Schluss}
 \label{sec:end}
