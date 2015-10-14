@@ -1,0 +1,103 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage[margin=2.5cm]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{perpage}
+\MakePerPage{footnote}
+
+\begin{document}
+\thispagestyle{empty}
+\-\vspace{2cm}
+\begin{center}
+\begin{Huge}
+Algorithmen und Datenstrukturen
+\end{Huge}\\
+\vspace{2cm}
+\begin{LARGE}
+Übungsgruppe 14
+\end{LARGE}\\
+\vspace{2cm}
+\begin{Large}
+Utz Pöhlmann
+\end{Large}\\
+4poehlma@informatik.uni-hamburg.de\\
+6663579\\
+\vspace{1cm}
+\begin{Large}
+Louis Kobras
+\end{Large}\\
+4kobras@informatik.uni-hamburg.de\\
+6658699\\
+\vspace{3cm}
+\today\\
+\vspace{3cm}
+\textbf{Punkte:}\\
+\vspace{1cm}
+\begin{tabular}{c|c|c|c|c|c}
+~~~~&~~~~&~~~~&~~~~&~~~~&$\Sigma$	\\	\hline
+	&	 &	  &	   &	&
+
+\end{tabular}
+\end{center}
+
+\newpage
+\pagenumbering{arabic}
+\section{Präsenzteil}
+\subsection{Präsenzaufgabe 1.1}
+%---------------%
+%	Aufgabe		%
+%---------------%
+Wiederholen Sie die \textit{O}-Notation und die verwandten Notationen.
+Wie sind die einzelnen Mengen definiert?
+Was bedeutet es, wenn $f \in O(g)$ gilt, was wenn $f \in \Theta (g)$ gilt und so weiter?\\
+\vspace{2cm}
+%---------------%
+%	Bearbeitung	%
+%---------------%
+\subsection{Präsenzaufgabe 1.2}
+%---------------%
+%	Aufgabe		%
+%---------------%
+Beweisen Sie:
+\begin{itemize}
+	\item $n^2+3n-5 \in O(n^2)$
+	\item $n^2-2n \in \Theta(n^2)$
+	\item $n! \in O((n+1)!)$
+\end{itemize}
+Gilt im letzten Fall auch $n! \in o((n+1)!)$?\\
+\vspace{2cm}
+%---------------%
+%	Bearbeitung	%
+%---------------%
+\begin{equation}
+\begin{array}{rl}
+	f(n) \in O(g(n)) &\Leftrightarrow lim_{n\rightarrow \infty} \frac{f(n)}{g(n)} < \infty\\
+	f(n) &= n^2+3n-5\\
+	g(n) &= n^2\\
+	\frac{f(n)}{g(n)} &= \frac{n^2+3n-5}{n^2}
+	\vspace{1cm}\\
+	lim_{n \rightarrow \infty} \frac{n^2+3n-5}{n^2} &= lim_{n \rightarrow \infty} 1+\frac{3}{n}-\frac{5}{n^2}\\
+		&=1+\frac{3}{\infty}-\frac{5}{\infty^2}\\
+		&=1+0+0\\
+		&=1 < \infty \Rightarrow f(n) \in O(g(n))
+\end{array}
+\end{equation}
+\subsection{Präsenzaufgabe 1.3}
+%---------------%
+%	Aufgabe		%
+%---------------%
+Beweisen oder widerlegen Sie:
+\begin{enumerate}
+	\item $ f(n),g(n) \in O(h(n)) \Rightarrow f(n)+g(n) \in O(h(n)) $
+	\item $ f(n),g(n) \in O(h(n)) \Rightarrow f(n) \cdot g(n) \in O(h(n)) $
+\end{enumerate}
+\vspace{2cm}
+%---------------%
+%	Bearbeitung	%
+%---------------%
+\end{document}
