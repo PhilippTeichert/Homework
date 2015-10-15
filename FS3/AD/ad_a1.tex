@@ -36,7 +36,7 @@ Louis Kobras
 \vspace{3cm}
 \today\\
 \vspace{3cm}
-\textbf{Punkte:}\\
+\textbf{Punkte für den Hausaufgabenteil:}\\
 \vspace{1cm}
 \begin{tabular}{c|c|c|c|c|c}
 ~~~~&~~~~&~~~~&~~~~&~~~~&$\Sigma$	\\	\hline
@@ -110,7 +110,7 @@ Dies ist erfüllbar ab $n_0 >= 2$ , da für $n=1$ im mittleren Ausdruck 0 heraus
 Ist $n >= 2$, so kommt im mittleren Ausdruck $0,5$ heraus, für $c_1$ lässt sich ein beliebiger Wert aus $\string]0;0.5\string[$ wählen, sei es an dieser Stelle $\frac{1}{4}$.
 Als Obergrenze für $c_2$ lässt sich jeder Wert größer oder gleich 1 wählen, da der mittlere Ausdruck nicht größer als 1 werden kann und somit die Bedingung des "kleiner gleich" sofort erfüllt ist.\\
 Somit wird als Ergebnis für die Belegung gewählt: $c_1 = \frac{1}{4}; c_2 = 1; n_0 = 2$.
-Mit dieser Belegung gilt $n^2-2n \in \Theta(n^2)$\\
+Mit dieser Belegung gilt $n^2-2n \in \Theta(n^2)$
 \begin{flushright}
 $\square$
 \end{flushright}
@@ -126,7 +126,7 @@ $\square$
 		&= 0 < \infty \Rightarrow f(n) \in O(g(n))
 \end{array}
 \end{equation*}
-Da die Bedingung für $o(g(n))$ ist, dass der Quotient nicht nur kleiner unendlich, sondern gleich null ist, was hier wie oben gezeigt gegeben ist, gilt auch $n! \in o((n+1)!)$.\\
+Da die Bedingung für $o(g(n))$ ist, dass der Quotient nicht nur kleiner unendlich, sondern gleich null ist, was hier wie oben gezeigt gegeben ist, gilt auch $n! \in o((n+1)!)$.
 \begin{flushright}
 $\square$
 \end{flushright}
@@ -139,8 +139,23 @@ Beweisen oder widerlegen Sie:
 	\item $ f(n),g(n) \in O(h(n)) \Rightarrow f(n)+g(n) \in O(h(n)) $
 	\item $ f(n),g(n) \in O(h(n)) \Rightarrow f(n) \cdot g(n) \in O(h(n)) $
 \end{enumerate}
-\vspace{2cm}
+\vspace{1cm}
 %---------------%
 %	Bearbeitung	%
 %---------------%
+Sind $f(n)$ und $g(n)$ in $O(h(n))$, so erfüllen sie die Bedingung $lim_{n\rightarrow\infty}\frac{f(n)}{h(n)}<\infty$ bzw. $lim_{n\rightarrow\infty}\frac{g(n)}{h(n)}<\infty$.
+Das heißt, dass $h(n)$ größeres Wachstum erfährt als die anderen beiden Funktionen.
+Da sich der Grad einer Funktion nicht durch Addition ändert, bleibt die Summe kleiner oder gleich $h(n)$. Somit ist (1) gezeigt.
+\vspace{0.5cm}\\
+Seien $f(n)$ und $g(n)$ Polynome zweiten Grades sowie $h(n)$ ein Polynom dritten Grades.
+Dann sind sowohl $f(n)$ als auch $g(n)$ durch die \textit{limes}-Bedingung in $O(h(n))$.
+Das Produkt zweier Polynome zweiten Grades ist allerdings ein Polynom vierten Grades, sodass gilt:
+\begin{equation*}
+	\lim_{n\rightarrow\infty}\frac{n^2 \cdot n^2}{n^3}=\lim_{n\rightarrow\infty}\frac{n^4}{n^3}=\lim_{n\rightarrow\infty}n=\infty
+\end{equation*}
+Damit ist das Produkt der Polynome nicht mehr in $O(h(n))$, da die \textit{limes}-Bedingung, nach der der Quotient der Polynome für \textit{n} gegen Unendlich kleiner als Unendlich sein zu hat, nicht erfüllt ist.
+Damit ist (2) widerlegt.
+\begin{flushright}
+$\square$
+\end{flushright}
 \end{document}
