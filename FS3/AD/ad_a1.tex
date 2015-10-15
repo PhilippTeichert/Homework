@@ -33,9 +33,15 @@ Louis Kobras
 \end{Large}\\
 4kobras@informatik.uni-hamburg.de\\
 6658699\\
-\vspace{3cm}
+\vspace{1cm}
+\begin{Large}
+Paul Testa
+\end{Large}\\
+paul.testa@gmx.de\\
+6251548\\
+\vspace{2.5cm}
 \today\\
-\vspace{3cm}
+\vspace{2.5cm}
 \textbf{Punkte für den Hausaufgabenteil:}\\
 \vspace{1cm}
 \begin{tabular}{c|c|c|c|c|c}
@@ -47,7 +53,7 @@ Louis Kobras
 
 \newpage
 \pagenumbering{arabic}
-\section{Präsenzteil}
+\section{Zettel vom 14.-16. Oktober // Abgabe: N/A}
 \subsection{Präsenzaufgabe 1.1}
 %---------------%
 %	Aufgabe		%
@@ -119,9 +125,9 @@ $\square$
 \begin{array}{rl}
 	f(n) \in O(g(n)) &\Leftrightarrow lim_{n\rightarrow \infty} \frac{f(n)}{g(n)} < \infty\\
 	f(n) &= n!\\
-	g(n) &= (n+1)! = n \cdot n!
+	g(n) &= (n+1)! = (n+1) \cdot n!
 	\vspace{0.5cm}\\
-	lim_{n\rightarrow \infty} \frac{n!}{n \cdot n!} &= lim_{n \rightarrow \infty} \frac{1}{n}\\
+	lim_{n\rightarrow \infty} \frac{n!}{(n+1) \cdot n!} &= lim_{n \rightarrow \infty} \frac{1}{n+1}\\
 		&= \frac{1}{\infty}\\
 		&= 0 < \infty \Rightarrow f(n) \in O(g(n))
 \end{array}
@@ -143,9 +149,18 @@ Beweisen oder widerlegen Sie:
 %---------------%
 %	Bearbeitung	%
 %---------------%
-Sind $f(n)$ und $g(n)$ in $O(h(n))$, so erfüllen sie die Bedingung $lim_{n\rightarrow\infty}\frac{f(n)}{h(n)}<\infty$ bzw. $lim_{n\rightarrow\infty}\frac{g(n)}{h(n)}<\infty$.
-Das heißt, dass $h(n)$ größeres Wachstum erfährt als die anderen beiden Funktionen.
-Da sich der Grad einer Funktion nicht durch Addition ändert, bleibt die Summe kleiner oder gleich $h(n)$. Somit ist (1) gezeigt.
+\[
+	\exists c_1 \in \mathbb{R}^+ \exists n_{0_1} \in \mathbb{N} \forall n >= n_{0_1} : \|f(n)\| <= c_1 \cdot \|h(n)\|
+\]
+\[
+	\exists c21 \in \mathbb{R}^+ \exists n_{0_2} \in \mathbb{N} \forall n >= n_{0_2} : \|g(n)\| <= c_2 \cdot \|h(n)\|
+\]
+\[
+	n_0 = max(n_{0_1},n_{0_2})
+\]
+\[
+	\|f(n)+g(n)\| <= c_1\cdot\|h(n)\|+c_2\cdot\|h(n)\| <= (c_1+c_2)\cdot\|h(n)\|
+\]
 \vspace{0.5cm}\\
 Seien $f(n)$ und $g(n)$ Polynome zweiten Grades sowie $h(n)$ ein Polynom dritten Grades.
 Dann sind sowohl $f(n)$ als auch $g(n)$ durch die \textit{limes}-Bedingung in $O(h(n))$.
@@ -158,4 +173,96 @@ Damit ist (2) widerlegt.
 \begin{flushright}
 $\square$
 \end{flushright}
+\newpage
+\section{Zettel vom 15.10. // Abgabe: 26.10.}
+\subsection{Übungsaufgabe 2.1}
+\begin{flushright}
+\begin{Large}
+[~~~~\string| ~~2~]
+\end{Large}
+\end{flushright}
+%---------------%
+%	Aufgabe		%
+%---------------%
+Begründen Sie formal, warum folgende Größenabschätzungen gelten bzw. nicht gelten:
+\begin{enumerate}
+	\item $3n^3-6n+20 \in O(n^3)$
+	\item $n^2 \cdot \operatorname{log} n \in O(n^3) \Omega(n^2)$
+\end{enumerate}
+\vspace{1cm}
+%---------------%
+%	Bearbeitung	%
+%---------------%
+\subsection{Übungsaufgabe 2.2}
+\begin{flushright}
+\begin{Large}
+[~~~~\string| ~~4~]
+\end{Large}
+\end{flushright}
+%---------------%
+%	Aufgabe		%
+%---------------%
+Ordnen Sie die folgenden Funktionen nach ihrem Wachstumsgrad in aufsteigender Reihenfolge, d.h. folgt eine Funktion $g(n)$ einer Funktion $f(n)$, so soll $f(n) \in O(g(n))$ gelten.
+\[
+	n, \operatorname{log} n, n^2, n^{\frac{1}{2}}, \sqrt{n}^3, 2^n, \operatorname{ln} n, 1000
+\]
+Mit log ist hier der Logarithmus zur Basis 2, mit ln der natürliche Logarithmus (Basis \textit{e}) gemeint.
+Begründen Sie stets Ihre Aussage.
+Zwei Funktionen $f(n)$ und $g(n)$ befinden sich ferner in der selben Äquivalenzklasse, wenn $f(n) \in \Theta (g(n))$ gilt.
+Geben Sie an, welche Funktionen sich in derselben Äquivalenzklasse befinden und begründen Sie auch hier ihre Aussage.
+\vspace{1cm}
+%---------------%
+%	Bearbeitung	%
+%---------------%
+\subsection{Übungsaufgabe 2.3}
+\begin{flushright}
+\begin{Large}
+[~~~~\string| ~~2~]
+\end{Large}
+\end{flushright}
+%---------------%
+%	Aufgabe		%
+%---------------%
+Beweisen oder widerlegen Sie:
+\[
+	f(n),g(n) \in O(h(n)) \Rightarrow f(n)\cdot g(n) \in O((h(n))^2)
+\]
+\vspace{1cm}
+%---------------%
+%	Bearbeitung	%
+%---------------%
+\subsection{Übungsaufgabe 2.4}
+\begin{flushright}
+\begin{Large}
+[~~~~\string| ~~8~]
+\end{Large}
+\end{flushright}
+%---------------%
+%	Aufgabe		%
+%---------------%
+Seien
+\begin{enumerate}
+	\item 
+	\[
+		T(n) :=  \begin{cases}
+					\begin{array}{ll}
+						0, & \text{für }n=0\\
+						3 \cdot T(n-1)+2, &\text{sonst}
+					\end{array}
+				\end{cases}
+	\]
+	\item
+	\[
+		S(n) := \begin{cases}
+					\begin{array}{ll}
+						c,			& \text{für }n=1\\
+						16 \cdot S(\frac{n}{4})+n^2, & \text{sonst}
+					\end{array}
+				\end{cases}
+	\]
+\end{enumerate}
+\vspace{1cm}
+%---------------%
+%	Bearbeitung	%
+%---------------%
 \end{document}
