@@ -187,12 +187,35 @@ $\square$
 Begründen Sie formal, warum folgende Größenabschätzungen gelten bzw. nicht gelten:
 \begin{enumerate}
 	\item $3n^3-6n+20 \in O(n^3)$
-	\item $n^2 \cdot \operatorname{log} n \in O(n^3) \Omega(n^2)$
+	\item $n^2 \cdot \operatorname{log} n \in O(n^3) \cap \Omega(n^2)$
 \end{enumerate}
 \vspace{1cm}
 %---------------%
 %	Bearbeitung	%
 %---------------%
+\subsubsection{}
+\[
+	3n^3-6n+20 \in O(n^3) \Leftrightarrow lim_{n\rightarrow\infty}\frac{3n^3-6n+20}{n^3} < \infty
+\]
+\[
+	lim_{n\rightarrow\infty}\frac{3n^3-6n+20}{n^3} = lim_{n\rightarrow\infty} \frac{3n^3}{n^3}-\frac{6n}{n^3}+\frac{20}{n^3}=lim_{n\rightarrow\infty}3-\frac{6}{n^2}+\frac{20}{n^3}=3-0+0<\infty
+\]
+\[
+	\Rightarrow 3n^3-6n+20 \in O(n^3)  ~~~~~~~~\square
+\]
+\subsubsection{}
+\[
+	n^2 \cdot \operatorname{log} n \in O(n^3) \cap \Omega(n^2) \Leftrightarrow lim_{n\rightarrow\infty} \frac{n^2 \cdot \operatorname{log} n}{n^3} < \infty \land lim_{n\rightarrow\infty} \frac{n^2 \cdot \operatorname{log} n}{n^2} > 0
+\]
+\[
+	\frac{n^2 \cdot \operatorname{log} n}{n^2} = \frac{1 \cdot \operatorname{log} n}{1} = \operatorname{log} n > 0~ \forall n > 1 \Rightarrow n^2 \cdot \operatorname{log} n \in \Omega(n^2)
+\]
+\[
+	lim_{n\rightarrow\infty} \frac{n^2 \cdot \operatorname{log} n}{n^3} = lim_{n\rightarrow\infty} \frac{\operatorname{log} n}{n} \overset{\text{l'H}}{=} lim_{n\rightarrow\infty}\frac{1}{n} \cdot \frac{1}{1} = lim_{n\rightarrow\infty} \frac{1}{n} = \frac{1}{\infty} = 0 \Rightarrow n^2\cdot\operatorname{log} n \in  O(n^3)
+\]
+\[
+	\Rightarrow n^2 \cdot \operatorname{log} n \in O(n^3) \cap \Omega(n^2)~~~~\square
+\]
 \subsection{Übungsaufgabe 2.2}
 \begin{flushright}
 \begin{Large}
