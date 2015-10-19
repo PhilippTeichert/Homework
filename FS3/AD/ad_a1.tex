@@ -4,8 +4,13 @@
 \usepackage[ngerman]{babel}
 \usepackage[margin=2.5cm]{geometry}
 
+% import math packages
 \usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{amsthm}
+% contradiction lightning
+\usepackage{stmaryrd}
 
 \usepackage{perpage}
 \MakePerPage{footnote}
@@ -250,10 +255,16 @@ Beweisen oder widerlegen Sie:
 \[
 	f(n),g(n) \in O(h(n)) \Rightarrow f(n)\cdot g(n) \in O((h(n))^2)
 \]
-\vspace{1cm}
+\vspace{1cm}\\
 %---------------%
 %	Bearbeitung	%
 %---------------%
+Für diesen Beweis wird der Beweis des dritten Satzes der Summen- und Produkteigenschaften der O-Notation\footnote{vgl. Vorlesung, Foliensatz 1 (14.10.), S.33} zu Hilfe genommen:
+\begin{proof}
+Sei $f\in O(h_1)$ und $g\in O(h_2)$, dann gibt es ein $c$, $n_0$, so dass $f(n) \leq c \cdot h_1(n) \forall n \geq n_0$ und ebenso $c', n_0'$, so dass $g(n') \leq c' \cdot h_2(n') \forall n' \geq n_0'$.
+Daraus folgt $f(n'')\cdot g(n'') \leq c \cdot c' \cdot h_1(n'') \cdot h_2(n'') \forall n'' \geq max(n_0, n_0')$, also $f \cdot g \in O(h_1 \cdot h_2)$.
+\end{proof}
+Setzt man nun $h_1, h_2 = h$ folgt daraus für den letzten Ausdruck des Beweises $f(n) \cdot g(n) \in O(h(n)) \cdot h(n)) \Rightarrow f(n) \cdot g(n) \in O((h(n))^2)$.
 \subsection{Übungsaufgabe 2.4}
 \begin{flushright}
 \begin{Large}
