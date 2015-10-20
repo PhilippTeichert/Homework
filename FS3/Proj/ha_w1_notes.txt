@@ -1,0 +1,74 @@
+define:in door navigation:
+	audio guide vs standortanzeiger vs minimap-app vs farbstreifen
+		audio guide:
+			straßenschilder an der kreuzung vorlesen + "sehenswürdigkeiten"
+		standortanzeiger+minimap
+			kartentafel mit "sie sind hier und norden ist links"
+		minimap
+			karte als handy app
+		farbstreifen:
+			farbliche durchgehende markierungen auf boden/an wand/an decke/wo platz mit zusammenhängend
+vorraussetzugen/vorbedingungen:
+	mehrsprachigkeit
+	audio guide:
+		batterien+ladegeräte
+		einsammeln
+		ausreichend vorrat
+		(diebstahl)sicherung
+		synchronsprecher
+			mehrere sprecher für mehrere sprachen (muttersprachler)
+		tagging system für passende audio file autoplay oder so
+	standortanzeiger
+		n paar tafeln
+		grundriss
+		sinnvolle standorte
+		ausreichend bestückt für trauben/menschenmassen
+	minimap-app
+		ein dev team
+		grundriss
+		internes sensorennetz für triangulation der position
+			stabil und groß genug (5stellige personenanzahl)
+		pr
+	farbstreifen
+		freie fläche zum anmalen (wand/decke/boden)
+		irgend was durchgehendes
+			farbstreifen vs girlanden vs led streifen
+aufwand:
+	audio guide(2):
+		einmal texten
+		dolmetschen
+		aufsprechen
+		verteilen
+	standortanzeiger(1):
+		jemand malt das mal in photoshop
+		dann drucken verteilen
+		und jemand schraubt die tafeln an die wand
+	minimap-app(4):
+		pr
+		dev team
+		montage team
+		jemanden, der die sensoren einkauft
+	farbstreifen(3):
+		planung
+		malung
+kosten:
+	audio guide(2):
+		einkauf der guides+batterien
+		einbau der ladestationen
+		dolmetscher+synchronsprecher
+		texter
+	standortanzeiger(1):
+		planer
+		tafeln
+		designer
+		drucker
+	minimap-app(2):
+		dev team
+		pr
+		sensoren
+		montage
+	farbstreifen(1):
+		planungsteam
+		einkäufer
+		montage-/malerteam
+		evtl entschädigung an die geschäfte für ausfallende kunden
