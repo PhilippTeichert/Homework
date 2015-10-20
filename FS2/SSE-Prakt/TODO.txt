@@ -1,0 +1,12 @@
+- Sprache sollte noch einmal überarbeitet werden
+
+- Entwicklungsprozess (Agiler Prozess) wird nicht beschrieben
+
+- Probleme und Motivation für Lösungen werden nicht (oder sehr wenig) beschrieben
+	- Architekturaspekte kommen zu kurz
+
+- der Kontext wird nicht klar: Wer ist der Kunde? Was ist ein Raum? (Seite 2)
+
+- Einige unglückliche Nebensatzverschachtelungen, besser umschreiben oder mit Gedankenstrichen arbeiten (Bspw [...] sodass, während die Anzahl [...], die Umgebung beibehalten wurde.)
+
+- etwas zu häufig werden Fußoten genutzt, anstatt etwas im Fließtext mit einzubauen.
