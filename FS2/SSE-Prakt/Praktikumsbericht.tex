@@ -223,7 +223,7 @@ literate=%
 % each section is assigned a label, in order to be able to put a
 % crossreference to it
 
-\section{Einleitung}
+\section{KUUL?}
 \label{sec:intro}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Es war einmal ein Spiel namens \textit{Zuul}.
@@ -248,49 +248,70 @@ literate=%
 %\-\\
 %\-\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Dieser Bericht befasst sich mit dem Praktikum Agile Softwareentwicklung\footnote{STiNE-Veranstaltungsnummer 64-142} (im Folgenden \string"ASE") als Teil des Moduls Softwareentwicklungspraktikum\footnote{STiNE-Modulnummer SSE\_PR} (im Folgenden \string"SEP"), absolviert im zweiten Fachsemester (im Folgenden "FS2") des Studiengangs Software-System-Entwicklung (im Folgenden \string"SSE").\\
-Dieser Bericht ist geschrieben aus Sicht der Teilnehmer des Teilkurses 3 (ASE-SEP3), in welchem das Zuul-Ausgangssystem, welches von den Praktikumsbetreuern bereit gestellt wurde, in ein \textit{Point\& Click}-ähnliches \textit{Adventure-Game} weiterentwickelt wurde, welches nun den Titel \textit{KUUL} trägt.\\
+Dieser Bericht befasst sich mit dem Praktikum Agile Softwareentwicklung\footnote{STiNE-Veranstaltungsnummer 64-142} (im Folgenden \string"ASE")
+ als Teil des Moduls Softwareentwicklungspraktikum\footnote{STiNE-Modulnummer SSE\_PR} (im Folgenden \string"SEP")
+ , absolviert im zweiten Fachsemester %(im Folgenden "FS2")
+des Studiengangs Software-System-Entwicklung %(im Folgenden \string"SSE")
+.\\
+Dieser Bericht ist geschrieben aus Sicht der Teilnehmer des Teilkurses 3 (ASE-SEP3)
+, in welchem das Zuul-Ausgangssystem, welches von den Praktikumsbetreuern bereit gestellt wurde, in ein \textit{Point \& Click\footnote{Ein Programm, bei dem Aktionen durch ein Anvisieren mit einem Zeiger (meist die Maus) und das darauffolgende Klicken hervorgerufen werden.}}-ähnliches \textit{Adventure-Game\footnote{Ein Spiel, bei dem die Erkundung und das Lösen von Rätseln im Vordergrund stehen.}} weiterentwickelt wurde, welches nun den Titel \textit{KUUL} trägt.\\
 In diesem Bericht wird tiefergehend auf die Implementation von interaktiven Objekten in das \textit{KUUL}-System eingegangen.
 Dies umfasst die Erstellung der Gegenstände, deren Speicherung und die Implementation der Interaktion.
-\section{Hauptteil}
+
+%-----------------------------------------------
+%
+%-----------------------------------------------
+
+\section{Das Projekt}
 \label{sec:main}
 Wie bereits in der Einleitung angesprochen, wird sich dieser Bericht primär mit dem Umgang mit den Gegenständen in \textit{KUUL} befassen.
 Interaktiv sind diese Gegenstände insofern, als dass sie aufgesammelt, benutzt und kombiniert werden können.\\
-Zunächst wird jedoch festgestellt werden, worum es sich bei \textit{KUUL} handelt.
-\subsection{KUUL}
+%Zunächst wird jedoch festgestellt werden, worum es sich bei \textit{KUUL} handelt.
+\begin{figure}[h!bt]
+    \begin{center}
+        \includegraphics[scale=1]{Gegenstaende_Welt-1.png}
+    	\caption{Alle Gegenstände aus der Universität}
+        \label{fig:main_items}
+    \end{center}
+\end{figure}
+
+%
+%-----------------------------------------------
+%
+
+\subsection{Organisation im Team}
+\label{orga}
+\#Agiler Prozess
+\#Kunden
+\#Motivation
+\#Lösungen
+\\
+Doch was ist \textit{KUUL} eigentlich?
+
+%
+%-----------------------------------------------
+%
+
+\subsection{Spielprinzip und Hintergrund}
 \label{ssec:main_kuul}
 \textit{KUUL} ist ein Ausbau des von den Praktikumsbetreuern bereitgestellten Zuul-Ausgangssystems.
 Während Zuul ein konsolenbasiertes Text-Adventure ist, wird \textit{KUUL} mit Maus und Tastatur gesteuert.
+\\
+Zuerst einmal landet der Spieler in einer Welt und muss sich dort zurecht finden. Die Welt von Kuul besteht aus mehreren Räumen, durch die und in denen man sich bewegen kann. In diesen Räumen gibt es Objekte, mit denen der Spieler interagieren kann und so muss er nach und nach die Welt erkunden und einige Rätsel lösen, um herauszufinden, wie er das Spiel gewinnen kann.
+\\
 Dies geschieht insofern, als dass Gegenstände, \textit{NPCs}\footnote{\textit{Non-Player-Character}, eine Figur im Spiel, die nicht vom Spieler, sondern vom Spiel kontrolliert wird.} und Türen angeklickt werden können, um mit ihnen zu interagieren.
 Mithilfe der Tastatur kann der \textit{PC}\footnote{\textit{Player-Character}, vgl. \textit{NPC}} durch die Räume in der Welt von \textit{KUUL} bewegt werden, ebenso lassen sich alle Funktionen des Spiels über bestimmte Tasten direkt ansteuern.\\
 Zuul hatte bereits einige wenige Räume vorzuweisen, die durch die Namensgebung erkennen ließen, dass es sich um eine an ein Universitätsgelände angelehnte Welt handelte.
-Dies wurde vom Entwicklerteam aufgegriffen, sodass, während die Anzahl der Räume mehr als verdoppelt wurde, die Umgebung \textit{Universität} beibehalten wurde.
+Dies wurde vom Entwicklerteam aufgegriffen, sodass die Umgebung \textit{Universität} beibehalten, während die Anzahl der Räume mehr als verdoppelt wurde.
 Auf Wunsch des Kunden hin wurde im Lauf des Praktikums eine weitere Welt hinzugefügt, die sich grob am Hamburger Kiez (im Folgenden "Kiez") orientiert.
-\subsection{Entwicklungspozess}
-\label{ssec:main_dev}
-Da zunächst nur die Textwelt von Zuul zur Verfügung stand, wurden die ersten Gegenstände inklusive des provisorischen Gewinngegenstandes\footnote{In \textit{KUUL}, ist es auf zwei Arten möglich, zu gewinnen: Entweder findet der Spieler einen Schlüsselgegenstand, mit dem er einen Raum betreten kann, der als \textit{Siegraum} betitelt wurde, oder er findet einen \textit{Sieggegenstand}} \textit{Handy} in den Räumen platziert, die nach der Erweiterung vorhanden waren.
-Auf Kundenwunsch wurde das Handy als Sieggegenstand recht schnell von der \textit{Goldananas} abgelöst.
-\begin{lstlisting}[caption=Auszug aus dem XML-Parser für Gegenstände, label=code:main_parser]
-if (gegenstandElement.getElementsByTagName("beenden").getLength() != 0)
-{
-	Node beendenNode = gegenstandElement.getElementsByTagName(
-			"beenden").item(0);
-	String nachricht = beendenNode.getTextContent();
-	_beendenCommandListe.put(id, nachricht);
-}
-\end{lstlisting}
-Der hier betrachtete Quellcode ist aus dem in \textit{KUUL} verwendeten XML-Parser entnommen.\\
-Die XML\footnote{\textit{eXtensible Markup Language}, findet Verwendung in der Strukturierung von Daten}-Sprache arbeitet insofern, als dass jedes Dokument eine Reihe von Elementen hat, und diese Elemente haben Attribute (im Folgenden "Tags"), welche wiederum Element-Reihen seien können.
-Im Gegensatz zu HTML\footnote{\textit{HyperText Markup Language}, findet Gebrauch bei der Gestaltung von Web-Oberflächen} ist XML erweiterbar, das heißt es können benutzerdefinierte Tags hinzugefügt werden; die Syntax der beiden Sprachen ist nahezu gleich.\\
-An dieser Stelle wird der Tag des Gegenstands mit der Bezeichnung "beenden\string" abgefragt: Ist sie vorhanden (Länge ungleich 0), so handelt es sich um einen Sieggegenstand.
-Anzumerken ist hierbei, dass der verwendete Parser abgefragte Tags immer als eine Form von Liste zurückgibt, weswegen der Tag mit \texttt{.item(0);} abgefragt werden muss.\\
-Die Siegnachricht, welche ebenfalls extern in der XML-Datei gelagert wird, wird ausgelesen und als String gespeichert.
-Der Gegenstand wird als Tupel aus ID und der Siegnachricht in eine Liste gelegt, die an anderen Stellen im Programm aufgerufen werden kann, um festzustellen, ob der gerade verwendete Gegenstand ein Sieggegenstand war.\\
-Wird der Sieggegenstand nun innerhalb des Spiels gefunden, aufgehoben und benutzt, so wird das Spiel beendet und es erscheint ein Popup, welches einen darüber informiert, dass man gewonnen hat, und den String \texttt{nachricht} (vgl. Code 1 l.5) anzeigt.
-Die beiden Welten haben unterschiedliche Sieggegenstände, sodass es auf dem Kiez erforderlich ist, das eigene Portmonnaie wiederzufinden.
+
+%
+%-----------------------------------------------
+%
+
 \subsection{Funktionsumfang}
 \label{ssec:main_func}
-Wie bereits mehrfach angesprochen, können Gegenstände aufgehoben und genutzt werden.\\
+Wie bereits angesprochen, können Gegenstände aufgehoben und genutzt werden.\\
 In \textit{Zuul} funktionierte dies über die Konsolenbefehle.
 Um \textit{KUUL} komfortabler zu machen, sind Gegenstände im Raum anklickbar.
 Ebenso können sie aufgehoben werden, wenn sich der Spieler direkt davor stellt und die Enter-Taste drückt.\\
@@ -298,13 +319,15 @@ Aufgenommene Gegenstände kommen in den \textit{Rucksack}, welcher allerdings nu
 Gegenstände, die man im Rucksack hat, können kombiniert werden.
 Allerdings müssen sie dazu in der XML-Datei den Tag "kombinierbar", welcher im Parser als \texttt{boolean} ausgelesen wird, gesetzt bekommen.
 Ist dieser Tag auf den Wert \texttt{"false"} gesetzt, so können die Gegenstände nicht kombiniert werden.\\
-Eine weitere Besonderheit des Rucksack ist es, dass die meisten Gegenstände in der ersten Welt, die einem normalerweise Energie zurückgeben\footnote{Energie wird benötigt, um sich zu bewegen. Der Spieler startet mit 15 Energie-Einheiten. Jeder Raumwechsel verbraucht eine Einheit.}, mit der Zeit verfallen.
-Dies führt dazu, dass sie irgendwann nicht nur keine Energie zurückgeben, sondern Energie abziehen.\\
-Illustriert wird dies erstens durch eine Veränderung des Aussehens des Gegenstandes und zweitens durch eine Änderung des Textes, der bei Nutzung des Gegenstandes angezeigt wird\footnote{So wird z.B. \textit{"Die Ananas stärkt Sie und gibt Ihnen Kraft. Sie erhalten 2 Lebenspunkte. Toll!"} zu \textit{"Die Ananas ist bis auf den Kern vergammelt. Sie verlieren Lebenspunkte!"}, wenn man die Ananas lange genug im Rucksack behält}.
-Graphisch hat jeder Gegenstand höchstens drei Phasen\footnote{Viele Gegenstände, wie zum Beispiel Schlüssel, haben nur eine Phase}, der Abzug der Energie-Einheiten wächst allerdings stetig linear.
+Eine weitere Besonderheit des Rucksacks ist es, dass die meisten Gegenstände in der ersten Welt, die einem normalerweise Energie zurückgeben, mit der Zeit verfallen.
+Dies führt dazu, dass sie irgendwann keine Energie mehr zurückgeben, oder sogar welche abziehen.
+Energie wird benötigt, um sich zu bewegen. Der Spieler startet mit 15 Energie-Einheiten und jeder Raumwechsel verbraucht eine Einheit.\\
+Illustriert wird dies erstens durch eine Veränderung des Aussehens des Gegenstandes und zweitens durch eine Änderung des Textes, der bei Nutzung des Gegenstandes angezeigt wird. So wird z.B. \textit{"Die Ananas stärkt Sie und gibt Ihnen Kraft. Sie erhalten 2 Lebenspunkte. Toll!"} zu \textit{"Die Ananas ist bis auf den Kern vergammelt. Sie verlieren Lebenspunkte!"}, wenn man die Ananas lange genug im Rucksack behält.
+\\
+Graphisch hat jeder Gegenstand eine bis drei Phasen, der Abzug der Energie-Einheiten wächst allerdings stetig linear.
 Alle zwei Schritte zieht der Gebrauch eines solchen Gegenstandes eine Einheit mehr ab.
 \begin{lstlisting}[caption=Teilimplementation der Verringerung der Energieregeneration, label=code:main_func]
-if (_verfallszeitpunkt > 1) {
+if (_verfallszeitpunkt >= 1) {
 	_verfallszeitpunkt = 0;
 	lebensCommand.verringereLebenspunkte();
 	if (lebensCommand.getLebensEffekt() == 0) {
@@ -320,17 +343,15 @@ if (_verfallszeitpunkt > 1) {
 	_verfallszeitpunkt++;
 }
 \end{lstlisting}
-Bei dem Feld \texttt{\_verfallszeitpunkt}\footnote{Nomenklaturregeln nach SE2-Format} handelt es sich um eine Exemplarvariable vom Typ Integer.
-Immer dann, wenn der hier gezeigte Block aufgerufen wird, wird diese Variable geprüft.
-Ist sie auf 0, wird sie inkrementiert; ist sie auf 1, so wird der Effekt des Lebenskommandos\footnote{interne Umsetzung der Energieverwaltung, für die Verwendung der Gegenstände nicht weiter von Bedeutung} dekrementiert und der \texttt{\_verfallszeitpunkt} wird wieder auf 0 gesetzt.
-Was ebenfalls zu sehen ist, ist, dass ein neues Icon für den Gegenstand gesetzt wird, wenn er 0 Energie-Einheiten erreicht beziehungsweise sobald er anfängt, Energie abzuziehen (siehe den inneren if-Block).\\
+Bei dem Feld \texttt{\_verfallszeitpunkt}\footnote{Nomenklaturregeln nach SE2-Format} (Code \ref{code:main_func}) handelt es sich um eine Exemplarvariable vom Typ Integer.
+Immer dann, wenn Code \ref{code:main_func} aufgerufen wird, wird diese Variable geprüft.
+Ist sie auf 0, wird sie inkrementiert; ist sie auf 1, so wird der Effekt des Lebenskommandos\footnote{interne Umsetzung der Energieverwaltung, für die Verwendung der Gegenstände nicht weiter von Bedeutung. Für Kommandos s. \ref{ssec:main_commands}} dekrementiert und der \texttt{\_verfallszeitpunkt} wird wieder auf 0 gesetzt.
+Was ebenfalls zu sehen ist, ist, dass ein neues Icon für den Gegenstand gesetzt wird, wenn er 0 Energie-Einheiten erreicht beziehungsweise sobald er anfängt, Energie abzuziehen (s. Code \ref{code:main_func} Zeile 4-12).\\
 \\
 Zur bereits angesprochenen Kombinationsfunktion sei gesagt, dass nicht alle Gegenstände kombinierbar sind.
 Es wurde bereits gesagt, dass ein Tag gesetzt werden muss, damit ein Gegenstand vom \textit{Crafting Tool} (vgl. Abb. \ref{fig:main_craft}) akzeptiert wird.
-Desweiteren muss es ein Rezept geben, welches den fraglichen Gegenstand beinhält.
+Desweiteren muss es ein Rezept geben, welches den fraglichen Gegenstand beinhaltet.
 Befindet sich dann der zweite Gegenstand ebenfalls im Rucksack des Spielers, so kann der Spieler die Kombination ausführen.\\
-Da sich die zweite Welt an den Kiez anlehnt, befinden sich dort primär alkoholische Getränke.
-Alle alkoholischen Getränke können miteinander kombiniert werden; allerdings ist dort die Regelung ein wenig anders: Jede sinnvolle Kombination hat als Ergebnis eine \textit{Gute Mische}, welche Energie dazu gibt, jedes unsinnige Rezept hat als Ergebnis eine \textit{Schlechte Mische}, welche Energie abzieht.
 \begin{figure}[h!bt]
     \begin{center}
         \includegraphics[scale=0.5]{craftingUI.png}
@@ -339,26 +360,64 @@ Alle alkoholischen Getränke können miteinander kombiniert werden; allerdings i
     \end{center}
 \end{figure}
 Die hier betrachtete Konfiguration des \textit{Crafting Tools} entstammt der ersten Welt.
-Das Messer und das Gemälde werden kombiniert, um ein Snickers zu erhalten, welches die Energie vollständig wieder auffüllt.
-Messer und Gemälde werden dabei verbraucht.
+Das Messer und das Gemälde werden kombiniert, um einen Schokoriegel zu erhalten, welcher die Energie vollständig wieder auffüllt.
+Messer und Gemälde werden dabei im Inventar durch den Schokoriegel ersetzt.
 
-\subsection{Commands}
+%
+%-----------------------------------------------
+%
+
+\subsection{Ein Spiel beenden}
+\label{ssec:main_dev}
+Da zunächst nur die Textwelt von Zuul zur Verfügung stand, wurden die ersten Gegenstände inklusive des provisorischen Gewinngegenstandes \textit{Handy} in den Räumen platziert, die nach der Erweiterung vorhanden waren.
+In \textit{KUUL}, ist es auf zwei Arten möglich, zu gewinnen: Entweder findet der Spieler einen Schlüsselgegenstand, mit dem er einen Raum betreten kann, der als \textit{Siegraum} betitelt wurde, oder er findet einen \textit{Sieggegenstand}.
+Auf Kundenwunsch wurde das Handy als Sieggegenstand recht schnell von der \textit{Goldananas} abgelöst.
+\begin{lstlisting}[caption=XML-Tag für den Sieggegenstand, label=code:main_siegesitem, language=XML]
+<beenden>Du hast die goldene Ananas gegessen! Toll!</beenden>
+\end{lstlisting}
+\begin{lstlisting}[caption=Entsprechender Auszug aus dem XML-Parser für Gegenstände, label={code:main_parser}, language=Java]
+if (gegenstandElement.getElementsByTagName("beenden").getLength() != 0)
+{
+	Node beendenNode = gegenstandElement.getElementsByTagName(
+			"beenden").item(0);
+	String nachricht = beendenNode.getTextContent();
+	_beendenCommandListe.put(id, nachricht);
+}
+\end{lstlisting}
+Der hier betrachtete Quellcode (Code 2) ist aus dem in \textit{KUUL} verwendeten XML-Parser entnommen.
+Er sucht sich den Tag \texttt{beenden} in Code 1 und packt den zum Tag gehörigen Gegenstand zusammen mit der Nachricht, die sich in dem Tag befindet, in eine Liste. Diese Liste kann nun an anderer Stelle durchlaufen werden, um die Commands\footnote{s. Kapitel \ref{ssec:main_commands}} festzulegen.\\
+Die XML\footnote{\textit{eXtensible Markup Language}, findet Verwendung in der Strukturierung von Daten}-Sprache arbeitet insofern, als dass jedes Dokument eine Reihe von Elementen hat, und diese Elemente haben Attribute (im Folgenden "Tags"), welche wiederum Element-Reihen seien können.
+Im Gegensatz zu HTML\footnote{\textit{HyperText Markup Language}, findet Gebrauch bei der Gestaltung von Web-Oberflächen} ist XML erweiterbar, das heißt es können benutzerdefinierte Tags hinzugefügt werden; die Syntax der beiden Sprachen ist nahezu gleich.\\
+An dieser Stelle wird der Tag des Gegenstands mit der Bezeichnung "beenden\string" abgefragt: Ist sie vorhanden (Länge ungleich 0), so handelt es sich um einen Sieggegenstand.
+Anzumerken ist hierbei, dass der verwendete Parser abgefragte Tags immer als eine Form von Liste zurückgibt, weswegen der Tag mit \texttt{.item(0);} abgefragt werden muss.\\
+Die Siegnachricht, welche ebenfalls extern in der XML-Datei gelagert wird, wird ausgelesen und als String gespeichert.
+Der Gegenstand wird als Tupel aus ID und der Siegnachricht in eine Liste gelegt, die an anderen Stellen im Programm aufgerufen werden kann, um festzustellen, ob der gerade verwendete Gegenstand ein Sieggegenstand war.\\
+Wird der Sieggegenstand nun innerhalb des Spiels gefunden, aufgehoben und benutzt, so wird das Spiel beendet und es erscheint ein Popup, welches einen darüber informiert, dass man gewonnen hat, und den String \texttt{nachricht} (vgl. Code \ref{code:main_parser} Zeile 5) anzeigt.
+Die beiden Welten haben unterschiedliche Sieggegenstände, sodass es auf dem Kiez erforderlich ist, das eigene Portmonnaie wiederzufinden.
+\\
+Weitere Möglichkeiten, das Spiel zu beenden, sind, wenn deine Lebenspunkte auf 0 sinken, oder eine festgelegte Zeit abläuft.
+
+%
+%-----------------------------------------------
+%
+
+\subsection{Command}
 \label{ssec:main_commands}
 Im Allgemeinen wurde jedem Gegenstand mindestens ein X-Command\footnote{z.B. Lebenscommand zur Erhöhung der Energie, oder Beendencommand zum Beenden des Spiels} zugeordnet.
 Diese Commands werden alle beim Einlesen aus den XML-Dateien in Listen gespeichert und dann den Gegenständen hinzugefügt.
-Jeder Gegenstand hält damit seine eigene Liste an Commands, die abgefragt werden können, wenn mit dem Gegenstand interagiert wird\footnote{Damit nichts passiert, wenn der Gegenstand sich im selben Raum befindet, aber nicht benutzt wird.}.\\
+Jeder Gegenstand hält damit seine eigene Liste an Commands, die abgefragt werden können, wenn mit dem Gegenstand interagiert wird. So wird sichergestellt, dass eine Aktion nur ausgeführt wird, wenn der entsprechende Gegenstand auch benutzt wurde.\\
 Die Gegenstände sollten im Laufe des Praktikums immer mehr verschiedene Funktionen erhalten.
 Dies war insofern schwierig, als dass die zu implementierenden Funktionen immer komplexer wurden\footnote{So gibt es z.B. eine Zeitmaschine, mit der man exakt 5 Räume zurückreisen kann.} und häufig auch ein Gegenstand eine ganz andere Sache können sollte, als bisher, ohne jedoch die alte(n) Funktion(en) einzubüßen.\\
-Dafür wurde sich des Command-Befehlsmusters bedient und eine neue Command-Methode erstellt:
+Dafür wurde sich des Kommando-Entwurfsmusters bedient. Dies funktioniert wie folgt:\\
+Es gibt eine Befehlsklasse (Command) und eine Menge an konkreten Befehlen (Lebenscommand, Beendencommand, etc.). Ein Klient erzeugt eine Aufruf an der Befehlsklasse und diese leitet diesen Aufruf dann an an einen oder mehrere konkrete Befehle weiter. Diese konkreten Befehle führen dann die entsprechenden Schritte aus.
 \begin{lstlisting}[caption=Unser Command-Interface, label=code:main_command]
 public interface Command {
 	public void apply();
 }
 \end{lstlisting}
-Diese tut nichts anderes, als als Interface zu dienen, auf welches andere Methoden zugreifen dürfen, ohne zu wissen, was nun wirklich genau im Code passiert.
-Dieses kann nun nämlich in den speziellen Commands festgelegt werden.
+Dieses Entwurfsmuster bietet den Vorteil, dass wir die Wirkung der Gegenstände in XML-Dateien auslagern können, weil das Programm intern ein Interface benutzt und wir so die Implementation erst später angeben dürfen.
 \\
-So sieht z.B. das Lebenscommand, welches natärlich das Interface Command implementiert, so aus:
+So sieht z.B. das Lebenscommand, welches natürlich das Interface Command implementiert, so aus:
 \begin{lstlisting}[caption=LebenCommand - eine implementation des Command-Interfaces, label=code:main_lebencommand]
 public LebenCommand(Spieler spieler, int hp)
     {
@@ -373,26 +432,29 @@ public LebenCommand(Spieler spieler, int hp)
             .veraendereLebenspunkte(_hp);
     }
 \end{lstlisting}
-In diesem wird die \texttt{apply}-Methode überschrieben und tut jetzt etwas sinnvolles, wie in diesem Fall, das Leben des Spielers verändern.
+In diesem wird die \texttt{apply}-Methode überschrieben und verändert jetzt das Leben des Spielers.
 So kann jedes Mal, wenn mit einem Gegenstand interagiert wird, die Methode \texttt{benutzeGegenstand} aus der Klasse \texttt{Gegenstand} aufgerufen werden.
-Und dieser ist es egal, um welche Art von Command es sich letztendlich handelt.
 \begin{lstlisting}[caption=die benutzeGegenstand-Methode aus der Klasse Gegenstand, label=code:main_gegenstand]
-	public void benutzeGegenstand() {
-		if (!_commandList.isEmpty()) {
-			ArrayList<Command> iterierListe = _commandList;
-			for (Command command : iterierListe) {
-				command.apply();
-			}
+public void benutzeGegenstand() {
+	if (!_commandList.isEmpty()) {
+		ArrayList<Command> iterierListe = _commandList;
+		for (Command command : iterierListe) {
+			command.apply();
 		}
 	}
+}
 \end{lstlisting}
 Sie geht alle Commands durch, die in dem Gegenstand gespeichert sind, und führt sie nacheinander aus\footnote{Die \texttt{iterierListe} ist nur dazu da, um Fehlern vorzubeugen, die entstehen würden, wenn ein \texttt{Command} in seiner \texttt{apply}-Methode die Liste verändert. So z.B. die vergammelbaren Gegenstände.}, ohne dass ihre konkrete Implementation, also die Funktion, die der Gegenstand hat, von Bedeutung für die Funktionalität dieser Methode ist. Somit lässt sich ganz einfach eine neue Funktion zu einem Gegenstand hinzufügen, indem einfach bei der Erstellung ein weiteres Command der Liste hinzugefügt wird, welches nun beim Benutzen des Gegenstandes abgearbeitet wird.
 
-\section{Schluss}
+%-----------------------------------------------
+%
+%-----------------------------------------------
+
+\section{Fazit}
 \label{sec:end}
 Es wurde kurz dargestellt, wobei es sich bei \textit{KUUL} handelt, worauf es aufbaut (\textit{Zuul}), und es wurden die im Spiel vorhandenen Gegenstände behandelt.
 Im Bezug auf die Gegenstände wurde das Lagerungssystem \textit{Rucksack} angesprochen, die Funktionalität des Vergammels wurde dargelegt, die Umsetzung der Energieregeneration wurde gezeigt, und die Kombination von Gegenständen wurde besprochen.
-Desweiteren wurde auf das "Befehl\string"-Entwurfsmuster eingegangen und die spezifische Anwendung innerhalb des \textit{KUUL}-Systems dargelegt.
+Des Weiteren wurde auf das Kommando-Entwurfsmuster eingegangen und die spezifische Anwendung innerhalb des \textit{KUUL}-Systems dargelegt.
 Auch die Speicherung und Erstellung der Gegenstände mithilfe von XML wurde angesprochen.\\
 Die XML-Speicherung ermöglicht ohne großen Arbeits- und Zeitaufwand die Erstellung getrennter Gegenstandssammlungen für unterschiedliche Welten sowie die beliebige Erweiterung vorhandener Sammlungen.\\
 Das im Praktikum entstandene Spiel \textit{KUUL} ist somit beliebig erweiterbar.
