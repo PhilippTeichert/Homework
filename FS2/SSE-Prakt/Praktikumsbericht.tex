@@ -253,8 +253,8 @@ Dieser Bericht befasst sich mit dem Praktikum Agile Softwareentwicklung\footnote
  , absolviert im zweiten Fachsemester %(im Folgenden "FS2")
 des Studiengangs Software-System-Entwicklung %(im Folgenden \string"SSE")
 .\\
-Dieser Bericht ist geschrieben aus Sicht der Teilnehmer des Teilkurses 3 (ASE-SEP3)
-, in welchem das Zuul-Ausgangssystem, welches von den Praktikumsbetreuern bereit gestellt wurde, in ein \textit{Point \& Click\footnote{Ein Programm, bei dem Aktionen durch ein Anvisieren mit einem Zeiger (meist die Maus) und das darauffolgende Klicken hervorgerufen werden.}}-ähnliches \textit{Adventure-Game\footnote{Ein Spiel, bei dem die Erkundung und das Lösen von Rätseln im Vordergrund stehen.}} weiterentwickelt wurde, welches nun den Titel \textit{KUUL} trägt.\\
+Dieser Bericht ist geschrieben aus Sicht der Teilnehmer des Teilkurses 3 (ASE-SEP3).
+In diesem wurde das Zuul-Ausgangssystem, welches von den Praktikumsbetreuern bereit gestellt wurde, zu einem \textit{Point \& Click\footnote{Ein Programm, bei dem Aktionen durch ein Anvisieren mit einem Zeiger (meist die Maus) und das darauffolgende Klicken hervorgerufen werden.}}-ähnlichen \textit{Adventure-Game\footnote{Ein Spiel, bei dem die Erkundung und das Lösen von Rätseln im Vordergrund stehen.}} mit dem Titel \textit{KUUL} weiterentwickelt.\\
 In diesem Bericht wird tiefergehend auf die Implementation von interaktiven Objekten in das \textit{KUUL}-System eingegangen.
 Dies umfasst die Erstellung der Gegenstände, deren Speicherung und die Implementation der Interaktion.
 
@@ -295,14 +295,14 @@ Doch was ist \textit{KUUL} eigentlich?
 \subsection{Spielprinzip und Hintergrund}
 \label{ssec:main_kuul}
 \textit{KUUL} ist ein Ausbau des von den Praktikumsbetreuern bereitgestellten Zuul-Ausgangssystems.
+\\
+In \textit{KUUL} landet der Spieler in einer Welt und muss sich dort zurecht finden. Die Welt von Kuul besteht aus mehreren Räumen, durch die und in denen man sich bewegen kann. In diesen Räumen gibt es Objekte, mit denen der Spieler interagieren kann und so muss er nach und nach die Welt erkunden und einige Rätsel lösen, um herauszufinden, wie er das Spiel gewinnen kann.
+\\
 Während Zuul ein konsolenbasiertes Text-Adventure ist, wird \textit{KUUL} mit Maus und Tastatur gesteuert.
-\\
-Zuerst einmal landet der Spieler in einer Welt und muss sich dort zurecht finden. Die Welt von Kuul besteht aus mehreren Räumen, durch die und in denen man sich bewegen kann. In diesen Räumen gibt es Objekte, mit denen der Spieler interagieren kann und so muss er nach und nach die Welt erkunden und einige Rätsel lösen, um herauszufinden, wie er das Spiel gewinnen kann.
-\\
 Dies geschieht insofern, als dass Gegenstände, \textit{NPCs}\footnote{\textit{Non-Player-Character}, eine Figur im Spiel, die nicht vom Spieler, sondern vom Spiel kontrolliert wird.} und Türen angeklickt werden können, um mit ihnen zu interagieren.
 Mithilfe der Tastatur kann der \textit{PC}\footnote{\textit{Player-Character}, vgl. \textit{NPC}} durch die Räume in der Welt von \textit{KUUL} bewegt werden, ebenso lassen sich alle Funktionen des Spiels über bestimmte Tasten direkt ansteuern.\\
 Zuul hatte bereits einige wenige Räume vorzuweisen, die durch die Namensgebung erkennen ließen, dass es sich um eine an ein Universitätsgelände angelehnte Welt handelte.
-Dies wurde vom Entwicklerteam aufgegriffen, sodass die Umgebung \textit{Universität} beibehalten, während die Anzahl der Räume mehr als verdoppelt wurde.
+Dies wurde vom Entwicklerteam aufgegriffen, wobei die Umgebung \textit{Universität} zwar beibehalten, jedoch die Anzahl der Räume mehr als verdoppelt wurde.
 Auf Wunsch des Kunden hin wurde im Lauf des Praktikums eine weitere Welt hinzugefügt, die sich grob am Hamburger Kiez (im Folgenden "Kiez") orientiert.
 
 %
@@ -312,22 +312,23 @@ Auf Wunsch des Kunden hin wurde im Lauf des Praktikums eine weitere Welt hinzuge
 \subsection{Funktionsumfang}
 \label{ssec:main_func}
 Wie bereits angesprochen, können Gegenstände aufgehoben und genutzt werden.\\
-In \textit{Zuul} funktionierte dies über die Konsolenbefehle.
+In Zuul ging dies über die Konsole.
 Um \textit{KUUL} komfortabler zu machen, sind Gegenstände im Raum anklickbar.
-Ebenso können sie aufgehoben werden, wenn sich der Spieler direkt davor stellt und die Enter-Taste drückt.\\
+Ebenso können sie aufgehoben werden, wenn sich der Spieler direkt davor stellt und die Enter-Taste drückt.\\%Aktionstaste
 Aufgenommene Gegenstände kommen in den \textit{Rucksack}, welcher allerdings nur eine beschränkte Kapazität von vier beliebigen Gegenständen hat.
 Gegenstände, die man im Rucksack hat, können kombiniert werden.
 Allerdings müssen sie dazu in der XML-Datei den Tag "kombinierbar", welcher im Parser als \texttt{boolean} ausgelesen wird, gesetzt bekommen.
 Ist dieser Tag auf den Wert \texttt{"false"} gesetzt, so können die Gegenstände nicht kombiniert werden.\\
 Eine weitere Besonderheit des Rucksacks ist es, dass die meisten Gegenstände in der ersten Welt, die einem normalerweise Energie zurückgeben, mit der Zeit verfallen.
-Dies führt dazu, dass sie irgendwann keine Energie mehr zurückgeben, oder sogar welche abziehen.
-Energie wird benötigt, um sich zu bewegen. Der Spieler startet mit 15 Energie-Einheiten und jeder Raumwechsel verbraucht eine Einheit.\\
+Energie wird benötigt, um sich zu bewegen. Der Spieler startet mit 15 Energie-Einheiten und jeder Raumwechsel verbraucht eine Einheit.
+Das Verfallen führt dazu, dass sie irgendwann keine Energie mehr zurückgeben, sondern sogar welche abziehen.
+\\
 Illustriert wird dies erstens durch eine Veränderung des Aussehens des Gegenstandes und zweitens durch eine Änderung des Textes, der bei Nutzung des Gegenstandes angezeigt wird. So wird z.B. \textit{"Die Ananas stärkt Sie und gibt Ihnen Kraft. Sie erhalten 2 Lebenspunkte. Toll!"} zu \textit{"Die Ananas ist bis auf den Kern vergammelt. Sie verlieren Lebenspunkte!"}, wenn man die Ananas lange genug im Rucksack behält.
 \\
 Graphisch hat jeder Gegenstand eine bis drei Phasen, der Abzug der Energie-Einheiten wächst allerdings stetig linear.
 Alle zwei Schritte zieht der Gebrauch eines solchen Gegenstandes eine Einheit mehr ab.
 \begin{lstlisting}[caption=Teilimplementation der Verringerung der Energieregeneration, label=code:main_func]
-if (_verfallszeitpunkt >= 1) {
+if (_verfallszeitpunkt > 1) {
 	_verfallszeitpunkt = 0;
 	lebensCommand.verringereLebenspunkte();
 	if (lebensCommand.getLebensEffekt() == 0) {
@@ -345,8 +346,8 @@ if (_verfallszeitpunkt >= 1) {
 \end{lstlisting}
 Bei dem Feld \texttt{\_verfallszeitpunkt}\footnote{Nomenklaturregeln nach SE2-Format} (Code \ref{code:main_func}) handelt es sich um eine Exemplarvariable vom Typ Integer.
 Immer dann, wenn Code \ref{code:main_func} aufgerufen wird, wird diese Variable geprüft.
-Ist sie auf 0, wird sie inkrementiert; ist sie auf 1, so wird der Effekt des Lebenskommandos\footnote{interne Umsetzung der Energieverwaltung, für die Verwendung der Gegenstände nicht weiter von Bedeutung. Für Kommandos s. \ref{ssec:main_commands}} dekrementiert und der \texttt{\_verfallszeitpunkt} wird wieder auf 0 gesetzt.
-Was ebenfalls zu sehen ist, ist, dass ein neues Icon für den Gegenstand gesetzt wird, wenn er 0 Energie-Einheiten erreicht beziehungsweise sobald er anfängt, Energie abzuziehen (s. Code \ref{code:main_func} Zeile 4-12).\\
+Ist sie auf 0 oder 1, wird sie inkrementiert; ist sie auf 2, so wird der Effekt des Lebenskommandos\footnote{interne Umsetzung der Energieverwaltung, für die Verwendung der Gegenstände nicht weiter von Bedeutung. Für Kommandos s. \ref{ssec:main_commands}} dekrementiert und der \texttt{\_verfallszeitpunkt} wird wieder auf 0 gesetzt.
+Was ebenfalls zu sehen ist, ist, dass ein neues Icon für den Gegenstand gesetzt wird, wenn er 0 Energie-Einheiten erreicht, beziehungsweise sobald er anfängt, Energie abzuziehen (s. Code \ref{code:main_func} Zeile 4-12).\\
 \\
 Zur bereits angesprochenen Kombinationsfunktion sei gesagt, dass nicht alle Gegenstände kombinierbar sind.
 Es wurde bereits gesagt, dass ein Tag gesetzt werden muss, damit ein Gegenstand vom \textit{Crafting Tool} (vgl. Abb. \ref{fig:main_craft}) akzeptiert wird.
@@ -384,8 +385,8 @@ if (gegenstandElement.getElementsByTagName("beenden").getLength() != 0)
 	_beendenCommandListe.put(id, nachricht);
 }
 \end{lstlisting}
-Der hier betrachtete Quellcode (Code 2) ist aus dem in \textit{KUUL} verwendeten XML-Parser entnommen.
-Er sucht sich den Tag \texttt{beenden} in Code 1 und packt den zum Tag gehörigen Gegenstand zusammen mit der Nachricht, die sich in dem Tag befindet, in eine Liste. Diese Liste kann nun an anderer Stelle durchlaufen werden, um die Commands\footnote{s. Kapitel \ref{ssec:main_commands}} festzulegen.\\
+Der hier betrachtete Quellcode (Code \ref{code:main_parser}) ist aus dem in \textit{KUUL} verwendeten XML-Parser entnommen.
+Er sucht sich den Tag \texttt{beenden} (dargestellt in Code \ref{code:main_siegesitem}) und packt den zum Tag gehörigen Gegenstand zusammen mit der Nachricht, die sich in dem Tag befindet, in eine Liste. Diese Liste kann nun an anderer Stelle durchlaufen werden, um die Kommandos\footnote{s. Kapitel \ref{ssec:main_commands}} festzulegen.\\
 Die XML\footnote{\textit{eXtensible Markup Language}, findet Verwendung in der Strukturierung von Daten}-Sprache arbeitet insofern, als dass jedes Dokument eine Reihe von Elementen hat, und diese Elemente haben Attribute (im Folgenden "Tags"), welche wiederum Element-Reihen seien können.
 Im Gegensatz zu HTML\footnote{\textit{HyperText Markup Language}, findet Gebrauch bei der Gestaltung von Web-Oberflächen} ist XML erweiterbar, das heißt es können benutzerdefinierte Tags hinzugefügt werden; die Syntax der beiden Sprachen ist nahezu gleich.\\
 An dieser Stelle wird der Tag des Gegenstands mit der Bezeichnung "beenden\string" abgefragt: Ist sie vorhanden (Länge ungleich 0), so handelt es sich um einen Sieggegenstand.
@@ -395,17 +396,17 @@ Der Gegenstand wird als Tupel aus ID und der Siegnachricht in eine Liste gelegt,
 Wird der Sieggegenstand nun innerhalb des Spiels gefunden, aufgehoben und benutzt, so wird das Spiel beendet und es erscheint ein Popup, welches einen darüber informiert, dass man gewonnen hat, und den String \texttt{nachricht} (vgl. Code \ref{code:main_parser} Zeile 5) anzeigt.
 Die beiden Welten haben unterschiedliche Sieggegenstände, sodass es auf dem Kiez erforderlich ist, das eigene Portmonnaie wiederzufinden.
 \\
-Weitere Möglichkeiten, das Spiel zu beenden, sind, wenn deine Lebenspunkte auf 0 sinken, oder eine festgelegte Zeit abläuft.
+Weitere Möglichkeiten, das Spiel zu beenden, sind, deine Lebenspunkte auf 0 sinken, oder eine festgelegte Zeit - bisher 5 Minuten - ablaufen zu lassen.
 
 %
 %-----------------------------------------------
 %
 
-\subsection{Command}
+\subsection{Kommandos}
 \label{ssec:main_commands}
-Im Allgemeinen wurde jedem Gegenstand mindestens ein X-Command\footnote{z.B. Lebenscommand zur Erhöhung der Energie, oder Beendencommand zum Beenden des Spiels} zugeordnet.
-Diese Commands werden alle beim Einlesen aus den XML-Dateien in Listen gespeichert und dann den Gegenständen hinzugefügt.
-Jeder Gegenstand hält damit seine eigene Liste an Commands, die abgefragt werden können, wenn mit dem Gegenstand interagiert wird. So wird sichergestellt, dass eine Aktion nur ausgeführt wird, wenn der entsprechende Gegenstand auch benutzt wurde.\\
+Im Allgemeinen wurde jedem Gegenstand mindestens ein X-Kommando\footnote{z.B. Lebenscommand zur Erhöhung der Energie, oder Beendencommand zum Beenden des Spiels} zugeordnet.
+Diese Kommandos werden alle beim Einlesen aus den XML-Dateien in Listen gespeichert und dann den Gegenständen hinzugefügt.
+Jeder Gegenstand hält damit seine eigene Liste an Kommandos, die abgefragt werden können. So wird sichergestellt, dass eine Aktion nur ausgeführt wird, wenn der entsprechende Gegenstand auch benutzt wurde.\\
 Die Gegenstände sollten im Laufe des Praktikums immer mehr verschiedene Funktionen erhalten.
 Dies war insofern schwierig, als dass die zu implementierenden Funktionen immer komplexer wurden\footnote{So gibt es z.B. eine Zeitmaschine, mit der man exakt 5 Räume zurückreisen kann.} und häufig auch ein Gegenstand eine ganz andere Sache können sollte, als bisher, ohne jedoch die alte(n) Funktion(en) einzubüßen.\\
 Dafür wurde sich des Kommando-Entwurfsmusters bedient. Dies funktioniert wie folgt:\\
@@ -444,7 +445,7 @@ public void benutzeGegenstand() {
 	}
 }
 \end{lstlisting}
-Sie geht alle Commands durch, die in dem Gegenstand gespeichert sind, und führt sie nacheinander aus\footnote{Die \texttt{iterierListe} ist nur dazu da, um Fehlern vorzubeugen, die entstehen würden, wenn ein \texttt{Command} in seiner \texttt{apply}-Methode die Liste verändert. So z.B. die vergammelbaren Gegenstände.}, ohne dass ihre konkrete Implementation, also die Funktion, die der Gegenstand hat, von Bedeutung für die Funktionalität dieser Methode ist. Somit lässt sich ganz einfach eine neue Funktion zu einem Gegenstand hinzufügen, indem einfach bei der Erstellung ein weiteres Command der Liste hinzugefügt wird, welches nun beim Benutzen des Gegenstandes abgearbeitet wird.
+Sie geht alle Commands durch, die in dem Gegenstand gespeichert sind, und führt sie nacheinander aus\footnote{Die \texttt{iterierListe} ist nur dazu da, um Fehlern vorzubeugen, die entstehen würden, wenn ein \texttt{Command} in seiner \texttt{apply}-Methode die Liste verändert. So z.B. die vergammelbaren Gegenstände.}, ohne dass ihre konkrete Implementation - also die Funktion, die der Gegenstand hat - von Bedeutung für die Funktionalität dieser Methode ist. Somit lässt sich ganz einfach eine neue Funktion zu einem Gegenstand hinzufügen, indem einfach bei der Erstellung ein weiteres Command der Liste hinzugefügt wird, welches nun beim Benutzen des Gegenstandes abgearbeitet wird.
 
 %-----------------------------------------------
 %
