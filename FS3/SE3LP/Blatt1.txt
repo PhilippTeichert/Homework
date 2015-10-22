@@ -1,4 +1,0 @@
-Aufgabe 1.1.3
-	asserta\1 fügt zu Beginn der Datenbank ein
-	assertz\1 fügt am Ende der Datenbank ein
-	assert\1 ist äquivalent zu assertz\1, allerdings veraltet und sollte nicht mehr verwendet werden
