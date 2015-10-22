@@ -3,85 +3,91 @@ Aufgabe 1:
 		Der Dateipfad befindet sich in Hochkommata, damit er als String erkannt wird.
 	3.
 		assert/1 fügt das neue Element hinten an.
+			Veraltet, es soll stattdessen assertz\1 verwendet werden.
 		asserta/1 fügt das neue Element vorne an.
 		assertz/1 fügt das neue Element hinten an.
+			Äquivalent mit assert\1
 
 Aufgabe 2:
 	1.
 		a)
 			?- vater_von(walter, magdalena).
 
-			true.
+			true.					%	=> Walter ist der Vater von Magdalena
 		b)
 			?- mutter_von(julia, klaus).
 
-			false.
+			false.					%	=> Julia ist nicht die Mutter von Klaus
 		c)
 			?- vater_von(Vater, helga).
 
-			Vater = otto.
+			Vater = otto.			%	=> Der Vater von Helga ist Otto
 		d)
 			?- mutter_von(Mutter, julia).
 			
-			false.
+			false.					%	=> Julia hat keine Mutter
 		e)
 			?- vater_von(johannes, Kind).
 
-			Kind = klaus ;
-			Kind = andrea.
+			Kind = klaus ;			%	=> Klaus ist ein Kind von Johannes
+			Kind = andrea.			%	=> Andrea ist ein Kind von Johannes
 		f)
 			?- vater_von(Vater, Kind_v);
 			|	mutter_von(Mutter, Kind_m).
 
+			Vater = otto,			%	Der Vater ist Otto
+			Kind_v = hans ;			%	Ottos erstes Kind ist Hans
 			Vater = otto,
-			Kind_v = hans ;
-			Vater = otto,
-			Kind_v = helga ;
-			Vater = gerd,
-			Kind_v = otto ;
+			Kind_v = helga ;		%	Ottos zweites Kind ist Helga
+			Vater = gerd,			%	Der Vater ist Gerd
+			Kind_v = otto ;			%	Gerds erstes Kind ist Otto
+			Vater = johannes,		%	Der Vater ist Johannes
+			Kind_v = klaus ;		%	Johannes' erstes Kind ist Klaus
 			Vater = johannes,
-			Kind_v = klaus ;
-			Vater = johannes,
-			Kind_v = andrea ;
+			Kind_v = andrea ;		%	Johannes' zweites Kind ist Andrea
+			Vater = walter,			%	Der Vater ist Walter
+			Kind_v = barbara ;		%	Walters erstes Kind ist Barbara
 			Vater = walter,
-			Kind_v = barbara ;
-			Vater = walter,
-			Kind_v = magdalena ;
+			Kind_v = magdalena ;	%	Walters zweites Kind ist Magdalena
+			Mutter = marie,			%	Die Mutter ist Marie
+			Kind_m = hans ;			%	Maries erstes Kind ist Hans
 			Mutter = marie,
-			Kind_m = hans ;
-			Mutter = marie,
-			Kind_m = helga ;
-			Mutter = julia,
-			Kind_m = otto ;
+			Kind_m = helga ;		%	Maries zweites Kind ist Helga
+			Mutter = julia,			%	Die Mutter ist Julia
+			Kind_m = otto ;			%	Julias erstes Kind ist Otto
+			Mutter = barbara,		%	Die Mutter ist Barbara
+			Kind_m = klaus ;		%	Barbaras erstes Kind ist Klaus
 			Mutter = barbara,
-			Kind_m = klaus ;
-			Mutter = barbara,
-			Kind_m = andrea ;
+			Kind_m = andrea ;		%	Barbaras zweites Kind ist Andrea
+			Mutter = charlotte,		%	Die Mutter ist Charlotte
+			Kind_m = barbara ;		%	Charlottes erstes Kind ist Barbara
 			Mutter = charlotte,
-			Kind_m = barbara ;
-			Mutter = charlotte,
-			Kind_m = magdalena.
+			Kind_m = magdalena.		%	Charlottes zweites Kind ist Magdalena
 		g)
 			?- not(mutter_von(magdalena, _)).
 
-			true.
+			true.					%	=> Ja, Magdalena hat keine Kinder
 		h)
 			?- not(mutter_von(marie, _)).
 
-			false.
+			false.					%	=> Nein, Marie hat nicht keine Kinder
 		i)
 			?- mutter_von(marie, _).
 
-			true;
-			true.
+			true;					%	=> Marie hat ein Kind
+			true.					%	=> Marie hat zwei Kind => Ja, Marie hat Kinder
 	2.
 		?- mutter_von(charlotte, A),
 		|    listing(vater_von(A, _)),
 		|    listing(mutter_von(A, _)).
 
-		mutter_von(barbara, klaus).
-		mutter_von(barbara, andrea).
-		A = barbara .
+		mutter_von(barbara, klaus).			%	Klaus ist ein Enkelkind von Charlotte
+		mutter_von(barbara, andrea).		%	Andrea ist ein Enkelkind von Charlotte
+		A = barbara .						%	Die Mutter der Enkelkinder ist Barbara
+		
+		%	Obiger Code nimmt alle Kinder von Charlotte
+		%	Und gibt deren Kinder aus, sofern vorhanden
+		
 		
 		ALTERNATIV:
 		?- mutter_von(charlotte, Kind),
@@ -89,10 +95,20 @@ Aufgabe 2:
 		|    mutter_von(Kind, Enkel)).
 		
 		Kind = barbara,
-		Enkel = klaus ;
+		Enkel = klaus ;				%	Erster Enkel von Charlotte ist Klaus
 		Kind = barbara,
-		Enkel = andrea ;
+		Enkel = andrea ;			%	Zweiter Enkel von Charlotte ist Andrea
 		false.
+		
+		%	Im Gegensatz zum ersten Code wird hier der Verwandte zwischen Charlotte
+		%	und Enkel angegeben.
+		%	Es werden sämtliche Kombinationen geprüft: Alle Kinder von Charlotte werden
+		%	auf Kinder geprüft.
+		%	Die Syntax sorgt allerdings dafür, dass Töchter und Söhne von Charlotte,
+		%	sofern vorhanden, sowohl darauf geprüft werden, ob sie Vater sind, als auch,
+		%	ob sie Mutter sind.
+		%	Terminiert mit 'fail' weil Charlottes zweites Kind Magdalena ebenfalls auf
+		%	vorhandene Enkel geprüft wird, welche nicht vorhanden sind.
 
 	3.
 		Die Systemausgaben sind, wenn die Methode durch läuft:
