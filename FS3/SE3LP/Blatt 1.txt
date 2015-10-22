@@ -1,0 +1,112 @@
+Aufgabe 1:
+	1.
+		Der Dateipfad befindet sich in Hochkommata, damit er als String erkannt wird.
+	3.
+		assert/1 fügt das neue Element hinten an.
+		asserta/1 fügt das neue Element vorne an.
+		assertz/1 fügt das neue Element hinten an.
+
+Aufgabe 2:
+	1.
+		a)
+			?- vater_von(walter, magdalena).
+
+			true.
+		b)
+			?- mutter_von(julia, klaus).
+
+			false.
+		c)
+			?- vater_von(Vater, helga).
+
+			Vater = otto.
+		d)
+			?- mutter_von(Mutter, julia).
+			
+			false.
+		e)
+			?- vater_von(johannes, Kind).
+
+			Kind = klaus ;
+			Kind = andrea.
+		f)
+			?- vater_von(Vater, Kind_v);
+			|	mutter_von(Mutter, Kind_m).
+
+			Vater = otto,
+			Kind_v = hans ;
+			Vater = otto,
+			Kind_v = helga ;
+			Vater = gerd,
+			Kind_v = otto ;
+			Vater = johannes,
+			Kind_v = klaus ;
+			Vater = johannes,
+			Kind_v = andrea ;
+			Vater = walter,
+			Kind_v = barbara ;
+			Vater = walter,
+			Kind_v = magdalena ;
+			Mutter = marie,
+			Kind_m = hans ;
+			Mutter = marie,
+			Kind_m = helga ;
+			Mutter = julia,
+			Kind_m = otto ;
+			Mutter = barbara,
+			Kind_m = klaus ;
+			Mutter = barbara,
+			Kind_m = andrea ;
+			Mutter = charlotte,
+			Kind_m = barbara ;
+			Mutter = charlotte,
+			Kind_m = magdalena.
+		g)
+			?- not(mutter_von(magdalena, _)).
+
+			true.
+		h)
+			?- not(mutter_von(marie, _)).
+
+			false.
+		i)
+			?- mutter_von(marie, _).
+
+			true;
+			true.
+	2.
+		?- mutter_von(charlotte, A),
+		|    listing(vater_von(A, _)),
+		|    listing(mutter_von(A, _)).
+
+		mutter_von(barbara, klaus).
+		mutter_von(barbara, andrea).
+		A = barbara .
+		
+		ALTERNATIV:
+		?- mutter_von(charlotte, Kind),
+		|    (vater_von(Kind, Enkel);
+		|    mutter_von(Kind, Enkel)).
+		
+		Kind = barbara,
+		Enkel = klaus ;
+		Kind = barbara,
+		Enkel = andrea ;
+		false.
+
+	3.
+		Die Systemausgaben sind, wenn die Methode durch läuft:
+			Call: (%Zahl%) %Methodentext% ? creep
+			%Bei Listing-Befehlen steht hier die Ausgabe%
+			Exit: (%Zahl%) %Methodentext% ? creep
+			%Boolean-Ausgabe%
+		Oder falls sie fehl schlägt:
+			Call: (%Zahl%) %Methodentext% ? creep
+			%Bei Listing-Befehlen steht hier die Ausgabe%
+			Fail: (%Zahl%) %Methodentext% ? creep
+			%Boolean-Ausgabe%
+
+		Erläuterung:
+			Call: Gibt aus, dass die Methode aufgerufen wurde.
+			Exit: Gibt an, dass die Methode zuende gelaufen ist.
+			Fail: gibt an, dass bei der Methodenausführung ein Fehler aufgetreten ist.
