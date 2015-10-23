@@ -15,7 +15,7 @@ $RECYCLE.BIN/
 *.msp
 
 # Folders unneeded
-FS3/Lektüre/
+FS3/Lekt\303\274re/
 # Windows shortcuts
 *.lnk
 
