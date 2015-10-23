@@ -237,11 +237,101 @@ Ordnen Sie die folgenden Funktionen nach ihrem Wachstumsgrad in aufsteigender Re
 Mit log ist hier der Logarithmus zur Basis 2, mit ln der natürliche Logarithmus (Basis \textit{e}) gemeint.
 Begründen Sie stets Ihre Aussage.
 Zwei Funktionen $f(n)$ und $g(n)$ befinden sich ferner in der selben Äquivalenzklasse, wenn $f(n) \in \Theta (g(n))$ gilt.
-Geben Sie an, welche Funktionen sich in derselben Äquivalenzklasse befinden und begründen Sie auch hier ihre Aussage.
-\vspace{1cm}
+Geben Sie an, welche Funktionen sich in derselben Äquivalenzklasse befinden und begründen Sie auch hier ihre Aussage.\\
+\vspace{1cm}\\
 %---------------%
 %	Bearbeitung	%
 %---------------%
+Die bearbeitete Menge wird i.F. als $M_F$ bezeichnet.
+Die Menge, die gerade alle Elemente von $M_F$ in aufsteigend sortierter Reihenfolge enthält, wird als $M_F'$ bezeichnet.\\
+$M_F$ wird mit \textsc{InsertionSort} in $M_F'$ hineinsortiert.\\ \vspace{0.5cm}
+Sei $e \in M_F$.
+Für $e$ wird das Element $1000$ gewählt.
+Da $\string|M_F'\string|$ leer ist, muss $1000$ nicht weiter geprüft werden.
+\begin{flushright}
+	$M_F' = \{1000\}$
+\end{flushright}
+$e$ wird nun über $M_F$ iteriert, bis $M_F' = Sorted(M_F)$. \vspace{0.5cm}\\
+$e = n$
+\begin{equation*}
+	\begin{array}{llll}
+		f(n) = n	\\
+		g(n) = 1000	&	\underset{n\rightarrow\infty}{lim}	\frac{n}{1000}	&=	\infty	\Rightarrow n > 1000 &\Rightarrow n \not \in O(1000)
+	\end{array}
+\end{equation*}
+\begin{flushright}
+	$M_F' = \{1000,n\}$
+\end{flushright}
+\vspace{0.6cm}
+$e = \operatorname{log} n$
+\begin{equation*}
+	\begin{array}{llll}
+		.
+	\end{array}
+\end{equation*}
+\begin{flushright}
+	$M_F' = \{1000,\operatorname{log}n,n\}$
+\end{flushright}
+\vspace{0.6cm}
+$e = 4$
+\begin{equation*}
+	\begin{array}{llll}
+		.
+	\end{array}
+\end{equation*}
+\begin{flushright}
+	$M_F' = \{4,1000,\operatorname{log}n,n\}$
+\end{flushright}
+\vspace{0.6cm}
+$e = n^2$
+\begin{equation*}
+	\begin{array}{llll}
+		.
+	\end{array}
+\end{equation*}
+\begin{flushright}
+	$M_F' = \{4,1000,\operatorname{log}n,n,n^2\}$
+\end{flushright}
+\vspace{0.6cm}
+$e = n^{\frac{1}{2}}$
+\begin{equation*}
+	\begin{array}{llll}
+		.
+	\end{array}
+\end{equation*}
+\begin{flushright}
+	$M_F' = \{4,1000,n^{\frac{1}{2}},\operatorname{log}n,n,n^2\}$
+\end{flushright}
+\vspace{0.6cm}
+$e = \sqrt{n}^3$
+\begin{equation*}
+	\begin{array}{llll}
+		.
+	\end{array}
+\end{equation*}
+\begin{flushright}
+	$M_F' = \{4,1000,n^{\frac{1}{2}},\operatorname{log}n,n,\sqrt{n}^3,n^2\}$
+\end{flushright}
+\vspace{0.6cm}
+$e = 2^n$
+\begin{equation*}
+	\begin{array}{llll}
+		.
+	\end{array}
+\end{equation*}
+\begin{flushright}
+	$M_F' = \{4,1000,n^{\frac{1}{2}},\operatorname{log}n,n,\sqrt{n}^3,n^2,2^n\}$
+\end{flushright}
+\vspace{0.6cm}
+$e = \operatorname{ln}n$
+\begin{equation*}
+	\begin{array}{llll}
+		.
+	\end{array}
+\end{equation*}
+\begin{flushright}
+	$M_F' = \{4,1000,\operatorname{ln} n, \operatorname{log} n, n^{\frac{1}{2}}, n, \sqrt{n}^3, n^2, 2^n\}$
+\end{flushright}
 \subsection{Übungsaufgabe 2.3}
 \begin{flushright}
 \begin{Large}
