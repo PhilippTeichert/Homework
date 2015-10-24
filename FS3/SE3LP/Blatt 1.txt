@@ -75,7 +75,7 @@ Aufgabe 2:
 			?- mutter_von(marie, _).
 
 			true;					%	=> Marie hat ein Kind
-			true.					%	=> Marie hat zwei Kind => Ja, Marie hat Kinder
+			true.					%	=> Marie hat ein zweites Kind => Ja, Marie hat Kinder
 	2.
 		?- mutter_von(charlotte, A),
 		|    listing(vater_von(A, _)),
@@ -100,8 +100,6 @@ Aufgabe 2:
 		Enkel = andrea ;			%	Zweiter Enkel von Charlotte ist Andrea
 		false.
 		
-		%	Im Gegensatz zum ersten Code wird hier der Verwandte zwischen Charlotte
-		%	und Enkel angegeben.
 		%	Es werden sämtliche Kombinationen geprüft: Alle Kinder von Charlotte werden
 		%	auf Kinder geprüft.
 		%	Die Syntax sorgt allerdings dafür, dass Töchter und Söhne von Charlotte,
@@ -116,7 +114,8 @@ Aufgabe 2:
 			%Bei Listing-Befehlen steht hier die Ausgabe%
 			Exit: (%Zahl%) %Methodentext% ? creep
 			%Boolean-Ausgabe%
-		Oder falls sie fehl schlägt:
+            
+		Oder falls die Methode fehl schlägt:
 			Call: (%Zahl%) %Methodentext% ? creep
 			%Bei Listing-Befehlen steht hier die Ausgabe%
 			Fail: (%Zahl%) %Methodentext% ? creep
@@ -124,5 +123,5 @@ Aufgabe 2:
 
 		Erläuterung:
 			Call: Gibt aus, dass die Methode aufgerufen wurde.
-			Exit: Gibt an, dass die Methode zuende gelaufen ist.
-			Fail: gibt an, dass bei der Methodenausführung ein Fehler aufgetreten ist.
+			Exit: Gibt an, dass die Methode erfolgreich durchgelaufen ist.
+			Fail: Gibt an, dass bei der Methodenausführung ein Fehler aufgetreten ist.
