@@ -254,9 +254,12 @@ Da $\string|M_F'\string|$ leer ist, muss $1000$ nicht weiter geprüft werden.
 $e$ wird nun über $M_F$ iteriert, bis $M_F' = Sorted(M_F)$. \vspace{0.5cm}\\
 $e = n$
 \begin{equation*}
-	\begin{array}{llll}
-		f(n) = n	\\
-		g(n) = 1000	&	\underset{n\rightarrow\infty}{lim}	\frac{n}{1000}	&=	\infty	\Rightarrow n > 1000 &\Rightarrow n \not \in O(1000)
+	\begin{array}{lllll}
+		f(n) = n\\
+		g(n) = 1000	&	\underset{n\rightarrow\infty}{lim}	\frac{n}{1000}	&=	\infty	&\Rightarrow n \not \in O(1000)
+		\\\\
+		f(n) = 1000\\
+		g(n) = n & \underset{n\rightarrow\infty}{lim} \frac{1000}{n} &= 0 &\Rightarrow 1000 \in O(n) &\Rightarrow  n \text{ folgt } 1000
 	\end{array}
 \end{equation*}
 \begin{flushright}
@@ -265,8 +268,12 @@ $e = n$
 \vspace{0.6cm}
 $e = \operatorname{log} n$
 \begin{equation*}
-	\begin{array}{llll}
-		.
+	\begin{array}{lllll}
+		f(n) = log(n)\\
+		g(n) = n & \underset{n\rightarrow\infty}{lim} \frac{log(n)}{n} \overset{\text{L'Hospital}}{=} \underset{n\rightarrow\infty}{lim} \frac{\frac{1}{ln(2) \cdot n}}{1} = \underset{n\rightarrow\infty}{lim}\frac{1}{ln(2) \cdot n} &= 0 &\Rightarrow log(n) \in O(n) &\Rightarrow  n \text{ folgt } log(n)
+		\\\\
+		f(n) = log(n)\\
+		g(n) = 1000 & \underset{n\rightarrow\infty}{lim} \frac{log(n)}{1000} &= \infty &\Rightarrow log(n) \not \in O(1000)
 	\end{array}
 \end{equation*}
 \begin{flushright}
@@ -275,8 +282,15 @@ $e = \operatorname{log} n$
 \vspace{0.6cm}
 $e = 4$
 \begin{equation*}
-	\begin{array}{llll}
-		.
+	\begin{array}{lllll}
+		f(n) = 4\\
+		g(n) = n & \underset{n\rightarrow\infty}{lim} \frac{4}{n} &= 0 &\Rightarrow 4 \in O(n) &\Rightarrow  n \text{ folgt } 4
+		\\\\
+		f(n) = 4\\
+		g(n) = log(n) & \underset{n\rightarrow\infty}{lim} \frac{4}{log(n)} &= 0 &\Rightarrow 4 \in O(log(n)) &\Rightarrow  log(n) \text{ folgt } 4
+		\\\\
+		f(n) = 4\\
+		g(n) = 1000 & \underset{n\rightarrow\infty}{lim} \frac{4}{1000} &= 0,004 &\Rightarrow 4 \in \Theta(1000) &\Rightarrow  4 \text{ und } 1000 \text{ befinden sich in der selben Ä.-klasse}
 	\end{array}
 \end{equation*}
 \begin{flushright}
@@ -285,8 +299,12 @@ $e = 4$
 \vspace{0.6cm}
 $e = n^2$
 \begin{equation*}
-	\begin{array}{llll}
-		.
+	\begin{array}{lllll}
+		f(n) = n^2\\
+		g(n) = n	&	\underset{n\rightarrow\infty}{lim}	\frac{n^2}{n}	&=	\infty	&\Rightarrow n^2 \not \in O(n)
+		\\\\
+		f(n) = n\\
+		g(n) = n^2 & \underset{n\rightarrow\infty}{lim} \frac{n}{n^2} &= 0 &\Rightarrow n \in O(n^2) &\Rightarrow  n^2 \text{ folgt } n
 	\end{array}
 \end{equation*}
 \begin{flushright}
@@ -295,38 +313,69 @@ $e = n^2$
 \vspace{0.6cm}
 $e = n^{\frac{1}{2}}$
 \begin{equation*}
-	\begin{array}{llll}
-		.
+	\begin{array}{lllll}
+		f(n) = n^\frac{1}{2}\\
+		g(n) = n^2	&	\underset{n\rightarrow\infty}{lim}	\frac{n^\frac{1}{2}}{n^2} = \underset{n\rightarrow\infty}{lim} \frac{1}{n^\frac{3}{2}} &=	0	&\Rightarrow n^\frac{1}{2} \in O(n^2) &\Rightarrow n^2 \text{ folgt } n^\frac{1}{2}
+		\\\\
+		f(n) = n^\frac{1}{2}\\
+		g(n) = n & \underset{n\rightarrow\infty}{lim} \frac{n^\frac{1}{2}}{n} = \underset{n\rightarrow\infty}{lim} \frac{1}{n^\frac{1}{2}} &= 0 &\Rightarrow n^\frac{1}{2} \in O(n) &\Rightarrow  n \text{ folgt } n^\frac{1}{2}
+		\\\\
+		f(n) = n^\frac{1}{2}\\
+		g(n) = log(n) & \underset{n\rightarrow\infty}{lim} \frac{n^\frac{1}{2}}{log(n)} \overset{\text{L'Hospital}}{=} \underset{n\rightarrow\infty}{lim} \frac{\frac{1}{2}\cdot n^{-\frac{1}{2}}}{\frac{1}{ln(2)\cdot n}} = \underset{n\rightarrow\infty}{lim} \frac{ln(2)\cdot n^\frac{1}{2}}{2} &= \infty &\Rightarrow n^\frac{1}{2} \not \in O(log(n))
 	\end{array}
 \end{equation*}
 \begin{flushright}
-	$M_F' = \{4,1000,n^{\frac{1}{2}},\operatorname{log}n,n,n^2\}$
+	$M_F' = \{4,1000,\operatorname{log}n,n^\frac{1}{2},n,n^2\}$
 \end{flushright}
 \vspace{0.6cm}
 $e = \sqrt{n}^3$
 \begin{equation*}
-	\begin{array}{llll}
-		.
+	\begin{array}{lllll}
+		f(n) = \sqrt{n}^3\\
+		g(n) = n^2	&	\underset{n\rightarrow\infty}{lim}	\frac{\sqrt{n}^3}{n^2}	= \underset{n\rightarrow\infty}{lim} \frac{1}{n^\frac{1}{2}} &=	0	&\Rightarrow \sqrt{n}^3 \in O(n^2) &\Rightarrow n^2 \text{ folgt } \sqrt{n}^3
+		\\\\
+		f(n) = \sqrt{n}^3\\
+		g(n) = n & \underset{n\rightarrow\infty}{lim} \frac{\sqrt{n}^3}{n} = \underset{n\rightarrow\infty}{lim} n^\frac{1}{2} &= \infty &\Rightarrow \sqrt{n}^3 \not \in O(n)
 	\end{array}
 \end{equation*}
 \begin{flushright}
-	$M_F' = \{4,1000,n^{\frac{1}{2}},\operatorname{log}n,n,\sqrt{n}^3,n^2\}$
+	$M_F' = \{4,1000,\operatorname{log}n,n^\frac{1}{2},n,\sqrt{n}^3,n^2\}$
 \end{flushright}
 \vspace{0.6cm}
 $e = 2^n$
 \begin{equation*}
-	\begin{array}{llll}
-		.
+	\begin{array}{lllll}
+		f(n) = 2^n\\
+		g(n) = n^2	&	\underset{n\rightarrow\infty}{lim}	\frac{2^n}{n^2}	\overset{\text{L'Hospital}}{=} \underset{n\rightarrow\infty}{lim} \frac{ln(2)\cdot 2^n}{2 \cdot n} \overset{\text{L'Hospital}}{=} \underset{n\rightarrow\infty}{lim} \frac{ln^2(2)\cdot 2^n}{2} &=	\infty	&\Rightarrow 2^n \not \in O(n^2)
+		\\\\
+		f(n) = n^2\\
+		g(n) = 2^n & \underset{n\rightarrow\infty}{lim} \frac{n^2}{2^n} \overset{\text{L'Hospital}}{=} \underset{n\rightarrow\infty}{lim} \frac{2 \cdot n}{ln(2)\cdot 2^n} \overset{\text{L'Hospital}}{=} \underset{n\rightarrow\infty}{lim} \frac{2}{ln^2(2)\cdot 2^n} &= 0 &\Rightarrow n^2 \in O(2^n) &\Rightarrow  n^2 \text{ folgt } 2^n
 	\end{array}
 \end{equation*}
 \begin{flushright}
-	$M_F' = \{4,1000,n^{\frac{1}{2}},\operatorname{log}n,n,\sqrt{n}^3,n^2,2^n\}$
+	$M_F' = \{4,1000,\operatorname{log}n,n^{\frac{1}{2}},n,\sqrt{n}^3,n^2,2^n\}$
 \end{flushright}
 \vspace{0.6cm}
 $e = \operatorname{ln}n$
 \begin{equation*}
-	\begin{array}{llll}
-		.
+	\begin{array}{lllll}
+		f(n) = ln(n)\\
+		g(n) = 2^n & \underset{n\rightarrow\infty}{lim} \frac{ln(n)}{2^n} \overset{\text{L'Hospital}}{=} \underset{n\rightarrow\infty}{lim} \frac{\frac{1}{n}}{ln(2)\cdot 2^n} = \underset{n\rightarrow\infty}{lim}\frac{1}{n\cdot ln(n) \cdot 2^n} &= 0 &\Rightarrow ln(n) \in O(2^n) &\Rightarrow  2^n \text{ folgt } ln(n)
+		\\\\
+		f(n) = ln(n)\\
+		g(n) = n^2 & \underset{n\rightarrow\infty}{lim} \frac{ln(n)}{n^2} \overset{\text{L'Hospital}}{=} \underset{n\rightarrow\infty}{lim} \frac{\frac{1}{n}}{2\cdot n} = \underset{n\rightarrow\infty}{lim}\frac{1}{2\cdot n^2} &= 0 &\Rightarrow ln(n) \in O(n^2) &\Rightarrow  n^2 \text{ folgt } ln(n)
+		\\\\
+		f(n) = ln(n)\\
+		g(n) = \sqrt{n}^3 & \underset{n\rightarrow\infty}{lim} \frac{ln(n)}{\sqrt{n}^3} \overset{\text{L'Hospital}}{=} \underset{n\rightarrow\infty}{lim}\frac{\sqrt[3]{n}}{2\cdot n} \overset{\text{L'Hospital}}{=} \underset{n\rightarrow\infty}{lim} \frac{1}{6\cdot n^\frac{2}{3}} &= 0 &\Rightarrow ln(n) \in O(\sqrt{n}^3) &\Rightarrow  \sqrt{n}^3 \text{ folgt } ln(n)
+		\\\\
+		f(n) = ln(n)\\
+		g(n) = n & \underset{n\rightarrow\infty}{lim} \frac{ln(n)}{n} \overset{\text{L'Hospital}}{=} \underset{n\rightarrow\infty}{lim} \frac{\frac{1}{n}}{1} = \underset{n\rightarrow\infty}{lim}\frac{1}{n} &= 0 &\Rightarrow ln(n) \in O(n) &\Rightarrow  n \text{ folgt } ln(n)
+		\\\\
+		f(n) = ln(n)\\
+		g(n) = n^\frac{1}{2} & \underset{n\rightarrow\infty}{lim} \frac{ln(n)}{n^\frac{1}{2}} \overset{\text{L'Hospital}}{=} \underset{n\rightarrow\infty}{lim} \frac{\frac{1}{n}}{\frac{1}{2\cdot n^\frac{1}{2}}} = \underset{n\rightarrow\infty}{lim}\frac{2}{n^\frac{1}{2}} &= 0 &\Rightarrow ln(n) \in O(n^\frac{1}{2}) &\Rightarrow  n^\frac{1}{2} \text{ folgt } ln(n)
+		\\\\
+		f(n) = ln(n)\\
+		g(n) = log(n) & \underset{n\rightarrow\infty}{lim} \frac{ln(n)}{log(n)} \overset{\text{L'Hospital}}{=} \underset{n\rightarrow\infty}{lim} \frac{\frac{1}{n}}{\frac{1}{ln(2) \cdot n}} &= ln(2) &\Rightarrow ln(n) \in \Theta(log(n)) &\Rightarrow  ln(n) \text{ und } log(n)\\ &&&\text{ befinden sich in der}&\text{selben Ä.-klasse}
 	\end{array}
 \end{equation*}
 \begin{flushright}
