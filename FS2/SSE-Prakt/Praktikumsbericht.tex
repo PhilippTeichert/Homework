@@ -248,8 +248,8 @@ literate=%
 %\-\\
 %\-\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Dieser Bericht befasst sich mit dem Praktikum Agile Softwareentwicklung\footnote{STiNE-Veranstaltungsnummer 64-142} (im Folgenden \string"ASE")
- als Teil des Moduls Softwareentwicklungspraktikum\footnote{STiNE-Modulnummer SSE\_PR} (im Folgenden \string"SEP")
+Dieser Bericht befasst sich mit dem Praktikum Agile Softwareentwicklung\footnote{STiNE-Veranstaltungsnummer 64-142} (im Folgenden „ASE“)
+ als Teil des Moduls Softwareentwicklungspraktikum\footnote{STiNE-Modulnummer SSE\_PR} (im Folgenden „SEP“)
  , absolviert im zweiten Fachsemester %(im Folgenden "FS2")
 des Studiengangs Software-System-Entwicklung %(im Folgenden \string"SSE")
 .\\
@@ -266,14 +266,6 @@ Dies umfasst die Erstellung der Gegenstände, deren Speicherung und die Implemen
 \label{sec:main}
 Wie bereits in der Einleitung angesprochen, wird sich dieser Bericht primär mit dem Umgang mit den Gegenständen in \textit{KUUL} befassen.
 Interaktiv sind diese Gegenstände insofern, als dass sie aufgesammelt, benutzt und kombiniert werden können.\\
-%Zunächst wird jedoch festgestellt werden, worum es sich bei \textit{KUUL} handelt.
-\begin{figure}[h!bt]
-    \begin{center}
-        \includegraphics[scale=1]{Gegenstaende_Welt-1.png}
-    	\caption{Alle Gegenstände aus der Universität}
-        \label{fig:main_items}
-    \end{center}
-\end{figure}
 
 %
 %-----------------------------------------------
@@ -282,13 +274,17 @@ Interaktiv sind diese Gegenstände insofern, als dass sie aufgesammelt, benutzt 
 \subsection{Organisation im Team}
 \label{orga}
 Zunächst ist die Organisation innerhalb des Teams zu besprechen.
-Da es sich bei dem Praktikum um einen Einblick in Agile Software-Entwicklung handelt, wurden agile Methoden wie das \textit{Stand-Up Meeting} oder das \textit{Kanban-Board} verwendet.
+Da es sich bei dem Praktikum um einen Einblick in Agile Software-Entwicklung handelt, wurden agile Methoden wie das \textit{Stand-Up Meeting} oder das \textit{Kanban-Board} verwendet.\\
+Es wurde in Zweierteams gearbeitet, die - mehr oder weniger - täglich rotiert sind, damit sich das Wissen um den Code möglichst gleichmäßig im Team verbreitet.
+Beim \textit{Stand-Up Meeting} handelt es sich um einen „Stehkreis“, in dem jeder Mitarbeiter kurz erklärt, was er seit dem letzten \textit{Stand-Up Meeting} gemacht hat. Diese wurden ziemlich schnell in regelmäßigen Abständen Zwei bis Vier mal am Tag abgehalten.
+Das \textit{Kanban-Board} ist eine Tafel, an die die aktuellen Aufgaben angeschrieben werden. Dies hilft, die Aufgaben aufzuteilen und nicht den Überblick zu verlieren. Zudem ist es ein Ort für dringende Aufgaben oder Probleme, damit das Team, welches als nächstes mit seiner Aufgabe fertig wird, sofort eine neue findet.
+Eine weitere agile Methode ist \textit{Schätzpoker}. Hier wird nach jeder Aufgabe, die das Team vom Kunden erhält, geschätzt, wie umfangreich diese wohl in der Umsetzung sein wird. Dies wird auch am \textit{Kanban-Board} vermerkt, um besser planen zu können.\\
 Agile Methoden im Allgemeinen dienen dazu, bei möglichst flexibler Organisation möglichst effizient das Projekt voranzubringen.
-Hierfür war stete Zwei-Wege-Kommunikation mit dem Kunden, gestellt von Fred und Michael, erforderlich, was insofern geschah, als dass der aktuelle Projektstand sowie Änderungswünsche und Anregungen des Kundens bis zu drei mal täglich besprochen wurden.
-Kunde ist diejenige Person, die den Auftrag aufgibt und das Produkt entgegen nimmt.\\
+Hierfür war stete Zwei-Wege-Kommunikation mit dem Kunden erforderlich, was insofern geschah, als dass der aktuelle Projektstand sowie Änderungswünsche und Anregungen des Kunden bis zu drei mal täglich besprochen wurden.
+Der Kunde ist diejenige Person, die den Auftrag aufgibt und das Produkt entgegen nimmt, was in unserem Fall die Projektleiter einer anderen Gruppe - namentlich Fred und Michael - waren.\\
 Im Gegensatz zum veralteten Wasserfall-Verfahren bietet die agile Entwicklung den Vorteil, dass das Projekt stetig in der Entwicklung beobachtet werden kann und offen für spontane Änderungen ist.
 Das \textit{Kanban-Board} dient hierbei zur Übersicht und Aufteilung des Projektes und das \textit{Stand-Up Meeting} zur schnellen und informativen teaminternen Kommunikation.\\
-Nun stellt sich jedoch die Frage, um welches Projekt es sich handelt.
+Nun stellt sich jedoch die Frage, um welches Projekt es sich handelt. Es handelt sich um \textit{KUUL}.
 
 %
 %-----------------------------------------------
@@ -303,15 +299,23 @@ In \textit{KUUL} landet der Spieler in einer Welt und muss sich dort zurecht fin
 Während Zuul ein konsolenbasiertes Text-Adventure ist, wird \textit{KUUL} mit Maus und Tastatur gesteuert.
 Dies geschieht insofern, als dass Gegenstände, \textit{NPCs}\footnote{\textit{Non-Player-Character}, eine Figur im Spiel, die nicht vom Spieler, sondern vom Spiel kontrolliert wird.} und Türen angeklickt werden können, um mit ihnen zu interagieren.
 Mithilfe der Tastatur kann der \textit{PC}\footnote{\textit{Player-Character}, vgl. \textit{NPC}} durch die Räume in der Welt von \textit{KUUL} bewegt werden, ebenso lassen sich alle Funktionen des Spiels über bestimmte Tasten direkt ansteuern.\\
-Zuul hatte bereits einige wenige Räume vorzuweisen, die durch die Namensgebung erkennen ließen, dass es sich um eine an ein Universitätsgelände angelehnte Welt handelte.
+Zuul hatte bereits einige wenige Räume vorzuweisen, die durch die Namensgebung erkennen ließen, dass es sich um eine an ein Universitätsgelände (im Folgenden „Universität“) angelehnte Welt handelte.
 Dies wurde vom Entwicklerteam aufgegriffen, wobei die Umgebung \textit{Universität} zwar beibehalten, jedoch die Anzahl der Räume mehr als verdoppelt wurde.
-Auf Wunsch des Kunden hin wurde im Lauf des Praktikums eine weitere Welt hinzugefügt, die sich grob am Hamburger Kiez (im Folgenden "Kiez") orientiert.
+Auf Wunsch des Kunden hin wurde im Lauf des Praktikums eine weitere Welt hinzugefügt, die sich grob am Hamburger Kiez (im Folgenden „Kiez“) orientiert.
 
 %
 %-----------------------------------------------
 %
 
 \subsection{Funktionsumfang}
+
+\begin{figure}[h!bt]
+    \begin{center}
+        \includegraphics[scale=1]{Gegenstaende_Welt-1.png}
+    	\caption{Alle Gegenstände aus der Universität}
+        \label{fig:main_items}
+    \end{center}
+\end{figure}
 \label{ssec:main_func}
 Wie bereits angesprochen, können Gegenstände aufgehoben und genutzt werden.\\
 In Zuul ging dies über die Konsole.
@@ -319,13 +323,13 @@ Um \textit{KUUL} komfortabler zu machen, sind Gegenstände im Raum anklickbar.
 Ebenso können sie aufgehoben werden, wenn sich der Spieler direkt davor stellt und die Enter-Taste drückt.\\%Aktionstaste
 Aufgenommene Gegenstände kommen in den \textit{Rucksack}, welcher allerdings nur eine beschränkte Kapazität von vier beliebigen Gegenständen hat.
 Gegenstände, die man im Rucksack hat, können kombiniert werden.
-Allerdings müssen sie dazu in der XML-Datei den Tag "kombinierbar", welcher im Parser als \texttt{boolean} ausgelesen wird, gesetzt bekommen.
-Ist dieser Tag auf den Wert \texttt{"false"} gesetzt, so können die Gegenstände nicht kombiniert werden.\\
+Allerdings müssen sie dazu in der XML-Datei den Tag „kombinierbar“, welcher im Parser als \texttt{boolean} ausgelesen wird, gesetzt bekommen.
+Ist dieser Tag auf den Wert \texttt{„false“} gesetzt, so können die Gegenstände nicht kombiniert werden.\\
 Eine weitere Besonderheit des Rucksacks ist es, dass die meisten Gegenstände in der ersten Welt, die einem normalerweise Energie zurückgeben, mit der Zeit verfallen.
 Energie wird benötigt, um sich zu bewegen. Der Spieler startet mit 15 Energie-Einheiten und jeder Raumwechsel verbraucht eine Einheit.
 Das Verfallen führt dazu, dass sie irgendwann keine Energie mehr zurückgeben, sondern sogar welche abziehen.
 \\
-Illustriert wird dies erstens durch eine Veränderung des Aussehens des Gegenstandes und zweitens durch eine Änderung des Textes, der bei Nutzung des Gegenstandes angezeigt wird. So wird z.B. \textit{"Die Ananas stärkt Sie und gibt Ihnen Kraft. Sie erhalten 2 Lebenspunkte. Toll!"} zu \textit{"Die Ananas ist bis auf den Kern vergammelt. Sie verlieren Lebenspunkte!"}, wenn man die Ananas lange genug im Rucksack behält.
+Illustriert wird dies erstens durch eine Veränderung des Aussehens des Gegenstandes und zweitens durch eine Änderung des Textes, der bei Nutzung des Gegenstandes angezeigt wird. So wird z.B. \textit{„Die Ananas stärkt Sie und gibt Ihnen Kraft. Sie erhalten 2 Lebenspunkte. Toll!“} zu \textit{„Die Ananas ist bis auf den Kern vergammelt. Sie verlieren Lebenspunkte!“}, wenn man die Ananas lange genug im Rucksack behält.
 \\
 Graphisch hat jeder Gegenstand eine bis drei Phasen, der Abzug der Energie-Einheiten wächst allerdings stetig linear.
 Alle zwei Schritte zieht der Gebrauch eines solchen Gegenstandes eine Einheit mehr ab.
@@ -389,9 +393,9 @@ if (gegenstandElement.getElementsByTagName("beenden").getLength() != 0)
 \end{lstlisting}
 Der hier betrachtete Quellcode (Code \ref{code:main_parser}) ist aus dem in \textit{KUUL} verwendeten XML-Parser entnommen.
 Er sucht sich den Tag \texttt{beenden} (dargestellt in Code \ref{code:main_siegesitem}) und packt den zum Tag gehörigen Gegenstand zusammen mit der Nachricht, die sich in dem Tag befindet, in eine Liste. Diese Liste kann nun an anderer Stelle durchlaufen werden, um die Kommandos\footnote{s. Kapitel \ref{ssec:main_commands}} festzulegen.\\
-Die XML\footnote{\textit{eXtensible Markup Language}, findet Verwendung in der Strukturierung von Daten}-Sprache arbeitet insofern, als dass jedes Dokument eine Reihe von Elementen hat, und diese Elemente haben Attribute (im Folgenden "Tags"), welche wiederum Element-Reihen seien können.
+Die XML\footnote{\textit{eXtensible Markup Language}, findet Verwendung in der Strukturierung von Daten}-Sprache arbeitet insofern, als dass jedes Dokument eine Reihe von Elementen hat, und diese Elemente haben Attribute (im Folgenden „Tags“), welche wiederum Element-Reihen seien können.
 Im Gegensatz zu HTML\footnote{\textit{HyperText Markup Language}, findet Gebrauch bei der Gestaltung von Web-Oberflächen} ist XML erweiterbar, das heißt es können benutzerdefinierte Tags hinzugefügt werden; die Syntax der beiden Sprachen ist nahezu gleich.\\
-An dieser Stelle wird der Tag des Gegenstands mit der Bezeichnung "beenden\string" abgefragt: Ist sie vorhanden (Länge ungleich 0), so handelt es sich um einen Sieggegenstand.
+An dieser Stelle wird der Tag des Gegenstands mit der Bezeichnung „beenden“ abgefragt: Ist sie vorhanden (Länge ungleich 0), so handelt es sich um einen Sieggegenstand.
 Anzumerken ist hierbei, dass der verwendete Parser abgefragte Tags immer als eine Form von Liste zurückgibt, weswegen der Tag mit \texttt{.item(0);} abgefragt werden muss.\\
 Die Siegnachricht, welche ebenfalls extern in der XML-Datei gelagert wird, wird ausgelesen und als String gespeichert.
 Der Gegenstand wird als Tupel aus ID und der Siegnachricht in eine Liste gelegt, die an anderen Stellen im Programm aufgerufen werden kann, um festzustellen, ob der gerade verwendete Gegenstand ein Sieggegenstand war.\\
