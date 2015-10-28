@@ -1,0 +1,49 @@
+Wissensstand Kunde:
+	Kunde ist Flughafen Kaltenkirchen
+	Vorstand segelt mit CS3-Geschäftsführung zusammen
+	Verantwortlich für Passagierbereich der Firma
+	großzügig mit großem Budget
+	legt Wert auf Image des Flughafens
+	legt Wert auf Einhaltung des Starttermins
+	legt Wert auf Innovation und Modernität
+	Finanzverwaltung steht Projekt skeptisch gegenüber
+	
+Wissensstand Projektstatus:
+	Ziel: IDN (In Door Navigation)
+	Prototyp mit fraglicher Praktikabilität vorhanden
+	Ladenpächter sollen sich integrieren können
+	Flugdaten, Anfahrt und Lageplan soll enthalten sein
+	Gepäckverfolgung
+	Services zur An- und Abreise + ÖPNV
+	Notfallfenster für Sofortzugriff für Auftraggeber
+	Echtzeit-Updates
+	Die IDN sollte möglichst innovativ und modern wirken
+	Zeit relativ knapp, da Marketing schon in den Startlöchern steht und Herr K. der Starttermin sehr wichtig ist
+	UI für Besucher und UI (evtl. auch Webbased UI?) für Ladenbesitzer zum eintragen in die IDN
+	
+Weitere Fragen:
+	Wie groß ist der Flughafen?
+		Frequentierung?
+	Letztendlich vorhandene Ressourcen
+		ÖPNV-Anbindungsstatus
+		Zusammenarbeit mit ÖPNV-Betrieben?
+		Wie bringen wir K. dazu einen möglichst hohen Anteil seines Budges an uns zu zahlen?
+		Zeitliche Einteilung, Deadline?
+		Eigenen Infrastruktur (Arbeitsplätze, Transport...)
+		Organisation (Matrix/Linie)
+		Bereits im Flughafen vorhandene Infrastruktur
+		Wie schalten wir den Finanzvorstand aus?
+		Notfallplan für Ressourcenmangel?
+	Design?
+		Segelschiff Loadingscreens für Herrn K?
+		möglichst modern
+		Verschiedene Versionen der IDN für Passagiere, Ladenpächter etc.?
+		Plattformen?
+		Ladeneinbindung mit Online-Shops/App-Interface?
+		Baukasten für eigene Schnittstelle für Läden?
+		Genaue Umsetzung der Warnungen/Hinweise vom Management
+			Pings nur am Flughafen
+			Pings müssen immer kommen
+	Was ist an der Praktikabilität unseres Prototyps fragwürdig und was lässt sich verbessern?
+		Recyclebarkeit/Adaptierbarkeit des Prototyps?
+		Was genau war am Prototypen nicht geeignet?
