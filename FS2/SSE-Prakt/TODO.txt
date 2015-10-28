@@ -1,6 +1,7 @@
 - Sprache sollte noch einmal überarbeitet werden
 
 - Entwicklungsprozess (Agiler Prozess) wird nicht beschrieben
+	doch
 
 - Probleme und Motivation für Lösungen werden nicht (oder sehr wenig) beschrieben
 	- Architekturaspekte kommen zu kurz
