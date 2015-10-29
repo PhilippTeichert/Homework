@@ -1,0 +1,198 @@
+% following line for presentation mode
+\documentclass{beamer}
+%% following line for hand-in
+%\documentclass[handout]{beamer}
+
+% language and encoding settings
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+% AMS Math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+
+% Presentation Layout
+\usetheme{Madrid}
+\title{IDN - Intense Doge Navigation}
+\author{CS3 - Dev Team Alpha}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	TITLE slide
+%	Copy for following presentations
+%	remember to adjust the hand-in date
+%
+\begin{document}
+\frame{
+	\thispagestyle{empty}
+	\begin{center}
+		\begin{Large}
+			\textbf{Projektmanagement WS15/16}\\
+		\end{Large}
+		\vspace{0.3cm}
+		\textbf{Woche 2}\\
+		\vspace{0.5cm}
+		\begin{tabular}{cc}
+			\begin{tabular}{c}
+				Louis Kobras\\
+				\textbf{Matr.Nr:} 6658699\\
+				\textbf{Email:} 4kobras@inf.
+			\end{tabular}
+			&
+			\begin{tabular}{c}
+				Utz Pöhlmann\\
+				\textbf{Matr.Nr:} 6663579\\
+				\textbf{Email:} 4poehlma@inf.
+			\end{tabular}
+		\\ \\
+			\begin{tabular}{c}
+				Hauke Stieler\\
+				\textbf{Matr.Nr:} 6664494\\
+				\textbf{Email:} 4stieler@inf.
+			\end{tabular}
+			&
+			\begin{tabular}{c}
+				Philipp Quach\\
+				\textbf{Matr.Nr:} 6706421\\
+				\textbf{Email:} 4quach@inf.
+			\end{tabular}
+		\end{tabular}
+		\\ \vspace{0.35cm}
+		\begin{tabular}{c}
+			Dennis Alexy\\
+			\textbf{Matr.Nr:} 6686188\\
+			\textbf{Email:} 4alexy@inf.
+		\end{tabular}
+		\\ \-\\ \-\\
+		Abgabedatum: 29. Oktober 2015\\
+	\end{center}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	BEGINNING of presentation content
+
+\frame{
+	\frametitle{Kundeninformationen}
+	\begin{minipage}[t]{0.48\linewidth}
+		\textbf{Rahmen:}
+		\begin{itemize}
+			\item Kunde ist Flughafen Kaltenkirchen
+			\item Vorstandsmitglied Herr K. hat Auftrag vergeben
+			\item kennt CS3-Geschäftsführung vom Segeln
+			\item Personalchef
+		\end{itemize}
+	\end{minipage}
+	\pause
+	\begin{minipage}[t]{0.48\linewidth}
+	\textbf{Herr K. legt Wert auf:}
+		\begin{itemize}
+			\item Innovation und Modernität
+			\item Image des Flughafens
+			\item Einhaltung des Release \\(PR läuft bereits)
+		\end{itemize}
+	\end{minipage}
+	\vspace{1cm}
+	\pause
+	\begin{center}
+		\textbf{Finanzverwaltung des Flughafens steht Herrn K. und dem Projekt skeptisch gegenüber.}
+	\end{center}
+
+
+}
+%%-------------------------------------------------------
+\frame{
+	\frametitle{Projektinformationen}
+	\begin{center}
+		\textbf{ZIEL: In Door Navigation}
+	\end{center}
+	\pause
+	\begin{minipage}[t]{.48\linewidth}
+		\textbf{Besucherfeatures:}
+		\begin{itemize}
+			\item Gepäckverfolgung
+			\item Informationen zum ÖPNV
+			\item Fluginformationen, Anfahrt, Lageplan
+			\item moderne UI
+		\end{itemize}
+	\end{minipage}
+	\pause
+	\begin{minipage}[t]{.48\linewidth}
+		\textbf{Anbieterfeatures:}
+		\begin{itemize}
+			\item Integration für Ladenpächter
+			\item Echtzeit-Updates
+			\item Info-Kanal mit Eilmeldungen
+			\item Getrennte UI für Besucher und Ladenbesitzer
+		\end{itemize}
+	\end{minipage}
+	\pause
+	\vspace{0.5cm}
+	\begin{center}
+		\textbf{Prototyp vorhanden, allerdings nicht zur Zufriedenheit des Kunden\\\vspace{0.3cm}Knapper Zeitrahmen, da die Werbekampagne bereits angelaufen ist}
+	\end{center}
+
+}
+%%-------------------------------------------------------
+\frame{
+	\frametitle{Was noch zu klären gilt (1/2) (Ressourcen)}
+	\begin{center}
+		\textbf{Grundsatz:}\\
+		Wie groß, wie frequentiert ist der Flughafen?
+	\end{center}
+	\pause
+	\begin{minipage}[t]{.48\linewidth}
+		\begin{itemize}
+			\item ÖPNV-Anbindungsstatus
+			\item Kooperation mit ÖPNV (Zugriff auf deren Verbindungsdaten)?
+			\item K. dazu bringen, möglichst viel Budget herauszugeben
+			\item zeitliche Einteilung/Deadline?
+		\end{itemize}
+	\end{minipage}
+	\pause
+	\begin{minipage}[t]{.48\linewidth}
+		\begin{itemize}
+			\item Eigene Infrastruktur (Arbeitsplätze, Transport \dots)
+			\item Organisation (Matrix/Linie)
+			\item Bereits vor Ort vorhandene Infrastruktur
+			\item Notfallplan für Ressourcenmangel?
+		\end{itemize}
+	\end{minipage}
+}
+%%-------------------------------------------------------
+\frame{
+	\frametitle{Was noch zu klären gilt (2/2) (Details)}
+	\begin{minipage}[t]{.48\linewidth}
+		\begin{itemize}
+			\item Verschiedene Versionen für Besucher, Pächter, \dots ?
+			\item Verschiedene Plattformen?
+			\item Umsetzung der Hinweise des Managements?
+			\begin{itemize}
+				\item Dürfen nur am Flughafen kommen
+				\item Müssen am Flughafen zuverlässig kommen
+			\end{itemize}
+		\end{itemize}
+	\end{minipage}
+	\pause
+	\begin{minipage}[t]{.48\linewidth}
+		\begin{itemize}
+			\item Ladeneinbindung mit Online-Shops/App-Interface?
+			\item Baukasten für eigene Schnittstellen für Läden?
+			\item Segelschiff-Loading Screens?
+		\end{itemize}
+	\end{minipage}
+	\pause
+	\vspace{0.5cm}
+	\begin{center}
+		\textbf{Prototyp:}\\
+		\textbf{Was war mangelhaft, was kann weiter verwendet werden, was ist ausbaufähig?}
+	\end{center}
+
+}
+%%-------------------------------------------------------
+
+
+
+
+\end{document}
