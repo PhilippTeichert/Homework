@@ -5,7 +5,7 @@
 \renewcommand{\Aufgabenblatt}{1}
 \renewcommand{\Ausgabedatum}{Mi. 14.10.2015}
 \renewcommand{\Abgabedatum}{Fr. 30.10.2015}
-\renewcommand{\Gruppe}{Kobras, Pöhlmann, DerDritte}
+\renewcommand{\Gruppe}{Kobras, Pöhlmann, Tsiamis}
 \renewcommand{\STiNEGruppe}{11}
 \renewcommand{\Semester}{WS 2015/16}
 
@@ -51,41 +51,90 @@
     Anwendungsbeispiele für Informationssysteme:
     \begin{enumerate}[1.]
         \item
-        Beispiel 1.
+        \textbf{Beispiel 1: US Airforce}\\
+        Die USAF benutzt das sog. \textit{TBMCS (Theater Battle Management Core Systems)} zur Einsatzkoordinierung
         \item
-        Beispiel 2.
+        \textbf{Beispiel 2: Deutsche Polizei}\\
+        Die Polizei verwendet ein System zum Erfassen von Personen- und Gegenstandsdaten zur Vereinfachung von Fahndungsaktionen
         \item
-        Beispiel 3.
+        \textbf{Beispiel 3: Medizin}\\
+        In der Medizin werden IS verwendet, um Patienten- und Falldaten zu verwalten.
     \end{enumerate}
     
 \end{enumerate}
 
-
+\newpage
 %------------------------------------------------
 \section{Miniwelt}
 %------------------------------------------------
 
-
 \begin{enumerate}[a)]
     \item
-    Relevante Elemente:
-    \begin{enumerate}[1.]
-        \item
-        1.
-    \end{enumerate}
-    Relevante Vorgänge:
-    \begin{enumerate}[1.]
-        \item
-        1.
-    \end{enumerate}
+    Relevante Elemente:\\ \vspace{0.3cm}\\
+    \begin{minipage}[t]{0.32\textwidth}
+    \textbf{Tippspieler}
+        \begin{itemize}
+        	\item \textbf{Eigenschaften:}
+        		\begin{itemize}
+        			\item ID
+        			\item Vorname
+        			\item Nachname
+        		\end{itemize}
+        	\item \textbf{Aktionen:}
+        		\begin{itemize}
+        			\item anmelden
+        			\item erstellen einer Gemeinschaft
+        			\item Tippen
+        			\item Ergebnisse einsehen
+        			\item Punktestand einsehen
+        		\end{itemize}
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{0.32\textwidth}
+    \textbf{Gemeinschaft}
+   		\begin{itemize}
+   			\item \textbf{Eigenschaften:}
+   				\begin{itemize}
+   					\item ID
+   					\item Ergebnisse
+   					\item Wettbewerbe
+   					\item Begegnungen
+   					\item Mitspieler
+   					\item Punktestand
+   				\end{itemize}
+   		\end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{0.32\textwidth}
+    	\textbf{Tippspielgründer}
+   		\begin{itemize}
+   			\item \textbf{Eigenschaften:}
+   				\begin{itemize}
+   					\item Tippspieler
+   				\end{itemize}
+   			\item \textbf{Aktionen}
+   				\begin{itemize}
+   					\item Wettbewerbe anlegen
+   					\item Begegnungen zum Wettbewerb hinzufügen
+   					\item Ergebnisse eintragen
+   					\item Punkte verteilen
+   					\item Mitspieler hinzufügen oder entfernen
+   				\end{itemize}
+   		\end{itemize}
+    \end{minipage}
+    \vspace{0.5cm}
     
 %------------------------------------------------
 
-    \item
-    Anforderungen an die Anwendung:
+    \item Anforderungen an die Anwendung:
     \begin{enumerate}[1.]
-        \item
-        1.
+        \item \textbf{Kontrolle über die operationalen Daten}\\
+        Alle Daten können/müssen gemeinsam benutzt werden.\\ 
+        Der Tippspielgründer kann auf alle Daten seiner Gemeinschaft zugreifen und sie verändern.\\
+        Ein Tippspieler kann personenbezogene Daten abfragen, jedoch nicht manipulieren.\\
+        Die Gemeinschaft ist eine Datenbank mit Speicher-  und Zuordnungsfunktion.\\ 
+        Objekte müssen eindeutig identifizierbar sein, sodass nicht ein Spieler zweimal in der selben Gemeinschaft vorhanden sein kann.
+        \item \textbf{Kontrolle der Datenintegrität}\\
+        Tippspielern muss der Zugang zu bestimmten Aktionen und Daten verwehrt werden.
     \end{enumerate}
 \end{enumerate}
 
@@ -94,25 +143,17 @@
 \section{Transaktionen}
 %------------------------------------------------
 
-
-Folgen durch einen Stromausfall zum Zeitpunkt A:
-\begin{enumerate}[1.]
-    \item
-    1.
-\end{enumerate}
-Folgen durch einen Stromausfall zum Zeitpunkt B:
-\begin{enumerate}[1.]
-    \item
-    1.
-\end{enumerate}
-
-%------------------------------------------------
-
-Wie kann so etwas durch ein Datenbanksystem verhindert werden?
-\begin{enumerate}[1.]
-    \item
-    1.
-\end{enumerate}
+Stürzt das System zum Zeitpunkt A ab, so passiert nichts, da die geänderte Daten nicht auf der Platte gespeichert werden.\\
+Stürzt das System zum Zeitpunkt B, so werden die Daten vom Konto mit der ID 7 auf der Platte gespeichert.
+Zwar wurde im Konto 7 das Geld überwiesen und gespeichert, jedoch wurde bei Konto bei Konto 5 nicht der entsprechende Betrag abgebucht.
+Für dieses Problem gibt es zwei Lösungen.\\
+Die erste Lösung ist ein \textit{Rollback-Verfahren}.
+Als Rollback bezeichnet das "Zurücksetzen" der einzelnen Verarbeitungsschritte einer Transaktion.
+Das System wird dadurch vollständig auf den Zustand vor dem Beginn der Transaktion zurückgeführt.\\
+Die zweite Lösung ist \textit{Isolation}.
+Mit Isolation bezeichnet man die Trennung von Transaktionen auf eine Weise, dass eine laufende
+Transaktion nicht von einer parallel ablaufenden Transaktion durch Änderung der benutzten Daten
+in einen undefinierten Zustand gebracht werden kann. 
 
 %------------------------------------------------
 \section{Warm-Up MySQL}
@@ -120,11 +161,11 @@ Wie kann so etwas durch ein Datenbanksystem verhindert werden?
 
 
 \begin{enumerate}[a)]
-    \item
-    Was ist passiert?
+    \item Was ist passiert?
     \begin{enumerate}[1.]
-        \item
-        1.
+        \item .
+        \item .
+        \item .
     \end{enumerate}
 
 %------------------------------------------------
