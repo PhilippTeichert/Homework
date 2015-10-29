@@ -1,0 +1,107 @@
+1)
+    1.
+        P1 ist der Großvater von P2.
+        P1 ist das Geschwisterkind von P2.
+        P1 ist der Onkel von P2.
+        P1 ist der Schwager von P2.
+        P1 ist das Stiefgeschwisterkind von P2.
+    
+    2.
+        1.
+            ?- obj(_, Haus, bahnhofsstr, Nummer,_).
+            Haus = efh,
+            Nummer = 27 ;
+            Haus = efh,
+            Nummer = 29 ;
+            Haus = mfh,
+            Nummer = 28 ;
+            Haus = bahnhof,
+            Nummer = 30 ;
+            Haus = kaufhaus,
+            Nummer = 26.
+            => Diese Häuser stehen in der Bahnhofstraße.
+        
+        2.
+            ?- obj(_, Haus, Straße, Nummer, Jahr), Jahr < 1950.
+            Haus = efh,
+            Straße = bahnhofsstr,
+            Nummer = 27,
+            Jahr = 1943 ;
+            Haus = bahnhof,
+            Straße = bahnhofsstr,
+            Nummer = 30,
+            Jahr = 1901 ;
+            false.
+            => Diese Häuser wurden vor 1950 gebaut.
+            (Das "false" bedeutetm dass es keine weiteren Häuser, die vor 1950 gebaut wurden gibt.
+        
+        3.
+            ?- bew(_, _, _, Kunde, Preis, _), Preis > 300000.
+            Kunde = mueller,
+            Preis = 315000 ;
+            Kunde = piepenbrink,
+            Preis = 1500000.
+            => Diese Kunden besitzen Häuser, die mehr als 300000 Wert sind.
+        
+        4.
+            ?- findall(Haus;Straße;Nummer, (bew(_, Nr, _, X, Preis1, _), bew(_, Nr, X, _, Preis2, _), obj(Nr, Haus, Straße, Nummer, _), Preis2 > Preis1), Häuser).
+            Häuser = [ (efh;bahnhofsstr;29)].
+            => Das Haus, das mit Gewinn weiterverkauft wurde, ist ein Einfamilienhaus(efh), steht in der Bahnhofsstraße und hat die Nummer 29.
+        
+        5.
+            ?- findall(Haus;Straße;Nummer, (bew(_, Nr, _, X, _, _), bew(_, Nr, _, Y, _, _), bew(_, Nr, _, Z, _, _), X \= Y, Y \= Z, obj(Nr, Haus, Straße, Nummer, _)), Häuser).
+            Häuser = [ (efh;bahnhofsstr;29), (efh;bahnhofsstr;29)
+            => Das Haus in der Bahnhofsstraße hat schon mehrfach den Besitzer gewechselt.
+        
+        6.
+            ?- findall(Besitzer, (bew(_, Objektnummer1, _, Besitzer, _, Vorgangsdatum1), bew(_, Objektnummer2, _, Besitzer, _, Vorgangsdatum2), Objektnummer1 \= Objektnummer2, bew(_, Objektnummer1, _, _, _, Vorgangsdatum3), not(Vorgangsdatum3 > Vorgangsdatum1), bew(_, Objektnummer2, _, _, _, Vorgangsdatum4), not(Vorgangsdatum4 > Vorgangsdatum2)), Reiche_Hausbesitzer).
+            Reiche_Hausbesitzer = [].
+            => Es gibt keinen Besitzer von 2 Häusern zur selben Zeit.
+            (Dieser Code prüft, ob es einen Hausbesitzer gibt, der zu irgendeienr Zeit 2 Häuser gleichzeitig besessen hat.)
+            
+            Bei haeuser2.pl wird "Reiche_Hausbesitzer = [meier, meier]." ausgegeben. Dies bedeutet, dass Meier 2 Häuser besitzt.
+
+3)
+    1.
+        zug(Startbahnhof, Zielbahnhof, Startzeit, Zielzeit, Linie, Eiweihungsjahr).
+        bahnhof([Zuege], Bahnhofsname).
+    2.
+        zug ist nur ein Objekt
+        zug hat keine zwischenbahnhöfe
+        zug hat keine Verspätung etc.
+        bahnhof ist nur die Anzahl der verschiedenen Züge wichtig, nicht ihre Frequenz
+        es existiert nur ein Zug pro Linie
+    3.
+        s. zuege.pl
+        
+        1. Wann kommt die Z1 in Candyville an?
+            ?- zug(_, candyville, _, Ankunftszeit, z1, _).
+            false.            
+            => Die Linie Z1 fährt gar nicht nach Candyville.
+        
+        2. Welche Bahn fährt in den Zuckerstangenwald?
+            ?- zug(_, zuckerstangenwald, _, _, Bahn, _).
+            Bahn = z5.
+            => Die Linie Z5 fährt in den Zuckerstangenwald.
+        
+        3. Wann fährt die Z3 in Kuchendorf ab?
+            ?- zug(kuchendorf, _, Abfahrtszeit, _, z3, _).
+            Abfahrtszeit = 4:44 ;
+            false.
+            => Die Linie Z3 fährt um 4:44 Uhr in Kuchendorf ab.
+            (Das "false" sagt aus, dass diser Zug zu keiner anderen Zeit abfährt.)
+        
+        4. Welche Bahnen fahren in Kuchendorf?
+            ?- bahnhof(Bahnen, kuchendorf).
+            Bahnen = [z1, z2, z3, z4, z5].
+            => Die Bahnen Z1, Z2, Z3, Z4 und Z5 fahren in Kuchendorf.
+        
+        5. Welche Bahn fährt von Kuchendorf nach Brownie Town?
+            ?- zug(kuchendorf, brownie_town, _, _, Bahn, _).
+            Bahn = z4.
+            => Die Z4 fährt von Kuchendorf nach Brownie Town.
+        
+        6. Wann wurde die Bahn eingeweiht, die von Kuchendorf nach Brownie Town fährt?
+            ?- zug(kuchendorf, brownie_town, _, _, _, Jahr).
+            Jahr = 0.
+            => Die Bahn, die von Kuchendorf anch Brownie Town fährt, wurde im Jahre 0 eigeweiht.
