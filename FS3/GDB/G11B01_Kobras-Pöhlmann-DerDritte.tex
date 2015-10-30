@@ -163,9 +163,14 @@ in einen undefinierten Zustand gebracht werden kann.
 \begin{enumerate}[a)]
     \item Was ist passiert?
     \begin{enumerate}[1.]
-        \item .
-        \item .
-        \item .
+        \item Neue Tabelle \textsc{user} in Datenbank \textsc{gdb\_gruppe101} mit 3 Spalten
+        	\begin{itemize}
+        		\item ID: Typ Integer, Primärschlüssel
+        		\item Name: Typ Varchar, Länge 49, darf nicht leer sein
+        		\item Passwort: Typ Varchar, Länge 8, darf nicht leer sein
+        	\end{itemize}
+        \item Neuer Eintrag in \textsc{user}\\
+        Dieser Eintrag hat die ID \textit{1}, heißt \textit{gdbNutzer} und hat das Passwort \textit{geheim}.
     \end{enumerate}
 
 %------------------------------------------------
@@ -173,27 +178,20 @@ in einen undefinierten Zustand gebracht werden kann.
     \item
     Was ist passiert?
     \begin{enumerate}[1.]
-        \item
-        1.
+        \item Auswahl aus Tabelle \textsc{user} in Datenbank \textsc{gdb\_gruppe101}
+        \item Auswahlkriterium: \textsc{name = "gdbNutzer"}
+        \item \textsc{SELECT *} druckt alle Daten aus, die mit dem Namen \textsc{gdbNutzer} assoziiert sind
+        \item Ausgewählte Daten werden angezeigt
+        \item \textsc{DROP TABLE} löscht die gegebene Tabelle
     \end{enumerate}
     
 %------------------------------------------------
 
     \item
-    Gemeinsamkeiten:    
-    \begin{enumerate}[1.]
-        \item
-        1.
-    \end{enumerate}
-    
-%------------------------------------------------
-
-    Unterschiede:
-    \begin{enumerate}[1.]
-        \item
-        1.
-    \end{enumerate}
+    Es existieren nur zwei Ebenen, da konzeptionelle und externe Ebene hier zusammen gefasst wurden.
+    Die interne Ebene besteht aus den \textit{Connectors}, die andere Ebene ist der MySQL-Server.\\
+    Vom Client an den Server geschickte Datenbankanfragen haben dort möglichst effizient bearbeitet und ein Ergebnis hat zurückgegeben zu werden.
+    Dieses Modell bietet lediglich die logische Datenunabhängigkeit, nicht jedoch die physische, da keine weitere Ebenentrennung vorliegt.
 \end{enumerate}
-
 
 \end{document}
