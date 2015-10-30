@@ -1,0 +1,197 @@
+\documentclass[ngerman]{gdb-aufgabenblatt}
+
+\usepackage{enumerate}
+
+\renewcommand{\Aufgabenblatt}{1}
+\renewcommand{\Ausgabedatum}{Mi. 14.10.2015}
+\renewcommand{\Abgabedatum}{Fr. 30.10.2015}
+\renewcommand{\Gruppe}{Kobras, Pöhlmann, Tsiamis}
+\renewcommand{\STiNEGruppe}{11}
+\renewcommand{\Semester}{WS 2015/16}
+
+\begin{document}
+
+
+%------------------------------------------------
+\section{Informationssysteme}
+%------------------------------------------------
+
+
+\begin{enumerate}[a)]
+    \item
+    \textbf{Charakterisierung:}\\
+    Ein Informationssystem ist ein System aus Menschen und/oder Maschinen, die Informationen erzeugen und/oder benutzen und die durch Kommunikationsbeziehungen miteinander verbunden sind. (s. Vorlesung 1 Folie 26)\\
+    Aufgaben eines rechnergestützten Informationssystems sind: (s. Vorlesung 1 Folie 26)
+    \begin{enumerate}[1.]
+        \item
+        Erfassung von Informationen
+        \item
+        Speicherung von Informationen
+        \item
+        Transformation von Informationen
+    \end{enumerate}
+    
+%------------------------------------------------
+
+    \item
+    \textbf{Datenunabhängigkeit:}
+    \begin{enumerate}[1.]
+        \item
+        logische Datenunabhängigkeit (Struktur der Daten):\\
+        Die Daten sollen unabhängig von den Anwendungen organisiert werden, sodass logische Änderungen der Daten keine Auswirkungen auf die Funktionsweise der Programme haben.
+        \item
+        physische Datenunabhängigkeit (Speicherort, -art):\\
+        Die physische Organisation der Daten soll ohne Auswirkungen auf die logische Struktur geändert werden können.
+    \end{enumerate}
+    
+%------------------------------------------------
+
+    \item
+    \textbf{Beispiele:}\\
+    Anwendungsbeispiele für Informationssysteme:
+    \begin{enumerate}[1.]
+        \item
+        \textbf{Beispiel 1: US Airforce}\\
+        Die USAF benutzt das sog. \textit{TBMCS (Theater Battle Management Core Systems)} zur Einsatzkoordinierung
+        \item
+        \textbf{Beispiel 2: Deutsche Polizei}\\
+        Die Polizei verwendet ein System zum Erfassen von Personen- und Gegenstandsdaten zur Vereinfachung von Fahndungsaktionen
+        \item
+        \textbf{Beispiel 3: Medizin}\\
+        In der Medizin werden IS verwendet, um Patienten- und Falldaten zu verwalten.
+    \end{enumerate}
+    
+\end{enumerate}
+
+\newpage
+%------------------------------------------------
+\section{Miniwelt}
+%------------------------------------------------
+
+\begin{enumerate}[a)]
+    \item
+    Relevante Elemente:\\ \vspace{0.3cm}\\
+    \begin{minipage}[t]{0.32\textwidth}
+    \textbf{Tippspieler}
+        \begin{itemize}
+        	\item \textbf{Eigenschaften:}
+        		\begin{itemize}
+        			\item ID
+        			\item Vorname
+        			\item Nachname
+        		\end{itemize}
+        	\item \textbf{Aktionen:}
+        		\begin{itemize}
+        			\item anmelden
+        			\item erstellen einer Gemeinschaft
+        			\item Tippen
+        			\item Ergebnisse einsehen
+        			\item Punktestand einsehen
+        		\end{itemize}
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{0.32\textwidth}
+    \textbf{Gemeinschaft}
+   		\begin{itemize}
+   			\item \textbf{Eigenschaften:}
+   				\begin{itemize}
+   					\item ID
+   					\item Ergebnisse
+   					\item Wettbewerbe
+   					\item Begegnungen
+   					\item Mitspieler
+   					\item Punktestand
+   				\end{itemize}
+   		\end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{0.32\textwidth}
+    	\textbf{Tippspielgründer}
+   		\begin{itemize}
+   			\item \textbf{Eigenschaften:}
+   				\begin{itemize}
+   					\item Tippspieler
+   				\end{itemize}
+   			\item \textbf{Aktionen}
+   				\begin{itemize}
+   					\item Wettbewerbe anlegen
+   					\item Begegnungen zum Wettbewerb hinzufügen
+   					\item Ergebnisse eintragen
+   					\item Punkte verteilen
+   					\item Mitspieler hinzufügen oder entfernen
+   				\end{itemize}
+   		\end{itemize}
+    \end{minipage}
+    \vspace{0.5cm}
+    
+%------------------------------------------------
+
+    \item Anforderungen an die Anwendung:
+    \begin{enumerate}[1.]
+        \item \textbf{Kontrolle über die operationalen Daten}\\
+        Alle Daten können/müssen gemeinsam benutzt werden.\\ 
+        Der Tippspielgründer kann auf alle Daten seiner Gemeinschaft zugreifen und sie verändern.\\
+        Ein Tippspieler kann personenbezogene Daten abfragen, jedoch nicht manipulieren.\\
+        Die Gemeinschaft ist eine Datenbank mit Speicher-  und Zuordnungsfunktion.\\ 
+        Objekte müssen eindeutig identifizierbar sein, sodass nicht ein Spieler zweimal in der selben Gemeinschaft vorhanden sein kann.
+        \item \textbf{Kontrolle der Datenintegrität}\\
+        Tippspielern muss der Zugang zu bestimmten Aktionen und Daten verwehrt werden.
+    \end{enumerate}
+\end{enumerate}
+
+
+%------------------------------------------------
+\section{Transaktionen}
+%------------------------------------------------
+
+Stürzt das System zum Zeitpunkt A ab, so passiert nichts, da die geänderte Daten nicht auf der Platte gespeichert werden.\\
+Stürzt das System zum Zeitpunkt B, so werden die Daten vom Konto mit der ID 7 auf der Platte gespeichert.
+Zwar wurde im Konto 7 das Geld überwiesen und gespeichert, jedoch wurde bei Konto bei Konto 5 nicht der entsprechende Betrag abgebucht.
+Für dieses Problem gibt es zwei Lösungen.\\
+Die erste Lösung ist ein \textit{Rollback-Verfahren}.
+Als Rollback bezeichnet das "Zurücksetzen" der einzelnen Verarbeitungsschritte einer Transaktion.
+Das System wird dadurch vollständig auf den Zustand vor dem Beginn der Transaktion zurückgeführt.\\
+Die zweite Lösung ist \textit{Isolation}.
+Mit Isolation bezeichnet man die Trennung von Transaktionen auf eine Weise, dass eine laufende
+Transaktion nicht von einer parallel ablaufenden Transaktion durch Änderung der benutzten Daten
+in einen undefinierten Zustand gebracht werden kann. 
+
+%------------------------------------------------
+\section{Warm-Up MySQL}
+%------------------------------------------------
+
+
+\begin{enumerate}[a)]
+    \item Was ist passiert?
+    \begin{enumerate}[1.]
+        \item Neue Tabelle \textsc{user} in Datenbank \textsc{gdb\_gruppe101} mit 3 Spalten
+        	\begin{itemize}
+        		\item ID: Typ Integer, Primärschlüssel
+        		\item Name: Typ Varchar, Länge 49, darf nicht leer sein
+        		\item Passwort: Typ Varchar, Länge 8, darf nicht leer sein
+        	\end{itemize}
+        \item Neuer Eintrag in \textsc{user}\\
+        Dieser Eintrag hat die ID \textit{1}, heißt \textit{gdbNutzer} und hat das Passwort \textit{geheim}.
+    \end{enumerate}
+
+%------------------------------------------------
+
+    \item
+    Was ist passiert?
+    \begin{enumerate}[1.]
+        \item Auswahl aus Tabelle \textsc{user} in Datenbank \textsc{gdb\_gruppe101}
+        \item Auswahlkriterium: \textsc{name = "gdbNutzer"}
+        \item \textsc{SELECT *} druckt alle Daten aus, die mit dem Namen \textsc{gdbNutzer} assoziiert sind
+        \item Ausgewählte Daten werden angezeigt
+        \item \textsc{DROP TABLE} löscht die gegebene Tabelle
+    \end{enumerate}
+    
+%------------------------------------------------
+
+    \item
+    Es existieren nur zwei Ebenen, da konzeptionelle und externe Ebene hier zusammen gefasst wurden.
+    Die interne Ebene besteht aus den \textit{Connectors}, die andere Ebene ist der MySQL-Server.\\
+    Vom Client an den Server geschickte Datenbankanfragen haben dort möglichst effizient bearbeitet und ein Ergebnis hat zurückgegeben zu werden.
+    Dieses Modell bietet lediglich die logische Datenunabhängigkeit, nicht jedoch die physische, da keine weitere Ebenentrennung vorliegt.
+\end{enumerate}
+
+\end{document}
