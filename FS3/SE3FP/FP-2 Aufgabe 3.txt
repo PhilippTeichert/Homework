@@ -1,0 +1,40 @@
+Aufgabe 3:
+    1.
+        > (type-of (* 2 3 4))
+        "number"
+            2*3*4=24 und damit eine Zahl.
+    2.
+        > (type-of (not 42))
+        "boolean"
+            Der „not“-Operator gibt „#t“ zurück, wenn die Eingabe „#f“ ist, sonst gibt er „#f“ aus.
+    3.
+        > (type-of '(eins zwei drei))
+        "list"
+            Dies ist zwar auch ein Paar, aber nicht nur eins sondern mehrere. Und mehrere Paare ineinander nennt man Liste.
+    4.
+        > (type-of '())
+        "list"
+            Die leere Liste ist auch eine Liste.
+    5.
+        > (define (id z) z)
+            Es gibt nichts zum ausgeben, weil hier nur eine Methode definiert wurde.
+    6.
+        > (type-of (id sin))
+        "procedure"
+            „sin“ ist eine Funktion. „id“ tut nichts anderes, als den Wert, den es übergeben bekommt, wieder auszugeben, hat also keinen Einfluss auf das Ergebnis von „type-of“.
+    7.
+        > (type-of (string-ref "Harry Potter und der Stein der Weisen" 3))
+        "char"
+            „(string-ref STRING NUMMER)“ gibt das Symbol des STRINGs an der Stelle NUMMER an, was in diesem Fall ein „r“ und somit ein Buchstabe ist.
+    8.
+        > (type-of (lambda (x) x))
+        "procedure"
+            Der „lambda“-Operator ist eine Methode.
+    9.
+        > (type-of type-of)
+        "procedure"
+            „type-of“ ist auch eine Methode.
+    10.
+        > (type-of (type-of type-of))
+        "string"
+            „(type-of IRGENDWAS)“ gibt einen String aus. Der Typ der Ausgabe von Type of ist also String.

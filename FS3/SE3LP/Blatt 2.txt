@@ -1,4 +1,4 @@
-1)
+﻿1)
     1.
         P1 ist der Großvater von P2.
         P1 ist das Geschwisterkind von P2.
@@ -105,3 +105,13 @@
             ?- zug(kuchendorf, brownie_town, _, _, _, Jahr).
             Jahr = 0.
             => Die Bahn, die von Kuchendorf anch Brownie Town fährt, wurde im Jahre 0 eigeweiht.
+
+4)
+        Prädikat:
+            
+        
+        Klausel:
+            
+        
+        Struktur:
+            

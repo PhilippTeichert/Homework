@@ -1,0 +1,58 @@
+Aufgabe 1:
+    1.
+        > miau
+        'Plueschi
+            „'Plueschi“ ist das, was in der Variable „miau“ drin steht.
+    2.
+        > katze
+        'Plueschi
+            Die Variable „katze“ zeigt auf dieselbe Stelle, wie die Variable „miau“ und hat daher denselben Wert.
+    3.
+        > tiger
+        'miau
+            In der Variable „tiger“ steht das Symbol „'miau“.
+    4.
+        > (quote katze)
+        'katze
+            Es wird durch „(quote katze)“ ein „'“ vor „katze“ gesetzt.
+    5.
+        > (eval tiger)
+        'Plueschi
+            Es wird der Wert ausgewertet, der in der Variable „tiger“ steht.
+    6.
+        > (eval katze)
+        . . Plueschi: undefined;
+        cannot reference an identifier before its definition
+            „'Plueschi“ kann nicht weiter ausgewertet werden, weil diese Variable nirgends definiert ist.
+    7.
+        > (eval 'tiger)
+        'miau
+            In „'tiger“ steht ach dem auswerten „tiger“ und dieses wird durch „(eval [...])“ nochmal ausgewertet. In „tiger“ steht „'miau“.
+    8.
+        > (welcherNameGiltWo 'harry 'potter)
+        'harry
+            Da „PersonA“ und „PersonC“ gleichzeitig ausgewertet werden - oder zumindest ohne Beachtung der Reihenfolge - kann keine Referenz von „(PersonA 'Sam)“ zu „(PersonC PersonA)“ gezogen werden. Somit wird einfach die erste der beiden Eingaben ausgegeben.
+    9.
+        > (cdddr xs1)
+        '(miau katze)
+            Das Listenende des Listenendes des Listenendes von „xs1“ ist einfach das, was übrig bleibt, nachdem 3 mal das erste Element abgeschnitten wurde.
+    10.
+        > (cdr xs2)
+        '(Plueschi)
+            Das Listenede der Liste „'(miau katze)“, die in „xs2“ erzeugt wird, ist „katze“. Und in „katze“ steht „'Plueschi“. Wo das „'“ von „Plueschi“ hin ist, weiß ich allerdings auch nicht.
+    11.
+        > (cdr xs3)
+        'Plueschi
+            Das Listenede des Paares „'(katze miau)“ ist „miau“. Und in „miau“ steht „'Plueschi“.
+    12.
+        > (eval (sqrt 3))
+        1.7320508075688772
+            Der Wert, der in „Wurzel aus 3“ steht, ist „1.7[...]“.
+    13.
+        > (eval '(welcherNameGiltWo 'tiger 'katze))
+        'tiger
+            „(eval [...])“ und „'“ heben sich gegenseitig auf. So wird einfach das erste Symbol ausgegeben.
+    14.
+        > (eval (welcherNameGiltWo 'katze 'tiger))
+        'Plueschi
+            Es wird durch „(eval [...])“ der Wert des ersten Symbols ausgegeben.
