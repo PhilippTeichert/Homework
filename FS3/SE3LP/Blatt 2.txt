@@ -104,7 +104,7 @@
         6. Wann wurde die Bahn eingeweiht, die von Kuchendorf nach Brownie Town fährt?
             ?- zug(kuchendorf, brownie_town, _, _, _, Jahr).
             Jahr = 0.
-            => Die Bahn, die von Kuchendorf anch Brownie Town fährt, wurde im Jahre 0 eigeweiht.
+            => Die Bahn, die von Kuchendorf nach Brownie Town fährt, wurde im Jahre 0 eigeweiht.
 
 4)
         Prädikat:
