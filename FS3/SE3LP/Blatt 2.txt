@@ -89,7 +89,7 @@
             Abfahrtszeit = 4:44 ;
             false.
             => Die Linie Z3 fährt um 4:44 Uhr in Kuchendorf ab.
-            (Das "false" sagt aus, dass diser Zug zu keiner anderen Zeit abfährt.)
+            (Das "false" sagt aus, dass dieser Zug zu keiner anderen Zeit abfährt.)
         
         4. Welche Bahnen fahren in Kuchendorf?
             ?- bahnhof(Bahnen, kuchendorf).
@@ -108,10 +108,11 @@
 
 4)
         Prädikat:
-            
+            Ein Prädikat ist eine Menge von Klauseln, welche diese nacheinander aufruft und die eigenen Parameter übergibt
         
         Klausel:
-            
+            Eine Klausel ist eine Funktion im Allgemeinen. Die Anzahl der Parameter wird mit / notiert:
+				name/n
         
         Struktur:
-            
+            Konstrukt mit einem Namen und mindestens einem Argument. Beispielsweise sind Listen eine Struktur.
