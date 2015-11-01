@@ -27,7 +27,7 @@ Aufgabe 1:
     7.
         > (eval 'tiger)
         'miau
-            In „'tiger“ steht ach dem auswerten „tiger“ und dieses wird durch „(eval [...])“ nochmal ausgewertet. In „tiger“ steht „'miau“.
+            In „'tiger“ steht nach dem Auswerten „tiger“ und dieses wird durch „(eval [...])“ nochmal ausgewertet. In „tiger“ steht „'miau“.
     8.
         > (welcherNameGiltWo 'harry 'potter)
         'harry

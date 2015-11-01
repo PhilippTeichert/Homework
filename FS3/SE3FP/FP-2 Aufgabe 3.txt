@@ -17,7 +17,7 @@ Aufgabe 3:
             Die leere Liste ist auch eine Liste.
     5.
         > (define (id z) z)
-            Es gibt nichts zum ausgeben, weil hier nur eine Methode definiert wurde.
+            Es gibt nichts zum Ausgeben, weil hier nur eine Methode definiert wurde.
     6.
         > (type-of (id sin))
         "procedure"
