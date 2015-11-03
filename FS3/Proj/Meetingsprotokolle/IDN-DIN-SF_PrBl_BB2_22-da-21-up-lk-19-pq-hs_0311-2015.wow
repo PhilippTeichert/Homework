@@ -1,0 +1,56 @@
+Beginn: 18.03
+Anwesend: dat Dennis
+			dat Philipp
+			dat Ich
+Beschlussfähig:
+		Joa
+Vorsitz: dat Ich
+Protokoll: dat Ich
+TOP 1 - Projektauftrag:
+	Projektauftrag:
+		Merge wie gehabt
+			Falls unklar vgl. this.Top3
+		Deadline Mittwoch 22.00
+		Merge ab Mi 22.01 Dennis und dat Ich
+	Angepeilte Form: Canvas gedöns
+		Vorzugsweise Notizen im Layout an Canvas aus VL anpassen
+TOP 2 - Kick Off Meeting:
+	Teilnehmer:
+		Flughafenmanagement
+		Messebabes als Stewardessen
+		Unser Einer
+		Herr K
+		Finanzvorstand
+		CS3 Vorstand
+		Hardware/Installation Vertreter
+		Bauherr für Planung
+	Agenda:
+		Alle außer uns abfüllen
+		Vorstellung Team
+		Vorstellung Projekt
+		Häppchen und ein Sekt
+			Beides mit so ziemlich allen Drogen anreichern, die wir finden können
+		Messebabe Parade
+		Offene Fragerunde
+		Ritual
+		Feuerwerk
+		Auch uns abfüllen
+	Ritual (kein Plan wat er da will, können sich die beim Meeting abwesenden ja nochmal zu äußern:
+		Jungfrauenopfer an Odin und Thor
+		Ziegenopfer an Zeus
+		Eselsopfer an Cthulhu
+		Jamaikanischer Regentanz in Unterwäsche, Messebabes als Tänzer
+		Getreideopfer an Ra
+		und ein Met!
+		Anschließend fünffacher Kindermord zur Beschwörung Satans
+TOP 3 - Sonstiges:
+	Konvention für Abgaben für merge:
+		Stichworte in .wow Datei im Anhang
+		vorzugsweise yaml-Syntax
+		Abgabe bis Mittwoch (Folgetag des Meetings) 22.00 an 4kobras@informatik.uni-hamburg.de
+		Betreff:
+			[PROJ] $nachname - $datum
+			Datum := Abgabedatum der Hausaufgabe (folgender Freitag) im Format dd.mm.yyyy
+		
+		
+Ende: 18.28
