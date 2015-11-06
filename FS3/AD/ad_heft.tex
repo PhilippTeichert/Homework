@@ -14,6 +14,7 @@
 % algorithms and pseudo code
 \usepackage{algorithmic}
 \usepackage{algorithm}
+\usepackage{clrscode3e}
 
 \usepackage{perpage}
 \MakePerPage{footnote}
@@ -658,52 +659,64 @@ Begründen Sie Ihre Behauptung.
 An der Stelle von $sum = sum + j$ könnte sinnvoller(er) Code stehen.
 Die Einrückung gibt den Skopus der Schleifenkonstrukte an.) \\
 \vspace{0.3cm}
-\begin{algorithm}
-	\caption{Algo1()}
-	\begin{algorithmic}[1]
-		\FOR{$i=0$ to $n$}
-			\FOR{$j=n$ downto $1$}
-				\STATE $sum = sum+j$
-			\ENDFOR
-			\FOR{$j=1$ to $n$}
-				\STATE $sum = sum+j$
-			\ENDFOR
-		\ENDFOR
-	\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}
-	\caption{Algo1()}
-	\begin{algorithmic}[1]
-		\FOR{$i=0$ to $n$}
-			\FOR{$j=n$ downto $1$}
-				\STATE $sum = sum+j$
-			\ENDFOR
-			\FOR{$j=1$ to $n$}
-				\STATE $sum = sum+j$
-			\ENDFOR
-		\ENDFOR
-	\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}
-	\caption{Algo1()}
-	\begin{algorithmic}[1]
-		\FOR{$i=0$ to $n$}
-			\FOR{$j=n$ downto $1$}
-				\STATE $sum = sum+j$
-			\ENDFOR
-			\FOR{$j=1$ to $n$}
-				\STATE $sum = sum+j$
-			\ENDFOR
-		\ENDFOR
-	\end{algorithmic}
-\end{algorithm}
+\begin{minipage}[t]{0.32\textwidth}
+	\begin{codebox}
+		\Procname{\textsc{Algo1()}}
+		\li \For $i \gets 0$ \To $n$
+		\Indentmore
+			\li \For $j \gets n$ \Downto $1$
+			\Indentmore
+				\li $sum \gets sum+j$
+			\End
+			\li \For $j \gets 1$ \To $n$
+			\Indentmore
+				\li $sum \gets sum+j$
+			\End
+		\End
+	\end{codebox}
+\end{minipage}
+\begin{minipage}[t]{0.32\textwidth}
+	\begin{codebox}
+		\Procname{\textsc{Algo2()}}
+		\li $i \gets 1$
+		\li \While $i < 2 \cdot n$
+		\Indentmore
+			\li \For $j \gets 1$ \To $i$
+			\Indentmore
+				\li $sum \gets sum+j$
+			\End
+			\li $i \gets i+2$
+		\End
+	\end{codebox}
+\end{minipage}
+\begin{minipage}[t]{0.32\textwidth}
+	\begin{codebox}
+		\Procname{\textsc{Algo3()}}
+		\li $i \gets 1$
+		\li \While $i \cdot i < n$
+		\Indentmore
+			\li $i \gets i+1$
+			\li $j \gets n$
+			\li \While $j > 1$
+			\Indentmore
+				\li $sum \gets sum+j$
+				\li $j \gets j/2$
+			\End
+		\End
+	\end{codebox}
+\end{minipage}
 \vspace{1cm}\-\\
 %---------------%
 %	Bearbeitung	%
 %---------------%
-
+\begin{enumerate}
+	\item Der Algorithmus läuft in $O(n^2)$.\\
+	Bei beiden inneren \textbf{for}-Blöcke laufen jeweils $n-1$ mal durch, sodass der innere Block insgesamt $2 \cdot (n-1)=2n-2$ mal ausgeführt wird.
+	Die äußere \textbf{for}-Schleife läuft gerade $n$ mal; also wird der Block der Länge $2n-2$ $n$ mal ausgeführt.
+	Dies führt zu einer Laufzeit von $n \cdot (2n-2)=2n^2-2n \in O(n^2)$.
+	\item Hauke sagt $n^2$
+	\item Hauke sagt was von $\operatorname{log}(n)$
+\end{enumerate}
 \subsection{Übungsaufgabe 3.2}
 \begin{flushright}
 \begin{Large}
