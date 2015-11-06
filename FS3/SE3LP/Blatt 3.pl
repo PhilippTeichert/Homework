@@ -84,4 +84,4 @@ dateiToVerzeichnis(X) :- file(_, Y, X, _, _, _), directory(Y, Z, _, _, _), print
 % parentFolder(+)
 % parentFolder(Verzeichnisname)
 
-parentFolder(X) :- file(_, Y, X, _, _, _), directory(Y, Z, _, _, _), print("Schlussel: "), print(Y), print(" Verzeichnisname: "), print(Z).
+parentFolder(X) :- directory(_, X, Y, _, _), directory(Y, Z, _, _, _), print("Schlussel: "), print(Y), print(" Verzeichnisname: "), print(Z).
