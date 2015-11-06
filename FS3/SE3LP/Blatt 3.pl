@@ -43,6 +43,8 @@ file(34,12,scheidungsklage,48,date(2009,9,2),date(2009,11,5)).
 
 
 
+%%%%% Aufgabe 2.1
+
 
 :- dynamic(nameUndIdFile/2).
 
@@ -50,7 +52,11 @@ file(34,12,scheidungsklage,48,date(2009,9,2),date(2009,11,5)).
 % nameUndIdFile(?,?)
 % nameUndIdFile(name, id)
 
-nameUndIdFile(X, Y) :- file(Y, _, X, _, _, _), X, Y.
+nameUndIdFile(X, Y) :- file(Y, _, X, _, _, _), print("Name: "), print(X), print(" ID: "), print(Y).
+
+
+%%%%% Aufgabe 2.2
+
 
 :- dynamic(nameUndIdDirectory/2).
 
@@ -58,4 +64,24 @@ nameUndIdFile(X, Y) :- file(Y, _, X, _, _, _), X, Y.
 % nameUndIdDirectory(?,?)
 % nameUndIdDirectory(name, id)
 
-nameUndIdDirectory(X, Y) :- directory(Y, X, _, _, _), X, Y.
+nameUndIdDirectory(X, Y) :- directory(Y, X, _, _, _), print("Name: "), print(X), print(" ID: "), print(Y).
+
+
+%%%%% Aufgabe 2.3
+
+:- dynamic(dateiToVerzeichnis/1).
+
+% dateiToVerzeichnis(+)
+% dateiToVerzeichnis(Dateiname)
+
+dateiToVerzeichnis(X) :- file(_, Y, X, _, _, _), directory(Y, Z, _, _, _), print("Schlussel: "), print(Y), print(" Verzeichnisname: "), print(Z).
+
+
+%%%%% Aufgabe 2.4
+
+:- dynamic(parentFolder/1).
+
+% parentFolder(+)
+% parentFolder(Verzeichnisname)
+
+parentFolder(X) :- file(_, Y, X, _, _, _), directory(Y, Z, _, _, _), print("Schlussel: "), print(Y), print(" Verzeichnisname: "), print(Z).
