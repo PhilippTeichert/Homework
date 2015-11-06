@@ -1,4 +1,4 @@
-:- dynamic(directory/5).
+:- discontiguous(directory/5).
 :- dynamic(file/6).
 
 % directory(DirId,Name,ParentId,DateCreated,DateModified)
@@ -119,11 +119,12 @@ dateienanzahl(X) :- findall(FileID, file(FileID, X, _, _, _, _), Dateien), lengt
 
 %%%%% Aufgabe 4.1
 
-directory(100,test,100,date(2015,11,6),date(2015,11,6)).
+directory(100,test,100,date(2015,11,5),date(2015,11,5)).
 
 :- dynamic(änderungsdatum/1).
 
 % änderungsdatum(+)
 % änderungsdatum(Verzeichnisschlüssel)
 
-änderungsdatum(X) :- date(Today), directory(X, _, _, _, Today).
+änderungsdatum(X) :- if(directory(X, _, _, _, _), (date(Today), print("Transaktion erfolgreich"), print(Today)), print(" existiert nicht")).
+
