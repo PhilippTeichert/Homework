@@ -43,6 +43,27 @@ file(34,12,scheidungsklage,48,date(2009,9,2),date(2009,11,5)).
 
 
 
+%%%%% Aufgabe 1
+
+% Syntax:
+%     Die Syntax beschreibt die Regeln, die den Aufbau der Sprache festlegen.
+
+% Semantik:
+%     Die Semantik beschreibt die Bedeutung der Strukturen.
+
+% denotationelle Semantik:
+%     Denotationelle Semantik abstrahiert Programmausführung und ist mathematisch einfacher beweisbar.
+
+% operationale Semantik:
+%     Operationelle Semantik führt jeden Schritt der Programmausführung auf.
+
+% syntaktische Fehler:
+%     Der Compiler fliegt dir um die Ohnren.
+
+% semantische Fehler:
+%     Der Compiler meckert nichzt, aber es kommt (meistens) nicht das richtige Ergebnis raus.
+
+
 %%%%% Aufgabe 2.1
 
 
