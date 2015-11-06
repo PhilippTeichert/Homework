@@ -54,7 +54,7 @@
 (define (findeSymbolInListe index char)
   (if (equal? char (car (list-ref nato-phonetik index)))
       (list-ref nato-phonetik index)
-      (if (< index 38) ;wenn index in Liste
+      (if (< index 37) ;wenn index in Liste
           (findeSymbolInListe (+ 1 index) char);else
           (error "Uncaught Exception: IndexOutOfBoundsException"))))
 
@@ -94,6 +94,63 @@
                (getPhonetikSymbol (charToUpperCase (list-ref eingabeliste index))))])
   (if (< index (- (length eingabeliste) 1))
       (stringIterierer (+ 1 index) eingabeliste ausgabeliste)
+      ausgabeliste)
+    ) ; end let
+) ; end func
+
+
+
+;;;;; AUfgabe 2.1
+; Reihenfolge: A-Z 0-9
+; Buchstaben Indizes 0-25; Zahlen Indizes 26-35
+#|
+    Erklärung: Speicherung von Char und Flagge als Paare
+        Zugriff auf einen Char: car list-ref this index
+        Zugriff auf ein Symbol: cdr list-ref this index
+        Index-Referenz: Siehe oben
+    Begründung: schneller Zugriff auf Zuweisungspaare
+        Zugriff auf Symbol oder char mit minimal wenig Mehraufwand (car/cdr)
+|#
+(define flaggenAlphabet
+  '((#\A A) (#\B B) (#\C C) (#\D D) (#\E E) (#\F F)
+                (#\G G) (#\H H) (#\I I) (#\J J) (#\K K)
+                (#\L L) (#\M M) (#\N N) (#\O O) (#\P P)
+                (#\Q Q) (#\R R) (#\S S) (#\T T) (#\U U)
+                (#\V V) (#\W W) (#\X X) (#\Y Y) (#\Z Z)
+                (#\0 Z0) (#\1 Z1) (#\2 Z2) (#\3 Z3) (#\4 Z4)
+                (#\5 Z5) (#\6 Z6) (#\7 Z7) (#\8 Z8) (#\9 Z9)))
+
+
+;;;; Aufgabe 2.2
+; 
+(define (getFlaggenPaar char)
+  (findeFlaggeInListe 0 char))
+
+(define (getFlaggenSymbol char)
+  (eval (list-ref (getFlaggenPaar char) 1)))
+
+;
+(define (findeFlaggeInListe index char)
+  (if (equal? char (car (list-ref flaggenAlphabet index)))
+      (list-ref flaggenAlphabet index)
+      (if (< index 37) ;wenn index in Liste
+          (findeFlaggeInListe (+ 1 index) char);else
+          (error "Uncaught Exception: IndexOutOfBoundsException"))))
+
+
+;;;; Aufgabe 2.3
+; Der Eingabetext darf nur die Symbole A-Z a-z 0-9 enthalten.
+
+(define (textToFlagge string)
+    (stringIteriererFlaggen 0 (string->list string) '())
+) ; end func
+
+(define (stringIteriererFlaggen index eingabeliste ausgabeliste)
+  (let ([ausgabeliste
+         (append ausgabeliste
+               (list (getFlaggenSymbol (charToUpperCase (list-ref eingabeliste index)))))])
+  (if (< index (- (length eingabeliste) 1))
+      (stringIteriererFlaggen (+ 1 index) eingabeliste ausgabeliste)
       ausgabeliste)
     ) ; end let
 ) ; end func
