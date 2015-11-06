@@ -95,3 +95,13 @@ parentFolder(X) :- directory(_, X, Y, _, _), directory(Y, Z, _, _, _), print("Sc
 % verzeichnisinhalt(Verzeichnisschlüssel)
 
 verzeichnisinhalt(X) :- findall(Name, file(_, X, Name, _, _, _), Inhalt), print("Inhalt: "), print(Inhalt).
+
+
+%%%%% Aufgabe 3.2
+
+:- dynamic(unterverzeichnisse/1).
+
+% unterverzeichnisse(+)
+% unterverzeichnisse(Verzeichnisschlüssel)
+
+unterverzeichnisse(X) :- findall(Name, directory(_, Name, X, _, _), Unterverzeichnisse), print("Unterverzeichnisse: "), print(Unterverzeichnisse).
