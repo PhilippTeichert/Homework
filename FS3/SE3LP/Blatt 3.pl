@@ -44,10 +44,18 @@ file(34,12,scheidungsklage,48,date(2009,9,2),date(2009,11,5)).
 
 
 
-:- dynamic(nameAndId/2).
+:- dynamic(nameUndIdFile/2).
 
 
-% nameAndId(?,?)
-% nameAndId(name, id)
+% nameUndIdFile(?,?)
+% nameUndIdFile(name, id)
 
-nameAndId(X, Y) :- nameAndId().
+nameUndIdFile(X, Y) :- file(Y, _, X, _, _, _).
+
+:- dynamic(nameUndIdDirectory/2).
+
+
+% nameUndIdDirectory(?,?)
+% nameUndIdDirectory(name, id)
+
+nameUndIdDirectory(X, Y) :- directory(Y, X, _, _, _).
