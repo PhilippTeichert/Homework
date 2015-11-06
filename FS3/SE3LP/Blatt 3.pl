@@ -105,3 +105,25 @@ verzeichnisinhalt(X) :- findall(Name, file(_, X, Name, _, _, _), Inhalt), print(
 % unterverzeichnisse(Verzeichnisschlüssel)
 
 unterverzeichnisse(X) :- findall(Name, directory(_, Name, X, _, _), Unterverzeichnisse), print("Unterverzeichnisse: "), print(Unterverzeichnisse).
+
+
+%%%%% Aufgabe 3.3
+
+:- dynamic(dateienanzahl/1).
+
+% dateienanzahl(+)
+% dateienanzahl(Verzeichnisschlüssel)
+
+dateienanzahl(X) :- findall(FileID, file(FileID, X, _, _, _, _), Dateien), length(Dateien, Länge), print("Dateien: "), print(Länge).
+
+
+%%%%% Aufgabe 4.1
+
+directory(100,test,100,date(2015,11,6),date(2015,11,6)).
+
+:- dynamic(änderungsdatum/1).
+
+% änderungsdatum(+)
+% änderungsdatum(Verzeichnisschlüssel)
+
+änderungsdatum(X) :- date(Today), directory(X, _, _, _, Today).
