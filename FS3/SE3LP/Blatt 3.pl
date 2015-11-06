@@ -50,7 +50,7 @@ file(34,12,scheidungsklage,48,date(2009,9,2),date(2009,11,5)).
 % nameUndIdFile(?,?)
 % nameUndIdFile(name, id)
 
-nameUndIdFile(X, Y) :- file(Y, _, X, _, _, _).
+nameUndIdFile(X, Y) :- file(Y, _, X, _, _, _), X, Y.
 
 :- dynamic(nameUndIdDirectory/2).
 
@@ -58,4 +58,4 @@ nameUndIdFile(X, Y) :- file(Y, _, X, _, _, _).
 % nameUndIdDirectory(?,?)
 % nameUndIdDirectory(name, id)
 
-nameUndIdDirectory(X, Y) :- directory(Y, X, _, _, _).
+nameUndIdDirectory(X, Y) :- directory(Y, X, _, _, _), X, Y.
