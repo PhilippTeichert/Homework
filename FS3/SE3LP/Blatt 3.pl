@@ -85,3 +85,13 @@ dateiToVerzeichnis(X) :- file(_, Y, X, _, _, _), directory(Y, Z, _, _, _), print
 % parentFolder(Verzeichnisname)
 
 parentFolder(X) :- directory(_, X, Y, _, _), directory(Y, Z, _, _, _), print("Schlussel: "), print(Y), print(" Verzeichnisname: "), print(Z).
+
+
+%%%%% Aufgabe 3.1
+
+:- dynamic(verzeichnisinhalt/1).
+
+% verzeichnisinhalt(+)
+% verzeichnisinhalt(Verzeichnisschlüssel)
+
+verzeichnisinhalt(X) :- findall(Name, file(_, X, Name, _, _, _), Inhalt), print("Inhalt: "), print(Inhalt).
