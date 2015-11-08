@@ -950,8 +950,9 @@ Deshalb ist das, was hinter den $A(x)$-Aufrufen steht, $n+n+c$, wobei $c$ in die
    	    \]
    	    \\
    	    Es gilt: $d_3\cdot n\cdot log(n) < n^{log_3(6)}$ für alle $n > 0$, für $d_3 = 1$.\\
-   	    Da aber nur $d_3\cdot n\cdot log(n) \leq n^{log_3(6)}$ für alle $n \in \mathbb{N}$ \footnote{s. Aufgabenstellung} $\wedge n > 1$ \footnote{s. Definition $T_3$} gefordert ist, kann hierfür mindestens ein $\epsilon$ gefunden werden.\\
-   	    Die muss nun für alle $d_3$ ausprobiert werden.
+   	    Da aber nur $d_3\cdot n\cdot log(n) \leq n^{log_3(6)}$ für alle $n > 1$ (s. Definition $T_3$) gefordert ist, kann hierfür mindestens ein $\epsilon$ gefunden werden.\\
+   	    Für größere $d_3$ gilt allerdings, dass die $n$ nicht mehr beliebig größer 1 sein dürfen, sondern eine obere Schranke bekommen.\\
+   	    Somit hängt die Lösung stark von $d_3$ ab und das Mastertheorem ist ungeeignet für die Lösung dieser Aufgabe.
    	\end{enumerate}
 \end{enumerate}
 
@@ -968,7 +969,86 @@ Deshalb ist das, was hinter den $A(x)$-Aufrufen steht, $n+n+c$, wobei $c$ in die
 %---------------%
 %	Bearbeitung	%
 %---------------%
-
+\begin{enumerate}
+    \item[1.] \phantom{}\hspace{0.00mm}\\
+    \begin{codebox}
+		\Procname{\textsc{merge(A, B)}}
+        \li $cur_A = 0$
+		\li $cur_B = 0$
+		\li $C = newlist$
+		\li \While $cur_A < A.length ~\&\&~ cur_B < B.length$
+		\Indentmore
+		    \li \If $cur_A < A.length$
+		    \Indentmore
+	    		\li $a_i = A[cur_A]$
+	    		\End
+	    	\li \If $cur_B < B.length$
+	    	\Indentmore
+    			\li $b_j = B[cur_B]$
+    			\End
+			\li \If $a_i < b_j$
+			\Indentmore
+			    \li $C.append~a_i$
+			    \li $cur_A = cur_A + 1$
+			    \li \Else
+			    \li $C.append~b_j$
+			    \li $cur_B = cur_B + 1$
+			    \End
+			\End
+		\li \If $cur_B = B.length$
+		\Indentmore
+		    \li \For $i = cur_A$ \To $A.length$
+		    \Indentmore
+		        \li $C.append~A[i]$
+		        \End
+		    \li \Else %\If $cur_A = A.length$
+    		\li \For $j = cur_B$ \To $B.length$
+    		\Indentmore
+    		    \li $C.append~B[j]$
+    		    \End
+    		\End
+    	\li \Return $C$
+	\end{codebox}
+	Korrektheit von \textsc{merge(A, B)}:\\
+    \underline{Schleifeninvariante:}\\
+    Zu Beginn jeder Iteration sind die Listen A, B und C in sich sortiert.\\
+    \\
+    Initialisierung:\\
+    Vor der ersten Iteration der \textbf{while}-Schleife sind die Listen A und B geordnet, weil sie geordnet „angeliefert“ werden. Die Liste C ist geordnet, weil sie zu diesem Zeitpunkt noch leer ist.\\
+    \\
+    Fortsetzung:\\
+    Bei jeder Iteration wird jeweils das kleinste Element aus beiden Listen der Liste C hinzugefügt.
+    Die Listen A und B verlieren kein Element, also sind sie immer noch sortiert.
+    Die Liste C bekommt immer ein neues Element, welches größer oder gleich dem letzten ist. Somit bleibt C auch bei jeder Iteration sortiert.\\
+    \\
+    Terminierung:\\
+    Die \textbf{while}-Schleife terminiert stets, da bei jeder Iteration mindestens einer der beiden Zeiger um eine Stelle in Richtung Listenende verrückt wird.
+    Damit kommt ein Zeiger - sofern die Listen endlich sind - irgendwann am Ende an.\\
+    \\
+    Neue Initialisierung:\\
+    Die \textbf{for}-Schleife in Zeile $16$ oder $19$ verletzt auch nicht die Invariante.
+    Zu Beginn sind alle drei Listen sortiert, aber B - oder A - wurde schon vollständig an C angefügt.
+    Somit sind alle Elemente der verbleibenden Liste A - oder B - größer oder gleich dem letzten - und größten - Element in C.\\
+    \\
+    Neue Fortsetzung:\\
+    Da alle Elemente der verbleibenden Liste A - oder B - größer oder gleich jedem Element in C sind, können wir einfach das nächste - und damit kleinste - verbleibende Element aus A - oder B - an C anfügen.
+    Bei diesem Schritt bleibt A - oder B - sortiert, weil sie nicht verändert wird, und C auch, da sie nur ein weiteres größeres Element angesetzt bekommt.\\
+    \\
+    Neue Terminierung:\\
+    Die \textbf{for}-Schleife terminiert auch, da der Zähler bei jeder Iteration um $1$ erhöht wird.
+    Solange die Liste A - oder B - also nicht unendlich ist, erreicht der Zähler irgendwann ihr Ende.\\
+    \\
+    Wenn die Schleifen abgebrochen sind, gilt, dass die Listen A, B und C sortiert sind.
+    Die Ausgabeliste C also auch.
+    Dies wollten wir zeigen, damit ist dieser Algorithmus korrekt.\\
+    \\
+    
+    Korrektheit von \textsc{mergesort(A, l, r)}:\\
+    \underline{Induktion:}\\
+    
+    
+    
+\end{enumerate}
 
 
 
