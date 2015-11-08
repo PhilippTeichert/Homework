@@ -43,20 +43,26 @@
                 (#\8 Oktoeight) (#\9 Novenine) (#\, Decimal) (#\. Stop)))
 
 ;;;; Aufgabe 1.2
-; 
-(define (getPhonetikPaar char)
-  (findeSymbolInListe 0 char))
-
+; Gibt das phonetische Symbol zu einem gegebenen Buchstaben zurück
+; param char: der Buchstabe, dessen Symbol gesucht wird
+; return: Das Symbol, welches mit char gemappt ist
 (define (getPhonetikSymbol char)
   (cdr (getPhonetikPaar char)))
 
-;
+; Ruft die rekursiveListensuche mit dem Index 0 auf
+; param char: der zu suchende Buchstabe
+(define (getPhonetikPaar char)
+  (findeSymbolInListe 0 char))
+
+; Gegeben einen Buchstaben wird mittels Rekursion das zugehörige Symbol gesucht
+; param char: mit dem gesuchten Symbol assoziierter Buchstabe
+; param index: Geprüfter Listenindex (für Rekursiven Aufruf)
 (define (findeSymbolInListe index char)
   (if (equal? char (car (list-ref nato-phonetik index)))
       (list-ref nato-phonetik index)
-      (if (< index 37) ;wenn index in Liste
-          (findeSymbolInListe (+ 1 index) char);else
-          (error "Uncaught Exception: IndexOutOfBoundsException"))))
+      (if (< index 37) ; wenn index in Liste
+          (findeSymbolInListe (+ 1 index) char); dann kann es noch weiter laufen
+          (error "Uncaught Exception: IndexOutOfBoundsException")))); sonst Fehler
 
 
 
@@ -100,7 +106,7 @@
 
 
 
-;;;;; AUfgabe 2.1
+;;;;; Aufgabe 2.1
 ; Reihenfolge: A-Z 0-9
 ; Buchstaben Indizes 0-25; Zahlen Indizes 26-35
 #|
@@ -195,4 +201,7 @@
       (list-ref flaggenAlphabet index)
       (if (< index 35) ;wenn index in Liste
           (findeFlaggeInListeAlles (+ 1 index) char);else
-          (list 1 char)))); erstellt eine Liste, mit dem Eingabesymbol als cdr, falls kein Eintrag zu ihm vor liegt, damit es selber wieder ausgegeben wird (s. Methode getFalggenSymboleAlles).
+          (list 1 char))))
+; Die letzte Zeile erstellt eine Liste, mit dem Eingabesymbol als cdr, falls
+; kein Eintrag zu ihm vor liegt, damit es selber wieder ausgegeben
+; wird (s. Methode getFlaggenSymboleAlles).
