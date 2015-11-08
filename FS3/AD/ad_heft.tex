@@ -1045,8 +1045,20 @@ Deshalb ist das, was hinter den $A(x)$-Aufrufen steht, $n+n+c$, wobei $c$ in die
     
     Korrektheit von \textsc{mergesort(A, l, r)}:\\
     \underline{Induktion:}\\
+    Induktion über die Größe der Eingabeliste:\\
+    \\
+    Induktionsanfang:\\
+    Hat die Liste die Länge 1, so ist $l = r$. Die Ursprungsliste wird nicht verändert, womit \textsc{mergesort} korrekt ist.\\
+    \\
+    Induktionsannahme:\\
+    Ist \textsc{mergesort} für die Länge $n \in \mathbb{N}$ wahr, so ist es auch für die Länge $n + 1$ wahr.\\
+    \\
+    Induktionsschritt:\\
+    Durch den rekursiven Aufruf, wird \textsc{mergesort($n$)} für jedes $n > 1$ zu zwei Aufrufen von \textsc{mergesort($\frac{n}{2}$)}.
+    Somit wird es bei jedem Rekursionsschritt halb so groß und kommt damit irgendwann bei $x$ Aufrufen von \textsc{mergesort($1$)} an.
+    Dieses gilt nach Induktionsanfang.
     
-    
+    \item[2.] 
     
 \end{enumerate}
 
