@@ -714,8 +714,10 @@ Die Einrückung gibt den Skopus der Schleifenkonstrukte an.) \\
 	Bei beiden inneren \textbf{for}-Blöcke laufen jeweils $n-1$ mal durch, sodass der innere Block insgesamt $2 \cdot (n-1)=2n-2$ mal ausgeführt wird.
 	Die äußere \textbf{for}-Schleife läuft gerade $n$ mal; also wird der Block der Länge $2n-2$ $n$ mal ausgeführt.
 	Dies führt zu einer Laufzeit von $n \cdot (2n-2)=2n^2-2n \in O(n^2)$.
-	\item Hauke sagt $n^2$
-	\item Hauke sagt was von $\operatorname{log}(n)$
+	\item Der Algorithmus läuft in $O(n)$.\\
+	Zeile 1 läuft in $c$, Zeile 2 und 3 sind zusammen $2n$, Zeile 4 und Zeile 5 sind jeweils wieder konstant. Das addiert gibt $2*n + c$ und das liegt in $O(2n)$ und genauer in $O(n)$, also in Linearzeit.
+	\item Der Algorithmus läuft in $O(\operatorname{log}(n))$.\\
+	Zeile 1 läuft mit konstantem Zeitaufwand und auch nur einmal. Zeile 2 ist durch das $i^2$ logarithmisch. Zeile 3 und Zeile 4 sind wieder konstant. Zeile 5 - 7 laufen in $\operatorname{log}(n)$. Addiert ergibt das $2\operatorname{log}(n)+c$, also $O(\operatorname{log}(n))$.
 \end{enumerate}
 \subsection{Übungsaufgabe 3.2}
 \begin{flushright}
@@ -731,6 +733,22 @@ Die Einrückung gibt den Skopus der Schleifenkonstrukte an.) \\
 %	Bearbeitung	%
 %---------------%
 
+\[
+    A(n) :=  \begin{cases}
+		\begin{array}{ll}
+	    	5, & \text{falls }n<4\\
+			A(\frac{n}{2})+A(\frac{n}{4})+2n+4, &\text{sonst}
+		\end{array}
+	\end{cases}
+\]
+\\
+Die $5$ im ersten Teil der Rekurrenzgleichung erklärt sich durch die ersten beiden Zeilen im Pseudocode.\\\\
+Der Aufruf in Zeile $8$ dauert $\frac{n}{2}$, der in Zeile $9$ dauert $\frac{n}{4}$. Dadurch erklärt sich das $A(\frac{n}{2})+A(\frac{n}{4})$ im zweiten Teil der Rekurrenzgleichung.\\\\
+Zeile $5$ und $6$ laufen in $n$ ab.\\
+Zeile $11$ und $12$ laufen auch in $n$ ab.\\
+Zeile $4$, $7$, $10$ und $13$ laufen jeweils mit konstantem Zeitaufwand.\\
+Deshalb ist das, was hinter den $A(x)$-Aufrufen steht, $n+n+c$, wobei $c$ in diesem Fall den Wert $4$ hat, da wir vier Zeilen mit konstantem Zeitaufwand im Pseudocode haben.
+
 \subsection{Übungsaufgabe 3.3}
 \begin{flushright}
 \begin{Large}
@@ -744,6 +762,198 @@ Die Einrückung gibt den Skopus der Schleifenkonstrukte an.) \\
 %---------------%
 %	Bearbeitung	%
 %---------------%
+\begin{enumerate}
+    \item [a)]
+    Die Form\\
+    \[
+	S(n) :=  \begin{cases}
+	    	\begin{array}{ll}
+    			c, & \text{falls }n=1\\
+				a \cdot T(\frac{n}{b})+f(n), &\text{falls }n>1
+			\end{array}
+		\end{cases}
+   	\]
+   	\\
+   	ist bei\\
+   	\[
+	T_1(n) := \begin{cases}
+				\begin{array}{ll}
+					c_1,			& \text{für }n=1\\
+					8 \cdot T_1(\frac{n}{2})+d_1\cdot n^3, & \text{sonst}
+				\end{array}
+			\end{cases}
+   	\]
+   	\\
+   	eingehalten. Das Mastertheorem ist daher anwendbar.\\
+   	\\
+   	\begin{enumerate}
+   	    \item[I.]
+   	    $T_1(n) \in \Theta (n^{log_b(a)})$, falls $f(n) \in O(n^{log_b(a)- \epsilon})$ für ein $\epsilon > 0$.\\
+   	    \\
+   	    \[
+   	        \begin{array}{ll}
+   	            f(n) &\in O(n^{log_b(a)- \epsilon})\\
+   	            d_1\cdot n^3 &\in O(n^{log_2(8)- \epsilon})\\
+   	            d_1\cdot n^3 &\in O(n^{3- \epsilon})
+   	        \end{array}
+   	    \]
+   	    \\
+   	    Hierfür kann kein $\epsilon$ gefunden werden. Daher gilt diese Aussage nicht.\\
+   	    \item[II.]
+   	    $T_1(n) \in \Theta (n^{log_b(a)} \cdot log_2(n))$, falls $f(n) \in \Theta (n^{log_b(a)})$.\\
+   	    \[
+   	        \begin{array}{ll}
+   	            f(n) &\in O(n^{log_b(a)})\\
+   	            d_1\cdot n^3 &\in O(n^{log_2(8)})\\
+   	            d_1\cdot n^3 &\in O(n^3)
+   	        \end{array}
+   	    \]
+   	    \\
+   	    Dies stimmt, daher gilt diese Aussage.
+   	    \item[III.]
+   	    $T_1(n) \in \Theta (f(n))$, falls $f(n) \in \Omega (n^{log_b(a)+ \epsilon})$ für ein $\epsilon > 0$ \textbf{und} $a \cdot f(\frac{n}{b}) \leq \delta \cdot f(n)$ für ein $\delta < 1$ und große $n$.\\
+   	    \\
+   	    \[
+   	        \begin{array}{ll}
+   	            f(n) &\in \Omega (n^{log_b(a)+ \epsilon})\\
+   	            d_1\cdot n^3 &\in \Omega (n^{log_2(8)+ \epsilon})\\
+   	            d_1\cdot n^3 &\in \Omega (n^{3+ \epsilon})
+   	        \end{array}
+   	    \]
+   	    \\
+   	    Dies stimmt für alle $\epsilon \geq 0$, also auch für mindestens ein $\epsilon > 0$.
+   	    \[
+   	        \begin{array}{lll}
+   	            a \cdot f(\frac{n}{b}) \leq \delta \cdot f(n)~~~~~~~~~~~~~~~~~~~~~~~&\text{\textbackslash einsetzen}\\
+   	            8 \cdot d_1\cdot (\frac{n}{2})^3 \leq \delta \cdot d_1\cdot n^3 &\text{\textbackslash $\sqrt[3]()$}\\
+   	            \sqrt[3]{d_1}\cdot 2 \cdot \frac{n}{2} \leq \sqrt[3]{\delta}\cdot \sqrt[3]{d_1} \cdot n & \text{\textbackslash $:\sqrt[3]{d_1}$}\\
+   	            n \leq \sqrt[3]{\delta} \cdot n &\text{\textbackslash :n    (n ist immer positiv, da $n \in \mathbb{N}$, s. Aufgabenstellung)}\\
+   	            1 \leq \sqrt[3]{\delta} &\text{\textbackslash $()^3$}\\
+   	            1 \leq \delta
+   	        \end{array}
+   	    \]
+   	    \\
+   	    Damit ist $\delta \geq 1$ und nicht, wie benötigt, $\delta < 1$. Daher gilt diese Aussage nicht.
+   	    \\\\
+   	    Da nur II. gilt, gilt $T_1(n) \in \Theta (n^{log_b(a)} \cdot log_2(n))$, also $T_1(n) \in \Theta (n^3 \cdot log_2(n))$.
+   	\end{enumerate}
+   	
+    \item [b)]
+    Die Form\\
+    \[
+	S(n) :=  \begin{cases}
+	    	\begin{array}{ll}
+    			c, & \text{falls }n=1\\
+				a \cdot T(\frac{n}{b})+f(n), &\text{falls }n>1
+			\end{array}
+		\end{cases}
+   	\]
+   	\\
+   	ist bei\\
+   	\[
+	T_2(n) := \begin{cases}
+				\begin{array}{ll}
+					c_2,			& \text{für }n=1\\
+					5 \cdot T_2(\frac{n}{4})+d_2\cdot n^2, & \text{sonst}
+				\end{array}
+			\end{cases}
+   	\]
+   	\\
+   	eingehalten. Das Mastertheorem ist daher anwendbar.\\
+   	\\
+   	\begin{enumerate}
+   	    \item[I.]
+   	    $T_2(n) \in \Theta (n^{log_b(a)})$, falls $f(n) \in O(n^{log_b(a)- \epsilon})$ für ein $\epsilon > 0$.\\
+   	    \\
+   	    \[
+   	        \begin{array}{ll}
+   	            f(n) &\in O(n^{log_b(a)- \epsilon})\\
+   	            d_2\cdot n^2 &\in O(n^{log_4(5)- \epsilon})\\
+   	            d_2\cdot n^2 &\in O(n^{1.160964047443681- \epsilon})
+   	        \end{array}
+   	    \]
+   	    \\
+   	    Hierfür kann kein $\epsilon$ gefunden werden. Daher gilt diese Aussage nicht.\\
+   	    \item[II.]
+   	    $T_2(n) \in \Theta (n^{log_b(a)} \cdot log_2(n))$, falls $f(n) \in \Theta (n^{log_b(a)})$.\\
+   	    \[
+   	        \begin{array}{ll}
+   	            f(n) &\in O(n^{log_b(a)})\\
+   	            d_2\cdot n^2 &\in O(n^{log_4(5)})\\
+   	            d_2\cdot n^2 &\in O(n^{1.160964047443681})
+   	        \end{array}
+   	    \]
+   	    \\
+   	    Dies stimmt nicht, daher gilt diese Aussage nicht.
+   	    \item[III.]
+   	    $T_2(n) \in \Theta (f(n))$, falls $f(n) \in \Omega (n^{log_b(a)+ \epsilon})$ für ein $\epsilon > 0$ \textbf{und} $a \cdot f(\frac{n}{b}) \leq \delta \cdot f(n)$ für ein $\delta < 1$ und große $n$.\\
+   	    \\
+   	    \[
+   	        \begin{array}{ll}
+   	            f(n) &\in \Omega (n^{log_b(a)+ \epsilon})\\
+   	            d_2\cdot n^2 &\in \Omega (n^{log_4(5)+ \epsilon})\\
+   	            d_2\cdot n^2 &\in \Omega (n^{1.160964047443681+ \epsilon})
+   	        \end{array}
+   	    \]
+   	    \\
+   	    Dies stimmt für alle $\epsilon \geq 2-log_4(5) \approx 0.839035952556319$, also auch für mindestens ein $\epsilon > 0$.
+   	    \[
+   	        \begin{array}{lll}
+   	            a \cdot f(\frac{n}{b}) \leq \delta \cdot f(n)~~~~~~~~~~~~~~~~~~~~~~~&\text{\textbackslash einsetzen}\\
+   	            4 \cdot d_2\cdot (\frac{n}{5})^2 \leq \delta \cdot d_2\cdot n^2 &\text{\textbackslash $\sqrt()$}\\
+   	            \sqrt{d_2}\cdot 2 \cdot \frac{n}{5} \leq \sqrt{\delta}\cdot \sqrt{d_2} \cdot n & \text{\textbackslash $:\sqrt{d_2}$}\\
+   	            \frac{2}{5}\cdot n \leq \sqrt{\delta} \cdot n &\text{\textbackslash :n    (n ist immer positiv, da $n \in \mathbb{N}$, s. Aufgabenstellung)}\\
+   	            \frac{2}{5} \leq \sqrt{\delta} &\text{\textbackslash $()^2$}\\
+   	            \frac{4}{25} \leq \delta\\
+   	            0.16 \leq \delta
+   	        \end{array}
+   	    \]
+   	    \\
+   	    Damit gilt $\delta \geq 0.16$. Somit wurde, wie benötigt, mindestens ein $\delta < 1$ gefunden ($0.16 \leq \delta < 1$). Daher gilt diese Aussage.
+   	    \\\\
+   	    Da nur III. gilt, gilt $T_2(n) \in \Theta (f(n))$, also $T_2(n) \in \Theta (d_2\cdot n^2)$, also $T_2 \in \Theta (n^2)$.
+   	\end{enumerate}
+   	
+   	\item [c)]
+    Die Form\\
+    \[
+	S(n) :=  \begin{cases}
+	    	\begin{array}{ll}
+    			c, & \text{falls }n=1\\
+				a \cdot T(\frac{n}{b})+f(n), &\text{falls }n>1
+			\end{array}
+		\end{cases}
+   	\]
+   	\\
+   	ist bei\\
+   	\[
+	T_3(n) := \begin{cases}
+				\begin{array}{ll}
+					c_3,			& \text{für }n=1\\
+					6 \cdot T_3(\frac{n}{3})+d_3\cdot n\cdot log(n), & \text{sonst}
+				\end{array}
+			\end{cases}
+   	\]
+   	\\
+   	eingehalten. Das Mastertheorem ist daher anwendbar.\\
+   	\\
+   	\begin{enumerate}
+   	    \item[I.]
+   	    $T_3(n) \in \Theta (n^{log_b(a)})$, falls $f(n) \in O(n^{log_b(a)- \epsilon})$ für ein $\epsilon > 0$.\\
+   	    \\
+   	    \[
+   	        \begin{array}{ll}
+   	            f(n) &\in O(n^{log_b(a)- \epsilon})\\
+   	            d_3\cdot n\cdot log(n) &\in O(n^{log_3(6)- \epsilon})\\
+   	            d_3\cdot n\cdot log(n) &\in O(n^{1.6309297535714573- \epsilon})
+   	        \end{array}
+   	    \]
+   	    \\
+   	    Es gilt: $d_3\cdot n\cdot log(n) < n^{log_3(6)}$ für alle $n > 0$, für $d_3 = 1$.\\
+   	    Da aber nur $d_3\cdot n\cdot log(n) \leq n^{log_3(6)}$ für alle $n \in \mathbb{N}$ \footnote{s. Aufgabenstellung} $\wedge n > 1$ \footnote{s. Definition $T_3$} gefordert ist, kann hierfür mindestens ein $\epsilon$ gefunden werden.\\
+   	    Die muss nun für alle $d_3$ ausprobiert werden.
+   	\end{enumerate}
+\end{enumerate}
 
 \subsection{Übungsaufgabe 3.4}
 \begin{flushright}
