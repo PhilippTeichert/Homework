@@ -122,24 +122,33 @@
 
 
 ;;;; Aufgabe 2.2
-; 
+; Eingabe: Ein Charakter aus: A-Z 0-9
+; Ausgabe: eine Liste aus Symbol und Flagge
+; Diese Methode gibt zu einem Symbol die entsprechende Unterliste der Liste aus Flagge udn Symbol aus aus.
 (define (getFlaggenPaar char)
   (findeFlaggeInListe 0 char))
 
+; Eingabe: Ein Charakter aus: A-Z 0-9
+; Ausgabe: die entsprechende Flagge
+; Diese Methode gibt zu einem Symbol die entsprechende Flagge aus.
 (define (getFlaggenSymbol char)
   (eval (list-ref (getFlaggenPaar char) 1)))
 
-;
+; Findet ein Symbol in der Liste der Flaggen. (der rekursive Teil)
+; index: der index der Liste, an dem gesucht wird
+; char: der char nach dem in der Liste gesucht wird
 (define (findeFlaggeInListe index char)
   (if (equal? char (car (list-ref flaggenAlphabet index)))
       (list-ref flaggenAlphabet index)
-      (if (< index 37) ;wenn index in Liste
+      (if (< index 35) ;wenn index in Liste
           (findeFlaggeInListe (+ 1 index) char);else
           (error "Uncaught Exception: IndexOutOfBoundsException"))))
 
 
 ;;;; Aufgabe 2.3
 ; Der Eingabetext darf nur die Symbole A-Z a-z 0-9 enthalten.
+; Die Ausgabe beinhaltet nur Flaggen.
+; Die Eingabe muss als String erfolgen.
 
 (define (textToFlagge string)
     (stringIteriererFlaggen 0 (string->list string) '())
@@ -154,3 +163,36 @@
       ausgabeliste)
     ) ; end let
 ) ; end func
+
+
+; Der Eingabetext darf alle Symbole enthalten.
+; Die Ausgabe beinhaltet Flaggen und Symbole.
+; Die Eingabe muss als String erfolgen.
+
+(define (textToFlaggeAlles string)
+    (stringIteriererFlaggenAlles 0 (string->list string) '())
+) ; end func
+
+(define (stringIteriererFlaggenAlles index eingabeliste ausgabeliste)
+  (let ([ausgabeliste
+         (append ausgabeliste
+               (list (getFlaggenSymbolAlles (charToUpperCase (list-ref eingabeliste index)))))])
+  (if (< index (- (length eingabeliste) 1))
+      (stringIteriererFlaggenAlles (+ 1 index) eingabeliste ausgabeliste)
+      ausgabeliste)
+    ) ; end let
+) ; end func
+
+(define (getFlaggenPaarAlles char)
+  (findeFlaggeInListeAlles 0 char))
+
+(define (getFlaggenSymbolAlles char)
+  (eval (list-ref (getFlaggenPaarAlles char) 1)))
+
+;
+(define (findeFlaggeInListeAlles index char)
+  (if (equal? char (car (list-ref flaggenAlphabet index)))
+      (list-ref flaggenAlphabet index)
+      (if (< index 35) ;wenn index in Liste
+          (findeFlaggeInListeAlles (+ 1 index) char);else
+          (list 1 char)))); erstellt eine Liste, mit dem Eingabesymbol als cdr, falls kein Eintrag zu ihm vor liegt, damit es selber wieder ausgegeben wird (s. Methode getFalggenSymboleAlles).
