@@ -1,4 +1,4 @@
-:- discontiguous(directory/5).
+:- dynamic(directory/5).
 :- dynamic(file/6).
 
 % directory(DirId,Name,ParentId,DateCreated,DateModified)
@@ -15,6 +15,8 @@ directory(9,pop,3,date(2007,5,2),date(2009,11,5)).
 directory(10,urlaub,4,date(2008,5,23),date(2008,11,1)).
 directory(11,hochzeit,4,date(2007,12,4),date(2008,1,25)).
 directory(12,scheidung,4,date(2009,9,2),date(2009,11,5)).
+
+directory(100,test,100,date(2015,11,5),date(2015,11,5)).
 
 % file(FileId,DirId,Name,Size,DateCreated,DateModified)
 
@@ -140,27 +142,75 @@ dateienanzahl(X) :- findall(FileID, file(FileID, X, _, _, _, _), Dateien), lengt
 
 %%%%% Aufgabe 4.1
 
-directory(100,test,100,date(2015,11,5),date(2015,11,5)).
-
 
 :- dynamic(änderungsdatum/1).
 
 % änderungsdatum(+)
 % änderungsdatum(Verzeichnisschlüssel)
 
-änderungsdatum(X) :- if(directory(X, _, _, _, _), (date(Today), directory(X, A, B, C, _), schreibe(directory(X, A, B, C, Today)), print("Transaktion erfolgreich"), print(Today)), (print("Verzeichnis "), print(x), print(" existiert nicht"))).
+änderungsdatum(X) :- if(directory(X, _, _, _, _), (date(Today), directory(X, A, B, C, _), retract(directory(X, _, _, _, _)), assertz(directory(X, A, B, C, Today)), print("Transaktion erfolgreich")), (print("Verzeichnis "), print(X), print(" existiert nicht"))).
 
 
 
+%%%%% Aufgabe 4.2
+
+:- dynamic(unterverzeichnis/2).
+
+% unterverzeichnis(+, +)
+% unterverzeichnis(Vaterverzeichnisschlüssel, Unterverzeichnisname)
+
+% Vor dem ersten Aufrufen der Methode muss „flag(directories, _, 30).“ eigegeben werden.
+
+unterverzeichnis(X, Y) :-
+    if(directory(X, _, _, _, _),
+        if(directory(_, Y, X, _, _),
+            (print("Unterverzeichnis "), print(Y), print(" existiert schon")),
+            (flag(directories, Z, Z+1), date(Today), assertz(directory(Z, Y, X, Today, Today)), directory(X, A, B, C, _), retract(directory(X, _, _, _, _)), assertz(directory(X, A, B, C, Today)), print("Aktion erfolgreich"))
+        ),
+        (print("Verzeichnis "), print(X), print(" existiert nicht"))
+    ).
 
 
+%%%%% Aufgabe 4.3
 
+:- dynamic(dateiHinzu/3).
 
+% dateiHinzu(+, +, +)
+% dateiHinzu(Vaterverzeichnisschlüssel, Dateiname, Dateigröße)
 
+% Vor dem ersten Aufrufen der Methode muss „flag(dateien, _, 35).“ eigegeben werden.
 
+dateiHinzu(X, Y, Z) :-
+    if(directory(X, _, _, _, _),
+        if(file(_, X, Y, _, _, _),
+            (print("Datei "), print(Y), print(" existiert schon")),
+            (flag(dateien, W, W+1), date(Today), assertz(file(W, X, Y, Z, Today, Today)), directory(X, A, B, C, _), retract(directory(X, _, _, _, _)), assertz(directory(X, A, B, C, Today)), print("Aktion erfolgreich"))
+        ),
+        (print("Verzeichnis "), print(X), print(" existiert nicht"))
+    ).
+    
+    
+    
+%%%%% Aufgabe 4.4
 
+:- dynamic(updateVerzeichnis/1).
 
+% updateVerzeichnis(+)
+% updateVerzeichnis(Dateischlüssel)
 
+updateVerzeichnis(X) :-
+    if(file(X, _, _, _, _, _),
+        (date(Today), file(X, Y, _, _, _, _), directory(Y, _, _, _, Today), print("Aktion erfolgreich"))
+        (print("Datei "), print(X), print(" existiert nicht"))
+    ).
+    
+    
+    
+%%%%% Aufgabe 4.5
+
+% Eine Transaktion wird entweder „ganz oder gar nicht“ ausgeführt.
+% Wir schreiben nichts in die Datei.
+% Das heißt jedes mal, wenn wir das Programm schließen, sind alle Änderungen verloren.
 
 
 
