@@ -84,27 +84,32 @@ paul.testa@gmx.de\\
 \textbf{Punkte für den Hausaufgabenteil:}\\
 \vspace{1cm}
 \begin{tabular}{c|c|c|c|c}
-~2.1~&~2.2~&~2.3~&~2.4~&$\Sigma$	\\	\hline
+~3.1~&~3.2~&~3.3~&~3.4~&$\Sigma$	\\	\hline
 &&&&
 
 \end{tabular}
 \end{center}
 \newpage
 %#+-------------------------------------------------+#%
-%#+						ZETTEL 0					+#%
+%#+						INAHLT  			     +#%
+%#+-------------------------------------------------+#%
+\tableofcontents
+\newpage
+%#+-------------------------------------------------+#%
+%#+						ZETTEL 0			     +#%
 %#+-------------------------------------------------+#%
 \pagenumbering{arabic}
 \section{Zettel vom 14.-16. Oktober -- Abgabe: N/A}
 \subsection{Präsenzaufgabe 1.1}
 %---------------%
-%	Aufgabe		%
+%	Aufgabe		 %
 %---------------%
 Wiederholen Sie die \textit{O}-Notation und die verwandten Notationen.
 Wie sind die einzelnen Mengen definiert?
 Was bedeutet es, wenn $f \in O(g)$ gilt, was wenn $f \in \Theta (g)$ gilt und so weiter?\\
 \vspace{1cm}
 %---------------%
-%	Bearbeitung	%
+%	Bearbeitung	 %
 %---------------%
 \begin{equation*}
 	\begin{array}{llll}
@@ -117,7 +122,7 @@ Was bedeutet es, wenn $f \in O(g)$ gilt, was wenn $f \in \Theta (g)$ gilt und so
 \end{equation*}
 \subsection{Präsenzaufgabe 1.2}
 %---------------%
-%	Aufgabe		%
+%	Aufgabe	 	 %
 %---------------%
 Beweisen Sie:
 \begin{itemize}
@@ -445,6 +450,7 @@ Sei $f\in O(h_1)$ und $g\in O(h_2)$, dann gibt es ein $c$, $n_0$, so dass $f(n) 
 Daraus folgt $f(n'')\cdot g(n'') \leq c \cdot c' \cdot h_1(n'') \cdot h_2(n'') \forall n'' \geq max(n_0, n_0')$, also $f \cdot g \in O(h_1 \cdot h_2)$.
 \end{proof}
 Setzt man nun $h_1, h_2 = h$ folgt daraus für den letzten Ausdruck des Beweises $f(n) \cdot g(n) \in O(h(n) \cdot h(n)) \Rightarrow f(n) \cdot g(n) \in O((h(n))^2)$.
+
 \subsection{Übungsaufgabe 2.4}
 \begin{flushright}
 \begin{Large}
@@ -484,8 +490,7 @@ Führen Sie bei (a) auch den Induktionsbeweis, der in der Vorlesung übersprunge
 %---------------%
 %	Bearbeitung	%
 %---------------%
-\begin{enumerate}
-    \item[1.]
+\subsubsection{2.4.1}
     \begin{enumerate}
         \item [a)]
         \[
@@ -548,7 +553,7 @@ Führen Sie bei (a) auch den Induktionsbeweis, der in der Vorlesung übersprunge
     	\\
     	nicht eingehalten wurde.
     \end{enumerate}
-    \item[2.]
+\subsubsection{2.4.2}
     \begin{enumerate}
         \item [a)]
         \[
@@ -637,7 +642,6 @@ Führen Sie bei (a) auch den Induktionsbeweis, der in der Vorlesung übersprunge
     	    Da nur II. gilt, gilt $S(n) \in \Theta (n^{log_b(a)} \cdot log_2(n))$, also $S(n) \in \Theta (n^2 \cdot log_2(n))$.
     	\end{enumerate}
     \end{enumerate}
-\end{enumerate}
 \newpage
 %#+-------------------------------------------------+#%
 %#+						ZETTEL 2					+#%
@@ -709,16 +713,19 @@ Die Einrückung gibt den Skopus der Schleifenkonstrukte an.) \\
 %---------------%
 %	Bearbeitung	%
 %---------------%
-\begin{enumerate}
-	\item Der Algorithmus läuft in $O(n^2)$.\\
-	Bei beiden inneren \textbf{for}-Blöcke laufen jeweils $n-1$ mal durch, sodass der innere Block insgesamt $2 \cdot (n-1)=2n-2$ mal ausgeführt wird.
-	Die äußere \textbf{for}-Schleife läuft gerade $n$ mal; also wird der Block der Länge $2n-2$ $n$ mal ausgeführt.
-	Dies führt zu einer Laufzeit von $n \cdot (2n-2)=2n^2-2n \in O(n^2)$.
-	\item Der Algorithmus läuft in $O(n)$.\\
-	Zeile 1 läuft in $c$, Zeile 2 und 3 sind zusammen $2n$, Zeile 4 und Zeile 5 sind jeweils wieder konstant. Das addiert gibt $2*n + c$ und das liegt in $O(2n)$ und genauer in $O(n)$, also in Linearzeit.
-	\item Der Algorithmus läuft in $O(\operatorname{log}(n))$.\\
-	Zeile 1 läuft mit konstantem Zeitaufwand und auch nur einmal. Zeile 2 ist durch das $i^2$ logarithmisch. Zeile 3 und Zeile 4 sind wieder konstant. Zeile 5 - 7 laufen in $\operatorname{log}(n)$. Addiert ergibt das $2\operatorname{log}(n)+c$, also $O(\operatorname{log}(n))$.
-\end{enumerate}
+\subsubsection{Aufgabe 3.1.1}
+Der Algorithmus läuft in $O(n^2)$.\\
+Bei beiden inneren \textbf{for}-Blöcke laufen jeweils $n-1$ mal durch, sodass der innere Block insgesamt $2 \cdot (n-1)=2n-2$ mal ausgeführt wird.
+Die äußere \textbf{for}-Schleife läuft gerade $n$ mal; also wird der Block der Länge $2n-2$ $n$ mal ausgeführt.
+Dies führt zu einer Laufzeit von $n \cdot (2n-2)=2n^2-2n \in \mathcal{O}(n^2)$.
+\subsubsection{Aufgabe 3.1.2}
+Die äußere Schleife läuft zwar bis $2\cdot n$, da die Zählvariable allerdings in Zweierschritten inkrementiert wird, wird die Schleife $n$ mal durchlaufen.
+Die innere Schleife wird $n\cdot(n-1)$ mal durchlaufen ($1+3+5+7+\dots+2\cdot n-3+2\cdot n-1=n\cdot(n-1)$.
+Dies ergibt insgesamt eine Laufzeit von $n \cdot n \cdot (n-1) = n^3-n^2 \in \mathcal{O}(n^3)$
+\subsubsection{Aufgabe 3.1.3}
+Die äußere Schleife wird $\sqrt{n}$ mal durchlaufen, da $i^2=n\Rightarrow i=\sqrt{n}$.
+Zeilen 5-7 laufen in $\operatorname{log} n$.
+Das ergibt eine Gesamtlaufzeit in $\mathcal{O}(\sqrt{n}\cdot\operatorname{log} n)$
 \subsection{Übungsaufgabe 3.2}
 \begin{flushright}
 \begin{Large}
@@ -728,6 +735,30 @@ Die Einrückung gibt den Skopus der Schleifenkonstrukte an.) \\
 %---------------%
 %	Aufgabe		%
 %---------------%
+Gegeben sei folgender Algorithmus, der ein Array \textit{A} als Eingabe erwartet (dessen genaue Funktionsweise nachfolgend aber nicht wichtig ist):\\
+\begin{algorithm}[H]
+\caption{FUNC(A)}
+\begin{algorithmic}[1]
+\IF{$A.länge < 4$}
+	\RETURN $4$
+\ELSE
+	\STATE $sum = 0$
+	\FOR{$i=1$ to $A.laenge$}
+		\STATE $sum = sum + A[i]$
+	\ENDFOR
+	\STATE $x = A.laenge/4$
+	\STATE $y = $FUNC($A[x+1..2\cdot x$)
+	\STATE $z = $FUNC($A[3\cdot x+1..A.laenge]$)
+	\STATE $r = y$
+	\FOR{$i=1$ to $A.laenge$}
+		\STATE $r = r + z \cdot A[i]$
+	\ENDFOR
+	\RETURN $sum+r$
+\ENDIF
+\end{algorithmic}
+\end{algorithm}
+Leiten Sie eine Rekurrenzgleichung für die Laufzeit der Methode \textsc{FUNC} in Abhängigkeit von der Arraygröße $n$ von $A$ ab.
+Begründen Sie ihre Gleichung.
 \vspace{1cm}\-\\
 %---------------%
 %	Bearbeitung	%
@@ -758,12 +789,39 @@ Deshalb ist das, was hinter den $A(x)$-Aufrufen steht, $n+n+c$, wobei $c$ in die
 %---------------%
 %	Aufgabe		%
 %---------------%
+Gegeben seien die Folgenden Rekurrenzgleichungen $T_1$, $T_2$ und $T_3$, wobei die $c_i$ und $d_i$ Konstanten seien.
+\[
+\begin{array}{lll}
+	T_1(n) &~~~:=~~~& \begin{cases}
+					\begin{array}{ll}
+						c_1	&	\text{für }n=1\\
+						8\cdot T_1(\frac{n}{2})+d_1\cdot n^3, & \text{sonst}
+					\end{array}
+				\end{cases}
+\\\\
+	T_2(n) &:=& \begin{cases}
+					\begin{array}{ll}
+						c_2	&	\text{für }n=1\\
+						5\cdot T_2(\frac{n}{4})+d_2\cdot n^2, & \text{sonst}
+					\end{array}
+				\end{cases}
+\\\\
+	T_3(n) &:=& \begin{cases}
+					\begin{array}{ll}
+						c_3	&	\text{für }n=1\\
+						6\cdot T_3(\frac{n}{3})+d_3\cdot n\cdot \operatorname{log} n, & \text{sonst}
+					\end{array}
+				\end{cases}
+\end{array}
+\]
+Bestimmen Sie die Größenordnungen der Funktionen $T_i:\mathbb{N}\rightarrow\mathbb{N}$ mittels des Mastertheorems.
+Ist dies nicht möglich, geben Sie an warum.
+Geben Sie Ihre Ergebnisse nachvollziehbar an.
 \vspace{1cm}\-\\
 %---------------%
 %	Bearbeitung	%
 %---------------%
-\begin{enumerate}
-    \item [a)]
+\subsubsection{Aufgabe 3.3.1}
     Die Form\\
     \[
 	S(n) :=  \begin{cases}
@@ -838,7 +896,7 @@ Deshalb ist das, was hinter den $A(x)$-Aufrufen steht, $n+n+c$, wobei $c$ in die
    	    Da nur II. gilt, gilt $T_1(n) \in \Theta (n^{log_b(a)} \cdot log_2(n))$, also $T_1(n) \in \Theta (n^3 \cdot log_2(n))$.
    	\end{enumerate}
    	
-    \item [b)]
+\subsubsection{Aufgabe 3.3.2}
     Die Form\\
     \[
 	S(n) :=  \begin{cases}
@@ -914,7 +972,7 @@ Deshalb ist das, was hinter den $A(x)$-Aufrufen steht, $n+n+c$, wobei $c$ in die
    	    Da nur III. gilt, gilt $T_2(n) \in \Theta (f(n))$, also $T_2(n) \in \Theta (d_2\cdot n^2)$, also $T_2 \in \Theta (n^2)$.
    	\end{enumerate}
    	
-   	\item [c)]
+\subsubsection{Aufgabe 3.3.3}
     Die Form\\
     \[
 	S(n) :=  \begin{cases}
@@ -954,7 +1012,6 @@ Deshalb ist das, was hinter den $A(x)$-Aufrufen steht, $n+n+c$, wobei $c$ in die
    	    Für größere $d_3$ gilt allerdings, dass die $n$ nicht mehr beliebig größer 1 sein dürfen, sondern eine obere Schranke bekommen.\\
    	    Somit hängt die Lösung stark von $d_3$ ab und das Mastertheorem ist ungeeignet für die Lösung dieser Aufgabe.
    	\end{enumerate}
-\end{enumerate}
 
 \subsection{Übungsaufgabe 3.4}
 \begin{flushright}
@@ -965,12 +1022,25 @@ Deshalb ist das, was hinter den $A(x)$-Aufrufen steht, $n+n+c$, wobei $c$ in die
 %---------------%
 %	Aufgabe		%
 %---------------%
+\begin{enumerate}
+\item Geben Sie für die Funktion \textit{merge} in \textit{mergesort} (siehe Folie 9, Kapitel 3) sinnvollen Pseudocode an.
+Orientieren Sie sich dabei an der natürlichsprachlichen Formulierung auf Folie 10, Kapitel 3.
+Ihr Pseudocode sollte diese Formulierung möglichst nah umsetzen.
+Weisen Sie dann Ihren Pseudocode von \textit{merge} als korrekt nach, indem Sie eine sinnvolle Schleifeninvariante formulieren und nutzen.
+Nutzen Sie dies dann, um auch \textit{mergesort} selbst als korrekt nachzuweisen.
+(Siehe auch Folie 11, Kapitel 3.)
+\item Gegeben sei eine Sequenz $A = \langle a_1,a_2,\dots,a_n \rangle$ von Zahlen (als Array).
+Ein Paar $(i,j)$ mit $i<j$, aber $a_i > a_j$ nennen wir einen \textit{Konflikt} (in $A$).
+Gesucht ist nun, gegebendas Array $A$, die Anzahl der Konflikte in $A$.
+Ihre Aufgabe ist es, einen Divide\&Conquer Algorithmus zu entwerfen, der das Problem in $\mathcal{O}(n\cdot\operatorname{log} n)$ löst.
+Beschreiben Sie zunächst Ihre Idee. Geben Sie dann den Algorithmus konkreter an und begründen Sie dann überzeugend, warum Ihr Algorithmus das Problem korrekt löst (sie müssen dazu nicht unbedingt auf die Schleifeninvarianten zurückgreifen).
+Zuletzt begründen Sie auch, warum die Laufzeit ihres Algorithmus tatsächlich in $\mathcal{O}(n\cdot\operatorname{log} n)$ liegt.
+\end{enumerate}
 \vspace{1cm}\-\\
 %---------------%
 %	Bearbeitung	%
 %---------------%
-\begin{enumerate}
-    \item[1.] \phantom{}\hspace{0.00mm}\\
+\subsubsection{Aufgabe 3.4.1}
     \begin{codebox}
 		\Procname{\textsc{merge(A, B)}}
         \li $cur_A = 0$
@@ -1058,8 +1128,7 @@ Deshalb ist das, was hinter den $A(x)$-Aufrufen steht, $n+n+c$, wobei $c$ in die
     Somit wird es bei jedem Rekursionsschritt halb so groß und kommt damit irgendwann bei $x$ Aufrufen von \textsc{mergesort($1$)} an.
     Dieses gilt nach Induktionsanfang.
     
-    \item[2.]
-    \phantom{}\hspace{0.00mm}\\
+\subsubsection{Aufgabe 3.4.2}
 %    Problem:\\
 %    private int 3_4_2(Array A)
 %    {
@@ -1143,9 +1212,7 @@ Deshalb ist das, was hinter den $A(x)$-Aufrufen steht, $n+n+c$, wobei $c$ in die
     \\
     \underline{Zeitaufwand:}\\
     \textsc{mergecount} und \textsc{mergecount-counter} verhalten sich genau, wie \textsc{mergesort} und \textsc{merge}, bis auf eine Erhöhung eines Zählers, was allerdings mit konstantem Zeitaufwand zu bewältigen ist und daher bei der O-Notation nicht ins Gewicht fällt.
-    Somit liegt \textsc{mergecount} - genauso wie \textsc{mergesort} - ebenfalls in $O(n\cdot log(n))$.
-    
-\end{enumerate}
+    Somit liegt \textsc{mergecount} - genauso wie \textsc{mergesort} - ebenfalls in $\mathcal{O}(n\cdot log(n))$.
 
 
 
