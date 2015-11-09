@@ -976,7 +976,7 @@ Deshalb ist das, was hinter den $A(x)$-Aufrufen steht, $n+n+c$, wobei $c$ in die
         \li $cur_A = 0$
 		\li $cur_B = 0$
 		\li $C = newlist$
-		\li \While $cur_A < A.length ~\&\&~ cur_B < B.length$
+		\li \While $cur_A < A.length \And cur_B < B.length$
 		\Indentmore
 		    \li \If $cur_A < A.length$
 		    \Indentmore
@@ -1048,7 +1048,7 @@ Deshalb ist das, was hinter den $A(x)$-Aufrufen steht, $n+n+c$, wobei $c$ in die
     Induktion über die Größe der Eingabeliste:\\
     \\
     Induktionsanfang:\\
-    Hat die Liste die Länge 1, so ist $l = r$. Die Ursprungsliste wird nicht verändert, womit \textsc{mergesort} korrekt ist.\\
+    Hat die Liste die Länge 1, so ist $l = r$. Die Ursprungsliste wird nicht verändert, womit \textsc{mergesort} korrekt ist. Denn einelementige Listen sind immer sortiert.\\
     \\
     Induktionsannahme:\\
     Ist \textsc{mergesort} für die Länge $n \in \mathbb{N}$ wahr, so ist es auch für die Länge $n + 1$ wahr.\\
@@ -1080,7 +1080,70 @@ Deshalb ist das, was hinter den $A(x)$-Aufrufen steht, $n+n+c$, wobei $c$ in die
 %    \\
 %    \\
     Idee:\\
-        
+    Wir nehmen \textsc{mergesort} und jedes mal, wenn wir 2 Elemente tauschen müssen, inkrementieren wir den Zähler um 1.
+    Wenn Die Liste sortiert wurde, dann sollte der Zähler die Anzahl der Konflikte anzeigen.\\
+    \\
+    Pseudocode:\\
+    \begin{codebox}
+		\Procname{\textsc{mergecount(A, l, r)}}
+        \li $Zahler = 0$
+        \li \If $l < r$
+        \Indentmore
+            \li $q = (l * r) / 2$
+            \li \textsc{mergecount(A, l, q)}
+            \li \textsc{mergecount(A, q $+ 1$, r)}
+            \li $B = newArray~(A[l]$ \To $A[q])$
+            \li $C = newArray~(A[q+1]$ \To $A[r])$
+            \li \textsc{mergecount-counter(B, C, Zaehler)}
+            \End
+        \li \Return $Zaehler$
+	\end{codebox}
+	
+    \begin{codebox}
+		\Procname{\textsc{mergecount-counter(A, B, Zaehler)}}
+        \li $C = newArray$
+        \li \While $A.length > 0 \And B.length > 0$
+        \Indentmore
+            \li \If $A[0] > B[0]$
+            \Indentmore
+                \li $C.append(B [0])$
+                \li $B = cdr(B)$
+                \li $Zaehler = Zaehler + A.length$
+                \li \Else
+                \li $C.append(A [0])$
+                \li $A = cdr(A)$
+                \End
+            \End
+        \li \While $A.length > 0$
+        \Indentmore
+            \li $C.append(A [0])$
+            \li $A = cdr(A)$
+            \End
+        \li \While $B.length > 0$
+        \Indentmore
+            \li $C.append(B [0])$
+            \li $B = cdr(B)$
+            \End
+        \li \Return $C, Zaehler$
+	\end{codebox}
+
+    \underline{Korrektheit:}\\
+    Da die Schleifeninvariante nicht unbedingt nötig ist (s. Aufgabenstellung) folgt hier die rein logische Begründung:\\
+    Wir teilen die Liste in der Mitte in 2 gleiche Teile, ohne die Reihenfolge der Elemente zu verändern.
+    Dies tun wir so lange, bis nur noch einelementige Listen da sind.
+    Einelementige Listen sind immer sortiert.
+    Diese Listen werden nun wie folgt zusammengefügt:\\
+    Sollte das kleinste - also erste - Element in der rechten Liste (B) kleiner sein, als das kleinste - also erste - Element in der linken Liste (A), dann steht das Element aus B mit allen Elementen aus A in Konflikt.
+    Wir erhöhen also den Konfliktzähler um die Anzahl der Elemente in Liste A.\\
+    Wenn allerdings das erste Element von A kleiner ist, als das erste Element von B, existiert kein Konflikt und der Zähler bleibt unangetastet.\\
+    Ist eine Liste leer, so sind die restlichen Elemente der anderen Liste nach Vorgehensweise des Verfahrens allesamt größer als das letzte Element der, nun leeren, Liste und sortiert, weswegen sie keine Konflikte mehr vorweisen und direkt an das Ergebnis angehängt werden können.
+    Somit bleibt auch hier der Zähler unangetastet.\\
+    Oben beschriebenes passiert bei jeder Rekursion aufs Neue, weshalb der Zähler kontinuierlich weiterwächst - sofern Konflikte vorhanden.\\
+    Der Algorithmus terminiert zudem immer, da \textsc{mergesort} ebenfalls immer terminiert und sich \textsc{mergecount} nur im Erhöhen des Zählers von \textsc{mergesort} unterscheidet.\\
+    \\
+    \underline{Zeitaufwand:}\\
+    \textsc{mergecount} und \textsc{mergecount-counter} verhalten sich genau, wie \textsc{mergesort} und \textsc{merge}, bis auf eine Erhöhung eines Zählers, was allerdings mit konstantem Zeitaufwand zu bewältigen ist und daher bei der O-Notation nicht ins Gewicht fällt.
+    Somit liegt \textsc{mergecount} - genauso wie \textsc{mergesort} - ebenfalls in $O(n\cdot log(n))$.
     
 \end{enumerate}
 
