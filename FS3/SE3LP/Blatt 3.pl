@@ -16,8 +16,6 @@ directory(10,urlaub,4,date(2008,5,23),date(2008,11,1)).
 directory(11,hochzeit,4,date(2007,12,4),date(2008,1,25)).
 directory(12,scheidung,4,date(2009,9,2),date(2009,11,5)).
 
-directory(100,test,100,date(2015,11,5),date(2015,11,5)).
-
 % file(FileId,DirId,Name,Size,DateCreated,DateModified)
 
 file(1,9,in_the_summertime,56,date(2007,5,2),date(2009,11,5)).
