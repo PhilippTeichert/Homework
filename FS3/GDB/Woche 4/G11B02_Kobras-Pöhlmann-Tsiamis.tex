@@ -1,0 +1,71 @@
+\documentclass[ngerman]{gdb-aufgabenblatt}
+
+
+\renewcommand{\Aufgabenblatt}{2}
+\renewcommand{\Ausgabedatum}{Mi. 28.10.2015}
+\renewcommand{\Abgabedatum}{Fr. 13.11.2015}
+\renewcommand{\Gruppe}{Kobras, Pöhlmann, Tsiamis}
+\renewcommand{\STiNEGruppe}{11}
+
+
+\begin{document}
+\section{Informationsmodellierung mit dem Entity-Relationship-Modell}
+\subsection{Teilaufgabe a}
+Für das ER-Diagramm zu dieser Aufgabe siehe Anhang A.
+\subsection{Teilaufgabe b}
+\begin{enumerate}
+	\item Jeder Fahrer ist pro Zeitpunkt in genau einem Team.
+	\item Jeder Funktionär leitet pro Zeitpunkt genau ein Team.
+\end{enumerate}
+\section{Informationsmodellierung}
+\subsection{Teilaufgabe a}
+Ein Fahrzeug ist eindeutig identifizierbar über seine KFZ-Kennung und hat einen Fahrzeugtyp.
+Ein Fahrzeug ist auf eine Person gemeldet.
+Eine Person kann beliebig viele Fahrzeuge anmelden.
+Eine Person ist über eine eindeutige Sozialversicherungsnummer identifizierbar und hat einen Namen.
+\subsection{Teilaufgabe b}
+Eine Vorlesung hat eine eindeutige Vorlesungsnummer und einen Namen.
+Bis zu fünf Nachfolger bauen auf einer Vorlesung auf.
+Eine Vorlesung baut auf beliebig vielen Vorgängern auf.
+\subsection{Teilaufgabe c}
+Eine Person hat einen eindeutigen Namen bestehend aus Vor- und Nachname sowie eine Adresse.
+Ein Mann ist eine Person und hat Schuhe.
+Eine Frau ist eine Person und hat mehrere Schuhe.
+\subsection{Teilaufgabe d}
+Eine Superkraft hat eine Beschreibung und eine eindeutige Bezeichnung.
+Eine Superkraft kann von beliebig vielen Superhelden mit unterschiedlichen Einschränkungen genutzt werden.
+Ein Superheld kann mehrere unterschiedlich stark begrenzte Superkräfte haben.
+Ein Superheld hat einen Namen und ein Einsatzgebiet sowie eine eindeutige Heldennummer.
+\subsection{Teilaufgabe e}
+
+\section{Schlüsselkandidaten}
+\subsection{Teilaufgabe a}
+\subsubsection*{Eindeutige Felder}
+\begin{enumerate}
+	\item \textit{Postleitzahl} ist im gegebenen Datensatz eindeutig.
+	\item \textit{Telefonnummer} ist im gegebenen Datensatz eindeutig.
+\end{enumerate}
+\subsubsection*{Eindeutige Feldkombinationen}
+\begin{enumerate}
+	\item \textit{Geburtsdatum-Telefonnr.} ist in diesem Kontext eine eindeutige Kombination, da kein Tupel doppelt vorkommt und es, abgesehen von Zwillingen, unwahrscheinlich, wenn nicht unmöglich, ist, dass zwei Personen sowohl am gleichen Tag geboren wurden als auch die gleiche Telefonnummer besitzen.
+	\item \textit{Nachname-1.Fach} ist eine Alternative zur in 1 genannten Kombination, allerdings eher störanfällig, da es - wenn auch selten - vorkommen kann, dass zwei Personen mit gleichem Nachnamen die selbe Kombination an Fächern belegen.
+\end{enumerate}
+\subsubsection*{Warum \textit{Vorname-Hausnr}}
+Die beiden Fridas wohnen zwar in unterschiedlichen Straßen, besitzen jedoch die gleiche Hausnummer, und würden folglich fälschlicherweise als gleich erkannt werden.
+\subsection{Teilaufgabe b}
+Da die Ziffern- Adressen- und Namensmengen begrenzt sind, ist es unvermeidbar, dass es zu Doppelungen kommt, zum Beispiel beim Namen.
+Auch wenn Telefonnummern und Adressen zumindest teilweise unterschiedlich sind (Vorwahl/andere Stadt), so werden sie sich doch soweit annähren, dass eine Verwechslung wahrscheinlich wird.
+Bei Zwillingen zum Beispiel ist alles bis auf den Vornamen identisch.
+Bei Nachbarn ist alles bis auf Vor- und Nachnamen und Telefonnummer identisch.
+Gleiche Vornamen oder Namenskombinationen sind möglich und je nach Name recht wahrscheinlich.\\
+Eine Lösungsmöglichkeit ist die Einführung einer fortlaufend vergebenen Identifikationsnummer.
+Die Nummer kann derart zusammengesetzt werden, dass sie eine Kombination aus einer Zahl, die die Universität/Hochschule repräsentiert, dem Immatrikulationsjahr sowie einer fortlaufend vergebenen Nummer ist.
+Diese kann derart vergeben werden, dass jeder Studierende genau dann eine Nummer erhält, wenn seine Applikation akzeptiert wurde.
+Durch ein Anpassen des Annahmeverfahrens lässt sich gewährleisten, dass eine Nummer nicht doppelt vergeben wird, wenn zwei Studenten zeitgleich akzeptiert werden.
+Da Personenverzeichnisse auch Matrikel genannt werden, kann man diese Identifikationsnummer als 'Matrikelnummer' bezeichnen.
+
+
+
+
+
+\end{document}
