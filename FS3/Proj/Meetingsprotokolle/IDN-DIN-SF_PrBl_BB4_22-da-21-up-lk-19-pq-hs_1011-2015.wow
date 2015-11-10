@@ -1,18 +1,57 @@
-Beginn:		18.
-Anwesend:	Louis, 
-Beschlussfähig:
+Beginn:		18.00
+Anwesend:	Louis, Dennis, Hauke, Philipp, Utz
+Beschlussfähig: Ja
 Protokoll:	Louis
 Vorsitz:	Louis
 
 TOP 1: Klärung der Rahmenbedingungen
-
+	Teilprojekt:
+		Reine Software
+		Software-Aufbau und Organisation
 TOP 2: Entwerfen eines PSP nach unserem Projektauftrag
 	define PSP: vgl. VL. Präs. W4. S.39
-	
+	Zerlegung des Projektziels:
+		Hardware:
+			Wir suchen uns einen Beacon aus
+			'Einkaufszettel rüberschicken
+		Software:
+			Backend
+			Mobile Oberfläche
+			Servereinrichtung
+			Schnittstellen
+			Phasen:
+				Initiierung:
+					Systemintegration planen
+					Verschiedene OSs abdecken
+					Verschiedene Plattformen abdecken
+					Kunden-, Betreiber- und Ladenführeransicht
+						Definition des Funktionsumfangs der Oberflächen
+					Koordination mit ÖPNV
+					Definition und Beschaffung einzubindender Daten
+				Entwurf:
+					Entwurf Oberfläche (Design)
+					Entwurf Backendsystem
+					Serverarchitektur
+				Implementierung:
+					Implentierung Oberfläche (Design und Funktion)
+					Implementierung Backendsystem
+					Implementierung Serverarchitektur
+			Fachlich:
+				Kundeninterface:
+					ÖPNV-Informationen
+					Gepäck-Verfolgung
+					Fluginformationen (Arrival/Departure/Delay)
+					Anfahrt
+					Lageplan
+				Ladenführer:
+					Werbeinterface
+				Admin:
+					Zugang zu Notrufding
+					Verwaltungsinterface
 TOP 3: Vorbereitung Kurzvortrag
+	Protokoll per Rundmail um ca. 19.00
 	Abgabe der persönlichen Notizen nach bekannter Norm an 4kobras@inf...
 		Erinnerung: Deadline Mi. 11.11. 22.00 Uhr
-		
 TOP 4: Sonstiges
-
-Ende:	
+	NULL
+Ende:	18.47
