@@ -9,139 +9,57 @@
 
 
 \begin{document}
+\section{Informationsmodellierung mit dem Entity-Relationship-Modell}
+\subsection{Teilaufgabe a}
+Für das ER-Diagramm zu dieser Aufgabe siehe Anhang A.
+\subsection{Teilaufgabe b}
 
+\section{Informationsmodellierung}
+\subsection{Teilaufgabe a}
+Ein Fahrzeug ist eindeutig identifizierbar über seine KFZ-Kennung und hat einen Fahrzeugtyp.
+Ein Fahrzeug ist auf eine Person gemeldet.
+Eine Person kann beliebig viele Fahrzeuge anmelden.
+Eine Person ist über eine eindeutige Sozialversicherungsnummer identifizierbar und hat einen Namen.
+\subsection{Teilaufgabe b}
+Eine Vorlesung hat eine eindeutige Vorlesungsnummer und einen Namen.
+Bis zu fünf Nachfolger bauen auf einer Vorlesung auf.
+Eine Vorlesung baut auf beliebig vielen Vorgängern auf.
+\subsection{Teilaufgabe c}
+Eine Person hat einen eindeutigen Namen bestehend aus Vor- und Nachname sowie eine Adresse.
+Ein Mann ist eine Person und hat Schuhe.
+Eine Frau ist eine Person und hat mehrere Schuhe.
+\subsection{Teilaufgabe d}
+Eine Superkraft hat eine Beschreibung und eine eindeutige Bezeichnung.
+Eine Superkraft kann von beliebig vielen Superhelden mit unterschiedlichen Einschränkungen genutzt werden.
+Ein Superheld kann mehrere unterschiedlich stark begrenzte Superkräfte haben.
+Ein Superheld hat einen Namen und ein Einsatzgebiet sowie eine eindeutige Heldennummer.
+\subsection{Teilaufgabe e}
 
-\section{Beispiel für ER-Diagramm}
-
-\begin{center}
-\begin{tikzpicture}
-
-\node[entity] (e1) {E1};
-\node[attribut] (e1-a1) [above left =5mm and 4mm of e1.north] {\underline{A1}} edge (e1);
-\node[attribut] (e1-a2)  [above right=5mm and 4mm of e1.north] {A2} edge (e1);
-\node[multivalentattribut] (e1-a3)  [right=5mm of e1] {A3} edge (e1);
-
-\node[entity] (e2) [below left =1cm and 1mm of e1.south] {E1} edge [erbt] (e1);
-\node[entity] (e3)      [below right=1cm and 1mm of e1.south] {E3} edge [erbt] (e1);
-\node[entity] (e4) [right =7cm of e3] {E4};
-
-\node[weakentity] (e5) [below =3cm of e3] {E5};
-\node[attribut] (e5-a1)  [right=5mm of e5] {\dashuline{A1}} edge (e5);
-
-\node[relationship] (r1) [right=2cm of e3] {R1};
-\path (r1) edge node[at end,anchor=north west] {$[0;2]$} (e3);
-\path (r1) edge node[at end,anchor=north east] {$[7;9]$} (e4);
-
-
-\node[weakrelationship] (r2) [below=1cm of e3] {R2};
-\path (r2) edge node[at end,anchor=north west] {$1$} (e3);
-\draw[double distance=2pt] (r2) -- node[at end,anchor=south east] {$8$} (e5);
-
-
-
-\end{tikzpicture}
-\end{center}
-
-
-
-
-
-
-\section{Beispiel für relationales Datenbankschema}
-
-\begin{RMSchma}
-Person(\soliduline{PID}, Name, Vorname, \dashuline{(HaustierName, HaustierRasse) $\rightarrow$ (Haustier.Name, Haustier.Rasse)})
-
-Haustier(\soliduline{Name, Rasse}, \dashuline{Herrchen $\rightarrow$ Person.PID})
-\end{RMSchma}
-
-
-
-
-
-
-\section{Beispiel für Ausdruck der Relationenalgebra}
-
-\begin{align*}
- &\umbenennung{Rasse}{Sorte}(\projektion{Rasse, Geschlecht}((Wolf\verbund{Wolf.WID=Haustier.HID} (\selektion{Name=\wert{Hasso}}Haustiere)) \natverbund Person))
-\\  &=\{ \wert{Steppenwolf}, \wert{m} \}
-\end{align*}
-
-
-
-
-\newpage
-\section{Beispiel für SQL-Anfrage}
-
-\begin{verbatim}
-SELECT 
-  h.Name,
-  h.Rasse
-FROM 
-  Haustier h,
-  Person p
-WHERE
-  h.Herrchen = p.PID AND
-  p.Vorname LIKE "P%"
-\end{verbatim}
-
-
-
-
-
-
-
-
-\section{Beispiel für Operatorbaum}
-
-\begin{tikzpicture}
-\node (Haustier) {Haustier};
-\node (Wolf) [left=25mm of Haustier] {Wolf};
-\node (join1) [above=20mm of $(Haustier)!.5!(Wolf)$] {$\verbund{Wolf.WID=Haustier.HID}$};
-\node (selektion1) [above=of join1] {$\selektion{Name=\wert{Hasso}}$};
-\node (projektion) [above=of selektion1] {$\projektion{Rasse}$};
-\node (final) [above=of projektion] {};
-
-\path (Haustier) edge node[smallr,near start,above right] {?? Tupel\\?? Attribute} (join1);
-\path (Wolf) edge node[smalll,near start,above left] {?? Tupel\\?? Attribute} (join1);
-\path (join1) edge node[smallr,near start,above left] {?? Tupel\\?? Attribute} (selektion1);
-\path (selektion1) edge node[smallr,midway,left] {$??\cdot\frac{??}{??}=??$ Tupel\\?? Attribute} (projektion);
-\path (projektion) edge node[smallr,midway,left] {$??$ Tupel\\1 Attribut} (final);
-\end{tikzpicture}
-
-
-
-
-
-
-
-\section{Beispiel für Tabelle mit Sperranforderungen}
-
-\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|p{1cm}|p{1cm}|p{3cm}|}
-\hline
-Zeitschritt & T\ts{1} & T\ts{2} & T\ts{3} & x & y & z & Bemerkung\\
-\hline
-\hline
-0 &  &  &  & NL & NL & NL & \\
-\hline
-1 & lock(x,X) &  &  & X\ts{1} & NL & NL & \\
-\hline
-2 & write(x) & lock(y,R) &  & X\ts{1} & R\ts{2} & NL & \\
-\hline
-3 &  &  &  &  &  &  & \\
-\hline
-4 &  &  &  &  &  &  & \\
-\hline
-5 &  &  &  &  &  &  & \\
-\hline
-\end{tabular}
-
-
-
-\section{*Thema*}
-
-*Lösung*
-
+\section{Schlüsselkandidaten}
+\subsection{Teilaufgabe a}
+\subsubsection*{Eindeutige Felder}
+\begin{enumerate}
+	\item \textit{Postleitzahl} ist im gegebenen Datensatz eindeutig.
+	\item \textit{Telefonnummer} ist im gegebenen Datensatz eindeutig.
+\end{enumerate}
+\subsubsection*{Eindeutige Feldkombinationen}
+\begin{enumerate}
+	\item \textit{Geburtsdatum-Telefonnr.} ist in diesem Kontext eine eindeutige Kombination, da kein Tupel doppelt vorkommt und es, abgesehen von Zwillingen, unwahrscheinlich, wenn nicht unmöglich, ist, dass zwei Personen sowohl am gleichen Tag geboren wurden als auch die gleiche Telefonnummer besitzen.
+	\item \textit{Nachname-1.Fach} ist eine Alternative zur in 1 genannten Kombination, allerdings eher störanfällig, da es - wenn auch selten - vorkommen kann, dass zwei Personen mit gleichem Nachnamen die selbe Kombination an Fächern belegen.
+\end{enumerate}
+\subsubsection*{Warum \textit{Vorname-Hausnr}}
+Die beiden Fridas wohnen zwar in unterschiedlichen Straßen, besitzen jedoch die gleiche Hausnummer, und würden folglich fälschlicherweise als gleich erkannt werden.
+\subsection{Teilaufgabe b}
+Da die Ziffern- Adressen- und Namensmengen begrenzt sind, ist es unvermeidbar, dass es zu Doppelungen kommt, zum Beispiel beim Namen.
+Auch wenn Telefonnummern und Adressen zumindest teilweise unterschiedlich sind (Vorwahl/andere Stadt), so werden sie sich doch soweit annähren, dass eine Verwechslung wahrscheinlich wird.
+Bei Zwillingen zum Beispiel ist alles bis auf den Vornamen identisch.
+Bei Nachbarn ist alles bis auf Vor- und Nachnamen und Telefonnummer identisch.
+Gleiche Vornamen oder Namenskombinationen sind möglich und je nach Name recht wahrscheinlich.\\
+Eine Lösungsmöglichkeit ist die Einführung einer fortlaufend vergebenen Identifikationsnummer.
+Die Nummer kann derart zusammengesetzt werden, dass sie eine Kombination aus einer Zahl, die die Universität/Hochschule repräsentiert, dem Immatrikulationsjahr sowie einer fortlaufend vergebenen Nummer ist.
+Diese kann derart vergeben werden, dass jeder Studierende genau dann eine Nummer erhält, wenn seine Applikation akzeptiert wurde.
+Durch ein Anpassen des Annahmeverfahrens lässt sich gewährleisten, dass eine Nummer nicht doppelt vergeben wird, wenn zwei Studenten zeitgleich akzeptiert werden.
+Da Personenverzeichnisse auch Matrikel genannt werden, kann man diese Identifikationsnummer als 'Matrikelnummer' bezeichnen.
 
 
 
