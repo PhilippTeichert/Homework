@@ -52,7 +52,6 @@ neuereigentuemer(Eigentuemer, Strasse, Hausnummer) :-
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% a)
 :- dynamic vorbesitzerAll/3.
 
 % vorbesitzerAll(?ObjektID, ?Besitzer, ?Vorbesitzer)
@@ -60,12 +59,12 @@ neuereigentuemer(Eigentuemer, Strasse, Hausnummer) :-
 % so dass 'Vorbesitzer' der Vorbesitzer vor 'Besitzer' vom Haus 'ObjektID' war.
 
 vorbesitzerAll(ObjektID, Besitzer, Vorbesitzer) :-
-    findall(Vorbesitzer, bew(_, ObjektID, Vorbesitzer, Besitzer, _, _),
-        vorbesitzerAll(ObjektID, Vorbesitzer, Vorvorbesitzer), VorbesitzerListe).
+    bew(_, ObjektID, Vorbesitzer, Besitzer, _, _).
+	
+vorbesitzerAll(ObjektID, Besitzer, Vorbesitzer) :-
+    vorbesitzerAll(ObjektID, Vorbesitzer, Vorvorbesitzer).
 
 
-
-% b)
 :- dynamic vorbesitzer/3.
 
 % vorbesitzer(?ObjektID, ?Besitzer, ?Vorbesitzer)
@@ -81,10 +80,12 @@ vorbesitzer(ObjektID, Besitzer, Vorbesitzer) :-
         
         
         
-        
+	% Testzeile zum Input in die Konsole
     %vorbesitzer(7, Besitzer, Vorbesitzer).
         
-        
+% vorbesitzer1(?ObjektID, ?Besitzer, ?Vorbesitzer)
+% 'ObjektID' (Objektnummer), 'Besitzer' und 'Vorbesitzer' sind Argumentpositionen,
+% so dass 'Vorbesitzer' der Vorbesitzer vor 'Besitzer' vom Haus 'ObjektID' war.
         
 :- dynamic vorbesitzer1/3.   
 vorbesitzer1(ObjektID, Besitzer, Vorbesitzer) :-   
@@ -92,8 +93,8 @@ vorbesitzer1(ObjektID, Besitzer, Vorbesitzer) :-
     vorbesitzer1_rek(ObjektID, Vorbesitzer, Datum).
     
 vorbesitzer1_rek(ObjektID, Besitzer, Datum) :-
-    bew(_, ObjektID, Vorbesitzer, Besitzer, _, Datum2), Datum2 > Datum%,
-    %vorbesitzer1_rek(ObjektID, Vorbesitzer, Datum2)
+    bew(_, ObjektID, Vorbesitzer, Besitzer, _, Datum2), Datum2 > Datum,
+    vorbesitzer1_rek(ObjektID, Vorbesitzer, Datum2)
     .
         
         
