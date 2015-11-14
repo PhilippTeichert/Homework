@@ -341,8 +341,8 @@ ist_betroffen_von2(Ort1, Ort2) :-
         (Fluss_oder_kanal = elbe_havel_kanal;
         Fluss_oder_kanal = oder_havel_kanal;
         Fluss_oder_kanal = oder_spree_kanal)),
-        stromaufwaerts(_ , Ort2, Ort1, _),
-        1=0).
+        1=0,
+        stromaufwaerts(_ , Ort2, Ort1, _)).
 
 ist_betroffen_von2(Ort1, Ort2) :-
     ist_betroffen_von(Ort1, Ort3),
