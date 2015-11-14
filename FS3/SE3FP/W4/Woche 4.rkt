@@ -44,8 +44,8 @@ eq? Identität
 Aufgabe 2
 
 1.
-<Notruf> ::= <Überschrift> <Standortangabe> <Notfallart> <Zusatzinformationen> <Peilphrase>
-             <Peilzeichen> <Peilzeichen> <Unterschrift> OVER
+<Notruf> ::= <Überschrift> <Standortangabe> <Notfallart> <Zusatzinformationen> <Peilung>
+             <Unterschrift> OVER
 <Überschrift> ::= <Notzeichen> <Notzeichen> <Notzeichen> "HIER IST" <Schiffsname>
                   <Schiffsname> <Schiffsname> <Rufzeichen buchstabiert> <Notzeichen> <Schiffsname>
                   <Schiffsname buchstabiert> <Rufzeichen buchstabiert>
@@ -67,6 +67,7 @@ Aufgabe 2
 <Ziffer> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
 <Notfallart> ::= {<Buchstabe>|<Ziffer>}
 <Zusatzinformationen> ::= {<Buchstabe>|<Ziffer>}
+<Peilung> ::= <Peilphrase> <Peilzeichen> <Peilzeichen>
 <Peilphrase> ::= "ICH SENDE DEN TRAEGER"
 <Peilzeichen> ::= "-"
 <Unterschrift> ::= <Schiffsname> <Rufzeichen buchstabiert>
