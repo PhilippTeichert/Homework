@@ -276,7 +276,7 @@ ist_erreichbar_von(Ort1, Ort2) :-
 % unnötige Kanäle für diese Repräsentation
 % kanal(elbe, muendung_moldau, moldau, muendung_moldau, 10). %Moldaukanal
 % kanal(elbe, muendung_saale, saale, muendung_saale, 15). %Saalekanal
-% kanal(elbe, oder, ). %Donau-Oder-Elbe-Kanal
+% kanal(elbe, muendung_oder, oder, muendung_oder, 20). %Donau-Oder-Elbe-Kanal
 
 % sinnvolle Kanäle für diese Repräsentation
 kanal(elbe, magdeburg, havel, brandenburg, 55). %Elbe-Havel-Kanal
