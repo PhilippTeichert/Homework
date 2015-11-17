@@ -22,29 +22,68 @@ TOP 1: Besprechung der Kritik zur letzten Abgabe
 			Fluginformationen
 			Wegweiser
 			ÖNVP-Informationen
-			
+			Anfahrt
+			Eintragemöglichkeit (Laden)
+			Notfallsignalgeber (Admin)
+			Hotfix-Access (Admin)
 		Rollen:
 			wird interpretiert als semantische Sortierung von Funktionen
 			
 
 TOP 2: Aufwandsschätzung
 	SCRUM-Schätzpoker mit relativen Werten
-		
+		ÖPNV				:	KatzenSchafKuh
+			Informationen	:	Maus
+			Interface		:	Quokka
+			Impl			:	KatzenSchafKuh
+		Gepäckverfolgung	:	KatzenSchafKuh
+			Informationen	:	KatzenSchafKuh
+			Interface		:	Quokka
+			Impl			:	KatzenSchafKuh
+		Fluginformationen	:	Quokka
+			Informationen	:	Maus
+			Interface		:	Quokka
+			Impl			:	Quokka
+		Anfahrt				:	Quokka
+			Informationen	:	Maus
+			Interface		:	Quokka
+			Impl			:	Maus
+		Lageplan			:	KatzenSchafKuh
+			Informationen	:	Maus
+			Interface		:	Quokka
+			Impl			:	KatzenSchafKuh
+		Werbeinterface		:	Elephant
+			Informationen	:	NULL
+			Interface		:	Quokka
+			Impl			:	Elephant
+		Notfallsignalgeber	:	Quokka
+			Informationen	:	NULL
+			Interface		:	Quokka
+			Impl			:	Quokka
+		Verwaltungsinterface:	KatzenSchafKuh
+			Informationen	:	NULL
+			Interface		:	Quokka
+			Impl			:	KatzenSchafKuh
 	Begründung
 		Kennen wir
 		können wir
 		machen wir
+		keine Anhaltspunkte für absolute Berechnung
 	Erklärung
-		Lockere Werteskala 1,2,3,5,8,13,20
-		"Leicht zu sagen A größer B, schwer zu sagen A um 1,2452 Messeinheiten größer als B."
+		Lockere Werteskala: Maus < Quokka < KatzenSchafKuh < Elephant < Blauwal
+		"Leicht zu sagen A größer B, schwer zu sagen A um 3,14159 Messeinheiten größer als B."
 
 TOP 3: Änderungen am PSP
-	QA- und PM-Einflüsse
+	scheinbar erforderlich, jedoch keine bewusst
+	Wir wissen nicht, was genau wir da ändern soll
+		Zu unkonkrete Konkretisierungen
 
 TOP 4: Vorbereitung des Kurzvortrages
-	Abgabe von Ergänzungem nach bekanntem Verfahren
+	Abgabe von Ergänzungen nach bekanntem Verfahren
 
 TOP 5: Sonstiges
 	Louis nimmt an den folgenden beiden Sitzungen (24.11. und 01.12.) nicht teil
+	Vorsitz der nächsten beiden Termine an Utz
+	Protokoll an Hauke
 	
-Ende:	
+Ende:	20.29
