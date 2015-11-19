@@ -1242,14 +1242,14 @@ Dies wird rekursiv fortgeführt, bis eine Ebene erreicht wurde, auf der die Grö
 Da bereits zu Beginn geprüft wird, ob ein einzelnes Element größer als die Kapazität ist, ist gewährleistet, dass bei rekursiven Aufruf der Algorithmus spätestens dann terminiert, wenn jede Teilmenge genau die Mächtigkeit 1 hat.
 Ist ein einzelnes Element von U bereits größer als K, so ist das Problem nicht lösbar und der Algorithmus terminiert, \texttt{false} zurückgebend.
 Durch die jeweilige Halbierung wird die Funktion höchstens $\operatorname{log} n$ mal rekursiv aufgerufen.
-$sum(s)$ und $max(s)$ haben jeweils eine lineare Laufzeit von $n$.
-Damit werden insgesamt $2\cdot n\cdot\operatorname{log}n$ Schritte zur vollständigen Berechnung benötigt, die obere Schranke liegt also in $\mathcal{O}(n\cdot\operatorname{log}n)$.
+$sum(s)$ und $max(s)$ haben jeweils eine lineare Laufzeit aus $\mathcal{O}(n)$.
+Damit werden insgesamt $a\cdot b\cdot n\cdot\operatorname{log}n + f(n) + g(n)$\footnote{$a, b, f(n), g(n)$ sind Faktoren bzw. Konstanten, die in $sum(s)$ und $max(s)$ entstehen können, allerdings vernachlässigbar sind} Schritte zur vollständigen Berechnung benötigt, die obere Schranke liegt also in $\mathcal{O}(n\cdot\operatorname{log}n)$.
 Dies ist nicht polynomiell und liegt somit in \textit{NP}.
 %---------------%
 %	Aufgabe		%
 %---------------%
 \subsubsection{Aufgabe 4.1.2}
-\textbf{Eingabe:} Ein endliches Alphabet $\Sigma$, eine endliche Menge $S \subset \Sigma*$ von Worten und eine Zahl $n\in\mathbb{N}$.
+\textbf{Eingabe:} Ein endliches Alphabet $\Sigma$, eine endliche Menge $S \subset \Sigma*$ von Worten und eine Zahl $n\in\mathbb{N}$.\\
 \textbf{Frage:} Gibt es ei Wort $w \in \Sigma*$ mit $|w|\geq n$ derart, dass $w$ ein Teilwort von jedem $x \in S$ ist?
 \vspace{1cm}\-\\
 %---------------%
