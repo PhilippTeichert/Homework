@@ -1135,25 +1135,6 @@ Zuletzt begründen Sie auch, warum die Laufzeit ihres Algorithmus tatsächlich i
     Dieses gilt nach Induktionsanfang.
     
 \subsubsection{Aufgabe 3.4.2}
-%    Problem:\\
-%    private int 3_4_2(Array A)
-%    {
-%        int Zaehler = 0;
-%        int laenge = A.length();
-%        for (int i = 0; i < laenge; i++)
-%        {
-%            for (int j = i; j < laenge; j++)
-%            {
-%                if(A[i] > A[j])
-%                {
-%                    Zaehler++;
-%                }
-%            }
-%        }
-%        return Zaehler;
-%    }
-%    \\
-%    \\
     Idee:\\
     Wir nehmen \textsc{mergesort} und jedes mal, wenn wir 2 Elemente tauschen müssen, inkrementieren wir den Zähler um 1.
     Wenn Die Liste sortiert wurde, dann sollte der Zähler die Anzahl der Konflikte anzeigen.\\
@@ -1241,7 +1222,29 @@ Zuletzt begründen Sie auch, warum die Laufzeit ihres Algorithmus tatsächlich i
 %---------------%
 %	Bearbeitung	%
 %---------------%
-
+Es kann eine Variante des Binary Sort Algorithmus angewandt werden:
+	\begin{codebox}
+		\Procname{\textsc{Partition(Set s, int c)}}
+        \li \If $sum(s) < c$
+        \Indentmore
+        	\li \Return \texttt{true}
+        \li \ElseIf $max(s) > c$
+       	\Indentmore
+       		\li \Return \texttt{false}
+        \li \Else
+        	\li $Partition(s[0;(s.size/2)], c)$
+   		   	\li $Partition(s[(s.size/2);s.size], c)$
+	\end{codebox}
+\-\\
+Ist die gesamte Größe von $s$ bereits kleiner gleich $K$, kann der Algorithmus sofort terminieren und \texttt{true} zurückgeben.
+Andernfalls wird U halbiert und für die Teilmengen wird erneut geprüft.
+Dies wird rekursiv fortgeführt, bis eine Ebene erreicht wurde, auf der die Größe aller Teilmengen kleiner gleich $K$ ist.
+Da bereits zu Beginn geprüft wird, ob ein einzelnes Element größer als die Kapazität ist, ist gewährleistet, dass bei rekursiven Aufruf der Algorithmus spätestens dann terminiert, wenn jede Teilmenge genau die Mächtigkeit 1 hat.
+Ist ein einzelnes Element von U bereits größer als K, so ist das Problem nicht lösbar und der Algorithmus terminiert, \texttt{false} zurückgebend.
+Durch die jeweilige Halbierung wird die Funktion höchstens $\operatorname{log} n$ mal rekursiv aufgerufen.
+$sum(s)$ und $max(s)$ haben jeweils eine lineare Laufzeit von $n$.
+Damit werden insgesamt $2\cdot n\cdot\operatorname{log}n$ Schritte zur vollständigen Berechnung benötigt, die obere Schranke liegt also in $\mathcal{O}(n\cdot\operatorname{log}n)$.
+Dies ist nicht polynomiell und liegt somit in \textit{NP}.
 %---------------%
 %	Aufgabe		%
 %---------------%
@@ -1252,6 +1255,12 @@ Zuletzt begründen Sie auch, warum die Laufzeit ihres Algorithmus tatsächlich i
 %---------------%
 %	Bearbeitung	%
 %---------------%
+Es wird das kürzeste Wort $x \in S$ gewählt (Laufzeit $\mathcal{O}(S.length)$).
+Nun wird ein Teilwort mit der Länge $n$ aus $x$ gewählt und geprüft, ob es in allen anderen Wörtern aus $S$ auch existiert (Laufzeit $\mathcal{O}(S.length)$).
+Ist dies der Fall, wird \texttt{true} ausgegeben, sonst wird das nächste Teilwort aus $x$ mit der Länge $n$ gewählt (Laufzeit $\mathcal{O}(k); k \in \mathbb{N}$).
+Wurde erfolglos über $x$ iteriert, bricht der Algorithmus ab und gibt \texttt{false} zurück.
+Die Laufzeit ist konstant in $\mathcal{O}(a); a \in \mathbb{N}$.\\
+Die Gesamtlaufzeit liegt damit bei $\mathcal{O}(a+k+(2 \cdot S.length))$.
 
 %---------------%
 %	Aufgabe		%
@@ -1311,7 +1320,9 @@ Zeigen Sie, dass \texttt{2-SAT} \textit{NP}-vollständig ist.
 %---------------%
 %	Bearbeitung	%
 %---------------%
-
+\texttt{2-SAT} kann nur Implikationen der Form $a \Rightarrow b$ ausdrücken.
+Ebenso kann jedweder zweistellige Ausdruck (Beispiel: $a \lor b$ wird zu $\lnot a \Rightarrow b \land \lnot b \Rightarrow a$) als Paar von Implikationen dargestellt werden.
+Wenn also $a$ wahr ist, muss auch 
 
 %---------------%
 %	Aufgabe		%
