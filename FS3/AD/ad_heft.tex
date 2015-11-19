@@ -53,50 +53,56 @@
 \thispagestyle{empty}
 \-\vspace{2cm}
 \begin{center}
-\begin{Huge}
-Algorithmen und Datenstrukturen
-\end{Huge}\\
-\vspace{2cm}
-\begin{LARGE}
-Übungsgruppe 14
-\end{LARGE}\\
-\vspace{2cm}
-\begin{Large}
-Utz Pöhlmann
-\end{Large}\\
-4poehlma@informatik.uni-hamburg.de\\
-6663579\\
-\vspace{1cm}
-\begin{Large}
-Louis Kobras
-\end{Large}\\
-4kobras@informatik.uni-hamburg.de\\
-6658699\\
-\vspace{1cm}
-\begin{Large}
-Paul Testa
-\end{Large}\\
-paul.testa@gmx.de\\
-6251548\\
-\vspace{2.5cm}
-\today\\
-\vspace{2.5cm}
-\textbf{Punkte für den Hausaufgabenteil:}\\
-\vspace{1cm}
-\begin{tabular}{c|c|c|c|c}
-~3.1~&~3.2~&~3.3~&~3.4~&$\Sigma$	\\	\hline
-&&&&
-
-\end{tabular}
+	\begin{Huge}
+		Algorithmen und Datenstrukturen
+	\end{Huge}\\
+	\vspace{2cm}
+	\begin{LARGE}
+		Übungsgruppe 14
+	\end{LARGE}\\
+	\vspace{2cm}
+	\begin{Large}
+		Utz Pöhlmann
+	\end{Large}\\
+	4poehlma@informatik.uni-hamburg.de\\
+	6663579\\
+	\vspace{1cm}
+	\begin{Large}
+		Louis Kobras
+	\end{Large}\\
+	4kobras@informatik.uni-hamburg.de\\
+	6658699\\
+	\vspace{1cm}
+	\begin{Large}
+		Rene Ogniwek
+	\end{Large}\\
+	reneogniwek@gmx.net\\
+	6428103\\
+	\vspace{1cm}
+	\begin{Large}
+		Steffi Kaussow
+	\end{Large}\\
+	s.kaussow@gmail.com\\
+	6414862\\
+	\vspace{2cm}
+	\today\\
+	\vspace{2cm}
+	\textbf{Punkte für den Hausaufgabenteil:}\\
+	\vspace{1cm}
+	\begin{tabular}{c|c|c|c}
+	~4.1~&~4.2~&~4.3~&~$\Sigma$~	\\	\hline
+		 &	   &	 &
+	\end{tabular}
 \end{center}
 \newpage
 %#+-------------------------------------------------+#%
-%#+						INAHLT  			     +#%
+%#+						INHALT  			     	+#%
 %#+-------------------------------------------------+#%
+\thispagestyle{empty}
 \tableofcontents
 \newpage
 %#+-------------------------------------------------+#%
-%#+						ZETTEL 0			     +#%
+%#+						ZETTEL 1					+#%
 %#+-------------------------------------------------+#%
 \pagenumbering{arabic}
 \section{Zettel vom 14.-16. Oktober -- Abgabe: N/A}
@@ -221,7 +227,7 @@ $\square$
 \end{flushright}
 \newpage
 %#+-------------------------------------------------+#%
-%#+						ZETTEL 1					+#%
+%#+						ZETTEL 2					+#%
 %#+-------------------------------------------------+#%
 \section{Zettel vom 15.10. -- Abgabe: 26.10.}
 \subsection{Übungsaufgabe 2.1}
@@ -644,7 +650,7 @@ Führen Sie bei (a) auch den Induktionsbeweis, der in der Vorlesung übersprunge
     \end{enumerate}
 \newpage
 %#+-------------------------------------------------+#%
-%#+						ZETTEL 2					+#%
+%#+						ZETTEL 3					+#%
 %#+-------------------------------------------------+#%
 \section{Zettel vom 29. 10. -- Abgabe: 09. 11.}
 \subsection{Übungsaufgabe 3.1}
@@ -1214,6 +1220,116 @@ Zuletzt begründen Sie auch, warum die Laufzeit ihres Algorithmus tatsächlich i
     \textsc{mergecount} und \textsc{mergecount-counter} verhalten sich genau, wie \textsc{mergesort} und \textsc{merge}, bis auf eine Erhöhung eines Zählers, was allerdings mit konstantem Zeitaufwand zu bewältigen ist und daher bei der O-Notation nicht ins Gewicht fällt.
     Somit liegt \textsc{mergecount} - genauso wie \textsc{mergesort} - ebenfalls in $\mathcal{O}(n\cdot log(n))$.
 
+\newpage
+%#+-------------------------------------------------+#%
+%#+						ZETTEL 4					+#%
+%#+-------------------------------------------------+#%
+\section{Zettel vom 09. 10. -- Abgabe: 23. 11.}
+\subsection{Übungsaufgabe 4.1}
+\begin{flushright}
+\begin{Large}
+[~~~~\string| ~~3~]
+\end{Large}
+\end{flushright}
+%---------------%
+%	Aufgabe		%
+%---------------%
+\subsubsection{Aufgabe 4.1.1}
+\textbf{Eingabe:} Eine endliche Menge $U$ und eine Größe $s(u) \in \mathbb{N}$, eine Kapazität $K \in \mathbb{N}$ und eine Zahl $n \in \mathbb{N}$.\\
+\textbf{Frage:} Gibt es eine Partitionierung von $U$ in paarweise disjunkten Teilmengen $U_1, U_2, \dots , U_n$ (d.h. die $U_i$ enthalten zusammen alle Elemente aus $U$ und jedes Element aus $U$ ist in genau einem der $U_i$) derart, dass $\Sigma_{u\in U_i}s(u) \leq K$ für jedes $i$ gilt?
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung	%
+%---------------%
+
+%---------------%
+%	Aufgabe		%
+%---------------%
+\subsubsection{Aufgabe 4.1.2}
+\textbf{Eingabe:} Ein endliches Alphabet $\Sigma$, eine endliche Menge $S \subset \Sigma*$ von Worten und eine Zahl $n\in\mathbb{N}$.
+\textbf{Frage:} Gibt es ei Wort $w \in \Sigma*$ mit $|w|\geq n$ derart, dass $w$ ein Teilwort von jedem $x \in S$ ist?
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung	%
+%---------------%
+
+%---------------%
+%	Aufgabe		%
+%---------------%
+\subsection{Übungsaufgabe 4.2}
+\begin{flushright}
+\begin{Large}
+[~~~~\string| ~~7~]
+\end{Large}
+\end{flushright}
+%---------------%
+%	Aufgabe		%
+%---------------%
+\subsubsection{Aufgabe 4.2.1}
+Zegen Sie, dass $P$ und $NP$ jeweils gegenüber Konkatenation abgeschlossen sind (d.h. mit $L_1, L_2, \in P$ ist auch $L_1 \cdot L_2 \in P$ und entsprechend für $NP$).
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung	%
+%---------------%
+
+
+%---------------%
+%	Aufgabe		%
+%---------------%
+\subsubsection{Aufgabe 4.2.2}
+Geben Sie unter der Annahme $P=NP$ einen Algorithmus an, der in polynomieller Zeit zu einer aussagenlogischen Formel eine erfüllende Belegung bestimmt, sofern eine existiert.
+Begründen Sie kurz, warum Ihr Algorithmus das Gewünschtete leistet.
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung	%
+%---------------%
+
+
+%---------------%
+%	Aufgabe		%
+%---------------%
+\subsubsection{Aufgabe 4.2.3}
+Zeigen Sie, dass unter der Annahme $P=NP$ jedes $J \in P$ außer $L=\emptyset$ und $L=\Sigma *$ $NP$-vollständig ist.
+Warum gilt diese Aussage nicht für die beiden ausgeschlossenen Fälle?
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung	%
+%---------------%
+\subsection{Übungsaufgabe 4.3}
+\begin{flushright}
+\begin{Large}
+[~~~~\string| ~~6~]
+\end{Large}
+\end{flushright}
+%---------------%
+%	Aufgabe		%
+%---------------%
+\subsubsection{Aufgabe 4.3.1}
+Sei \texttt{2-SAT} die Menge aller (sinnvoll codierten) aussagenlogischen Formeln, die mindestens zwei erfüllende Belegungen haben.
+Zeigen Sie, dass \texttt{2-SAT} \textit{NP}-vollständig ist.
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung	%
+%---------------%
+
+
+%---------------%
+%	Aufgabe		%
+%---------------%
+\subsubsection{Aufgabe 4.3.2}
+Die folgende Beschreibung verallgemeinert das Spiel \textit{Minesweeper} auf einen ungerichteten Graphen:
+Sei $G$ ein ungerichteter Graph.
+Jeder Knoten von $G$ enthält entweder eine einzelne \textit{Mine} oder ist leer.
+Der Spieler kann einen Knoten wählen.
+Ist es eine Mine, hat er verloren.
+Ist der Knoten leer, dann wird dieser mit der Anzahl der direkt benachbarten Knoten beschriftet, die eine Mine enthalten.
+Der Spieler gewinnt, wenn alle leeren Knoten gewählt wurden.
+Das Problem ist nun folgendes: Gegeben ein Graph zuzüglich einiger beschrifteter Knoten, ist es möglich Minen so auf die verbleibenden Knoten abzulegen, dass jeder Knoten $v$, der mit $k$ beschriftet ist, genau $k$ direkt benachbarte Knoten besitzt, die eine Mine enthalten?
+Formulieren Sie dieses Problem sinnvoll als formale Sprache (und füllen Sie dadurch die Lücken in obiger Beschreibung) und zeigen Sie dann, dass dieses Problem \textit{NP}-vollständig ist.
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung	%
+%---------------%
 
 
 
