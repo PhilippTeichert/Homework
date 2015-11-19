@@ -1,0 +1,180 @@
+% following line for presentation mode
+\documentclass{beamer}
+%% following line for hand-in
+%\documentclass[handout]{beamer}
+
+% language and encoding settings
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+% AMS Math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+
+% Presentation Layout
+\usetheme{Madrid}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	TITLE slide
+%	Copy for following presentations
+%	remember to adjust the hand-in date
+%
+\begin{document}
+\frame{
+	\thispagestyle{empty}
+	\begin{center}
+		\begin{Large}
+			\textbf{Projektmanagement WS15/16}\\
+		\end{Large}
+		\vspace{0.3cm}
+		\textbf{Woche 5}\\
+		\vspace{0.5cm}
+		\begin{tabular}{cc}
+			\begin{tabular}{c}
+				Louis Kobras\\
+				\textbf{Matr.Nr:} 6658699\\
+				\textbf{Email:} 4kobras@inf.
+			\end{tabular}
+			&
+			\begin{tabular}{c}
+				Utz Pöhlmann\\
+				\textbf{Matr.Nr:} 6663579\\
+				\textbf{Email:} 4poehlma@inf.
+			\end{tabular}
+		\\ \\
+			\begin{tabular}{c}
+				Hauke Stieler\\
+				\textbf{Matr.Nr:} 6664494\\
+				\textbf{Email:} 4stieler@inf.
+			\end{tabular}
+			&
+			\begin{tabular}{c}
+				Philipp Quach\\
+					\textbf{Matr.Nr:} 6706421\\
+				\textbf{Email:} 4quach@inf.
+			\end{tabular}
+		\end{tabular}
+		\\ \vspace{0.35cm}
+		\begin{tabular}{c}
+			Dennis Alexy\\
+			\textbf{Matr.Nr:} 6686188\\
+			\textbf{Email:} 4alexy@inf.
+		\end{tabular}
+		\\ \-\\ \-\\
+		Abgabedatum: 19. November 2015\\
+	\end{center}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	BEGINNING of presentation content
+
+\frame{
+	\frametitle{Aufwandsschätzung I: Was und warum?}
+	\textbf{Schema:}\\
+	Es wurde sich innerhalb der Gruppe auf ein relatives Schätzungsschema geeinigt, da für absolute Aufwandsschätzung die Arbeitsgruppe über zu wenig Erfahrung und Vergleichswerte verfügt.\\
+	Dabei wurde jede zu schätzende Anforderung in \textit{Informationsbeschaffung}, \textit{Entwurf} und \textit{Implementation} aufgeteilt.
+	Die Anforderung erhielt den höchsten Teilschätzwert.\\
+	\pause
+	\vspace{0.4cm}
+	\textbf{Skala:}\\
+	Maus < Quokka < Schaf < Elephant < Blauwal\\
+	\vspace{0.4cm}
+	\textbf{Begründung:}\\
+	Es ist leicht, zu sagen, eine Maus sei kleiner als ein Quokka, jedoch schwer, zu sagen, ein Quokka ist um 1.6 Messeinheiten größer als eine Maus.
+
+
+}
+%%-------------------------------------------------------
+\frame{
+	\frametitle{Aufwandsschätzung II: Schätzbeispiel \textit{Anfahrt}}
+	\pause
+	\begin{itemize}
+		\item \textbf{Informationsbeschaffung:}\\
+			Geringer Aufwand (Zugangsstraßen beschaffbar mit aktuellem Straßenatlas oder Dienstleister wie \textit{Google Maps}).
+			Abgeschätzte Dauer <1h.\\
+			\textbf{Schätzung:} Maus\pause
+		\item \textbf{Entwurf:}\\
+			IDN muss lediglich eine Grafik mit umliegenden Straßen sowie eine Wegbeschreibung enthalten.
+			Abgeschätzte Dauer <2h.\\
+			\textbf{Schätzung:} Quokka\pause
+		\item \textbf{Implementation:}\\
+			Sind Grafik und schriftliche Beschreibung fertig, muss lediglich ein Menüpunkt eingefügt werden, der beides anzeigt.
+			Abgeschätze Dauer <1h.\\
+			\textbf{Schätzung:} Maus
+	\end{itemize}
+
+
+}
+%%-------------------------------------------------------
+\frame{
+	\frametitle{Aufwandsschätzung III (nach PSP in Projektakte)}
+	
+	\begin{itemize}
+		\item \textbf{ÖPNV:} Schaf
+		\begin{itemize}
+			\item \textbf{Informationen:} Maus
+			\item \textbf{Entwurf:} Quokka
+			\item \textbf{Implementation:} Schaf
+		\end{itemize}
+		\item \textbf{Gepäckverfolgung:} Schaf
+		\begin{itemize}
+			\item \textbf{Informationen:} Schaf
+			\item \textbf{Entwurf:} Quokka
+			\item \textbf{Implementation:} Schaf
+		\end{itemize}
+		\item \textbf{Fluginformationen:} Quokka
+		\begin{itemize}
+			\item \textbf{Informationen:} Maus
+			\item \textbf{Entwurf:} Quokka
+			\item \textbf{Implementation:} Quokka
+		\end{itemize}
+		\item \textbf{Anfahrt:} Quokka
+		\begin{itemize}
+			\item \textbf{Informationen:} Maus
+			\item \textbf{Entwurf:} Quokka
+			\item \textbf{Implementation:} Maus
+		\end{itemize}
+	\end{itemize}
+
+}
+%%-------------------------------------------------------
+\frame{
+	\frametitle{Aufwandsschätzung IV (nach PSP in Projektakte)}
+
+	\begin{itemize}
+		\item \textbf{Lageplan:} Schaf
+		\begin{itemize}
+			\item \textbf{Informationen:} Maus
+			\item \textbf{Entwurf:} Quokka
+			\item \textbf{Implementation:} Schaf
+		\end{itemize}
+		\item \textbf{Werbe-Schnittstelle:} Elephant
+		\begin{itemize}
+			\item \textbf{Informationen:} \texttt{Null}
+			\item \textbf{Entwurf:} Quokka
+			\item \textbf{Implementation:} Elephant
+		\end{itemize}
+		\item \textbf{Notfallsignalgeber:} Quokka
+		\begin{itemize}
+			\item \textbf{Informationen:} \texttt{Null}
+			\item \textbf{Entwurf:} Quokka
+			\item \textbf{Implementation:} Quokka
+		\end{itemize}
+		\item \textbf{Verwaltungs-Schnittstelle:} Schaf
+		\begin{itemize}
+			\item \textbf{Informationen:} \texttt{Null}
+			\item \textbf{Entwurf:} Quokka
+			\item \textbf{Implementation:} Schaf
+		\end{itemize}
+	\end{itemize}
+
+}
+%%-------------------------------------------------------
+
+
+
+
+\end{document}
