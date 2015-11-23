@@ -1410,12 +1410,26 @@ Formulieren Sie dieses Problem sinnvoll als formale Sprache (und füllen Sie dad
 %---------------%
 %	Bearbeitung	%
 %---------------%
-\textbf{Eingabe:} Ein ungerichteter Graph $G = (V, E)$ und eine Funktion $f$, die jedem Knoten $v$ aus $V$ einen Wert $k \in \{0,1,2,3,4,5,6,7,8\}$ zuweist. Dieser Wert kann sich von Knoten zu Knoten unterscheiden.\\
+\textbf{Eingabe:} Ein ungerichteter Graph $G = (V, E)$ und eine Funktion $f$, die jedem Knoten $v$ aus $V$ einen Wert $k \in \{0,1,2,3,4,5,6,7,8\}$ zuweist.
+Dieser Wert kann sich von Knoten zu Knoten unterscheiden.\\
 \textbf{Frage:} Gibt es eine Verteilung von Minen $U$, sodass jeder Knoten $v$ aus $V$ genau $k$ Nachbarknoten hat, die eine Mine besitzen?
 \vspace{1cm}\-\\
+\textbf{Algorithmus:} Wir gehen jeden Knoten durch und belegen - sofern die Zahl auf dem Knoten noch nicht der Anzahl an Nachbarknoten mit einer Mine entspricht - einen beliebigen Nachbarknoten mit einer Mine, bis die Zahl stimmt.
+Sobald wir an einem Knoten ankommen, der bereits mehr Nachbarknoten mit Minen besitzt, als seine Zahl groß ist, % hier beginnt der krasse Stuff
+gehen wir einen Knoten zurück und merken uns die bisher gewählte Konfiguration als \textit{falsch} und wählen eine andere.
+Sollten alle möglichen Konfigurationen - an der Anzahl $\binom{8}{k}$, wobei $k$ der Wert des Knotens ist - als \textit{falsch} markiert worden sein, wird einen Knoten zurück gegangen, die dortige aktuelle Konfiguration als \textit{falsch} markiert und mit dieser neuen Kombination fortgefahren. Wobei jetzt sämtliche Konfigurationen der Folgeknoten wieder möglich sind.\\
+\\
+Wird auf diese Weise bis zum ersten Knoten zurückgekehrt und werden dort sämtliche Konfigurationen als \textit{falsch} markiert, gibt der Algorithmus \texttt{"false"} aus.
+Sollte allerdings jede Mine verteilt sein, ohne dass es zu einem Konflikt mit der Zahl auf einem der Knoten kommt, wird \texttt{"true"} ausgegeben.\\
+Dies hat eine maximale Laufzeit von $\Sigma_{i=1}^n \binom{8}{k_i} \approx \binom{8}{k}^n$ , wenn für jeden Knoten alle Kombinationen durchlaufen werden müssen, wobei $\binom{8}{k}$ konstant und höchstens $70 = \binom{8}{4}$ ist.\\
+Dies liegt in \textit{NP}.
+\vspace{1cm}\-\\
+\textbf{Reduktion:}
 
 
 
+Daher ist dieses Problem $\in$ \textit{NPH}.\\
+Und unter Beachtung des obigen Algorithmus' sogar in \textit{NPC}.
 
 
 
