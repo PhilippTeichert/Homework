@@ -1410,11 +1410,14 @@ Formulieren Sie dieses Problem sinnvoll als formale Sprache (und füllen Sie dad
 %---------------%
 %	Bearbeitung	%
 %---------------%
-\textbf{Eingabe:} Ein ungerichteter Graph $G = (V, E)$ und eine Funktion $f$, die jedem Knoten $v$ aus $V$ einen Wert $k \in \{0,1,2,3,4,5,6,7,8\}$ zuweist.
+\textbf{Eingabe:}
+Ein ungerichteter Graph $G = (V, E)$ und eine Funktion $f$, die jedem Knoten $v$ aus $V$ einen Wert $k \in \{0,1,2,3,4,5,6,7,8\}$ zuweist.
 Dieser Wert kann sich von Knoten zu Knoten unterscheiden.\\
-\textbf{Frage:} Gibt es eine Verteilung von Minen $U$, sodass jeder Knoten $v$ aus $V$ genau $k$ Nachbarknoten hat, die eine Mine besitzen?
+\textbf{Frage:}
+Gibt es eine Verteilung von Minen $U$, sodass jeder Knoten $v$ aus $V$ genau $k$ Nachbarknoten hat, die eine Mine besitzen?
 \vspace{1cm}\-\\
-\textbf{Algorithmus:} Wir gehen jeden Knoten durch und belegen - sofern die Zahl auf dem Knoten noch nicht der Anzahl an Nachbarknoten mit einer Mine entspricht - einen beliebigen Nachbarknoten mit einer Mine, bis die Zahl stimmt.
+\textbf{Algorithmus:}
+Wir gehen jeden Knoten durch und belegen - sofern die Zahl auf dem Knoten noch nicht der Anzahl an Nachbarknoten mit einer Mine entspricht - einen beliebigen Nachbarknoten mit einer Mine, bis die Zahl stimmt.
 Sobald wir an einem Knoten ankommen, der bereits mehr Nachbarknoten mit Minen besitzt, als seine Zahl groß ist, % hier beginnt der krasse Stuff
 gehen wir einen Knoten zurück und merken uns die bisher gewählte Konfiguration als \textit{falsch} und wählen eine andere.
 Sollten alle möglichen Konfigurationen - an der Anzahl $\binom{8}{k}$, wobei $k$ der Wert des Knotens ist - als \textit{falsch} markiert worden sein, wird einen Knoten zurück gegangen, die dortige aktuelle Konfiguration als \textit{falsch} markiert und mit dieser neuen Kombination fortgefahren. Wobei jetzt sämtliche Konfigurationen der Folgeknoten wieder möglich sind.\\
@@ -1424,46 +1427,6 @@ Sollte allerdings jede Mine verteilt sein, ohne dass es zu einem Konflikt mit de
 Dies hat eine maximale Laufzeit von $\prod_{i=1}^n \binom{8}{k_i} \approx \binom{8}{k}^n \leq \binom{8}{4}^n = 70^n$ , wenn für jeden Knoten alle Kombinationen durchlaufen werden müssen, wobei $\binom{8}{k}$ konstant und höchstens $70 = \binom{8}{4}$ ist.\\
 Dies liegt in \textit{NP}.
 \vspace{1cm}\-\\
-\textbf{Reduktion:}
-
-
-
-Daher ist dieses Problem $\in$ \textit{NPH}.\\
-Und unter Beachtung des obigen Algorithmus' sogar in \textit{NPC}.
-
-
-
-
-
-
-
-
-
-
-
-
-\vspace{7cm}
-Sei $n$ die Gesamtanzahl der Felder als Produkt der Anzahl der Spalten $c$ und der Anzahl der Reihen $r$.\\
-Dann gibt es $n$ Felder, für die gilt:
-Es gibt einen ungerichteten Graphen $G=(V,E)$ mit $V :=$ \textit{Menge aller Knoten} $\land  |V| = n$ und $E := \exists e(u,v; u,v \in V) \in E \Leftrightarrow u \lor v$ \textit{ist eine Mine}.
-Es gibt also genau dann eine Kante zwischen zwei Knoten, wenn auf mindestens einem der beiden Knoten eine Mine liegt.
-Außerdem liegt ein Feld $f$ in einem Gitter der Größe $n = r \times c$.
-Eine Mine hat damit die Koordinaten $x,y$ und die Nachbarn einer Mine gehen von $x-1,y-1$ bis $x+1,y+1$.
-Sei außerdem $k \in \mathbb{N}$ die Anzahl der Kanten eines Knotens, also gerade die Anzahl der Bomben neben dem gewählten Feld.\\
-Es gibt für einen Knoten genau zwei Fälle, mit denen er beschriftet werden kann:
-\begin{equation*}
-	\text{Beschriftung} :=	\begin{cases}
-		\begin{tabular}{ll}
-			\text{Bombe} & \text{wenn Bombe,}\\
-			k	&	\text{sonst}
-		\end{tabular}
-	\end{cases}
-\end{equation*}
-Somit muss für einen gewählten Knoten entschieden werden, ob das Spiel vorbei ist.
-Ist dies nicht der Fall, so muss die Anzahl der Kanten gezählt werden, die dieser Knoten hat, wobei die Anzahl der Kanten zwischen $0$ und $8$ liegen kann (wegen der Struktur von \textit{Minesweeper}).
-Somit ergibt sich auch $k \in [0;8]$.\\
-\-\\
-
-
+\textbf{Reduktion:} Wir können es nicht sinnvoll auf ein anderes Problem überführen, damit ist es offensichtlich nicht in \textit{NPH} und damit auch nicht in \textit{NPC}.
 %-------------------------------------------------------------%
 \end{document}
