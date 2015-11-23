@@ -1421,7 +1421,7 @@ Sollten alle möglichen Konfigurationen - an der Anzahl $\binom{8}{k}$, wobei $k
 \\
 Wird auf diese Weise bis zum ersten Knoten zurückgekehrt und werden dort sämtliche Konfigurationen als \textit{falsch} markiert, gibt der Algorithmus \texttt{"false"} aus.
 Sollte allerdings jede Mine verteilt sein, ohne dass es zu einem Konflikt mit der Zahl auf einem der Knoten kommt, wird \texttt{"true"} ausgegeben.\\
-Dies hat eine maximale Laufzeit von $\Sigma_{i=1}^n \binom{8}{k_i} \approx \binom{8}{k}^n$ , wenn für jeden Knoten alle Kombinationen durchlaufen werden müssen, wobei $\binom{8}{k}$ konstant und höchstens $70 = \binom{8}{4}$ ist.\\
+Dies hat eine maximale Laufzeit von $\prod_{i=1}^n \binom{8}{k_i} \approx \binom{8}{k}^n \leq \binom{8}{4}^n = 70^n$ , wenn für jeden Knoten alle Kombinationen durchlaufen werden müssen, wobei $\binom{8}{k}$ konstant und höchstens $70 = \binom{8}{4}$ ist.\\
 Dies liegt in \textit{NP}.
 \vspace{1cm}\-\\
 \textbf{Reduktion:}
