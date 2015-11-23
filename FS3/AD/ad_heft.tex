@@ -1391,7 +1391,24 @@ Formulieren Sie dieses Problem sinnvoll als formale Sprache (und füllen Sie dad
 %---------------%
 %	Bearbeitung	%
 %---------------%
-
+Sei $n$ die Gesamtanzahl der Felder als Produkt der Anzahl der Spalten $c$ und der Anzahl der Reihen $r$.\\
+Dann gibt es $n$ Felder, für die gilt:
+Es gibt einen ungerichteten Graphen $G=(V,E)$ mit $V :=$ \textit{Menge aller Knoten} $\land  |V| = n$ und $E := \exists e(u,v; u,v \in V) \in E \Leftrightarrow u \lor v$ \textit{ist eine Mine}.
+Es gibt also genau dann eine Kante zwischen zwei Knoten, wenn auf mindestens einem der beiden Knoten eine Mine liegt.
+Sei außerdem $k \in \mathbb{N}$ die Anzahl der Kanten eines Knotens, also gerade die Anzahl der Bomben neben dem gewählten Feld.\\
+Es gibt für einen Knoten genau zwei Fälle, mit denen er beschriftet werden kann:
+\begin{equation*}
+	\text{Beschriftung} :=	\begin{cases}
+		\begin{tabular}{ll}
+			\text{Bombe} & \text{wenn Bombe,}\\
+			k	&	\text{sonst}
+		\end{tabular}
+	\end{cases}
+\end{equation*}
+Somit muss für einen gewählten Knoten entschieden werden, ob das Spiel vorbei ist.
+Ist dies nicht der Fall, so muss die Anzahl der Kanten gezählt werden, die dieser Knoten hat, wobei die Anzahl der Kanten zwischen $0$ und $8$ liegen kann (wegen der Struktur von \textit{Minesweeper}).
+Somit ergibt sich auch $k \in [0;8]$.\\
+\-\\
 
 
 %-------------------------------------------------------------%
