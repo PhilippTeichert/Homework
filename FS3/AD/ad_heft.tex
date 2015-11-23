@@ -1238,9 +1238,9 @@ Es kann eine Variante des Binary Sort Algorithmus angewandt werden:
 \-\\
 Ist die gesamte Größe von $s$ bereits kleiner gleich $K$, kann der Algorithmus sofort terminieren und \texttt{true} zurückgeben.
 Andernfalls wird U halbiert und für die Teilmengen wird erneut geprüft.
-Dies wird rekursiv fortgeführt, bis eine Ebene erreicht wurde, auf der die Größe aller Teilmengen kleiner gleich $K$ ist.
+Dies wird rekursiv fortgeführt, bis eine Ebene erreicht wurde, auf der die Größe aller Teilmengen kleiner gleich $K$ ist.\\
 Da bereits zu Beginn geprüft wird, ob ein einzelnes Element größer als die Kapazität ist, ist gewährleistet, dass bei rekursiven Aufruf der Algorithmus spätestens dann terminiert, wenn jede Teilmenge genau die Mächtigkeit 1 hat.
-Ist ein einzelnes Element von U bereits größer als K, so ist das Problem nicht lösbar und der Algorithmus terminiert, \texttt{false} zurückgebend.
+Ist ein einzelnes Element von U bereits größer als K, so ist das Problem nicht lösbar und der Algorithmus terminiert, \texttt{false} zurückgebend.\\
 Durch die jeweilige Halbierung wird die Funktion höchstens $\operatorname{log} n$ mal rekursiv aufgerufen.
 $sum(s)$ und $max(s)$ haben jeweils eine lineare Laufzeit aus $\mathcal{O}(n)$.
 Damit werden insgesamt $a\cdot b\cdot n\cdot\operatorname{log}n + f(n) + g(n)$\footnote{$a, b, f(n), g(n)$ sind Faktoren bzw. Konstanten, die in $sum(s)$ und $max(s)$ entstehen können, allerdings vernachlässigbar sind} Schritte zur vollständigen Berechnung benötigt, die obere Schranke liegt also in $\mathcal{O}(n\cdot\operatorname{log}n)$.
@@ -1280,7 +1280,34 @@ Zegen Sie, dass $P$ und $NP$ jeweils gegenüber Konkatenation abgeschlossen sind
 %---------------%
 %	Bearbeitung	%
 %---------------%
+\paragraph{Für \textit{P}:}
+Seien $L_1, L_2 \in P, w_1 \in L_1, w_2 \in L_2, w_3 = w_1 \cdot w_2$.
+Sei außerdem $w_3 = b_1 b_2 b_3 b_4... b_n; w_3 \in L_3; L_3 = L_1 \cdot L_2$.\\
+\-\\
+Wähle $w_1 = b_1 b_2 b_3 \dots b_i$ und $w_2 = b_{i+1} b_{i+2} ... b_n$\\
+\-\\
+Solange $w_1 \not \in L_1 \land w_2 \not \in L_2$ gilt, erhöhe $i$ um $1$ (als Startwert für $i$ gilt $0$.)
+Dies teilt das Wort in zwei Teilworte und wir wissen nun, wo wir $w_3$ teilen müssen, um $w_1$ und $w_2$ zu erhalten.
+Bei $i = 0$ gilt $w_1 = \lambda$, bei $i = n$ gilt $w_2 = \lambda$.
+Nun wird $w_1$ wie vorher in $L_1$ in Polynomialzeit gelöst.
+Ebenso $w_2$ in $L_2$.\\
+Die Zerlegung benötigt im schlimmsten Fall $n+1$ Ausführungen, da es $n+1$ mögliche Zerteilungen von $w_3$ gibt.
+Somit beträgt die Gesamtlaufzeit die Zeit, die $w_1$ in $L_1$ benötigt (ein Polynom) plus die Zeit, die $w_2$ in $L_2$ benötigt (auch ein Polynom) mal die Zeit, die das Zerschneiden benötigt $(n+1)$, also: $(Polynom(L_1) + Polynom(L_2)) * (n+1)$.
+Dies ist allerdings wieder ein Polynom.
 
+\paragraph{Für \textit{NP}:}
+Seien $L_1, L_w \in \textit{NP}, w_1 \in L_1, w_2 \in L_2 und w_3 = w_1 \cdot w_2 und w_3 = b_1 b_2 b_3 b_4... b_n und w_3 \in L_3 und L_3 = L_1 \cdot L_2$.\\
+\-\\
+Wähle $w_1 = b_1 b_2 b_3 \dots b_i$ und $w_2 = b_{i+1} b_{i+2} \dots b_n$.\\
+\-\\
+Solange $w_1 \not \in L_1$ und $w_2 \not \in L_2$ gilt, erhöhe $i$ um $1$ (als Startwert für $i$ gilt $0$.)\\
+Dies teilt das Wort in zwei Teilworte und wir wissen nun, wo wir $w_3$ teilen müssen, um $w_1$ und $w_2$ zu erhalten.
+Bei $i = 0$ gilt $w_1 = \lambda$, bei $i = n$ gilt $w_2 = \lambda$.
+Nun wird $w_1$ wie vorher in $L_1$ in Nichtpolynomialzeit gelöst.
+Ebenso $w_2$ in $L_2$.\\
+Die Zerlegung benötigt im schlimmsten Fall $n+1$ Ausführungen, da es $n+1$ mögliche Zerteilungen von $w_3$ gibt.
+Somit beträgt die Gesamtlaufzeit die Zeit, die $w_1$ in $L_1$ benötigt (ein Nichtpolynom) $+$ die Zeit, die $w_2$ in $L_2$ benötigt (auch ein Nichtpolynom) $*$ die Zeit, die das Zerschneiden benötigt $(n+1)$, also: $(Nichtpolynom(L_1) + Nichtpolynom(L_2)) * (n+1)$
+Dies ist allerdings wieder ein Nichtpolynom.
 
 %---------------%
 %	Aufgabe		%
@@ -1292,18 +1319,33 @@ Begründen Sie kurz, warum Ihr Algorithmus das Gewünschtete leistet.
 %---------------%
 %	Bearbeitung	%
 %---------------%
-
+\textbf{Brute Force:}\\
+Wir setzen für jedes Literal $1$ ein und testen.\\
+Erfüllt die Belegung nicht, ersetzen wir eine $1$ durch eine $0$ und prüfen dann alle Belegungen, die aus $(n-1)$ $1$ und einer $0$ bestehen.
+Wenn die Belegung wieder nicht erfüllt, wird eine weitere $1$ durch eine $0$ ersetzt, solange, bis die Belegung aus $0^n$ besteht oder eine erfüllende Belegung gefunden wurde.
+Handelt es sich bei $0^n$ nicht um eine erfüllende Belegung, so existiert keine.\\
+\-\\
+Dieser Algorithmus läuft im schlimmsten Fall in $\Sigma ^n_{k=0} \binom{n}{k} = 2^n$ viele Schritten.
+Dies liegt in $NP$ und damit unter der Annahme $P = NP$ auch in $P$.
+Damit ist es in polynomieller Zeit lösbar.
 
 %---------------%
 %	Aufgabe		%
 %---------------%
 \subsubsection{Aufgabe 4.2.3}
-Zeigen Sie, dass unter der Annahme $P=NP$ jedes $J \in P$ außer $L=\emptyset$ und $L=\Sigma *$ $NP$-vollständig ist.
+Zeigen Sie, dass unter der Annahme $P=NP$ jedes $J \in P$ außer $L=\emptyset$ und $L=\Sigma^*$ $NP$-vollständig ist.
 Warum gilt diese Aussage nicht für die beiden ausgeschlossenen Fälle?
 \vspace{1cm}\-\\
 %---------------%
 %	Bearbeitung	%
 %---------------%
+Sei $P = NP$.
+Damit sind alle Probleme aus $NP$ auch in Polynomialzeit lösbar.
+Zudem ist jedes Problem aus $P$ in Polynomialzeit auf jedes andere Problem aus $P$ reduzierbar (, da es sich bei allen Problemen in P um Polynome handelt,) was genau der Definition von $NP$ entspricht.
+Allerdings sind in $P$ nur endliche Teilmengen von $\Sigma^+$, denn $\emptyset$ ist nicht entscheidbar, ebenso wie unendliche Sprachen ($\Sigma^*$).
+Somit sind sie auch nicht in $P$.
+Da jedoch $P = NP$ gilt, liegt der Rest aus $P$ ebenfalls in $NPC$.
+Somit ist, wenn $P = NP$ gilt, jedes $L$ aus $P$ auch in $NP$, außer der Leeren Menge und dem unendlichen $\Sigma^*$.
 \subsection{Übungsaufgabe 4.3}
 \begin{flushright}
 \begin{Large}
@@ -1320,10 +1362,18 @@ Zeigen Sie, dass \texttt{2-SAT} \textit{NP}-vollständig ist.
 %---------------%
 %	Bearbeitung	%
 %---------------%
-\texttt{2-SAT} kann nur Implikationen der Form $a \Rightarrow b$ ausdrücken.
-Ebenso kann jedweder zweistellige Ausdruck (Beispiel: $a \lor b$ wird zu $\lnot a \Rightarrow b \land \lnot b \Rightarrow a$) als Paar von Implikationen dargestellt werden.
-Wenn also $a$ wahr ist, muss auch 
-
+Mit \texttt{2-SAT} können nur zweistellige Implikationen dargestellt werden ($a \Rightarrow b$).
+Jede disjunkte Klausel $a \lor b$ kann durch zwei Implikationen dargestellt werden: $\lnot a \Rightarrow b$; $\lnot b \Rightarrow a$.
+Daraus folgt, dass, wenn $a$ wahr ist, $b$ auch wahr sein muss, und wenn $b$ falsch ist, dass auch $a$ falsch sein muss.
+Dies bedeutet, dass es keine Entscheidungsmöglichkeiten gibt, es gibt genau einen Fall.
+So kann jeder möglichen Kette von Implikationen gefolgt werden.\\
+Lässt sich $a$ von $\lnot a$ ableiten und gleichzeitig von $a \lnot a$, so ist die Formel nicht erfüllbar.
+Anderenfalls ist die Formel erfüllbar und es ist eine polynomielle Anzahl von Schritten in Abhängigkeit der Eingabe erforderlich.\\
+\-\\
+Mit einer höherstelligen \texttt{SAT}-Aufgabe stellt sich das Problem der Kombinationsmöglichkeiten ($a \Rightarrow b \lor c$).
+Da nun nicht bekannt ist, ob, gegeben a sei wahr, b oder c oder beide wahr sind, müssen mehr Fälle geprüft werden.
+Durch diesen Umstand ergibt sich für höherstellige \texttt{SAT}-Probleme ein schneller Anstieg an Komplexität.
+Deswegen liegen andere \texttt{SAT}-Probleme als \texttt{2-SAT} in $NP$, während \texttt{2-SAT} selber wegen der Struktur in $P$ berechnet werden kann.
 %---------------%
 %	Aufgabe		%
 %---------------%
