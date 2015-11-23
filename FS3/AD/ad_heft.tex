@@ -1313,6 +1313,7 @@ Dies ist allerdings wieder ein Nichtpolynom.
 %	Aufgabe		%
 %---------------%
 \subsubsection{Aufgabe 4.2.2}
+\label{4.2.2}
 Geben Sie unter der Annahme $P=NP$ einen Algorithmus an, der in polynomieller Zeit zu einer aussagenlogischen Formel eine erfüllende Belegung bestimmt, sofern eine existiert.
 Begründen Sie kurz, warum Ihr Algorithmus das Gewünschtete leistet.
 \vspace{1cm}\-\\
@@ -1323,9 +1324,9 @@ Begründen Sie kurz, warum Ihr Algorithmus das Gewünschtete leistet.
 Wir setzen für jedes Literal $1$ ein und testen.\\
 Erfüllt die Belegung nicht, ersetzen wir eine $1$ durch eine $0$ und prüfen dann alle Belegungen, die aus $(n-1)$ $1$ und einer $0$ bestehen.
 Wenn die Belegung wieder nicht erfüllt, wird eine weitere $1$ durch eine $0$ ersetzt, solange, bis die Belegung aus $0^n$ besteht oder eine erfüllende Belegung gefunden wurde.
-Handelt es sich bei $0^n$ nicht um eine erfüllende Belegung, so existiert keine.\\
+Handelt es sich bei $0^n$ auch nicht um eine erfüllende Belegung, so existiert keine.\\
 \-\\
-Dieser Algorithmus läuft im schlimmsten Fall in $\Sigma ^n_{k=0} \binom{n}{k} = 2^n$ viele Schritten.
+Dieser Algorithmus benötigt im schlimmsten Fall $\Sigma ^n_{k=0} \binom{n}{k} = 2^n$ viele Schritte.
 Dies liegt in $NP$ und damit unter der Annahme $P = NP$ auch in $P$.
 Damit ist es in polynomieller Zeit lösbar.
 
@@ -1362,18 +1363,36 @@ Zeigen Sie, dass \texttt{2-SAT} \textit{NP}-vollständig ist.
 %---------------%
 %	Bearbeitung	%
 %---------------%
-Mit \texttt{2-SAT} können nur zweistellige Implikationen dargestellt werden ($a \Rightarrow b$).
-Jede disjunkte Klausel $a \lor b$ kann durch zwei Implikationen dargestellt werden: $\lnot a \Rightarrow b$; $\lnot b \Rightarrow a$.
-Daraus folgt, dass, wenn $a$ wahr ist, $b$ auch wahr sein muss, und wenn $b$ falsch ist, dass auch $a$ falsch sein muss.
-Dies bedeutet, dass es keine Entscheidungsmöglichkeiten gibt, es gibt genau einen Fall.
-So kann jeder möglichen Kette von Implikationen gefolgt werden.\\
-Lässt sich $a$ von $\lnot a$ ableiten und gleichzeitig von $a \lnot a$, so ist die Formel nicht erfüllbar.
-Anderenfalls ist die Formel erfüllbar und es ist eine polynomielle Anzahl von Schritten in Abhängigkeit der Eingabe erforderlich.\\
-\-\\
-Mit einer höherstelligen \texttt{SAT}-Aufgabe stellt sich das Problem der Kombinationsmöglichkeiten ($a \Rightarrow b \lor c$).
-Da nun nicht bekannt ist, ob, gegeben a sei wahr, b oder c oder beide wahr sind, müssen mehr Fälle geprüft werden.
-Durch diesen Umstand ergibt sich für höherstellige \texttt{SAT}-Probleme ein schneller Anstieg an Komplexität.
-Deswegen liegen andere \texttt{SAT}-Probleme als \texttt{2-SAT} in $NP$, während \texttt{2-SAT} selber wegen der Struktur in $P$ berechnet werden kann.
+%Mit \texttt{2-SAT} können nur zweistellige Implikationen dargestellt werden ($a \Rightarrow b$).
+%Jede disjunkte Klausel $a \lor b$ kann durch zwei Implikationen dargestellt werden: $\lnot a \Rightarrow b$; $\lnot b \Rightarrow a$.
+%Daraus folgt, dass, wenn $a$ wahr ist, $b$ auch wahr sein muss, und wenn $b$ falsch ist, dass auch $a$ falsch sein muss.
+%Dies bedeutet, dass es keine Entscheidungsmöglichkeiten gibt, es gibt genau einen Fall.
+%So kann jeder möglichen Kette von Implikationen gefolgt werden.\\
+%Lässt sich $a$ von $\lnot a$ ableiten und gleichzeitig von $a \lnot a$, so ist die Formel nicht erfüllbar.
+%Anderenfalls ist die Formel erfüllbar und es ist eine polynomielle Anzahl von Schritten in Abhängigkeit der Eingabe erforderlich.\\
+%\-\\
+%Mit einer höherstelligen \texttt{SAT}-Aufgabe stellt sich das Problem der Kombinationsmöglichkeiten ($a \Rightarrow b \lor c$).
+%Da nun nicht bekannt ist, ob, gegeben a sei wahr, b oder c oder beide wahr sind, müssen mehr Fälle geprüft werden.
+%Durch diesen Umstand ergibt sich für höherstellige \texttt{SAT}-Probleme ein schneller Anstieg an Komplexität.
+%Deswegen liegen andere \texttt{SAT}-Probleme als \texttt{2-SAT} in $NP$, während \texttt{2-SAT} selber wegen der Struktur in $P$ berechnet werden kann.
+Ein Algorithmus für \texttt{2-SAT}:\\
+Als Algorithmus für \texttt{2-SAT} kann eine modifizierte Version des Brute Force Algorithmus' aus \ref{4.2.2} dienen:\\
+Es wird jede mögliche Belegung für eine aussagenlogische Formel durchprobiert und geschaut, ob sie erfüllend ist.
+Wenn sie erfüllend ist, wird ein Zähler um 1 inkrementiert.
+Sollte dieser Zähler die Zahl 2 erreichen, wird \texttt{"true"} ausgegeben, sonst wird die nächste Belegung probiert.
+Hat der Zähler, nachdem alle Belegungen durchprobiert wurden, noch nicht die 2 erreicht, wird \texttt{"false"} ausgegeben.\\
+Dieser Algorithmus läuft im schlimmsten Fall in $\Sigma ^n_{k=0} \binom{n}{k} = 2^n$ vielen Schritten.\\
+Dies liegt in \textit{NP} und zeigt daher \texttt{2-SAT} $\in$ \textit{NP}.\\
+\\
+\\
+Wir wissen aus der Vorlesung: \texttt{SAT} $\in$ \textit{NPC}\\
+Reduktion von \texttt{SAT} auf \texttt{2-SAT}:\\
+Angenommen Automat A löst \texttt{2-SAT}, dann hat A einen Unterautomaten B, der ausgibt, ob eine beliebige aussagenlogische Formel erfüllbar ist.
+A gibt nun \texttt{"true"} aus, wenn B für eine Formel mindestens 2 mal \texttt{"true"} ausgegeben hat.\\
+Dieser Automat B wäre allerdings genau die Lösung zu unserem \texttt{SAT}-Problem, welches laut der Vorlesung ja sogar \textit{NPC} ist.
+Daher kann dieser Automat B nicht existieren, woraus folgt, dass A auch nicht existieren kann.\\
+Dies zeigt \texttt{2-SAT} $\in$ \textit{NPH}.\\
+Somit muss \texttt{2-SAT} in der Schnittmenge von \textit{NP} und \textit{NPH} sein, also gilt \texttt{2-SAT} $\in$ \textit{NPC}.
 %---------------%
 %	Aufgabe		%
 %---------------%
