@@ -1414,6 +1414,8 @@ Sei $n$ die Gesamtanzahl der Felder als Produkt der Anzahl der Spalten $c$ und d
 Dann gibt es $n$ Felder, für die gilt:
 Es gibt einen ungerichteten Graphen $G=(V,E)$ mit $V :=$ \textit{Menge aller Knoten} $\land  |V| = n$ und $E := \exists e(u,v; u,v \in V) \in E \Leftrightarrow u \lor v$ \textit{ist eine Mine}.
 Es gibt also genau dann eine Kante zwischen zwei Knoten, wenn auf mindestens einem der beiden Knoten eine Mine liegt.
+Außerdem liegt ein Feld $f$ in einem Gitter der Größe $n = r \times c$.
+Eine Mine hat damit die Koordinaten $x,y$ und die Nachbarn einer Mine gehen von $x-1,y-1$ bis $x+1,y+1$.
 Sei außerdem $k \in \mathbb{N}$ die Anzahl der Kanten eines Knotens, also gerade die Anzahl der Bomben neben dem gewählten Feld.\\
 Es gibt für einen Knoten genau zwei Fälle, mit denen er beschriftet werden kann:
 \begin{equation*}
