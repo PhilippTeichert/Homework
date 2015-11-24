@@ -15,38 +15,6 @@
 
 \begin{document}
 
-
-%\section{Beispiel für ER-Diagramm}
-%
-%\begin{center}
-%\begin{tikzpicture}
-%
-%\node[entity] (e1) {E1};
-%\node[attribut] (e1-a1) [above left =5mm and 4mm of e1.north] {\underline{A1}} edge (e1);
-%\node[attribut] (e1-a2)  [above right=5mm and 4mm of e1.north] {A2} edge (e1);
-%\node[multivalentattribut] (e1-a3)  [right=5mm of e1] {A3} edge (e1);
-%
-%\node[entity] (e2) [below left =1cm and 1mm of e1.south] {E1} edge [erbt] (e1);
-%\node[entity] (e3)      [below right=1cm and 1mm of e1.south] {E3} edge [erbt] (e1);
-%\node[entity] (e4) [right =7cm of e3] {E4};
-%
-%\node[weakentity] (e5) [below =3cm of e3] {E5};
-%\node[attribut] (e5-a1)  [right=5mm of e5] {\dashuline{A1}} edge (e5);
-%
-%\node[relationship] (r1) [right=2cm of e3] {R1};
-%\path (r1) edge node[at end,anchor=north west] {$[0;2]$} (e3);
-%\path (r1) edge node[at end,anchor=north east] {$[7;9]$} (e4);
-%
-%
-%\node[weakrelationship] (r2) [below=1cm of e3] {R2};
-%\path (r2) edge node[at end,anchor=north west] {$1$} (e3);
-%\draw[double distance=2pt] (r2) -- node[at end,anchor=south east] {$8$} (e5);
-%
-%
-%
-%\end{tikzpicture}
-%\end{center}
-
 \section{Informationsmodellierung}
 
 
@@ -54,54 +22,56 @@
 \begin{center}
 \begin{tikzpicture}
 	%%%% entitäten
-	\node[entity]	(person)	{Person};;
-	\node[regular polygon,regular polygon sides=6,draw, ultra thick, fill=blue!20]
-					(p-isa)		[left=0.5cm of person]				{is-a};
-	\node[entity]	(lektor)	[left=1cm of p-isa]					{Lektor};
-	\node[entity]	(ss)		[above=0.5cm of lektor]				{Schriftsteller};
-	\node[entity]	(verleger)	[below=0.5cm of lektor]				{Verleger};
-	%% verleger-relationen
-	\node[relationship]	(rel-vl-vl)		[left=2cm of verleger]	{arbeitet für};
-	%% lektor-relationen
-	\node[relationship]	(rel-lk-buch)		[above left=2cm and 2cm of lektor]	{prüft};
-	%% schriftsteller-relationen
-	\node[relationship] (rel-ss-shg)	[above right=1cm and 1cm of ss]		{nimmt teil};
-	\node[relationship]	(rel-ss-buch)	[above left=1cm and 1cm of ss]	{schreibt};
-	
-	\node[entity]	(buch)		[above left=1cm and 1cm of rel-ss-buch]	{Buch};
-	\node[relationship]	(rel-buch-pv)	[left=2cm of buch]	{platziert};
-	\node[entity]	(verlag)	[left=3cm of lektor]				{Verlag};
-	\node[entity]	(shg)		[above right=1cm and 1cm of rel-ss-shg]		{SHG};
-	\node[entity]	(pv)		[left=2cm of rel-buch-pv]					{Preisverleihung};
-	
-				
+	\node[entity]		(person)												{Person};
 	% is-a relation der personen
+	\node[regular polygon,regular polygon sides=6,draw, ultra thick, fill=blue!20]
+						(p-isa)			[left=0.5cm of person]					{is-a};
+	\node[entity]		(lektor)		[left=1cm of p-isa]						{Lektor};
+	\node[entity]		(ss)			[above=0.5cm of lektor]					{Schriftsteller};
+	\node[entity]		(verleger)		[below=0.5cm of lektor]					{Verleger};
+	%% verleger-relationen
+	\node[relationship]	(rel-vl-vl)		[left=2cm of verleger]					{arbeitet für};
+	%% lektor-relationen
+	\node[relationship]	(rel-lk-buch)	[above left=2cm and 2cm of lektor]		{prüft};
+	%% schriftsteller-relationen
+	\node[relationship] (rel-ss-shg)	[above right=1cm and 1cm of ss]			{nimmt teil};
+	\node[relationship]	(rel-ss-buch)	[above left=1cm and 1cm of ss]			{schreibt};
+	
+	\node[entity]		(buch)			[above left=1cm and 1cm of rel-ss-buch]	{Buch};
+	%% buch-relationen
+	\node[relationship]	(rel-buch-pv)	[left=2cm of buch]						{platziert};
+	\node[entity]		(verlag)		[left=3cm of lektor]					{Verlag};
+	\node[entity]		(shg)			[above right=1cm and 1cm of rel-ss-shg]	{SHG};
+	\node[entity]		(pv)			[left=2cm of rel-buch-pv]				{Preisverleihung};
 					
 	
 	%%%% attribute
 	% personelle attribute
-	\node[attribut]				(ps-vorname)	[right=1cm of person]		{Vorname}				edge (person);
-	\node[attribut]				(ps-!svnr)		[above=0.5cm of ps-vorname]	{\underline{\#SVNr}}	edge (person);
-	\node[attribut]				(ps-nachname)	[below=0.5cm of ps-vorname]	{Nachname}				edge (person);
-	\node[attribut]				(ps-gbd)		[below=0.5cm of person]		{Geburtsdatum}			edge (person);
+	\node[attribut]				(ps-vorname)	[right=1cm of person]				{Vorname}				edge (person);
+	\node[attribut]				(ps-!svnr)		[above=0.5cm of ps-vorname]			{\underline{\#SVNr}}	edge (person);
+	\node[attribut]				(ps-nachname)	[below=0.5cm of ps-vorname]			{Nachname}				edge (person);
+	\node[attribut]				(ps-gbd)		[below=0.5cm of person]				{Geburtsdatum}			edge (person);
 	% büchliche attribute
-	\node[attribut]				(b-jahr)	[above=0.5cm of buch]		{Jahr}					edge	(buch);
-	\node[attribut]				(b-titel)	[left=0.5cm of b-jahr]		{Titel}					edge	(buch);
-	\node[attribut]				(b-!isbn)	[left=0.5cm of b-titel]		{\underline{\#ISBN}}	edge	(buch);
-	\node[multivalentattribut]	(b-autoren)	[right=0.5cm of b-jahr]		{Autoren}				edge	(buch);
-	\node[attribut]				(b-verlag)	[right=0.5cm of b-autoren]	{Verlag}				edge	(buch);
+	\node[attribut]				(b-jahr)	[above=0.5cm of buch]					{Jahr}					edge	(buch);
+	\node[attribut]				(b-titel)	[left=0.5cm of b-jahr]					{Titel}					edge	(buch);
+	\node[attribut]				(b-!isbn)	[left=0.5cm of b-titel]					{\underline{\#ISBN}}	edge	(buch);
+	\node[multivalentattribut]	(b-autoren)	[right=0.5cm of b-jahr]					{Autoren}				edge	(buch);
+	\node[attribut]				(b-verlag)	[right=0.5cm of b-autoren]				{Verlag}				edge	(buch);
 	% verlegte attribute
-	\node[attribut]				(v-!name)	[above left=0.2cm and 0.5cm of verlag]	{\underline{Name}}	edge	(verlag);
-	\node[attribut]				(v-adresse)	[below left=0.2cm and 0.5cm of verlag]	{Adresse}			edge	(verlag);
+	\node[attribut]				(v-!name)	[above left=0.2cm and 0.5cm of verlag]	{\underline{Name}}		edge	(verlag);
+	\node[attribut]				(v-adresse)	[below left=0.2cm and 0.5cm of verlag]	{Adresse}				edge	(verlag);
+	\node[attribut]				(v-a-hnr)	[left=0.3cm of v-adresse]				{Haus-Nr.}				edge	(v-adresse);
+	\node[attribut]				(v-a-str)	[above=0.3cm of v-a-hnr]				{Straße}				edge	(v-adresse);
+	\node[attribut]				(v-a-plz)	[below=0.3cm of v-a-hnr]				{PLZ}					edge	(v-adresse);
 	% pvg-attribute
-	\node[attribut]				(p--name)	[left=0.4cm of pv]			{\dashuline{Name}}	edge	(pv);
-	\node[attribut]				(p--jahr)	[above=0.2cm of p--name]	{\dashuline{Jahr}}	edge	(pv);
-	\node[attribut]				(p-verans)	[below=0.2cm of p--name]	{Veranstalter}		edge	(pv);
+	\node[attribut]				(p--name)	[left=0.4cm of pv]						{\underline{Name}}		edge	(pv);
+	\node[attribut]				(p--jahr)	[above=0.2cm of p--name]				{\underline{Jahr}}		edge	(pv);
+	\node[attribut]				(p-verans)	[below=0.2cm of p--name]				{Veranstalter}			edge	(pv);
 	% shg-attribute
-	\node[attribut]				(s-!name)	[above right=0.2cm and 0.5cm of shg]	{\underline{Name}}	edge	(shg);
-	\node[attribut]				(s-ort)		[below right=0.2cm and 0.5cm of shg]	{Ort}				edge	(shg);
+	\node[attribut]				(s-!name)	[above right=0.2cm and 0.5cm of shg]	{\underline{Name}}		edge	(shg);
+	\node[attribut]				(s-ort)		[below right=0.2cm and 0.5cm of shg]	{Ort}					edge	(shg);
 	% verleger-attribute
-	\node[attribut]				(v-abt)		[below=0.3cm of verleger]	{Abteilung}	edge	(verleger);
+	\node[attribut]				(v-abt)		[below=0.3cm of verleger]				{Abteilung}				edge	(verleger);
 	% pv-rel-attribute
 	\node[attribut]				(pv-platz)	[below right=0.4cm and 0.4cm of rel-buch-pv]	{Platzierung}	edge	(rel-buch-pv);
 	\node[attribut]				(pv-kat)	[below left=0.4cm and 0.4cm of rel-buch-pv]	{Kategorie}		edge	(rel-buch-pv);
@@ -119,116 +89,13 @@
 		(p-isa)			edge						(verleger)
 		(ss)			edge	node	{$[0;*]$}	(rel-ss-shg)
 		(rel-ss-shg)	edge	node	{$[5;20]$}	(shg)
+		(buch)			edge	node	{$[0;*]$}	(rel-buch-pv)
+		(rel-buch-pv)	edge	node	{$[3;20]$}	(pv)
 	;
 	
 \end{tikzpicture}
 \end{center}
 %\end{sidewaysfigure}
-
-
-
-
-\section{Logischer Entwurf}
-
-
-
-\section{Relationale Algebra und SQL}
-
-
-
-\section{Algebraische Optimierung}
-
-*Lösung*
-
-\section{Beispiel für relationales Datenbankschema}
-
-\begin{RMSchma}
-Person(\soliduline{PID}, Name, Vorname, \dashuline{(HaustierName, HaustierRasse) $\rightarrow$ (Haustier.Name, Haustier.Rasse)})
-
-Haustier(\soliduline{Name, Rasse}, \dashuline{Herrchen $\rightarrow$ Person.PID})
-\end{RMSchma}
-
-
-
-
-
-
-\section{Beispiel für Ausdruck der Relationenalgebra}
-
-\begin{align*}
- &\umbenennung{Rasse}{Sorte}(\projektion{Rasse, Geschlecht}((Wolf\verbund{Wolf.WID=Haustier.HID} (\selektion{Name=\wert{Hasso}}Haustiere)) \natverbund Person))
-\\  &=\{ \wert{Steppenwolf}, \wert{m} \}
-\end{align*}
-
-
-
-
-\newpage
-\section{Beispiel für SQL-Anfrage}
-
-\begin{verbatim}
-SELECT 
-  h.Name,
-  h.Rasse
-FROM 
-  Haustier h,
-  Person p
-WHERE
-  h.Herrchen = p.PID AND
-  p.Vorname LIKE "P%"
-\end{verbatim}
-
-
-
-
-
-
-
-
-\section{Beispiel für Operatorbaum}
-
-\begin{tikzpicture}
-\node (Haustier) {Haustier};
-\node (Wolf) [left=25mm of Haustier] {Wolf};
-\node (join1) [above=20mm of $(Haustier)!.5!(Wolf)$] {$\verbund{Wolf.WID=Haustier.HID}$};
-\node (selektion1) [above=of join1] {$\selektion{Name=\wert{Hasso}}$};
-\node (projektion) [above=of selektion1] {$\projektion{Rasse}$};
-\node (final) [above=of projektion] {};
-
-\path (Haustier) edge node[smallr,near start,above right] {?? Tupel\\?? Attribute} (join1);
-\path (Wolf) edge node[smalll,near start,above left] {?? Tupel\\?? Attribute} (join1);
-\path (join1) edge node[smallr,near start,above left] {?? Tupel\\?? Attribute} (selektion1);
-\path (selektion1) edge node[smallr,midway,left] {$??\cdot\frac{??}{??}=??$ Tupel\\?? Attribute} (projektion);
-\path (projektion) edge node[smallr,midway,left] {$??$ Tupel\\1 Attribut} (final);
-\end{tikzpicture}
-
-
-
-
-
-
-
-\section{Beispiel für Tabelle mit Sperranforderungen}
-
-\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|p{1cm}|p{1cm}|p{3cm}|}
-\hline
-Zeitschritt & T\ts{1} & T\ts{2} & T\ts{3} & x & y & z & Bemerkung\\
-\hline
-\hline
-0 &  &  &  & NL & NL & NL & \\
-\hline
-1 & lock(x,X) &  &  & X\ts{1} & NL & NL & \\
-\hline
-2 & write(x) & lock(y,R) &  & X\ts{1} & R\ts{2} & NL & \\
-\hline
-3 &  &  &  &  &  &  & \\
-\hline
-4 &  &  &  &  &  &  & \\
-\hline
-5 &  &  &  &  &  &  & \\
-\hline
-\end{tabular}
-
 
 %%%% notizen für 1
 %Person
@@ -284,6 +151,145 @@ Zeitschritt & T\ts{1} & T\ts{2} & T\ts{3} & x & y & z & Bemerkung\\
 %LektorIn (is-a Person)
 %	arbeitet bei Verlag [1;*]
 %	begutachtet [0;*]
+
+
+\section{Logischer Entwurf}
+
+
+
+\section{Relationale Algebra und SQL}
+
+
+
+\section{Algebraische Optimierung}
+
+*Lösung*
+
+
+
+%%%%%\section{Beispiel für ER-Diagramm}
+%%%%%
+%%%%%\begin{center}
+%%%%%\begin{tikzpicture}
+%%%%%
+%%%%%\node[entity] (e1) {E1};
+%%%%%\node[attribut] (e1-a1) [above left =5mm and 4mm of e1.north] {\underline{A1}} edge (e1);
+%%%%%\node[attribut] (e1-a2)  [above right=5mm and 4mm of e1.north] {A2} edge (e1);
+%%%%%\node[multivalentattribut] (e1-a3)  [right=5mm of e1] {A3} edge (e1);
+%%%%%
+%%%%%\node[entity] (e2) [below left =1cm and 1mm of e1.south] {E1} edge [erbt] (e1);
+%%%%%\node[entity] (e3)      [below right=1cm and 1mm of e1.south] {E3} edge [erbt] (e1);
+%%%%%\node[entity] (e4) [right =7cm of e3] {E4};
+%%%%%
+%%%%%\node[weakentity] (e5) [below =3cm of e3] {E5};
+%%%%%\node[attribut] (e5-a1)  [right=5mm of e5] {\dashuline{A1}} edge (e5);
+%%%%%
+%%%%%\node[relationship] (r1) [right=2cm of e3] {R1};
+%%%%%\path (r1) edge node[at end,anchor=north west] {$[0;2]$} (e3);
+%%%%%\path (r1) edge node[at end,anchor=north east] {$[7;9]$} (e4);
+%%%%%
+%%%%%
+%%%%%\node[weakrelationship] (r2) [below=1cm of e3] {R2};
+%%%%%\path (r2) edge node[at end,anchor=north west] {$1$} (e3);
+%%%%%\draw[double distance=2pt] (r2) -- node[at end,anchor=south east] {$8$} (e5);
+%%%%%
+%%%%%
+%%%%%
+%%%%%\end{tikzpicture}
+%%%%%\end{center}
+%%%%%
+%%%%%
+%%%%%\section{Beispiel für relationales Datenbankschema}
+%%%%%
+%%%%%\begin{RMSchma}
+%%%%%Person(\soliduline{PID}, Name, Vorname, \dashuline{(HaustierName, HaustierRasse) $\rightarrow$ (Haustier.Name, Haustier.Rasse)})
+%%%%%
+%%%%%Haustier(\soliduline{Name, Rasse}, \dashuline{Herrchen $\rightarrow$ Person.PID})
+%%%%%\end{RMSchma}
+%%%%%
+%%%%%
+%%%%%
+%%%%%
+%%%%%
+%%%%%
+%%%%%\section{Beispiel für Ausdruck der Relationenalgebra}
+%%%%%
+%%%%%\begin{align*}
+%%%%% &\umbenennung{Rasse}{Sorte}(\projektion{Rasse, Geschlecht}((Wolf\verbund{Wolf.WID=Haustier.HID} (\selektion{Name=\wert{Hasso}}Haustiere)) \natverbund Person))
+%%%%%\\  &=\{ \wert{Steppenwolf}, \wert{m} \}
+%%%%%\end{align*}
+%%%%%
+%%%%%
+%%%%%
+%%%%%
+%%%%%\newpage
+%%%%%\section{Beispiel für SQL-Anfrage}
+%%%%%
+%%%%%\begin{verbatim}
+%%%%%SELECT 
+%%%%%  h.Name,
+%%%%%  h.Rasse
+%%%%%FROM 
+%%%%%  Haustier h,
+%%%%%  Person p
+%%%%%WHERE
+%%%%%  h.Herrchen = p.PID AND
+%%%%%  p.Vorname LIKE "P%"
+%%%%%\end{verbatim}
+%%%%%
+%%%%%
+%%%%%
+%%%%%
+%%%%%
+%%%%%
+%%%%%
+%%%%%
+%%%%%\section{Beispiel für Operatorbaum}
+%%%%%
+%%%%%\begin{tikzpicture}
+%%%%%\node (Haustier) {Haustier};
+%%%%%\node (Wolf) [left=25mm of Haustier] {Wolf};
+%%%%%\node (join1) [above=20mm of $(Haustier)!.5!(Wolf)$] {$\verbund{Wolf.WID=Haustier.HID}$};
+%%%%%\node (selektion1) [above=of join1] {$\selektion{Name=\wert{Hasso}}$};
+%%%%%\node (projektion) [above=of selektion1] {$\projektion{Rasse}$};
+%%%%%\node (final) [above=of projektion] {};
+%%%%%
+%%%%%\path (Haustier) edge node[smallr,near start,above right] {?? Tupel\\?? Attribute} (join1);
+%%%%%\path (Wolf) edge node[smalll,near start,above left] {?? Tupel\\?? Attribute} (join1);
+%%%%%\path (join1) edge node[smallr,near start,above left] {?? Tupel\\?? Attribute} (selektion1);
+%%%%%\path (selektion1) edge node[smallr,midway,left] {$??\cdot\frac{??}{??}=??$ Tupel\\?? Attribute} (projektion);
+%%%%%\path (projektion) edge node[smallr,midway,left] {$??$ Tupel\\1 Attribut} (final);
+%%%%%\end{tikzpicture}
+%%%%%
+%%%%%
+%%%%%
+%%%%%
+%%%%%
+%%%%%
+%%%%%
+%%%%%\section{Beispiel für Tabelle mit Sperranforderungen}
+%%%%%
+%%%%%\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|p{1cm}|p{1cm}|p{3cm}|}
+%%%%%\hline
+%%%%%Zeitschritt & T\ts{1} & T\ts{2} & T\ts{3} & x & y & z & Bemerkung\\
+%%%%%\hline
+%%%%%\hline
+%%%%%0 &  &  &  & NL & NL & NL & \\
+%%%%%\hline
+%%%%%1 & lock(x,X) &  &  & X\ts{1} & NL & NL & \\
+%%%%%\hline
+%%%%%2 & write(x) & lock(y,R) &  & X\ts{1} & R\ts{2} & NL & \\
+%%%%%\hline
+%%%%%3 &  &  &  &  &  &  & \\
+%%%%%\hline
+%%%%%4 &  &  &  &  &  &  & \\
+%%%%%\hline
+%%%%%5 &  &  &  &  &  &  & \\
+%%%%%\hline
+%%%%%\end{tabular}
+
+
+
 
 
 
