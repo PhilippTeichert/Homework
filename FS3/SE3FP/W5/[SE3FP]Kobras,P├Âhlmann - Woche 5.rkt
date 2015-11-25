@@ -5,6 +5,10 @@
 ;; Pöhlmann  6663579
 ;
 ;++++++++++++++++++++++
+;
+;; Seppke/Gr.9 - Woche 5
+;
+;++++++++++++++++++++++
 |#
 
 #lang racket
@@ -287,6 +291,10 @@ Test3:
     (zeigeKinderschar 'yellow 'yellow 'yellow 'yellow 'yellow 'yellow 'yellow 'yellow 3)
     Zum Testen, ob die Methode auch wirklich prüft, was für Eingaben sie bekommt, ein Negativtest mit unsinniger Eingabe.
     Hier sollte bei mehrmaligem Testen immer irgendwie an der Ausgabe zu erkennen sein, dass die Eingabe unvollständig/unsinnig/fehlerhaft war.
+
+Test4:
+    (zeigeKinderschar (list-ref Fluegelfarbe (random 4)) (list-ref Musterung (random 3)) (list-ref Fuehlerform (random 3)) (list-ref Fluegelform (random 3)) (list-ref Fluegelfarbe (random 4)) (list-ref Musterung (random 3)) (list-ref Fuehlerform (random 3)) (list-ref Fluegelform (random 3)) 6)
+    generiert zwei zufällige Eltern
 |#
 
 
