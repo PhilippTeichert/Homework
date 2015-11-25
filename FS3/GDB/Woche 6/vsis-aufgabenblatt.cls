@@ -13,6 +13,7 @@
 \RequirePackage{babel}
 % Kodierung der Schriftarten wegen Umlauten
 \RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
 
 
 % Einbinden von Grafiken (z.B. VSIS-Logo)

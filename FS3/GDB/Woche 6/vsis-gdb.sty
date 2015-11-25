@@ -10,7 +10,7 @@
 %
 % v1.1:
 % 2009-11-11 KH: Neues Makro \SF
-% 2009-11-11 KH: Makro \wert angepasst (Anführungszeichen)
+% 2009-11-11 KH: Makro \wert angepasst (Anfï¿½hrungszeichen)
 %
 % v1.0:
 % 2009-11-09 KH: Erste Version der Makro-Sammlung
@@ -20,12 +20,12 @@
 \ProvidesPackage{vsis-gdb}[2009/11/27 v1.2 Nuetzliche Makros fuer GDB]
 
 
-\RequirePackage{ulsy}
+%\RequirePackage{ulsy}
 \RequirePackage{setspace}
 \RequirePackage[fleqn]{amsmath}
 
-\RequirePackage{latexsym} % Für Befehle wie \Join
-% Gestricheltes Unterstreichen, z.B. für Relationales Datenbankmodell (Fremdschlüssel)
+\RequirePackage{latexsym} % Fï¿½r Befehle wie \Join
+% Gestricheltes Unterstreichen, z.B. fï¿½r Relationales Datenbankmodell (Fremdschlï¿½ssel)
 \RequirePackage[normalem]{ulem}
 \def\dashuline{\bgroup
   \ifdim\ULdepth=\maxdimen  % Set depth based on font, if not set already
@@ -35,7 +35,7 @@
   \kern.1em}\ULon}
 \def\soliduline{\bgroup \markoverwith{\hbox
  {\vtop{\kern.3ex\hrule width.2em}}}\ULon}
-% Umgebung für relationale Datenbankschemata
+% Umgebung fï¿½r relationale Datenbankschemata
 \newenvironment{RMSchma}{\begin{raggedright}\it\doublespacing}{\end{raggedright}}
 
 % Operatoren der relationalen Algebra
