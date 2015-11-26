@@ -15,9 +15,20 @@
 \usepackage{algorithmic}
 \usepackage{algorithm}
 \usepackage{clrscode3e}
-
+% formatting and layout
+\usepackage{color}
+% settings
 \usepackage{perpage}
 \MakePerPage{footnote}
+% custom text colors
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+% macro commands
+%% requires color package and the custom colors defined here 
+\newcommand{\todo}[1]{
+	\addcontentsline{toc}{subsubsection}{TODO: #1}
+	\textcolor{pgreen}{\texttt{\-\\ \-\\//TODO: #1\-\\ \-\\}}
+	}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	TEMPLATE für neue Arbeitszettel
@@ -27,21 +38,26 @@
 
 %\newpage
 %%#+-------------------------------------------------+#%
-%%#+						ZETTEL 2					+#%
+%%#+						ZETTEL 2			     +#%
 %%#+-------------------------------------------------+#%
-%\section{Zettel vom 29. 10. -- Abgabe: 09. 11.}
-%\subsection{Übungsaufgabe 3.1}
+%\addcontentsline{toc}{section}{Zettel vom 29. 10. -- Abgabe: 09. 11.}
+%\section*{Zettel vom 29. 10. -- Abgabe: 09. 11.}
+%\addcontentsline{toc}{subsection}{Übungsaufgabe n.m}
+%\subsection*{Übungsaufgabe 3.1}
+%\label{ssec:n.m}
 %\begin{flushright}
 %\begin{Large}
 %[~~~~\string| ~~3~]
 %\end{Large}
 %\end{flushright}
 %%---------------%
-%%	Aufgabe		%
+%%	Aufgabe		 %
 %%---------------%
+%\addcontentsline{toc}{subsubsection}{Aufgabe n.m.i}
+%\subsubsection*{Aufgabe n.m.i}
 %\vspace{1cm}\-\\
 %%---------------%
-%%	Bearbeitung	%
+%%	Bearbeitung	 %
 %%---------------%
 
 
@@ -89,9 +105,9 @@
 	\vspace{2cm}
 	\textbf{Punkte für den Hausaufgabenteil:}\\
 	\vspace{1cm}
-	\begin{tabular}{c|c|c|c}
-	~4.1~&~4.2~&~4.3~&~$\Sigma$~	\\	\hline
-		 &	   &	 &
+	\begin{tabular}{c|c|c|c|c}
+	~5.1~&~5.2~&~5.3~&~5.3~&~$\Sigma$~	\\	\hline
+		 &	   &	 &	   &
 	\end{tabular}
 \end{center}
 \newpage
@@ -1430,4 +1446,145 @@ Dies liegt in \textit{NP}.
 \textbf{Reduktion:} Wir können es nicht sinnvoll auf ein anderes Problem überführen, damit ist es offensichtlich schwerer als alle Probleme in NP und somit in NPH.
 Damit ist es auch in \textit{NPC}.
 %-------------------------------------------------------------%
+
+\newpage
+%#+-------------------------------------------------+#%
+%#+						ZETTEL 5			     	+#%
+%#+-------------------------------------------------+#%
+\addcontentsline{toc}{section}{Zettel vom 26. 10. -- Abgabe: 07. 12.}
+\section*{Zettel vom 26. 10. -- Abgabe: 07. 12.}
+\addcontentsline{toc}{subsection}{Übungsaufgabe 5.1}
+\subsection*{Übungsaufgabe 5.1}
+\label{ssec:5.1}
+\begin{flushright}
+\begin{Large}
+[~~~~\string| ~~4~]
+\end{Large}
+\end{flushright}
+%---------------%
+%	Aufgabe		%
+%---------------%
+\addcontentsline{toc}{subsubsection}{Aufgabe 5.1.1}
+\subsubsection*{Aufgabe 5.1.1}
+\label{sssec:5.1.1}
+Fuhren Sie die in der Vorlesung behandelte Einfügeoperation \texttt{TreeInsert} für binäre Suchbäume nacheinander mit den Elementen 5, 8, 9, 6, 7 aus.
+Zu Anfang sei der Baum leer.
+Geben Sie den nach jeder Einfügeoperation erhaltenen Suchbaum an. (1 Pkt.)
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung	%
+%---------------%
+
+
+
+
+%---------------%
+%	Aufgabe		%
+%---------------%
+\addcontentsline{toc}{subsubsection}{Aufgabe 5.1.2}
+\subsubsection*{Aufgabe 5.1.2}
+\label{sssec:5.1.2}
+Gegeben sei folgender binärer Suchbaum:
+\todo{tikz:baum malen}
+Führen Sie nacheinander die in der Vorlesung behandelte Löschoperation für binäre Suchbäume mit den Elementen 14, 27, 25 aus.
+Geben Sie den nach jeder Löschoperation erhaltenen Suchbaum an. (3 Pkt.)
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung	%
+%---------------%
+
+
+\addcontentsline{toc}{subsection}{Übungsaufgabe 5.2}
+\subsection*{Übungsaufgabe 5.2}
+\label{ssec:5.2}
+\begin{flushright}
+\begin{Large}
+[~~~~\string| ~~4~]
+\end{Large}
+\end{flushright}
+%---------------%
+%	Aufgabe		%
+%---------------%
+Geben Sie für die Routine \texttt{InorderTreeWalk} einen nichtrekursiven Algorithmus (3 Pkt.) und für die Routine \texttt{TreeMinimum} einen rekursiven Algorithmus (1 Pkt.) an.
+Erläutern Sie in beiden Fällen unbedingt die Arbeitsweise ihres Algorithmus.
+
+\textit{
+	(Hinweis: Beide Routinen wurden in der Vorlesung behandelt.
+	\texttt{InorderTreeWalk} allerdings in rekursiver, \texttt{TreeMinimum} in nichtrekursiver Darstellung.
+	Für die erste Teilaufgabe hilft ein Vergleich mit der Breiten- und Tiefensuche bei Graphen.
+	Für die zweite Teilaufgabe betrachte man die Routine \texttt{TreeSearch} in ihren beiden Varianten.)
+}
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung	%
+%---------------%
+\addcontentsline{toc}{subsection}{Übungsaufgabe 5.3}
+\subsection*{Übungsaufgabe 5.3}
+\label{ssec:5.3}
+\begin{flushright}
+\begin{Large}
+[~~~~\string| ~~4~]
+\end{Large}
+\end{flushright}
+%---------------%
+%	Aufgabe		%
+%---------------%
+Gegeben sei ein ungerichteter Graph $G = (V, E)$ auf $n$ Knoten.
+Ferner seien $s, t \in V$ Knoten, deren Distanz (ihr kürzester Abstand) echt größer als $\frac{n}{2}$ sei, d.h. $d(s, t) > n/2$.
+Zeigen Sie zunächst, dass dann ein von $s$ und $t$ verschiedener Knoten $v$ existieren muss, dessen Löschung alle $s$-$t$-Pfade zerstört.
+(Der Graph $G'$, der aus $G$ entsteht, wenn man $v$ löscht, enthält also keine Pfade von $s$ zu $t$ mehr.)
+
+Geben Sie dann einen Algorithmus an, der den Knoten $v$ findet.
+Können Sie einen Algorithmus angeben, der in Zeit $O(n + m)$ arbeitet?
+Erläutern Sie die Arbeitsweise Ihres Algorithmus und begründen Sie seine Korrektheit sowie seine Laufzeit.
+
+\textit{
+	(Anmerkung: Die obige Fragestellung tritt bei der Untersuchung von Netzwerken auf.
+	Sie besagt, dass, wenn zwei Knoten zu weit auseinander sind (nur durch viele Zwischenknoten verbunden sind), diese eine anfälligere Verbindung haben als Knoten die dichter beieinander sind.
+	Obiges Resultat zeigt nämlich gerade, dass der Ausfall eines Knotens $v$ genügt, um $s$ und $t$ zu trennen.
+	Allerdings ist die Aussage nicht, dass irgendein Knoten $v$ ausfallen kann und dann sofort $s$ und $t$ getrennt wären, sondern nur, dass (mindestens) ein solcher Knoten existiert.)
+}
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung	%
+%---------------%
+\addcontentsline{toc}{subsection}{Übungsaufgabe 5.4}
+\subsection*{Übungsaufgabe 5.4}
+\label{ssec:5.4}
+\begin{flushright}
+\begin{Large}
+[~~~~\string| ~~4~]
+\end{Large}
+\end{flushright}
+\addcontentsline{toc}{subsubsection}{Aufgabe 5.4.1}
+\subsubsection*{Aufgabe 5.4.1}
+\label{sssec:5.4.1}
+%---------------%
+%	Aufgabe		%
+%---------------%
+Im Problem \texttt{Big-Clique} ist ein ungerichteter Graph $G$ gegeben.
+Die Frage ist, ob $G$ eine Clique enthält, die aus mindestens $\frac{n}{2}$ Knoten besteht (wobei $n$ die Anzahl der Knoten von $G$ ist).
+Zeigen Sie, dass \texttt{Big-Clique} NP-vollständig ist. (2 Pkt.)
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung	%
+%---------------%
+
+
+
+\addcontentsline{toc}{subsubsection}{Aufgabe 5.4.2}
+\subsubsection*{Aufgabe 5.4.2}
+\label{sssec:5.4.2}
+%---------------%
+%	Aufgabe		%
+%---------------%
+Geben Sie unter der Annahme $P = NP$ einen deterministischen Algorithmus an, der in polynomieller
+Zeit zu einem ungerichteten Graphen $G$ eine maximal große Clique bestimmt. (2 Pkt.)
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung	%
+%---------------%
+
+
+
 \end{document}
