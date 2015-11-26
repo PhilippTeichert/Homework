@@ -29,6 +29,10 @@
 	\addcontentsline{toc}{subsubsection}{TODO: #1}
 	\textcolor{pgreen}{\texttt{\-\\ \-\\//TODO: #1\-\\ \-\\}}
 	}
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata,positioning}
+\usepackage{pgf}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	TEMPLATE für neue Arbeitszettel
@@ -1467,15 +1471,127 @@ Damit ist es auch in \textit{NPC}.
 \addcontentsline{toc}{subsubsection}{Aufgabe 5.1.1}
 \subsubsection*{Aufgabe 5.1.1}
 \label{sssec:5.1.1}
-Fuhren Sie die in der Vorlesung behandelte Einfügeoperation \texttt{TreeInsert} für binäre Suchbäume nacheinander mit den Elementen 5, 8, 9, 6, 7 aus.
+Führen Sie die in der Vorlesung behandelte Einfügeoperation \texttt{TreeInsert} für binäre Suchbäume nacheinander mit den Elementen 5, 8, 9, 6, 7 aus.
 Zu Anfang sei der Baum leer.
 Geben Sie den nach jeder Einfügeoperation erhaltenen Suchbaum an. (1 Pkt.)
 \vspace{1cm}\-\\
 %---------------%
 %	Bearbeitung	%
 %---------------%
+Im Folgenden wurden die \texttt{nil}-Blätter der Übersicht halber nicht mitgeführt.\\
+\-\\
+\begin{minipage}[t]{0.2\textwidth}
+Füge 5 ein:\\
+\begin{tikzpicture}[rectangle,->,>=stealth',shorten >=1pt,auto,distance=1cm,semithick,state/.style={draw=black,ultra thick,rectangle,rounded corners}]
+	\node					(nil)										{\texttt{Nil}};
+	\node[state]			(5)		[below of=nil,yshift=-0.2cm]		{5};
+	
+	\path
+		(nil)	edge	[out=270,in=90]		(5)
+	;
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+Füge 8 ein:\\
+\begin{tikzpicture}[rectangle,->,>=stealth',shorten >=1pt,auto,distance=1cm,semithick,state/.style={draw=black,ultra thick,rectangle,rounded corners}]
+	\node					(nil)										{\texttt{Nil}};
+	\node[state]			(5)		[below of=nil,yshift=-0.2cm]		{5};
+	\node[state]			(8)		[below right of=5]					{8};
+	
+	\path
+		(nil)	edge	[out=270,in=90]		(5)
+		(5)		edge	[out=300,in=120]	(8)
+	;
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+Füge 9 ein:\\
+\begin{tikzpicture}[rectangle,->,>=stealth',shorten >=1pt,auto,distance=1cm,semithick,state/.style={draw=black,ultra thick,rectangle,rounded corners}]
+	\node					(nil)										{\texttt{Nil}};
+	\node[state]			(5)		[below of=nil,yshift=-0.2cm]		{5};
+	\node[state]			(8)		[below right of=5]					{8};
+	\node[state]			(9)		[below right of=8]					{9};
+	
+	\path
+		(nil)	edge	[out=270,in=90]		(5)
+		(5)		edge	[out=300,in=120]	(8)
+		(8)		edge	[out=300,in=120]	(9)
+	;
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+Füge 6 ein:\\
+\begin{tikzpicture}[rectangle,->,>=stealth',shorten >=1pt,auto,distance=1cm,semithick,state/.style={draw=black,ultra thick,rectangle,rounded corners}]
+	\node					(nil)										{\texttt{Nil}};
+	\node[state]			(5)		[below of=nil,yshift=-0.2cm]		{5};
+	\node[state]			(8)		[below right of=5]					{8};
+	\node[state]			(9)		[below right of=8]					{9};
+	\node[state]			(6)		[below left of=8]					{6};
+	
+	\path
+		(nil)	edge	[out=270,in=90]		(5)
+		(5)		edge	[out=300,in=120]	(8)
+		(8)		edge	[out=240,in=60]		(6)
+		(8)		edge	[out=300,in=120]	(9)
+	;
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+Füge 7 ein:\\
+\begin{tikzpicture}[rectangle,->,>=stealth',shorten >=1pt,auto,distance=1cm,semithick,state/.style={draw=black,ultra thick,rectangle,rounded corners}]
+	\node					(nil)										{\texttt{Nil}};
+	\node[state]			(5)		[below of=nil,yshift=-0.2cm]		{5};
+	\node[state]			(8)		[below right of=5]					{8};
+	\node[state]			(9)		[below right of=8]					{9};
+	\node[state]			(6)		[below left of=8]					{6};
+	\node[state]			(7)		[below right of=6]					{7};
+	
+	\path
+		(nil)	edge	[out=270,in=90]		(5)
+		(5)		edge	[out=300,in=120]	(8)
+		(8)		edge	[out=240,in=60]		(6)
+		(8)		edge	[out=300,in=120]	(9)
+		(6)		edge	[out=300,in=120]	(7)
+	;
+\end{tikzpicture}
+\end{minipage}\\
+\begin{tikzpicture}
+\node	[circle,draw,dotted]	(root)	{\texttt{nil}}
+	child{
+		node	[circle,draw]	(5)	{5}		
+		child{
+			node	[circle,draw,dotted]	(leaf1)	{\texttt{nil}}
+		}
+		child{
+			node	[circle,draw]	(8)	{8}
+			child{
+				node	[circle,draw]	(6)	{6}
+					child{
+						node	[circle,draw,dotted]	(leaf4)	{\texttt{nil}}
+					}
+					child{
+						node	[circle,draw]	(7)		{7}
+							child{
+								node	[circle,draw,dotted]	(leaf5)	{\texttt{nil}}
+							}
+							child{
+								node	[circle,draw,dotted]	(leaf6)	{\texttt{nil}}
+							}
+					}
+			}
+			child{
+				node	[circle,draw]	(9)	{9}
+					child{
+						node	[circle,draw,dotted]	(leaf2)	{\texttt{nil}}
+					}
+					child{
+						node	[circle,draw,dotted]	(leaf3)	{\texttt{nil}}
+					}
+			}
+		}
+	};
 
-
+\end{tikzpicture}
 
 
 %---------------%
@@ -1584,6 +1700,7 @@ Zeit zu einem ungerichteten Graphen $G$ eine maximal große Clique bestimmt. (2 
 %---------------%
 %	Bearbeitung	%
 %---------------%
+
 
 
 
