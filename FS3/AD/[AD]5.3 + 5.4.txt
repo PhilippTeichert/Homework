@@ -1,0 +1,187 @@
+Sei G = (V, E) ein Graph. Dieser Graph besitzt die Knoten s, t und v und die Bedingung, dass d(s, t) > |V|/2 gilt. Damit enthält der kürzeste Pfad von s nach t mindestens die Hälfte aller Knoten (Genauer |V|/2 + 2 Knoten, wobei |V|/2 abgerundet wird und die + 2 durch s und t zustandekommen).
+Um nun einen weiteren Pfad dieser Länge zu kreieren, muss ein Teil des bisherigen Pfades wiederverwertet werden, da sonst nicht mehr genügend freie Knoten zur Verfügung stünden. Und für jeden weiteren Pfad werden jeweils Teile der alten Pfade wieder verwertet. Irgendwann gehen die nicht benutzten Knoten aus und auch die Möglichkeiten übrige Knoten zu verbinden sind ausgeschöpft dann können weitere Pfade nicht generiert werden.
+Alle Knoten, die nun in der Schnittmenge aller Pfade liegen, sind potentielle v Kandidaten, da jeder mögliche Pfad sie enthält - sie sozusagen die Schnittstellen aller möglichen kürzesten Pfade sind und so in jedem Pfad vorkommen müssen, damit er ein Pfad von t nach s ist.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Algorithmus:
+Idee 1:
+Wir suchen jeden möglichen kürzesten Pfad. Ein Kandidat für den Knoten v ist jeder Knoten, der in jedem solchen Pfad liegt.
+Laufzeit: O(2^(n+m))
+
+Idee 2:
+Schritt 1: O(n + m)
+    Wir suchen einen Pfad (Breitensuche).
+Schritt 2: O(c)
+    Wir löschen einen Knoten (außer s und t) dieses Pfades.
+Schritt 3: O(n + m)
+    Nun prüfen wir, ob es wieder einen Pfad gibt.
+    Wenn ja, füge den alten Knoten wieder ein und lösche einen anderen aus dem ersten Pfad. Mache weiter mit Schritt 3.
+    Wenn nein, ist dieser Knoten ein v Kandidat.
+Laufzeit: O(n + m) + O(c) + O(n + m) = O(n + m)
+
+Pseudocode:
+v_knoten(Graph G, Knoten s, Knoten t)
+    List A = suchePfad(G, s, t)
+    for Knoten erg in A:
+        G' = G.loesche(erg)
+        List B = suchePfad(G',s,t)
+        if B == null
+            return erg
+        end if
+    end for
+    
+    
+suchePfad(Graph G, Knoten s, Knoten t)
+    Breitensuche(G, s)
+    Knoten n = t.parent
+    List A = new List
+    while !(n == s)
+        A.add(n)
+        n = n.parent
+    end while
+    return A
+
+Breitensuche(Graph G, Knoten wurzel)
+    for Knoten n im G
+        n.distanz = INF
+        n.parent = NIL
+    end for
+    
+    Queue Q = new Queue
+    wurzel.distanz = 0
+    q.enqueque(wurzel)
+    
+    while !(Q is empty)
+        aktuellerKnoten = Q.dequeue()
+        
+        for Knoten m in Andjazenzliste von wurzel
+            if m.distanz == INF
+                m.distanz = wurzel.distanz + 1
+                m.parent = wurzel
+                q.enqueue(m)
+            end if
+        end for
+    end while
+
+Die Breitensuche läuft in O(n) + O(m) = O(n + m):
+    Die erste for Schleife läuft in n Schritten.
+    Die while Schleife läuft in m Schritten.
+suchePfad läuft in O(n + m) + O(n) = O(n + m + n) = O(2n + m) = O(n + m):
+    Der Methodenaufruf Breitensuche läuft in O(n + m)
+    Die while Schleife geht maximal d(t, s) - 1 > n/2 - 1 (-1 wegen des s Knotens, der ebenfalls in der Liste liegt) Schritte und läuft so in O(n/2 - 1) = O(n)
+v_knoten läuft in O(n + m) + O(n + m) + O(n) = O(n + m):
+    suchePfad läuft in O(n + m)
+    Das suchePfad in der for Schleife läuft in O(n + m)
+    Die for Schleife geht maximal d(t, s) - 1 > n/2 - 1 (-1 wegen des s Knotens, der ebenfalls in der Liste liegt) Schritte und läuft somit in O(n/2 - 1) = O(n)
+
+
+
+
+
+
+
+
+
+
+AUFGABE 5.4
+1.
+
+Big-Clique liegt in NP
+Verifikationsalgorithmus, der die Richtigkeit eines gegebenen Zertifikates in polynomialzeit überprüft
+    Unser Zertifikat: Eine Menge an Knoten - unsere Clique - und der Graph
+    Wir schauen in der Adjazenzliste nach, ob zu jedem gegebenen Knoten, zu allen anderen gegebenen Knoten eine Kante existiert. Ist dies der Fall, ist das Zertifikat richtig, sonst nicht.
+Big-Clique liegt in NPH
+Reduktion eines Algorithmusses aus NPH auf Big-Clique
+    Wir nehmen Clique(G, k): G = (V, K) Graph, k = Größe der Clique
+    Wenn unser k größer oder gleich |V|/2 ist, geben wir das Problem einfach in Big-Clique.
+    Ist es allerdings kleiner, fügen wir für jeden Knoten, der uns auf |V|/2 fehlt, 2 Knoten an den Graphen an, die wir jeweils mit Kanten zu allen anderen Knoten versehen.
+    Diesen neuen Graphen fügen wir in den Automaten ein, der Big-Clique löst und geben die Lösung als unsere Lösung für unser Clique-Problem aus.
+Da wir beides obere haben, folgt daraus: Big-Clique liegt in NPC
+
+
+2.
+
+Verifikationsalgorithmus, der die Richtigkeit eines gegebenen Zertifikates in polynomialzeit überprüft
+    Unser Zertifikat: Eine Menge an Knoten - unsere größte mögliche Clique - und der Graph
+    Wir geben unseren Graph und die Zahl k = |Menge an Knoten| + 1 in Clique.
+    Wenn Clique wahr ausgibt, ist das Zertifikat falsch, da eine größere Clique existiert.
+    Dies läuft in polynomialzeit, da P = NP angenommen wird.
+Durch diesen Verifikationsalgorithmus ist unser Problem in NP. Unter der Annahme P = NP existiert allerdings auch ein P-Algorithmus und dieser ist deterministisch.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ideenecke:
+
+
+6/8
+6/9
+7/10
+7/11
+8/12
+8/13
+9/14
+9/15
+
+
+
+
+
+129/255
+
+
+
+
+
+Behauptung:
+    s. Zettel Aufgabe 5.3
+    Wenn wir zwei Knoten s und t in einem Graphen G haben, mit d(s, t) > n/2, dann gibt es einen Knoten v =|= t oder s, der entfernt werden kann, um den Pfad von s nach t zu zerstören.
+Induktionsanfang:
+    Sei G ein Graph mit 3 Knoten. dann existiert ein dritter Knoten v, der nicht s oder t ist.
+    Über diesen Knoten muss ein Pfad von s nach t führen, sofern dieser Pfad die Länge d(s, t) > n/2 (= 3/2 = 1,5) haben soll, da jegliche sonstigen Pfade direkt von s nach t führen würden und so die Länge d(s, t) = 1 hätten, was jedoch kleiner als n/2 (= 1,5) ist.
+    Dieser Knoten v ist nun ebenjener Knoten, den wir entfernen können, um den Weg zu zerstören.
+Induktionsannahme:
+    Wenn die Behauptung für n Knoten gilt, gilt sie auch für n + 1 Knoten.
+Induktionsschritt:

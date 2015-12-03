@@ -1,0 +1,25 @@
+inorderTreeWalk_nichtRekursiv(x)
+
+AusgabeArray = null
+TreeMinimum(x)                        ; s. Vorlesung 7 Folie 37
+AusgabeArray.add(x)
+while TreeSucessor(x) =|= nil do      ; s. Vorlesung 7 Folie 47
+	x = TreeSucessor(x)
+	AusgabeArray.add(x)
+end while
+return AusgabeArray
+
+
+Dieser Algorithmus sucht sich das Minimum eines Baumes und packt es in ein Array. Danach wird sein Nachfolger gesucht und in das Array gepackt. Sollte ein Knoten irgendwann keinen Nachfolger mehr haben, terminiert der Algorithmus und wir geben das Array aus.
+
+
+TreeMinimum_rekursiv(x)
+
+if links[x] =|= nil
+	TreeMinimum_rekursiv(links[x])
+end if
+else
+	return x
+end else
+
+Dieser Algorithmus prüft, ob der aktuelle Knoten ein linkes Kind hat. Ist dies der Fall, wird die Methode rekursiv am linken Kind aufgerufen (das linke Kind wird von seinem Vater gefragt, was denn sein Minimum sei). Sollte dies allerdings nicht so sein und der aktuelle Knoten besitzt kein linkes Kind, dann ist er selbst sein eigenes Minimum und damit auch das Minimum aller Knoten über ihm und wird ausgegeben.
