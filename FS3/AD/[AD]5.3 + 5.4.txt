@@ -124,6 +124,117 @@ Das erste gefundene Element/jedes gefundene Element (im Fall "jedes Element" mus
 Gesamtlaufzeit: O(n) + O(n + m) + O(n + m) + O(n + m) + O(n + m) + O(n) + O(n) + O(c) = O(n + m)
 Idee vollständig? Ja, da durch die 2 Tiefensuchen mit Umkehrung der Adjazenzliste 2 maximal voneinander unabhängige Pfade gefunden werden. Die Schnittmenge von diesen wird in beiden Pfaden benötigt, um von s nach t zu kommen. Durch die Breitensuche wird dann auch noch garantiert, dass es sich um einen kürzesten Pfad handelt und somit um die minimale Anzahl der Knoten. Dies führt dazu, dass die Schnittmenge von diesem Pfad und den obigen beiden minimal ist. Und in dieser minimalen Schnittmenge ist nun jeder Knoten ein v-Kandidat.
 
+Pseudocode:
+ein_v_knoten(Graph G, Knoten s, Knoten t) //gibt einen möglichen v-Knoten aus
+    List Vs = v_knoten(G, s, t)
+    index = random(Vs.length)
+    return Vs[index]
+
+v_knoten(Graph G, Knoten s, Knoten t) //gibt eine Liste mit allen v-Knoten aus
+    int i = 0
+    for Knoten n in G
+	n.zahlenwert = i
+	i = i + 1
+    end for
+
+    List A = sucheKleinstenPfad(G, s, t)
+    List B = sucheAnderenPfad(G, s, t)
+    Graph G' = G
+    G'.Adjazenzliste = reverse(G.Adjazenzliste)
+    List C = sucheAnderenPfad(G', s, t)
+
+
+    List A' = RadixSort(A nach Knoten.zahlenwert) //s. Vorlesung 5 Folie 46 Link: http://www.informatik.uni-hamburg.de/TGI/lehre/vl/WS1516/AuD/Folien/aud_v5.pdf
+    List B' = RadixSort(B nach Knoten.zahlenwert)
+    List C' = RadixSort(C nach Knoten.zahlenwert)
+
+    List ErgebnisListe = new List
+    aktuellerKnoten = new Knoten
+    indexA = 0
+    indexB = 0
+    indexC = 0
+
+    while A'.length > indexA && B'.length > indexB && C'.length > indexC    //echt größer, da der Index ab 0 beginnt
+        aktuellerKnoten = A'[indexA]
+        if aktuellerKnoten < B'[indexB]
+            indexA = indexA + 1
+        else if aktuellerKnoten > B'[indexB]
+            indexB = indexB + 1
+        else    //falls aktuellerKnoten == B'[indexB] ist
+            if aktuellerKnoten < C'[indexC]
+                indexA = indexA + 1
+            if aktuellerKnoten > C'[indexC]
+                indexC = indexC + 1
+            else    //falls aktuellerKnoten == C'[indexC] ist
+                ErgebnisListe.add(aktuellerKnoten)
+                indexA = indexA + 1
+            end if
+        end if
+    end while
+    return ErgebnisListe
+    
+sucheAnderenPfad(Graph G, Knoten s, Knoten t) //gibt einen Pfad von s nach t aus aus
+    Tiefensuche(G, s)
+    return bauePfad(G, s, t)
+
+bauePfad(Graph G, Knoten s, Knoten t) //baut gegeben einen durchsuchten Graphen einen Pfad von s nach t. (s und t sind nicht in dem Pfad enthalten um später nicht in der Schnittmenge zu landen)
+    Knoten n = t.parent
+    List A = new List
+    while !(n == s)
+        A.add(n)
+        n = n.parent
+    end while
+    return A
+    
+sucheKleinstenPfad(Graph G, Knoten s, Knoten t) // gibt einen kürzesten Pfad von s nach t aus
+    Breitensuche(G, s)
+    return bauePfad(G, s, t)
+
+Tiefensuche(Graph G, Knoten wurzel) // führt eine Tiefensuche auf dem Graphen durch
+    for Knoten n im G
+        n.entdeckt = false
+        n.parent = NIL
+    end for
+
+    Stack S = new Stack
+    S.push(wurzel)
+    Knoten aktuellerKnoten = NULL
+
+    while !(S is empty)
+        aktuellerKnoten = S.pop()
+        if aktuellerKnoten.entdeckt == false
+            aktuellerKnoten.entdeckt = true
+	    for Knoten m in Andjazenzliste von aktuellerKnoten
+	        S.push(m)
+		m.parent = aktuellerKnoten
+	    end for
+	end if
+    end while
+
+
+Breitensuche(Graph G, Knoten wurzel) // führt eine Breitensuche auf dem Graphen durch
+    for Knoten n im G
+        n.distanz = INFINITY
+        n.parent = NIL
+    end for
+    
+    Queue Q = new Queue
+    wurzel.distanz = 0
+    q.enqueque(wurzel)
+    Knoten aktuellerKnoten = NULL
+    
+    while !(Q is empty)
+        aktuellerKnoten = Q.dequeue()
+        
+        for Knoten m in Andjazenzliste von aktuellerKnoten
+            if m.distanz == INFINITY
+                m.distanz = aktuellerKnoten.distanz + 1
+                m.parent = aktuellerKnoten
+                q.enqueue(m)
+            end if
+        end for
+    end while
+
 
 
 
