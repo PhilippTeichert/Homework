@@ -84,6 +84,16 @@ zuletztModifiziert(Anzahl, Liste) :-
     date(Heute),
     zuletztModifiziertRek(Anzahl, [], Heute, [], Liste).
 
+
+:- dynamic(zuletztModifiziertRek/5).
+
+% zuletztModifiziert(?Anzahl, ?Liste, ?LetztesDatum, ?BereitsBekannt, ?Ergebnis)
+% 'Anzahl', 'Liste', 'LetztesDatum', 'BereitsBekannt' und 'Ergebnis' sind Argumentpositionen,
+% so dass 'Ergebnis' der Zugriffspfad zu 'Anzahl' Dateien ist, die zuletzt modifiziert worden sind.
+% 'Liste' ist die Zwischenliste aller schon gefundenen Dateien mit 'Liste'.length < 'Anzahl'.
+% 'LetztesDatum' ist das letzte überprüfte Datum.
+% 'BereitsBekannt' ist eine Liste aller bereits überprüften Dateien.
+
 zuletztModifiziertRek(Anzahl, Liste, _, _, Liste) :-
     length(Liste, Laenge),
     Laenge >= Anzahl.
@@ -94,14 +104,31 @@ zuletztModifiziertRek(Anzahl, Liste, LetztesDatum, BereitsBekannt, Ergebnis) :-
     holeNeustenFile(BereitsBekannt, Datei, LetztesDatum),
     zuletztModifiziertRek(Anzahl, [Datei|Liste], LetztesDatum, [Datei|BereitsBekannt], Ergebnis).
 
+
+:- dynamic(holeNeustenFile/3).
+
+% holeNeustenFile(?BereitsBekannt, ?Ergebnis, ?LetztesDatum)
+% 'BereitsBekannt', 'Ergebnis' und 'LetztesDatum' sind Argumentpositionen,
+% so dass 'Ergebnis' eine Liste aus ID und Name der neusten Datei ab dem Datum 'LetztesDatum' ist.
+% 'BereitsBekannt' ist eine Liste aller bereits überprüften Dateien.
+
+
 holeNeustenFile(BereitsBekannt, [ID, Dateiname], LetztesDatum) :-
     file(_, ID, Dateiname, _, _, LetztesDatum),
     \+ member([ID, Dateiname], BereitsBekannt).
 
 holeNeustenFile(BereitsBekannt, Ergebnis, LetztesDatum) :-
     getDatumVor(LetztesDatum, VorletztesDatum),
-    VorletztesDatum @> date(0, 1, 1),
+    VorletztesDatum @> date(1900, 1, 1),
     holeNeustenFile(BereitsBekannt, Ergebnis, VorletztesDatum).
+
+
+:- dynamic(getDatumVor/2).
+
+% getDatumVor(?Heute, ?Gestern)
+% 'Heute' und 'Gestern' sind Argumentpositionen,
+% so dass 'Gestern' der Tag vor 'Heute' ist.
+
 
 getDatumVor(date(Y, M, D), Gestern) :- % Tageswechsel
     D > 1,
