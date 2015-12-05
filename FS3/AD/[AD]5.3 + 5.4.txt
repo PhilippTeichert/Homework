@@ -1,4 +1,4 @@
-Sei G = (V, E) ein Graph. Dieser Graph besitzt die Knoten s, t und v und die Bedingung, dass d(s, t) > |V|/2 gilt. Damit enthält der kürzeste Pfad von s nach t mindestens die Hälfte aller Knoten (Genauer |V|/2 + 2 Knoten, wobei |V|/2 abgerundet wird und die + 2 durch s und t zustandekommen).
+﻿Sei G = (V, E) ein Graph. Dieser Graph besitzt die Knoten s, t und v und die Bedingung, dass d(s, t) > |V|/2 gilt. Damit enthält der kürzeste Pfad von s nach t mindestens die Hälfte aller Knoten (Genauer |V|/2 + 2 Knoten, wobei |V|/2 abgerundet wird und die + 2 durch s und t zustandekommen).
 Um nun einen weiteren Pfad dieser Länge zu kreieren, muss ein Teil des bisherigen Pfades wiederverwertet werden, da sonst nicht mehr genügend freie Knoten zur Verfügung stünden. Und für jeden weiteren Pfad werden jeweils Teile der alten Pfade wieder verwertet. Irgendwann gehen die nicht benutzten Knoten aus und auch die Möglichkeiten übrige Knoten zu verbinden sind ausgeschöpft dann können weitere Pfade nicht generiert werden.
 Alle Knoten, die nun in der Schnittmenge aller Pfade liegen, sind potentielle v Kandidaten, da jeder mögliche Pfad sie enthält - sie sozusagen die Schnittstellen aller möglichen kürzesten Pfade sind und so in jedem Pfad vorkommen müssen, damit er ein Pfad von t nach s ist.
 
@@ -16,8 +16,10 @@ Alle Knoten, die nun in der Schnittmenge aller Pfade liegen, sind potentielle v 
 
 Algorithmus:
 Idee 1:
-Wir suchen jeden möglichen kürzesten Pfad. Ein Kandidat für den Knoten v ist jeder Knoten, der in jedem solchen Pfad liegt.
+Wir suchen jeden möglichen Pfad. Ein Kandidat für den Knoten v ist jeder Knoten, der in jedem solchen Pfad liegt.
+
 Laufzeit: O(2^(n+m))
+
 
 Idee 2:
 Schritt 1: O(n + m)
@@ -80,10 +82,52 @@ Die Breitensuche läuft in O(n) + O(m) = O(n + m):
 suchePfad läuft in O(n + m) + O(n) = O(n + m + n) = O(2n + m) = O(n + m):
     Der Methodenaufruf Breitensuche läuft in O(n + m)
     Die while Schleife geht maximal d(t, s) - 1 > n/2 - 1 (-1 wegen des s Knotens, der ebenfalls in der Liste liegt) Schritte und läuft so in O(n/2 - 1) = O(n)
-v_knoten läuft in O(n + m) + O(n + m) + O(n) = O(n + m):
+v_knoten läuft in O(n + m) + O(n + m) * O(n) = O(n * (n + m)):
     suchePfad läuft in O(n + m)
     Das suchePfad in der for Schleife läuft in O(n + m)
-    Die for Schleife geht maximal d(t, s) - 1 > n/2 - 1 (-1 wegen des s Knotens, der ebenfalls in der Liste liegt) Schritte und läuft somit in O(n/2 - 1) = O(n)
+    Die for Schleife geht maximal d(t, s) - 1 > n/2 - 1 (-1 wegen des s Knotens, der ebenfalls in der Liste liegt) Schritte und läuft somit O(n/2 - 1) = O(n) mal
+
+Der Gesamtalgorithmus läuft somit leider in O(n + m) + O(n + m) +O(n * (n + m)) = O(n * (n + m))
+
+
+Idee 3:
+Wir suchen einen/den kürzesten Pfad und einen/den längsten Pfad und jeder Knoten in der Schnittmenge ist ein V-Kandidat.
+kürzesten Pfad suchen: O(n + m) Quelle: Breitensuche
+längsten Pfad suchen: O(n + m) Quelle: http://matheplanet.com/default3.html?call=viewtopic.php?topic=117140&ref=https%3A%2F%2Fwww.google.de%2F
+Schnittmengenbestimmung/ein Element der Schnittmenge finden : O(2 * log(2 * n) * (2 * n) + n) = O(n * log(n)) Quelle: http://www.coding-board.de/threads/algorithmus-fuer-schnittmengehallo.15046/
+n * log(n) > n + m  => weiter suchen
+O(log(n) * log(n)) bei Speicherung der Beiden Pfade in einer Hashtabelle Quelle: https://de.wikipedia.org/wiki/Hashtabelle
+log(n)^2 < n => umwandlung von liste in hashtabelle muss auch Laufzeit von < O(n + m) haben
+Laufzeit Hashing offensichtlich in O(n) => passt!
+
+Idee aber unvollständig: längster Pfad enthält im worst case alle Knoten des Graphen
+
+
+Idee 4:
+Wir setzen an jeden Knoten eine hochlaufende Zahl an, so dass jeder Knoten eine eigene induviduelle Zahl erhält ((O(n))
+
+Wir führen eine Breitensuche aus um den kleinsten Pfad zu bestimmen (O(n + m))
+Wir führen eine Tiefensuche aus um irgendeinen anderen Pfad zu bestimmen (O(n + m))
+Da ein Pfad von s nach t existiert, werden beide Varianten dieser Suchen einen Pfad finden.
+Wir drehen die die Reihenfolge der Adjazenzlisten um (Für jeden Knoten n müssen alle seine Nachbarn bearbeitet werden. Da eine Kante durch 2 "Nachbarpaare" in der Adjazenzlsite dargestellt wird ergibt sich eine Laufzeit von O(n + 2 * m) = O(n + m))
+Wir führen eine zweite Tiefensuche durch um einen Pfad maximal verschieden zum zweiten zu erhalten (O(n + m))
+
+Nun werden die 3 Listen der Suchen jeweils nach der hochlaufenden Zahl sortiert (O(Stelligkeit * (Listenlänge + Anzahl verschiedener Stellen))) (Quelle: s. Vorlesung 5 Folie 46 http://www.informatik.uni-hamburg.de/TGI/lehre/vl/WS1516/AuD/Folien/aud_v5.pdf)
+	Die Stelligkeit dieser Zahlen ist maximal die Stelligkeit von n. Das Herausfinden dieser Stelligkeit geht mit konstantem Zeitaufwand
+	Jede Stelle hat von Natur aus 10 mögliche Werte (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+	Die Listenlänge ist im worst-case für jede Liste n
+	=> Laufzeit: 3 * c * (n + 10) Das liegt in O(n)
+Nun wird durch die 3 Listen gelaufen und jeweils verglichen, ob die Elemente in jeder dieser Liste drin sind.
+Da es sich bei diesen Elementen um sortierte Zahlen handelt, die sich innerhalb einer Liste nicht wiederholen, muss sich der Algorithmus jedes Element jeder Liste im worst-case genau einmal anschauen. (Laufzeit: 3 * n Dies liegt in O(n))
+Das erste gefundene Element/jedes gefundene Element (im Fall "jedes Element" muss der obige Vergleichsalgorithmus sich immer jedes Element jeder Liste anschauen, verändert aber nicht seine Laufzeit) wird in einen Knoten umgewandelt und ausgegeben (Laufzeit: c + c Dies liegt in O(c))
+
+Gesamtlaufzeit: O(n) + O(n + m) + O(n + m) + O(n + m) + O(n + m) + O(n) + O(n) + O(c) = O(n + m)
+Idee vollständig? Ja, da durch die 2 Tiefensuchen mit Umkehrung der Adjazenzliste 2 maximal voneinander unabhängige Pfade gefunden werden. Die Schnittmenge von diesen wird in beiden Pfaden benötigt, um von s nach t zu kommen. Durch die Breitensuche wird dann auch noch garantiert, dass es sich um einen kürzesten Pfad handelt und somit um die minimale Anzahl der Knoten. Dies führt dazu, dass die Schnittmenge von diesem Pfad und den obigen beiden minimal ist. Und in dieser minimalen Schnittmenge ist nun jeder Knoten ein v-Kandidat.
+
+
+
+
+
 
 
 
