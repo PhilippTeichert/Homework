@@ -103,33 +103,55 @@ holeNeustenFile(BereitsBekannt, Ergebnis, LetztesDatum) :-
     VorletztesDatum @> date(0, 1, 1),
     holeNeustenFile(BereitsBekannt, Ergebnis, VorletztesDatum).
 
-getDatumVor(date(Y, M, D), Gestern) :-
+getDatumVor(date(Y, M, D), Gestern) :- % Tageswechsel
     D > 1,
     D2 is D - 1,
     Gestern = date(Y, M, D2).
 
-getDatumVor(date(Y, M, D), Gestern) :-
+getDatumVor(date(Y, M, D), Gestern) :- % 31-Tages-Monat
     D = 1,
     M > 1,
     M2 is M - 1,
     (M2 = 1 ; M2 = 3; M2 = 5; M2 = 7; M2 =  8; M2 = 10; M2 = 12),
     Gestern = date(Y, M2, 31).
 
-getDatumVor(date(Y, M, D), Gestern) :-
+getDatumVor(date(Y, M, D), Gestern) :- % 30-Tages-Monat
     D = 1,
     M > 1,
     M2 is M - 1,
     (M2 = 4; M2 = 6; M2 = 9; M2 = 11),
     Gestern = date(Y, M2, 30).
 
-getDatumVor(date(Y, M, D), Gestern) :-
+getDatumVor(date(Y, M, D), Gestern) :- % kein Schaltjahr
     D = 1,
     M > 1,
     M2 is M - 1,
     M2 = 2,
+    Y2 is Y / 4,
+    Y3 is Y / 100,
+    Y4 is Y / 400,
+    ((integer(Y2),
+        integer(Y3),
+        \+ integer(Y4));
+    (\+ integer(Y2))),
     Gestern = date(Y, M2, 28).
 
-getDatumVor(date(Y, M, D), Gestern) :-
+getDatumVor(date(Y, M, D), Gestern) :- % Schaltjahr
+    D = 1,
+    M > 1,
+    M2 is M - 1,
+    M2 = 2,
+    Y2 is Y / 4,
+    Y3 is Y / 100,
+    Y4 is Y / 400,
+    ((integer(Y2),
+        \+ integer(Y3));
+    (integer(Y2),
+        integer(Y3),
+        integer(Y4))),
+    Gestern = date(Y, M2, 29).
+
+getDatumVor(date(Y, M, D), Gestern) :- % Jahreswechsel
     D = 1,
     M = 1,
     Y2 is Y - 1,
