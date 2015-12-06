@@ -193,6 +193,10 @@ hole_info_aus_baum(t(v(Knoten2,_),LTB,RTB), Knoten, Info) :-
 
 
 :- dynamic (balancierter_baum/2).
+% eine Methode, um aus einer Liste aus Listen der Form [[Knotenname1 | Informationen zum Knoten1], .... ,[KnotennameN | Informationen zum KnotenN]]
+% einen Rot-Schwarz-Baum (https://de.wikipedia.org/wiki/Rot-Schwarz-Baum) zu machen.
+% Liste ist dabei die Liste aus den Listen
+% und Baum der Rot-Schwarz-Baum
 
 balancierter_baum([],end).
 balancierter_baum(Liste, Baum) :-
@@ -201,7 +205,7 @@ balancierter_baum(Liste, Baum) :-
 	Idx is L / 2,
 	integer(Idx),
 	nth0(Idx, SortierteListe, Elem),
-	split(SortierteListe, Elem, LTL, RTL),
+	split2(SortierteListe, Elem, LTL, [Elem|RTL]),
 	balancierter_baum(LTL, LTB),
 	balancierter_baum(RTL, RTB),
 	Elem = [E|I],
@@ -213,22 +217,20 @@ balancierter_baum(Liste, Baum) :-
 	Idx is (L - 1) / 2,
 	integer(Idx),
 	nth0(Idx, SortierteListe, Elem),
-	split(SortierteListe, Elem, LTL, RTL),
+	split2(SortierteListe, Elem, LTL, [Elem|RTL]),
 	balancierter_baum(LTL, LTB),
 	balancierter_baum(RTL, RTB),
 	Elem = [E|I],
 	Baum = t(v(E,I),LTB, RTB).
-	
 
-	
-	
+:- dynamic (split2/4).
 
-
-
-
-
-
-
+split2([ ],_,[ ],[ ]).
+split2([E|R],M,[E|VL],HL) :-
+	E@<M, split2(R,M,VL,HL).
+split2([E|R],M,VL,[E|HL]) :-
+	E@>=M,
+    split2(R,M,VL,HL).
 
 
 
@@ -243,6 +245,167 @@ balancierter_baum(Liste, Baum) :-
 
 
 
+%%%%%%%%%%%%%
+% AUFGABE 4 %
+%%%%%%%%%%%%%
+
+%%%%% Aufgabe 4.1
+
+:- dynamic(hamming_distanz/3).
+
+% hamming_distanz(+Liste1, +Liste2, ?Distanz)
+% 'Liste1', 'Liste2' und 'Distanz' sind Argumentpositionen, so dass
+% 'Distanz' die Hamming-Distanz von der Liste 'Liste1' und der Liste 'Liste2' ist.
+% Die Listen müssen gleich lang sein.
+
+hamming_distanz([], [], 0).
+
+hamming_distanz([Element|Liste1], [Element|Liste2], Distanz) :-
+    hamming_distanz(Liste1, Liste2, Distanz).
+    
+hamming_distanz([Element1|Liste1], [Element2|Liste2], Distanz) :-
+    Element1 \= Element2,
+    hamming_distanz(Liste1, Liste2, Distanz2),
+    Distanz is Distanz2 + 1.
+
+
+%%%%% Aufgabe 4.2
+
+
+:- dynamic(hamming_distanz2/3).
+
+% hamming_distanz2(+Liste1, +Liste2, ?Distanz)
+% 'Liste1', 'Liste2' und 'Distanz' sind Argumentpositionen, so dass
+% 'Distanz' die Hamming-Distanz von der Liste 'Liste1' und der Liste 'Liste2' ist.
+% Die Listen dürfen verschieden lang sein.
+
+hamming_distanz2([], Liste2, Distanz) :-
+    length(Liste2, Distanz).
+
+hamming_distanz2(Liste1, [], Distanz) :-
+    length(Liste1, Distanz).
+
+hamming_distanz2([Element|Liste1], [Element|Liste2], Distanz) :-
+    hamming_distanz2(Liste1, Liste2, Distanz).
+    
+hamming_distanz2([Element1|Liste1], [Element2|Liste2], Distanz) :-
+    Element1 \= Element2,
+    hamming_distanz2(Liste1, Liste2, Distanz2),
+    Distanz is Distanz2 + 1.
+
+%%%%% Aufgabe 4.3
+
+
+
+:- dynamic(hamming_distanz3/4).
+
+% hamming_distanz3(+Liste1, +Liste2, ?Distanz, ?Zuordnung)
+% 'Liste1', 'Liste2', 'Distanz' und 'Zuordnung' sind Argumentpositionen, so dass
+% 'Distanz' die Hamming-Distanz von der Liste 'Liste1' und der Liste 'Liste2' ist
+% und 'Zuordnung' eine Liste aus Listen von je 2 Elementen, wo bei die Zuordnung wie folgt erfolgt:
+% List1 = [1, 2, 3], List2 = [a, b, c, d], Zuordnung = [[1, a], [2, b], [3, c], [*, d]].
+% Die Listen dürfen verschieden lang sein.
+
+hamming_distanz3([], [], 0, []).
+
+hamming_distanz3([], [Element|Liste2], Distanz, [[*, Element]|Restliste]) :-
+    hamming_distanz3([], Liste2, Distanz2, Restliste),
+    Distanz is Distanz2 + 1.
+
+hamming_distanz3([Element|Liste1], [], Distanz, [[Element, *]|Restliste]) :-
+    hamming_distanz3(Liste1, [], Distanz2, Restliste),
+    Distanz is Distanz2 + 1.
+
+hamming_distanz3([Element|Liste1], [Element|Liste2], Distanz, [[Element, Element]|Restliste]) :-
+    hamming_distanz3(Liste1, Liste2, Distanz, Restliste).
+    
+hamming_distanz3([Element1|Liste1], [Element2|Liste2], Distanz, [[Element1, Element2]|Restliste]) :-
+    Element1 \= Element2,
+    hamming_distanz3(Liste1, Liste2, Distanz2, Restliste),
+    Distanz is Distanz2 + 1.
+
+
+%%%%% Aufgabe 4.4
+
+
+
+:- dynamic(alignment/4).
+
+% alignment(+Liste1, +Liste2, ?Distanz, ?Zuordnung)
+% 'Liste1', 'Liste2', 'Distanz' und 'Zuordnung' sind Argumentpositionen, so dass
+% 'Distanz' die Hamming-Distanz von der Liste 'Liste1' und der Liste 'Liste2' ist
+% und 'Zuordnung' eine Liste aus Listen von je 2 Elementen, wo bei die Zuordnung wie folgt erfolgt:
+% List1 = [1, 2, 3], List2 = [a, b, c, d], Zuordnung = [[1, a], [2, b], [3, c], [*, d]].
+% Die Listen dürfen verschieden lang sein.
+% Je an beliebigen Stellen in beiden Listen kann ein "*"-Element in der Berechnung hinzu gefügt werden.
+
+
+alignment([], [], 0, []).
+/*
+%alignment([], [Element|Liste2], Distanz, [[*, Element]|Restliste]) :-
+    alignment([], Liste2, Distanz2, Restliste),
+    Distanz is Distanz2 + 1.
+
+alignment([Element|Liste1], [], Distanz, [[Element, *]|Restliste]) :-
+    alignment(Liste1, [], Distanz2, Restliste),
+    Distanz is Distanz2 + 1.
+*/
+alignment([Element|Liste1], [Element|Liste2], Distanz, [[Element, Element]|Restliste]) :-
+    alignment(Liste1, Liste2, Distanz, Restliste).
+    
+alignment([Element1|Liste1], [Element2|Liste2], Distanz, [[Element1, Element2]|Restliste]) :-
+    Element1 \= Element2,
+    alignment(Liste1, Liste2, Distanz2, Restliste),
+    Distanz is Distanz2 + 1.
+
+alignment(Liste1, [Element|Liste2], Distanz, [[*, Element]|Restliste]) :-
+    alignment(Liste1, Liste2, Distanz2, Restliste),
+    Distanz is Distanz2 + 1.
+
+alignment([Element|Liste1], Liste2, Distanz, [[Element, *]|Restliste]) :-
+    alignment(Liste1, Liste2, Distanz2, Restliste),
+    Distanz is Distanz2 + 1.
+
+
+/*
+Die Menge der generierten Zuordnungen ist endlich, da beide Listen endlich sind und so nur Ausgabemenge.length <= Liste1.length + Liste2.length sein kann. 
+Das Prädikat berechnet keine Doppelergebnisse mehr.
+Beispiel:
+?- alignment([1],[1, 2],Distanz, Endliste).
+Distanz = 1,
+Endliste = [[1, 1], [*, 2]] ;
+Distanz = 2,
+Endliste = [[*, 1], [1, 2]] ;
+Distanz = 3,
+Endliste = [[*, 1], [*, 2], [1, *]] ;
+Distanz = 3,
+Endliste = [[*, 1], [1, *], [*, 2]] ;
+Distanz = 3,
+Endliste = [[1, *], [*, 1], [*, 2]] ;
+false.
+
+*/
+
+
+%%%%% Aufgabe 4.5
+
+% levenshtein(+Liste1,+Liste2,?Levenshtein_Distanz)
+levenstein(L1,L2,LDistanz) :-
+  findall(Distanz, alignment(L1, L2, Distanz,_),Distanzen),
+  min_list(Distanzen,LDistanz).
+
+/*
+Sie ist sehr ineffizient, da sie erst alle möglichen Kombinationen durchgehen muss, um alle möglichen Distanzen zu kennen und so eine Aussage über die minimale Distanz treffen zu können.
+Sie läuft daher in O(List1.length + List2.length).
+
+
+Ein Verbesserungsvorschlag wäre, dass man die Elemente in jeder Liste identifizieren könnte und dann schaut, wie viele in beiden Listen drin sind.
+Die übrig gebliebenen Elemente geben den Mindestabstand an.
+Die Levenshtein_Distanz liegt dann irgendwozwischen dem Mindestabstand und max(List1.length, List2.length).
+
+Nun hört man mit dem Suchen auf, sobald mehr Paare mit einem "*" gebildet werden, als die Maximaldistanz - min(List1.length, List2.length) groß ist.
+Denn größer, als die Länge der größeren lsite wird es niemals werden und sobald mehr "*"-Paare gebildet werden, als die kleinere Liste lang ist, ist die Levenshtein_Distanz kleiner als jede Lösung, die noch kommt.
+*/
 
 
 
