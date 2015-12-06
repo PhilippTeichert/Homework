@@ -126,3 +126,168 @@ zuletzt_geaendert(Anzahl, Liste) :-
 %%%%%%%%%%%%%
 
 %%%%%%%% Aufgabe 2.1
+
+/*
+Damit der entstehende Baum balanciert ist, müsste die Eingabeliste
+folgendermaßen sortiert sein:
+
+Das erste Element der Eingabeliste müsste in der Mitte der Liste liegen, wäre sie sortiert.
+Demzufolge müsste es das Element mit dem Median-Wert sein.
+Dies gilt rekursiv für jede beliebige Restliste.
+*/
+
+
+%%%%%%%% Aufgabe 2.2
+
+:- dynamic (split/4,
+			list2tree/2).
+
+split([ ],_,[ ],[ ]).
+split([E|R],M,[E|VL],HL) :-
+	E@=<M, split(R,M,VL,HL).
+split([E|R],M,VL,[E|HL]) :-
+	E@>M, split(R,M,VL,HL).
+
+list2tree([],end).
+list2tree([[E|I]|R],t(v(E,I),VB,HB)) :-
+	split(R,E,VL,HL),
+	list2tree(VL,VB),
+	list2tree(HL,HB).
+	
+	
+%%%%%%%% Aufgabe 2.3
+
+:- dynamic (tree2list/2).
+
+% Aus dem Skript.
+% tree2list(+Baum,?Liste)
+tree2list(end,[ ]).
+tree2list(t(v(E,I),VB,HB),L) :-
+	tree2list(VB,VL),
+	tree2list(HB,HL),
+	append(VL,[[E|I]|HL],L).
+
+
+:- dynamic (hole_info_aus_liste/3,
+			hole_info_aus_baum/3).
+
+% $Liste, $Element und $Info sind Argumentpositionen, so dass
+% das $Element aus der Liste $Liste die $Info beinhält.
+% hole_info_aus_liste(+Liste,+Element,?Info)
+hole_info_aus_liste(Liste, Element, Info) :-
+	list2tree(Liste, Baum),
+	hole_info_aus_baum(Baum, Element, Info).
+	
+% $t(...), $Knoten und $Info sind Argumentpositionen, so dass
+% der $Knoten aus dem Baum $t(...) die $Info beinhält.
+% hole_info_aus_liste(+Baum,+Knoten,?Info)
+hole_info_aus_baum(t(v(Knoten,Info),_,_), Knoten, Info).
+hole_info_aus_baum(t(v(Knoten2,_),LTB,RTB), Knoten, Info) :-
+	Knoten2 \= Knoten,
+	hole_info_aus_baum(LTB,Knoten,Info);
+	hole_info_aus_baum(RTB,Knoten,Info).
+	
+	
+	
+%%%%%%%% Aufgabe 2.4
+
+
+:- dynamic (balancierter_baum/2).
+
+balancierter_baum([],end).
+balancierter_baum(Liste, Baum) :-
+	sort(Liste, SortierteListe),
+	length(SortierteListe, L),
+	Idx is L / 2,
+	integer(Idx),
+	nth0(Idx, SortierteListe, Elem),
+	split(SortierteListe, Elem, LTL, RTL),
+	balancierter_baum(LTL, LTB),
+	balancierter_baum(RTL, RTB),
+	Elem = [E|I],
+	Baum = t(v(E,I),LTB, RTB).
+	
+balancierter_baum(Liste, Baum) :-
+	sort(Liste, SortierteListe),
+	length(SortierteListe, L),
+	Idx is (L - 1) / 2,
+	integer(Idx),
+	nth0(Idx, SortierteListe, Elem),
+	split(SortierteListe, Elem, LTL, RTL),
+	balancierter_baum(LTL, LTB),
+	balancierter_baum(RTL, RTB),
+	Elem = [E|I],
+	Baum = t(v(E,I),LTB, RTB).
+	
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
