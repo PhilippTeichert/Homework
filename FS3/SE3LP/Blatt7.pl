@@ -43,147 +43,86 @@ file(34,12,scheidungsklage,48,date(2009,9,2),date(2009,11,5)).
 % AUFGABE 1 %
 %%%%%%%%%%%%%
 
-% Aufgabe 1.1
+%%%%%%%% Aufgabe 1.1
 
 :- dynamic(zugriffspfad/2).
 
-% zugriffspfad(?ID, ?Liste)
-% 'ID' und 'Liste' sind Argumentpositionen,
-% so dass 'Liste' der Zugriffspfad des Verzeichnsises 'ID' ist.
+% zugriffspfad(?VerzID, ?Liste)
+% 'VerzID' und 'Liste' sind Argumentpositionen,
+% so dass 'Liste' der Zugriffspfad des Verzeichnsises 'VerzID' ist.
 
 zugriffspfad(1, Liste) :-
     directory(1, Name, _, _, _),
     Liste = [Name].
 
-zugriffspfad(ID, Liste) :-
-    directory(ID, Name, ParentID, _, _),
+zugriffspfad(VerzID, Liste) :-
+    directory(VerzID, Name, ParentID, _, _),
     zugriffspfad(ParentID, Liste2),
     Liste = [Name|Liste2].
 
-% Aufgabe 1.2
+%%%%%%%% Aufgabe 1.2
 
 :- dynamic(zugriffspfadDatei/3).
 
-% zugriffspfadDatei(?ID, ?Dateiname, ?Liste)
-% 'ID', 'Dateiname' und 'Liste' sind Argumentpositionen,
-% so dass 'Liste' der Zugriffspfad der Datei 'Dateiname' im Verzeichnis 'ID' ist.
+% zugriffspfadDatei(?VerzID, ?Dateiname, ?Liste)
+% 'VerzID', 'Dateiname' und 'Liste' sind Argumentpositionen,
+% so dass 'Liste' der Zugriffspfad der Datei 'Dateiname' im Verzeichnis 'VerzID' ist.
 
-zugriffspfadDatei(ID, Dateiname, Liste) :-
-    zugriffspfad(ID, Liste2),
+zugriffspfadDatei(VerzID, Dateiname, Liste) :-
+    zugriffspfad(VerzID, Liste2),
     Liste = [Dateiname|Liste2].
 
-% Aufgabe 1.3
-
-:- dynamic(zuletztModifiziert/2).
-
-% zuletztModifiziert(?Anzahl, ?Liste)
-% 'Anzahl' und 'Liste' sind Argumentpositionen,
-% so dass 'Liste' der Zugriffspfad zu 'Anzahl' Dateien ist, die zuletzt modifiziert worden sind.
-
-zuletztModifiziert(Anzahl, Liste) :-
-    date(Heute),
-    zuletztModifiziertRek(Anzahl, [], Heute, [], Liste).
+%%%%%%%% Aufgabe 1.3
 
 
-:- dynamic(zuletztModifiziertRek/5).
+:- dynamic (hole_n_elemente/4,
+			zuletzt_geaendert/2).
+			
 
-% zuletztModifiziert(?Anzahl, ?Liste, ?LetztesDatum, ?BereitsBekannt, ?Ergebnis)
-% 'Anzahl', 'Liste', 'LetztesDatum', 'BereitsBekannt' und 'Ergebnis' sind Argumentpositionen,
-% so dass 'Ergebnis' der Zugriffspfad zu 'Anzahl' Dateien ist, die zuletzt modifiziert worden sind.
-% 'Liste' ist die Zwischenliste aller schon gefundenen Dateien mit 'Liste'.length < 'Anzahl'.
-% 'LetztesDatum' ist das letzte überprüfte Datum.
-% 'BereitsBekannt' ist eine Liste aller bereits überprüften Dateien.
-
-zuletztModifiziertRek(Anzahl, Liste, _, _, Liste) :-
-    length(Liste, Laenge),
-    Laenge >= Anzahl.
-
-zuletztModifiziertRek(Anzahl, Liste, LetztesDatum, BereitsBekannt, Ergebnis) :-
-    length(Liste, Laenge),
-    Laenge < Anzahl,
-    holeNeustenFile(BereitsBekannt, Datei, LetztesDatum),
-    zuletztModifiziertRek(Anzahl, [Datei|Liste], LetztesDatum, [Datei|BereitsBekannt], Ergebnis).
-
-
-:- dynamic(holeNeustenFile/3).
-
-% holeNeustenFile(?BereitsBekannt, ?Ergebnis, ?LetztesDatum)
-% 'BereitsBekannt', 'Ergebnis' und 'LetztesDatum' sind Argumentpositionen,
-% so dass 'Ergebnis' eine Liste aus ID und Name der neusten Datei ab dem Datum 'LetztesDatum' ist.
-% 'BereitsBekannt' ist eine Liste aller bereits überprüften Dateien.
-
-
-holeNeustenFile(BereitsBekannt, [ID, Dateiname], LetztesDatum) :-
-    file(_, ID, Dateiname, _, _, LetztesDatum),
-    \+ member([ID, Dateiname], BereitsBekannt).
-
-holeNeustenFile(BereitsBekannt, Ergebnis, LetztesDatum) :-
-    getDatumVor(LetztesDatum, VorletztesDatum),
-    VorletztesDatum @> date(1900, 1, 1),
-    holeNeustenFile(BereitsBekannt, Ergebnis, VorletztesDatum).
+% Rekursionsabbruch: Der Zähler ist auf 0 gekommen
+hole_n_elemente(0, _, Akku, Akku).
+% Wenn mehr Elemente gefragt werden, als vorhanden sind,
+% wird die gesamte Liste ausgegeben
+hole_n_elemente(Anzahl, Liste, Liste2, Liste3) :-
+	length(Liste, Laenge),			% hole die Länge der Liste
+	Anzahl > Laenge,				% wenn mehr gefragt wird, als gegeben werden kann
+	hole_n_elemente(Laenge, Liste, Liste2, Liste3),	% dann gib die ganze Liste aus
+	!.
+	
+% 'Anzahl', '[Head|Tail]', 'OutputList', 'Akku' sind Argumentpositionen, so dass
+% 'OutputList' die 'Anzahl' zuletzt geänderten Elemente aus '[Head|Tail]' beinhält.
+% 'Akku' ist ein interner Zwischenspeicher.
+hole_n_elemente(Anzahl, [Head|Tail], OutputList, Akku) :-
+	Decrement is Anzahl - 1 ,
+	Head = [_, Name, FileID, VerzID],
+	zugriffspfadDatei(VerzID, Name, Pfad),
+	append(Akku, [[FileID, Pfad]], NewAkku),
+	hole_n_elemente(Decrement, Tail, OutputList, NewAkku).
+	
+% 'Anzahl' und 'Liste' sind Argumentpositionen, so dass 'Anzahl' zuletzt geänderter Dateien aus
+% 'Liste' zurückgegeben werden.
+zuletzt_geaendert(Anzahl, Liste) :-
+	findall([Datum, Name, FileID, VerzID], file(FileID, VerzID, Name, _, _, Datum), DateiListe),
+	sort(0, @>=,DateiListe, SortierteListe),
+	hole_n_elemente(Anzahl, SortierteListe, Liste, []).
 
 
-:- dynamic(getDatumVor/2).
+%%%% Laufzeit:
+%% findall ist linearer Aufwand abhängig von der Anzahl der Dateien (O(n))
+%% sort benutzt merge-sort (O(n*log n))
+%% hole_n_elemente ist zwischen O(n) und O(Anzahl)
+%% Dies ergibt eine Laufzeit in O(n*log n)
 
-% getDatumVor(?Heute, ?Gestern)
-% 'Heute' und 'Gestern' sind Argumentpositionen,
-% so dass 'Gestern' der Tag vor 'Heute' ist.
-
-
-getDatumVor(date(Y, M, D), Gestern) :- % Tageswechsel
-    D > 1,
-    D2 is D - 1,
-    Gestern = date(Y, M, D2).
-
-getDatumVor(date(Y, M, D), Gestern) :- % 31-Tages-Monat
-    D = 1,
-    M > 1,
-    M2 is M - 1,
-    (M2 = 1 ; M2 = 3; M2 = 5; M2 = 7; M2 =  8; M2 = 10; M2 = 12),
-    Gestern = date(Y, M2, 31).
-
-getDatumVor(date(Y, M, D), Gestern) :- % 30-Tages-Monat
-    D = 1,
-    M > 1,
-    M2 is M - 1,
-    (M2 = 4; M2 = 6; M2 = 9; M2 = 11),
-    Gestern = date(Y, M2, 30).
-
-getDatumVor(date(Y, M, D), Gestern) :- % kein Schaltjahr
-    D = 1,
-    M > 1,
-    M2 is M - 1,
-    M2 = 2,
-    Y2 is Y / 4,
-    Y3 is Y / 100,
-    Y4 is Y / 400,
-    ((integer(Y2),
-        integer(Y3),
-        \+ integer(Y4));
-    (\+ integer(Y2))),
-    Gestern = date(Y, M2, 28).
-
-getDatumVor(date(Y, M, D), Gestern) :- % Schaltjahr
-    D = 1,
-    M > 1,
-    M2 is M - 1,
-    M2 = 2,
-    Y2 is Y / 4,
-    Y3 is Y / 100,
-    Y4 is Y / 400,
-    ((integer(Y2),
-        \+ integer(Y3));
-    (integer(Y2),
-        integer(Y3),
-        integer(Y4))),
-    Gestern = date(Y, M2, 29).
-
-getDatumVor(date(Y, M, D), Gestern) :- % Jahreswechsel
-    D = 1,
-    M = 1,
-    Y2 is Y - 1,
-    Gestern = date(Y2, 12, 31).
+%%%% Optimierung:
+%% Derzeit wird in der zweiten Abbruchbedingung für hole_n_elemente/4 ein ! verwendet.
+%% Dies könnte ggf. noch wegoptimiert werden.
     
     
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AUFGABE 1.3 terminiert noch nicht, sondern gibt alle Möglichkeiten aus
-    
+	
+	
+	
+%%%%%%%%%%%%%
+% AUFGABE 2 %
+%%%%%%%%%%%%%
+
+%%%%%%%% Aufgabe 2.1
