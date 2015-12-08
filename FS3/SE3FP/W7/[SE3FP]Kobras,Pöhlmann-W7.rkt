@@ -94,7 +94,7 @@
              (draw-points (cdr pointlist))))))
 ;(draw-points (function->points sqr '(0 . 10) 5))
 
-;;;;Aufgabe2.4
+;;;;Aufgabe 2.4
 ;;zeichnet den Funktionsgraphen der Funktion f mit n vielen Punkten im Intervall interval
 ;;linien? ist ein boolean der per default auf nein gesetzt wird (er bestimmt, ob Linien oder Punkte ausgegeben werden)
 (define (plot-function f interval n [linien? #f])
@@ -130,9 +130,10 @@
                         (draw-points allePunkte))))))
 ;(animate (curry live-plot-function (lambda (x) (* (/ 1 50) (sqr x))) '(0 . 300) 200))
 ;(animate (curryr (curry live-plot-function sin (cons 0 (* 2 pi)) 200) #t))
-;für lustige rechts-raus-links-rein-geschichten 
-;;;;Aufgabe 2.6
+;für lustige rechts-raus-links-rein-geschichten
 
+
+;;;;Aufgabe 2.6 (Zusatzaufgabe)
 ;;zeichnet ein Bild mit Linien die von Punkt zu Punkt führen
 (define (draw-lines pointlist)
   (let [(line (place-image (line (- (caar pointlist) (caadr pointlist));x-richtung

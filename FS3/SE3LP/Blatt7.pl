@@ -249,7 +249,7 @@ split2([E|R],M,VL,[E|HL]) :-
 % AUFGABE 4 %
 %%%%%%%%%%%%%
 
-%%%%% Aufgabe 4.1
+%%%%%%%% Aufgabe 4.1
 
 :- dynamic(hamming_distanz/3).
 
@@ -269,8 +269,8 @@ hamming_distanz([Element1|Liste1], [Element2|Liste2], Distanz) :-
     Distanz is Distanz2 + 1.
 
 
-%%%%% Aufgabe 4.2
-
+	
+%%%%%%%% Aufgabe 4.2
 
 :- dynamic(hamming_distanz2/3).
 
@@ -293,9 +293,9 @@ hamming_distanz2([Element1|Liste1], [Element2|Liste2], Distanz) :-
     hamming_distanz2(Liste1, Liste2, Distanz2),
     Distanz is Distanz2 + 1.
 
-%%%%% Aufgabe 4.3
-
-
+	
+	
+%%%%%%%% Aufgabe 4.3
 
 :- dynamic(hamming_distanz3/4).
 
@@ -325,9 +325,8 @@ hamming_distanz3([Element1|Liste1], [Element2|Liste2], Distanz, [[Element1, Elem
     Distanz is Distanz2 + 1.
 
 
-%%%%% Aufgabe 4.4
-
-
+	
+%%%%%%%% Aufgabe 4.4
 
 :- dynamic(alignment/4).
 
@@ -387,9 +386,10 @@ false.
 */
 
 
-%%%%% Aufgabe 4.5
 
-% levenshtein(+Liste1,+Liste2,?Levenshtein_Distanz)
+%%%%%%%% Aufgabe 4.5
+
+% levenstein(+Liste1,+Liste2,?Levenshtein_Distanz)
 levenstein(L1,L2,LDistanz) :-
   findall(Distanz, alignment(L1, L2, Distanz,_),Distanzen),
   min_list(Distanzen,LDistanz).
@@ -406,51 +406,3 @@ Die Levenshtein_Distanz liegt dann irgendwozwischen dem Mindestabstand und max(L
 Nun hört man mit dem Suchen auf, sobald mehr Paare mit einem "*" gebildet werden, als die Maximaldistanz - min(List1.length, List2.length) groß ist.
 Denn größer, als die Länge der größeren lsite wird es niemals werden und sobald mehr "*"-Paare gebildet werden, als die kleinere Liste lang ist, ist die Levenshtein_Distanz kleiner als jede Lösung, die noch kommt.
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

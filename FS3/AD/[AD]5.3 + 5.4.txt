@@ -252,27 +252,29 @@ Breitensuche(Graph G, Knoten wurzel) // führt eine Breitensuche auf dem Graphen
 AUFGABE 5.4
 1.
 
-Big-Clique liegt in NP
-Verifikationsalgorithmus, der die Richtigkeit eines gegebenen Zertifikates in polynomialzeit überprüft
-    Unser Zertifikat: Eine Menge an Knoten - unsere Clique - und der Graph
-    Wir schauen in der Adjazenzliste nach, ob zu jedem gegebenen Knoten, zu allen anderen gegebenen Knoten eine Kante existiert. Ist dies der Fall, ist das Zertifikat richtig, sonst nicht.
-Big-Clique liegt in NPH
-Reduktion eines Algorithmusses aus NPH auf Big-Clique
-    Wir nehmen Clique(G, k): G = (V, K) Graph, k = Größe der Clique
-    Wenn unser k größer oder gleich |V|/2 ist, geben wir das Problem einfach in Big-Clique.
-    Ist es allerdings kleiner, fügen wir für jeden Knoten, der uns auf |V|/2 fehlt, 2 Knoten an den Graphen an, die wir jeweils mit Kanten zu allen anderen Knoten versehen.
-    Diesen neuen Graphen fügen wir in den Automaten ein, der Big-Clique löst und geben die Lösung als unsere Lösung für unser Clique-Problem aus.
+Big-Clique liegt in NP.\\
+Verifikationsalgorithmus, der die Richtigkeit eines gegebenen Zertifikates in polynomialzeit überprüft:\\
+\-~~~~Unser Zertifikat: Eine Menge an Knoten - unsere Clique - und der Graph\\
+\-~~~~Wir schauen in der Adjazenzliste nach, ob zu jedem gegebenen Knoten, zu allen anderen gegebenen Knoten eine Kante existiert.
+	Ist dies der Fall, ist das Zertifikat richtig, sonst nicht.\\
+Big-Clique liegt in NPH.\\
+Reduktion eines Algorithmusses aus NPH auf Big-Clique:\\
+\-~~~~Wir nehmen Clique(G, k): G = (V, K) Graph, k = Größe der Clique\\
+\-~~~~Wenn unser k größer oder gleich |V|/2 ist, geben wir das Problem einfach in Big-Clique.\\
+\-~~~~Ist es allerdings kleiner, fügen wir für jeden Knoten, der uns auf |V|/2 fehlt, 2 Knoten an den Graphen an, die wir jeweils mit Kanten zu allen anderen Knoten versehen.\\
+\-~~~~Diesen neuen Graphen fügen wir in den Automaten ein, der Big-Clique löst und geben die Lösung als unsere Lösung für unser Clique-Problem aus.\\
 Da wir beides obere haben, folgt daraus: Big-Clique liegt in NPC
 
 
 2.
 
-Verifikationsalgorithmus, der die Richtigkeit eines gegebenen Zertifikates in polynomialzeit überprüft
-    Unser Zertifikat: Eine Menge an Knoten - unsere größte mögliche Clique - und der Graph
-    Wir geben unseren Graph und die Zahl k = |Menge an Knoten| + 1 in Clique.
-    Wenn Clique wahr ausgibt, ist das Zertifikat falsch, da eine größere Clique existiert.
-    Dies läuft in polynomialzeit, da P = NP angenommen wird.
-Durch diesen Verifikationsalgorithmus ist unser Problem in NP. Unter der Annahme P = NP existiert allerdings auch ein P-Algorithmus und dieser ist deterministisch.
+Verifikationsalgorithmus, der die Richtigkeit eines gegebenen Zertifikates in polynomialzeit überprüft:\\
+\-~~~~Unser Zertifikat: Eine Menge an Knoten - unsere größte mögliche Clique - und der Graph\\
+\-~~~~Wir geben unseren Graph und die Zahl k = |Menge an Knoten| + 1 in Clique.\\
+\-~~~~Wenn Clique wahr ausgibt, ist das Zertifikat falsch, da eine größere Clique existiert.\\
+\-~~~~Dies läuft in polynomialzeit, da P = NP angenommen wird.\\
+Durch diesen Verifikationsalgorithmus ist unser Problem in NP.\\
+Unter der Annahme P = NP existiert allerdings auch ein P-Algorithmus und dieser ist deterministisch.
 
 
 
