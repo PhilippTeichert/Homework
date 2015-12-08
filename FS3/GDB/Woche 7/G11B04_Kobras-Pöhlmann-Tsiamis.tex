@@ -1,0 +1,277 @@
+\documentclass[ngerman]{gdb-aufgabenblatt}
+
+
+\renewcommand{\Aufgabenblatt}{4}
+\renewcommand{\Ausgabedatum}{Mi. 25.11.2015}
+\renewcommand{\Abgabedatum}{Fr. 11.12.2015}
+\renewcommand{\Gruppe}{Kobras, Pöhlmann, Tsiamis}
+\renewcommand{\STiNEGruppe}{11}
+
+
+\begin{document}
+\section{Relationenalgebra}
+\subsection{Teilaufgabe a}
+$\projektion{Sorte} ( \selektion{Vorname = \wert{Horst}} (\projektion{PNR, Vorname} (Person)) \verbund{Person.PNR = Obst.Entdecker} \projektion{Sorte, Entdecker}(Obst))$
+%---------------------------------------------------------------
+
+\subsection{Teilaufgabe b}
+$\projektion{Vorname, Nachname} (\projektion{PNR, Vorname, Nachname}(Person) \verbund{Person.PNR = Allergie.Person} \selektion{Symptom=\wert{Halskratzen}}(\projektion{Person, Symptom}(Allergie)))$
+
+%---------------------------------------------------------------
+
+\subsection{Teilaufgabe c}
+$\projektion{Obst.Sorte, Person.Nachname}(\projektion{Sorte, Entdecker}(Obst) \verbund{Obst.Entdecker = Person.PNR}$\\$\projektion{PNR, Nachname}(Person) \verbund{Person.PNR = Allergie.Person} \projektion{Person}(\selektion{Symptom = \wert{W"urgreiz}}(\projektion{Person, Symptom}(Allergie))))$
+
+%---------------------------------------------------------------
+%
+%---------------------------------------------------------------
+
+\section{Schemadefinition}
+\textbf{CREATE TABLE} 'Person'\\
+('Vorname' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
+'Nachname' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
+'Geb.Datum' DATE \textbf{CHECK}('Geb.Datum' < CURRENT\_DATE \textbf{OR} 'Geb.Datum' \textbf{IS NULL}),\\
+'Wohnort' VARCHAR(30) \textbf{NOT NULL});\\
+\\
+\textbf{CREATE TABLE} 'Vorstand'\\
+('VID' INT \textbf{PRIMARY KEY NOT NULL},\\
+'Sitz' VARCHAR(30) \textbf{UNIQUE NOT NULL});\\
+\\
+\textbf{CREATE TABLE} 'Verein'\\
+('Name' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
+'Gr"undungsjahr' DATE);\\
+\\
+\textbf{CREATE TABLE} 'ist in'\\
+('Person Vorname' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
+'Person Nachname' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
+'Vorstand VID' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
+'Amt' VARCHAR(30) \textbf{NOT NULL},\\
+'von' DATE \textbf{NOT NULL},\\
+'bis' DATE,\\
+\textbf{CONSTRAINT} 'ist in Person Vorname'\\
+\textbf{FOREIGN KEY}('Person Vorname') \textbf{REFERENCES} 'Person' ('Vorname'),\\
+\textbf{CONSTRAINT} 'ist in Person Nachname'\\
+\textbf{FOREIGN KEY}('Person Nachname') \textbf{REFERENCES} 'Person' ('Nachname'),\\
+\textbf{CONSTRAINT} 'ist in Vorstand VID'\\
+\textbf{FOREIGN KEY}('Vorstand VID') \textbf{REFERENCES} 'Vorstand' ('VID'));\\
+\\
+\textbf{ALTER TABLE} 'Vorstand'\\
+\textbf{ADD} 'Verein Name' VARCHAR(30) \textbf{NOT NULL},\\
+\textbf{ADD CONSTRAINT} 'von Verein' \textbf{FOREIGN KEY} ('Verein Name') \textbf{REFERENCES} 'Verein' ('Name');\\
+\\
+\textbf{ALTER TABLE} 'Verein'\\
+\textbf{ADD} 'Person Vorname' VARCHAR(30) \textbf{NOT NULL},\\
+\textbf{ADD CONSTRAINT} 'trainiert Person Vorname' \textbf{FOREIGN KEY} ('Person Vorname') \textbf{REFERENCES} 'Person' ('Vorname'),\\
+\textbf{ADD} 'Person Nachname' VARCHAR(30) \textbf{NOT NULL},\\
+\textbf{ADD CONSTRAINT} 'trainiert Person Nachname' \textbf{FOREIGN KEY} ('Person Nachname') \textbf{REFERENCES} 'Person' ('Nachname');\\
+\\
+\textbf{ALTER TABLE} 'Person'\\
+\textbf{ADD} 'Verein Name' VARCHAR(30) \textbf{NOT NULL},\\
+\textbf{ADD CONSTRAINT} 'Fan von Verein' \textbf{FOREIGN KEY} ('Verein Name') \textbf{REFERENCES} 'Verein' ('Name');\\
+\\
+\textbf{CREATE TABLE} 'spielt f"ur'\\
+'Person Vorname' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
+'Person Nachname' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
+'Verein Name' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
+('Position' VARCHAR(30) \textbf{NOT NULL},\\
+\textbf{CONSTRAINT} 'spielt f"ur Person Vorname' \textbf{FOREIGN KEY} ('Person Vorname') \textbf{REFERENCES} 'Person' ('Vorname'),\\
+\textbf{CONSTRAINT} 'spielt f"ur Person Nachname' \textbf{FOREIGN KEY} ('Person Nachname') \textbf{REFERENCES} 'Person' ('Nachname'),\\
+\textbf{CONSTRAINT} 'spielt f"ur Verein Name' \textbf{FOREIGN KEY} ('Verein Name') \textbf{REFERENCES} 'Verein' ('Name'));\\
+
+%---------------------------------------------------------------
+%
+%---------------------------------------------------------------
+
+\section{Datenmanipulation mit SQL}
+\subsection{Teilaufgabe a}
+\subsubsection{i}
+\textbf{SELECT DISTINCT} RS.Name, \textbf{COUNT}(RF) \textbf{AS} Anzahl\\
+\textbf{FROM} Rennstall RS, RennfahrerIn RF\\
+\textbf{WHERE} RF.Rennstall = RS.RSID;
+
+%------------------------
+\subsubsection{ii}
+\textbf{SELECT} RF.Vorname, RF.Nachname\\
+\textbf{FROM} RennfahrerIn RF\\
+\textbf{WHERE NOT IN}\\
+(\textbf{SELECT} RF2.Vorname, RF2.Nachname\\
+\textbf{FROM} RennfahrerIn RF2, Platzierung PL\\
+\textbf{WHERE} RF2.RID = PL.RID);
+
+%------------------------
+\subsubsection{iii}
+\textbf{SELECT} RF.Nachname, MIN(PL.Platz) \textbf{AS} BestePlatzierung\\
+\textbf{FROM} RennfahrerIn RF, Platzierung PL\\
+\textbf{WHERE} RF.RID = PL.RID\\
+\textbf{ORDER BY} PL.Platz;
+
+%------------------------
+\subsubsection{iv}
+\textbf{SELECT} RF.Nachname, MIN(PL.Platz) \textbf{AS} BestePlatzierung\\
+\textbf{FROM}  RennfahrerIn RF, Platzierung PL\\
+\textbf{ORDER BY} RF.Nachname;
+
+%------------------------
+\subsubsection{v}
+\textbf{SELECT *}\\
+\textbf{FROM} RennfahrerIn RF\\
+\textbf{WHERE} RF.Geburt \textbf{BETWEEN} 1980-01-01 \textbf{AND} 1985-01-01\\
+\textbf{AND} RF.Nachname = \_a\%;
+
+%------------------------
+\subsubsection{vi}
+\textbf{SELECT} RS.TeamchefIn\\
+\textbf{FROM} Rennstall RS, RennfahrerIn RF\\
+\textbf{WHERE} RS.RSID = RF.Rennstall\\
+\textbf{AND} RF.RID \textbf{IN}\\
+(\textbf{SELECT} RF2.RID\\
+\textbf{FROM} RennfahrerIn RF2, Platzierung PL\\
+\textbf{WHERE} RF2.RID = PL.RID\\
+\textbf{AND} PL.OID IN\\
+(\textbf{SELECT} PL2.OID\\
+\textbf{FROM} Platzierung PL2\\
+\textbf{WHERE} \textbf{COUNT}(PL2.OID)> 5));
+
+%---------------------------------------------------------------
+
+\subsection{Teilaufgabe b}
+\subsubsection{i}
+\textbf{UPDATE} RennfahrerIn RF\\
+\textbf{SET} RF.Wohnort = $\wert{Aston~Clinton~(United~Kingdom)}$\\
+\textbf{WHERE} RF.RID = $\wert{8}$;
+
+%------------------------
+\subsubsection{ii}
+\textbf{UPDATE} Rennstall RS\\
+\textbf{SET} RS.Budget = RS.Budget + 50\\
+\textbf{WHERE EXISTS}\\
+(\textbf{SELECT *}\\
+\textbf{FROM} RennfahrerIn RF, Platzierung PL\\
+\textbf{WHERE} RS.RSID = RF.Rennstall\\
+\textbf{AND} RF.RID = PL.RID\\
+\textbf{GROUP BY} RS.RSID\\
+\textbf{HAVING AVG}(PL.Platz) < 5);\\
+
+%------------------------
+\subsubsection{iii}
+\textbf{INSERT INTO} Rennort (Name, Strecke)\\
+\textbf{VALUES} ('Deutschland GP', 'Hockenheimring');\\
+\\
+Dies wird so nicht funktionieren, da der Primärschlüssel, welcher nicht "NULL" sein darf, fehlt und somit "NULL" ist.
+
+%------------------------
+\subsubsection{iv}
+\textbf{INSERT INTO} Platzierung\\
+\textbf{VALUES} (\textbf{SELECT} PL.RID\\
+\textbf{FROM} Platzierung PL, Rennort RO\\
+\textbf{WHERE} RO.Name = $\wert{Brasilien~GP}$\\
+\textbf{AND} RO.OID = PL.OID\\
+\textbf{AND} PL.Platz = 1,\\
+\textbf{SELECT} RO.OID\\
+\textbf{FROM} Rennort RO\\
+\textbf{WHERE} RO.Name = $\wert{Deutschland~GP}$,\\
+1);\\
+\\
+Dies wird so nicht funktionieren, da der "Deutschland GP" nicht richtig initialisiert wurde.
+
+%------------------------
+\subsubsection{v}
+\textbf{INSERT INTO} Platzierung\\
+\textbf{VALUES} (\textbf{SELECT} RF.RID\\
+\textbf{FROM} RennfahrerIn RF\\
+\textbf{WHERE} RF.Vorname = $\wert{Felipe}$\\
+\textbf{AND} RF.Nachname = $\wert{Massa}$,\\
+\textbf{SELECT} RO.OID\\
+\textbf{FROM} Rennort RO\\
+\textbf{WHERE} Ro.Name = $\wert{Großbritannien~GP}$,\\
+5);
+
+%---------------------------------------------------------------
+%
+%---------------------------------------------------------------
+
+\section{Anfrageoptimierung}
+\begin{tikzpicture}
+\node (RS) {Rennstall RS};
+\node (R) [left=25mm of RS] {RennfahrerIn R};
+\node (P) [right=25mm of RS] {Platzierung P};
+\node (RO) [right=25mm of P] {Rennort RO};
+\node (join1) [above=20mm of $(R)!.5!(RS)$] {$\verbund{R.Rennstall = RS.RSID}$};
+\node (join2) [above=20mm of $(join1)!.5!(P)$] {$\verbund{R.RID = P.RID}$};
+\node (join3) [above=20mm of $(join2)!.5!(RO)$] {$\verbund{P.OID = RO.OID}$};
+\node (selektion1) [above=of join3] {$\selektion{P.Platz~IN~(1, 3, 5, 7)}$};
+\node (selektion2) [above=of selektion1] {$\selektion{RS.Budget~BETWEEN~150~AND~250}$};
+\node (projektion) [above=of selektion2] {$\projektion{R.Vorname, R.Nachname, RO.Name}$};
+\node (final) [above=of projektion] {};
+
+\path (RS) edge node[smallr,near start,above right] {10 Tupel\\4 Attribute} (join1);
+\path (R) edge node[smalll,near start,above left] {30 Tupel\\6 Attribute} (join1);
+\path (P) edge node[smallr,near start,above right] {10.000 Tupel\\3 Attribute} (join2);
+\path (join1) edge node[smalll,near start,above left] {30 Tupel\\9 Attribute} (join2);
+\path (RO) edge node[smallr,near start,above right] {20 Tupel\\3 Attribute} (join3);
+\path (join2) edge node[smalll,near start,above left] {10.000 Tupel\\11 Attribute} (join3);
+\path (join3) edge node[smallr,near start,above left] {10.000 Tupel\\13 Attribute} (selektion1);
+\path (selektion1) edge node[smallr,midway,left] {$10.000\cdot\frac{4}{20}=2.000$ Tupel\\13 Attribute} (selektion2);
+\path (selektion2) edge node[smallr,midway,left] {$2.000\cdot\frac{1}{4}=500$ Tupel\\13 Attribute} (projektion);
+\path (projektion) edge node[smallr,midway,left] {$500$ Tupel\\3 Attribute} (final);
+\end{tikzpicture}
+\newpage
+
+Der optimierte Baum:\\
+
+\begin{tikzpicture}
+\node (RS) {Rennstall RS};
+\node (R) [left=25mm of RS] {RennfahrerIn R};
+\node (P) [right=25mm of RS] {Platzierung P};
+\node (RO) [right=25mm of P] {Rennort RO};
+\node (projektion1) [above=of RS] {$\projektion{RS.RSID, RS.Budget}$};
+\node (projektion2) [above=of R] {$\projektion{R.Vorname, R.Nachname, R.Rennstall, R.RID}$};
+\node (projektion3) [above=of RO] {$\projektion{RO.OID, RO.Name}$};
+\node (selektion1) [above=of P] {$\selektion{P.Platz~IN~(1, 3, 5, 7)}$};
+\node (selektion2) [above=of projektion1] {$\selektion{RS.Budget~BETWEEN~150~AND~250}$};
+\node (projektion4) [above=of selektion2] {$\projektion{RS.RSID}$};
+\node (join1) [above=20mm of $(projektion2)!.5!(projektion4)$] {$\verbund{R.Rennstall = RS.RSID}$};
+\node (join2) [above=20mm of $(selektion1)!.5!(projektion3)$] {$\verbund{P.OID = RO.OID}$};
+\node (projektion5) [above=of join1] {$\projektion{R.Vorname, R.Nachname, R.RID}$};
+\node (projektion6) [above=of join2] {$\projektion{RO.Name, P.RID}$};
+\node (join3) [above=20mm of $(projektion5)!.5!(projektion6)$] {$\verbund{R.RID = P.RID}$};
+\node (projektion7) [above=of join3] {$\projektion{R.Vorname, R.Nachname, RO.Name}$};
+\node (final) [above=of projektion7] {};
+
+\path (RS) edge node[smallr,near start,above right] {10 Tupel\\4 Attribute} (projektion1);
+\path (R) edge node[smalll,near start,above left] {30 Tupel\\6 Attribute} (projektion2);
+\path (P) edge node[smallr,near start,above left] {10.000 Tupel\\3 Attribute} (selektion1);
+\path (RO) edge node[smallr,near start,above right] {20 Tupel\\3 Attribute} (projektion3);
+\path (projektion1) edge node[smallr,near start,above right] {10 Tupel\\2 Attribute} (selektion2);
+\path (projektion2) edge node[smalll,near start,above left] {30 Tupel\\4 Attribute} (join1);
+\path (selektion2) edge node[smallr,near start,above right] {$10\cdot\frac{1}{4}\approx 3$ Tupel\\2 Attribute} (projektion4);
+\path (projektion4) edge node[smalll,near start,above right] {$\approx 3$ Tupel\\1 Attribute} (join1);
+\path (projektion3) edge node[smallr,near start,above right] {20 Tupel\\2 Attribute} (join2);
+\path (selektion1) edge node[smallr,near start,above left] {$10.000\cdot\frac{4}{20}=2.000$ Tupel\\3 Attribute} (join2);
+\path (join2) edge node[smalll,near start,above right] {2.000 Tupel\\4 Attribute} (projektion6);
+\path (join1) edge node[smalll,near start,above left] {$30\cdot\frac{1}{4}\approx 8$ Tupel\\4 Attribute} (projektion5);
+\path (projektion5) edge node[smallr,near start,above left] {$\approx 8$ Tupel\\3 Attribute} (join3);
+\path (projektion6) edge node[smallr,near start,above right] {2.000 Tupel\\2 Attribute} (join3);
+\path (join3) edge node[smallr,midway,left] {$2.000\cdot\frac{1}{4}=500$ Tupel\\4 Attribute} (projektion7);
+\path (projektion7) edge node[smallr,midway,left] {$500$ Tupel\\3 Attribute} (final);
+\end{tikzpicture}
+\\
+Bewertung Suchbaum 1(der obere):\\
+Er ist übersichtlich.
+Allerdings unbalanciert.
+Und er rechnet mit sehr großen Tupeln.
+Und er rechnet durchgängig mit großen Zahlen.
+\\
+\\
+Bewertung von Suchbaum 2 (der untere):\\
+Er ist unübersichtlich.
+Allerdings balancierter.
+Und er rechnet mit kleinen Tupeln im Vergleich zum ersten.
+Und er rechnet mit kleineren Zahlen als der erste.
+
+
+%---------------------------------------------------------------
+%
+%---------------------------------------------------------------
+
+\end{document}
