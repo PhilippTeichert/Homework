@@ -30,6 +30,11 @@ d: nein, weil sie nur eine Zahl übernimmt und keine Funktion
 
 |#
 ;;;; Aufgabe 1.4
+(foldl (curry / 2) 1 '(1 1 2 3))
+(map cons '(1 2 3 4) '(1 2 3 4))
+(filter pair? '((a b ) () 1 (())))
+(map (compose (curry + 32) (curry * 1.8))
+     '(5505 100 0 1 1000 -273.15))
 #|
 1.  2/3
     Begründung: #keineAhnung, hätte 1/3 erwartet.
@@ -46,14 +51,10 @@ d: nein, weil sie nur eine Zahl übernimmt und keine Funktion
                diese umgerechneten Werte werden wieder als Liste ausgegeben
 
 |#
-(foldl (curry / 2) 1 '(1 1 2 3))
-(map cons '(1 2 3 4) '(1 2 3 4))
-(filter pair? '((a b ) () 1 (())))
-(map (compose (curry + 32) (curry * 1.8))
-     '(5505 100 0 1 1000 -273.15))
+
 ;;;; Aufgabe 1.5 (Zusatzaufgabe)
 #|
-Konvertierung erfolgt °C -> °F.
+Konvertierung erfolgt °C -> °F mit °F = °C * 1.8 + 32.
 Die Umkehrung findet statt durch °C = (°F - 32) * 5/9 (Quelle: http://www.celsius-fahrenheit.de/)
 |#
 ;; Wendet obige Formel auf eine Liste von Temperaturen an.
@@ -61,13 +62,22 @@ Die Umkehrung findet statt durch °C = (°F - 32) * 5/9 (Quelle: http://www.cels
 (define (fahrenheit->celsius lst)
   (map (compose (curryr / 9) (curryr * 5) (curryr - 32))
      lst))
+#|
+curryr wurde statt curry gewählt, um sicherzustellen, dass die Reihenfolge der
+Rechenparameter korrekt ist.
+Wird bei der Division curry genommen, so wird 9 durch die Temperatur geteilt,
+nicht die Temperatur durch 9. Bei der Multiplikation sollte es aufgrund des
+Kommutativgesetzes egal sein. Bei der Subtraktion dreht sich  das Vorzeichen
+des Ergebnisses um.
+|#
 
 ;; Testwerte für obige Funktion. Aufgerufene Werte:
 ; 0°F ~ -17.8°C
 ; 100°F ~ 37,8°C
 ; 32°F ~ 0°C
+; 212°F ~ 100°C
 ; 42°F ~ 5.6°C (gewählt aus randomness. Weil 42.)
-(fahrenheit->celsius '(0 100 32 42))
+(fahrenheit->celsius '(0 100 32 212 42))
 
 
 ;;;;;;;; Aufgabe 2
