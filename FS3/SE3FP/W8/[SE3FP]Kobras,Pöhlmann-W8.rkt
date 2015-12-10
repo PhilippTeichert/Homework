@@ -49,6 +49,7 @@ d: nein, weil sie nur eine Zahl übernimmt und keine Funktion
 4. '(9941.0 212.0 32 33.8 1832.0 -459.66999999999996)
    Begründung: jeder einzelne übergebene Wert wird in einen anderen Wert umgerechnet
                diese umgerechneten Werte werden wieder als Liste ausgegeben
+               compose fügt die Parameter zu einem arithmetischen Ausdruck zusammen
 
 |#
 
@@ -61,7 +62,7 @@ Die Umkehrung findet statt durch °C = (°F - 32) * 5/9 (Quelle: http://www.cels
 ;; @param lst Eine Reihe von Fahrenheit-Werten, die Umgerechnet werden sollen
 (define (fahrenheit->celsius lst)
   (map (compose (curryr / 9) (curryr * 5) (curryr - 32))
-     lst))
+       lst))
 #|
 curryr wurde statt curry gewählt, um sicherzustellen, dass die Reihenfolge der
 Rechenparameter korrekt ist.
@@ -92,10 +93,11 @@ des Ergebnisses um.
 ;; vorhanden waren, stammen von Elementen der Ausgangsliste ab, die von $divisor
 ;; geteilt werden. Es wird wieder mit $divisor multipliziert, um die ursprünglichen
 ;; Elemente wiederherzustellen.
-;; @param divisor Die Zahl, nach der geprüft werden soll, ob sie Listenelemente teilt
-;; $divisor darf nicht 0 sein
 ;; @param lst Eine Liste von Zahlen
-(define (n-divides divisor lst)
+;; @param divisor Die Zahl, nach der geprüft werden soll, ob sie Listenelemente teilt
+;; nach Aufgabenstellung ist $divisor als Default-Wert mit 3 belegt
+;; $divisor darf nicht 0 sein
+(define (n-divides lst [divisor 3])
   (map (lambda (x) (* x divisor)) 
        (filter integer? (map (lambda (x) (/ x divisor))
                              lst))))
@@ -106,9 +108,10 @@ des Ergebnisses um.
 ;; größer als die Untergrenze waren.
 ;; Die so entstandene Liste wird nach odd? gefiltert. Die Ergebnisliste wird mit
 ;; foldl und dem neutralen Element der Addition zur Summe kollabiert.
-;; @param n Untere Grenze für die Summe der ungeraden Zahlen aus $lst
 ;; @param lst Eine Liste von Zahlen
-(define (sum-of-odd-greater-n n lst)
+;; @param n Untere Grenze für die Summe der ungeraden Zahlen aus $lst
+;; nach Aufgabenstellung ist $n als Default-Wert mit 10 belegt
+(define (sum-of-odd-greater-n lst [n 10])
   (foldl + 0
          (filter odd?
                  (map (lambda (x) (+ x n))
@@ -120,10 +123,10 @@ des Ergebnisses um.
 (root-of-all '(1 2 3 4 5 9 16 25 31))
 ;; Test-Aufruf für Aufgabe 2.2: Teilbar durch 3
 ;; Ergebnis: '(3 6 9)
-(n-divides 3 '(1 2 3 4 5 6 7 8 9))
+(n-divides '(1 2 3 4 5 6 7 8 9))
 ;; Test-Aufruf für Aufgabe 2.3: Summe ungerader Zahlen größer 10
 ;; Ergebnis: 39
-(sum-of-odd-greater-n 10 '(3 4 10 2 11 13 9 14 15))
+(sum-of-odd-greater-n '(3 4 10 2 11 13 9 14 15))
 
 ;;;;;;;;; Aufgabe 3
 ;;;; Aufgabe 3.1
