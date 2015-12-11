@@ -11,6 +11,7 @@
 
 #lang racket
 (require "setkarten-module.rkt")
+(require 2htdp/image)
 
 ;;;;;;;; Aufgabe 1
 ;;;; Aufgabe 1.1
@@ -124,10 +125,10 @@ des Ergebnisses um.
 
 ;; Test-Aufurf für Aufgabe 2.1: Wurzel aller Listenelemente
 ;; Ergebnis: Stimmt so
-(root-of-all '(1 2 3 4 5 9 16 25 31))
+(root-of-all '(1 2 3 5 8 13 21 34 4 9 16 25))
 ;; Test-Aufruf für Aufgabe 2.2: Teilbar durch 3
 ;; Ergebnis: '(3 6 9)
-(n-divides '(1 2 3 4 5 6 7 8 9))
+(n-divides '(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21))
 ;; Test-Aufruf für Aufgabe 2.3: Summe ungerader Zahlen größer 10
 ;; Ergebnis: 39
 (sum-of-odd-greater-n '(3 4 10 2 11 13 9 14 15))
@@ -139,12 +140,15 @@ des Ergebnisses um.
 ; the-mode: 'outline, 'solid, 'hatched
 ; the-color: 'red, 'green, 'blue
 (define Anzahl '(1 2 3))
-(define Pattern '('waves 'oval 'rectangle))
-(define Fuellung '('outline 'solid 'hatched))
-(define Colour '('red 'green 'blue))
+(define Pattern '(waves oval rectangle))
+(define Fuellung '(outline solid hatched))
+(define Colour '(red green blue))
 
 (define (erstelleKarte n Muster Form Farbe)
-  ('(n Muster Form Farbe)))
+  (list n
+        Muster
+        Form
+        Farbe))
 
 (define (zeigeKarte Karte)
   (show-set-card
@@ -155,17 +159,24 @@ des Ergebnisses um.
 
 
 (define (erstelleUndZeigeNKarten n)
+  (if (= n 0)
+      (baueRandomKarte)
+      ((baueRandomKarte)
+       (erstelleUndZeigeNKarten (- n 1)))
+      ))
+
+(define (baueRandomKarte)
   (zeigeKarte
    (erstelleKarte
     (list-ref Anzahl (random 3))
     (list-ref Pattern (random 3))
     (list-ref Fuellung (random 3))
-    (list-ref Colour (random 3))))
-  (cond (n > 1)
-        (erstelleUndZeigeNKarten (- n 1))))
+    (list-ref Colour (random 3)))))
 
 
 ;;;; Aufgabe 3.2
+(define (zeigeAlleKarten)
+  (#t))
 
 ;;;; Aufgabe 3.3
 
