@@ -27,56 +27,59 @@ $\projektion{Obst.Sorte, Person.Nachname}(\projektion{Sorte, Entdecker}(Obst) \v
 %---------------------------------------------------------------
 
 \section{Schemadefinition}
-\textbf{CREATE TABLE} 'Person'\\
-('Vorname' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
-'Nachname' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
-'Geb.Datum' DATE \textbf{CHECK}('Geb.Datum' < CURRENT\_DATE \textbf{OR} 'Geb.Datum' \textbf{IS NULL}),\\
-'Wohnort' VARCHAR(30) \textbf{NOT NULL});\\
+\textbf{CREATE TABLE} Person\\
+(Vorname VARCHAR(30) \textbf{NOT NULL},\\
+Nachname VARCHAR(30) \textbf{NOT NULL},\\
+\textbf{PRIMARY KEY}(Vorname, Nachname),\\
+Geb\_Datum DATE \textbf{CHECK}(Geb\_Datum < CURRENT\_DATE \textbf{OR} Geb\_Datum \textbf{IS NULL}),\\
+Wohnort VARCHAR(30) \textbf{NOT NULL});\\
 \\
-\textbf{CREATE TABLE} 'Vorstand'\\
-('VID' INT \textbf{PRIMARY KEY NOT NULL},\\
-'Sitz' VARCHAR(30) \textbf{UNIQUE NOT NULL});\\
+\textbf{CREATE TABLE} Vorstand\\
+(VID INT \textbf{PRIMARY KEY NOT NULL},\\
+Sitz VARCHAR(30) \textbf{UNIQUE NOT NULL});\\
 \\
-\textbf{CREATE TABLE} 'Verein'\\
-('Name' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
-'Gr"undungsjahr' DATE);\\
+\textbf{CREATE TABLE} Verein\\
+(Name VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
+Gr"undungsjahr DATE);\\
 \\
-\textbf{CREATE TABLE} 'ist in'\\
-('Person Vorname' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
-'Person Nachname' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
-'Vorstand VID' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
-'Amt' VARCHAR(30) \textbf{NOT NULL},\\
-'von' DATE \textbf{NOT NULL},\\
-'bis' DATE,\\
-\textbf{CONSTRAINT} 'ist in Person Vorname'\\
-\textbf{FOREIGN KEY}('Person Vorname') \textbf{REFERENCES} 'Person' ('Vorname'),\\
-\textbf{CONSTRAINT} 'ist in Person Nachname'\\
-\textbf{FOREIGN KEY}('Person Nachname') \textbf{REFERENCES} 'Person' ('Nachname'),\\
-\textbf{CONSTRAINT} 'ist in Vorstand VID'\\
-\textbf{FOREIGN KEY}('Vorstand VID') \textbf{REFERENCES} 'Vorstand' ('VID'));\\
+\textbf{CREATE TABLE} ist\_in\\
+(Person\_Vorname VARCHAR(30) \textbf{NOT NULL},\\
+Person\_Nachname VARCHAR(30) \textbf{NOT NULL},\\
+Vorstand\_VID VARCHAR(30) \textbf{NOT NULL},\\
+\textbf{PRIMARY KEY} (Person\_Vorname, Person\_Nachname, Vorstand\_VID),\\
+Amt VARCHAR(30) \textbf{NOT NULL},\\
+von DATE \textbf{NOT NULL},\\
+bis DATE,\\
+\textbf{CONSTRAINT} ist\_in\_Person\_Vorname\\
+\textbf{FOREIGN KEY}(Person\_Vorname) \textbf{REFERENCES} Person (Vorname),\\
+\textbf{CONSTRAINT} ist\_in\_Person\_Nachname\\
+\textbf{FOREIGN KEY}(Person\_Nachname) \textbf{REFERENCES} Person (Nachname),\\
+\textbf{CONSTRAINT} ist\_in\_Vorstand\_VID\\
+\textbf{FOREIGN KEY}(Vorstand\_VID) \textbf{REFERENCES} Vorstand (VID));\\
 \\
-\textbf{ALTER TABLE} 'Vorstand'\\
-\textbf{ADD} 'Verein Name' VARCHAR(30) \textbf{NOT NULL},\\
-\textbf{ADD CONSTRAINT} 'von Verein' \textbf{FOREIGN KEY} ('Verein Name') \textbf{REFERENCES} 'Verein' ('Name');\\
+\textbf{ALTER TABLE} Vorstand\\
+\textbf({ADD} Verein\_Name VARCHAR(30) \textbf{NOT NULL},\\
+\textbf{ADD CONSTRAINT} von\_Verein \textbf{FOREIGN KEY} (Verein\_Name) \textbf{REFERENCES} Verein (Name));\\
 \\
-\textbf{ALTER TABLE} 'Verein'\\
-\textbf{ADD} 'Person Vorname' VARCHAR(30) \textbf{NOT NULL},\\
-\textbf{ADD CONSTRAINT} 'trainiert Person Vorname' \textbf{FOREIGN KEY} ('Person Vorname') \textbf{REFERENCES} 'Person' ('Vorname'),\\
-\textbf{ADD} 'Person Nachname' VARCHAR(30) \textbf{NOT NULL},\\
-\textbf{ADD CONSTRAINT} 'trainiert Person Nachname' \textbf{FOREIGN KEY} ('Person Nachname') \textbf{REFERENCES} 'Person' ('Nachname');\\
+\textbf{ALTER TABLE} Verein\\
+\textbf({ADD} Person\_Vorname VARCHAR(30) \textbf{NOT NULL},\\
+\textbf{ADD CONSTRAINT} trainiert\_Person\_Vorname \textbf{FOREIGN KEY} (Person\_Vorname) \textbf{REFERENCES} Person (Vorname),\\
+\textbf{ADD} Person\_Nachname VARCHAR(30) \textbf{NOT NULL},\\
+\textbf{ADD CONSTRAINT} trainiert\_Person\_Nachname \textbf{FOREIGN KEY} (Person\_Nachname) \textbf{REFERENCES} Person (Nachname));\\
 \\
-\textbf{ALTER TABLE} 'Person'\\
-\textbf{ADD} 'Verein Name' VARCHAR(30) \textbf{NOT NULL},\\
-\textbf{ADD CONSTRAINT} 'Fan von Verein' \textbf{FOREIGN KEY} ('Verein Name') \textbf{REFERENCES} 'Verein' ('Name');\\
+\textbf{ALTER TABLE} Person\\
+\textbf({ADD} Verein\_Name VARCHAR(30) \textbf{NOT NULL},\\
+\textbf{ADD CONSTRAINT} Fan\_von\_Verein \textbf{FOREIGN KEY} (Verein\_Name) \textbf{REFERENCES} Verein (Name);\\
 \\
-\textbf{CREATE TABLE} 'spielt f"ur'\\
-'Person Vorname' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
-'Person Nachname' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
-'Verein Name' VARCHAR(30) \textbf{PRIMARY KEY NOT NULL},\\
-('Position' VARCHAR(30) \textbf{NOT NULL},\\
-\textbf{CONSTRAINT} 'spielt f"ur Person Vorname' \textbf{FOREIGN KEY} ('Person Vorname') \textbf{REFERENCES} 'Person' ('Vorname'),\\
-\textbf{CONSTRAINT} 'spielt f"ur Person Nachname' \textbf{FOREIGN KEY} ('Person Nachname') \textbf{REFERENCES} 'Person' ('Nachname'),\\
-\textbf{CONSTRAINT} 'spielt f"ur Verein Name' \textbf{FOREIGN KEY} ('Verein Name') \textbf{REFERENCES} 'Verein' ('Name'));\\
+\textbf{CREATE TABLE} spielt\_f"ur\\
+(Person\_Vorname VARCHAR(30) \textbf{NOT NULL},\\
+Person\_Nachname VARCHAR(30) \textbf{NOT NULL},\\
+Verein\_Name VARCHAR(30) \textbf{NOT NULL},\\
+\textbf{PRIMARY KEY} (Person\_Vorname, Person\_Nachname, Verein\_Name),
+Position VARCHAR(30) \textbf{NOT NULL},\\
+\textbf{CONSTRAINT} spielt\_f"ur\_Person\_Vorname \textbf{FOREIGN KEY} (Person\_Vorname) \textbf{REFERENCES} Person (Vorname),\\
+\textbf{CONSTRAINT} spielt\_f"ur\_Person\_Nachname \textbf{FOREIGN KEY} (Person\_Nachname) \textbf{REFERENCES} Person (Nachname),\\
+\textbf{CONSTRAINT} spielt\_f"ur\_Verein\_Name \textbf{FOREIGN KEY} (Verein\_Name) \textbf{REFERENCES} Verein (Name));\\
 
 %---------------------------------------------------------------
 %
@@ -93,14 +96,14 @@ $\projektion{Obst.Sorte, Person.Nachname}(\projektion{Sorte, Entdecker}(Obst) \v
 \subsubsection{ii}
 \textbf{SELECT} RF.Vorname, RF.Nachname\\
 \textbf{FROM} RennfahrerIn RF\\
-\textbf{WHERE NOT IN}\\
+\textbf{WHERE} (RF.Vorname, RF.Nachname) \textbf{NOT IN}\\
 (\textbf{SELECT} RF2.Vorname, RF2.Nachname\\
 \textbf{FROM} RennfahrerIn RF2, Platzierung PL\\
 \textbf{WHERE} RF2.RID = PL.RID);
 
 %------------------------
 \subsubsection{iii}
-\textbf{SELECT} RF.Nachname, MIN(PL.Platz) \textbf{AS} BestePlatzierung\\
+\textbf{SELECT DISTINCT} RF.Nachname, PL.Platz \textbf{AS} BestePlatzierung\\
 \textbf{FROM} RennfahrerIn RF, Platzierung PL\\
 \textbf{WHERE} RF.RID = PL.RID\\
 \textbf{ORDER BY} PL.Platz;
@@ -157,7 +160,8 @@ $\projektion{Obst.Sorte, Person.Nachname}(\projektion{Sorte, Entdecker}(Obst) \v
 \textbf{INSERT INTO} Rennort (Name, Strecke)\\
 \textbf{VALUES} ('Deutschland GP', 'Hockenheimring');\\
 \\
-Dies wird so nicht funktionieren, da der Primärschlüssel, welcher nicht "NULL" sein darf, fehlt und somit "NULL" ist.
+Dies wird so nicht funktionieren, da der Primärschlüssel, welcher nicht \textsc{NULL} sein darf, fehlt und somit \textsc{NULL} ist.
+Ausnahme, wenn die ID 0 nicht belegt ist, diese wird dann zugewiesen.
 
 %------------------------
 \subsubsection{iv}

@@ -10,6 +10,7 @@
 ;+++++++++++++++++++++++
 
 #lang racket
+(require "setkarten-module.rkt")
 
 ;;;;;;;; Aufgabe 1
 ;;;; Aufgabe 1.1
@@ -27,6 +28,9 @@ d: nein, weil sie nur eine Zahl übernimmt und keine Funktion
 |#
 ;;;; Aufgabe 1.3
 #|
+f wird mit max belegt;
+arg1 wird mit 5 belegt;
+arg2 wird mit 7 belegt.
 
 |#
 ;;;; Aufgabe 1.4
@@ -130,6 +134,36 @@ des Ergebnisses um.
 
 ;;;;;;;;; Aufgabe 3
 ;;;; Aufgabe 3.1
+; n: 1, 2, or 3
+; the-pattern: 'waves, 'oval, 'rectangle
+; the-mode: 'outline, 'solid, 'hatched
+; the-color: 'red, 'green, 'blue
+(define Anzahl '(1 2 3))
+(define Pattern '('waves 'oval 'rectangle))
+(define Fuellung '('outline 'solid 'hatched))
+(define Colour '('red 'green 'blue))
+
+(define (erstelleKarte n Muster Form Farbe)
+  ('(n Muster Form Farbe)))
+
+(define (zeigeKarte Karte)
+  (show-set-card
+   (list-ref Karte 0)
+   (list-ref Karte 1)
+   (list-ref Karte 2)
+   (list-ref Karte 3)))
+
+
+(define (erstelleUndZeigeNKarten n)
+  (zeigeKarte
+   (erstelleKarte
+    (list-ref Anzahl (random 3))
+    (list-ref Pattern (random 3))
+    (list-ref Fuellung (random 3))
+    (list-ref Colour (random 3))))
+  (cond (n > 1)
+        (erstelleUndZeigeNKarten (- n 1))))
+
 
 ;;;; Aufgabe 3.2
 
