@@ -35,11 +35,11 @@ arg2 wird mit 7 belegt.
 
 |#
 ;;;; Aufgabe 1.4
-(foldl (curry / 2) 1 '(1 1 2 3))
-(map cons '(1 2 3 4) '(1 2 3 4))
-(filter pair? '((a b ) () 1 (())))
-(map (compose (curry + 32) (curry * 1.8))
-     '(5505 100 0 1 1000 -273.15))
+;(foldl (curry / 2) 1 '(1 1 2 3))
+;(map cons '(1 2 3 4) '(1 2 3 4))
+;(filter pair? '((a b ) () 1 (())))
+;(map (compose (curry + 32) (curry * 1.8))
+;     '(5505 100 0 1 1000 -273.15))
 #|
 1.  2/3
     Begründung: #keineAhnung, hätte 1/3 erwartet.
@@ -83,7 +83,7 @@ des Ergebnisses um.
 ; 32°F ~ 0°C
 ; 212°F ~ 100°C
 ; 42°F ~ 5.6°C (gewählt aus randomness. Weil 42.)
-(fahrenheit->celsius '(0 100 32 212 42))
+;(fahrenheit->celsius '(0 100 32 212 42))
 
 
 ;;;;;;;; Aufgabe 2
@@ -125,13 +125,13 @@ des Ergebnisses um.
 
 ;; Test-Aufurf für Aufgabe 2.1: Wurzel aller Listenelemente
 ;; Ergebnis: Stimmt so
-(root-of-all '(1 2 3 5 8 13 21 34 4 9 16 25))
+;(root-of-all '(1 2 3 5 8 13 21 34 4 9 16 25))
 ;; Test-Aufruf für Aufgabe 2.2: Teilbar durch 3
 ;; Ergebnis: '(3 6 9)
-(n-divides '(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21))
+;(n-divides '(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20))
 ;; Test-Aufruf für Aufgabe 2.3: Summe ungerader Zahlen größer 10
 ;; Ergebnis: 39
-(sum-of-odd-greater-n '(3 4 10 2 11 13 9 14 15))
+;(sum-of-odd-greater-n '(3 4 10 2 11 13 9 14 15))
 
 ;;;;;;;;; Aufgabe 3
 ;;;; Aufgabe 3.1
@@ -158,13 +158,6 @@ des Ergebnisses um.
    (list-ref Karte 3)))
 
 
-(define (erstelleUndZeigeNKarten n)
-  (if (= n 0)
-      (baueRandomKarte)
-      ((baueRandomKarte)
-       (erstelleUndZeigeNKarten (- n 1)))
-      ))
-
 (define (baueRandomKarte)
   (zeigeKarte
    (erstelleKarte
@@ -175,8 +168,22 @@ des Ergebnisses um.
 
 
 ;;;; Aufgabe 3.2
+(define (alleKarten [attribute (list Anzahl Pattern Fuellung Colour)])
+  (if (empty? attribute)
+      '(())
+      (let* ([erstesAttribut (car attribute)]
+             [restAttribute (cdr attribute)]
+             [kombinationen (alleKarten restAttribute)])
+        (apply append (map
+                       (lambda (element)
+                         (map (curryr cons element)
+                              erstesAttribut))
+                       kombinationen)))))
+
 (define (zeigeAlleKarten)
-  (#t))
+  (map zeigeKarte
+       (alleKarten)))
+
 
 ;;;; Aufgabe 3.3
 
