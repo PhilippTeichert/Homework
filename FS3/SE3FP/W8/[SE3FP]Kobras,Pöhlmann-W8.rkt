@@ -32,7 +32,6 @@ d: nein, weil sie nur eine Zahl übernimmt und keine Funktion
 f wird mit max belegt;
 arg1 wird mit 5 belegt;
 arg2 wird mit 7 belegt.
-
 |#
 ;;;; Aufgabe 1.4
 ;(foldl (curry / 2) 1 '(1 1 2 3))
@@ -43,19 +42,16 @@ arg2 wird mit 7 belegt.
 #|
 1.  2/3
     Begründung: #keineAhnung, hätte 1/3 erwartet.
-
 2.  '((1 . 1) (2 . 2) (3 . 3) (4 . 4))
     Begründung: map wendet cons jeweils auf die beiden Listenelemente
                 mit dem gleichen Index an
 3.  '((a b) (()))
     Begründung: (a b) als Liste mit zwei Elementen ist ein Pair.
                 Die Leere liste hat auch den Typ Pair.
-
 4. '(9941.0 212.0 32 33.8 1832.0 -459.66999999999996)
    Begründung: jeder einzelne übergebene Wert wird in einen anderen Wert umgerechnet
                diese umgerechneten Werte werden wieder als Liste ausgegeben
                compose fügt die Parameter zu einem arithmetischen Ausdruck zusammen
-
 |#
 
 ;;;; Aufgabe 1.5 (Zusatzaufgabe)
@@ -158,14 +154,16 @@ des Ergebnisses um.
    (list-ref Karte 3)))
 
 
-(define (baueRandomKarte)
+(define (zeigeRandomKarte)
   (zeigeKarte
-   (erstelleKarte
-    (list-ref Anzahl (random 3))
-    (list-ref Pattern (random 3))
-    (list-ref Fuellung (random 3))
-    (list-ref Colour (random 3)))))
+   (randomKarte)))
 
+(define (randomKarte)
+  (erstelleKarte
+   (list-ref Anzahl (random 3))
+   (list-ref Pattern (random 3))
+   (list-ref Fuellung (random 3))
+   (list-ref Colour (random 3))))
 
 ;;;; Aufgabe 3.2
 (define (alleKarten [attribute (list Anzahl Pattern Fuellung Colour)])
@@ -186,5 +184,27 @@ des Ergebnisses um.
 
 
 ;;;; Aufgabe 3.3
+(define (is-a-set? [Karte1 (randomKarte)] [Karte2 (randomKarte)] [Karte3 (randomKarte)] [akku '()])
+  (if (equal? Karte1 '())
+      (and (equal? (car akku)
+                   #t)
+           (equal? (cadr akku)
+                   #t)
+           (equal? (caddr akku)
+                   #t)
+           (equal? (cadddr akku)
+                   #t))
+      (if (equal? (car Karte1)
+                  (car Karte2))
+          (if (equal? (car Karte2)
+                      (car Karte3))
+              (append akku #t)
+              (append akku #f)
+              )
+          (if (not (equal? (car Karte2)
+                           (car Karte3)))
+              (append akku #t)
+              (append akku #f))))
+  (is-a-set? (cdr Karte1) (cdr Karte2) (cdr Karte3) akku))
 
 ;;;; Aufgabe 3.4 (Zusatzaufgabe)
