@@ -349,10 +349,11 @@ fuegeMuenzenHinzu([H|T], [], NeuerGeldspeicher) :-
 %%%% Aufgabe 2.2
 
 % CFG:
-% Terminale: S(Startsymbol), U(Unterbaum),
-% Nichtterminale: 
-% S -> U|SU
-% U ->
+% Terminale: S(Startsymbol), B(Baum), U(Unterbaum), 
+% Nichtterminale: b(Buchstabe), e(Wortende)
+% S -> B
+% B -> U|UB
+% U -> b|e|U
 
 
 
@@ -416,12 +417,12 @@ entry(abende, ['a:', b, @, n, d, @]).
 entry('Abendeßchen', ['a:', b, @, n, t, 'E', s, 'C', @, n]).
 entry(abendessen, ['a:', b, @, n, t, 'E', s, @, n]).
 entry('Abendessens', ['a:', b, @, n, t, 'E', s, @, n, s]).
-entry('Abendflüge', ['a:', b, @, n, t, f, l, 'y:', g, @]).
+entry('Abendfluege', ['a:', b, @, n, t, f, l, 'y:', g, @]).
 entry('Abendflug', ['a:', b, @, n, t, f, l, 'u:', k]).
 entry('Abendgestaltung', ['a:', b, @, n, t, g, @, 'S', t, a, l, t, 'U', 'N']).
 entry('Abendkasse', ['a:', b, @, n, t, k, a, s, @]).
 entry(abendlich, ['a:', b, @, n, t, l, 'I', 'C']).
-entry('Abendöffnung', ['a:', b, @, n, t, '9', f, n, 'U', 'N']).
+entry('Abendoeffnung', ['a:', b, @, n, t, '9', f, n, 'U', 'N']).
 entry('Abendplanung', ['a:', b, @, n, t, p, l, 'a:', n, 'U', 'N']).
 entry('Abendprogramme', ['a:', b, @, n, t, p, r, o, g, r, a, m, @]).
 entry('Abendprogramm', ['a:', b, @, n, t, p, r, o, g, r, a, m]).
@@ -438,12 +439,12 @@ entry('Abendzug', ['a:', b, @, n, t, ts, 'u:', k]).
 entry('Aben', ['a:', b, @, n]).
 entry(abenschließenden, ['a:', b, @, n, 'S', l, 'i:', s, @, n, d, @, n]).
 entry('Aberglaubens', ['a:', b, '6', g, l, aU, b, @, n, s]).
-entry(abergläubisch, ['a:', b, '6', g, l, 'OY', b, 'I', 'S']).
+entry(aberglaeubisch, ['a:', b, '6', g, l, 'OY', b, 'I', 'S']).
 entry(aber, ['a:', b, '6']).
 entry(abfahren, [a, pf, 'a:', r, @, n]).
 entry('Abfahr', [a, pf, 'a:', r]).
 entry('Abfahrt', [a, pf, 'a:', r, t]).
-entry(abfährt, [a, pf, 'E:', '6', t]).
+entry(abfaehrt, [a, pf, 'E:', '6', t]).
 entry('Abfahrtstermin', [a, pf, 'a:', r, ts, t, 'E', '6', m, 'i:', n]).
 entry('Abfahrtszeiten', [a, pf, 'a:', r, ts, ts, aI, t, @, n]).
 entry('Abfahrtszeit', [a, pf, 'a:', r, ts, ts, aI, t]).
@@ -452,10 +453,10 @@ entry('Abfassung', [a, pf, a, s, 'U', 'N']).
 entry('Abfertigungshalle', [a, pf, 'E', '6', t, 'I', g, 'U', 'N', s, h, a, l, @]).
 entry('Abfertigungs', [a, pf, 'E', '6', t, 'I', g, 'U', 'N', s]).
 entry(abfliegen, [a, pf, l, 'i:', g, @, n]).
-entry('Abflüge', [a, pf, l, 'y:', g, @]).
-entry('Abflugmöglichkeit', [a, pf, l, 'u:', k, m, '2:', k, l, 'I', 'C', k, aI, t]).
+entry('Abfluege', [a, pf, l, 'y:', g, @]).
+entry('Abflugmoeglichkeit', [a, pf, l, 'u:', k, m, '2:', k, l, 'I', 'C', k, aI, t]).
 entry('Abflug', [a, pf, l, 'u:', k]).
-entry('Abflüg', [a, pf, l, 'y:', k]).
+entry('Abflueg', [a, pf, l, 'y:', k]).
 entry('Abflugszeiten', [a, pf, l, 'u:', k, s, ts, aI, t, @, n]).
 entry('Abflugterminal', [a, pf, l, 'u:', k, t, '9', '6', m, 'I', n, @, l]).
 entry('Abflugtermin', [a, pf, l, 'u:', k, t, 'E', '6', m, 'i:', n]).
@@ -475,8 +476,8 @@ entry(abgehen, [a, p, g, 'e:', @, n]).
 entry(abgeholt, [a, p, g, @, h, 'o:', l, t]).
 entry(abgeht, [a, p, g, 'e:', h, t]).
 entry(abgeklappert, [a, p, g, @, k, l, a, p, '6', t]).
-entry(abgeklär, [a, p, g, @, k, l, 'E:', '6']).
-entry(abgeklärt, [a, p, g, @, k, l, 'E:', '6', t]).
+entry(abgeklaer, [a, p, g, @, k, l, 'E:', '6']).
+entry(abgeklaert, [a, p, g, @, k, l, 'E:', '6', t]).
 entry(abgelaufen, [a, p, g, @, l, aU, f, @, n]).
 entry(abgelegen, [a, p, g, @, l, 'e:', g, @, n]).
 entry(abgelehnt, [a, p, g, @, l, 'e:', n, t]).
@@ -494,22 +495,22 @@ entry(abgespannt, [a, p, g, @, 'S', p, a, n, t]).
 entry(abgesprochen, [a, p, g, @, 'S', p, r, 'O', x, @, n]).
 entry(abgestiegen, [a, p, g, @, 'S', t, 'i:', g, @, n]).
 entry(abgestimmt, [a, p, g, @, 'S', t, 'I', m, t]).
-entry(abgestürzt, [a, p, g, @, 'S', t, 'Y', '6', ts, t]).
+entry(abgestuerzt, [a, p, g, @, 'S', t, 'Y', '6', ts, t]).
 entry(abgewickelt, [a, p, g, @, v, 'I', k, @, l, t]).
 entry(abgleichen, [a, p, g, l, aI, 'C', @, n]).
 entry(abhaken, [a, p, h, 'a:', k, @, n]).
 entry(abhalten, [a, p, h, a, l, t, @, n]).
 entry(abhandeln, [a, p, h, a, n, d, @, l, n]).
-entry(abhängen, [a, p, h, 'E', 'N', @, n]).
-entry(abhängig, [a, p, h, 'E', 'N', 'I', 'C']).
+entry(abhaengen, [a, p, h, 'E', 'N', @, n]).
+entry(abhaengig, [a, p, h, 'E', 'N', 'I', 'C']).
 entry(abhetzen, [a, p, h, 'E', ts, @, n]).
 entry(abholen, [a, p, h, 'o:', l, @, n]).
 entry(abhole, [a, p, h, 'o:', l, @]).
 entry(abhol, [a, p, h, 'o:', l]).
 entry(abkapseln, [a, p, k, a, p, s, @, l, n]).
-entry(abklären, [a, p, k, l, 'E:', r, @, n]).
-entry(abkläre, [a, p, k, l, 'E:', r, @]).
-entry(abkömmlich, [a, p, k, '9', m, l, 'I', 'C']).
+entry(abklaeren, [a, p, k, l, 'E:', r, @, n]).
+entry(abklaere, [a, p, k, l, 'E:', r, @]).
+entry(abkoemmlich, [a, p, k, '9', m, l, 'I', 'C']).
 entry(ablaufen, [a, p, l, aU, f, @, n]).
 entry('Ablauf', [a, p, l, aU, f]).
 entry(ablehnen, [a, p, l, 'e:', n, @, n]).
@@ -534,10 +535,10 @@ entry(abrunden, [a, p, r, 'U', n, d, @, n]).
 entry('Absacker', [a, p, z, a, k, '6']).
 entry(absagen, [a, p, z, 'a:', g, @, n]).
 entry(absa, [a, p, z, a]).
-entry(abschätzen, [a, p, 'S', 'E', ts, @, n]).
+entry(abschaetzen, [a, p, 'S', 'E', ts, @, n]).
 entry('Abschied', [a, p, 'S', 'i:', t]).
 entry(abschlagen, [a, p, 'S', l, 'a:', g, @, n]).
-entry(abschlägigen, [a, p, 'S', l, 'E:', g, 'I', g, @, n]).
+entry(abschlaegigen, [a, p, 'S', l, 'E:', g, 'I', g, @, n]).
 entry(abschließendes, [a, p, 'S', l, 'i:', s, @, n, d, @, s]).
 entry(abschließend, [a, p, 'S', l, 'i:', s, @, n, t]).
 entry(abschließen, [a, p, 'S', l, 'i:', s, @, n]).
@@ -555,7 +556,7 @@ entry(absolvieren, [a, p, z, 'O', l, v, 'i:', r, @, n]).
 entry('Absprache', [a, p, 'S', p, r, 'a:', x, @]).
 entry(absprechen, [a, p, 'S', p, r, 'E', 'C', @, n]).
 entry(abspringen, [a, p, 'S', p, r, 'I', 'N', @, n]).
-entry('Abständen', [a, p, 'S', t, 'E', n, d, @, n]).
+entry('Abstaenden', [a, p, 'S', t, 'E', n, d, @, n]).
 entry('Abstand', [a, p, 'S', t, a, n, t]).
 entry(abstatten, [a, p, 'S', t, a, t, @, n]).
 entry(abstecken, [a, p, 'S', t, 'E', k, @, n]).
@@ -585,10 +586,10 @@ entry(abzubesprechen, [a, p, ts, u, b, @, 'S', p, r, 'E', 'C', @, n]).
 entry(abzudampfen, [a, p, ts, u, d, a, m, pf, @, n]).
 entry(abzufahren, [a, p, ts, u, f, 'a:', r, @, n]).
 entry(abzufassen, [a, p, ts, u, f, a, s, @, n]).
-entry(abzüglich, [a, p, ts, 'y:', k, l, 'I', 'C']).
+entry(abzueglich, [a, p, ts, 'y:', k, l, 'I', 'C']).
 entry(abzuhalten, [a, p, ts, u, h, a, l, t, @, n]).
 entry(abzuholen, [a, p, ts, u, h, 'o:', l, @, n]).
-entry(abzuklären, [a, p, ts, u, k, l, 'E:', r, @, n]).
+entry(abzuklaeren, [a, p, ts, u, k, l, 'E:', r, @, n]).
 entry(abzulenken, [a, p, ts, u, l, 'E', 'N', k, @, n]).
 entry(abzumachen, [a, p, ts, u, m, a, x, @, n]).
 entry(abzureisen, [a, p, ts, u, r, aI, z, @, n]).
@@ -606,14 +607,14 @@ entry(achte, [a, x, t, @]).
 entry(achter, [a, x, t, '6']).
 entry(achthundert, [a, x, t, h, 'U', n, d, '6', t]).
 entry(acht, [a, x, t]).
-entry('Acht-Uhr-fünf-Flug', [a, x, t, 'u:', '6', f, 'Y', n, f, f, l, 'u:', k]).
+entry('Acht-Uhr-fuenf-Flug', [a, x, t, 'u:', '6', f, 'Y', n, f, f, l, 'u:', k]).
 entry('Acht-Uhr-Maschine', [a, x, t, 'u:', '6', m, a, 'S', 'i:', n, @]).
 entry('Acht-Uhr-Termin', [a, x, t, 'u:', '6', t, 'E', '6', m, 'i:', n]).
 entry('Acht-Uhr-Zug', [a, x, t, 'u:', '6', ts, 'u:', k]).
 entry(achtunddreißig, [a, x, t, 'U', n, t, d, r, aI, s, 'I', 'C']).
 entry(achtunddreißigsten, [a, x, t, 'U', n, t, d, r, aI, s, 'I', 'C', s, t, @, n]).
 entry(achtunddreißigste, [a, x, t, 'U', n, t, d, r, aI, s, 'I', 'C', s, t, @]).
-entry(achtundfünfzig, [a, x, t, 'U', n, t, f, 'Y', n, f, ts, 'I', 'C']).
+entry(achtundfuenfzig, [a, x, t, 'U', n, t, f, 'Y', n, f, ts, 'I', 'C']).
 entry(achtundneun, [a, x, t, 'U', n, t, n, 'OY', n]).
 entry(achtundneunzig, [a, x, t, 'U', n, t, n, 'OY', n, ts, 'I', 'C']).
 entry(achtund, [a, x, t, 'U', n, t]).
@@ -653,19 +654,19 @@ entry(ags, ['a:', k, s]).
 entry(aha, [a, h, a]).
 entry(ahnen, ['a:', n, @, n]).
 entry(ahne, ['a:', n, @]).
-entry('Ähnlichem', ['E:', n, l, 'I', 'C', @, m]).
-entry(ähnlichen, ['E:', n, l, 'I', 'C', @, n]).
-entry(ähnliche, ['E:', n, l, 'I', 'C', @]).
-entry(ähnliches, ['E:', n, l, 'I', 'C', @, s]).
-entry(ähnlich, ['E:', n, l, 'I', 'C']).
+entry('aehnlichem', ['E:', n, l, 'I', 'C', @, m]).
+entry(aehnlichen, ['E:', n, l, 'I', 'C', @, n]).
+entry(aehnliche, ['E:', n, l, 'I', 'C', @]).
+entry(aehnliches, ['E:', n, l, 'I', 'C', @, s]).
+entry(aehnlich, ['E:', n, l, 'I', 'C']).
 entry('Ahnung', ['a:', n, 'U', 'N']).
 entry(ah, ['a:']).
 entry(ahrt, ['a:', r, t]).
 entry('Aigner', [aI, g, n, '6']).
-entry('Aktionärsversammlung', [a, k, ts, j, o, n, 'E:', '6', s, f, 'E', '6', s, a, m, l, 'U', 'N']).
+entry('Aktionaersversammlung', [a, k, ts, j, o, n, 'E:', '6', s, f, 'E', '6', s, a, m, l, 'U', 'N']).
 entry('Aktion', [a, k, ts, j, 'o:', n]).
-entry('Aktivitäten', [a, k, t, 'I', v, 'I', t, 'E:', t, @, n]).
-entry('Aktivität', [a, k, t, 'I', v, 'I', t, 'E:', t]).
+entry('Aktivitaeten', [a, k, t, 'I', v, 'I', t, 'E:', t, @, n]).
+entry('Aktivitaet', [a, k, t, 'I', v, 'I', t, 'E:', t]).
 entry(aktualisieren, [a, k, t, u, a, l, i, z, 'i:', r, @, n]).
 entry(aktuellem, [a, k, t, u, 'E', l, @, m]).
 entry(aktuellen, [a, k, t, u, 'E', l, @, n]).
@@ -691,17 +692,17 @@ entry(alle, [a, l, @]).
 entry('Allerbeste', [a, l, '6', b, 'E', s, t, @]).
 entry(allerdings, [a, l, '6', d, 'I', 'N', s]).
 entry(allerersten, [a, l, '6', 'e:', '6', s, t, @, n]).
-entry(allerfrühestens, [a, l, '6', f, r, 'y:', @, s, t, @, n, s]).
+entry(allerfruehestens, [a, l, '6', f, r, 'y:', @, s, t, @, n, s]).
 entry(allergelegensten, [a, l, '6', g, @, l, 'e:', g, @, n, s, t, @, n]).
 entry(allergisch, [a, l, 'E', '6', g, 'I', 'S']).
-entry(allergünstigsten, [a, l, '6', g, 'Y', n, s, t, 'I', 'C', s, t, @, n]).
+entry(allerguenstigsten, [a, l, '6', g, 'Y', n, s, t, 'I', 'C', s, t, @, n]).
 entry('Allerheiligen', [a, l, '6', h, aI, l, 'I', g, @, n]).
 entry(allerletzte, [a, l, '6', l, 'E', ts, t, @]).
 entry(allerliebsten, [a, l, '6', l, 'i:', p, s, t, @, n]).
 entry('Allerliebste', [a, l, '6', l, 'i:', p, s, t, @]).
 entry(allerneueste, [a, l, '6', n, 'OY', @, s, t, @]).
 entry(aller, [a, l, '6']).
-entry(allerspätestens, [a, l, '6', 'S', p, 'E:', t, @, s, t, @, n, s]).
+entry(allerspaetestens, [a, l, '6', 'S', p, 'E:', t, @, s, t, @, n, s]).
 entry('Allerwichtigste', [a, l, '6', v, 'I', 'C', t, 'I', 'C', s, t, @]).
 entry(alles, [a, l, @, s]).
 entry(allgemeinen, [a, l, g, @, m, aI, n, @, n]).
@@ -709,7 +710,7 @@ entry(allgemeine, [a, l, g, @, m, aI, n, @]).
 entry(allgemein, [a, l, g, @, m, aI, n]).
 entry('Allison', ['E', l, 'I', s, @, n]).
 entry(all, [a, l]).
-entry(ällt, ['E', l, t]).
+entry(aellt, ['E', l, t]).
 entry(allzulange, [a, l, ts, u, l, a, 'N', @]).
 entry(allzu, [a, l, ts, u]).
 entry(allzuviel, [a, l, ts, 'U', f, 'i:', l]).
@@ -746,7 +747,7 @@ entry('Am-Stadtpark', [a, m, 'S', t, a, t, p, a, r, k]).
 entry('Amsterdam', [a, m, s, t, '6', d, a, m]).
 entry('Amt', [a, m, t]).
 entry('Am-Turm', [a, m, t, 'U', '6', m]).
-entry(amüsieren, [a, m, y, z, 'i:', r, @, n]).
+entry(amuesieren, [a, m, y, z, 'i:', r, @, n]).
 entry(anand, [a, n, a, n, t]).
 entry(anbelangt, [a, n, b, @, l, a, 'N', t]).
 entry(anberaumen, [a, n, b, @, r, aU, m, @, n]).
@@ -768,19 +769,19 @@ entry('Andermahr', [a, n, d, '6', m, 'a:', r]).
 entry(andermal, [a, n, d, '6', m, 'a:', l]).
 entry('An-der-Marktkirche', [a, n, d, 'e:', '6', m, a, r, k, t, k, 'I', '6', 'C', @]).
 entry(andern, [a, n, d, '6', n]).
-entry(ändern, ['E', n, d, '6', n]).
+entry(aendern, ['E', n, d, '6', n]).
 entry(andersherum, [a, n, d, '6', s, h, 'E', r, 'U', m]).
 entry(anders, [a, n, d, '6', s]).
 entry(andersrum, [a, n, d, '6', s, r, 'U', m]).
 entry(anderthalb, [a, n, d, '6', t, h, a, l, p]).
-entry(anderthalbstündigen, [a, n, d, '6', t, h, a, l, p, 'S', t, 'Y', n, d, 'I', g, @, n]).
-entry(anderthalbtägigen, [a, n, d, '6', t, h, a, l, p, t, 'E:', g, 'I', g, @, n]).
-entry(anderthalbtägige, [a, n, d, '6', t, h, a, l, p, t, 'E:', g, 'I', g, @]).
-entry(anderthalbtägiges, [a, n, d, '6', t, h, a, l, p, t, 'E:', g, 'I', g, @, s]).
-entry(anderthalbtägig, [a, n, d, '6', t, h, a, l, p, t, 'E:', g, 'I', 'C']).
-entry(ändert, ['E', n, d, '6', t]).
-entry('Änderungen', ['E', n, d, @, r, 'U', 'N', @, n]).
-entry('Änderung', ['E', n, d, @, r, 'U', 'N']).
+entry(anderthalbstuendigen, [a, n, d, '6', t, h, a, l, p, 'S', t, 'Y', n, d, 'I', g, @, n]).
+entry(anderthalbtaegigen, [a, n, d, '6', t, h, a, l, p, t, 'E:', g, 'I', g, @, n]).
+entry(anderthalbtaegige, [a, n, d, '6', t, h, a, l, p, t, 'E:', g, 'I', g, @]).
+entry(anderthalbtaegiges, [a, n, d, '6', t, h, a, l, p, t, 'E:', g, 'I', g, @, s]).
+entry(anderthalbtaegig, [a, n, d, '6', t, h, a, l, p, t, 'E:', g, 'I', 'C']).
+entry(aendert, ['E', n, d, '6', t]).
+entry('aenderungen', ['E', n, d, @, r, 'U', 'N', @, n]).
+entry('aenderung', ['E', n, d, @, r, 'U', 'N']).
 entry(anderweitigen, [a, n, d, '6', v, aI, t, 'I', g, @, n]).
 entry(anderweitige, [a, n, d, '6', v, aI, t, 'I', g, @]).
 entry(anderweitig, [a, n, d, '6', v, aI, t, 'I', 'C']).
@@ -796,8 +797,8 @@ entry(andres, [a, n, d, r, @, s]).
 entry('Andrew', ['E', n, d, r, 'u:']).
 entry(aneinanderfolgenden, [a, n, aI, n, a, n, d, '6', f, 'O', l, g, @, n, d, @, n]).
 entry(aneinanderfolgende, [a, n, aI, n, a, n, d, '6', f, 'O', l, g, @, n, d, @]).
-entry(aneinanderhängende, [a, n, aI, n, a, n, d, '6', h, 'E', 'N', @, n, d, @]).
-entry(aneinanderhängen, [a, n, aI, n, a, n, d, '6', h, 'E', 'N', @, n]).
+entry(aneinanderhaengende, [a, n, aI, n, a, n, d, '6', h, 'E', 'N', @, n, d, @]).
+entry(aneinanderhaengen, [a, n, aI, n, a, n, d, '6', h, 'E', 'N', @, n]).
 entry(aneinanderliegt, [a, n, aI, n, a, n, d, '6', l, 'i:', k, t]).
 entry(aneinander, [a, n, aI, n, a, n, d, '6']).
 entry(anfahren, [a, n, f, 'a:', r, @, n]).
@@ -805,13 +806,13 @@ entry(anfahre, [a, n, f, 'a:', r, @]).
 entry('Anfahrt', [a, n, f, 'a:', r, t]).
 entry('Anfahrtszeit', [a, n, f, 'a:', r, ts, ts, aI, t]).
 entry(anfallen, [a, n, f, a, l, @, n]).
-entry(anfällt, [a, n, f, 'E', l, t]).
+entry(anfaellt, [a, n, f, 'E', l, t]).
 entry(anfangen, [a, n, f, a, 'N', @, n]).
 entry(anfange, [a, n, f, a, 'N', @]).
 entry('Anfang', [a, n, f, a, 'N']).
 entry(anfangs, [a, n, f, a, 'N', s]).
 entry('Anfangstermine', [a, n, f, a, 'N', s, t, 'E', '6', m, 'i:', n, @]).
-entry(anfängt, [a, n, f, 'E', 'N', t]).
+entry(anfaengt, [a, n, f, 'E', 'N', t]).
 entry('Anfa', [a, n, f, a]).
 entry(anfingen, [a, n, f, 'I', 'N', @, n]).
 entry(anfliegen, [a, n, f, l, 'i:', g, @, n]).
@@ -819,7 +820,7 @@ entry('Anf', [a, n, f]).
 entry(anfragen, [a, n, f, r, 'a:', g, @, n]).
 entry('Anfrage', [a, n, f, r, 'a:', g, @]).
 entry(anfreunden, [a, n, f, r, 'OY', n, d, @, n]).
-entry(anführten, [a, n, f, 'y:', '6', t, @, n]).
+entry(anfuehrten, [a, n, f, 'y:', '6', t, @, n]).
 entry('Angaben', [a, n, g, 'a:', b, @, n]).
 entry('Angabe', [a, n, g, 'a:', b, @]).
 entry(angeben, [a, n, g, 'e:', b, @, n]).
@@ -834,7 +835,7 @@ entry(angefangen, [a, n, g, @, f, a, 'N', @, n]).
 entry('Angeforderte', [a, n, g, @, f, 'O', '6', d, '6', t, @]).
 entry(angefordert, [a, n, g, @, f, 'O', '6', d, '6', t]).
 entry(angefragten, [a, n, g, @, f, r, 'a:', k, t, @, n]).
-entry(angefüllt, [a, n, g, @, f, 'Y', l, t]).
+entry(angefuellt, [a, n, g, @, f, 'Y', l, t]).
 entry(angegebenen, [a, n, g, @, g, 'e:', b, @, n, @, n]).
 entry(angegeben, [a, n, g, @, g, 'e:', b, @, n]).
 entry(angehalten, [a, n, g, @, h, a, l, t, @, n]).
@@ -842,8 +843,8 @@ entry(angehen, [a, n, g, 'e:', @, n]).
 entry(angeht, [a, n, g, 'e:', t]).
 entry(angekommen, [a, n, g, @, k, 'O', m, @, n]).
 entry(angekreuzt, [a, n, g, @, k, r, 'OY', ts, t]).
-entry(angekündigte, [a, n, g, @, k, 'Y', n, d, 'I', 'C', t, @]).
-entry(angekündigt, [a, n, g, @, k, 'Y', n, d, 'I', 'C', t]).
+entry(angekuendigte, [a, n, g, @, k, 'Y', n, d, 'I', 'C', t, @]).
+entry(angekuendigt, [a, n, g, @, k, 'Y', n, d, 'I', 'C', t]).
 entry('Angelegenheiten', [a, n, g, @, l, 'e:', g, @, n, h, aI, t, @, n]).
 entry('Angelegenheit', [a, n, g, @, l, 'e:', g, @, n, h, aI, t]).
 entry('Angeln', [a, 'N', @, l, n]).
@@ -887,9 +888,9 @@ entry(angst, [a, 'N', s, t]).
 entry(angucken, [a, n, g, 'U', k, @, n]).
 entry(angun, [a, n, g, 'U', n]).
 entry(anhand, [a, n, h, a, n, t]).
-entry(anhängen, [a, n, h, 'E', 'N', @, n]).
-entry(anhören, [a, n, h, '2:', r, @, n]).
-entry(anhört, [a, n, h, '2:', '6', t]).
+entry(anhaengen, [a, n, h, 'E', 'N', @, n]).
+entry(anhoeren, [a, n, h, '2:', r, @, n]).
+entry(anhoert, [a, n, h, '2:', '6', t]).
 entry('Animationsprogramm', [a, n, i, m, a, ts, j, 'o:', n, s, p, r, o, g, r, a, m]).
 entry(anklingen, [a, n, k, l, 'I', 'N', @, n]).
 entry(ankommen, [a, n, k, 'O', m, @, n]).
@@ -900,7 +901,7 @@ entry('Ankunft', [a, n, k, 'U', n, f, t]).
 entry('Ankunftszeit', [a, n, k, 'U', n, f, ts, ts, aI, t]).
 entry('Ankunftsz', [a, n, k, 'U', n, f, ts, ts]).
 entry('Anlaß', [a, n, l, a, s]).
-entry(anläuft, [a, n, l, 'OY', f, t]).
+entry(anlaeuft, [a, n, l, 'OY', f, t]).
 entry('Anlaufzeit', [a, n, l, aU, f, ts, aI, t]).
 entry(anlernen, [a, n, l, 'E', '6', n, @, n]).
 entry('Anliegen', [a, n, l, 'i:', g, @, n]).
@@ -919,8 +920,8 @@ entry(anpeilen, [a, n, p, aI, l, @, n]).
 entry('Anraten', [a, n, r, 'a:', t, @, n]).
 entry(anrechnen, [a, n, r, 'E', 'C', n, @, n]).
 entry(anregen, [a, n, r, 'e:', g, @, n]).
-entry('Anreisemodalitäten', [a, n, r, aI, z, @, m, o, d, a, l, i, t, 'E:', t, @, n]).
-entry('Anreisemöglichkeit', [a, n, r, aI, z, @, m, '2:', k, l, 'I', 'C', k, aI, t]).
+entry('Anreisemodalitaeten', [a, n, r, aI, z, @, m, o, d, a, l, i, t, 'E:', t, @, n]).
+entry('Anreisemoeglichkeit', [a, n, r, aI, z, @, m, '2:', k, l, 'I', 'C', k, aI, t]).
 entry(anreisen, [a, n, r, aI, z, @, n]).
 entry('Anreise', [a, n, r, aI, z, @]).
 entry('Anreisetag', [a, n, r, aI, z, @, t, 'a:', k]).
@@ -943,7 +944,7 @@ entry(anschließende, [a, n, 'S', l, 'i:', s, @, n, d, @]).
 entry(anschließend, [a, n, 'S', l, 'i:', s, @, n, t]).
 entry(anschließen, [a, n, 'S', l, 'i:', s, @, n]).
 entry('Anschlußflug', [a, n, 'S', l, 'U', s, f, l, 'u:', k]).
-entry('Anschlußmöglichkeiten', [a, n, 'S', l, 'U', s, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
+entry('Anschlußmoeglichkeiten', [a, n, 'S', l, 'U', s, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
 entry('Anschluß', [a, n, 'S', l, 'U', s]).
 entry('Anschlußtermine', [a, n, 'S', l, 'U', s, t, 'E', '6', m, 'i:', n, @]).
 entry('Anschlußzug', [a, n, 'S', l, 'U', s, ts, 'u:', k]).
@@ -963,8 +964,8 @@ entry(ansprechendes, [a, n, 'S', p, r, 'E', 'C', @, n, d, @, s]).
 entry(ansprechen, [a, n, 'S', p, r, 'E', 'C', @, n]).
 entry(anspreche, [a, n, 'S', p, r, 'E', 'C', @]).
 entry(ansprichst, [a, n, 'S', p, r, 'I', 'C', s, t]).
-entry('Ansprüchen', [a, n, 'S', p, r, 'Y', 'C', @, n]).
-entry('Ansprüche', [a, n, 'S', p, r, 'Y', 'C', @]).
+entry('Anspruechen', [a, n, 'S', p, r, 'Y', 'C', @, n]).
+entry('Ansprueche', [a, n, 'S', p, r, 'Y', 'C', @]).
 entry('Anspruch', [a, n, 'S', p, r, 'U', x]).
 entry(anspruchsvoll, [a, n, 'S', p, r, 'U', x, s, f, 'O', l]).
 entry(ans, [a, n, s]).
@@ -1008,7 +1009,7 @@ entry(anzufangen, [a, n, ts, u, f, a, 'N', @, n]).
 entry(anzugehen, [a, n, ts, u, g, 'e:', @, n]).
 entry(anzugucken, [a, n, ts, u, g, 'U', k, @, n]).
 entry(anzukommen, [a, n, ts, u, k, 'O', m, @, n]).
-entry(anzukündigen, [a, n, ts, u, k, 'Y', n, d, 'I', g, @, n]).
+entry(anzukuendigen, [a, n, ts, u, k, 'Y', n, d, 'I', g, @, n]).
 entry('Anzu', [a, n, ts, 'u:']).
 entry(anzureisen, [a, n, ts, u, r, aI, z, @, n]).
 entry(anzurufen, [a, n, ts, u, r, 'u:', f, @, n]).
@@ -1021,7 +1022,7 @@ entry('Apfel', [a, pf, @, l]).
 entry('Appara', [a, p, a, r, 'a:']).
 entry('Apparat', [a, p, a, r, 'a:', t]).
 entry('Appetit', [a, p, e, t, 'i:', t]).
-entry('Aprilhälfte', [a, p, r, 'I', l, h, 'E', l, f, t, @]).
+entry('Aprilhaelfte', [a, p, r, 'I', l, h, 'E', l, f, t, @]).
 entry('April', [a, p, r, 'I', l]).
 entry('Aprilscherz', [a, p, r, 'I', l, 'S', 'E', '6', ts]).
 entry('Aprils', [a, p, r, 'I', l, s]).
@@ -1030,7 +1031,7 @@ entry('Aprilwoche', [a, p, r, 'I', l, v, 'O', x, @]).
 entry('Apri', [a, p, r, 'I']).
 entry(apropos, [a, p, r, o, p, 'o:']).
 entry('Apr', [a, p, r]).
-entry(ä, ['E:']).
+entry(ae, ['E:']).
 entry('Arbak', [a, r, b, a, k]).
 entry('Arbei', [a, r, b, aI]).
 entry(arbeiten, [a, r, b, aI, t, @, n]).
@@ -1046,19 +1047,19 @@ entry('Arbeitsbesprechung', [a, r, b, aI, ts, b, @, 'S', p, r, 'E', 'C', 'U', 'N
 entry('Arbeitsbesuch', [a, r, b, aI, ts, b, @, z, 'u:', x]).
 entry('Arbeitsblatt', [a, r, b, aI, ts, b, l, a, t]).
 entry('Arbeitsessen', [a, r, b, aI, ts, 'E', s, @, n]).
-entry('Arbeitsfrühstück', [a, r, b, aI, ts, f, r, 'y:', 'S', t, 'Y', k]).
-entry('Arbeitsfrühstücks', [a, r, b, aI, ts, f, r, 'y:', 'S', t, 'Y', k, s]).
+entry('Arbeitsfruehstueck', [a, r, b, aI, ts, f, r, 'y:', 'S', t, 'Y', k]).
+entry('Arbeitsfruehstuecks', [a, r, b, aI, ts, f, r, 'y:', 'S', t, 'Y', k, s]).
 entry('Arbeitsgemeinschaft', [a, r, b, aI, ts, g, @, m, aI, n, 'S', a, f, t]).
-entry('Arbeitsgespräch', [a, r, b, aI, ts, g, @, 'S', p, r, 'E:', 'C']).
+entry('Arbeitsgespraech', [a, r, b, aI, ts, g, @, 'S', p, r, 'E:', 'C']).
 entry('Arbeitskollegen', [a, r, b, aI, ts, k, 'O', l, 'e:', g, @, n]).
 entry('Arbeitskraft', [a, r, b, aI, ts, k, r, a, f, t]).
 entry('Arbeitskreis', [a, r, b, aI, ts, k, r, aI, s]).
-entry(arbeitsmäßig, [a, r, b, aI, ts, m, 'E:', s, 'I', 'C']).
+entry(arbeitsmaeßig, [a, r, b, aI, ts, m, 'E:', s, 'I', 'C']).
 entry('Arbeitsmittagessen', [a, r, b, aI, ts, m, 'I', t, 'a:', k, 'E', s, @, n]).
 entry('Arbeitsphasen', [a, r, b, aI, ts, f, 'a:', z, @, n]).
 entry('Arbeitsplan', [a, r, b, aI, ts, p, l, 'a:', n]).
 entry('Arbeits', [a, r, b, aI, ts]).
-entry('Arbeitsräumen', [a, r, b, aI, ts, r, 'OY', m, @, n]).
+entry('Arbeitsraeumen', [a, r, b, aI, ts, r, 'OY', m, @, n]).
 entry(arbeitsreichen, [a, r, b, aI, ts, r, aI, 'C', @, n]).
 entry('Arbeitsreise', [a, r, b, aI, ts, r, aI, z, @]).
 entry('Arbeitsseminar', [a, r, b, aI, ts, z, 'E', m, 'I', n, a, r]).
@@ -1077,12 +1078,12 @@ entry('Arbeitswoche', [a, r, b, aI, ts, v, 'O', x, @]).
 entry('Arbeitszeiten', [a, r, b, aI, ts, ts, aI, t, @, n]).
 entry('Arbeitszeit', [a, r, b, aI, ts, ts, aI, t]).
 entry('Architekt', [a, r, 'C', i, t, 'E', k, t]).
-entry(äre, ['E:', r, @]).
+entry(aere, ['E:', r, @]).
 entry('Aretz', ['a:', r, 'E', ts]).
 entry(argen, [a, r, g, @, n]).
-entry(ärgerlich, ['E', '6', g, '6', l, 'I', 'C']).
-entry(ärgern, ['E', '6', g, '6', n]).
-entry('Ärger', ['E', '6', g, '6']).
+entry(aergerlich, ['E', '6', g, '6', l, 'I', 'C']).
+entry(aergern, ['E', '6', g, '6', n]).
+entry('aerger', ['E', '6', g, '6']).
 entry(arg, [a, r, k]).
 entry('Argumentation', [a, r, g, u, m, 'E', n, t, a, ts, j, 'o:', n]).
 entry('Argumente', [a, r, g, u, m, 'E', n, t, @]).
@@ -1105,12 +1106,12 @@ entry('Aspekt', [a, s, p, 'E', k, t]).
 entry(as, [a, s]).
 entry('Assistentin', [a, s, 'I', s, t, 'E', n, t, 'I', n]).
 entry('Athen', [a, t, 'e:', n]).
-entry('Äther', ['E:', t, '6']).
+entry('aether', ['E:', t, '6']).
 entry('Athos', ['a:', t, 'O', s]).
 entry('Atlanta', [a, t, l, a, n, t, a]).
 entry('Atlantic-Hotel', [a, t, l, a, n, t, 'I', k, h, o, t, 'E', l]).
 entry('Atlantis', [a, t, l, a, n, t, 'I', s]).
-entry('Atmosphäre', [a, t, m, o, s, f, 'E:', r, @]).
+entry('Atmosphaere', [a, t, m, o, s, f, 'E:', r, @]).
 entry('Attentat', [a, t, @, n, t, 'a:', t]).
 entry(attraktiver, [a, t, r, a, k, t, 'i:', v, '6']).
 entry('Attraktives', [a, t, r, a, k, t, 'i:', v, @, s]).
@@ -1123,23 +1124,23 @@ entry(aufbauen, [aU, f, b, aU, @, n]).
 entry(aufbereiten, [aU, f, b, @, r, aI, t, @, n]).
 entry(aufbereitet, [aU, f, b, @, r, aI, t, @, t]).
 entry(aufbrechen, [aU, f, b, r, 'E', 'C', @, n]).
-entry(aufdrängen, [aU, f, d, r, 'E', 'N', @, n]).
+entry(aufdraengen, [aU, f, d, r, 'E', 'N', @, n]).
 entry(aufeinanderfolgende, [aU, f, aI, n, a, n, d, '6', f, 'O', l, g, @, n, d, @]).
 entry(aufeinanderkommen, [aU, f, aI, n, a, n, d, '6', k, 'O', m, @, n]).
 entry('Aufenthaltes', [aU, f, 'E', n, t, h, a, l, t, @, s]).
 entry('Aufenthalt', [aU, f, 'E', n, t, h, a, l, t]).
-entry('Aufenthaltsräumen', [aU, f, 'E', n, t, h, a, l, ts, r, 'OY', m, @, n]).
-entry(auffällt, [aU, f, f, 'E', l, t]).
-entry('Aufführung', [aU, f, f, 'y:', r, 'U', 'N']).
+entry('Aufenthaltsraeumen', [aU, f, 'E', n, t, h, a, l, ts, r, 'OY', m, @, n]).
+entry(auffaellt, [aU, f, f, 'E', l, t]).
+entry('Auffuehrung', [aU, f, f, 'y:', r, 'U', 'N']).
 entry('Aufgaben', [aU, f, g, 'a:', b, @, n]).
 entry('Aufgabe', [aU, f, g, 'a:', b, @]).
 entry(aufgearbeitet, [aU, f, g, @, a, r, b, aI, t, @, t]).
 entry(aufgebacken, [aU, f, g, @, b, a, k, @, n]).
 entry(aufgebaut, [aU, f, g, @, b, aU, t]).
 entry(aufgedreht, [aU, f, g, @, d, r, 'e:', t]).
-entry(aufgedrückt, [aU, f, g, @, d, r, 'Y', k, t]).
+entry(aufgedrueckt, [aU, f, g, @, d, r, 'Y', k, t]).
 entry(aufgefaßt, [aU, f, g, @, f, a, s, t]).
-entry(aufgeführt, [aU, f, g, @, f, 'y:', '6', t]).
+entry(aufgefuehrt, [aU, f, g, @, f, 'y:', '6', t]).
 entry(aufgehende, [aU, f, g, 'e:', @, n, d, @]).
 entry(aufgelockerter, [aU, f, g, @, l, 'O', k, '6', t, '6']).
 entry(aufgepaßt, [aU, f, g, @, p, a, s, t]).
@@ -1149,7 +1150,7 @@ entry(aufgeschoben, [aU, f, g, @, 'S', 'o:', b, @, n]).
 entry(aufgeschrieben, [aU, f, g, @, 'S', r, 'i:', b, @, n]).
 entry(aufgesetzt, [aU, f, g, @, z, 'E', ts, t]).
 entry(aufgetaucht, [aU, f, g, @, t, aU, x, t]).
-entry(aufgezählt, [aU, f, g, @, ts, 'E:', l, t]).
+entry(aufgezaehlt, [aU, f, g, @, ts, 'E:', l, t]).
 entry(aufgezeichnet, [aU, f, g, @, ts, aI, 'C', n, @, t]).
 entry(aufgrund, [aU, f, g, r, 'U', n, t]).
 entry(aufhaben, [aU, f, h, 'a:', b, @, n]).
@@ -1157,17 +1158,17 @@ entry(aufhalten, [aU, f, h, a, l, t, @, n]).
 entry(aufhalte, [aU, f, h, a, l, t, @]).
 entry('Aufheben', [aU, f, h, 'e:', b, @, n]).
 entry('Aufhebens', [aU, f, h, 'e:', b, @, n, s]).
-entry(aufhören, [aU, f, h, '2:', r, @, n]).
+entry(aufhoeren, [aU, f, h, '2:', r, @, n]).
 entry(aufkommen, [aU, f, k, 'O', m, @, n]).
 entry(aufkreuzen, [aU, f, k, r, 'OY', ts, @, n]).
-entry('Auflösung', [aU, f, l, '2:', z, 'U', 'N']).
+entry('Aufloesung', [aU, f, l, '2:', z, 'U', 'N']).
 entry(aufmachen, [aU, f, m, a, x, @, n]).
 entry(aufmerksam, [aU, f, m, 'E', '6', k, z, 'a:', m]).
 entry(aufnahmebereit, [aU, f, n, 'a:', m, @, b, @, r, aI, t]).
 entry(aufnehmen, [aU, f, n, 'e:', m, @, n]).
 entry('Auf-Nummer-Sicher-Gehen', [aU, f, n, 'U', m, '6', z, 'I', 'C', '6', g, 'e:', @, n]).
 entry(auf, [aU, f]).
-entry(aufräumen, [aU, f, r, 'OY', m, @, n]).
+entry(aufraeumen, [aU, f, r, 'OY', m, @, n]).
 entry(aufrecht, [aU, f, r, 'E', 'C', t]).
 entry(aufregend, [aU, f, r, 'e:', g, @, n, t]).
 entry(aufregt, [aU, f, r, 'e:', k, t]).
@@ -1190,17 +1191,17 @@ entry('Auftrag', [aU, f, t, r, 'a:', k]).
 entry(auftreiben, [aU, f, t, r, aI, b, @, n]).
 entry(auftreten, [aU, f, t, r, 'e:', t, @, n]).
 entry('Aufwand', [aU, f, v, a, n, t]).
-entry('Aufwärmen', [aU, f, v, 'E', '6', m, @, n]).
+entry('Aufwaermen', [aU, f, v, 'E', '6', m, @, n]).
 entry(aufwarten, [aU, f, v, a, r, t, @, n]).
-entry(aufwärts, [aU, f, v, 'E', '6', ts]).
+entry(aufwaerts, [aU, f, v, 'E', '6', ts]).
 entry(aufweisen, [aU, f, v, aI, z, @, n]).
 entry(aufwendiges, [aU, f, v, 'E', n, d, 'I', g, @, s]).
 entry(aufwendig, [aU, f, v, 'E', n, d, 'I', 'C']).
-entry(aufzählen, [aU, f, ts, 'E:', l, @, n]).
+entry(aufzaehlen, [aU, f, ts, 'E:', l, @, n]).
 entry(aufzuhalten, [aU, f, ts, u, h, a, l, t, @, n]).
 entry(aufzustehen, [aU, f, ts, u, 'S', t, 'e:', @, n]).
 entry(aufzusuchen, [aU, f, ts, u, z, 'u:', x, @, n]).
-entry(aufzuzählen, [aU, f, ts, u, ts, 'E:', l, @, n]).
+entry(aufzuzaehlen, [aU, f, ts, u, ts, 'E:', l, @, n]).
 entry('Augenblick', [aU, g, @, n, b, l, 'I', k]).
 entry('Augen', [aU, g, @, n]).
 entry('Augenschein', [aU, g, @, n, 'S', aI, n]).
@@ -1208,7 +1209,7 @@ entry('Auge', [aU, g, @]).
 entry('Aug', [aU, k]).
 entry('Augsburg', [aU, k, s, b, 'U', '6', k]).
 entry('Augus', [aU, g, 'U', s]).
-entry('Augusthälfte', [aU, g, 'U', s, t, h, 'E', l, f, t, @]).
+entry('Augusthaelfte', [aU, g, 'U', s, t, h, 'E', l, f, t, @]).
 entry('August', [aU, g, 'U', s, t]).
 entry('Augusttage', [aU, g, 'U', s, t, t, 'a:', g, @]).
 entry('Augustwochen', [aU, g, 'U', s, t, v, 'O', x, @, n]).
@@ -1237,25 +1238,25 @@ entry(außen, [aU, s, @, n]).
 entry(außenrum, [aU, s, @, n, r, 'U', m]).
 entry('Außenstelle', [aU, s, @, n, 'S', t, 'E', l, @]).
 entry(außerdem, [aU, s, '6', d, 'e:', m]).
-entry(äußeren, ['OY', s, @, r, @, n]).
-entry('Außergewöhnliches', [aU, s, '6', g, @, v, '2:', n, l, 'I', 'C', @, s]).
+entry(aeußeren, ['OY', s, @, r, @, n]).
+entry('Außergewoehnliches', [aU, s, '6', g, @, v, '2:', n, l, 'I', 'C', @, s]).
 entry(außerhalb, [aU, s, '6', h, a, l, p]).
 entry(außerordentlichen, [aU, s, '6', 'O', '6', d, @, n, t, l, 'I', 'C', @, n]).
 entry(außerordentlich, [aU, s, '6', 'O', '6', d, @, n, t, l, 'I', 'C']).
 entry(außer, [aU, s, '6']).
-entry(äußersten, ['OY', s, '6', s, t, @, n]).
-entry(äußerst, ['OY', s, '6', s, t]).
+entry(aeußersten, ['OY', s, '6', s, t, @, n]).
+entry(aeußerst, ['OY', s, '6', s, t]).
 entry(ausfallen, [aU, s, f, a, l, @, n]).
 entry(ausfalle, [aU, s, f, a, l, @]).
-entry(ausfällt, [aU, s, f, 'E', l, t]).
+entry(ausfaellt, [aU, s, f, 'E', l, t]).
 entry(ausfindig, [aU, s, f, 'I', n, d, 'I', 'C']).
 entry('Ausfluges', [aU, s, f, l, 'u:', g, @, s]).
 entry('Ausflug', [aU, s, f, l, 'u:', k]).
 entry('Ausflugs', [aU, s, f, l, 'u:', k, s]).
 entry(ausformulieren, [aU, s, f, 'O', '6', m, u, l, 'i:', r, @, n]).
-entry(ausführen, [aU, s, f, 'y:', r, @, n]).
-entry(ausführliche, [aU, s, f, 'y:', '6', l, 'I', 'C', @]).
-entry(ausführlich, [aU, s, f, 'y:', '6', l, 'I', 'C']).
+entry(ausfuehren, [aU, s, f, 'y:', r, @, n]).
+entry(ausfuehrliche, [aU, s, f, 'y:', '6', l, 'I', 'C', @]).
+entry(ausfuehrlich, [aU, s, f, 'y:', '6', l, 'I', 'C']).
 entry('Ausgabe', [aU, s, g, 'a:', b, @]).
 entry('Ausgang', [aU, s, g, a, 'N']).
 entry('Ausgangspunkt', [aU, s, g, a, 'N', s, p, 'U', 'N', k, t]).
@@ -1263,15 +1264,15 @@ entry(ausgearbeitet, [aU, s, g, @, a, r, b, aI, t, @, t]).
 entry(ausgebaut, [aU, s, g, @, b, aU, t]).
 entry(ausgeben, [aU, s, g, 'e:', b, @, n]).
 entry(ausgebucht, [aU, s, g, @, b, 'u:', x, t]).
-entry(ausgebügelt, [aU, s, g, @, b, 'y:', g, @, l, t]).
+entry(ausgebuegelt, [aU, s, g, @, b, 'y:', g, @, l, t]).
 entry(ausgecheckt, [aU, s, g, @, tS, 'E', k, t]).
 entry(ausgedacht, [aU, s, g, @, d, a, x, t]).
 entry(ausgedehnt, [aU, s, g, @, d, 'e:', n, t]).
-entry(ausgedrückt, [aU, s, g, @, d, r, 'Y', k, t]).
+entry(ausgedrueckt, [aU, s, g, @, d, r, 'Y', k, t]).
 entry(ausgefallene, [aU, s, g, @, f, a, l, @, n, @]).
 entry('Ausgefalleneres', [aU, s, g, @, f, a, l, @, n, @, r, @, s]).
 entry(ausgefallen, [aU, s, g, @, f, a, l, @, n]).
-entry(ausgefüllt, [aU, s, g, @, f, 'Y', l, t]).
+entry(ausgefuellt, [aU, s, g, @, f, 'Y', l, t]).
 entry(ausgehend, [aU, s, g, 'e:', @, n, t]).
 entry(ausgehen, [aU, s, g, 'e:', @, n]).
 entry(ausgeht, [aU, s, g, 'e:', t]).
@@ -1296,7 +1297,7 @@ entry(ausgestattetes, [aU, s, g, @, 'S', t, a, t, @, t, @, s]).
 entry(ausgestattet, [aU, s, g, @, 'S', t, a, t, @, t]).
 entry(ausgestrichen, [aU, s, g, @, 'S', t, r, 'I', 'C', @, n]).
 entry(ausgesucht, [aU, s, g, @, z, 'u:', x, t]).
-entry(ausgewählt, [aU, s, g, @, v, 'E:', l, t]).
+entry(ausgewaehlt, [aU, s, g, @, v, 'E:', l, t]).
 entry(ausgeweitete, [aU, s, g, @, v, aI, t, @, t, @]).
 entry(ausgezeichnete, [aU, s, g, @, ts, aI, 'C', n, @, t, @]).
 entry(ausgezeichnet, [aU, s, g, @, ts, aI, 'C', n, @, t]).
@@ -1312,10 +1313,10 @@ entry('Ausklang', [aU, s, k, l, a, 'N']).
 entry(ausklingen, [aU, s, k, l, 'I', 'N', @, n]).
 entry(auskommen, [aU, s, k, 'O', m, @, n]).
 entry(auskucken, [aU, s, k, 'U', k, @, n]).
-entry('Auskünfte', [aU, s, k, 'Y', n, f, t, @]).
+entry('Auskuenfte', [aU, s, k, 'Y', n, f, t, @]).
 entry('Auskunft', [aU, s, k, 'U', n, f, t]).
-entry(ausländischen, [aU, s, l, 'E', n, d, 'I', 'S', @, n]).
-entry(ausländisches, [aU, s, l, 'E', n, d, 'I', 'S', @, s]).
+entry(auslaendischen, [aU, s, l, 'E', n, d, 'I', 'S', @, n]).
+entry(auslaendisches, [aU, s, l, 'E', n, d, 'I', 'S', @, s]).
 entry('Ausland', [aU, s, l, a, n, t]).
 entry('Auslandsreise', [aU, s, l, a, n, ts, r, aI, z, @]).
 entry(auslassen, [aU, s, l, a, s, @, n]).
@@ -1326,7 +1327,7 @@ entry(ausm, [aU, s, m]).
 entry('Ausnahme', [aU, s, n, 'a:', m, @]).
 entry(ausnahmsweise, [aU, s, n, 'a:', m, s, v, aI, z, @]).
 entry(ausnutzen, [aU, s, n, 'U', ts, @, n]).
-entry(ausnützen, [aU, s, n, 'Y', ts, @, n]).
+entry(ausnuetzen, [aU, s, n, 'Y', ts, @, n]).
 entry(auspacken, [aU, s, p, a, k, @, n]).
 entry(ausp, [aU, s, p]).
 entry(ausprobieren, [aU, s, p, r, o, b, 'i:', r, @, n]).
@@ -1369,13 +1370,13 @@ entry(austauschen, [aU, s, t, aU, 'S', @, n]).
 entry(austesten, [aU, s, t, 'E', s, t, @, n]).
 entry(austoben, [aU, s, t, 'o:', b, @, n]).
 entry(ausverkauft, [aU, s, f, 'E', '6', k, aU, f, t]).
-entry(auswählen, [aU, s, v, 'E:', l, @, n]).
+entry(auswaehlen, [aU, s, v, 'E:', l, @, n]).
 entry('Auswahl', [aU, s, v, 'a:', l]).
-entry(auswärts, [aU, s, v, 'E', '6', ts]).
-entry('Auswärtsspiel', [aU, s, v, 'E', '6', ts, 'S', p, 'i:', l]).
-entry('Auswärtstermine', [aU, s, v, 'E', '6', ts, t, 'E', '6', m, 'i:', n, @]).
+entry(auswaerts, [aU, s, v, 'E', '6', ts]).
+entry('Auswaertsspiel', [aU, s, v, 'E', '6', ts, 'S', p, 'i:', l]).
+entry('Auswaertstermine', [aU, s, v, 'E', '6', ts, t, 'E', '6', m, 'i:', n, @]).
 entry(ausweichen, [aU, s, v, aI, 'C', @, n]).
-entry('Ausweichmöglich', [aU, s, v, aI, 'C', m, '2:', k, l, 'I', 'C']).
+entry('Ausweichmoeglich', [aU, s, v, aI, 'C', m, '2:', k, l, 'I', 'C']).
 entry('Ausweichtag', [aU, s, v, aI, 'C', t, 'a:', k]).
 entry('Ausweichtermine', [aU, s, v, aI, 'C', t, 'E', '6', m, 'i:', n, @]).
 entry('Ausweichtermin', [aU, s, v, aI, 'C', t, 'E', '6', m, 'i:', n]).
@@ -1408,28 +1409,28 @@ entry(ba, [b, a]).
 entry('Ba', [b, 'a:']).
 entry(backe, [b, a, k, @]).
 entry(backen, [b, a, k, @, n]).
-entry('Bäcker', [b, 'E', k, '6']).
-entry(bäckt, [b, 'E', k, t]).
+entry('Baecker', [b, 'E', k, '6']).
+entry(baeckt, [b, 'E', k, t]).
 entry(bad, [b, 'a:', t]).
 entry('Baden-Baden', [b, 'a:', d, @, n, b, 'a:', d, @, n]).
 entry(baden, [b, 'a:', d, @, n]).
-entry('Baden-Württemberg', [b, 'a:', d, @, n, v, 'Y', '6', t, @, m, b, 'E', '6', k]).
+entry('Baden-Wuerttemberg', [b, 'a:', d, @, n, v, 'Y', '6', t, @, m, b, 'E', '6', k]).
 entry('Badewanne', [b, 'a:', d, @, v, a, n, @]).
 entry('Badezimmer', [b, 'a:', d, @, ts, 'I', m, '6']).
 entry('Baggersee', [b, a, g, '6', z, 'e:']).
-entry(bäh, [b, 'E:']).
+entry(baeh, [b, 'E:']).
 entry('Bahn', [b, 'a:', n]).
 entry('Bahn-Card', [b, 'a:', n, k, a, r, t]).
 entry('Bahn-Erfahrungen', [b, 'a:', n, 'E', '6', f, 'a:', r, 'U', 'N', @, n]).
 entry('Bahnfahrerei', [b, 'a:', n, f, 'a:', r, @, r, aI]).
 entry('Bahnfahrt', [b, 'a:', n, f, 'a:', r, t]).
-entry('Bahngerüttel', [b, 'a:', n, g, @, r, 'Y', t, @, l]).
+entry('Bahngeruettel', [b, 'a:', n, g, @, r, 'Y', t, @, l]).
 entry('Bahngleis', [b, 'a:', n, g, l, aI, s]).
 entry(bahnhof, [b, 'a:', n, h, 'o:', f]).
-entry('Bahnhofnähe', [b, 'a:', n, h, 'o:', f, n, 'E:', @]).
+entry('Bahnhofnaehe', [b, 'a:', n, h, 'o:', f, n, 'E:', @]).
 entry('Bahnhofs', [b, 'a:', n, h, 'o:', f, s]).
 entry('Bahnhofskiosk', [b, 'a:', n, h, 'o:', f, s, k, 'i:', 'O', s, k]).
-entry('Bahnhofsnähe', [b, 'a:', n, h, 'o:', f, s, n, 'E:', @]).
+entry('Bahnhofsnaehe', [b, 'a:', n, h, 'o:', f, s, n, 'E:', @]).
 entry('Bahnkarten', [b, 'a:', n, k, a, r, t, @, n]).
 entry('Bahnserver', [b, 'a:', n, s, '9', '6', v, '6']).
 entry('Bahnsteig', [b, 'a:', n, 'S', t, aI, k]).
@@ -1441,15 +1442,15 @@ entry('Baiersdorf', [b, aI, '6', s, d, 'O', '6', f]).
 entry(bal, [b, a, l]).
 entry(bald, [b, a, l, t]).
 entry(baldigen, [b, a, l, d, 'I', g, @, n]).
-entry(baldmöglichst, [b, a, l, t, m, '2:', k, l, 'I', 'C', s, t]).
+entry(baldmoeglichst, [b, a, l, t, m, '2:', k, l, 'I', 'C', s, t]).
 entry(ballen, [b, a, l, @, n]).
 entry('Ballhaus', [b, a, l, h, aU, s]).
 entry('Ballhof', [b, a, l, h, 'o:', f]).
 entry('Bambas', [b, a, m, b, a, s]).
-entry(bäm, [b, 'E', m]).
+entry(baem, [b, 'E', m]).
 entry('Bamberg', [b, a, m, b, 'E', '6', k]).
 entry('Bandaufnahme', [b, a, n, t, aU, f, n, 'a:', m, @]).
-entry('Bände', [b, 'E', n, d, @]).
+entry('Baende', [b, 'E', n, d, @]).
 entry('Bange', [b, a, 'N', @]).
 entry('Bank', [b, a, 'N', k]).
 entry('Bankrott', [b, a, 'N', k, r, 'O', t]).
@@ -1468,12 +1469,12 @@ entry(baseball, [b, e, 'I', s, b, 'O', l]).
 entry('Bashford', [b, 'E', 'S', f, @, d]).
 entry('Bassenhorst', [b, a, s, @, n, h, 'O', '6', s, t]).
 entry('Batliner', [b, a, t, l, 'i:', n, '6']).
-entry('Bauch-Weg-Gürtel', [b, aU, x, v, 'E', k, g, 'Y', '6', t, @, l]).
+entry('Bauch-Weg-Guertel', [b, aU, x, v, 'E', k, g, 'Y', '6', t, @, l]).
 entry(bauen, [b, aU, @, n]).
 entry('Bauer', [b, aU, '6']).
 entry('Baumann', [b, aU, m, a, n]).
-entry('Bäume', [b, 'OY', m, @]).
-entry('Bäumgen', [b, 'OY', m, g, @, n]).
+entry('Baeume', [b, 'OY', m, @]).
+entry('Baeumgen', [b, 'OY', m, g, @, n]).
 entry('Bauner', [b, aU, n, '6']).
 entry('Baustelle', [b, aU, 'S', t, 'E', l, @]).
 entry('Baustoffkunde-Vorlesung', [b, aU, 'S', t, 'O', f, k, 'U', n, d, @, f, 'o:', '6', l, 'e:', z, 'U', 'N']).
@@ -1525,12 +1526,12 @@ entry(befaßten, [b, @, f, a, s, t, @, n]).
 entry(befinde, [b, @, f, 'I', n, d, @]).
 entry(befinden, [b, @, f, 'I', n, d, @, n]).
 entry(befindet, [b, @, f, 'I', n, d, @, t]).
-entry(befördert, [b, @, f, '9', '6', d, '6', t]).
+entry(befoerdert, [b, @, f, '9', '6', d, '6', t]).
 entry(befragen, [b, @, f, r, 'a:', g, @, n]).
 entry(befreundet, [b, @, f, r, 'OY', n, d, @, t]).
 entry(befriedigend, [b, @, f, r, 'i:', d, 'I', g, @, n, t]).
-entry(befürchte, [b, @, f, 'Y', '6', 'C', t, @]).
-entry(befürchtet, [b, @, f, 'Y', '6', 'C', t, @, t]).
+entry(befuerchte, [b, @, f, 'Y', '6', 'C', t, @]).
+entry(befuerchtet, [b, @, f, 'Y', '6', 'C', t, @, t]).
 entry(begeben, [b, @, g, 'e:', b, @, n]).
 entry(begegnen, [b, @, g, 'e:', g, n, @, n]).
 entry(begegnet, [b, @, g, 'e:', g, n, @, t]).
@@ -1554,10 +1555,10 @@ entry(begrenzten, [b, @, g, r, 'E', n, ts, t, @, n]).
 entry('Begrenzung', [b, @, g, r, 'E', n, ts, 'U', 'N']).
 entry('Begriffe', [b, @, g, r, 'I', f, @]).
 entry(begriffen, [b, @, g, r, 'I', f, @, n]).
-entry(begrüße, [b, @, g, r, 'y:', s, @]).
-entry(begrüßen, [b, @, g, r, 'y:', s, @, n]).
-entry(begrüßens, [b, @, g, r, 'y:', s, @, n, s]).
-entry('Begrüßung', [b, @, g, r, 'y:', s, 'U', 'N']).
+entry(begrueße, [b, @, g, r, 'y:', s, @]).
+entry(begrueßen, [b, @, g, r, 'y:', s, @, n]).
+entry(begrueßens, [b, @, g, r, 'y:', s, @, n, s]).
+entry('Begrueßung', [b, @, g, r, 'y:', s, 'U', 'N']).
 entry(begutachten, [b, @, g, 'u:', t, a, x, t, @, n]).
 entry(behalte, [b, @, h, a, l, t, @]).
 entry(behalten, [b, @, h, a, l, t, @, n]).
@@ -1565,7 +1566,7 @@ entry('Beham', [b, e, h, a, m]).
 entry(behaupten, [b, @, h, aU, p, t, @, n]).
 entry(behilflich, [b, @, h, 'I', l, f, l, 'I', 'C']).
 entry('Behne', [b, 'e:', n, @]).
-entry('Behörde', [b, @, h, '2:', '6', d, @]).
+entry('Behoerde', [b, @, h, '2:', '6', d, @]).
 entry(bei, [b, aI]).
 entry(beibehalten, [b, aI, b, @, h, a, l, t, @, n]).
 entry(beide, [b, aI, d, @]).
@@ -1573,7 +1574,7 @@ entry(beiden, [b, aI, d, @, n]).
 entry(beiderseitig, [b, aI, d, '6', z, aI, t, 'I', 'C']).
 entry(beides, [b, aI, d, @, s]).
 entry(beieinander, [b, aI, aI, n, a, n, d, '6']).
-entry(beifügen, [b, aI, f, 'y:', g, @, n]).
+entry(beifuegen, [b, aI, f, 'y:', g, @, n]).
 entry(beilegen, [b, aI, l, 'e:', g, @, n]).
 entry(beim, [b, aI, m]).
 entry(beinah, [b, aI, n, 'a:']).
@@ -1588,8 +1589,8 @@ entry(beispielsweise, [b, aI, 'S', p, 'i:', l, s, v, aI, z, @]).
 entry(beiterin, [b, aI, t, @, r, 'I', n]).
 entry(beizeiten, [b, aI, ts, aI, t, @, n]).
 entry(beje, [b, @, j, e]).
-entry(bekäme, [b, @, k, 'E:', m, @]).
-entry(bekämpft, [b, @, k, 'E', m, pf, t]).
+entry(bekaeme, [b, @, k, 'E:', m, @]).
+entry(bekaempft, [b, @, k, 'E', m, pf, t]).
 entry(bekannt, [b, @, k, a, n, t]).
 entry('Bekannte', [b, @, k, a, n, t, @]).
 entry(bekannten, [b, @, k, a, n, t, @, n]).
@@ -1602,9 +1603,9 @@ entry(bekommt, [b, @, k, 'O', m, t]).
 entry(belassen, [b, @, l, a, s, @, n]).
 entry(belasten, [b, @, l, a, s, t, @, n]).
 entry(belastet, [b, @, l, a, s, t, @, t]).
-entry(belästige, [b, @, l, 'E', s, t, 'I', g, @]).
-entry(belästigen, [b, @, l, 'E', s, t, 'I', g, @, n]).
-entry(beläuft, [b, @, l, 'OY', f, t]).
+entry(belaestige, [b, @, l, 'E', s, t, 'I', g, @]).
+entry(belaestigen, [b, @, l, 'E', s, t, 'I', g, @, n]).
+entry(belaeuft, [b, @, l, 'OY', f, t]).
 entry(beleg, [b, @, l, 'e:', k]).
 entry(belegen, [b, @, l, 'e:', g, @, n]).
 entry('Belegschaft', [b, @, l, 'e:', k, 'S', a, f, t]).
@@ -1618,18 +1619,18 @@ entry('Bella-Italia', [b, 'E', l, a, i, t, 'a:', l, j, a]).
 entry('Bell', [b, 'E', l]).
 entry(bem, [b, @, m]).
 entry(bemessen, [b, @, m, 'E', s, @, n]).
-entry(bemühe, [b, @, m, 'y:', @]).
-entry(bemühen, [b, @, m, 'y:', @, n]).
-entry(bemüht, [b, @, m, 'y:', t]).
+entry(bemuehe, [b, @, m, 'y:', @]).
+entry(bemuehen, [b, @, m, 'y:', @, n]).
+entry(bemueht, [b, @, m, 'y:', t]).
 entry(benachrichtige, [b, @, n, 'a:', x, r, 'I', 'C', t, 'I', g, @]).
 entry(benachrichtigen, [b, @, n, 'a:', x, r, 'I', 'C', t, 'I', g, @, n]).
 entry(benachrichtigt, [b, @, n, 'a:', x, r, 'I', 'C', t, 'I', 'C', t]).
 entry(benannten, [b, @, n, a, n, t, @, n]).
 entry(ben, [b, @, n]).
-entry(benötige, [b, @, n, '2:', t, 'I', g, @]).
-entry(benötigen, [b, @, n, '2:', t, 'I', g, @, n]).
-entry(benötigt, [b, @, n, '2:', t, 'I', 'C', t]).
-entry(benötigte, [b, @, n, '2:', t, 'I', 'C', t, @]).
+entry(benoetige, [b, @, n, '2:', t, 'I', g, @]).
+entry(benoetigen, [b, @, n, '2:', t, 'I', g, @, n]).
+entry(benoetigt, [b, @, n, '2:', t, 'I', 'C', t]).
+entry(benoetigte, [b, @, n, '2:', t, 'I', 'C', t, @]).
 entry(benutze, [b, @, n, 'U', ts, @]).
 entry(benutzen, [b, @, n, 'U', ts, @, n]).
 entry('Benz', [b, 'E', n, ts]).
@@ -1663,7 +1664,7 @@ entry('Bereitschaft', [b, @, r, aI, tS, a, f, t]).
 entry(bereitstellen, [b, @, r, aI, tS, t, 'E', l, @, n]).
 entry('Berg', [b, 'E', '6', k]).
 entry('Berge', [b, 'E', '6', g, @]).
-entry('Bergengrün', [b, 'E', '6', g, @, n, g, r, 'y:', n]).
+entry('Bergengruen', [b, 'E', '6', g, @, n, g, r, 'y:', n]).
 entry('Bergmann', [b, 'E', '6', k, m, a, n]).
 entry('Bericht', [b, @, r, 'I', 'C', t]).
 entry('Berichte', [b, @, r, 'I', 'C', t, @]).
@@ -1681,30 +1682,30 @@ entry('Berlin-Videos', [b, 'E', '6', l, 'i:', n, v, 'i:', d, e, o, s]).
 entry('Bernsmann', [b, 'E', '6', n, s, m, a, n]).
 entry('Berta', [b, 'E', '6', t, a]).
 entry('Bertele', [b, 'E', '6', t, @, l, @]).
-entry(berücksichtigen, [b, @, r, 'Y', k, z, 'I', 'C', t, 'I', g, @, n]).
-entry('Berücksichtigung', [b, @, r, 'Y', k, z, 'I', 'C', t, 'I', g, 'U', 'N']).
+entry(beruecksichtigen, [b, @, r, 'Y', k, z, 'I', 'C', t, 'I', g, @, n]).
+entry('Beruecksichtigung', [b, @, r, 'Y', k, z, 'I', 'C', t, 'I', g, 'U', 'N']).
 entry(beruflich, [b, @, r, 'u:', f, l, 'I', 'C']).
 entry('Berufliche', [b, @, r, 'u:', f, l, 'I', 'C', @]).
 entry(beruflichen, [b, @, r, 'u:', f, l, 'I', 'C', @, n]).
 entry(beruhigend, [b, @, r, 'u:', 'I', g, @, n, t]).
 entry(beruhigt, [b, @, r, 'u:', 'I', 'C', t]).
-entry(berühmte, [b, @, r, 'y:', m, t, @]).
+entry(beruehmte, [b, @, r, 'y:', m, t, @]).
 entry(besagte, [b, @, z, 'a:', k, t, @]).
 entry(besagtem, [b, @, z, 'a:', k, t, @, m]).
 entry('Bes', [b, @, z]).
 entry(bescha, [b, @, 'S', a]).
 entry(beschaffe, [b, @, 'S', a, f, @]).
 entry(beschaffen, [b, @, 'S', a, f, @, n]).
-entry(beschäftigen, [b, @, 'S', 'E', f, t, 'I', g, @, n]).
-entry(beschäftigt, [b, @, 'S', 'E', f, t, 'I', 'C', t]).
-entry(beschäftigten, [b, @, 'S', 'E', f, t, 'I', 'C', t, @, n]).
-entry(beschäftigter, [b, @, 'S', 'E', f, t, 'I', 'C', t, '6']).
+entry(beschaeftigen, [b, @, 'S', 'E', f, t, 'I', g, @, n]).
+entry(beschaeftigt, [b, @, 'S', 'E', f, t, 'I', 'C', t]).
+entry(beschaeftigten, [b, @, 'S', 'E', f, t, 'I', 'C', t, @, n]).
+entry(beschaeftigter, [b, @, 'S', 'E', f, t, 'I', 'C', t, '6']).
 entry(beschaulicher, [b, @, 'S', aU, l, 'I', 'C', '6']).
 entry(besch, [b, @, 'S']).
 entry('Bescheid', [b, @, 'S', aI, t]).
 entry(beschließen, [b, @, 'S', l, 'i:', s, @, n]).
-entry(beschränken, [b, @, 'S', r, 'E', 'N', k, @, n]).
-entry(beschränkt, [b, @, 'S', r, 'E', 'N', k, t]).
+entry(beschraenken, [b, @, 'S', r, 'E', 'N', k, @, n]).
+entry(beschraenkt, [b, @, 'S', r, 'E', 'N', k, t]).
 entry(beseelt, [b, @, z, 'e:', l, t]).
 entry(beseitigen, [b, @, z, aI, t, 'I', g, @, n]).
 entry(besetzt, [b, @, z, 'E', ts, t]).
@@ -1746,11 +1747,11 @@ entry(besser, [b, 'E', s, '6']).
 entry(bessere, [b, 'E', s, @, r, @]).
 entry(besseren, [b, 'E', s, @, r, @, n]).
 entry(besseres, [b, 'E', s, @, r, @, s]).
-entry(bestätige, [b, @, 'S', t, 'E:', t, 'I', g, @]).
-entry(bestätigen, [b, @, 'S', t, 'E:', t, 'I', g, @, n]).
-entry(bestätigt, [b, @, 'S', t, 'E:', t, 'I', 'C', t]).
-entry('Bestätigung', [b, @, 'S', t, 'E:', t, 'I', g, 'U', 'N']).
-entry('Bestätigungen', [b, @, 'S', t, 'E:', t, 'I', g, 'U', 'N', @, n]).
+entry(bestaetige, [b, @, 'S', t, 'E:', t, 'I', g, @]).
+entry(bestaetigen, [b, @, 'S', t, 'E:', t, 'I', g, @, n]).
+entry(bestaetigt, [b, @, 'S', t, 'E:', t, 'I', 'C', t]).
+entry('Bestaetigung', [b, @, 'S', t, 'E:', t, 'I', g, 'U', 'N']).
+entry('Bestaetigungen', [b, @, 'S', t, 'E:', t, 'I', g, 'U', 'N', @, n]).
 entry(best, [b, 'E', s, t]).
 entry(beste, [b, 'E', s, t, @]).
 entry(bestehe, [b, @, 'S', t, 'e:', @]).
@@ -1770,7 +1771,7 @@ entry(bestimmten, [b, @, 'S', t, 'I', m, t, @, n]).
 entry(bestimmtes, [b, @, 'S', t, 'I', m, t, @, s]).
 entry('Bestrebungen', [b, @, 'S', t, r, 'e:', b, 'U', 'N', @, n]).
 entry(bestreiten, [b, @, 'S', t, r, aI, t, @, n]).
-entry(bestünde, [b, @, 'S', t, 'Y', n, d, @]).
+entry(bestuende, [b, @, 'S', t, 'Y', n, d, @]).
 entry(besu, [b, @, z, u]).
 entry(besuch, [b, @, z, 'u:', x]).
 entry(besuche, [b, @, z, 'u:', x, @]).
@@ -1781,20 +1782,20 @@ entry('Besuchs', [b, @, z, 'u:', x, s]).
 entry('Besuchsreisen', [b, @, z, 'u:', x, s, r, aI, z, @, n]).
 entry('Besuchstermin', [b, @, z, 'u:', x, s, t, 'E', '6', m, 'i:', n]).
 entry(besucht, [b, @, z, 'u:', x, t]).
-entry(besücht, [b, @, z, 'y:', 'C', t]).
+entry(besuecht, [b, @, z, 'y:', 'C', t]).
 entry(besuchten, [b, @, z, 'u:', x, t, @, n]).
 entry(besur, [b, @, z, 'u:', '6']).
-entry(betätigen, [b, @, t, 'E:', t, 'I', g, @, n]).
-entry(betäubt, [b, @, t, 'OY', p, t]).
+entry(betaetigen, [b, @, t, 'E:', t, 'I', g, @, n]).
+entry(betaeubt, [b, @, t, 'OY', p, t]).
 entry('Bet', [b, @, t]).
 entry('Betracht', [b, @, t, r, a, x, t]).
 entry(betrachte, [b, @, t, r, a, x, t, @]).
 entry(betrachten, [b, @, t, r, a, x, t, @, n]).
-entry(beträchtlicher, [b, @, t, r, 'E', 'C', t, l, 'I', 'C', '6']).
+entry(betraechtlicher, [b, @, t, r, 'E', 'C', t, l, 'I', 'C', '6']).
 entry(betraf, [b, @, t, r, 'a:', f]).
 entry('Betrag', [b, @, t, r, 'a:', k]).
 entry(betragen, [b, @, t, r, 'a:', g, @, n]).
-entry(beträgt, [b, @, t, r, 'E:', k, t]).
+entry(betraegt, [b, @, t, r, 'E:', k, t]).
 entry(betreffen, [b, @, t, r, 'E', f, @, n]).
 entry(betreffens, [b, @, t, r, 'E', f, @, n, s]).
 entry(betreuen, [b, @, t, r, 'OY', @, n]).
@@ -1810,7 +1811,7 @@ entry('Betriebssystem', [b, @, t, r, 'i:', p, s, z, 'Y', s, t, 'e:', m]).
 entry('Betriebs-Vorfeier', [b, @, t, r, 'i:', p, s, f, 'o:', '6', f, aI, '6']).
 entry(betrifft, [b, @, t, r, 'I', f, t]).
 entry(betrinken, [b, @, t, r, 'I', 'N', k, @, n]).
-entry(betrüblich, [b, @, t, r, 'y:', p, l, 'I', 'C']).
+entry(betrueblich, [b, @, t, r, 'y:', p, l, 'I', 'C']).
 entry('Bett', [b, 'E', t]).
 entry('Betten', [b, 'E', t, @, n]).
 entry('Bettina', [b, 'E', t, 'i:', n, a]).
@@ -1824,8 +1825,8 @@ entry(bevorzuge, [b, @, f, 'o:', '6', ts, 'u:', g, @]).
 entry(bevorzugen, [b, @, f, 'o:', '6', ts, 'u:', g, @, n]).
 entry(bevorzugst, [b, @, f, 'o:', '6', ts, 'u:', k, s, t]).
 entry(bevorzugte, [b, @, f, 'o:', '6', ts, 'u:', k, t, @]).
-entry(bewährt, [b, @, v, 'E:', '6', t]).
-entry(bewältigen, [b, @, v, 'E', l, t, 'I', g, @, n]).
+entry(bewaehrt, [b, @, v, 'E:', '6', t]).
+entry(bewaeltigen, [b, @, v, 'E', l, t, 'I', g, @, n]).
 entry(bewegen, [b, @, v, 'e:', g, @, n]).
 entry(bewegt, [b, @, v, 'e:', k, t]).
 entry('Bewegung', [b, @, v, 'e:', g, 'U', 'N']).
@@ -1833,7 +1834,7 @@ entry(bewerkstelligen, [b, @, v, 'E', '6', k, 'S', t, 'E', l, 'I', g, @, n]).
 entry(bewerkstelligt, [b, @, v, 'E', '6', k, 'S', t, 'E', l, 'I', 'C', t]).
 entry(bewilligt, [b, @, v, 'I', l, 'I', 'C', t]).
 entry(bewirtet, [b, @, v, 'I', '6', t, @, t]).
-entry(bewögen, [b, @, v, '2:', g, @, n]).
+entry(bewoegen, [b, @, v, '2:', g, @, n]).
 entry(bewußt, [b, @, v, 'U', s, t]).
 entry(bezahle, [b, @, ts, 'a:', l, @]).
 entry(bezahlen, [b, @, ts, 'a:', l, @, n]).
@@ -1844,9 +1845,9 @@ entry(bezieht, [b, @, ts, 'i:', t]).
 entry(beziehungsw, [b, @, ts, 'i:', 'U', 'N', s, v]).
 entry(beziehungswei, [b, @, ts, 'i:', 'U', 'N', s, v, aI]).
 entry(beziehungsweise, [b, @, ts, 'i:', 'U', 'N', s, v, aI, z, @]).
-entry(bezöge, [b, @, ts, '2:', g, @]).
+entry(bezoege, [b, @, ts, '2:', g, @]).
 entry('Bezug', [b, @, ts, 'u:', k]).
-entry(bezüglich, [b, @, ts, 'y:', k, l, 'I', 'C']).
+entry(bezueglich, [b, @, ts, 'y:', k, l, 'I', 'C']).
 entry(bezugnehmend, [b, @, ts, 'u:', k, n, 'e:', m, @, n, t]).
 entry(bi, [b, 'I']).
 entry('Bi', [b, i]).
@@ -1855,7 +1856,7 @@ entry('Bielefeld', [b, 'i:', l, @, f, 'E', l, t]).
 entry('Bielmeier', [b, 'i:', l, m, aI, '6']).
 entry('Bier', [b, 'i:', '6']).
 entry('Bierchen', [b, 'i:', '6', 'C', @, n]).
-entry('Biergärten', [b, 'i:', '6', g, 'E', '6', t, @, n]).
+entry('Biergaerten', [b, 'i:', '6', g, 'E', '6', t, @, n]).
 entry('Bierstedt', [b, 'i:', '6', s, t, 'E', t]).
 entry(biete, [b, 'i:', t, @]).
 entry(bieten, [b, 'i:', t, @, n]).
@@ -1877,7 +1878,7 @@ entry(billigeres, [b, 'I', l, 'I', g, @, r, @, s]).
 entry(billigste, [b, 'I', l, 'I', 'C', s, t, @]).
 entry(billigsten, [b, 'I', l, 'I', k, s, t, @, n]).
 entry(bim, [b, 'I', m]).
-entry(binären, [b, i, n, 'E:', r, @, n]).
+entry(binaeren, [b, i, n, 'E:', r, @, n]).
 entry(bin, [b, 'I', n]).
 entry('Bindestrich', [b, 'I', n, d, @, 'S', t, r, 'I', 'C']).
 entry('Bindestrich-Name', [b, 'I', n, d, @, 'S', t, r, 'I', 'C', n, 'a:', m, @]).
@@ -1901,8 +1902,8 @@ entry(bla, [b, l, 'a:']).
 entry('Bla-Damm', [b, l, a, d, a, m]).
 entry(blak, [b, l, a, k]).
 entry(blatt, [b, l, a, t]).
-entry(blättere, [b, l, 'E', t, @, r, @]).
-entry(blättern, [b, l, 'E', t, '6', n]).
+entry(blaettere, [b, l, 'E', t, @, r, @]).
+entry(blaettern, [b, l, 'E', t, '6', n]).
 entry(blau, [b, l, aU]).
 entry('Blaue', [b, l, aU, @]).
 entry('Blauen', [b, l, aU, @, n]).
@@ -1919,60 +1920,60 @@ entry(blieben, [b, l, 'i:', b, @, n]).
 entry(blind, [b, l, 'I', n, t]).
 entry(blitzschnell, [b, l, 'I', ts, 'S', n, 'E', l]).
 entry(bloc, [b, l, 'O', k]).
-entry('Blöcke', [b, l, '9', k, @]).
-entry('Blöcken', [b, l, '9', k, @, n]).
+entry('Bloecke', [b, l, '9', k, @]).
+entry('Bloecken', [b, l, '9', k, @, n]).
 entry(blockiere, [b, l, 'O', k, 'i:', r, @]).
 entry(blockiert, [b, l, 'O', k, 'i:', '6', t]).
 entry('Blocks', [b, l, 'O', k, s]).
 entry('Blockseminar', [b, l, 'O', k, z, e, m, i, n, 'a:', r]).
 entry('Blockseminare', [b, l, 'O', k, z, e, m, i, n, 'a:', r, @]).
-entry(blöd, [b, l, '2:', t]).
-entry(blöde, [b, l, '2:', d, @]).
-entry('Blödsinn', [b, l, '2:', t, z, 'I', n]).
+entry(bloed, [b, l, '2:', t]).
+entry(bloede, [b, l, '2:', d, @]).
+entry('Bloedsinn', [b, l, '2:', t, z, 'I', n]).
 entry(bloß, [b, l, 'o:', s]).
-entry(blüht, [b, l, 'y:', t]).
-entry('Blüm', [b, l, 'y:', m]).
+entry(blueht, [b, l, 'y:', t]).
+entry('Bluem', [b, l, 'y:', m]).
 entry('Blume', [b, l, 'u:', m, @]).
 entry('Blutspende', [b, l, 'u:', tS, p, 'E', n, d, @]).
 entry('Blutspenden', [b, l, 'u:', tS, p, 'E', n, d, @, n]).
 entry('Blutspende-Termin', [b, l, 'u:', tS, p, 'E', n, d, @, t, 'E', '6', m, 'i:', n]).
 entry(boah, [b, o, 'a:']).
-entry(bö, [b, '2:']).
+entry(boe, [b, '2:']).
 entry('Bob', [b, 'O', b]).
 entry('Bobby', [b, 'O', b, i]).
 entry('Bobitsch', [b, 'o:', b, 'I', tS]).
 entry('Bochum', [b, 'o:', x, 'U', m]).
 entry('Boden', [b, 'o:', d, @, n]).
 entry('Bodenpersonal', [b, 'o:', d, @, n, p, 'E', '6', z, o, n, a, l]).
-entry('Böer', [b, '2:', '6']).
-entry('Böhle', [b, '2:', l, @]).
-entry('Böhmsche-Brauhaus', [b, '2:', m, 'S', @, b, r, aU, h, aU, s]).
-entry('Böhmsches-Brauhaus', [b, '2:', m, 'S', @, s, b, r, aU, h, aU, s]).
+entry('Boeer', [b, '2:', '6']).
+entry('Boehle', [b, '2:', l, @]).
+entry('Boehmsche-Brauhaus', [b, '2:', m, 'S', @, b, r, aU, h, aU, s]).
+entry('Boehmsches-Brauhaus', [b, '2:', m, 'S', @, s, b, r, aU, h, aU, s]).
 entry('Bonn', [b, 'O', n]).
 entry('Bonner', [b, 'O', n, '6']).
-entry('Bönsch', [b, '9', n, 'S']).
+entry('Boensch', [b, '9', n, 'S']).
 entry('Bordrestaurant', [b, 'O', '6', t, r, 'E', s, t, o, r, 'a~:']).
 entry('Borghoff', [b, 'O', '6', k, h, 'O', f]).
 entry('Borucki', [b, o, r, 'U', k, i]).
 entry('Boß', [b, 'O', s]).
-entry(böse, [b, '2:', z, @]).
+entry(boese, [b, '2:', z, @]).
 entry('Botanischen-Garten', [b, o, t, 'a:', n, 'I', 'S', @, n, g, a, r, t, @, n]).
-entry(böte, [b, '2:', t, @]).
+entry(boete, [b, '2:', t, @]).
 entry('Boy', [b, 'OY']).
 entry('Boyer-Moore-Algorithmus', [b, 'OY', '6', m, 'u:', '6', a, l, g, o, r, 'I', t, m, 'U', s]).
-entry(brächten, [b, r, 'E', 'C', t, @, n]).
+entry(braechten, [b, r, 'E', 'C', t, @, n]).
 entry('Brandt', [b, r, a, n, t]).
 entry(brasilianisch, [b, r, a, z, i, l, j, 'a:', n, 'I', 'S']).
-entry(bräu, [b, r, 'OY']).
+entry(braeu, [b, r, 'OY']).
 entry(brauche, [b, r, aU, x, @]).
 entry(brauchen, [b, r, aU, x, @, n]).
 entry(braucht, [b, r, aU, x, t]).
 entry(brauchte, [b, r, aU, x, t, @]).
-entry(bräuchte, [b, r, 'OY', 'C', t, @]).
+entry(braeuchte, [b, r, 'OY', 'C', t, @]).
 entry(brauchten, [b, r, aU, x, t, @, n]).
-entry(bräuchten, [b, r, 'OY', 'C', t, @, n]).
+entry(braeuchten, [b, r, 'OY', 'C', t, @, n]).
 entry('Brauer', [b, r, aU, '6']).
-entry(bräunen, [b, r, 'OY', n, @, n]).
+entry(braeunen, [b, r, 'OY', n, @, n]).
 entry(braungebrannt, [b, r, aU, n, g, @, b, r, a, n, t]).
 entry('Braunschweig', [b, r, aU, n, 'S', v, aI, k]).
 entry(br, [b, r]).
@@ -1997,21 +1998,21 @@ entry(brisant, [b, r, i, z, a, n, t]).
 entry(brisanter, [b, r, i, z, a, n, t, '6']).
 entry('British-Airways', [b, r, 'I', t, 'I', 'S', 'E', '6', w, e, 'I', z]).
 entry('Britschow', [b, r, 'I', tS, 'o:']).
-entry('Bröggelwirth', [b, r, '9', g, @, l, v, 'I', '6', t]).
+entry('Broeggelwirth', [b, r, '9', g, @, l, v, 'I', '6', t]).
 entry('Brohl', [b, r, 'o:', l]).
-entry('Broschüre', [b, r, 'O', 'S', 'y:', r, @]).
-entry('Broschüren', [b, r, 'O', 'S', 'y:', r, @, n]).
-entry('Brötchen', [b, r, '2:', t, 'C', @, n]).
-entry(brück, [b, r, 'Y', k]).
-entry('Brücke', [b, r, 'Y', k, @]).
+entry('Broschuere', [b, r, 'O', 'S', 'y:', r, @]).
+entry('Broschueren', [b, r, 'O', 'S', 'y:', r, @, n]).
+entry('Broetchen', [b, r, '2:', t, 'C', @, n]).
+entry(brueck, [b, r, 'Y', k]).
+entry('Bruecke', [b, r, 'Y', k, @]).
 entry('Bruder', [b, r, 'u:', d, '6']).
 entry('Brunchen', [b, r, a, n, 'S', @, n]).
-entry('Brüssel', [b, r, 'Y', s, @, l]).
+entry('Bruessel', [b, r, 'Y', s, @, l]).
 entry(bubstabiere, [b, 'u:', p, 'S', t, a, b, 'i:', r, @]).
 entry('Buch', [b, 'u:', x]).
 entry(buche, [b, 'u:', x, @]).
 entry(buchen, [b, 'u:', x, @, n]).
-entry('Bücher', [b, 'y:', 'C', '6']).
+entry('Buecher', [b, 'y:', 'C', '6']).
 entry(buchs, [b, 'u:', x, s]).
 entry('Buchsch', [b, 'u:', x, 'S']).
 entry(buchspa, [b, 'u:', x, 'S', p, a]).
@@ -2024,24 +2025,24 @@ entry(buchst, [b, 'u:', x, s, t]).
 entry(bucht, [b, 'u:', x, t]).
 entry('Buchung', [b, 'u:', x, 'U', 'N']).
 entry(buchungen, [b, 'u:', x, 'U', 'N', @, n]).
-entry('Buchungsbestätigung', [b, 'u:', x, 'U', 'N', s, b, @, 'S', t, 'E:', t, 'I', g, 'U', 'N']).
+entry('Buchungsbestaetigung', [b, 'u:', x, 'U', 'N', s, b, @, 'S', t, 'E:', t, 'I', g, 'U', 'N']).
 entry('Buchungsterminen', [b, 'u:', x, 'U', 'N', s, t, 'E', '6', m, 'i:', n, @, n]).
 entry('Budget', [b, 'Y', d, 'Z', 'e:']).
 entry('Budgets', [b, 'Y', d, 'Z', 'e:', s]).
 entry(buffet, [b, 'Y', f, 'e:']).
-entry('Bühne', [b, 'y:', n, @]).
+entry('Buehne', [b, 'y:', n, @]).
 entry('Bulmahn', [b, 'u:', l, m, a, n]).
 entry('Bummel', [b, 'U', m, @, l]).
 entry(bummeln, [b, 'U', m, @, l, n]).
 entry('Bundesbahn', [b, 'U', n, d, @, s, b, 'a:', n]).
 entry('Bundesgebiet', [b, 'U', n, d, @, s, g, @, b, 'i:', t]).
 entry('Bundeskanzler', [b, 'U', n, d, @, s, k, a, n, ts, l, '6']).
-entry('Bundesländer', [b, 'U', n, d, @, s, l, 'E', n, d, '6']).
+entry('Bundeslaender', [b, 'U', n, d, @, s, l, 'E', n, d, '6']).
 entry('Bundesregierung', [b, 'U', n, d, @, s, r, 'E', g, 'i:', r, 'U', 'N']).
 entry(bunt, [b, 'U', n, t]).
 entry('Burger', [b, '9', '6', g, '6']).
-entry('Büro', [b, y, r, 'o:']).
-entry('Büros', [b, y, r, 'o:', s]).
+entry('Buero', [b, y, r, 'o:']).
+entry('Bueros', [b, y, r, 'o:', s]).
 entry('Busbahnhof', [b, 'U', s, b, 'a:', n, h, 'o:', f]).
 entry('Bus', [b, 'U', s]).
 entry(busch, [b, 'U', 'S']).
@@ -2066,7 +2067,7 @@ entry('Cafeteria', [k, a, f, e, t, @, r, 'i:', a]).
 entry(canceln, [k, 'E', n, ts, @, l, n]).
 entry(card, [k, 'a:', r, d]).
 entry('Carpenter', [k, 'a:', r, p, @, n, t, '6']).
-entry('Cäsar', [ts, 'E:', z, a, r]).
+entry('Caesar', [ts, 'E:', z, a, r]).
 entry(cashier, [k, 'E', 'S', 'I', '6']).
 entry('CeBit-Messe', [ts, 'e:', b, 'I', t, m, 'E', s, @]).
 entry('CeBit', [ts, 'e:', b, 'I', t]).
@@ -2153,12 +2154,12 @@ entry(dachte, [d, a, x, t, @]).
 entry(dachten, [d, a, x, t, @, n]).
 entry(da, [d, 'a:']).
 entry(dadadam, [d, a, d, a, d, a, m]).
-entry(dä, [d, 'E']).
+entry(dae, [d, 'E']).
 entry(dadurch, [d, a, d, 'U', '6', 'C']).
 entry(daf, [d, a, f]).
-entry(dafür, [d, a, f, 'y:', '6']).
+entry(dafuer, [d, a, f, 'y:', '6']).
 entry(dagegen, [d, a, g, 'e:', g, @, n]).
-entry(dagevö, [d, a, g, @, v, '2']).
+entry(dagevoe, [d, a, g, @, v, '2']).
 entry('Da-Giovanni', [d, a, d, 'Z', o, v, a, n, i]).
 entry(dah, [d, a, h]).
 entry(daheim, [d, a, h, aI, m]).
@@ -2178,7 +2179,7 @@ entry(damit, [d, a, m, 'I', t]).
 entry('Dammtor', [d, 'E', m, t, 'O', '6']).
 entry('Dampfbad', [d, a, m, pf, b, 'a:', t]).
 entry(dampfbaden, [d, a, m, pf, b, 'a:', d, @, n]).
-entry('Dampfbädern', [d, a, m, pf, b, 'E:', d, '6', n]).
+entry('Dampfbaedern', [d, a, m, pf, b, 'E:', d, '6', n]).
 entry('Dampfbad-Hotel', [d, a, m, pf, b, 'a:', t, h, o, t, 'E', l]).
 entry('Dampfplauderei', [d, a, m, pf, p, l, aU, d, @, r, aI]).
 entry(danach, [d, a, n, 'a:', x]).
@@ -2206,7 +2207,7 @@ entry(darin, [d, 'a:', r, 'I', n]).
 entry('Darmstadt', [d, a, r, m, 'S', t, a, t]).
 entry(darstellen, [d, 'a:', r, 'S', t, 'E', l, @, n]).
 entry(darstellenden, [d, 'a:', r, 'S', t, 'E', l, @, n, d, @, n]).
-entry(darüber, [d, a, r, 'y:', b, '6']).
+entry(darueber, [d, a, r, 'y:', b, '6']).
 entry(darum, [d, 'a:', r, 'U', m]).
 entry(daß, [d, a, s]).
 entry(dasselbe, [d, a, s, z, 'E', l, b, @]).
@@ -2224,7 +2225,7 @@ entry(dauern, [d, aU, '6', n]).
 entry(dauernd, [d, aU, '6', n, t]).
 entry(dauert, [d, aU, '6', t]).
 entry('Dauerverpflichtungen', [d, aU, '6', f, 'E', '6', pf, l, 'I', 'C', t, 'U', 'N', @, n]).
-entry('Däumchen', [d, 'OY', m, 'C', @, n]).
+entry('Daeumchen', [d, 'OY', m, 'C', @, n]).
 entry('Daumen', [d, aU, m, @, n]).
 entry('Dave', [d, 'e:', f]).
 entry(davon, [d, a, f, 'O', n]).
@@ -2233,14 +2234,14 @@ entry(davor, [d, a, f, 'o:', '6']).
 entry(davorlegen, [d, a, f, 'o:', '6', l, 'e:', g, @, n]).
 entry(daz, [d, a, ts]).
 entry(dazu, [d, a, ts, 'u:']).
-entry(dazugehört, [d, a, ts, 'u:', g, @, h, '2:', '6', t]).
+entry(dazugehoert, [d, a, ts, 'u:', g, @, h, '2:', '6', t]).
 entry(dazunehmen, [d, a, ts, 'u:', n, 'e:', m, @, n]).
 entry(dazuplanen, [d, a, ts, 'u:', p, l, 'a:', n, @, n]).
 entry(dazurechnen, [d, a, ts, 'u:', r, 'E', 'C', n, @, n]).
 entry(dazusagen, [d, a, ts, 'u:', z, 'a:', g, @, n]).
 entry(dazusein, [d, a, ts, 'u:', z, aI, n]).
 entry(dazustoßen, [d, a, ts, 'u:', 'S', t, 'o:', s, @, n]).
-entry(dazuzählen, [d, a, ts, 'u:', ts, 'E:', l, @, n]).
+entry(dazuzaehlen, [d, a, ts, 'u:', ts, 'E:', l, @, n]).
 entry(dazwischenbekommen, [d, a, ts, v, 'I', 'S', @, n, b, @, k, 'O', m, @, n]).
 entry(dazwischen, [d, a, ts, v, 'I', 'S', @, n]).
 entry(dazwischenkommen, [d, a, ts, v, 'I', 'S', @, n, k, 'O', m, @, n]).
@@ -2269,7 +2270,7 @@ entry(deln, [d, 'E', l, n]).
 entry(dem, [d, 'e:', m]).
 entry(dementsprechend, [d, 'e:', m, 'E', n, tS, p, r, 'E', 'C', @, n, t]).
 entry(demnach, [d, 'e:', m, n, 'a:', x]).
-entry(demnächst, [d, 'e:', m, n, 'E:', 'C', s, t]).
+entry(demnaechst, [d, 'e:', m, n, 'E:', 'C', s, t]).
 entry(demselben, [d, 'e:', m, z, 'E', l, b, @, n]).
 entry(demzufolge, [d, 'e:', m, ts, u, f, 'O', l, g, @]).
 entry(den, [d, 'e:', n]).
@@ -2312,11 +2313,11 @@ entry('Deutschen-Bundesbahn', [d, 'OY', tS, @, n, b, 'U', n, d, @, s, b, 'a:', n
 entry(deutschen, [d, 'OY', tS, @, n]).
 entry('Deutschherrenstraße', [d, 'OY', tS, h, 'E', r, @, n, 'S', t, r, 'a:', s, @]).
 entry('Deutschland', [d, 'OY', tS, l, a, n, t]).
-entry('Deutschland-Flügen', [d, 'OY', tS, l, a, n, t, f, l, 'y:', g, @, n]).
+entry('Deutschland-Fluegen', [d, 'OY', tS, l, a, n, t, f, l, 'y:', g, @, n]).
 entry('Deutschlands', [d, 'OY', tS, l, a, n, ts]).
 entry('Devise', [d, e, v, 'i:', z, @]).
 entry('Dezember', [d, e, ts, 'E', m, b, '6']).
-entry('Dezemberhälfte', [d, e, ts, 'E', m, b, '6', h, 'E', l, f, t, @]).
+entry('Dezemberhaelfte', [d, e, ts, 'E', m, b, '6', h, 'E', l, f, t, @]).
 entry('Dezembers', [d, e, ts, 'E', m, b, '6', s]).
 entry('Dezembertage', [d, e, ts, 'E', m, b, '6', t, 'a:', g, @]).
 entry('Dezembertermin', [d, e, ts, 'E', m, b, '6', t, 'E', '6', m, 'i:', n]).
@@ -2330,7 +2331,7 @@ entry('Dias', [d, 'i:', a, s]).
 entry(dich, [d, 'I', 'C']).
 entry(dicht, [d, 'I', 'C', t]).
 entry(dichter, [d, 'I', 'C', t, '6']).
-entry(dichtgedrängten, [d, 'I', 'C', t, g, @, d, r, 'E', 'N', t, @, n]).
+entry(dichtgedraengten, [d, 'I', 'C', t, g, @, d, r, 'E', 'N', t, @, n]).
 entry(dick, [d, 'I', k]).
 entry(dicke, [d, 'I', k, @]).
 entry(di, [d, i]).
@@ -2367,7 +2368,7 @@ entry('Dienstzeit', [d, 'i:', n, s, t, ts, aI, t]).
 entry('Dienstzimmer', [d, 'i:', n, s, t, ts, 'I', m, '6']).
 entry('Diepholz', [d, 'i:', p, h, 'O', l, ts]).
 entry('Die-Physiker', [d, 'i:', f, 'y:', z, 'I', k, '6']).
-entry(diesbezüglich, [d, 'i:', s, b, @, ts, 'y:', k, l, 'I', 'C']).
+entry(diesbezueglich, [d, 'i:', s, b, @, ts, 'y:', k, l, 'I', 'C']).
 entry(dies, [d, 'i:', s]).
 entry(diese, [d, 'i:', z, @]).
 entry(dieselbe, [d, 'i:', z, 'E', l, b, @]).
@@ -2376,8 +2377,8 @@ entry(diesem, [d, 'i:', z, @, m]).
 entry(diesen, [d, 'i:', z, @, n]).
 entry(dieser, [d, 'i:', z, '6']).
 entry(dieses, [d, 'i:', z, @, s]).
-entry(diesjährige, [d, 'i:', s, j, 'E:', r, 'I', g, @]).
-entry(diesjährigen, [d, 'i:', s, j, 'E:', r, 'I', g, @, n]).
+entry(diesjaehrige, [d, 'i:', s, j, 'E:', r, 'I', g, @]).
+entry(diesjaehrigen, [d, 'i:', s, j, 'E:', r, 'I', g, @, n]).
 entry(diesmal, [d, 'i:', s, m, 'a:', l]).
 entry('Diesner', [d, 'i:', s, n, '6']).
 entry('Dietmar', [d, 'i:', t, m, a, r]).
@@ -2395,7 +2396,7 @@ entry(direkte, [d, i, r, 'E', k, t, @]).
 entry(direkten, [d, i, r, 'E', k, t, @, n]).
 entry(direkter, [d, i, r, 'E', k, t, '6']).
 entry('Direktflug', [d, i, r, 'E', k, t, f, l, 'u:', k]).
-entry('Direktflüge', [d, i, r, 'E', k, t, f, l, 'y:', g, @]).
+entry('Direktfluege', [d, i, r, 'E', k, t, f, l, 'y:', g, @]).
 entry('Direktion', [d, i, r, 'E', k, ts, j, 'o:', n]).
 entry(direktiven, [d, i, r, 'E', k, t, 'i:', v, @, n]).
 entry('Direktorium', [d, i, r, 'E', k, t, 'o:', '6', j, 'U', m]).
@@ -2462,11 +2463,11 @@ entry('Dortmund', [d, 'O', '6', t, m, 'U', n, t]).
 entry('Dotzler', [d, 'O', ts, l, '6']).
 entry(dramatisch, [d, r, a, m, 'a:', t, 'I', 'S']).
 entry(dran, [d, r, a, n]).
-entry(drängeln, [d, r, 'E', 'N', @, l, n]).
-entry(drängen, [d, r, 'E', 'N', @, n]).
-entry(drängt, [d, r, 'E', 'N', t]).
-entry(dranhängen, [d, r, a, n, h, 'E', 'N', @, n]).
-entry(dranzuhängen, [d, r, a, n, ts, u, h, 'E', 'N', @, n]).
+entry(draengeln, [d, r, 'E', 'N', @, l, n]).
+entry(draengen, [d, r, 'E', 'N', @, n]).
+entry(draengt, [d, r, 'E', 'N', t]).
+entry(dranhaengen, [d, r, a, n, h, 'E', 'N', @, n]).
+entry(dranzuhaengen, [d, r, a, n, ts, u, h, 'E', 'N', @, n]).
 entry(drau, [d, r, aU]).
 entry(drauf, [d, r, aU, f]).
 entry(drauffolgende, [d, r, aU, f, f, 'O', l, g, @, n, d, @]).
@@ -2490,7 +2491,7 @@ entry(dreieinhalb, [d, r, aI, aI, n, h, a, l, p]).
 entry(dreien, [d, r, aI, @, n]).
 entry(dreifache, [d, r, aI, f, a, x, @]).
 entry(dreihundert, [d, r, aI, h, 'U', n, d, '6', t]).
-entry('Drei-Löwen', [d, r, aI, l, '2:', v, @, n]).
+entry('Drei-Loewen', [d, r, aI, l, '2:', v, @, n]).
 entry(dreimal, [d, r, aI, m, 'a:', l]).
 entry(dreiß, [d, r, aI, s]).
 entry(dreißi, [d, r, aI, s, 'I']).
@@ -2498,20 +2499,20 @@ entry(dreißig, [d, r, aI, s, 'I', 'C']).
 entry(dreißigste, [d, r, aI, s, 'I', 'C', s, t, @]).
 entry(dreißigsten, [d, r, aI, s, 'I', 'C', s, t, @, n]).
 entry(dreißigster, [d, r, aI, s, 'I', 'C', s, t, '6']).
-entry(dreistündigen, [d, r, aI, 'S', t, 'Y', n, d, 'I', g, @, n]).
-entry(dreistündiger, [d, r, aI, 'S', t, 'Y', n, d, 'I', g, '6']).
+entry(dreistuendigen, [d, r, aI, 'S', t, 'Y', n, d, 'I', g, @, n]).
+entry(dreistuendiger, [d, r, aI, 'S', t, 'Y', n, d, 'I', g, '6']).
 entry('Drei-Tages-Reise', [d, r, aI, t, 'a:', g, @, s, r, aI, z, @]).
 entry('Drei-Tage-Treffen', [d, r, aI, t, 'a:', g, @, t, r, 'E', f, @, n]).
-entry(dreitägige, [d, r, aI, t, 'E:', g, 'I', g, @]).
-entry(dreitägigen, [d, r, aI, t, 'E:', g, 'I', g, @, n]).
-entry(dreitägiges, [d, r, aI, t, 'E:', g, 'I', g, @, s]).
-entry(dreitäki, [d, r, aI, t, 'E:', k, i]).
+entry(dreitaegige, [d, r, aI, t, 'E:', g, 'I', g, @]).
+entry(dreitaegigen, [d, r, aI, t, 'E:', g, 'I', g, @, n]).
+entry(dreitaegiges, [d, r, aI, t, 'E:', g, 'I', g, @, s]).
+entry(dreitaeki, [d, r, aI, t, 'E:', k, i]).
 entry(dreiundachtzig, [d, r, aI, 'U', n, t, a, x, ts, 'I', 'C']).
 entry(dreiund, [d, r, aI, 'U', n, t]).
 entry(dreiunddreißig, [d, r, aI, 'U', n, t, d, r, aI, s, 'I', 'C']).
 entry(dreiunddreißigste, [d, r, aI, 'U', n, t, d, r, aI, s, 'I', 'C', s, t, @]).
 entry(dreiunddreißigsten, [d, r, aI, 'U', n, t, d, r, aI, s, 'I', 'C', s, t, @, n]).
-entry(dreiundfünfzig, [d, r, aI, 'U', n, t, f, 'Y', n, f, ts, 'I', 'C']).
+entry(dreiundfuenfzig, [d, r, aI, 'U', n, t, f, 'Y', n, f, ts, 'I', 'C']).
 entry(dreiundneunzig, [d, r, aI, 'U', n, t, n, 'OY', n, ts, 'I', 'C']).
 entry(dreiun, [d, r, aI, 'U', n]).
 entry(dreiundsechzig, [d, r, aI, 'U', n, t, z, 'E', 'C', ts, 'I', 'C']).
@@ -2545,7 +2546,7 @@ entry(dringenden, [d, r, 'I', 'N', @, n, d, @, n]).
 entry(dringender, [d, r, 'I', 'N', @, n, d, '6']).
 entry(dringendst, [d, r, 'I', 'N', @, n, ts, t]).
 entry('Dringlichkeit', [d, r, 'I', 'N', l, 'I', 'C', k, aI, t]).
-entry(drinhängen, [d, r, 'I', n, h, 'E', 'N', @, n]).
+entry(drinhaengen, [d, r, 'I', n, h, 'E', 'N', @, n]).
 entry('Drink', [d, r, 'I', 'N', k]).
 entry(drinks, [d, r, 'I', 'N', k, s]).
 entry(drinliegt, [d, r, 'I', n, l, 'i:', k, t]).
@@ -2558,10 +2559,10 @@ entry(dritten, [d, r, 'I', t, @, n]).
 entry(dritter, [d, r, 'I', t, '6']).
 entry(drittes, [d, r, 'I', t, @, s]).
 entry(droben, [d, r, 'o:', b, @, n]).
-entry(drüber, [d, r, 'y:', b, '6']).
+entry(drueber, [d, r, 'y:', b, '6']).
 entry(drucke, [d, r, 'U', k, @]).
-entry(drücke, [d, r, 'Y', k, @]).
-entry(drücken, [d, r, 'Y', k, @, n]).
+entry(druecke, [d, r, 'Y', k, @]).
+entry(druecken, [d, r, 'Y', k, @, n]).
 entry(drufs, [d, r, 'U', f, s]).
 entry(drum, [d, r, 'U', m]).
 entry(drumherum, [d, r, 'U', m, h, 'E', r, 'U', m]).
@@ -2573,7 +2574,7 @@ entry(d, [t]).
 entry('Duderstadt', [d, 'u:', d, '6', 'S', t, a, t]).
 entry(du, [d, 'u:']).
 entry(dudum, [d, u, d, 'U', m]).
-entry(dü, [d, 'Y']).
+entry(due, [d, 'Y']).
 entry('Duisburg', [d, 'y:', s, b, 'U', '6', k]).
 entry('Duis', [d, 'y:', s]).
 entry(dumm, [d, 'U', m]).
@@ -2590,14 +2591,14 @@ entry(durcheinander, [d, 'U', '6', 'C', aI, n, a, n, d, '6']).
 entry(durcheinandergekommen, [d, 'U', '6', 'C', aI, n, a, n, d, '6', g, @, k, 'O', m, @, n]).
 entry(durcheinandergeraten, [d, 'U', '6', 'C', aI, n, a, n, d, '6', g, @, r, 'a:', t, @, n]).
 entry(durchfahren, [d, 'U', '6', 'C', f, 'a:', r, @, n]).
-entry(durchfährt, [d, 'U', '6', 'C', f, 'E', '6', t]).
+entry(durchfaehrt, [d, 'U', '6', 'C', f, 'E', '6', t]).
 entry(durchforsten, [d, 'U', '6', 'C', f, 'O', '6', s, t, @, n]).
-entry(durchführe, [d, 'U', '6', 'C', f, 'y:', r, @]).
-entry(durchführen, [d, 'U', '6', 'C', f, 'y:', r, @, n]).
-entry(durchgängig, [d, 'U', '6', 'C', g, 'E', 'N', 'I', 'C']).
+entry(durchfuehre, [d, 'U', '6', 'C', f, 'y:', r, @]).
+entry(durchfuehren, [d, 'U', '6', 'C', f, 'y:', r, @, n]).
+entry(durchgaengig, [d, 'U', '6', 'C', g, 'E', 'N', 'I', 'C']).
 entry(durchgeben, [d, 'U', '6', 'C', g, 'e:', b, @, n]).
 entry(durchgedrungen, [d, 'U', '6', 'C', g, @, d, r, 'U', 'N', @, n]).
-entry(durchgedüst, [d, 'U', '6', 'C', g, @, d, 'y:', s, t]).
+entry(durchgeduest, [d, 'U', '6', 'C', g, @, d, 'y:', s, t]).
 entry(durchgehend, [d, 'U', '6', 'C', g, 'e:', @, n, t]).
 entry(durchgehen, [d, 'U', '6', 'C', g, 'e:', @, n]).
 entry(durchgelaufen, [d, 'U', '6', 'C', g, @, l, aU, f, @, n]).
@@ -2606,7 +2607,7 @@ entry(durchgesehen, [d, 'U', '6', 'C', g, @, z, 'e:', @, n]).
 entry(durchgestrichen, [d, 'U', '6', 'C', g, @, 'S', t, r, 'I', 'C', @, n]).
 entry(durchgucken, [d, 'U', '6', 'C', g, 'U', k, @, n]).
 entry(durchhaben, [d, 'U', '6', 'C', h, 'a:', b, @, n]).
-entry('Durchhänger', [d, 'U', '6', 'C', h, 'E', 'N', '6']).
+entry('Durchhaenger', [d, 'U', '6', 'C', h, 'E', 'N', '6']).
 entry(durchkomme, [d, 'U', '6', 'C', k, 'O', m, @]).
 entry(durchkommen, [d, 'U', '6', 'C', k, 'O', m, @, n]).
 entry(durchkriegen, [d, 'U', '6', 'C', k, r, 'i:', g, @, n]).
@@ -2623,19 +2624,19 @@ entry(durchstarten, [d, 'U', '6', 'C', 'S', t, a, r, t, @, n]).
 entry(durchwachsen, [d, 'U', '6', 'C', v, a, k, s, @, n]).
 entry(durchziehen, [d, 'U', '6', 'C', ts, 'i:', @, n]).
 entry(durchzieht, [d, 'U', '6', 'C', ts, 'i:', t]).
-entry(durchzuführen, [d, 'U', '6', 'C', ts, u, f, 'y:', r, @, n]).
+entry(durchzufuehren, [d, 'U', '6', 'C', ts, u, f, 'y:', r, @, n]).
 entry(durchzugehen, [d, 'U', '6', 'C', ts, u, g, 'e:', @, n]).
 entry(durchzusch, [d, 'U', '6', 'C', ts, 'U', 'S']).
 entry(durchzusprechen, [d, 'U', '6', 'C', ts, u, 'S', p, r, 'E', 'C', @, n]).
 entry(durchzuziehen, [d, 'U', '6', 'C', ts, u, ts, 'i:', @, n]).
-entry(dürfen, [d, 'Y', '6', f, @, n]).
-entry(dürfte, [d, 'Y', '6', f, t, @]).
-entry(dürften, [d, 'Y', '6', f, t, @, n]).
-entry('Dürrenmatt', [d, 'Y', r, @, n, m, a, t]).
+entry(duerfen, [d, 'Y', '6', f, @, n]).
+entry(duerfte, [d, 'Y', '6', f, t, @]).
+entry(duerften, [d, 'Y', '6', f, t, @, n]).
+entry('Duerrenmatt', [d, 'Y', r, @, n, m, a, t]).
 entry('Dusche', [d, 'u:', 'S', @]).
-entry(düsen, [d, 'y:', z, @, n]).
-entry('Düsseldorf', [d, 'Y', s, @, l, d, 'O', '6', f]).
-entry('Dütan', [d, 'y:', t, a, n]).
+entry(duesen, [d, 'y:', z, @, n]).
+entry('Duesseldorf', [d, 'Y', s, @, l, d, 'O', '6', f]).
+entry('Duetan', [d, 'y:', t, a, n]).
 entry(easy, ['i:', z, i]).
 entry(ebenfalls, ['e:', b, @, n, f, a, l, s]).
 entry(eben, ['e:', b, @, n]).
@@ -2705,15 +2706,15 @@ entry(einbringen, [aI, n, b, r, 'I', 'N', @, n]).
 entry(einbuchen, [aI, n, b, 'u:', x, @, n]).
 entry(einchecken, [aI, n, tS, 'E', k, @, n]).
 entry(eindeutig, [aI, n, d, 'OY', t, 'I', 'C']).
-entry('Eindrücken', [aI, n, d, r, 'Y', k, @, n]).
-entry('Eindrücke', [aI, n, d, r, 'Y', k, @]).
+entry('Eindruecken', [aI, n, d, r, 'Y', k, @, n]).
+entry('Eindruecke', [aI, n, d, r, 'Y', k, @]).
 entry('Eindruck', [aI, n, d, r, 'U', k]).
 entry(eineinhalb, [aI, n, aI, n, h, a, l, p]).
 entry(eineinhalbs, [aI, n, aI, n, h, a, l, p, s]).
-entry(eineinhalbtägigen, [aI, n, aI, n, h, a, l, p, t, 'E:', g, 'I', g, @, n]).
-entry(eineinhalbtägige, [aI, n, aI, n, h, a, l, p, t, 'E:', g, 'I', g, @]).
-entry(eineinhalbtägiges, [aI, n, aI, n, h, a, l, p, t, 'E:', g, 'I', g, @, s]).
-entry(eineinhalbtägi, [aI, n, aI, n, h, a, l, p, t, 'E:', g, 'I']).
+entry(eineinhalbtaegigen, [aI, n, aI, n, h, a, l, p, t, 'E:', g, 'I', g, @, n]).
+entry(eineinhalbtaegige, [aI, n, aI, n, h, a, l, p, t, 'E:', g, 'I', g, @]).
+entry(eineinhalbtaegiges, [aI, n, aI, n, h, a, l, p, t, 'E:', g, 'I', g, @, s]).
+entry(eineinhalbtaegi, [aI, n, aI, n, h, a, l, p, t, 'E:', g, 'I']).
 entry(einem, [aI, n, @, m]).
 entry(einen, [aI, n, @, n]).
 entry(eine, [aI, n, @]).
@@ -2731,7 +2732,7 @@ entry(einfach, [aI, n, f, a, x]).
 entry(einfachsten, [aI, n, f, a, x, s, t, @, n]).
 entry(einfachste, [aI, n, f, a, x, s, t, @]).
 entry(einfallen, [aI, n, f, a, l, @, n]).
-entry(einfällt, [aI, n, f, 'E', l, t]).
+entry(einfaellt, [aI, n, f, 'E', l, t]).
 entry(einfiger, [aI, n, f, 'I', g, '6']).
 entry(einf, [aI, n, f]).
 entry('Eingang', [aI, n, g, a, 'N']).
@@ -2748,20 +2749,20 @@ entry(eingehen, [aI, n, g, 'e:', @, n]).
 entry(eingeholt, [aI, n, g, @, h, 'o:', l, t]).
 entry(eingeladen, [aI, n, g, @, l, 'a:', d, @, n]).
 entry(eingeplant, [aI, n, g, @, p, l, 'a:', n, t]).
-entry(eingeräumt, [aI, n, g, @, r, 'OY', m, t]).
+entry(eingeraeumt, [aI, n, g, @, r, 'OY', m, t]).
 entry(eingereicht, [aI, n, g, @, r, aI, 'C', t]).
 entry(eingeschaltet, [aI, n, g, @, 'S', a, l, t, @, t]).
 entry(eingeschlichen, [aI, n, g, @, 'S', l, 'I', 'C', @, n]).
 entry(eingeschlossen, [aI, n, g, @, 'S', l, 'O', s, @, n]).
-entry(eingeschränkt, [aI, n, g, @, 'S', r, 'E', 'N', k, t]).
+entry(eingeschraenkt, [aI, n, g, @, 'S', r, 'E', 'N', k, t]).
 entry(eingeschrieben, [aI, n, g, @, 'S', r, 'i:', b, @, n]).
 entry(eingespannt, [aI, n, g, @, 'S', p, a, n, t]).
 entry(eingestuft, [aI, n, g, @, 'S', t, 'u:', f, t]).
 entry(eingeteilt, [aI, n, g, @, t, aI, l, t]).
 entry(eingetragen, [aI, n, g, @, t, r, 'a:', g, @, n]).
-entry(eingewöhnen, [aI, n, g, @, v, '2:', n, @, n]).
+entry(eingewoehnen, [aI, n, g, @, v, '2:', n, @, n]).
 entry(eingezogen, [aI, n, g, @, ts, 'o:', g, @, n]).
-entry(eingezwängt, [aI, n, g, @, ts, v, 'E', 'N', t]).
+entry(eingezwaengt, [aI, n, g, @, ts, v, 'E', 'N', t]).
 entry(einhalb, [aI, n, h, a, l, p]).
 entry(einhalten, [aI, n, h, a, l, t, @, n]).
 entry('Einheit', [aI, n, h, aI, t]).
@@ -2775,8 +2776,8 @@ entry(einig, [aI, n, 'I', 'C']).
 entry('Einigung', [aI, n, 'I', g, 'U', 'N']).
 entry(einkalkulieren, [aI, n, k, a, l, k, u, l, 'i:', r, @, n]).
 entry(einkaufen, [aI, n, k, aU, f, @, n]).
-entry('Einkäufe', [aI, n, k, 'OY', f, @]).
-entry('Einkaufsmöglichkeiten', [aI, n, k, aU, f, s, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
+entry('Einkaeufe', [aI, n, k, 'OY', f, @]).
+entry('Einkaufsmoeglichkeiten', [aI, n, k, aU, f, s, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
 entry('Einkaufsstraßen', [aI, n, k, aU, f, s, 'S', t, r, 'a:', s, @, n]).
 entry('Einkaufszentrum', [aI, n, k, aU, f, s, ts, 'E', n, t, r, 'U', m]).
 entry(einkehren, [aI, n, k, 'e:', r, @, n]).
@@ -2794,19 +2795,19 @@ entry(einpacken, [aI, n, p, a, k, @, n]).
 entry(einplanen, [aI, n, p, l, 'a:', n, @, n]).
 entry(ein, [aI, n]).
 entry(einquartieren, [aI, n, k, v, a, r, t, 'i:', r, @, n]).
-entry(einräumen, [aI, n, r, 'OY', m, @, n]).
+entry(einraeumen, [aI, n, r, 'OY', m, @, n]).
 entry(einrechnen, [aI, n, r, 'E', 'C', n, @, n]).
 entry('Einreichungsschluß', [aI, n, r, aI, 'C', 'U', 'N', s, 'S', l, 'U', s]).
 entry(einrichten, [aI, n, r, 'I', 'C', t, @, n]).
 entry(einsatzbereit, [aI, n, z, a, ts, b, @, r, aI, t]).
-entry(einsatzfähig, [aI, n, z, a, ts, f, 'E:', 'I', 'C']).
+entry(einsatzfaehig, [aI, n, z, a, ts, f, 'E:', 'I', 'C']).
 entry(einschieben, [aI, n, 'S', 'i:', b, @, n]).
 entry(einschließen, [aI, n, 'S', l, 'i:', s, @, n]).
 entry(einschließlich, [aI, n, 'S', l, 'i:', s, l, 'I', 'C']).
 entry('Einschnitten', [aI, n, 'S', n, 'I', t, @, n]).
-entry(einschränken, [aI, n, 'S', r, 'E', 'N', k, @, n]).
-entry('Einschränkungen', [aI, n, 'S', r, 'E', 'N', k, 'U', 'N', @, n]).
-entry('Einschränkung', [aI, n, 'S', r, 'E', 'N', k, 'U', 'N']).
+entry(einschraenken, [aI, n, 'S', r, 'E', 'N', k, @, n]).
+entry('Einschraenkungen', [aI, n, 'S', r, 'E', 'N', k, 'U', 'N', @, n]).
+entry('Einschraenkung', [aI, n, 'S', r, 'E', 'N', k, 'U', 'N']).
 entry(eins, [aI, n, s]).
 entry(einsteigen, [aI, n, 'S', t, aI, g, @, n]).
 entry(einstellen, [aI, n, 'S', t, 'E', l, @, n]).
@@ -2814,18 +2815,18 @@ entry('Einstellung', [aI, n, 'S', t, 'E', l, 'U', 'N']).
 entry('Einstimmung', [aI, n, 'S', t, 'I', m, 'U', 'N']).
 entry('Ein-Stunden-Takt', [aI, n, 'S', t, 'U', n, d, @, n, t, a, k, t]).
 entry(einstweilen, [aI, n, s, t, v, aI, l, @, n]).
-entry(eintägigen, [aI, n, t, 'E:', g, 'I', g, @, n]).
-entry(eintägige, [aI, n, t, 'E:', g, 'I', g, @]).
-entry(eintägiger, [aI, n, t, 'E:', g, 'I', g, '6']).
-entry(eintägiges, [aI, n, t, 'E:', g, 'I', g, @, s]).
-entry(eintägig, [aI, n, t, 'E:', g, 'I', 'C']).
+entry(eintaegigen, [aI, n, t, 'E:', g, 'I', g, @, n]).
+entry(eintaegige, [aI, n, t, 'E:', g, 'I', g, @]).
+entry(eintaegiger, [aI, n, t, 'E:', g, 'I', g, '6']).
+entry(eintaegiges, [aI, n, t, 'E:', g, 'I', g, @, s]).
+entry(eintaegig, [aI, n, t, 'E:', g, 'I', 'C']).
 entry(einteigigen, [aI, n, t, aI, g, 'I', g, @, n]).
 entry(einteilen, [aI, n, t, aI, l, @, n]).
-entry(einträfen, [aI, n, t, r, 'E:', f, @, n]).
+entry(eintraefen, [aI, n, t, r, 'E:', f, @, n]).
 entry(eintragen, [aI, n, t, r, 'a:', g, @, n]).
-entry('Einträge', [aI, n, t, r, 'E:', g, @]).
+entry('Eintraege', [aI, n, t, r, 'E:', g, @]).
 entry('Eintrag', [aI, n, t, r, 'a:', k]).
-entry(einträgt, [aI, n, t, r, 'E:', k, t]).
+entry(eintraegt, [aI, n, t, r, 'E:', k, t]).
 entry('Eintragungen', [aI, n, t, r, 'a:', g, 'U', 'N', @, n]).
 entry('Eintragung', [aI, n, t, r, 'a:', g, 'U', 'N']).
 entry(eintreffen, [aI, n, t, r, 'E', f, @, n]).
@@ -2838,8 +2839,8 @@ entry(einunddreißigsten, [aI, n, 'U', n, t, d, r, aI, s, 'I', 'C', s, t, @, n])
 entry(einunddreißigste, [aI, n, 'U', n, t, d, r, aI, s, 'I', 'C', s, t, @]).
 entry(einunddreißigster, [aI, n, 'U', n, t, d, r, aI, s, 'I', 'C', s, t, '6']).
 entry(einunddr, [aI, n, 'U', n, t, d, r]).
-entry(einundfünfzig, [aI, n, 'U', n, t, f, 'Y', n, f, ts, 'I', 'C']).
-entry(einundfünfzigste, [aI, n, 'U', n, t, f, 'Y', n, f, ts, 'I', 'C', s, t, @]).
+entry(einundfuenfzig, [aI, n, 'U', n, t, f, 'Y', n, f, ts, 'I', 'C']).
+entry(einundfuenfzigste, [aI, n, 'U', n, t, f, 'Y', n, f, ts, 'I', 'C', s, t, @]).
 entry(einund, [aI, n, 'U', n, t]).
 entry(einundsechzig, [aI, n, 'U', n, t, z, 'E', 'C', ts, 'I', 'C']).
 entry(einundvierzig, [aI, n, 'U', n, t, f, 'I', '6', ts, 'I', 'C']).
@@ -2853,18 +2854,18 @@ entry(einundzwanz, [aI, n, 'U', n, t, ts, v, a, n, ts]).
 entry(einverstanden, [aI, n, f, 'E', '6', 'S', t, a, n, d, @, n]).
 entry(einverstan, [aI, n, f, 'E', '6', 'S', t, a, n]).
 entry(einversta, [aI, n, f, 'E', '6', 'S', t, a]).
-entry('Einwände', [aI, n, v, 'E', n, d, @]).
+entry('Einwaende', [aI, n, v, 'E', n, d, @]).
 entry(einwandfrei, [aI, n, v, a, n, t, f, r, aI]).
 entry(einwenden, [aI, n, v, 'E', n, d, @, n]).
 entry(einwerfen, [aI, n, v, 'E', '6', f, @, n]).
 entry(einwer, [aI, n, v, 'E', '6']).
-entry('Ein-Wochen-Abständen', [aI, n, v, 'O', x, @, n, a, p, 'S', t, 'E', n, d, @, n]).
+entry('Ein-Wochen-Abstaenden', [aI, n, v, 'O', x, @, n, a, p, 'S', t, 'E', n, d, @, n]).
 entry('Ein-Wochen-Kurs', [aI, n, v, 'O', x, @, n, k, 'U', '6', s]).
 entry('Ein-Wochen-Rhythmus', [aI, n, v, 'O', x, @, n, r, 'Y', t, m, 'U', s]).
-entry(einwöchigen, [aI, n, v, '9', 'C', 'I', g, @, n]).
-entry(einwöchige, [aI, n, v, '9', 'C', 'I', g, @]).
-entry(einwöchig, [aI, n, v, '9', 'C', 'I', 'C']).
-entry('Einzelblöcke', [aI, n, ts, @, l, b, l, '9', k, @]).
+entry(einwoechigen, [aI, n, v, '9', 'C', 'I', g, @, n]).
+entry(einwoechige, [aI, n, v, '9', 'C', 'I', g, @]).
+entry(einwoechig, [aI, n, v, '9', 'C', 'I', 'C']).
+entry('Einzelbloecke', [aI, n, ts, @, l, b, l, '9', k, @]).
 entry('Einzelheiten', [aI, n, ts, @, l, h, aI, t, @, n]).
 entry(einzelnen, [aI, n, ts, @, l, n, @, n]).
 entry(einzelne, [aI, n, ts, @, l, n, @]).
@@ -2911,7 +2912,7 @@ entry(eiten, [aI, t, @, n]).
 entry(eiundzwanzigsten, [aI, 'U', n, t, ts, v, a, n, ts, 'I', 'C', s, t, @, n]).
 entry('Eize', [aI, ts, @]).
 entry('Eiz', [aI, ts]).
-entry(elbstverständlich, ['E', l, p, s, t, f, 'E', '6', 'S', t, 'E', n, t, l, 'I', 'C']).
+entry(elbstverstaendlich, ['E', l, p, s, t, f, 'E', '6', 'S', t, 'E', n, t, l, 'I', 'C']).
 entry(elegantere, [e, l, e, g, a, n, t, @, r, @]).
 entry(eleganter, [e, l, e, g, a, n, t, '6']).
 entry(elegant, [e, l, e, g, a, n, t]).
@@ -2920,8 +2921,8 @@ entry(elf, ['E', l, f]).
 entry(elften, ['E', l, f, t, @, n]).
 entry(elfte, ['E', l, f, t, @]).
 entry(elfter, ['E', l, f, t, '6']).
-entry('Elf-Uhr-Fünfzehn-Affinität', ['E', l, f, 'u:', '6', f, 'Y', n, f, ts, 'e:', n, a, f, i, n, i, t, 'E:', t]).
-entry('Elitäres', [e, l, i, t, 'E:', r, @, s]).
+entry('Elf-Uhr-Fuenfzehn-Affinitaet', ['E', l, f, 'u:', '6', f, 'Y', n, f, ts, 'e:', n, a, f, i, n, i, t, 'E:', t]).
+entry('Elitaeres', [e, l, i, t, 'E:', r, @, s]).
 entry('Elke', ['E', l, k, @]).
 entry('Elsen', ['E', l, z, @, n]).
 entry('Elternabend', ['E', l, t, '6', n, 'a:', b, @, n, t]).
@@ -2941,7 +2942,7 @@ entry('Endeffekt', ['E', n, t, 'E', f, 'E', k, t]).
 entry(enden, ['E', n, d, @, n]).
 entry(ende, ['E', n, d, @]).
 entry(endet, ['E', n, d, @, t]).
-entry(endgültig, ['E', n, t, g, 'Y', l, t, 'I', 'C']).
+entry(endgueltig, ['E', n, t, g, 'Y', l, t, 'I', 'C']).
 entry(endlich, ['E', n, t, l, 'I', 'C']).
 entry(endlos, ['E', n, t, l, 'o:', s]).
 entry(end, ['E', n, t]).
@@ -2964,7 +2965,7 @@ entry(entbehrlich, ['E', n, t, b, 'e:', '6', l, 'I', 'C']).
 entry(entbinden, ['E', n, t, b, 'I', n, d, @, n]).
 entry(entdeckt, ['E', n, t, d, 'E', k, t]).
 entry(enten, ['E', n, t, @, n]).
-entry(entfällt, ['E', n, t, f, 'E', l, t]).
+entry(entfaellt, ['E', n, t, f, 'E', l, t]).
 entry(entfernen, ['E', n, t, f, 'E', '6', n, @, n]).
 entry(entfernt, ['E', n, t, f, 'E', '6', n, t]).
 entry('Entfernung', ['E', n, t, f, 'E', '6', n, 'U', 'N']).
@@ -3001,13 +3002,13 @@ entry(entsprechende, ['E', n, tS, p, r, 'E', 'C', @, n, d, @]).
 entry(entsprechendes, ['E', n, tS, p, r, 'E', 'C', @, n, t]).
 entry(entsprechen, ['E', n, tS, p, r, 'E', 'C', @, n]).
 entry(entspricht, ['E', n, tS, p, r, 'I', 'C', t]).
-entry(enttäuschen, ['E', n, t, t, 'OY', 'S', @, n]).
-entry(enttäuscht, ['E', n, t, t, 'OY', 'S', t]).
+entry(enttaeuschen, ['E', n, t, t, 'OY', 'S', @, n]).
+entry(enttaeuscht, ['E', n, t, t, 'OY', 'S', t]).
 entry(entweder, ['E', n, t, v, 'e:', d, '6']).
 entry(entwe, ['E', n, t, v, 'e:']).
 entry(entwickeln, ['E', n, t, v, 'I', k, @, l, n]).
 entry(entwickelt, ['E', n, t, v, 'I', k, @, l, t]).
-entry(entzückt, ['E', n, t, ts, 'Y', k, t]).
+entry(entzueckt, ['E', n, t, ts, 'Y', k, t]).
 entry('Equipment', ['E', k, v, 'I', p, m, 'E', n, t]).
 entry('Erachtens', ['E', '6', a, x, t, @, n, s]).
 entry(erachte, ['E', '6', a, x, t, @]).
@@ -3021,7 +3022,7 @@ entry('Ereignisse', ['E', '6', aI, g, n, 'I', s, @]).
 entry(erfahren, ['E', '6', f, 'a:', r, @, n]).
 entry('Erfahrungen', ['E', '6', f, 'a:', r, 'U', 'N', @, n]).
 entry('Erfahrung', ['E', '6', f, 'a:', r, 'U', 'N']).
-entry(erfahrungsgemäß, ['E', '6', f, 'a:', r, 'U', 'N', s, g, @, m, 'E:', s]).
+entry(erfahrungsgemaeß, ['E', '6', f, 'a:', r, 'U', 'N', s, g, @, m, 'E:', s]).
 entry('Erfolge', ['E', '6', f, 'O', l, g, @]).
 entry('Erfolg', ['E', '6', f, 'O', l, k]).
 entry(erfolgreichem, ['E', '6', f, 'O', l, k, r, aI, 'C', @, m]).
@@ -3034,36 +3035,36 @@ entry(erforderlich, ['E', '6', f, 'O', '6', d, '6', l, 'I', 'C']).
 entry(erfreulichen, ['E', '6', f, r, 'OY', l, 'I', 'C', @, n]).
 entry(erfreulich, ['E', r, f, r, 'OY', l, 'I', 'C']).
 entry(erfreut, ['E', '6', f, r, 'OY', t]).
-entry(erfüllen, ['E', '6', f, 'Y', l, @, n]).
-entry(erfüllt, ['E', '6', f, 'Y', l, t]).
+entry(erfuellen, ['E', '6', f, 'Y', l, @, n]).
+entry(erfuellt, ['E', '6', f, 'Y', l, t]).
 entry('Erfurt', ['E', '6', f, 'U', '6', t]).
-entry(ergänzen, ['E', '6', g, 'E', n, ts, @, n]).
-entry('Ergänzung', ['E', '6', g, 'E', n, ts, 'U', 'N']).
+entry(ergaenzen, ['E', '6', g, 'E', n, ts, @, n]).
+entry('Ergaenzung', ['E', '6', g, 'E', n, ts, 'U', 'N']).
 entry(ergeben, ['E', '6', g, 'e:', b, @, n]).
 entry('Ergebnissen', ['E', '6', g, 'e:', p, n, 'I', s, @, n]).
 entry('Ergebnisse', ['E', '6', g, 'e:', p, n, 'I', s, @]).
 entry(ergibt, ['E', '6', g, 'i:', p, t]).
 entry(ergi, ['E', '6', g, i]).
 entry(erhalten, ['E', '6', h, a, l, t, @, n]).
-entry(erhältlich, ['E', '6', h, 'E', l, t, l, 'I', 'C']).
+entry(erhaeltlich, ['E', '6', h, 'E', l, t, l, 'I', 'C']).
 entry(erheblich, ['E', '6', h, 'e:', p, l, 'I', 'C']).
 entry(erholen, ['E', '6', h, 'o:', l, @, n]).
 entry(erholt, ['E', '6', h, 'o:', l, t]).
 entry('Erholung', ['E', '6', h, 'o:', l, 'U', 'N']).
 entry('Erholungspausen', ['E', '6', h, 'o:', l, 'U', 'N', s, p, aU, z, @, n]).
-entry(erhören, ['E', '6', h, '2:', r, @, n]).
+entry(erhoeren, ['E', '6', h, '2:', r, @, n]).
 entry(erinnere, ['E', '6', 'I', n, @, r, @]).
 entry(erinnern, ['E', '6', 'I', n, '6', n]).
 entry(erinnerst, ['E', '6', 'I', n, '6', s, t]).
 entry(erinnert, ['E', '6', 'I', n, '6', t]).
 entry('Erinnerung', ['E', '6', 'I', n, '6', r, 'U', 'N']).
 entry('Erinnerungsschreiben', ['E', '6', 'I', n, @, r, 'U', 'N', s, 'S', r, aI, b, @, n]).
-entry(erkältet, ['E', '6', k, 'E', l, t, @, t]).
+entry(erkaeltet, ['E', '6', k, 'E', l, t, @, t]).
 entry(erkennen, ['E', '6', k, 'E', n, @, n]).
 entry(erkenne, ['E', '6', k, 'E', n, @]).
-entry(erklären, ['E', '6', k, l, 'E:', r, @, n]).
-entry(erkläre, ['E', '6', k, l, 'E:', r, @]).
-entry(erklärt, ['E', '6', k, l, 'E:', '6', t]).
+entry(erklaeren, ['E', '6', k, l, 'E:', r, @, n]).
+entry(erklaere, ['E', '6', k, l, 'E:', r, @]).
+entry(erklaert, ['E', '6', k, l, 'E:', '6', t]).
 entry(erkundigen, ['E', '6', k, 'U', n, d, 'I', g, @, n]).
 entry(erkundige, ['E', '6', k, 'U', n, d, 'I', g, @]).
 entry(erkundigt, ['E', '6', k, 'U', n, d, 'I', 'C', t]).
@@ -3080,17 +3081,17 @@ entry('Erledigungen', ['E', '6', l, 'e:', d, 'I', g, 'U', 'N', @, n]).
 entry('Erledung', ['E', '6', l, 'e:', d, 'U', 'N']).
 entry(erleichtert, ['E', '6', l, aI, 'C', t, '6', t]).
 entry(erle, ['E', '6', l, e]).
-entry('Ermäßigungen', ['E', '6', m, 'E:', s, 'I', g, 'U', 'N', @, n]).
-entry('Ermäßigung', ['E', '6', m, 'E:', s, 'I', g, 'U', 'N']).
-entry(ermöglicht, ['E', '6', m, '2:', k, l, 'I', 'C', t]).
-entry(ermüdend, ['E', '6', m, 'y:', d, @, n, t]).
+entry('Ermaeßigungen', ['E', '6', m, 'E:', s, 'I', g, 'U', 'N', @, n]).
+entry('Ermaeßigung', ['E', '6', m, 'E:', s, 'I', g, 'U', 'N']).
+entry(ermoeglicht, ['E', '6', m, '2:', k, l, 'I', 'C', t]).
+entry(ermuedend, ['E', '6', m, 'y:', d, @, n, t]).
 entry(erne, ['E', '6', n, @]).
 entry(erneut, ['E', '6', n, 'OY', t]).
 entry(ernst, ['E', '6', n, s, t]).
-entry(eröffnetes, ['E', '6', '9', f, n, @, t, @, s]).
-entry(eröffnet, ['E', '6', '9', f, n, @, t]).
-entry('Eröffnung', ['E', '6', '9', f, n, 'U', 'N']).
-entry(erörtern, ['E', '6', '9', '6', t, '6', n]).
+entry(eroeffnetes, ['E', '6', '9', f, n, @, t, @, s]).
+entry(eroeffnet, ['E', '6', '9', f, n, @, t]).
+entry('Eroeffnung', ['E', '6', '9', f, n, 'U', 'N']).
+entry(eroertern, ['E', '6', '9', '6', t, '6', n]).
 entry(erplex, ['E', '6', p, l, 'E', k, s]).
 entry('Erpril', ['E', '6', p, r, 'I', l]).
 entry(erreichbar, ['E', '6', r, aI, 'C', b, 'a:', r]).
@@ -3105,7 +3106,7 @@ entry('Ersatzwoche', ['E', '6', z, a, ts, v, 'O', x, @]).
 entry(erscheinen, ['E', '6', 'S', aI, n, @, n]).
 entry(erscheine, ['E', '6', 'S', aI, n, @]).
 entry(erscheint, ['E', '6', 'S', aI, n, t]).
-entry(erschöpft, ['E', '6', 'S', '9', pf, t]).
+entry(erschoepft, ['E', '6', 'S', '9', pf, t]).
 entry(erschwert, ['E', '6', 'S', v, 'e:', '6', t]).
 entry(erschwinglich, ['E', r, 'S', v, 'I', 'N', l, 'I', 'C']).
 entry(ersetzt, ['E', '6', z, 'E', ts, t]).
@@ -3137,12 +3138,12 @@ entry(erstrecken, ['E', '6', 'S', t, r, 'E', k, @, n]).
 entry(erstreckt, ['E', '6', 'S', t, r, 'E', k, t]).
 entry(ersucht, ['E', '6', z, 'U', x, t]).
 entry(erteilen, ['E', '6', t, aI, l, @, n]).
-entry(erträglich, ['E', '6', t, r, 'E:', k, l, 'I', 'C']).
+entry(ertraeglich, ['E', '6', t, r, 'E:', k, l, 'I', 'C']).
 entry(eruieren, [e, r, u, 'i:', r, @, n]).
 entry(ervorragend, ['E', '6', f, 'o:', '6', r, 'a:', g, @, n, t]).
-entry(erwähnen, ['E', '6', v, 'E:', n, @, n]).
-entry(erwähnte, ['E', '6', v, 'E:', n, t, @]).
-entry(erwähnt, ['E', '6', v, 'E:', n, t]).
+entry(erwaehnen, ['E', '6', v, 'E:', n, @, n]).
+entry(erwaehnte, ['E', '6', v, 'E:', n, t, @]).
+entry(erwaehnt, ['E', '6', v, 'E:', n, t]).
 entry(erwarten, ['E', '6', v, a, r, t, @, n]).
 entry(erwarte, ['E', '6', v, a, r, t, @]).
 entry(erwartet, ['E', '6', v, a, r, t, @, t]).
@@ -3154,10 +3155,10 @@ entry(erwiesen, ['E', '6', v, 'i:', z, @, n]).
 entry(erwischen, ['E', '6', v, 'I', 'S', @, n]).
 entry(erwische, ['E', '6', v, 'I', 'S', @]).
 entry(erwischt, ['E', '6', v, 'I', 'S', t]).
-entry(erwünscht, ['E', '6', v, 'Y', n, 'S', t]).
-entry(erzählen, ['E', '6', ts, 'E:', l, @, n]).
-entry(erzähle, ['E', '6', ts, 'E:', l, @]).
-entry(erzählt, ['E', '6', ts, 'E:', l, t]).
+entry(erwuenscht, ['E', '6', v, 'Y', n, 'S', t]).
+entry(erzaehlen, ['E', '6', ts, 'E:', l, @, n]).
+entry(erzaehle, ['E', '6', ts, 'E:', l, @]).
+entry(erzaehlt, ['E', '6', ts, 'E:', l, t]).
 entry('Erz', ['E', '6', ts]).
 entry('Eschede', ['E', 'S', @, d, @]).
 entry('Eschen', ['E', 'S', @, n]).
@@ -3190,15 +3191,15 @@ entry('Eugene', [j, 'U', d, 'Z', 'i:', n]).
 entry('Eulen', ['OY', l, @, n]).
 entry(euphorisch, ['OY', f, 'o:', r, 'I', 'S']).
 entry('Euro-Card', ['OY', r, o, k, 'a:', t]).
-entry('Europäischen-Hof', ['OY', r, o, p, 'E:', 'I', 'S', @, n, h, 'o:', f]).
+entry('Europaeischen-Hof', ['OY', r, o, p, 'E:', 'I', 'S', @, n, h, 'o:', f]).
 entry('Europa', ['OY', r, 'o:', p, a]).
-entry('Europa-Universität', ['OY', r, 'o:', p, a, u, n, i, v, 'E', '6', z, i, t, 'E:', t]).
+entry('Europa-Universitaet', ['OY', r, 'o:', p, a, u, n, i, v, 'E', '6', z, i, t, 'E:', t]).
 entry('Euro-Preis', ['OY', r, o, p, r, aI, s]).
 entry('Euro', ['OY', r, o]).
 entry('Euros', [j, 'U', r, 'O', z]).
 entry('Eutin', ['OY', t, 'i:', n]).
 entry('Evans', ['i:', v, @, n, z]).
-entry('Eventualitäten', [e, v, 'E', n, t, u, a, l, i, t, 'E:', t, @, n]).
+entry('Eventualitaeten', [e, v, 'E', n, t, u, a, l, i, t, 'E:', t, @, n]).
 entry(eventuellen, [e, v, @, n, t, u, 'E', l, @, n]).
 entry(eventuelle, [e, v, 'E', n, t, u, 'E', l, @]).
 entry(eventuell, [e, v, 'E', n, t, u, 'E', l]).
@@ -3232,21 +3233,21 @@ entry(exzellente, ['E', k, s, ts, 'E', l, 'E', n, t, @]).
 entry(exzellent, ['E', k, s, ts, 'E', l, 'E', n, t]).
 entry(fabelhaft, [f, 'a:', b, @, l, h, a, f, t]).
 entry('Fabrik', [f, a, b, r, 'i:', k]).
-entry('Fächerbad', [f, 'E', 'C', '6', b, 'a:', t]).
+entry('Faecherbad', [f, 'E', 'C', '6', b, 'a:', t]).
 entry('Fach', [f, a, x]).
 entry('Fachgebiet', [f, a, x, g, @, b, 'i:', t]).
 entry(fachlich, [f, a, x, l, 'I', 'C']).
 entry('Fachtagung', [f, a, x, t, 'a:', g, 'U', 'N']).
 entry(fackeln, [f, a, k, @, l, n]).
 entry(fa, [f, a]).
-entry(fä, [f, 'E']).
+entry(fae, [f, 'E']).
 entry('Fahrdauer', [f, 'a:', r, d, aU, '6']).
 entry(fahre, [f, 'a:', r, @]).
 entry(fahren, [f, 'a:', r, @, n]).
 entry('Fahrerei', [f, 'a:', r, @, r, aI]).
 entry('Fahrer', [f, 'a:', r, '6']).
 entry(fahr, [f, 'a:', r]).
-entry(fähr, [f, 'E:', '6']).
+entry(faehr, [f, 'E:', '6']).
 entry('Fahrgelegenheit', [f, 'a:', r, g, @, l, 'e:', g, @, n, h, aI, t]).
 entry('Fahrkarte', [f, 'a:', r, k, 'a:', r, t, @]).
 entry(fahrkarten, [f, 'a:', r, k, a, r, t, @, n]).
@@ -3254,53 +3255,53 @@ entry('Fahrkarten', [f, 'a:', r, k, 'a:', r, t, @, n]).
 entry('Fahrkosten', [f, 'a:', r, k, 'O', s, t, @, n]).
 entry('Fahrkt', [f, 'a:', r, k, t]).
 entry('Fahrplanauszug', [f, 'a:', r, p, l, 'a:', n, aU, s, ts, 'u:', k]).
-entry('Fahrpläne', [f, 'a:', r, p, l, 'E:', n, @]).
-entry('Fahrplänen', [f, 'a:', r, p, l, 'E:', n, @, n]).
+entry('Fahrplaene', [f, 'a:', r, p, l, 'E:', n, @]).
+entry('Fahrplaenen', [f, 'a:', r, p, l, 'E:', n, @, n]).
 entry('Fahrplan', [f, 'a:', r, p, l, 'a:', n]).
 entry('Fahrradtour', [f, 'a:', r, r, 'a:', t, t, 'u:', '6']).
 entry('Fahrscheine', [f, 'a:', r, 'S', aI, n, @]).
 entry('Fahrschein', [f, 'a:', r, 'S', aI, n]).
-entry(fährst, [f, 'E:', '6', s, t]).
+entry(faehrst, [f, 'E:', '6', s, t]).
 entry('Fahrstunden', [f, 'a:', r, 'S', t, 'U', n, d, @, n]).
 entry('Fahrtakt', [f, 'a:', r, t, a, k, t]).
 entry('Fahrtdauer', [f, 'a:', r, t, d, aU, '6']).
 entry('Fahrten', [f, 'a:', r, t, @, n]).
 entry('fahr-Termin', [f, 'a:', r, t, 'E', '6', m, 'i:', n]).
 entry('Fahrt', [f, 'a:', r, t]).
-entry(fährt, [f, 'E:', '6', t]).
+entry(faehrt, [f, 'E:', '6', t]).
 entry('Fahrtkosten', [f, 'a:', r, t, k, 'O', s, t, @, n]).
-entry('Fahrtmöglichkeiten', [f, 'a:', r, t, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
-entry('Fahrtmöglichkeit', [f, 'a:', r, t, m, '2:', k, l, 'I', 'C', k, aI, t]).
+entry('Fahrtmoeglichkeiten', [f, 'a:', r, t, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
+entry('Fahrtmoeglichkeit', [f, 'a:', r, t, m, '2:', k, l, 'I', 'C', k, aI, t]).
 entry('Fahrtzeit', [f, 'a:', r, t, ts, aI, t]).
 entry('Fahrzeit', [f, 'a:', r, ts, aI, t]).
 entry('Fahrzeug', [f, 'a:', r, ts, 'OY', k]).
 entry('Fakten', [f, a, k, t, @, n]).
-entry('Fakultät', [f, a, k, 'U', l, t, 'E:', t]).
+entry('Fakultaet', [f, a, k, 'U', l, t, 'E:', t]).
 entry('Fal', [f, a, l]).
 entry(falle, [f, a, l, @]).
-entry('Fälle', [f, 'E', l, @]).
+entry('Faelle', [f, 'E', l, @]).
 entry(fallen, [f, a, l, @, n]).
-entry('Fällen', [f, 'E', l, @, n]).
-entry(fällig, [f, 'E', l, 'I', 'C']).
+entry('Faellen', [f, 'E', l, @, n]).
+entry(faellig, [f, 'E', l, 'I', 'C']).
 entry(falls, [f, a, l, s]).
-entry(fällt, [f, 'E', l, t]).
+entry(faellt, [f, 'E', l, t]).
 entry(falschen, [f, a, l, 'S', @, n]).
 entry('Falsches', [f, a, l, 'S', @, s]).
 entry(falsch, [f, a, l, 'S']).
 entry('Fam', [f, a, m]).
-entry(familiäre, [f, a, m, i, l, j, 'E:', r, @]).
-entry(familiären, [f, a, m, 'I', l, j, 'E:', r, @, n]).
+entry(familiaere, [f, a, m, i, l, j, 'E:', r, @]).
+entry(familiaeren, [f, a, m, 'I', l, j, 'E:', r, @, n]).
 entry('Familie', [f, a, m, 'i:', l, j, @]).
 entry('Familienfest', [f, a, m, 'i:', l, j, @, n, f, 'E', s, t]).
 entry('Familientreffen', [f, a, m, 'i:', l, j, @, n, t, r, 'E', f, @, n]).
-entry(fände, [f, 'E', n, d, @]).
+entry(faende, [f, 'E', n, d, @]).
 entry(fanden, [f, a, n, d, @, n]).
-entry(fänden, [f, 'E', n, d, @, n]).
+entry(faenden, [f, 'E', n, d, @, n]).
 entry(fand, [f, a, n, t]).
-entry(fän, [f, 'E', n]).
+entry(faen, [f, 'E', n]).
 entry(fange, [f, a, 'N', @]).
 entry(fangen, [f, a, 'N', @, n]).
-entry(fängt, [f, 'E', 'N', t]).
+entry(faengt, [f, 'E', 'N', t]).
 entry('Fasanengarten', [f, a, z, 'a:', n, @, n, g, a, r, t, @, n]).
 entry('Fasching', [f, a, 'S', 'I', 'N']).
 entry('Faschingsbeginn', [f, a, 'S', 'I', 'N', s, b, @, g, 'I', n]).
@@ -3326,7 +3327,7 @@ entry(fba, [f, b, a]).
 entry(fd, [f, t]).
 entry('Feb', [f, 'e:', b]).
 entry('Februar', [f, 'e:', b, r, u, 'a:', r]).
-entry('Februarhälfte', [f, 'e:', b, r, u, 'a:', r, h, 'E', l, f, t, @]).
+entry('Februarhaelfte', [f, 'e:', b, r, u, 'a:', r, h, 'E', l, f, t, @]).
 entry('Februars', [f, 'e:', b, r, u, 'a:', r, s]).
 entry('Februartagen', [f, 'e:', b, r, u, 'a:', r, t, 'a:', g, @, n]).
 entry('Februartermin', [f, 'e:', b, r, u, 'a:', r, t, 'E', '6', m, 'i:', n]).
@@ -3402,7 +3403,7 @@ entry(festzulegen, [f, 'E', s, t, ts, u, l, 'e:', g, @, n]).
 entry(festzumachen, [f, 'E', s, t, ts, u, m, a, x, @, n]).
 entry(festzusetzen, [f, 'E', s, t, ts, u, z, 'E', ts, @, n]).
 entry(fetter, [f, 'E', t, '6']).
-entry(feuchtfröhlich, [f, 'OY', 'C', t, f, r, '2:', l, 'I', 'C']).
+entry(feuchtfroehlich, [f, 'OY', 'C', t, f, r, '2:', l, 'I', 'C']).
 entry('Fichtinger', [f, 'I', 'C', t, 'I', 'N', '6']).
 entry(fiele, [f, 'i:', l, @]).
 entry(fiel, [f, 'i:', l]).
@@ -3424,7 +3425,7 @@ entry('Filialleiterin', [f, i, l, j, 'a:', l, l, aI, t, @, r, 'I', n]).
 entry('Filial-Treffen', [f, i, l, j, 'a:', l, t, r, 'E', f, @, n]).
 entry('Fili', [f, 'i:', l, i]).
 entry('Filjare', [f, i, l, j, 'a:', r, @]).
-entry('Filmaufführung', [f, 'I', l, m, aU, f, f, 'y:', r, 'U', 'N']).
+entry('Filmauffuehrung', [f, 'I', l, m, aU, f, f, 'y:', r, 'U', 'N']).
 entry('Filme', [f, 'I', l, m, @]).
 entry('Film', [f, 'I', l, m]).
 entry('Filofax', [f, aI, l, o, f, a, k, s]).
@@ -3456,7 +3457,7 @@ entry(fist, [f, 'I', s, t]).
 entry(fit, [f, 'I', t]).
 entry('Fitneßcenter', [f, 'I', t, n, 'E', s, s, 'E', n, t, '6']).
 entry('Fitneßprogramm', [f, 'I', t, n, 'E', s, p, r, o, g, r, a, m]).
-entry('Fitneßräumen', [f, 'I', t, n, 'E', s, r, 'OY', m, @, n]).
+entry('Fitneßraeumen', [f, 'I', t, n, 'E', s, r, 'OY', m, @, n]).
 entry('Fitneßraum', [f, 'I', t, n, 'E', s, r, aU, m]).
 entry('Fitneßstudio', [f, 'I', t, n, 'E', s, 'S', t, 'u:', d, j, o]).
 entry(fixe, [f, 'I', k, s, @]).
@@ -3464,7 +3465,7 @@ entry(fix, [f, 'I', k, s]).
 entry(fixieren, [f, 'I', k, s, 'i:', r, @, n]).
 entry(flach, [f, l, a, x]).
 entry('Flammersfeld', [f, l, a, m, '6', s, f, 'E', l, t]).
-entry('Fläschchen', [f, l, 'E', 'S', 'C', @, n]).
+entry('Flaeschchen', [f, l, 'E', 'S', 'C', @, n]).
 entry('Flasche', [f, l, a, 'S', @]).
 entry(fle, [f, l, 'E']).
 entry('Fleischer', [f, l, aI, 'S', '6']).
@@ -3482,32 +3483,32 @@ entry(fliegt, [f, l, 'i:', k, t]).
 entry(flotter, [f, l, 'O', t, '6']).
 entry(flott, [f, l, 'O', t]).
 entry('Flu', [f, l, 'U']).
-entry(flü, [f, l, y]).
-entry('Flü', [f, l, 'y:']).
+entry(flue, [f, l, y]).
+entry('Flue', [f, l, 'y:']).
 entry('Flugangst', [f, l, 'u:', k, a, 'N', s, t]).
 entry('Flugbedingungen', [f, l, 'u:', k, b, @, d, 'I', 'N', 'U', 'N', @, n]).
 entry('Flugbestellung', [f, l, 'u:', k, b, @, 'S', t, 'E', l, 'U', 'N']).
 entry('Flugdaten', [f, l, 'u:', k, d, 'a:', t, @, n]).
 entry('Flugdauer', [f, l, 'u:', k, d, aU, '6']).
-entry('Flüge', [f, l, 'y:', g, @]).
-entry('Flügel', [f, l, 'y:', g, @, l]).
-entry('Flügen', [f, l, 'y:', g, @, n]).
+entry('Fluege', [f, l, 'y:', g, @]).
+entry('Fluegel', [f, l, 'y:', g, @, l]).
+entry('Fluegen', [f, l, 'y:', g, @, n]).
 entry('Flug', [f, l, 'u:', k]).
-entry(flüg, [f, l, 'y:', k]).
+entry(flueg, [f, l, 'y:', k]).
 entry('Fluggesellschaft', [f, l, 'u:', k, g, @, z, 'E', l, 'S', a, f, t]).
 entry('Flughafen-Anfahrt', [f, l, 'u:', k, h, 'a:', f, @, n, a, n, f, 'a:', r, t]).
 entry('Flughafenbus', [f, l, 'u:', k, h, 'a:', f, @, n, b, 'U', s]).
 entry('Flughafen', [f, l, 'u:', k, h, 'a:', f, @, n]).
-entry('Flughäfen', [f, l, 'u:', k, h, 'E:', f, @, n]).
+entry('Flughaefen', [f, l, 'u:', k, h, 'E:', f, @, n]).
 entry('Flughafenhotel', [f, l, 'u:', k, h, 'a:', f, @, n, h, o, t, 'E', l]).
 entry('Flughafenlinie', [f, l, 'u:', k, h, 'a:', f, @, n, l, 'i:', n, j, @]).
 entry('Flughafensachen', [f, l, 'u:', k, h, 'a:', f, @, n, z, a, x, @, n]).
 entry('Flughafens', [f, l, 'u:', k, h, 'a:', f, @, n, s]).
 entry('Flugkarten', [f, l, 'u:', k, k, a, r, t, @, n]).
 entry('Fluglinie', [f, l, 'u:', k, l, 'i:', n, j, @]).
-entry('Flugmöglichkeiten', [f, l, 'u:', k, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
+entry('Flugmoeglichkeiten', [f, l, 'u:', k, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
 entry('Flugnummer', [f, l, 'u:', k, n, 'U', m, '6']).
-entry('Flugpläne', [f, l, 'u:', k, p, l, 'E:', n, @]).
+entry('Flugplaene', [f, l, 'u:', k, p, l, 'E:', n, @]).
 entry('Flugplan', [f, l, 'u:', k, p, l, 'a:', n]).
 entry('Flugplatz', [f, l, 'u:', k, p, l, a, ts]).
 entry('Flugreise', [f, l, 'u:', k, r, aI, z, @]).
@@ -3524,7 +3525,7 @@ entry('Flugzeig', [f, l, 'u:', k, ts, aI, k]).
 entry('Flugzeiten', [f, l, 'u:', k, ts, aI, t, @, n]).
 entry('Flugzeit', [f, l, 'u:', k, ts, aI, t]).
 entry('Flugzeu', [f, l, 'u:', k, ts, 'OY']).
-entry('Flugzeugabstürzen', [f, l, 'u:', k, ts, 'OY', k, a, p, 'S', t, 'Y', '6', ts, @, n]).
+entry('Flugzeugabstuerzen', [f, l, 'u:', k, ts, 'OY', k, a, p, 'S', t, 'Y', '6', ts, @, n]).
 entry('Flugzeuge', [f, l, 'u:', k, ts, 'OY', g, @]).
 entry('Flugzeugen', [f, l, 'u:', k, ts, 'OY', g, @, n]).
 entry('Flugzeug-Essen', [f, l, 'u:', k, ts, 'OY', k, 'E', s, @, n]).
@@ -3532,7 +3533,7 @@ entry('Flugzeug', [f, l, 'u:', k, ts, 'OY', k]).
 entry('Flugzeugverbindung', [f, l, 'u:', k, ts, 'OY', k, f, 'E', '6', b, 'I', n, d, 'U', 'N']).
 entry('Flugzeut', [f, l, 'u:', k, ts, 'OY', t]).
 entry('Fluß', [f, l, 'U', s]).
-entry(flüssig, [f, l, 'Y', s, 'I', 'C']).
+entry(fluessig, [f, l, 'Y', s, 'I', 'C']).
 entry(flyer, [f, l, aI, '6']).
 entry('Fody', [f, 'o:', d, i]).
 entry('Fohrer', [f, 'o:', r, '6']).
@@ -3548,14 +3549,14 @@ entry('Folgewoche', [f, 'O', l, g, @, v, 'O', x, @]).
 entry('Folgezeit', [f, 'O', l, g, @, ts, aI, t]).
 entry(folglich, [f, 'O', l, k, l, 'I', 'C']).
 entry(folgt, [f, 'O', l, k, t]).
-entry(föls, [f, '9', l, s]).
+entry(foels, [f, '9', l, s]).
 entry('Fora', [f, 'o:', r, a]).
 entry('Fora-Hotel', [f, 'o:', r, a, h, o, t, 'E', l]).
 entry('Formalia', [f, 'O', '6', m, 'a:', l, j, a]).
-entry('Formalitäten', [f, 'O', '6', m, a, l, i, t, 'E:', t, @, n]).
+entry('Formalitaeten', [f, 'O', '6', m, a, l, i, t, 'E:', t, @, n]).
 entry('Formel', [f, 'O', '6', m, @, l]).
 entry('Form', [f, 'O', '6', m]).
-entry(förmlich, [f, '9', '6', m, l, 'I', 'C']).
+entry(foermlich, [f, '9', '6', m, l, 'I', 'C']).
 entry('Formulare', [f, 'O', '6', m, u, l, 'a:', r, @]).
 entry('Fortbildung', [f, 'O', '6', t, b, 'I', l, d, 'U', 'N']).
 entry('Fortbildungsreihe', [f, 'O', '6', t, b, 'I', l, d, 'U', 'N', s, r, aI, @]).
@@ -3581,14 +3582,14 @@ entry('Frankfurter', [f, r, a, 'N', k, f, 'U', '6', t, '6']).
 entry('Frankfurt', [f, r, a, 'N', k, f, 'U', '6', t]).
 entry('Frauen', [f, r, aU, @, n]).
 entry('Frau', [f, r, aU]).
-entry('Fräulein', [f, r, 'OY', l, aI, n]).
+entry('Fraeulein', [f, r, 'OY', l, aI, n]).
 entry('Fred', [f, r, 'e:', t]).
 entry('Freiburg', [f, r, aI, b, 'U', '6', k]).
 entry(freie, [f, r, aI, @]).
 entry(freien, [f, r, aI, @, n]).
 entry(freier, [f, r, aI, '6']).
 entry(freies, [f, r, aI, @, s]).
-entry('Freiflüge', [f, r, aI, f, l, 'y:', g, @]).
+entry('Freifluege', [f, r, aI, f, l, 'y:', g, @]).
 entry('Freiflug', [f, r, aI, f, l, 'u:', k]).
 entry(frei, [f, r, aI]).
 entry(freigehalten, [f, r, aI, g, @, h, a, l, t, @, n]).
@@ -3596,7 +3597,7 @@ entry(freigestellt, [f, r, aI, g, @, 'S', t, 'E', l, t]).
 entry(freihabe, [f, r, aI, h, 'a:', b, @]).
 entry(freihaben, [f, r, aI, h, 'a:', b, @, n]).
 entry(freihalten, [f, r, aI, h, a, l, t, @, n]).
-entry(freihätten, [f, r, aI, h, 'E', t, @, n]).
+entry(freihaetten, [f, r, aI, h, 'E', t, @, n]).
 entry('Freiheit', [f, r, aI, h, aI, t]).
 entry(freilassen, [f, r, aI, l, a, s, @, n]).
 entry(freilich, [f, r, aI, l, 'I', 'C']).
@@ -3604,7 +3605,7 @@ entry('Freilichtkino', [f, r, aI, l, 'I', 'C', t, k, 'i:', n, o]).
 entry('Freilichttheater', [f, r, aI, l, 'I', 'C', t, t, e, 'a:', t, '6']).
 entry(freimache, [f, r, aI, m, a, x, @]).
 entry(freimachen, [f, r, aI, m, a, x, @, n]).
-entry('Freiräume', [f, r, aI, r, 'OY', m, @]).
+entry('Freiraeume', [f, r, aI, r, 'OY', m, @]).
 entry('Freiraum', [f, r, aI, r, aU, m]).
 entry('Freisinger', [f, r, aI, z, 'I', 'N', '6']).
 entry(freita, [f, r, aI, t, a]).
@@ -3615,7 +3616,7 @@ entry(freiwilligen, [f, r, aI, v, 'I', l, 'I', g, @, n]).
 entry('Freizeitangebot', [f, r, aI, ts, aI, t, a, n, g, @, b, 'o:', t]).
 entry('Freizeit', [f, r, aI, ts, aI, t]).
 entry('Freizeitgestaltung', [f, r, aI, ts, aI, t, g, @, 'S', t, a, l, t, 'U', 'N']).
-entry('Freizeitmöglichkeiten', [f, r, aI, ts, aI, t, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
+entry('Freizeitmoeglichkeiten', [f, r, aI, ts, aI, t, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
 entry('Freizeitraum', [f, r, aI, ts, aI, t, r, aU, m]).
 entry(freizuhalten, [f, r, aI, ts, u, h, a, l, t, @, n]).
 entry(fremde, [f, r, 'E', m, d, @]).
@@ -3662,107 +3663,107 @@ entry(frohes, [f, r, 'o:', @, s]).
 entry('Fronleichnam', [f, r, 'o:', n, l, aI, 'C', n, 'a:', m]).
 entry('Fronleichnamwoche', [f, r, 'o:', n, l, aI, 'C', n, 'a:', m, v, 'O', x, @]).
 entry(fruchtbarer, [f, r, 'U', x, t, b, 'a:', r, '6']).
-entry('Früchte', [f, r, 'Y', 'C', t, @]).
-entry('Frü', [f, r, 'Y']).
-entry('Frühaufsteher', [f, r, 'y:', aU, f, 'S', t, 'e:', '6']).
-entry('Frühaufsteherin', [f, r, 'y:', aU, f, 'S', t, 'e:', @, r, 'I', n]).
-entry('Frühaufsteh-Typ', [f, r, 'y:', aU, f, 'S', t, 'e:', '6', t, 'y:', p]).
-entry(frühe, [f, r, 'y:', @]).
-entry(frühen, [f, r, 'y:', @, n]).
-entry(frühere, [f, r, 'y:', @, r, @]).
-entry(früheren, [f, r, 'y:', @, r, @, n]).
-entry(früherer, [f, r, 'y:', @, r, '6']).
-entry(früher, [f, r, 'y:', '6']).
-entry('Frühes', [f, r, 'y:', @, s]).
-entry(früheste, [f, r, 'y:', @, s, t, @]).
-entry(frühesten, [f, r, 'y:', @, s, t, @, n]).
-entry(frühestens, [f, r, 'y:', @, s, t, @, n, s]).
-entry(frühestmögliche, [f, r, 'y:', @, s, t, m, '2:', k, l, 'I', 'C', @]).
-entry(früh, [f, r, y]).
-entry('Früh', [f, r, 'y:']).
-entry('Frühjahr', [f, r, 'y:', j, 'a:', r]).
-entry('Frühling', [f, r, 'y:', l, 'I', 'N']).
-entry('Frühlingsanfang', [f, r, 'y:', l, 'I', 'N', s, a, n, f, a, 'N']).
-entry(frühmorgens, [f, r, 'y:', m, 'O', '6', g, @, n, s]).
-entry(frühste, [f, r, 'y:', s, t, @]).
-entry(frühsten, [f, r, 'y:', s, t, @, n]).
-entry(frühstens, [f, r, 'y:', s, t, @, n, s]).
-entry(frühst, [f, r, 'y:', 'S', t]).
-entry('Frühstückchen', [f, r, 'y:', 'S', t, 'Y', k, 'C', @, n]).
-entry(frühstücke, [f, r, 'y:', 'S', t, 'Y', k, @]).
-entry(frühstücken, [f, r, y, 'S', t, 'Y', k, @, n]).
-entry('Frühstücken', [f, r, 'y:', 'S', t, 'Y', k, @, n]).
-entry('Frühstück', [f, r, 'y:', 'S', t, 'Y', k]).
-entry('Frühstücksbuffet', [f, r, 'y:', 'S', t, 'Y', k, s, b, 'Y', f, 'e:']).
-entry('Frühstücks', [f, r, 'y:', 'S', t, 'Y', k, s]).
-entry(frühzeitig, [f, r, 'y:', ts, aI, t, 'I', 'C']).
-entry(füf, [f, 'Y', f]).
+entry('Fruechte', [f, r, 'Y', 'C', t, @]).
+entry('Frue', [f, r, 'Y']).
+entry('Fruehaufsteher', [f, r, 'y:', aU, f, 'S', t, 'e:', '6']).
+entry('Fruehaufsteherin', [f, r, 'y:', aU, f, 'S', t, 'e:', @, r, 'I', n]).
+entry('Fruehaufsteh-Typ', [f, r, 'y:', aU, f, 'S', t, 'e:', '6', t, 'y:', p]).
+entry(fruehe, [f, r, 'y:', @]).
+entry(fruehen, [f, r, 'y:', @, n]).
+entry(fruehere, [f, r, 'y:', @, r, @]).
+entry(frueheren, [f, r, 'y:', @, r, @, n]).
+entry(frueherer, [f, r, 'y:', @, r, '6']).
+entry(frueher, [f, r, 'y:', '6']).
+entry('Fruehes', [f, r, 'y:', @, s]).
+entry(frueheste, [f, r, 'y:', @, s, t, @]).
+entry(fruehesten, [f, r, 'y:', @, s, t, @, n]).
+entry(fruehestens, [f, r, 'y:', @, s, t, @, n, s]).
+entry(fruehestmoegliche, [f, r, 'y:', @, s, t, m, '2:', k, l, 'I', 'C', @]).
+entry(frueh, [f, r, y]).
+entry('Frueh', [f, r, 'y:']).
+entry('Fruehjahr', [f, r, 'y:', j, 'a:', r]).
+entry('Fruehling', [f, r, 'y:', l, 'I', 'N']).
+entry('Fruehlingsanfang', [f, r, 'y:', l, 'I', 'N', s, a, n, f, a, 'N']).
+entry(fruehmorgens, [f, r, 'y:', m, 'O', '6', g, @, n, s]).
+entry(fruehste, [f, r, 'y:', s, t, @]).
+entry(fruehsten, [f, r, 'y:', s, t, @, n]).
+entry(fruehstens, [f, r, 'y:', s, t, @, n, s]).
+entry(fruehst, [f, r, 'y:', 'S', t]).
+entry('Fruehstueckchen', [f, r, 'y:', 'S', t, 'Y', k, 'C', @, n]).
+entry(fruehstuecke, [f, r, 'y:', 'S', t, 'Y', k, @]).
+entry(fruehstuecken, [f, r, y, 'S', t, 'Y', k, @, n]).
+entry('Fruehstuecken', [f, r, 'y:', 'S', t, 'Y', k, @, n]).
+entry('Fruehstueck', [f, r, 'y:', 'S', t, 'Y', k]).
+entry('Fruehstuecksbuffet', [f, r, 'y:', 'S', t, 'Y', k, s, b, 'Y', f, 'e:']).
+entry('Fruehstuecks', [f, r, 'y:', 'S', t, 'Y', k, s]).
+entry(fruehzeitig, [f, r, 'y:', ts, aI, t, 'I', 'C']).
+entry(fuef, [f, 'Y', f]).
 entry(fu, [f, u]).
 entry('Fu', [f, 'u:']).
-entry(fü, [f, y]).
-entry('Fü', [f, 'y:']).
-entry(fügt, [f, 'y:', k, t]).
-entry(fühle, [f, 'y:', l, @]).
-entry(führende, [f, 'y:', r, @, n, d, @]).
+entry(fue, [f, y]).
+entry('Fue', [f, 'y:']).
+entry(fuegt, [f, 'y:', k, t]).
+entry(fuehle, [f, 'y:', l, @]).
+entry(fuehrende, [f, 'y:', r, @, n, d, @]).
 entry(fuhren, [f, 'u:', r, @, n]).
-entry(führen, [f, 'y:', r, @, n]).
-entry('Führer', [f, 'y:', r, '6']).
-entry('Führerschein', [f, 'y:', r, '6', 'S', aI, n]).
+entry(fuehren, [f, 'y:', r, @, n]).
+entry('Fuehrer', [f, 'y:', r, '6']).
+entry('Fuehrerschein', [f, 'y:', r, '6', 'S', aI, n]).
 entry(fuhr, [f, 'u:', '6']).
-entry(führt, [f, 'y:', '6', t]).
-entry('Führungskräfte', [f, 'y:', r, 'U', 'N', s, k, r, 'E', f, t, @]).
+entry(fuehrt, [f, 'y:', '6', t]).
+entry('Fuehrungskraefte', [f, 'y:', r, 'U', 'N', s, k, r, 'E', f, t, @]).
 entry('Fulda', [f, 'U', l, d, a]).
-entry(füm, [f, 'Y', m]).
-entry(fündig, [f, 'Y', n, d, 'I', 'C']).
-entry(fünfeinhalb, [f, 'Y', n, f, aI, n, h, a, l, p]).
-entry(fünf, [f, 'Y', n, f]).
-entry(fünfhundert, [f, 'Y', n, f, h, 'U', n, d, '6', t]).
-entry(fünftädi, [f, 'Y', n, f, t, 'E:', d, 'I']).
-entry(fünftädigen, [f, 'Y', n, f, t, 'E:', d, 'I', g, @, n]).
-entry('Fünf-Tages-Blöcke', [f, 'Y', n, f, t, 'a:', g, @, s, b, l, '9', k, @]).
-entry(fünftäges, [f, 'Y', n, f, t, 'E:', g, @, s]).
-entry('Fünf-Tages-Seminar', [f, 'Y', n, f, t, 'a:', g, @, s, z, e, m, i, n, 'a:', r]).
-entry('Fünf-Tages-Spanne', [f, 'Y', n, f, t, 'a:', g, @, 'S', p, a, n, @]).
-entry('Fünf-Tages-Zeitraum', [f, 'Y', n, f, t, 'a:', g, @, s, ts, aI, t, r, aU, m]).
-entry(fünftägies, [f, 'Y', n, f, t, 'E:', g, 'I', @, s]).
-entry(fünftägi, [f, 'Y', n, f, t, 'E:', g, 'I']).
-entry(fünftägige, [f, 'Y', n, f, t, 'E:', g, 'I', g, @]).
-entry(fünftägigen, [f, 'Y', n, f, t, 'E:', g, 'I', g, @, n]).
-entry(fünftägiger, [f, 'Y', n, f, t, 'E:', g, 'I', g, '6']).
-entry(fünftägiges, [f, 'Y', n, f, t, 'E:', g, 'I', g, @, s]).
-entry(fünftägig, [f, 'Y', n, f, t, 'E:', g, 'I', 'C']).
-entry(fünftägiriges, [f, 'Y', n, f, t, 'E:', g, 'I', r, 'I', g, @, s]).
-entry(fünftäige, [f, 'Y', n, f, t, 'E:', 'I', g, @]).
-entry(fünfte, [f, 'Y', n, f, t, @]).
-entry(fünften, [f, 'Y', n, f, t, @, n]).
-entry(fünfter, [f, 'Y', n, f, t, '6']).
-entry('Fünfter-Sechster-Termin', [f, 'Y', n, f, t, '6', z, 'E', k, s, t, '6', t, 'E', '6', m, 'i:', n]).
-entry('Fünf-Uhr-Zug', [f, 'Y', n, f, 'u:', '6', ts, 'u:', k]).
-entry(fünfundachtzig, [f, 'Y', n, f, 'U', n, t, a, x, ts, 'I', 'C']).
-entry(fünfunddreißig, [f, 'Y', n, f, 'U', n, t, d, r, aI, s, 'I', 'C']).
-entry(fünfundfünfzig, [f, 'Y', n, f, 'U', n, t, f, 'Y', n, f, ts, 'I', 'C']).
-entry(fünfund, [f, 'Y', n, f, 'U', n, t]).
-entry(fünfundneunzig, [f, 'Y', n, f, 'U', n, t, n, 'OY', n, ts, 'I', 'C']).
-entry(fünfundneunzigsten, [f, 'Y', n, f, 'U', n, t, n, 'OY', n, ts, 'I', 'C', s, t, @, n]).
-entry(fünfundsechzig, [f, 'Y', n, f, 'U', n, t, z, 'E', 'C', ts, 'I', 'C']).
-entry(fünfundsiebzig, [f, 'Y', n, f, 'U', n, t, z, 'i:', p, ts, 'I', 'C']).
-entry(fünfundv, [f, 'Y', n, f, 'U', n, t, f]).
-entry(fünfundvierzi, [f, 'Y', n, f, 'U', n, t, f, 'I', '6', ts, 'I']).
-entry(fünfundvierzig, [f, 'Y', n, f, 'U', n, t, f, 'I', '6', ts, 'I', 'C']).
-entry(fünfundzwanzig, [f, 'Y', n, f, 'U', n, t, ts, v, a, n, ts, 'I', 'C']).
-entry(fünfundzwanzigs, [f, 'Y', n, f, 'U', n, t, ts, v, a, n, ts, 'I', 'C', s]).
-entry(fünfundzwanzigste, [f, 'Y', n, f, 'U', n, t, ts, v, a, n, ts, 'I', 'C', s, t, @]).
-entry(fünfundzwanzigsten, [f, 'Y', n, f, 'U', n, t, ts, v, a, n, ts, 'I', 'C', s, t, @, n]).
-entry(fünfundzwanzigster, [f, 'Y', n, f, 'U', n, t, ts, v, a, n, ts, 'I', 'C', s, t, '6']).
-entry(fünfun, [f, 'Y', n, f, 'U', n]).
-entry(fün, [f, 'Y', n]).
-entry(fünfzehn, [f, 'Y', n, f, ts, 'e:', n]).
-entry(fünfzehnte, [f, 'Y', n, f, ts, 'e:', n, t, @]).
-entry(fünfzehnten, [f, 'Y', n, f, ts, 'e:', n, t, @, n]).
-entry(fünfzehnter, [f, 'Y', n, f, ts, 'e:', n, t, '6']).
-entry(fünfz, [f, 'Y', n, f, ts]).
-entry(fünfzig, [f, 'Y', n, f, ts, 'I', 'C']).
-entry(fünfzigste, [f, 'Y', n, f, ts, 'I', 'C', s, t, @]).
+entry(fuem, [f, 'Y', m]).
+entry(fuendig, [f, 'Y', n, d, 'I', 'C']).
+entry(fuenfeinhalb, [f, 'Y', n, f, aI, n, h, a, l, p]).
+entry(fuenf, [f, 'Y', n, f]).
+entry(fuenfhundert, [f, 'Y', n, f, h, 'U', n, d, '6', t]).
+entry(fuenftaedi, [f, 'Y', n, f, t, 'E:', d, 'I']).
+entry(fuenftaedigen, [f, 'Y', n, f, t, 'E:', d, 'I', g, @, n]).
+entry('Fuenf-Tages-Bloecke', [f, 'Y', n, f, t, 'a:', g, @, s, b, l, '9', k, @]).
+entry(fuenftaeges, [f, 'Y', n, f, t, 'E:', g, @, s]).
+entry('Fuenf-Tages-Seminar', [f, 'Y', n, f, t, 'a:', g, @, s, z, e, m, i, n, 'a:', r]).
+entry('Fuenf-Tages-Spanne', [f, 'Y', n, f, t, 'a:', g, @, 'S', p, a, n, @]).
+entry('Fuenf-Tages-Zeitraum', [f, 'Y', n, f, t, 'a:', g, @, s, ts, aI, t, r, aU, m]).
+entry(fuenftaegies, [f, 'Y', n, f, t, 'E:', g, 'I', @, s]).
+entry(fuenftaegi, [f, 'Y', n, f, t, 'E:', g, 'I']).
+entry(fuenftaegige, [f, 'Y', n, f, t, 'E:', g, 'I', g, @]).
+entry(fuenftaegigen, [f, 'Y', n, f, t, 'E:', g, 'I', g, @, n]).
+entry(fuenftaegiger, [f, 'Y', n, f, t, 'E:', g, 'I', g, '6']).
+entry(fuenftaegiges, [f, 'Y', n, f, t, 'E:', g, 'I', g, @, s]).
+entry(fuenftaegig, [f, 'Y', n, f, t, 'E:', g, 'I', 'C']).
+entry(fuenftaegiriges, [f, 'Y', n, f, t, 'E:', g, 'I', r, 'I', g, @, s]).
+entry(fuenftaeige, [f, 'Y', n, f, t, 'E:', 'I', g, @]).
+entry(fuenfte, [f, 'Y', n, f, t, @]).
+entry(fuenften, [f, 'Y', n, f, t, @, n]).
+entry(fuenfter, [f, 'Y', n, f, t, '6']).
+entry('Fuenfter-Sechster-Termin', [f, 'Y', n, f, t, '6', z, 'E', k, s, t, '6', t, 'E', '6', m, 'i:', n]).
+entry('Fuenf-Uhr-Zug', [f, 'Y', n, f, 'u:', '6', ts, 'u:', k]).
+entry(fuenfundachtzig, [f, 'Y', n, f, 'U', n, t, a, x, ts, 'I', 'C']).
+entry(fuenfunddreißig, [f, 'Y', n, f, 'U', n, t, d, r, aI, s, 'I', 'C']).
+entry(fuenfundfuenfzig, [f, 'Y', n, f, 'U', n, t, f, 'Y', n, f, ts, 'I', 'C']).
+entry(fuenfund, [f, 'Y', n, f, 'U', n, t]).
+entry(fuenfundneunzig, [f, 'Y', n, f, 'U', n, t, n, 'OY', n, ts, 'I', 'C']).
+entry(fuenfundneunzigsten, [f, 'Y', n, f, 'U', n, t, n, 'OY', n, ts, 'I', 'C', s, t, @, n]).
+entry(fuenfundsechzig, [f, 'Y', n, f, 'U', n, t, z, 'E', 'C', ts, 'I', 'C']).
+entry(fuenfundsiebzig, [f, 'Y', n, f, 'U', n, t, z, 'i:', p, ts, 'I', 'C']).
+entry(fuenfundv, [f, 'Y', n, f, 'U', n, t, f]).
+entry(fuenfundvierzi, [f, 'Y', n, f, 'U', n, t, f, 'I', '6', ts, 'I']).
+entry(fuenfundvierzig, [f, 'Y', n, f, 'U', n, t, f, 'I', '6', ts, 'I', 'C']).
+entry(fuenfundzwanzig, [f, 'Y', n, f, 'U', n, t, ts, v, a, n, ts, 'I', 'C']).
+entry(fuenfundzwanzigs, [f, 'Y', n, f, 'U', n, t, ts, v, a, n, ts, 'I', 'C', s]).
+entry(fuenfundzwanzigste, [f, 'Y', n, f, 'U', n, t, ts, v, a, n, ts, 'I', 'C', s, t, @]).
+entry(fuenfundzwanzigsten, [f, 'Y', n, f, 'U', n, t, ts, v, a, n, ts, 'I', 'C', s, t, @, n]).
+entry(fuenfundzwanzigster, [f, 'Y', n, f, 'U', n, t, ts, v, a, n, ts, 'I', 'C', s, t, '6']).
+entry(fuenfun, [f, 'Y', n, f, 'U', n]).
+entry(fuen, [f, 'Y', n]).
+entry(fuenfzehn, [f, 'Y', n, f, ts, 'e:', n]).
+entry(fuenfzehnte, [f, 'Y', n, f, ts, 'e:', n, t, @]).
+entry(fuenfzehnten, [f, 'Y', n, f, ts, 'e:', n, t, @, n]).
+entry(fuenfzehnter, [f, 'Y', n, f, ts, 'e:', n, t, '6']).
+entry(fuenfz, [f, 'Y', n, f, ts]).
+entry(fuenfzig, [f, 'Y', n, f, ts, 'I', 'C']).
+entry(fuenfzigste, [f, 'Y', n, f, ts, 'I', 'C', s, t, @]).
 entry(funktionell, [f, 'U', 'N', k, ts, j, o, n, 'E', l]).
 entry('Funktionen', [f, 'U', 'N', k, ts, j, 'o:', n, @, n]).
 entry(funktionieren, [f, 'U', 'N', k, ts, j, o, n, 'i:', r, @, n]).
@@ -3771,45 +3772,45 @@ entry('Funkturm', [f, 'U', 'N', k, t, 'U', '6', m]).
 entry(furch, [f, 'U', '6', 'C']).
 entry(furchtbare, [f, 'U', '6', 'C', t, b, 'a:', r, @]).
 entry(furchtbar, [f, 'U', '6', 'C', t, b, 'a:', r]).
-entry(fürchte, [f, 'Y', '6', 'C', t, @]).
-entry(fürchterlichen, [f, 'Y', '6', 'C', t, '6', l, 'I', 'C', @, n]).
-entry(fürchterlich, [f, 'Y', '6', 'C', t, '6', l, 'I', 'C']).
-entry(füreinander, [f, 'y:', '6', aI, n, a, n, d, '6']).
-entry(für, [f, 'y:', '6']).
-entry(fürn, [f, 'y:', '6', n]).
-entry(fürs, [f, 'y:', '6', s]).
-entry('Fürth', [f, 'Y', '6', t]).
-entry('Füße', [f, 'y:', s, @]).
+entry(fuerchte, [f, 'Y', '6', 'C', t, @]).
+entry(fuerchterlichen, [f, 'Y', '6', 'C', t, '6', l, 'I', 'C', @, n]).
+entry(fuerchterlich, [f, 'Y', '6', 'C', t, '6', l, 'I', 'C']).
+entry(fuereinander, [f, 'y:', '6', aI, n, a, n, d, '6']).
+entry(fuer, [f, 'y:', '6']).
+entry(fuern, [f, 'y:', '6', n]).
+entry(fuers, [f, 'y:', '6', s]).
+entry('Fuerth', [f, 'Y', '6', t]).
+entry('Fueße', [f, 'y:', s, @]).
 entry('Fuß', [f, 'u:', s]).
-entry('Fußgängerzone', [f, 'u:', s, g, 'E', 'N', '6', ts, 'o:', n, @]).
+entry('Fußgaengerzone', [f, 'u:', s, g, 'E', 'N', '6', ts, 'o:', n, @]).
 entry('Fußweg', [f, 'u:', s, v, 'e:', k]).
 entry(fzehnten, [f, ts, 'e:', n, t, @, n]).
 entry('Gabe', [g, 'a:', b, @]).
-entry(gäbe, [g, 'E:', b, @]).
+entry(gaebe, [g, 'E:', b, @]).
 entry(gab, [g, 'a:', p]).
 entry(ga, [g, a]).
-entry(gä, [g, 'E:']).
-entry(gähnende, [g, 'E:', n, @, n, d, @]).
+entry(gae, [g, 'E:']).
+entry(gaehnende, [g, 'E:', n, @, n, d, @]).
 entry('Galerie-am-Stift', [g, 'E', l, @, r, 'I', a, m, s, t, 'I', f, t]).
 entry('Galerien', [g, a, l, @, r, 'i:', @, n]).
 entry(game, [g, e, 'I', m]).
 entry(gan, [g, a, n]).
-entry('Gänge', [g, 'E', 'N', @]).
+entry('Gaenge', [g, 'E', 'N', @]).
 entry('Gang', [g, a, 'N']).
-entry(gängigen, [g, 'E', 'N', 'I', g, @, n]).
+entry(gaengigen, [g, 'E', 'N', 'I', g, @, n]).
 entry('Gans', [g, a, n, s]).
 entry(ganze, [g, a, n, ts, @]).
-entry('Gänze', [g, 'E', n, ts, @]).
+entry('Gaenze', [g, 'E', n, ts, @]).
 entry(ganzen, [g, a, n, ts, @, n]).
 entry(ganzer, [g, a, n, ts, '6']).
 entry(ganzes, [g, a, n, ts, @, s]).
 entry(ganz, [g, a, n, ts]).
-entry(gänzlich, [g, 'E', n, ts, l, 'I', 'C']).
-entry(ganztägige, [g, a, n, ts, t, 'E:', g, 'I', g, @]).
-entry(ganztägiger, [g, a, n, ts, t, 'E:', g, 'I', g, '6']).
-entry(ganztägiges, [g, a, n, ts, t, 'E:', g, 'I', g, @, s]).
+entry(gaenzlich, [g, 'E', n, ts, l, 'I', 'C']).
+entry(ganztaegige, [g, a, n, ts, t, 'E:', g, 'I', g, @]).
+entry(ganztaegiger, [g, a, n, ts, t, 'E:', g, 'I', g, '6']).
+entry(ganztaegiges, [g, a, n, ts, t, 'E:', g, 'I', g, @, s]).
 entry(ganztagig, [g, a, n, ts, t, 'a:', g, 'I', 'C']).
-entry(ganztägig, [g, a, n, ts, t, 'E:', g, 'I', 'C']).
+entry(ganztaegig, [g, a, n, ts, t, 'E:', g, 'I', 'C']).
 entry(ganztags, [g, a, n, ts, t, 'a:', k, s]).
 entry('Ganztagsseminare', [g, a, n, ts, t, 'a:', k, s, z, e, m, i, n, 'a:', r, @]).
 entry('Garage', [g, a, r, 'a:', 'Z', @]).
@@ -3818,7 +3819,7 @@ entry(garantieren, [g, a, r, a, n, t, 'i:', r, @, n]).
 entry(garantiert, [g, a, r, a, n, t, 'i:', '6', t]).
 entry(gar, [g, 'a:', r]).
 entry(garten, [g, a, r, t, @, n]).
-entry('Gäste', [g, 'E', s, t, @]).
+entry('Gaeste', [g, 'E', s, t, @]).
 entry('Gasthaus', [g, a, s, t, h, aU, s]).
 entry('Gastspiele', [g, a, s, tS, p, 'i:', l, @]).
 entry('Gastspiel', [g, a, s, tS, p, 'i:', l]).
@@ -3828,15 +3829,15 @@ entry('Gavlas', [g, a, f, l, a, s]).
 entry('Gayst', [g, aI, s, t]).
 entry(geahnt, [g, @, 'a:', n, t]).
 entry(gearbeitet, [g, @, a, r, b, aI, t, @, t]).
-entry(geäußert, [g, @, 'OY', s, '6', t]).
-entry('Gebäude', [g, @, b, 'OY', d, @]).
-entry('Gebäudes', [g, @, b, 'OY', d, @, s]).
+entry(geaeußert, [g, @, 'OY', s, '6', t]).
+entry('Gebaeude', [g, @, b, 'OY', d, @]).
+entry('Gebaeudes', [g, @, b, 'OY', d, @, s]).
 entry(gebaut, [g, @, b, aU, t]).
 entry(gebe, [g, 'e:', b, @]).
 entry(geben, [g, 'e:', b, @, n]).
 entry(gebeten, [g, @, b, 'e:', t, @, n]).
 entry('Gebieten', [g, @, b, 'i:', t, @, n]).
-entry(geblättert, [g, @, b, l, 'E', t, '6', t]).
+entry(geblaettert, [g, @, b, l, 'E', t, '6', t]).
 entry(geblieben, [g, @, b, l, 'i:', b, @, n]).
 entry(gebong, [g, @, b, 'O', 'N']).
 entry(gebongt, [g, @, b, 'O', 'N', t]).
@@ -3847,14 +3848,14 @@ entry(gebrauchen, [g, @, b, r, aU, x, @, n]).
 entry(gebraut, [g, @, b, r, aU, t]).
 entry(gebucht, [g, @, b, 'u:', x, t]).
 entry(gebunden, [g, @, b, 'U', n, d, @, n]).
-entry(gebürtiger, [g, @, b, 'Y', '6', t, 'I', g, '6']).
+entry(gebuertiger, [g, @, b, 'Y', '6', t, 'I', g, '6']).
 entry('Geburtsstadt', [g, @, b, 'u:', '6', ts, 'S', t, a, t]).
 entry('Geburtstag', [g, @, b, 'u:', '6', ts, t, 'a:', k]).
 entry('Geburtstagsgeschenke', [g, @, b, 'u:', '6', ts, t, 'a:', k, s, g, @, 'S', 'E', 'N', k, @]).
 entry('Geburtstagskuchen', [g, @, b, 'u:', '6', ts, t, 'a:', k, s, k, 'u:', x, @, n]).
 entry(gedachten, [g, @, d, a, x, t, @, n]).
 entry(gedacht, [g, @, d, a, x, t]).
-entry('Gedächtnis', [g, @, d, 'E', 'C', t, n, 'I', s]).
+entry('Gedaechtnis', [g, @, d, 'E', 'C', t, n, 'I', s]).
 entry('Gedanke', [g, @, d, a, 'N', k, @]).
 entry('Gedanken', [g, @, d, a, 'N', k, @, n]).
 entry(gedauert, [g, @, d, aU, '6', t]).
@@ -3862,7 +3863,7 @@ entry(geden, [g, @, d, 'E', 'N']).
 entry(gedenken, [g, @, d, 'E', 'N', k, @, n]).
 entry(gediegen, [g, @, d, 'i:', g, @, n]).
 entry(gedient, [g, @, d, 'i:', n, t]).
-entry(gedrängt, [g, @, d, r, 'E', 'N', t]).
+entry(gedraengt, [g, @, d, r, 'E', 'N', t]).
 entry(gedruckt, [g, @, d, r, 'U', k, t]).
 entry(geeignete, [g, @, aI, g, n, @, t, @]).
 entry(geeigneten, [g, @, aI, g, n, @, t, @, n]).
@@ -3871,9 +3872,9 @@ entry(geeignet, [g, @, aI, g, n, @, t]).
 entry(geeinigt, [g, @, aI, n, 'I', 'C', t]).
 entry(gefahren, [g, @, f, 'a:', r, @, n]).
 entry('Gefahr', [g, @, f, 'a:', r]).
-entry(gefährlich, [g, @, f, 'E:', '6', l, 'I', 'C']).
+entry(gefaehrlich, [g, @, f, 'E:', '6', l, 'I', 'C']).
 entry(gefallen, [g, @, f, a, l, @, n]).
-entry(gefällt, [g, @, f, 'E', l, t]).
+entry(gefaellt, [g, @, f, 'E', l, t]).
 entry(gefaßt, [g, @, f, a, s, t]).
 entry(gefaxt, [g, @, f, a, k, s, t]).
 entry(gefeiert, [g, @, f, aI, '6', t]).
@@ -3881,9 +3882,9 @@ entry(geflext, [g, @, f, l, 'E', k, s, t]).
 entry(geflogen, [g, @, f, l, 'o:', g, @, n]).
 entry(gefragt, [g, @, f, r, 'a:', k, t]).
 entry(gefreut, [g, @, f, r, 'OY', t]).
-entry('Gefühl', [g, @, f, 'y:', l]).
-entry(geführten, [g, @, f, 'y:', '6', t, @, n]).
-entry(gefüllten, [g, @, f, 'Y', l, t, @, n]).
+entry('Gefuehl', [g, @, f, 'y:', l]).
+entry(gefuehrten, [g, @, f, 'y:', '6', t, @, n]).
+entry(gefuellten, [g, @, f, 'Y', l, t, @, n]).
 entry(gefunden, [g, @, f, 'U', n, d, @, n]).
 entry(ge, [g, @]).
 entry(gegangen, [g, @, g, a, 'N', @, n]).
@@ -3900,14 +3901,14 @@ entry('Gegenleistung', [g, 'e:', g, @, n, l, aI, s, t, 'U', 'N']).
 entry('Gegensatz', [g, 'e:', g, @, n, z, a, ts]).
 entry(gegenseitig, [g, 'e:', g, @, n, z, aI, t, 'I', 'C']).
 entry('Gegenteil', [g, 'e:', g, @, n, t, aI, l]).
-entry(gegenüber, [g, 'e:', g, @, n, 'y:', b, '6']).
+entry(gegenueber, [g, 'e:', g, @, n, 'y:', b, '6']).
 entry('Gegenvorschlag', [g, 'e:', g, @, n, f, 'o:', '6', 'S', l, 'a:', k]).
 entry('Gegenzug', [g, 'e:', g, @, n, ts, 'u:', k]).
 entry(gegessen, [g, @, g, 'E', s, @, n]).
 entry(geguckt, [g, @, g, 'U', k, t]).
 entry(gehabt, [g, @, h, 'a:', p, t]).
 entry(gehalten, [g, @, h, a, l, t, @, n]).
-entry('Gehaltserhöhung', [g, @, h, a, l, ts, 'E', '6', h, '2:', 'U', 'N']).
+entry('Gehaltserhoehung', [g, @, h, a, l, ts, 'E', '6', h, '2:', 'U', 'N']).
 entry(gehandhabt, [g, @, h, a, n, t, h, 'a:', p, t]).
 entry(gehe, [g, 'e:', @]).
 entry(geheißen, [g, @, h, aI, s, @, n]).
@@ -3921,26 +3922,26 @@ entry('Gehobeneres', [g, @, h, 'o:', b, @, n, @, r, @, s]).
 entry(gehobener, [g, @, h, 'o:', b, @, n, '6']).
 entry(gehofft, [g, @, h, 'O', f, t]).
 entry(geholt, [g, @, h, 'o:', l, t]).
-entry(gehöre, [g, @, h, '2:', r, @]).
-entry(gehört, [g, @, h, '2:', '6', t]).
+entry(gehoere, [g, @, h, '2:', r, @]).
+entry(gehoert, [g, @, h, '2:', '6', t]).
 entry('Gehrmann', [g, 'e:', '6', m, a, n]).
 entry(geht, [g, 'e:', t]).
 entry(geirrt, [g, @, 'I', '6', t]).
 entry('Geistern', [g, aI, s, t, '6', n]).
 entry(gekauft, [g, @, k, aU, f, t]).
 entry(geklappt, [g, @, k, l, a, p, t]).
-entry(geklärt, [g, @, k, l, 'E:', '6', t]).
+entry(geklaert, [g, @, k, l, 'E:', '6', t]).
 entry(gekommen, [g, @, k, 'O', m, @, n]).
 entry(gekonnt, [g, @, k, 'O', n, t]).
 entry(gekostet, [g, @, k, 'O', 'S', t, @, t]).
 entry(gekriegt, [g, @, k, r, 'i:', k, t]).
 entry(gekuckt, [g, @, k, 'U', k, t]).
-entry(gekümmert, [g, @, k, 'Y', m, '6', t]).
+entry(gekuemmert, [g, @, k, 'Y', m, '6', t]).
 entry(gelacht, [g, @, l, a, x, t]).
 entry(gelangen, [g, @, l, a, 'N', @, n]).
 entry(gelassen, [g, @, l, a, s, @, n]).
 entry(gelaufen, [g, @, l, aU, f, @, n]).
-entry(geläufig, [g, @, l, 'OY', f, 'I', 'C']).
+entry(gelaeufig, [g, @, l, 'OY', f, 'I', 'C']).
 entry(gelaunt, [g, @, l, aU, n, t]).
 entry('Geld', [g, 'E', l, t]).
 entry(gelegene, [g, @, l, 'e:', g, @, n, @]).
@@ -3958,10 +3959,10 @@ entry('Gelingen', [g, @, l, 'I', 'N', @, n]).
 entry('Geller', [g, 'E', l, '6']).
 entry(gell, [g, 'E', l]).
 entry(gelockert, [g, @, l, 'O', k, '6', t]).
-entry(gelöst, [g, @, l, '2:', s, t]).
+entry(geloest, [g, @, l, '2:', s, t]).
 entry(gelten, [g, 'E', l, t, @, n]).
 entry(gelungener, [g, @, l, 'U', 'N', @, n, '6']).
-entry(gemächlich, [g, @, m, 'E:', 'C', l, 'I', 'C']).
+entry(gemaechlich, [g, @, m, 'E:', 'C', l, 'I', 'C']).
 entry(gemacht, [g, @, m, a, x, t]).
 entry('GEMA', [g, 'e:', m, a]).
 entry(gema, [g, @, m, a]).
@@ -3978,14 +3979,14 @@ entry(gemerkt, [g, @, m, 'E', '6', k, t]).
 entry(gemes, [g, @, m, 'E', s]).
 entry(gemessene, [g, @, m, 'E', s, @, n, @]).
 entry(gem, [g, @, m]).
-entry('Gemüte', [g, @, m, 'y:', t, @]).
-entry(gemütlichen, [g, @, m, 'y:', t, l, 'I', 'C', @, n]).
-entry('Gemütlicheres', [g, @, m, 'y:', t, l, 'I', 'C', @, r, @, s]).
-entry(gemütlicher, [g, @, m, 'y:', t, l, 'I', 'C', '6']).
-entry(gemütliches, [g, @, m, 'y:', t, l, 'I', 'C', @, s]).
-entry(gemütlich, [g, @, m, 'y:', t, l, 'I', 'C']).
-entry(gemütlichste, [g, @, m, 'y:', t, l, 'I', 'C', s, t, @]).
-entry(genächtigt, [g, @, n, 'E', 'C', t, 'I', 'C', t]).
+entry('Gemuete', [g, @, m, 'y:', t, @]).
+entry(gemuetlichen, [g, @, m, 'y:', t, l, 'I', 'C', @, n]).
+entry('Gemuetlicheres', [g, @, m, 'y:', t, l, 'I', 'C', @, r, @, s]).
+entry(gemuetlicher, [g, @, m, 'y:', t, l, 'I', 'C', '6']).
+entry(gemuetliches, [g, @, m, 'y:', t, l, 'I', 'C', @, s]).
+entry(gemuetlich, [g, @, m, 'y:', t, l, 'I', 'C']).
+entry(gemuetlichste, [g, @, m, 'y:', t, l, 'I', 'C', s, t, @]).
+entry(genaechtigt, [g, @, n, 'E', 'C', t, 'I', 'C', t]).
 entry(gena, [g, @, n, a]).
 entry(genannte, [g, @, n, a, n, t, @]).
 entry(genannt, [g, @, n, a, n, t]).
@@ -4014,19 +4015,19 @@ entry(genieße, [g, @, n, 'i:', s, @]).
 entry(genießen, [g, @, n, 'i:', s, @, n]).
 entry(genommen, [g, @, n, 'O', m, @, n]).
 entry(genossenschaftliche, [g, @, n, 'O', s, @, n, 'S', a, f, t, l, 'I', 'C', @]).
-entry(genügend, [g, @, n, 'y:', g, @, n, t]).
-entry(genügen, [g, @, n, 'y:', g, @, n]).
+entry(genuegend, [g, @, n, 'y:', g, @, n, t]).
+entry(genuegen, [g, @, n, 'y:', g, @, n]).
 entry(genug, [g, @, n, 'u:', k]).
-entry(genügt, [g, @, n, 'y:', k, t]).
+entry(genuegt, [g, @, n, 'y:', k, t]).
 entry(genutzt, [g, @, n, 'U', ts, t]).
-entry(geöffnet, [g, @, '9', f, n, @, t]).
+entry(geoeffnet, [g, @, '9', f, n, @, t]).
 entry(geopfert, [g, @, 'O', pf, '6', t]).
 entry('Georgengarten', [g, 'e:', 'O', '6', g, @, n, g, a, r, t, @, n]).
 entry('Georgen', [g, 'e:', 'O', '6', g, @, n]).
 entry('Georgen-Hof', [g, 'e:', 'O', '6', g, @, n, h, 'o:', f]).
 entry('Georg', [g, 'e:', 'O', '6', k]).
 entry('Georgiana', [d, 'Z', 'O', '6', d, 'Z', j, 'a:', n, a]).
-entry('Gepäck', [g, @, p, 'E', k]).
+entry('Gepaeck', [g, @, p, 'E', k]).
 entry(gepackt, [g, @, p, a, k, t]).
 entry(gepflegt, [g, @, pf, l, 'e:', k, t]).
 entry(geplante, [g, @, p, l, 'a:', n, t, @]).
@@ -4035,11 +4036,11 @@ entry(geplantes, [g, @, p, l, 'a:', n, t, @, s]).
 entry(geplant, [g, @, p, l, 'a:', n, t]).
 entry(geprallt, [g, @, p, r, a, l, t]).
 entry(gepreßt, [g, @, p, r, 'E', s, t]).
-entry(geprüft, [g, @, p, r, 'y:', f, t]).
+entry(geprueft, [g, @, p, r, 'y:', f, t]).
 entry(gerade, [g, @, r, 'a:', d, @]).
-entry(gerädert, [g, @, r, 'E:', d, '6', t]).
+entry(geraedert, [g, @, r, 'E:', d, '6', t]).
 entry(geraten, [g, @, r, 'a:', t, @, n]).
-entry(geräuschempfindlich, [g, @, r, 'OY', 'S', 'E', m, pf, 'I', n, t, l, 'I', 'C']).
+entry(geraeuschempfindlich, [g, @, r, 'OY', 'S', 'E', m, pf, 'I', n, t, l, 'I', 'C']).
 entry(gerechnet, [g, @, r, 'E', 'C', n, @, t]).
 entry(geredet, [g, @, r, 'e:', d, @, t]).
 entry(geregelt, [g, @, r, 'e:', g, @, l, t]).
@@ -4060,7 +4061,7 @@ entry(gern, [g, 'E', '6', n]).
 entry('Gero', [g, 'e:', r, o]).
 entry('Gertraud', [g, 'E', '6', t, r, aU, t]).
 entry(geruhsam, [g, @, r, 'u:', z, 'a:', m]).
-entry(gerüstet, [g, @, r, 'Y', s, t, @, t]).
+entry(geruestet, [g, @, r, 'Y', s, t, @, t]).
 entry(gesagt, [g, @, z, 'a:', k, t]).
 entry(gesa, [g, @, z, a]).
 entry(gesalzene, [g, @, z, a, l, ts, @, n, @]).
@@ -4070,53 +4071,53 @@ entry(gesamten, [g, @, z, a, m, t, @, n]).
 entry('Gesamtkonferenz', [g, @, z, a, m, t, k, 'O', n, f, e, r, 'E', n, ts]).
 entry('Gesamtliste', [g, @, z, a, m, t, l, 'I', s, t, @]).
 entry('Gesang', [g, @, z, a, 'N']).
-entry(gesät, [g, @, z, 'E:', t]).
+entry(gesaet, [g, @, z, 'E:', t]).
 entry(geschafft, [g, @, 'S', a, f, t]).
-entry('Geschäftchen', [g, @, 'S', 'E', f, t, 'C', @, n]).
-entry('Geschäfte', [g, @, 'S', 'E', f, t, @]).
-entry('Geschäft', [g, @, 'S', 'E', f, t]).
-entry(geschäftliche, [g, @, 'S', 'E', f, t, l, 'I', 'C', @]).
-entry(geschäftlichen, [g, @, 'S', 'E', f, t, l, 'I', 'C', @, n]).
-entry(geschäftlicher, [g, @, 'S', 'E', f, t, l, 'I', 'C', '6']).
-entry(geschäftlich, [g, @, 'S', 'E', f, t, l, 'I', 'C']).
-entry('Geschäftsauto', [g, @, 'S', 'E', f, ts, aU, t, o]).
-entry('Geschäftsbesuch', [g, @, 'S', 'E', f, ts, b, @, z, 'u:', x]).
-entry('Geschäftsdinge', [g, @, 'S', 'E', f, ts, d, 'I', 'N', @]).
-entry('Geschäftsessen', [g, @, 'S', 'E', f, ts, 'E', s, @, n]).
-entry('Geschäftsessens', [g, @, 'S', 'E', f, ts, 'E', s, @, n, s]).
-entry('Geschäftsfahrt', [g, @, 'S', 'E', f, ts, f, 'a:', r, t]).
-entry('Geschäftsfrau', [g, @, 'S', 'E', f, ts, f, r, aU]).
-entry('Geschäftsfreunde', [g, @, 'S', 'E', f, ts, f, r, 'OY', n, d, @]).
-entry('Geschäftsfreunden', [g, @, 'S', 'E', f, ts, f, r, 'OY', n, d, @, n]).
-entry('Geschäftsfreund', [g, @, 'S', 'E', f, ts, f, r, 'OY', n, t]).
-entry('Geschäftsführer', [g, @, 'S', 'E', f, ts, f, 'y:', r, '6']).
-entry('Geschäftsgespräch', [g, @, 'S', 'E', f, ts, g, @, 'S', p, r, 'E:', 'C']).
-entry('Geschäfts', [g, @, 'S', 'E', f, ts]).
-entry('Geschäftsinteressen', [g, @, 'S', 'E', f, ts, 'I', n, t, @, r, 'E', s, @, n]).
-entry('Geschäftskarte', [g, @, 'S', 'E', f, ts, k, a, r, t, @]).
-entry('Geschäftskonferenz', [g, @, 'S', 'E', f, ts, k, 'O', n, f, e, r, 'E', n, ts]).
-entry('Geschäftskosten', [g, @, 'S', 'E', f, ts, k, 'O', s, t, @, n]).
-entry('Geschäftsleitung', [g, @, 'S', 'E', f, ts, l, aI, t, 'U', 'N']).
-entry('Geschäftsleute', [g, @, 'S', 'E', f, ts, l, 'OY', t, @]).
-entry('Geschäftsleuten', [g, @, 'S', 'E', f, ts, l, 'OY', t, @, n]).
-entry('Geschäftsmann', [g, @, 'S', 'E', f, ts, m, a, n]).
-entry('Geschäftsordnung', [g, @, 'S', 'E', f, ts, 'O', '6', d, n, 'U', 'N']).
-entry('Geschäftspartner', [g, @, 'S', 'E', f, ts, p, a, r, t, n, '6']).
-entry('Geschäftspartnern', [g, @, 'S', 'E', f, ts, p, a, r, t, n, '6', n]).
-entry('Geschäftsrei', [g, @, 'S', 'E', f, ts, r, aI]).
-entry('Geschäftsreise', [g, @, 'S', 'E', f, ts, r, aI, z, @]).
-entry('Geschäftsreisende', [g, @, 'S', 'E', f, ts, r, aI, z, @, n, d, @]).
-entry('Geschäftsreisen', [g, @, 'S', 'E', f, ts, r, aI, z, @, n]).
-entry('Geschäftsr', [g, @, 'S', 'E', f, ts, r]).
-entry('Geschäftsstelle', [g, @, 'S', 'E', f, ts, 'S', t, 'E', l, @]).
-entry('Geschäftstage', [g, @, 'S', 'E', f, ts, t, 'a:', g, @]).
-entry('Geschäftstag', [g, @, 'S', 'E', f, ts, t, 'a:', k]).
-entry('Geschäftstermine', [g, @, 'S', 'E', f, ts, t, 'E', '6', m, 'i:', n, @]).
-entry('Geschäftstermin', [g, @, 'S', 'E', f, ts, t, 'E', '6', m, 'i:', n]).
-entry('Geschäftstreffen', [g, @, 'S', 'E', f, ts, t, r, 'E', f, @, n]).
-entry('Geschäftswagen', [g, @, 'S', 'E', f, ts, v, 'a:', g, @, n]).
-entry(geschätzte, [g, @, 'S', 'E', ts, t, @]).
-entry(geschätzt, [g, @, 'S', 'E', ts, t]).
+entry('Geschaeftchen', [g, @, 'S', 'E', f, t, 'C', @, n]).
+entry('Geschaefte', [g, @, 'S', 'E', f, t, @]).
+entry('Geschaeft', [g, @, 'S', 'E', f, t]).
+entry(geschaeftliche, [g, @, 'S', 'E', f, t, l, 'I', 'C', @]).
+entry(geschaeftlichen, [g, @, 'S', 'E', f, t, l, 'I', 'C', @, n]).
+entry(geschaeftlicher, [g, @, 'S', 'E', f, t, l, 'I', 'C', '6']).
+entry(geschaeftlich, [g, @, 'S', 'E', f, t, l, 'I', 'C']).
+entry('Geschaeftsauto', [g, @, 'S', 'E', f, ts, aU, t, o]).
+entry('Geschaeftsbesuch', [g, @, 'S', 'E', f, ts, b, @, z, 'u:', x]).
+entry('Geschaeftsdinge', [g, @, 'S', 'E', f, ts, d, 'I', 'N', @]).
+entry('Geschaeftsessen', [g, @, 'S', 'E', f, ts, 'E', s, @, n]).
+entry('Geschaeftsessens', [g, @, 'S', 'E', f, ts, 'E', s, @, n, s]).
+entry('Geschaeftsfahrt', [g, @, 'S', 'E', f, ts, f, 'a:', r, t]).
+entry('Geschaeftsfrau', [g, @, 'S', 'E', f, ts, f, r, aU]).
+entry('Geschaeftsfreunde', [g, @, 'S', 'E', f, ts, f, r, 'OY', n, d, @]).
+entry('Geschaeftsfreunden', [g, @, 'S', 'E', f, ts, f, r, 'OY', n, d, @, n]).
+entry('Geschaeftsfreund', [g, @, 'S', 'E', f, ts, f, r, 'OY', n, t]).
+entry('Geschaeftsfuehrer', [g, @, 'S', 'E', f, ts, f, 'y:', r, '6']).
+entry('Geschaeftsgespraech', [g, @, 'S', 'E', f, ts, g, @, 'S', p, r, 'E:', 'C']).
+entry('Geschaefts', [g, @, 'S', 'E', f, ts]).
+entry('Geschaeftsinteressen', [g, @, 'S', 'E', f, ts, 'I', n, t, @, r, 'E', s, @, n]).
+entry('Geschaeftskarte', [g, @, 'S', 'E', f, ts, k, a, r, t, @]).
+entry('Geschaeftskonferenz', [g, @, 'S', 'E', f, ts, k, 'O', n, f, e, r, 'E', n, ts]).
+entry('Geschaeftskosten', [g, @, 'S', 'E', f, ts, k, 'O', s, t, @, n]).
+entry('Geschaeftsleitung', [g, @, 'S', 'E', f, ts, l, aI, t, 'U', 'N']).
+entry('Geschaeftsleute', [g, @, 'S', 'E', f, ts, l, 'OY', t, @]).
+entry('Geschaeftsleuten', [g, @, 'S', 'E', f, ts, l, 'OY', t, @, n]).
+entry('Geschaeftsmann', [g, @, 'S', 'E', f, ts, m, a, n]).
+entry('Geschaeftsordnung', [g, @, 'S', 'E', f, ts, 'O', '6', d, n, 'U', 'N']).
+entry('Geschaeftspartner', [g, @, 'S', 'E', f, ts, p, a, r, t, n, '6']).
+entry('Geschaeftspartnern', [g, @, 'S', 'E', f, ts, p, a, r, t, n, '6', n]).
+entry('Geschaeftsrei', [g, @, 'S', 'E', f, ts, r, aI]).
+entry('Geschaeftsreise', [g, @, 'S', 'E', f, ts, r, aI, z, @]).
+entry('Geschaeftsreisende', [g, @, 'S', 'E', f, ts, r, aI, z, @, n, d, @]).
+entry('Geschaeftsreisen', [g, @, 'S', 'E', f, ts, r, aI, z, @, n]).
+entry('Geschaeftsr', [g, @, 'S', 'E', f, ts, r]).
+entry('Geschaeftsstelle', [g, @, 'S', 'E', f, ts, 'S', t, 'E', l, @]).
+entry('Geschaeftstage', [g, @, 'S', 'E', f, ts, t, 'a:', g, @]).
+entry('Geschaeftstag', [g, @, 'S', 'E', f, ts, t, 'a:', k]).
+entry('Geschaeftstermine', [g, @, 'S', 'E', f, ts, t, 'E', '6', m, 'i:', n, @]).
+entry('Geschaeftstermin', [g, @, 'S', 'E', f, ts, t, 'E', '6', m, 'i:', n]).
+entry('Geschaeftstreffen', [g, @, 'S', 'E', f, ts, t, r, 'E', f, @, n]).
+entry('Geschaeftswagen', [g, @, 'S', 'E', f, ts, v, 'a:', g, @, n]).
+entry(geschaetzte, [g, @, 'S', 'E', ts, t, @]).
+entry(geschaetzt, [g, @, 'S', 'E', ts, t]).
 entry(geschaut, [g, @, 'S', aU, t]).
 entry(geschehen, [g, @, 'S', 'e:', @, n]).
 entry(gescheiter, [g, @, 'S', aI, t, '6']).
@@ -4134,7 +4135,7 @@ entry(geschlossener, [g, @, 'S', l, 'O', s, @, n, '6']).
 entry(geschlossen, [g, @, 'S', l, 'O', s, @, n]).
 entry('Geschmack', [g, @, 'S', m, a, k]).
 entry(geschneit, [g, @, 'S', n, aI, t]).
-entry(geschöpft, [g, @, 'S', '9', pf, t]).
+entry(geschoepft, [g, @, 'S', '9', pf, t]).
 entry(geschrieben, [g, @, 'S', r, 'i:', b, @, n]).
 entry('Gescht', [g, e, 'S', t]).
 entry('Geschwindigkeit', [g, @, 'S', v, 'I', n, d, 'I', 'C', k, aI, t]).
@@ -4156,25 +4157,25 @@ entry(gespart, [g, @, 'S', p, 'a:', r, t]).
 entry(gespeichert, [g, @, 'S', p, aI, 'C', '6', t]).
 entry(gespeist, [g, @, 'S', p, aI, s, t]).
 entry(gespielt, [g, @, 'S', p, 'i:', l, t]).
-entry('Gespräche', [g, @, 'S', p, r, 'E:', 'C', @]).
-entry('Gesprächen', [g, @, 'S', p, r, 'E:', 'C', @, n]).
-entry('Gespräches', [g, @, 'S', p, r, 'E:', 'C', @, s]).
-entry('Gespräch', [g, @, 'S', p, r, 'E:', 'C']).
-entry(gesprächig, [g, @, 'S', p, r, 'E:', 'C', 'I', 'C']).
-entry('Gesprächsleitung', [g, @, 'S', p, r, 'E:', 'C', s, l, aI, t, 'U', 'N']).
-entry('Gesprächstermine', [g, @, 'S', p, r, 'E:', 'C', s, t, 'E', '6', m, 'i:', n, @]).
-entry('Gesprächstermin', [g, @, 'S', p, r, 'E:', 'C', s, t, 'E', '6', m, 'i:', n]).
-entry('Gesprächts', [g, @, 'S', p, r, 'E:', 'C', ts]).
-entry('Gesprä', [g, @, 'S', p, r, 'E:']).
+entry('Gespraeche', [g, @, 'S', p, r, 'E:', 'C', @]).
+entry('Gespraechen', [g, @, 'S', p, r, 'E:', 'C', @, n]).
+entry('Gespraeches', [g, @, 'S', p, r, 'E:', 'C', @, s]).
+entry('Gespraech', [g, @, 'S', p, r, 'E:', 'C']).
+entry(gespraechig, [g, @, 'S', p, r, 'E:', 'C', 'I', 'C']).
+entry('Gespraechsleitung', [g, @, 'S', p, r, 'E:', 'C', s, l, aI, t, 'U', 'N']).
+entry('Gespraechstermine', [g, @, 'S', p, r, 'E:', 'C', s, t, 'E', '6', m, 'i:', n, @]).
+entry('Gespraechstermin', [g, @, 'S', p, r, 'E:', 'C', s, t, 'E', '6', m, 'i:', n]).
+entry('Gespraechts', [g, @, 'S', p, r, 'E:', 'C', ts]).
+entry('Gesprae', [g, @, 'S', p, r, 'E:']).
 entry(gesprochen, [g, @, 'S', p, r, 'O', x, @, n]).
 entry(gesse, [g, 'E', s, @]).
 entry(gestaffelt, [g, @, 'S', t, a, f, 'E', l, t]).
 entry(gestalten, [g, @, 'S', t, a, l, t, @, n]).
 entry(gestaltet, [g, @, 'S', t, a, l, t, @, t]).
 entry(gestaltung, [g, @, 'S', t, a, l, t, 'U', 'N']).
-entry(gestaltungsmöglichkeiten, [g, @, 'S', t, a, l, t, 'U', 'N', s, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
+entry(gestaltungsmoeglichkeiten, [g, @, 'S', t, a, l, t, 'U', 'N', s, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
 entry(gestanden, [g, @, 'S', t, a, n, d, @, n]).
-entry(gestärkt, [g, @, 'S', t, 'E', '6', k, t]).
+entry(gestaerkt, [g, @, 'S', t, 'E', '6', k, t]).
 entry(gestatten, [g, @, 'S', t, a, t, @, n]).
 entry(gesteckt, [g, @, 'S', t, 'E', k, t]).
 entry(gestehen, [g, @, 'S', t, 'e:', @, n]).
@@ -4189,13 +4190,13 @@ entry(gestreßt, [g, @, 'S', t, r, 'E', s, t]).
 entry(gestrichen, [g, @, 'S', t, r, 'I', 'C', @, n]).
 entry(gesucht, [g, @, z, 'u:', x, t]).
 entry(gesug, [g, @, z, 'u:', k]).
-entry(gesüks, [g, @, z, 'Y', k, s]).
+entry(gesueks, [g, @, z, 'Y', k, s]).
 entry(gesunden, [g, @, z, 'U', n, d, @, n]).
 entry(getaner, [g, @, t, 'a:', n, '6']).
 entry(getan, [g, @, t, 'a:', n]).
-entry(getäuscht, [g, @, t, 'OY', 'S', t]).
+entry(getaeuscht, [g, @, t, 'OY', 'S', t]).
 entry(getragen, [g, @, t, r, 'a:', g, @, n]).
-entry('Getränken', [g, @, t, r, 'E', 'N', k, @, n]).
+entry('Getraenken', [g, @, t, r, 'E', 'N', k, @, n]).
 entry(getrennte, [g, @, t, r, 'E', n, t, @]).
 entry(getrennt, [g, @, t, r, 'E', n, t]).
 entry(getroffen, [g, @, t, r, 'O', f, @, n]).
@@ -4208,11 +4209,11 @@ entry('Gewinn', [g, @, v, 'I', n]).
 entry(gewisse, [g, @, v, 'I', s, @]).
 entry(gewissen, [g, @, v, 'I', s, @, n]).
 entry(gewissermaßen, [g, @, v, 'I', s, '6', m, 'a:', s, @, n]).
-entry(gewöhnen, [g, @, v, '2:', n, @, n]).
-entry(gewohnheitsgemäß, [g, @, v, 'o:', n, h, aI, ts, g, @, m, 'E:', s]).
-entry(gewöhnliche, [g, @, v, '2:', n, l, 'I', 'C', @]).
-entry(gewöhnlich, [g, @, v, '2:', n, l, 'I', 'C']).
-entry(gewöhnt, [g, @, v, '2:', n, t]).
+entry(gewoehnen, [g, @, v, '2:', n, @, n]).
+entry(gewohnheitsgemaeß, [g, @, v, 'o:', n, h, aI, ts, g, @, m, 'E:', s]).
+entry(gewoehnliche, [g, @, v, '2:', n, l, 'I', 'C', @]).
+entry(gewoehnlich, [g, @, v, '2:', n, l, 'I', 'C']).
+entry(gewoehnt, [g, @, v, '2:', n, t]).
 entry(gewohnt, [g, @, v, 'o:', n, t]).
 entry(gewonnen, [g, @, v, 'O', n, @, n]).
 entry(geworden, [g, @, v, 'O', '6', d, @, n]).
@@ -4233,8 +4234,8 @@ entry(gingen, [g, 'I', 'N', @, n]).
 entry(ging, [g, 'I', 'N']).
 entry('Giora', [d, 'Z', o, r, a]).
 entry(gla, [g, l, a]).
-entry(glänzende, [g, l, 'E', n, ts, @, n, d, @]).
-entry('Gläschen', [g, l, 'E:', s, 'C', @, n]).
+entry(glaenzende, [g, l, 'E', n, ts, @, n, d, @]).
+entry('Glaeschen', [g, l, 'E:', s, 'C', @, n]).
 entry('Glas', [g, l, 'a:', s]).
 entry('Glassenhart', [g, l, a, s, @, n, h, a, r, t]).
 entry(glatt, [g, l, a, t]).
@@ -4247,8 +4248,8 @@ entry(gleicher, [g, l, aI, 'C', '6']).
 entry(gleiches, [g, l, aI, 'C', @, s]).
 entry(gleichfalls, [g, l, aI, 'C', f, a, l, s]).
 entry(gleich, [g, l, aI, 'C']).
-entry(gleichgültig, [g, l, aI, 'C', g, 'Y', l, t, 'I', 'C']).
-entry(gleichmäßig, [g, l, aI, 'C', m, 'E:', s, 'I', 'C']).
+entry(gleichgueltig, [g, l, aI, 'C', g, 'Y', l, t, 'I', 'C']).
+entry(gleichmaeßig, [g, l, aI, 'C', m, 'E:', s, 'I', 'C']).
 entry(gleichnamige, [g, l, aI, 'C', n, 'a:', m, 'I', g, @]).
 entry(gleichwertig, [g, l, aI, 'C', v, 'e:', '6', t, 'I', 'C']).
 entry(gleichzeitig, [g, l, aI, 'C', ts, aI, t, 'I', 'C']).
@@ -4256,25 +4257,25 @@ entry('Gleis', [g, l, aI, s]).
 entry('Gleittag', [g, l, aI, t, t, 'a:', k]).
 entry(gl, [g, l]).
 entry(gliedern, [g, l, 'i:', d, '6', n]).
-entry('Glöde', [g, l, '2:', d, @]).
-entry('Glögner', [g, l, '9', k, n, '6']).
+entry('Gloede', [g, l, '2:', d, @]).
+entry('Gloegner', [g, l, '9', k, n, '6']).
 entry('Glotze', [g, l, 'O', ts, @]).
-entry('Glück', [g, l, 'Y', k]).
-entry('Glückliche', [g, l, 'Y', k, l, 'I', 'C', @]).
-entry(glücklicherweise, [g, l, 'Y', k, l, 'I', 'C', '6', v, aI, z, @]).
-entry(glücklich, [g, l, 'Y', k, l, 'I', 'C']).
-entry('Glückwünsche', [g, l, 'Y', k, v, 'Y', n, 'S', @]).
-entry('Glückwunsch', [g, l, 'Y', k, v, 'U', n, 'S']).
+entry('Glueck', [g, l, 'Y', k]).
+entry('Glueckliche', [g, l, 'Y', k, l, 'I', 'C', @]).
+entry(gluecklicherweise, [g, l, 'Y', k, l, 'I', 'C', '6', v, aI, z, @]).
+entry(gluecklich, [g, l, 'Y', k, l, 'I', 'C']).
+entry('Glueckwuensche', [g, l, 'Y', k, v, 'Y', n, 'S', @]).
+entry('Glueckwunsch', [g, l, 'Y', k, v, 'U', n, 'S']).
 entry('Goethestraße', [g, '2:', t, @, 'S', t, r, 'a:', s, @]).
 entry('Go', [g, 'o:']).
 entry(goldene, [g, 'O', l, d, @, n, @]).
 entry('Goldenen-Adler', [g, 'O', l, d, @, n, @, n, 'a:', d, l, '6']).
 entry(golden, [g, 'O', l, d, @, n]).
 entry('Golfspielen', [g, 'O', l, f, 'S', p, 'i:', l, @, n]).
-entry(gönnen, [g, '9', n, @, n]).
-entry(gönnt, [g, '9', n, t]).
+entry(goennen, [g, '9', n, @, n]).
+entry(goennt, [g, '9', n, t]).
 entry(good, [g, 'u:', d]).
-entry('Görgen', [g, '9', '6', g, @, n]).
+entry('Goergen', [g, '9', '6', g, @, n]).
 entry('Goslar', [g, 'O', s, l, a, r]).
 entry('Gospelkonzert', [g, 'O', s, p, @, l, k, 'O', n, ts, 'E', '6', t]).
 entry('Gossens', [g, 'O', s, @, n, s]).
@@ -4282,7 +4283,7 @@ entry('Gotha', [g, 'o:', t, a]).
 entry('Gottchen', [g, 'O', t, 'C', @, n]).
 entry('Gottes', [g, 'O', t, @, s]).
 entry('Gott', [g, 'O', t]).
-entry('Göttingen', [g, '9', t, 'I', 'N', @, n]).
+entry('Goettingen', [g, '9', t, 'I', 'N', @, n]).
 entry('Gottschalk', [g, 'O', tS, a, l, k]).
 entry('Grab', [g, r, 'a:', p]).
 entry(grade, [g, r, 'a:', d, @]).
@@ -4308,13 +4309,13 @@ entry('Grobe', [g, r, 'o:', b, @]).
 entry(grob, [g, r, 'o:', p]).
 entry(großartiges, [g, r, 'o:', s, 'a:', r, t, 'I', g, @, s]).
 entry(großartig, [g, r, 'o:', s, 'a:', r, t, 'I', 'C']).
-entry(größe, [g, r, '2:', s, @]).
+entry(groeße, [g, r, '2:', s, @]).
 entry(große, [g, r, 'o:', s, @]).
 entry(großen, [g, r, 'o:', s, @, n]).
-entry(größere, [g, r, '2:', s, @, r, @]).
-entry(größeren, [g, r, '2:', s, @, r, @, n]).
-entry(größeres, [g, r, '2:', s, @, r, @, s]).
-entry(größer, [g, r, '2:', s, '6']).
+entry(groeßere, [g, r, '2:', s, @, r, @]).
+entry(groeßeren, [g, r, '2:', s, @, r, @, n]).
+entry(groeßeres, [g, r, '2:', s, @, r, @, s]).
+entry(groeßer, [g, r, '2:', s, '6']).
 entry(großer, [g, r, 'o:', s, '6']).
 entry(großes, [g, r, 'o:', s, @, s]).
 entry(groß, [g, r, 'o:', s]).
@@ -4323,33 +4324,33 @@ entry('Großmutter', [g, r, 'o:', s, m, 'U', t, '6']).
 entry('Großraumwagen', [g, r, 'o:', s, r, aU, m, v, 'a:', g, @, n]).
 entry(großspurig, [g, r, 'o:', s, 'S', p, 'u:', r, 'I', 'C']).
 entry('Großstadt', [g, r, 'o:', s, 'S', t, a, t]).
-entry(größte, [g, r, '2:', s, t, @]).
+entry(groeßte, [g, r, '2:', s, t, @]).
 entry('Großteil', [g, r, 'o:', s, t, aI, l]).
-entry(größten, [g, r, '2:', s, t, @, n]).
-entry(größtenteils, [g, r, '2:', s, t, @, n, t, aI, l, s]).
-entry(größtes, [g, r, '2:', s, t, @, s]).
+entry(groeßten, [g, r, '2:', s, t, @, n]).
+entry(groeßtenteils, [g, r, '2:', s, t, @, n, t, aI, l, s]).
+entry(groeßtes, [g, r, '2:', s, t, @, s]).
 entry('Großvater', [g, r, 'o:', s, f, 'a:', t, '6']).
 entry('Großwagen', [g, r, 'o:', s, v, 'a:', g, @, n]).
-entry(großzügig, [g, r, 'o:', s, ts, 'y:', g, 'I', 'C']).
+entry(großzuegig, [g, r, 'o:', s, ts, 'y:', g, 'I', 'C']).
 entry('Groth', [g, r, 'o:', t]).
 entry('Grubenhagen', [g, r, 'u:', b, @, n, h, 'a:', g, @, n]).
 entry('Gruber', [g, r, 'u:', b, '6']).
 entry(grud, [g, r, 'u:', t]).
-entry(grü, [g, r, y]).
+entry(grue, [g, r, y]).
 entry('Grunde', [g, r, 'U', n, d, @]).
-entry('Gründen', [g, r, 'Y', n, d, @, n]).
+entry('Gruenden', [g, r, 'Y', n, d, @, n]).
 entry('Grund', [g, r, 'U', n, t]).
 entry(grundlegend, [g, r, 'U', n, t, l, 'e:', g, @, n, t]).
-entry(gründlich, [g, r, 'Y', n, t, l, 'I', 'C']).
+entry(gruendlich, [g, r, 'Y', n, t, l, 'I', 'C']).
 entry('Grundsatz', [g, r, 'U', n, t, z, a, ts]).
-entry(grundsätzlich, [g, r, 'U', n, t, z, 'E', ts, l, 'I', 'C']).
-entry(grünen, [g, r, 'y:', n, @, n]).
+entry(grundsaetzlich, [g, r, 'U', n, t, z, 'E', ts, l, 'I', 'C']).
+entry(gruenen, [g, r, 'y:', n, @, n]).
 entry('Gruppe', [g, r, 'U', p, @]).
 entry('Gruppentreffen', [g, r, 'U', p, @, n, t, r, 'E', f, @, n]).
-entry(grüße, [g, r, 'y:', s, @]).
+entry(grueße, [g, r, 'y:', s, @]).
 entry(gruselt, [g, r, 'u:', z, @, l, t]).
-entry(grüßen, [g, r, 'y:', s, @, n]).
-entry(grüß, [g, r, 'y:', s]).
+entry(grueßen, [g, r, 'y:', s, @, n]).
+entry(grueß, [g, r, 'y:', s]).
 entry('Grusitsch', [g, r, 'u:', z, 'I', tS]).
 entry(gsch, [k, 'S']).
 entry(gs, [k, s]).
@@ -4360,35 +4361,35 @@ entry('Gudrun', [g, 'u:', d, r, 'u:', n]).
 entry(gu, [g, 'U']).
 entry('Guido', [g, 'i:', d, o]).
 entry(gul, [g, 'U', l]).
-entry(gültig, [g, 'Y', l, t, 'I', 'C']).
-entry('Gültigkeitsdauer', [g, 'Y', l, t, 'I', 'C', k, aI, ts, d, aU, '6']).
-entry(gün, [g, 'y:', n]).
+entry(gueltig, [g, 'Y', l, t, 'I', 'C']).
+entry('Gueltigkeitsdauer', [g, 'Y', l, t, 'I', 'C', k, aI, ts, d, aU, '6']).
+entry(guen, [g, 'y:', n]).
 entry('Gunreben', [g, 'U', n, r, 'e:', b, @, n]).
-entry(günstige, [g, 'Y', n, s, t, 'I', g, @]).
-entry(günstigen, [g, 'Y', n, s, t, 'I', g, @, n]).
-entry(günstigere, [g, 'Y', n, s, t, 'I', g, @, r, @]).
-entry(günstigeren, [g, 'Y', n, s, t, 'I', g, @, r, @, n]).
-entry(günstigeres, [g, 'Y', n, s, t, 'I', g, @, r, @, s]).
-entry(günstiger, [g, 'Y', n, s, t, 'I', g, '6']).
-entry(günstigerweise, [g, 'Y', n, s, t, 'I', g, '6', v, aI, z, @]).
-entry(günstiges, [g, 'Y', n, s, t, 'I', g, @, s]).
-entry(günstig, [g, 'Y', n, s, t, 'I', 'C']).
-entry(günstigste, [g, 'Y', n, s, t, 'I', 'C', s, t, @]).
-entry(günstigsten, [g, 'Y', n, s, t, 'I', 'C', s, t, @, n]).
-entry('Günte', [g, 'Y', n, t, @]).
-entry('Günter', [g, 'Y', n, t, '6']).
-entry('Gunzenhäuser', [g, 'U', n, ts, @, n, h, 'OY', z, '6']).
-entry('Gürtler', [g, 'Y', '6', t, l, '6']).
-entry('Gürtner', [g, 'Y', '6', t, n, '6']).
+entry(guenstige, [g, 'Y', n, s, t, 'I', g, @]).
+entry(guenstigen, [g, 'Y', n, s, t, 'I', g, @, n]).
+entry(guenstigere, [g, 'Y', n, s, t, 'I', g, @, r, @]).
+entry(guenstigeren, [g, 'Y', n, s, t, 'I', g, @, r, @, n]).
+entry(guenstigeres, [g, 'Y', n, s, t, 'I', g, @, r, @, s]).
+entry(guenstiger, [g, 'Y', n, s, t, 'I', g, '6']).
+entry(guenstigerweise, [g, 'Y', n, s, t, 'I', g, '6', v, aI, z, @]).
+entry(guenstiges, [g, 'Y', n, s, t, 'I', g, @, s]).
+entry(guenstig, [g, 'Y', n, s, t, 'I', 'C']).
+entry(guenstigste, [g, 'Y', n, s, t, 'I', 'C', s, t, @]).
+entry(guenstigsten, [g, 'Y', n, s, t, 'I', 'C', s, t, @, n]).
+entry('Guente', [g, 'Y', n, t, @]).
+entry('Guenter', [g, 'Y', n, t, '6']).
+entry('Gunzenhaeuser', [g, 'U', n, ts, @, n, h, 'OY', z, '6']).
+entry('Guertler', [g, 'Y', '6', t, l, '6']).
+entry('Guertner', [g, 'Y', '6', t, n, '6']).
 entry('Gustav', [g, 'U', s, t, a, f]).
 entry(gust, [g, 'U', s, t]).
 entry(gute, [g, 'u:', t, @]).
-entry('Güte', [g, 'y:', t, @]).
+entry('Guete', [g, 'y:', t, @]).
 entry(gutem, [g, 'u:', t, @, m]).
 entry('Guten-Flug', [g, 'u:', t, @, n, f, l, 'u:', k]).
 entry(guten, [g, 'u:', t, @, n]).
 entry(guter, [g, 'u:', t, '6']).
-entry('Gütersloh', [g, 'y:', t, '6', s, l, 'o:']).
+entry('Guetersloh', [g, 'y:', t, '6', s, l, 'o:']).
 entry(gutes, [g, 'u:', t, @, s]).
 entry(gutgehen, [g, 'u:', t, g, 'e:', @, n]).
 entry(gutgeschrieben, [g, 'u:', t, g, @, 'S', r, 'i:', b, @, n]).
@@ -4404,12 +4405,12 @@ entry(habm, [h, 'a:', b, m]).
 entry(habt, [h, 'a:', p, t]).
 entry(hach, [h, a, x]).
 entry('Hackenberg', [h, a, k, @, n, b, 'E', '6', k]).
-entry('Häfelin', [h, 'E', f, @, l, i, n]).
+entry('Haefelin', [h, 'E', f, @, l, i, n]).
 entry(hafen, [h, 'a:', f, @, n]).
-entry('Häflin', [h, 'E', f, l, i, n]).
+entry('Haeflin', [h, 'E', f, l, i, n]).
 entry('Hagen', [h, 'a:', g, @, n]).
 entry(ha, [h, a]).
-entry(hä, [h, 'E']).
+entry(hae, [h, 'E']).
 entry(hakt, [h, 'a:', k, t]).
 entry(halbe, [h, a, l, b, @]).
 entry(halben, [h, a, l, b, @, n]).
@@ -4418,10 +4419,10 @@ entry('Halbes', [h, a, l, b, @, s]).
 entry(halb, [h, a, l, p]).
 entry('Halbpension', [h, a, l, p, p, 'E', n, z, j, 'o:', n]).
 entry('Halbtag', [h, a, l, p, t, 'a:', k]).
-entry(halbtägig, [h, a, l, p, t, 'E:', g, 'I', 'C']).
+entry(halbtaegig, [h, a, l, p, t, 'E:', g, 'I', 'C']).
 entry(halbwegs, [h, a, l, p, v, 'e:', k, s]).
-entry(hälfte, [h, 'E', l, f, t, @]).
-entry('Hälften', [h, 'E', l, f, t, @, n]).
+entry(haelfte, [h, 'E', l, f, t, @]).
+entry('Haelften', [h, 'E', l, f, t, @, n]).
 entry(hal, [h, a, l]).
 entry(halle, [h, a, l, @]).
 entry('Hallenbad', [h, a, l, @, n, b, 'a:', t]).
@@ -4435,8 +4436,8 @@ entry(halte, [h, a, l, t, @]).
 entry(halten, [h, a, l, t, 'E', n]).
 entry('Haltestelle', [h, a, l, t, @, 'S', t, 'E', l, @]).
 entry(halt, [h, a, l, t]).
-entry(hält, [h, 'E', l, t]).
-entry(hältst, [h, 'E', l, ts, t]).
+entry(haelt, [h, 'E', l, t]).
+entry(haeltst, [h, 'E', l, ts, t]).
 entry('Hamburger', [h, a, m, b, 'U', '6', g, '6']).
 entry('Hamburg', [h, a, m, b, 'U', '6', k]).
 entry('Ham', [h, a, m]).
@@ -4453,8 +4454,8 @@ entry(hand, [h, a, n, t]).
 entry('Han', [h, a, n]).
 entry('Handke', [h, a, n, t, k, @]).
 entry('Handy', [h, 'E', n, d, i]).
-entry(hängenden, [h, 'E', 'N', @, n, d, @, n]).
-entry(hängt, [h, 'E', 'N', k, t]).
+entry(haengenden, [h, 'E', 'N', @, n, d, @, n]).
+entry(haengt, [h, 'E', 'N', k, t]).
 entry('Hannes', [h, a, n, @, s]).
 entry('Hanno', [h, a, n, 'o:']).
 entry('Hannoveraner', [h, a, n, o, v, @, r, 'a:', n, '6']).
@@ -4474,70 +4475,70 @@ entry('Hannovers', [h, a, n, 'o:', f, '6', s]).
 entry('Hannover-Termin', [h, a, n, 'o:', f, '6', t, 'E', '6', m, 'i:', n]).
 entry('Hannover-Theater', [h, a, n, 'o:', f, '6', t, e, 'a:', t, '6']).
 entry('Hannov', [h, a, n, 'o:', f]).
-entry('Hansebäcker', [h, a, n, z, @, b, 'E', k, '6']).
+entry('Hansebaecker', [h, a, n, z, @, b, 'E', k, '6']).
 entry('Hanseles', [h, a, n, z, @, l, @, s]).
 entry('Hans', [h, a, n, s]).
-entry('Hans-Jörg', [h, a, n, s, j, '9', '6', k]).
+entry('Hans-Joerg', [h, a, n, s, j, '9', '6', k]).
 entry('Happen', [h, a, p, @, n]).
 entry(happig, [h, a, p, 'I', 'C']).
 entry(hare, [h, 'a:', r, @]).
 entry(harte, [h, a, r, t, @]).
 entry(harten, [h, a, r, t, @, n]).
 entry(hart, [h, a, r, t]).
-entry('Härtl', [h, 'E', '6', t, l]).
+entry('Haertl', [h, 'E', '6', t, l]).
 entry('Hartmann', [h, a, r, t, m, a, n]).
 entry('Haselbeck', [h, 'a:', z, @, l, b, 'E', k]).
 entry('Hasel', [h, 'a:', z, @, l]).
-entry(häßlich, [h, 'E', s, l, 'I', 'C']).
+entry(haeßlich, [h, 'E', s, l, 'I', 'C']).
 entry(hasse, [h, a, s, @]).
 entry('Hassenrik', [h, a, s, @, n, r, 'I', k]).
 entry(hast, [h, a, s, t]).
 entry(hat, [h, a, t]).
-entry(hät, [h, 'E', t]).
+entry(haet, [h, 'E', t]).
 entry(hatsen, [h, a, ts, @, n]).
 entry(hatte, [h, a, t, @]).
-entry(hätte, [h, 'E', t, @]).
+entry(haette, [h, 'E', t, @]).
 entry(hatten, [h, a, t, @, n]).
-entry(hätten, [h, 'E', t, @, n]).
-entry(hättes, [h, 'E', t, @, s]).
+entry(haetten, [h, 'E', t, @, n]).
+entry(haettes, [h, 'E', t, @, s]).
 entry(hattest, [h, a, t, @, s, t]).
-entry(hättest, [h, 'E', t, @, s, t]).
+entry(haettest, [h, 'E', t, @, s, t]).
 entry(hauen, [h, aU, @, n]).
-entry(häufiger, [h, 'OY', f, 'I', g, '6']).
-entry(häufig, [h, 'OY', f, 'I', 'C']).
+entry(haeufiger, [h, 'OY', f, 'I', g, '6']).
+entry(haeufig, [h, 'OY', f, 'I', 'C']).
 entry('Hau', [h, aU]).
 entry('Haumacher', [h, aU, m, a, x, '6']).
 entry('Hauptbah', [h, @, 'U', p, t, b, @]).
 entry('Hauptbahnhofes', [h, aU, p, t, b, 'a:', n, h, 'o:', f, @, s]).
 entry('Hauptbahnhof-Gegend', [h, aU, p, t, b, 'a:', n, h, 'o:', f, g, 'e:', g, @, n, t]).
 entry('Hauptbahnhof', [h, aU, p, t, b, 'a:', n, h, 'o:', f]).
-entry('Hauptbahnhofnähe', [h, aU, p, t, b, 'a:', n, h, 'o:', f, n, 'E:', @]).
+entry('Hauptbahnhofnaehe', [h, aU, p, t, b, 'a:', n, h, 'o:', f, n, 'E:', @]).
 entry('Hauptbahnhofs', [h, aU, p, t, b, 'a:', n, h, 'o:', f, s]).
 entry('Haupteingang', [h, aU, p, t, aI, n, g, a, 'N']).
 entry('Hauptfiliale', [h, aU, p, t, f, i, l, j, 'a:', l, @]).
-entry('Hauptgebäude', [h, aU, p, t, g, @, b, 'OY', d, @]).
+entry('Hauptgebaeude', [h, aU, p, t, g, @, b, 'OY', d, @]).
 entry('Haupt', [h, aU, p, t]).
 entry('Haupthaus', [h, aU, p, t, h, aU, s]).
 entry('Hauptinformation', [h, aU, p, t, 'I', n, f, 'O', '6', m, a, ts, j, 'o:', n]).
 entry('Hauptkalender', [h, aU, p, t, k, a, l, 'E', n, d, '6']).
 entry('Hauptreisezeit', [h, aU, p, t, r, aI, z, @, ts, aI, t]).
 entry('Hauptsache', [h, aU, p, t, z, a, x, @]).
-entry(hauptsächlich, [h, aU, p, t, z, 'E', 'C', l, 'I', 'C']).
-entry(hauptsä, [h, aU, p, t, z, 'E']).
+entry(hauptsaechlich, [h, aU, p, t, z, 'E', 'C', l, 'I', 'C']).
+entry(hauptsae, [h, aU, p, t, z, 'E']).
 entry('Hauptschule', [h, aU, p, tS, 'u:', l, @]).
 entry('Hauptstraße', [h, aU, p, tS, t, r, 'a:', s, @]).
 entry('Haupttermin', [h, aU, p, t, t, 'E', '6', m, 'i:', n]).
 entry('Hausaufgaben', [h, aU, s, aU, f, g, 'a:', b, @, n]).
 entry('Hause', [h, aU, z, @]).
 entry('Hauser', [h, aU, z, '6']).
-entry('Häuser', [h, 'OY', z, '6']).
+entry('Haeuser', [h, 'OY', z, '6']).
 entry('Hauses', [h, aU, z, @, s]).
 entry('Hausfrau', [h, aU, s, f, r, aU]).
 entry('Haushalt', [h, aU, s, h, a, l, t]).
 entry('Haus', [h, aU, s]).
 entry('Hausmeister', [h, aU, s, m, aI, s, t, '6']).
 entry('Hausseminar', [h, aU, s, z, e, m, 'I', n, 'a:', r]).
-entry('Haustür', [h, aU, s, t, 'y:', '6']).
+entry('Haustuer', [h, aU, s, t, 'y:', '6']).
 entry(haut, [h, aU, t]).
 entry(hechele, [h, 'E', 'C', @, l, @]).
 entry('Heck', [h, 'E', k]).
@@ -4552,9 +4553,9 @@ entry('Heiko', [h, aI, k, o]).
 entry('Heilbronn', [h, aI, l, b, r, 'O', n]).
 entry('Heiligabend', [h, aI, l, 'I', 'C', 'a:', b, @, n, t]).
 entry('Heilige-Abend', [h, aI, l, 'I', g, @, 'a:', b, @, n, t]).
-entry('Heilige-Drei-Könige', [h, aI, l, 'I', g, @, d, r, aI, k, '2:', n, 'I', g, @]).
+entry('Heilige-Drei-Koenige', [h, aI, l, 'I', g, @, d, r, aI, k, '2:', n, 'I', g, @]).
 entry('Heiligen-Abend', [h, aI, l, 'I', g, @, n, 'a:', b, @, n, t]).
-entry('Heiligen-Drei-Königen', [h, aI, l, 'I', g, @, n, d, r, aI, k, '2:', n, 'I', g, @, n]).
+entry('Heiligen-Drei-Koenigen', [h, aI, l, 'I', g, @, n, d, r, aI, k, '2:', n, 'I', g, @, n]).
 entry(heiliger, [h, aI, l, 'I', g, '6']).
 entry(heilig, [h, aI, l, 'I', 'C']).
 entry('Heilmann', [h, aI, l, m, a, n]).
@@ -4618,8 +4619,8 @@ entry('Herrschaftszeiten', [h, 'E', '6', 'S', a, f, ts, ts, aI, t, @, n]).
 entry(herrscht, [h, 'E', '6', 'S', t]).
 entry(herschieben, [h, 'e:', '6', 'S', 'i:', b, @, n]).
 entry(herstellen, [h, 'e:', '6', 'S', t, 'E', l, @, n]).
-entry(herüber, [h, 'E', r, 'y:', b, '6']).
-entry(herumärgern, [h, 'E', r, 'U', m, 'E', '6', g, '6', n]).
+entry(herueber, [h, 'E', r, 'y:', b, '6']).
+entry(herumaergern, [h, 'E', r, 'U', m, 'E', '6', g, '6', n]).
 entry(herum, [h, 'E', r, 'U', m]).
 entry(herumkommen, [h, 'E', r, 'U', m, k, 'O', m, @, n]).
 entry(herumkutschen, [h, 'E', r, 'U', m, k, 'U', tS, @, n]).
@@ -4649,7 +4650,7 @@ entry('Hickhack', [h, 'I', k, h, a, k]).
 entry(hie, [h, 'i:']).
 entry(hielten, [h, 'i:', l, t, @, n]).
 entry(hierbei, [h, 'i:', '6', b, aI]).
-entry(hierfür, [h, 'i:', '6', f, 'y:', '6']).
+entry(hierfuer, [h, 'i:', '6', f, 'y:', '6']).
 entry(hierher, [h, 'i:', '6', h, 'e:', '6']).
 entry(hier, [h, 'i:', '6']).
 entry(hierlasse, [h, 'i:', '6', l, a, s, @]).
@@ -4680,7 +4681,7 @@ entry(hinbiegen, [h, 'I', n, b, 'i:', g, @, n]).
 entry(hinbringe, [h, 'I', n, b, r, 'I', 'N', @]).
 entry(hinbringen, [h, 'I', n, b, r, 'I', 'N', @, n]).
 entry(hindurch, [h, 'I', n, d, 'U', '6', 'C']).
-entry(hindurchzuführen, [h, 'I', n, d, 'U', '6', 'C', ts, u, f, 'y:', r, @, n]).
+entry(hindurchzufuehren, [h, 'I', n, d, 'U', '6', 'C', ts, u, f, 'y:', r, @, n]).
 entry(hineingehen, [h, 'I', n, aI, n, g, 'e:', @, n]).
 entry(hineingeht, [h, 'I', n, aI, n, g, 'e:', t]).
 entry(hinein, [h, 'I', n, aI, n]).
@@ -4693,12 +4694,12 @@ entry(hineinstopft, [h, 'I', n, aI, n, 'S', t, 'O', pf, t]).
 entry(hinfahren, [h, 'I', n, f, 'a:', r, @, n]).
 entry(hinfahr, [h, 'I', n, f, 'a:', r]).
 entry('Hinfahrt', [h, 'I', n, f, 'a:', r, t]).
-entry(hinfährt, [h, 'I', n, f, 'E:', r, t]).
+entry(hinfaehrt, [h, 'I', n, f, 'E:', r, t]).
 entry(hinf, [h, 'I', n, f]).
 entry(hinfliegen, [h, 'I', n, f, l, 'i:', g, @, n]).
-entry('Hinflüge', [h, 'I', n, f, l, 'y:', g, @]).
+entry('Hinfluege', [h, 'I', n, f, l, 'y:', g, @]).
 entry('Hinflug', [h, 'I', n, f, l, 'u:', k]).
-entry(hinführen, [h, 'I', n, f, 'y:', r, @, n]).
+entry(hinfuehren, [h, 'I', n, f, 'y:', r, @, n]).
 entry(hingefahren, [h, 'I', n, g, @, f, 'a:', r, @, n]).
 entry(hingegen, [h, 'I', n, g, 'e:', g, @, n]).
 entry(hingehe, [h, 'I', n, g, 'e:', @]).
@@ -4718,7 +4719,7 @@ entry(hinkommt, [h, 'I', n, k, 'O', m, t]).
 entry(hinkriege, [h, 'I', n, k, r, 'i:', g, @]).
 entry(hinkriegen, [h, 'I', n, k, r, 'i:', g, @, n]).
 entry(hinlegen, [h, 'I', n, l, 'e:', g, @, n]).
-entry(hinmüssen, [h, 'I', n, m, 'Y', s, @, n]).
+entry(hinmuessen, [h, 'I', n, m, 'Y', s, @, n]).
 entry(hinnehmen, [h, 'I', n, n, 'e:', m, @, n]).
 entry('Hinreise', [h, 'I', n, r, aI, z, @]).
 entry(hinreisen, [h, 'I', n, r, aI, z, @, n]).
@@ -4740,7 +4741,7 @@ entry('Hinweis', [h, 'I', n, v, aI, s]).
 entry(hinwollten, [h, 'I', n, v, 'O', l, t, @, n]).
 entry(hinziehen, [h, 'I', n, ts, 'i:', @, n]).
 entry(hinzufahren, [h, 'I', n, ts, u, f, 'a:', r, @, n]).
-entry(hinzufügen, [h, 'I', n, ts, 'u:', f, 'y:', g, @, n]).
+entry(hinzufuegen, [h, 'I', n, ts, 'u:', f, 'y:', g, @, n]).
 entry(hinzu, [h, 'I', n, ts, 'u:']).
 entry(hinzukommen, [h, 'I', n, ts, u, k, 'O', m, @, n]).
 entry(hinzukommt, [h, 'I', n, ts, 'u:', k, 'O', m, t]).
@@ -4757,13 +4758,13 @@ entry('Hochmu', [h, 'o:', x, m, 'u:']).
 entry('Hochmut', [h, 'o:', x, m, 'u:', t]).
 entry(hoc, [h, 'O', k]).
 entry('Hochsommer', [h, 'o:', x, z, 'O', m, '6']).
-entry('Höchstätter', [h, '2:', 'C', 'S', t, 'E', t, '6']).
-entry(höchste, [h, '2:', 'C', s, t, @]).
-entry(höchsten, [h, '2:', 'C', s, t, @, n]).
-entry(höchstens, [h, '2:', 'C', s, t, @, n, s]).
+entry('Hoechstaetter', [h, '2:', 'C', 'S', t, 'E', t, '6']).
+entry(hoechste, [h, '2:', 'C', s, t, @]).
+entry(hoechsten, [h, '2:', 'C', s, t, @, n]).
+entry(hoechstens, [h, '2:', 'C', s, t, @, n, s]).
 entry('Hochstetter', [h, 'o:', x, 'S', t, 'E', t, '6']).
-entry('Höchstfall', [h, '2:', 'C', s, t, f, a, l]).
-entry(höchstwahrscheinlich, [h, '2:', 'C', s, t, v, 'a:', r, 'S', aI, n, l, 'I', 'C']).
+entry('Hoechstfall', [h, '2:', 'C', s, t, f, a, l]).
+entry(hoechstwahrscheinlich, [h, '2:', 'C', s, t, v, 'a:', r, 'S', aI, n, l, 'I', 'C']).
 entry('Hochzeit', [h, 'O', x, ts, aI, t]).
 entry(hochzukommen, [h, 'o:', x, ts, u, k, 'O', m, @, n]).
 entry('Hockenheim', [h, 'O', k, @, n, h, aI, m]).
@@ -4778,15 +4779,15 @@ entry(hoffnungslos, [h, 'O', f, n, 'U', 'N', s, l, 'o:', s]).
 entry(hoffte, [h, 'O', f, t, @]).
 entry('Hof', [h, 'o:', f]).
 entry('hof-Hotel', [h, 'o:', f, h, 'O', t, 'E', l]).
-entry(hö, [h, '2:']).
-entry('Höhe', [h, '2:', @]).
+entry(hoe, [h, '2:']).
+entry('Hoehe', [h, '2:', @]).
 entry(hohe, [h, 'o:', @]).
-entry('Höhenangst', [h, '2:', @, n, a, 'N', s, t]).
+entry('Hoehenangst', [h, '2:', @, n, a, 'N', s, t]).
 entry(hohen, [h, 'o:', @, n]).
-entry(höhere, [h, '2:', @, r, @]).
-entry(höheren, [h, '2:', @, r, @, n]).
-entry(höherer, [h, '2:', @, r, '6']).
-entry(höher, [h, '2:', '6']).
+entry(hoehere, [h, '2:', @, r, @]).
+entry(hoeheren, [h, '2:', @, r, @, n]).
+entry(hoeherer, [h, '2:', @, r, '6']).
+entry(hoeher, [h, '2:', '6']).
 entry(hoher, [h, 'o:', '6']).
 entry(ho, [h, o]).
 entry(hole, [h, 'o:', l, @]).
@@ -4796,21 +4797,21 @@ entry('Hol', [h, 'o:', l]).
 entry('Holiday-Inn', [h, 'O', l, i, d, 'e:', 'I', n]).
 entry(holi, [h, 'o:', l, i]).
 entry('Holland', [h, 'O', l, a, n, t]).
-entry('Hölle', [h, '9', l, @]).
+entry('Hoelle', [h, '9', l, @]).
 entry('Holle', [h, 'O', l, @]).
 entry('Holstein', [h, 'O', l, 'S', t, aI, n]).
-entry('Hölzer', [h, '9', l, ts, '6']).
+entry('Hoelzer', [h, '9', l, ts, '6']).
 entry(holzig, [h, 'O', l, ts, 'I', 'C']).
 entry('Homburg', [h, 'O', m, b, 'U', '6', k]).
-entry(hön, [h, '2:', n]).
+entry(hoen, [h, '2:', n]).
 entry('Honolulu', [h, o, n, o, l, 'u:', l, u]).
 entry(hoppla, [h, 'O', p, l, a]).
-entry(höre, [h, '2:', r, @]).
-entry(hören, [h, '2:', r, @, n]).
+entry(hoere, [h, '2:', r, @]).
+entry(hoeren, [h, '2:', r, @, n]).
 entry('Horoskop', [h, o, r, o, s, k, 'o:', p]).
-entry(hörst, [h, '2:', '6', s, t]).
-entry(hörte, [h, '2:', '6', t, @]).
-entry(hört, [h, '2:', '6', t]).
+entry(hoerst, [h, '2:', '6', s, t]).
+entry(hoerte, [h, '2:', '6', t, @]).
+entry(hoert, [h, '2:', '6', t]).
 entry(hort, [h, 'O', '6', t]).
 entry('Hos', [h, o, s]).
 entry('Hote', [h, o, t, 'E']).
@@ -4830,22 +4831,22 @@ entry('Hotel-Lage', [h, o, t, 'E', l, l, 'a:', g, @]).
 entry('Hotelliste', [h, o, t, 'E', l, l, 'I', s, t, @]).
 entry('Hotellisten', [h, o, t, 'E', l, l, 'I', s, t, @, n]).
 entry('Hotellobby', [h, o, t, 'E', l, l, 'O', b, i]).
-entry(hotelmäßig, [h, o, t, 'E', l, m, 'E:', s, 'I', 'C']).
+entry(hotelmaeßig, [h, o, t, 'E', l, m, 'E:', s, 'I', 'C']).
 entry('Hoteln', [h, o, t, 'E', l, n]).
-entry('Hotelpläne', [h, o, t, 'E', l, p, l, 'E:', n, @]).
+entry('Hotelplaene', [h, o, t, 'E', l, p, l, 'E:', n, @]).
 entry('Hotelplan', [h, o, t, 'E', l, p, l, 'a:', n]).
 entry('Hotelreser', [h, o, t, 'E', l, r, @, z, '6']).
 entry('Hotelreservierungen', [h, o, t, 'E', l, r, e, z, 'E', '6', v, 'i:', r, 'U', 'N', @, n]).
 entry('Hotelreservierung', [h, o, t, 'E', l, r, e, z, 'E', '6', v, 'i:', r, 'U', 'N']).
 entry('Hotelrezeption', [h, o, t, 'E', l, r, e, ts, 'E', p, ts, j, 'o:', n]).
 entry('Hotels', [h, o, t, 'E', l, s]).
-entry('Hotelübernachtung', [h, o, t, 'E', l, 'y:', b, '6', n, a, x, t, 'U', 'N']).
+entry('Hoteluebernachtung', [h, o, t, 'E', l, 'y:', b, '6', n, a, x, t, 'U', 'N']).
 entry('Hotelunterbringung', [h, o, t, 'E', l, 'U', n, t, '6', b, r, 'I', 'N', 'U', 'N']).
 entry('Hotelunter', [h, o, t, 'E', l, 'U', n, t, '6']).
 entry('Hotelunterkunft', [h, o, t, 'E', l, 'U', n, t, '6', k, 'U', n, f, t]).
 entry('Hotelunterlagen', [h, o, t, 'E', l, 'U', n, t, '6', l, 'a:', g, @, n]).
 entry('Hotelverzeichnis', [h, o, t, 'E', l, f, 'E', '6', ts, aI, 'C', n, 'I', s]).
-entry('Hotelvorschläge', [h, o, t, 'E', l, f, 'o:', '6', 'S', l, 'E:', g, @]).
+entry('Hotelvorschlaege', [h, o, t, 'E', l, f, 'o:', '6', 'S', l, 'E:', g, @]).
 entry('Hotelwunsch', [h, o, t, 'E', l, v, 'U', n, 'S']).
 entry('Hotelz', [h, o, t, 'E', l, ts]).
 entry('Hotelzimmer', [h, o, t, 'E', l, ts, 'I', m, '6']).
@@ -4853,14 +4854,14 @@ entry('Hot', [h, o, t]).
 entry(hour, [aU, '6']).
 entry('Huber', [h, 'u:', b, '6']).
 entry('Hubert', [h, 'u:', b, 'E', '6', t]).
-entry(hübsche, [h, 'Y', p, 'S', @]).
-entry(hübschen, [h, 'Y', p, 'S', @, n]).
-entry(hübsches, [h, 'Y', p, 'S', @, s]).
-entry(hübsch, [h, 'Y', p, 'S']).
+entry(huebsche, [h, 'Y', p, 'S', @]).
+entry(huebschen, [h, 'Y', p, 'S', @, n]).
+entry(huebsches, [h, 'Y', p, 'S', @, s]).
+entry(huebsch, [h, 'Y', p, 'S']).
 entry('Hubschrauber', [h, 'u:', p, 'S', r, aU, b, '6']).
 entry(huch, [h, 'u:', x]).
 entry('Huf', [h, 'u:', f]).
-entry('Hügel', [h, 'y:', g, @, l]).
+entry('Huegel', [h, 'y:', g, @, l]).
 entry(huh, [h, 'u:']).
 entry(hui, [h, u, i]).
 entry(hul, [h, 'U', l]).
@@ -4889,7 +4890,7 @@ entry('Ideen', [i, d, 'e:', @, n]).
 entry('Idee', [i, d, 'e:']).
 entry(iebenundzwanzigsten, ['i:', b, @, n, 'U', n, t, ts, v, a, n, ts, 'I', 'C', s, t, @, n]).
 entry(iebten, ['i:', p, t, @, n]).
-entry(iederhören, ['i:', d, '6', h, '2:', r, @, n]).
+entry(iederhoeren, ['i:', d, '6', h, '2:', r, @, n]).
 entry(iedersehen, ['i:', d, '6', z, 'e:', @, n]).
 entry(ie, ['i:']).
 entry(ienstag, ['i:', n, s, t, 'a:', k]).
@@ -4927,14 +4928,14 @@ entry('Indonesisch', ['I', n, d, o, n, 'e:', z, 'I', 'S']).
 entry('Infobau', ['I', n, f, o, b, aU]).
 entry(informale, ['I', n, f, 'O', '6', m, 'a:', l, @]).
 entry('Informatikbibliothek', ['I', n, f, 'O', '6', m, 'a:', t, 'I', k, b, i, b, l, i, o, t, 'e:', k]).
-entry('Informatikgebäude', ['I', n, f, 'O', '6', m, 'a:', t, 'I', k, g, @, b, 'OY', d, @]).
+entry('Informatikgebaeude', ['I', n, f, 'O', '6', m, 'a:', t, 'I', k, g, @, b, 'OY', d, @]).
 entry('Informatikneubau', ['I', n, f, 'O', '6', m, 'a:', t, 'I', k, n, 'OY', b, aU]).
 entry('Informatik', ['I', n, f, 'O', '6', m, 'a:', t, 'I', k]).
 entry('Informationen', ['I', n, f, 'O', '6', m, a, ts, j, 'o:', n, @, n]).
 entry('Information', ['I', n, f, 'O', '6', m, a, ts, j, 'o:', n]).
-entry('Informationsbüro', ['I', n, f, 'O', '6', m, a, ts, j, 'o:', n, s, b, y, r, 'o:']).
+entry('Informationsbuero', ['I', n, f, 'O', '6', m, a, ts, j, 'o:', n, s, b, y, r, 'o:']).
 entry('Informationsmaterial', ['I', n, f, 'O', '6', m, a, ts, j, 'o:', n, s, m, a, t, e, '6', j, 'a:', l]).
-entry('Informationsmöglichkeiten', ['I', n, f, 'O', '6', m, a, ts, j, 'o:', n, s, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
+entry('Informationsmoeglichkeiten', ['I', n, f, 'O', '6', m, a, ts, j, 'o:', n, s, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
 entry('Informationszettel', ['I', n, f, 'O', '6', m, a, ts, j, 'o:', n, s, ts, 'E', t, @, l]).
 entry(informieren, ['I', n, f, 'O', '6', m, 'i:', r, @, n]).
 entry(informiere, ['I', n, f, 'O', '6', m, 'i:', r, @]).
@@ -4947,10 +4948,10 @@ entry('Inhalte', ['I', n, h, a, l, t, @]).
 entry(inhaltlich, ['I', n, h, a, l, t, l, 'I', 'C']).
 entry(inklusive, ['I', n, k, l, u, z, 'i:', v, @]).
 entry(inkommodiert, ['I', n, k, 'O', m, o, d, 'i:', '6', t]).
-entry('Inkompatibilitäten', ['I', n, k, 'O', m, p, a, t, i, b, i, l, i, t, 'E:', t, @, n]).
-entry('Inlandsflügen', ['I', n, l, a, n, ts, f, l, 'y:', g, @, n]).
+entry('Inkompatibilitaeten', ['I', n, k, 'O', m, p, a, t, i, b, i, l, i, t, 'E:', t, @, n]).
+entry('Inlandsfluegen', ['I', n, l, a, n, ts, f, l, 'y:', g, @, n]).
 entry('Inlandsflug', ['I', n, l, a, n, ts, f, l, 'u:', k]).
-entry('Innenstadtnähe', ['I', n, @, n, 'S', t, a, t, n, 'E:', @]).
+entry('Innenstadtnaehe', ['I', n, @, n, 'S', t, a, t, n, 'E:', @]).
 entry('Innenstadt', ['I', n, @, n, 'S', t, a, t]).
 entry(innerabteilige, ['I', n, '6', a, p, t, aI, l, 'I', g, @]).
 entry(innerhalb, ['I', n, '6', h, a, l, p]).
@@ -5047,23 +5048,23 @@ entry('Jahressoll', [j, 'a:', r, @, s, z, 'O', l]).
 entry('Jahrestagung', [j, 'a:', r, @, s, t, 'a:', g, 'U', 'N']).
 entry('Jahresurlaub', [j, 'a:', r, @, s, 'u:', '6', l, aU, p]).
 entry('Jahreswechsel', [j, 'a:', r, @, s, v, 'E', k, s, @, l]).
-entry(jahreszeitenabhängig, [j, 'a:', r, @, s, ts, aI, t, @, n, a, p, h, 'E', 'N', 'I', 'C']).
+entry(jahreszeitenabhaengig, [j, 'a:', r, @, s, ts, aI, t, @, n, a, p, h, 'E', 'N', 'I', 'C']).
 entry('Jahreszeit', [j, 'a:', r, @, s, ts, aI, t]).
 entry('Jahr', [j, 'a:', r]).
-entry(jährlich, [j, 'E:', '6', l, 'I', 'C']).
+entry(jaehrlich, [j, 'E:', '6', l, 'I', 'C']).
 entry('Jahrzehnten', [j, 'a:', r, ts, 'e:', n, t, @, n]).
 entry(ja, [j, 'a:']).
 entry('Ja', [j, a]).
 entry('Jalcin', [j, a, l, ts, 'I', n]).
 entry('James', [d, 'Z', e, 'I', m, z]).
 entry(jam, [j, a, m]).
-entry('Jänisch', [j, 'E:', n, 'I', 'S']).
-entry('Jänner', [j, 'E', n, '6']).
-entry('Jänsch', [j, 'E', n, 'S']).
+entry('Jaenisch', [j, 'E:', n, 'I', 'S']).
+entry('Jaenner', [j, 'E', n, '6']).
+entry('Jaensch', [j, 'E', n, 'S']).
 entry('Jansen', [j, a, n, z, @, n]).
-entry('Januarhälfte', [j, a, n, u, 'a:', r, h, 'E', l, f, t, @]).
+entry('Januarhaelfte', [j, a, n, u, 'a:', r, h, 'E', l, f, t, @]).
 entry('Januar', [j, a, n, u, 'a:', r]).
-entry(januarmäßig, [j, a, n, u, 'a:', r, m, 'E:', s, 'I', 'C']).
+entry(januarmaeßig, [j, a, n, u, 'a:', r, m, 'E:', s, 'I', 'C']).
 entry('Januars', [j, a, n, u, 'a:', r, s]).
 entry('Januartage', [j, a, n, u, 'a:', r, t, 'a:', g, @]).
 entry('Januarwoche', [j, a, n, u, 'a:', r, v, 'O', x, @]).
@@ -5125,9 +5126,9 @@ entry('Ju', [j, 'u:']).
 entry('Julei', [j, u, l, aI]).
 entry('Jules', [d, 'Z', 'y:', l, z]).
 entry('Julia', [d, 'Z', 'u:', l, i, @]).
-entry('Jülich', [j, 'y:', l, 'I', 'C']).
+entry('Juelich', [j, 'y:', l, 'I', 'C']).
 entry('Julidrittel', [j, 'u:', l, i, d, r, 'I', t, @, l]).
-entry('Julihälfte', [j, 'u:', l, i, h, 'E', l, f, t, @]).
+entry('Julihaelfte', [j, 'u:', l, i, h, 'E', l, f, t, @]).
 entry('Juli', [j, 'u:', l, i]).
 entry('Julis', [j, 'u:', l, i, s]).
 entry('Juliß', [j, 'u:', l, 'I', s]).
@@ -5151,7 +5152,7 @@ entry('Juniwochenende', [j, 'u:', n, i, v, 'O', x, @, n, 'E', n, d, @]).
 entry('Jun', [j, 'u:', n]).
 entry('Junker', [j, 'U', 'N', k, '6']).
 entry('Juno', [j, 'u:', n, 'o:']).
-entry('Jürgen', [j, 'Y', '6', g, @, n]).
+entry('Juergen', [j, 'Y', '6', g, @, n]).
 entry('Jurkeit', [j, 'U', '6', k, aI, t]).
 entry(just, [j, 'U', s, t]).
 entry('Kabale-und-Liebe', [k, a, b, 'a:', l, @, 'U', n, t, l, 'i:', b, @]).
@@ -5159,8 +5160,8 @@ entry('Kabale-un', [k, a, b, 'a:', l, @, 'U', n]).
 entry('Kabarettprogramm', [k, a, b, a, r, 'E', t, p, r, o, g, r, a, m]).
 entry('Kachelrieß', [k, a, x, @, l, r, 'i:', s]).
 entry('Kaduthanam', [k, a, d, 'U', t, h, a, n, 'a:', m]).
-entry('Käfer', [k, 'E:', f, '6']).
-entry('Käfer-Plex', [k, 'E:', f, '6', p, l, 'E', k, s]).
+entry('Kaefer', [k, 'E:', f, '6']).
+entry('Kaefer-Plex', [k, 'E:', f, '6', p, l, 'E', k, s]).
 entry('Kaffeetrinken', [k, a, f, e, t, r, 'I', 'N', k, @, n]).
 entry('Kaff', [k, a, f]).
 entry('Kaiser-Cafe', [k, aI, z, '6', k, a, f, 'e:']).
@@ -5180,9 +5181,9 @@ entry('Kal', [k, a, l]).
 entry(kalkulieren, [k, a, l, k, u, l, 'i:', r, @, n]).
 entry('Kaltenkirchen', [k, a, l, t, @, n, k, 'I', '6', 'C', @, n]).
 entry(kalt, [k, a, l, t]).
-entry(käme, [k, 'E:', m, @]).
+entry(kaeme, [k, 'E:', m, @]).
 entry(kamen, [k, 'a:', m, @, n]).
-entry(kämen, [k, 'E:', m, @, n]).
+entry(kaemen, [k, 'E:', m, @, n]).
 entry('Kamenz', [k, 'a:', m, 'E', n, ts]).
 entry('Kaminkalender', [k, a, m, 'i:', n, k, a, l, 'E', n, d, '6']).
 entry('Kamin', [k, a, m, 'i:', n]).
@@ -5195,7 +5196,7 @@ entry(kann, [k, a, n]).
 entry(kannst, [k, a, n, s, t]).
 entry('Kante', [k, a, n, t, @]).
 entry('Kantine', [k, a, n, t, 'i:', n, @]).
-entry('Kapazitäten', [k, a, p, a, ts, i, t, 'E:', t, @, n]).
+entry('Kapazitaeten', [k, a, p, a, ts, i, t, 'E:', t, @, n]).
 entry(kapiere, [k, a, p, 'i:', r, @]).
 entry(kapieren, [k, a, p, 'i:', r, @, n]).
 entry('Kappe', [k, a, p, @]).
@@ -5219,11 +5220,11 @@ entry('Kartal', [k, a, r, t, 'a:', l]).
 entry('Karte', [k, a, r, t, @]).
 entry('Karten', [k, a, r, t, @, n]).
 entry('Kartenreservierungen', [k, a, r, t, @, n, r, e, z, 'E', '6', v, 'i:', r, 'U', 'N', @, n]).
-entry('Käse', [k, 'E:', z, @]).
+entry('Kaese', [k, 'E:', z, @]).
 entry('Kasse', [k, a, s, @]).
 entry('Kassel', [k, a, s, @, l]).
 entry('Kassen', [k, a, s, @, n]).
-entry('Kästner-Gesellschaft', [k, 'E', s, t, n, '6', g, @, z, 'E', l, 'S', a, f, t]).
+entry('Kaestner-Gesellschaft', [k, 'E', s, t, n, '6', g, @, z, 'E', l, 'S', a, f, t]).
 entry('Kataloge', [k, a, t, a, l, 'o:', g, @]).
 entry(katastrophal, [k, a, t, a, s, t, r, o, f, 'a:', l]).
 entry('Katastrophe', [k, a, t, a, s, t, r, 'o:', f, @]).
@@ -5245,7 +5246,7 @@ entry('Kauz', [k, aU, ts]).
 entry('Kaviar', [k, 'a:', v, j, a, r]).
 entry(kay, [k, 'e:']).
 entry(kea, [k, 'e:', a]).
-entry('Kegelbrüdern', [k, 'e:', g, @, l, b, r, 'y:', d, '6', n]).
+entry('Kegelbruedern', [k, 'e:', g, @, l, b, r, 'y:', d, '6', n]).
 entry('Kegel', [k, 'e:', g, @, l]).
 entry('Kehlheim', [k, 'e:', l, h, aI, m]).
 entry('Kehl', [k, 'e:', l]).
@@ -5322,9 +5323,9 @@ entry(klang, [k, l, a, 'N']).
 entry('Klappe', [k, l, a, p, @]).
 entry(klappen, [k, l, a, p, @, n]).
 entry(klappt, [k, l, a, p, t]).
-entry(kläre, [k, l, 'E:', r, @]).
+entry(klaere, [k, l, 'E:', r, @]).
 entry(klaren, [k, l, 'a:', r, @, n]).
-entry(klären, [k, l, 'E:', r, @, n]).
+entry(klaeren, [k, l, 'E:', r, @, n]).
 entry(klares, [k, l, 'a:', r, @, s]).
 entry(klargehen, [k, l, 'a:', r, g, 'e:', @, n]).
 entry(klargemacht, [k, l, 'a:', r, g, @, m, a, x, t]).
@@ -5340,7 +5341,7 @@ entry('Klassik', [k, l, a, s, 'I', k]).
 entry(klassische, [k, l, a, s, 'I', 'S', @]).
 entry(klassisches, [k, l, a, s, 'I', 'S', @, s]).
 entry(klauen, [k, l, aU, @, n]).
-entry('Kläuser', [k, l, 'OY', z, '6']).
+entry('Klaeuser', [k, l, 'OY', z, '6']).
 entry('Klaus', [k, l, aU, s]).
 entry('Klausur', [k, l, aU, z, 'u:', '6']).
 entry('Klavier', [k, l, a, v, 'i:', '6']).
@@ -5370,10 +5371,10 @@ entry(klingt, [k, l, 'I', 'N', t]).
 entry('Klitsche', [k, l, 'I', tS, @]).
 entry('Klitscher', [k, l, 'I', tS, '6']).
 entry(kl, [k, l]).
-entry('Klöbner', [k, l, '2:', p, n, '6']).
+entry('Kloebner', [k, l, '2:', p, n, '6']).
 entry('Klub', [k, l, 'U', p]).
 entry('Klubmitglied', [k, l, 'U', p, m, 'I', t, g, l, 'i:', t]).
-entry('Klübner', [k, l, 'y:', p, n, '6']).
+entry('Kluebner', [k, l, 'y:', p, n, '6']).
 entry(knallvoll, [k, n, a, l, f, 'O', l]).
 entry(knappe, [k, n, a, p, @]).
 entry(knappen, [k, n, a, p, @, n]).
@@ -5396,21 +5397,21 @@ entry('Koch', [k, 'O', x]).
 entry('Kochkunst', [k, 'O', x, k, 'U', n, s, t]).
 entry('Koffer', [k, 'O', f, '6']).
 entry('Koffertragen', [k, 'O', f, '6', t, r, 'a:', g, @, n]).
-entry('Kofferträger', [k, 'O', f, '6', t, r, 'E:', g, '6']).
+entry('Koffertraeger', [k, 'O', f, '6', t, r, 'E:', g, '6']).
 entry('Kohl', [k, 'o:', l]).
-entry(kö, [k, '9']).
+entry(koe, [k, '9']).
 entry(ko, [k, 'O']).
-entry('Köl', [k, '9', l]).
+entry('Koel', [k, '9', l]).
 entry('Kollege', [k, 'O', l, 'e:', g, @]).
 entry('Kollegen', [k, 'O', l, 'e:', g, @, n]).
 entry('Kollegin', [k, 'O', l, 'e:', g, 'I', n]).
 entry('Kollek', [k, 'O', l, 'E', k]).
 entry('Kolloquium', [k, 'O', l, 'o:', k, v, i, 'U', m]).
-entry('Köln-Bonner', [k, '9', l, n, b, 'O', n, '6']).
-entry('Köln-Bonn', [k, '9', l, n, b, 'O', n]).
-entry('Kölner-Gasse', [k, '9', l, n, '6', g, a, s, @]).
-entry('Kölner', [k, '9', l, n, '6']).
-entry('Köln', [k, '9', l, n]).
+entry('Koeln-Bonner', [k, '9', l, n, b, 'O', n, '6']).
+entry('Koeln-Bonn', [k, '9', l, n, b, 'O', n]).
+entry('Koelner-Gasse', [k, '9', l, n, '6', g, a, s, @]).
+entry('Koelner', [k, '9', l, n, '6']).
+entry('Koeln', [k, '9', l, n]).
 entry('Kombination', [k, 'O', m, b, i, n, a, ts, j, 'o:', n]).
 entry(kombinieren, [k, 'O', m, b, i, n, 'i:', r, @, n]).
 entry(kombiniert, [k, 'O', m, b, i, n, 'i:', '6', t]).
@@ -5423,7 +5424,7 @@ entry(komfort, [k, 'O', m, f, 'O', '6', t]).
 entry(komischen, [k, 'o:', m, 'I', 'S', @, n]).
 entry(komischer, [k, 'o:', m, 'I', 'S', '6']).
 entry(komisch, [k, 'o:', m, 'I', 'S']).
-entry(köm, [k, '9', m]).
+entry(koem, [k, '9', m]).
 entry(kom, [k, 'O', m]).
 entry('Komma', [k, 'O', m, a]).
 entry('Kommaprojekt', [k, 'O', m, a, p, r, o, j, 'E', k, t]).
@@ -5460,7 +5461,7 @@ entry('Konferenzabteil', [k, 'O', n, f, e, r, 'E', n, ts, a, p, t, aI, l]).
 entry('Konferenzen', [k, 'O', n, f, e, r, 'E', n, ts, @, n]).
 entry('Konferenz', [k, 'O', n, f, e, r, 'E', n, ts]).
 entry('Konferenzrauma', [k, 'O', n, f, e, r, 'E', n, ts, r, aU, m, a]).
-entry('Konferenzräumen', [k, 'O', n, f, e, r, 'E', n, ts, r, 'OY', m, @, n]).
+entry('Konferenzraeumen', [k, 'O', n, f, e, r, 'E', n, ts, r, 'OY', m, @, n]).
 entry('Konferenzraum', [k, 'O', n, f, e, r, 'E', n, ts, r, aU, m]).
 entry('Konferenzraum-Zuschlag', [k, 'O', n, f, e, r, 'E', n, ts, r, aU, m, ts, 'u:', 'S', l, 'a:', k]).
 entry('Konferenzsaal', [k, 'O', n, f, e, r, 'E', n, ts, z, 'a:', l]).
@@ -5473,13 +5474,13 @@ entry('Kongreß', [k, 'O', 'N', g, r, 'E', s]).
 entry('Kongressen', [k, 'O', 'N', g, r, 'E', s, @, n]).
 entry('Kongreßunternehmungen', [k, 'O', 'N', g, r, 'E', s, 'U', n, t, '6', n, 'e:', m, 'U', 'N', @, n]).
 entry(kongruent, [k, 'O', 'N', g, r, u, 'E', n, t]).
-entry('Königshof', [k, '2:', n, 'I', 'C', s, h, 'o:', f]).
-entry('Königsstraße', [k, '2:', n, 'I', 'C', 'S', t, r, 'a:', s, @]).
-entry('Königstein', [k, '2:', n, 'I', 'C', 'S', t, aI, n]).
+entry('Koenigshof', [k, '2:', n, 'I', 'C', s, h, 'o:', f]).
+entry('Koenigsstraße', [k, '2:', n, 'I', 'C', 'S', t, r, 'a:', s, @]).
+entry('Koenigstein', [k, '2:', n, 'I', 'C', 'S', t, aI, n]).
 entry('Konitzer', [k, 'o:', n, 'I', ts, '6']).
 entry('Konjunktur', [k, 'O', n, j, 'U', 'N', k, t, 'u:', '6']).
-entry('Kön', [k, '2:', n]).
-entry(kön, [k, '9', n]).
+entry('Koen', [k, '2:', n]).
+entry(koen, [k, '9', n]).
 entry(konkete, [k, 'O', 'N', k, 'e:', t, @]).
 entry(kon, [k, 'O', n]).
 entry(konkrete, [k, 'O', 'N', k, r, 'e:', t, @]).
@@ -5489,15 +5490,15 @@ entry(konkretes, [k, 'O', 'N', k, r, 'e:', t, @, s]).
 entry('Konkretes', [k, 'O', n, k, r, 'e:', t, @, s]).
 entry(konkretisieren, [k, 'O', 'N', k, r, e, t, i, z, 'i:', r, @, n]).
 entry(konkret, [k, 'O', 'N', k, r, 'e:', t]).
-entry(können, [k, '9', n, @, n]).
+entry(koennen, [k, '9', n, @, n]).
 entry('Konnertz', [k, 'O', n, 'E', '6', ts]).
-entry(könnte, [k, '9', n, t, @]).
+entry(koennte, [k, '9', n, t, @]).
 entry(konnte, [k, 'O', n, t, @]).
-entry(könnten, [k, '9', n, t, @, n]).
+entry(koennten, [k, '9', n, t, @, n]).
 entry(konnten, [k, 'O', n, t, @, n]).
-entry(könntest, [k, '9', n, t, @, s, t]).
+entry(koenntest, [k, '9', n, t, @, s, t]).
 entry(konntest, [k, 'O', n, t, @, s, t]).
-entry(könnt, [k, '9', n, t]).
+entry(koennt, [k, '9', n, t]).
 entry('Konrad', [k, 'O', n, r, 'a:', t]).
 entry('Konsequenzen', [k, 'O', n, z, e, k, v, 'E', n, ts, @, n]).
 entry('Konstanz', [k, 'O', n, s, t, a, n, ts]).
@@ -5515,7 +5516,7 @@ entry('Konzern', [k, 'O', n, ts, 'E', '6', n]).
 entry('Konzerte', [k, 'O', n, ts, 'E', '6', t, @]).
 entry('Konzerten', [k, 'O', n, ts, 'E', '6', t, @, n]).
 entry('Konzerthalle', [k, 'O', n, ts, 'E', '6', t, h, a, l, @]).
-entry('Konzerthörer', [k, 'O', n, ts, 'E', '6', t, h, '2:', r, '6']).
+entry('Konzerthoerer', [k, 'O', n, ts, 'E', '6', t, h, '2:', r, '6']).
 entry('Konzertkalender', [k, 'O', n, ts, 'E', '6', t, k, a, l, 'E', n, d, '6']).
 entry('Konzertkarten', [k, 'O', n, ts, 'E', '6', t, k, a, r, t, @, n]).
 entry('Konzert', [k, 'O', n, ts, 'E', '6', t]).
@@ -5525,17 +5526,17 @@ entry(kooperativ, [k, o, o, p, e, r, a, t, 'i:', f]).
 entry('Koordinations-Geschichten', [k, o, 'O', '6', d, i, n, a, ts, j, 'o:', n, s, g, @, 'S', 'I', 'C', t, @, n]).
 entry(koordinieren, [k, o, 'O', '6', d, i, n, 'i:', r, @, n]).
 entry('Kopenhagen', [k, 'o:', p, @, n, h, 'a:', g, @, n]).
-entry('Köpfen', [k, '9', pf, @, n]).
-entry('Köpf', [k, '9', pf]).
+entry('Koepfen', [k, '9', pf, @, n]).
+entry('Koepf', [k, '9', pf]).
 entry('Kopf', [k, 'O', pf]).
 entry('Kopie', [k, o, p, 'i:']).
 entry('Kopien', [k, o, p, 'i:', @, n]).
 entry('Kopierer', [k, o, p, 'i:', r, '6']).
-entry('Köpp', [k, '9', p]).
+entry('Koepp', [k, '9', p]).
 entry('Kopp', [k, 'O', p]).
-entry('Körner', [k, '9', '6', n, '6']).
+entry('Koerner', [k, '9', '6', n, '6']).
 entry('Korn', [k, 'O', '6', n]).
-entry(körperlich, [k, '9', '6', p, '6', l, 'I', 'C']).
+entry(koerperlich, [k, '9', '6', p, '6', l, 'I', 'C']).
 entry(korrekt, [k, 'O', r, 'E', k, t]).
 entry('Korrespondenz', [k, 'O', r, @, 'S', p, 'O', n, d, 'E', n, ts]).
 entry(korrigieren, [k, 'O', r, i, g, 'i:', r, @, n]).
@@ -5543,20 +5544,20 @@ entry('Kose', [k, 'o:', z, @]).
 entry('Kossmann', [k, 'O', s, m, a, n]).
 entry('Kostenfaktor', [k, 'O', s, t, @, n, f, a, k, t, 'o:', '6']).
 entry('Kostenfrage', [k, 'O', s, t, @, n, f, r, 'a:', g, @]).
-entry('Kostengründen', [k, 'O', s, t, @, n, g, r, 'Y', n, d, @, n]).
-entry(kostengünstig, [k, 'O', s, t, @, n, g, 'Y', n, s, t, 'I', 'C']).
+entry('Kostengruenden', [k, 'O', s, t, @, n, g, r, 'Y', n, d, @, n]).
+entry(kostenguenstig, [k, 'O', s, t, @, n, g, 'Y', n, s, t, 'I', 'C']).
 entry(kosten, [k, 'O', s, t, @, n]).
 entry('Kostenvoranschlag', [k, 'O', s, t, @, n, f, 'o:', '6', a, n, 'S', l, 'a:', k]).
 entry(kostet, [k, 'O', s, t, @, t]).
 entry(kost, [k, 'O', s, t]).
-entry(köstlichen, [k, '9', s, t, l, 'I', 'C', @, n]).
-entry('Köthe', [k, '2:', t, @]).
+entry(koestlichen, [k, '9', s, t, l, 'I', 'C', @, n]).
+entry('Koethe', [k, '2:', t, @]).
 entry('Kotten', [k, 'O', t, @, n]).
 entry('Kowalski', [k, o, v, a, l, s, k, i]).
 entry('Krabben', [k, r, a, b, @, n]).
 entry(krachen, [k, r, a, x, @, n]).
 entry('Krafft', [k, r, a, f, t]).
-entry(kräftigen, [k, r, 'E', f, t, 'I', g, @, n]).
+entry(kraeftigen, [k, r, 'E', f, t, 'I', g, @, n]).
 entry('Kraftraum', [k, r, a, f, t, r, aU, m]).
 entry('Krah', [k, r, 'a:']).
 entry('Kram', [k, r, 'a:', m]).
@@ -5587,24 +5588,24 @@ entry('Krongreß', [k, r, 'O', 'N', g, r, 'E', s]).
 entry('Kronitzer', [k, r, 'o:', n, 'I', ts, '6']).
 entry('Kronsberger-Hof', [k, r, 'o:', n, s, b, 'E', '6', g, '6', h, 'o:', f]).
 entry('Kronsberger', [k, r, 'o:', n, s, b, 'E', '6', g, '6']).
-entry('Kröpcke', [k, r, '9', p, k, @]).
+entry('Kroepcke', [k, r, '9', p, k, @]).
 entry(kru, [k, r, 'U']).
 entry('Kru', [k, r, 'u:']).
-entry('Krümmel', [k, r, 'Y', m, @, l]).
+entry('Kruemmel', [k, r, 'Y', m, @, l]).
 entry(kt, [k, t]).
-entry('Küche', [k, 'Y', 'C', @]).
+entry('Kueche', [k, 'Y', 'C', @]).
 entry('Kuchen', [k, 'u:', x, @, n]).
 entry(kucke, [k, 'U', k, @]).
 entry(kucken, [k, 'U', k, @, n]).
 entry(kuckt, [k, 'U', k, t]).
 entry('Kuckuck', [k, 'U', k, 'U', k]).
 entry(kudasai, [k, u, d, a, s, aI]).
-entry('Kügler', [k, 'y:', g, l, '6']).
-entry('Kühn', [k, 'y:', n]).
+entry('Kuegler', [k, 'y:', g, l, '6']).
+entry('Kuehn', [k, 'y:', n]).
 entry(ku, [k, 'U']).
 entry('Kulturangebot', [k, 'U', l, t, 'u:', '6', a, n, g, @, b, 'o:', t]).
 entry('Kulturbanause', [k, 'U', l, t, 'U', '6', b, a, n, aU, z, @]).
-entry('Kulturbroschüre', [k, 'U', l, t, 'u:', '6', b, r, 'O', 'S', 'y:', r, @]).
+entry('Kulturbroschuere', [k, 'U', l, t, 'u:', '6', b, r, 'O', 'S', 'y:', r, @]).
 entry('Kulturdiaspora', [k, 'U', l, t, 'u:', '6', d, i, a, s, p, o, r, a]).
 entry(kulturelle, [k, 'U', l, t, u, r, 'E', l, @]).
 entry('Kulturellem', [k, 'U', l, t, u, r, 'E', l, @, m]).
@@ -5617,25 +5618,25 @@ entry('Kulturhochburg', [k, 'U', l, t, 'u:', '6', h, 'o:', x, b, 'U', '6', k]).
 entry('Kulturkalender', [k, 'U', l, t, 'u:', '6', k, a, l, 'E', n, d, '6']).
 entry('Kultur', [k, 'U', l, t, 'u:', '6']).
 entry('Kulturleben', [k, 'U', l, t, 'u:', '6', l, 'e:', b, @, n]).
-entry(kulturmäßig, [k, 'U', l, t, 'u:', '6', m, 'E:', s, 'I', 'C']).
+entry(kulturmaeßig, [k, 'U', l, t, 'u:', '6', m, 'E:', s, 'I', 'C']).
 entry('Kulturprogramm', [k, 'U', l, t, 'u:', '6', p, r, o, g, r, a, m]).
 entry('Kulturveranstaltungen', [k, 'U', l, t, 'u:', '6', f, 'E', '6', a, n, s, t, a, l, t, 'U', 'N', @, n]).
 entry('Kulturwochen', [k, 'U', l, t, 'u:', '6', v, 'O', x, @, n]).
-entry(kümmere, [k, 'Y', m, @, r, @]).
-entry(kümmer, [k, 'Y', m, '6']).
-entry(kümmern, [k, 'Y', m, '6', n]).
-entry(kümmerst, [k, 'Y', m, '6', s, t]).
-entry(kümmert, [k, 'Y', m, '6', t]).
+entry(kuemmere, [k, 'Y', m, @, r, @]).
+entry(kuemmer, [k, 'Y', m, '6']).
+entry(kuemmern, [k, 'Y', m, '6', n]).
+entry(kuemmerst, [k, 'Y', m, '6', s, t]).
+entry(kuemmert, [k, 'Y', m, '6', t]).
 entry('Kunde', [k, 'U', n, d, @]).
 entry(kunden, [k, 'U', n, d, @, n]).
 entry('Kundentermin', [k, 'U', n, d, @, n, t, 'E', '6', m, 'i:', n]).
 entry(kundgetan, [k, 'U', n, t, g, @, t, 'a:', n]).
 entry(kundig, [k, 'U', n, d, 'I', 'C']).
-entry(künftige, [k, 'Y', n, f, t, 'I', g, @]).
+entry(kuenftige, [k, 'Y', n, f, t, 'I', g, @]).
 entry('Kunstausstellung', [k, 'U', n, s, t, aU, s, 'S', t, 'E', l, 'U', 'N']).
-entry('Künste', [k, 'Y', n, s, t, @]).
+entry('Kuenste', [k, 'Y', n, s, t, @]).
 entry('Kunst', [k, 'U', n, s, t]).
-entry(künstliche, [k, 'Y', n, s, t, l, 'I', 'C', @]).
+entry(kuenstliche, [k, 'Y', n, s, t, l, 'I', 'C', @]).
 entry('Kunstmuseum', [k, 'U', n, s, t, m, u, z, 'e:', 'U', m]).
 entry('Kunz', [k, 'U', n, ts]).
 entry('Kupfer', [k, 'U', pf, '6']).
@@ -5647,21 +5648,21 @@ entry('Kurses', [k, 'U', '6', z, @, s]).
 entry('Kurs', [k, 'U', '6', s]).
 entry('Kursteilnehmer', [k, 'U', '6', s, t, aI, l, n, 'e:', m, '6']).
 entry(kurze, [k, 'U', '6', ts, @]).
-entry('Kürze', [k, 'Y', '6', ts, @]).
-entry('Kürzel', [k, 'Y', '6', ts, @, l]).
+entry('Kuerze', [k, 'Y', '6', ts, @]).
+entry('Kuerzel', [k, 'Y', '6', ts, @, l]).
 entry(kurzem, [k, 'U', '6', ts, @, m]).
 entry(kurzen, [k, 'U', '6', ts, @, n]).
-entry(kürzere, [k, 'Y', '6', ts, @, r, @]).
-entry(kürzeren, [k, 'Y', '6', ts, @, r, @, n]).
+entry(kuerzere, [k, 'Y', '6', ts, @, r, @]).
+entry(kuerzeren, [k, 'Y', '6', ts, @, r, @, n]).
 entry(kurzer, [k, 'U', '6', ts, '6']).
-entry(kürzer, [k, 'Y', '6', ts, '6']).
+entry(kuerzer, [k, 'Y', '6', ts, '6']).
 entry(kurzes, [k, 'U', '6', ts, @, s]).
-entry('Kürzeste', [k, 'Y', '6', ts, 'E', s, t, @]).
+entry('Kuerzeste', [k, 'Y', '6', ts, 'E', s, t, @]).
 entry(kurzfristigen, [k, 'U', '6', ts, f, r, 'I', s, t, 'I', g, @, n]).
 entry(kurzfristiger, [k, 'U', '6', ts, f, r, 'I', s, t, 'I', g, '6']).
 entry(kurzfristig, [k, 'U', '6', ts, f, r, 'I', s, t, 'I', 'C']).
 entry(kurz, [k, 'U', '6', ts]).
-entry(kürzlich, [k, 'Y', '6', ts, l, 'I', 'C']).
+entry(kuerzlich, [k, 'Y', '6', ts, l, 'I', 'C']).
 entry(kurzschließen, [k, 'U', '6', ts, 'S', l, 'i:', s, @, n]).
 entry('Kurzstrecken', [k, 'U', '6', ts, 'S', t, r, 'E', k, @, n]).
 entry('Kurztermine', [k, 'U', '6', ts, t, 'E', '6', m, 'i:', n, @]).
@@ -5672,21 +5673,21 @@ entry(kurzzeitig, [k, 'U', '6', ts, ts, aI, t, 'I', 'C']).
 entry('Kustrich', [k, 'U', s, t, r, 'I', 'C']).
 entry('Kuzla', [k, 'U', ts, l, a]).
 entry(lachen, [l, a, x, @, n]).
-entry(lächerlich, [l, 'E', 'C', '6', l, 'I', 'C']).
+entry(laecherlich, [l, 'E', 'C', '6', l, 'I', 'C']).
 entry(lade, [l, 'a:', d, @]).
 entry('Laden', [l, 'a:', d, @, n]).
 entry('Ladies-Night', [l, 'e:', d, i, s, n, aI, t]).
 entry('Lad', [l, a, t]).
 entry('Ladolmy', [l, a, d, 'O', l, m, i]).
 entry('Lage', [l, 'a:', g, @]).
-entry(läge, [l, 'E:', g, @]).
+entry(laege, [l, 'E:', g, @]).
 entry(lagen, [l, 'a:', g, @, n]).
 entry(lag, [l, 'a:', k]).
 entry(la, [l, a]).
 entry('Landau', [l, a, n, d, aU]).
 entry('Lande', [l, a, n, d, @]).
 entry(landen, [l, a, n, d, @, n]).
-entry('Ländern', [l, 'E', n, d, '6', n]).
+entry('Laendern', [l, 'E', n, d, '6', n]).
 entry('Landes', [l, a, n, d, @, s]).
 entry('Landesrechenzentrum', [l, a, n, d, @, s, r, 'E', 'C', @, n, ts, 'E', n, t, r, 'U', m]).
 entry('Landesregierung', [l, a, n, d, @, s, r, e, g, 'i:', r, 'U', 'N']).
@@ -5698,26 +5699,26 @@ entry('Landschaften', [l, a, n, tS, a, f, t, @, n]).
 entry('Landschaft', [l, a, n, tS, a, f, t]).
 entry('Landshut', [l, a, n, ts, h, 'u:', t]).
 entry(lange, [l, a, 'N', @]).
-entry('Länge', [l, 'E', 'N', @]).
+entry('Laenge', [l, 'E', 'N', @]).
 entry('Langemann', [l, a, 'N', @, m, a, n]).
 entry('Langenberg', [l, a, 'N', @, n, b, 'E', '6', k]).
 entry('Langenhagen', [l, a, 'N', g, @, n, h, 'a:', g, @, n]).
 entry(langen, [l, a, 'N', @, n]).
 entry('Langenstein', [l, a, 'N', @, n, 'S', t, aI, n]).
-entry(längere, [l, 'E', 'N', @, r, @]).
-entry(längerem, [l, 'E', 'N', @, r, @, m]).
-entry(längeren, [l, 'E', 'N', @, r, @, n]).
-entry(längerer, [l, 'E', 'N', @, r, '6']).
-entry(längeres, [l, 'E', 'N', @, r, @, s]).
-entry(längerfristigen, [l, 'E', 'N', '6', f, r, 'I', s, t, 'I', g, @, n]).
+entry(laengere, [l, 'E', 'N', @, r, @]).
+entry(laengerem, [l, 'E', 'N', @, r, @, m]).
+entry(laengeren, [l, 'E', 'N', @, r, @, n]).
+entry(laengerer, [l, 'E', 'N', @, r, '6']).
+entry(laengeres, [l, 'E', 'N', @, r, @, s]).
+entry(laengerfristigen, [l, 'E', 'N', '6', f, r, 'I', s, t, 'I', g, @, n]).
 entry(langer, [l, a, 'N', '6']).
-entry(länger, [l, 'E', 'N', '6']).
+entry(laenger, [l, 'E', 'N', '6']).
 entry(langes, [l, a, 'N', @, s]).
 entry('Langeweile', [l, a, 'N', @, v, aI, l, @]).
 entry(lang, [l, a, 'N']).
 entry('Langlaufskier', [l, a, 'N', l, aU, f, 'S', 'i:', '6']).
 entry(langsam, [l, a, 'N', z, 'a:', m]).
-entry('Langschläfer', [l, a, 'N', 'S', l, 'E:', f, '6']).
+entry('Langschlaefer', [l, a, 'N', 'S', l, 'E:', f, '6']).
 entry(langstreckenerprobt, [l, a, 'N', 'S', t, r, 'E', k, @, n, 'E', '6', p, r, 'o:', p, t]).
 entry(langt, [l, a, 'N', t]).
 entry(langweilige, [l, a, 'N', v, aI, l, 'I', g, @]).
@@ -5725,19 +5726,19 @@ entry(langweilig, [l, a, 'N', v, aI, l, 'I', 'C']).
 entry('Lan', [l, 'a:', n]).
 entry('Laptop', [l, 'E', p, t, 'O', p]).
 entry('Laptops', [l, 'E', p, t, 'O', p, s]).
-entry('Lärmkulisse', [l, 'E', '6', m, k, u, l, 'I', s, @]).
-entry('Lärm', [l, 'E', '6', m]).
+entry('Laermkulisse', [l, 'E', '6', m, k, u, l, 'I', s, @]).
+entry('Laerm', [l, 'E', '6', m]).
 entry(laß, [l, a, s]).
 entry(las, [l, 'a:', s]).
 entry(lasse, [l, a, s, @]).
 entry(lassen, [l, a, s, @, n]).
 entry('Lasten', [l, a, s, t, @, n]).
 entry('Laster', [l, a, s, t, '6']).
-entry('Lasterlöchli', [l, a, s, t, '6', l, '9', 'C', l, i]).
-entry(lästige, [l, 'E', s, t, 'I', g, @]).
-entry(lästig, [l, 'E', s, t, 'I', 'C']).
+entry('Lasterloechli', [l, a, s, t, '6', l, '9', 'C', l, i]).
+entry(laestige, [l, 'E', s, t, 'I', g, @]).
+entry(laestig, [l, 'E', s, t, 'I', 'C']).
 entry('Last', [l, a, s, t]).
-entry(läßt, [l, 'E', s, t]).
+entry(laeßt, [l, 'E', s, t]).
 entry(lateinamerikanisches, [l, a, t, aI, n, a, m, e, r, i, k, 'a:', n, 'I', 'S', @, s]).
 entry(lauen, [l, aU, @, n]).
 entry('Lauerbach', [l, aU, '6', b, a, x]).
@@ -5745,9 +5746,9 @@ entry(lauern, [l, aU, '6', n]).
 entry('Laufe', [l, aU, f, @]).
 entry(laufenden, [l, aU, f, @, n, d, @, n]).
 entry(laufen, [l, aU, f, @, n]).
-entry('Läufer-Star', [l, 'OY', f, '6', s, t, 'a:', r]).
+entry('Laeufer-Star', [l, 'OY', f, '6', s, t, 'a:', r]).
 entry('Lauf', [l, aU, f]).
-entry(läuft, [l, 'OY', f, t]).
+entry(laeuft, [l, 'OY', f, t]).
 entry('Laufzeit', [l, aU, f, ts, aI, t]).
 entry(lau, [l, aU]).
 entry('Laune', [l, aU, n, @]).
@@ -5763,7 +5764,7 @@ entry('Lavergne', [l, a, v, 'E', '6', n, j, @]).
 entry('Lay', [l, aI]).
 entry(lebe, [l, 'e:', b, @]).
 entry(leben, [l, 'e:', b, @, n]).
-entry('Lebensabschnittsgefährte', [l, 'e:', b, @, n, s, a, p, 'S', n, 'I', ts, g, @, f, 'E:', '6', t, @]).
+entry('Lebensabschnittsgefaehrte', [l, 'e:', b, @, n, s, a, p, 'S', n, 'I', ts, g, @, f, 'E:', '6', t, @]).
 entry('Lebens', [l, 'e:', b, @, n, s]).
 entry('Leber', [l, 'e:', b, '6']).
 entry(lebt, [l, 'e:', p, t]).
@@ -5856,7 +5857,7 @@ entry('Lindau', [l, 'I', n, d, aU]).
 entry('Linderhof', [l, 'I', n, d, '6', h, 'o:', f]).
 entry('Linguistik', [l, 'I', 'N', g, u, 'I', s, t, 'I', k]).
 entry('Linie', [l, 'i:', n, j, @]).
-entry('Linienflügen', [l, 'i:', n, j, @, n, f, l, 'y:', g, @, n]).
+entry('Linienfluegen', [l, 'i:', n, j, @, n, f, l, 'y:', g, @, n]).
 entry(links, [l, 'I', 'N', k, s]).
 entry('Linn', [l, 'I', n]).
 entry('Lipp', [l, 'I', p]).
@@ -5877,24 +5878,24 @@ entry(lockert, [l, 'O', k, '6', t]).
 entry(logieren, [l, o, 'Z', 'i:', r, @, n]).
 entry(lohnen, [l, 'o:', n, @, n]).
 entry(lohnt, [l, 'o:', n, t]).
-entry('Löhr', [l, '2:', '6']).
+entry('Loehr', [l, '2:', '6']).
 entry('Lokale', [l, o, k, 'a:', l, @]).
-entry('Lokalitäten', [l, o, k, a, l, i, t, 'E:', t, @, n]).
-entry('Lokalität', [l, o, k, a, l, i, t, 'E:', t]).
+entry('Lokalitaeten', [l, o, k, a, l, i, t, 'E:', t, @, n]).
+entry('Lokalitaet', [l, o, k, a, l, i, t, 'E:', t]).
 entry('Lokal', [l, o, k, 'a:', l]).
 entry('Lokomotive', [l, o, k, o, m, o, t, 'i:', v, @]).
 entry(lo, [l, 'O']).
 entry('Lo', [l, o]).
 entry('London', [l, 'O', n, d, 'O', n]).
 entry('Lorgie', [l, 'O', '6', g, 'i:']).
-entry(lör, [l, '9', '6']).
+entry(loer, [l, '9', '6']).
 entry('Los-Banditos-Bar', [l, 'O', s, b, a, n, d, i, t, 'O', s, b, 'a:', r]).
-entry(löschen, [l, '9', 'S', @, n]).
-entry(löse, [l, '2:', z, @]).
-entry(lösende, [l, '2:', z, @, n, d, @]).
-entry(lösen, [l, '2:', z, @, n]).
+entry(loeschen, [l, '9', 'S', @, n]).
+entry(loese, [l, '2:', z, @]).
+entry(loesende, [l, '2:', z, @, n, d, @]).
+entry(loesen, [l, '2:', z, @, n]).
 entry(losfahren, [l, 'o:', s, f, 'a:', r, @, n]).
-entry(losfährt, [l, 'o:', s, f, 'E', '6', t]).
+entry(losfaehrt, [l, 'o:', s, f, 'E', '6', t]).
 entry(losfliege, [l, 'o:', s, f, l, 'i:', g, @]).
 entry(losfliegen, [l, 'o:', s, f, l, 'i:', g, @, n]).
 entry(losfliegt, [l, 'o:', s, f, l, 'i:', g, t]).
@@ -5909,9 +5910,9 @@ entry(los, [l, 'o:', s]).
 entry(losmachen, [l, 'o:', s, m, a, x, @, n]).
 entry(losreisen, [l, 'o:', s, r, aI, z, @, n]).
 entry(losschicken, [l, 'o:', s, 'S', 'I', k, @, n]).
-entry(lössen, [l, '9', s, @, n]).
+entry(loessen, [l, '9', s, @, n]).
 entry(losstarten, [l, 'o:', s, 'S', t, a, r, t, @, n]).
-entry('Lösung', [l, '2:', z, 'U', 'N']).
+entry('Loesung', [l, '2:', z, 'U', 'N']).
 entry(loswollen, [l, 'o:', s, v, 'O', l, @, n]).
 entry(losziehen, [l, 'o:', s, ts, 'i:', @, n]).
 entry(loszufahren, [l, 'o:', s, ts, u, f, 'a:', r, @, n]).
@@ -5922,15 +5923,15 @@ entry('Lotter', [l, 'O', t, '6']).
 entry('Lotto', [l, 'O', t, o]).
 entry('Lotz', [l, 'O', ts]).
 entry(l, ['E', l]).
-entry('Lübeck', [l, 'y:', b, 'E', k]).
-entry('Lübke', [l, 'Y', p, k, @]).
-entry('Lücke', [l, 'Y', k, @]).
-entry('Lücken', [l, 'Y', k, @, n]).
-entry('Lückentermine', [l, 'Y', k, @, n, t, 'E', '6', m, 'i:', n, @]).
-entry('Lück', [l, 'Y', k]).
+entry('Luebeck', [l, 'y:', b, 'E', k]).
+entry('Luebke', [l, 'Y', p, k, @]).
+entry('Luecke', [l, 'Y', k, @]).
+entry('Luecken', [l, 'Y', k, @, n]).
+entry('Lueckentermine', [l, 'Y', k, @, n, t, 'E', '6', m, 'i:', n, @]).
+entry('Lueck', [l, 'Y', k]).
 entry('Ludwig', [l, 'u:', t, v, 'I', 'C']).
 entry('Ludwigshafen', [l, 'u:', t, v, 'I', 'C', s, h, 'a:', f, @, n]).
-entry('Lüften', [l, 'Y', f, t, @, n]).
+entry('Lueften', [l, 'Y', f, t, @, n]).
 entry('Lufthansaflug', [l, 'U', f, t, h, a, n, z, a, f, l, 'u:', k]).
 entry('Lufthansa', [l, 'U', f, t, h, a, n, z, a]).
 entry('Luft', [l, 'U', f, t]).
@@ -5941,7 +5942,7 @@ entry('Luisenhof', [l, u, 'i:', z, @, n, h, 'o:', f]).
 entry(lu, [l, 'u:']).
 entry('Lu', [l, 'U']).
 entry('Lunch', [l, a, n, 'S']).
-entry('Lüneburg', [l, 'y:', n, @, b, 'U', '6', k]).
+entry('Lueneburg', [l, 'y:', n, @, b, 'U', '6', k]).
 entry('Lus', [l, 'U', s]).
 entry(lustigerweise, [l, 'U', s, t, 'I', g, '6', v, aI, z, @]).
 entry(lustig, [l, 'U', s, t, 'I', 'C']).
@@ -5949,10 +5950,10 @@ entry('Lust', [l, 'U', s, t]).
 entry('Lustunternehmen', [l, 'U', s, t, 'U', n, t, '6', n, 'e:', m, @, n]).
 entry('Lut', [l, u, t]).
 entry('Lutz', [l, 'U', ts]).
-entry(luxuriöseres, [l, 'U', k, s, u, '6', j, '2:', z, @, r, @, s]).
-entry(luxuriöser, [l, 'U', k, s, u, '6', j, '2:', z, '6']).
-entry(luxuriöses, [l, 'U', k, s, u, '6', j, '2:', z, @, s]).
-entry(luxuriös, [l, 'U', k, s, u, '6', j, '2:', s]).
+entry(luxurioeseres, [l, 'U', k, s, u, '6', j, '2:', z, @, r, @, s]).
+entry(luxurioeser, [l, 'U', k, s, u, '6', j, '2:', z, '6']).
+entry(luxurioeses, [l, 'U', k, s, u, '6', j, '2:', z, @, s]).
+entry(luxurioes, [l, 'U', k, s, u, '6', j, '2:', s]).
 entry('Luxushotel', [l, 'U', k, s, 'U', s, h, o, t, 'E', l]).
 entry('Luxus', [l, 'U', k, s, 'U', s]).
 entry('Luxusrestaurant', [l, 'U', k, s, 'U', s, r, 'E', s, t, o, r, 'a~:']).
@@ -5964,13 +5965,13 @@ entry(machen, [m, a, x, @, n]).
 entry(mach, [m, a, x]).
 entry(machst, [m, a, x, s, t]).
 entry(macht, [m, a, x, t]).
-entry('Mädels', [m, 'E:', d, @, l, s]).
+entry('Maedels', [m, 'E:', d, @, l, s]).
 entry(mad, [m, 'E:', t]).
-entry('Mägen', [m, 'E:', g, @, n]).
+entry('Maegen', [m, 'E:', g, @, n]).
 entry(mag, [m, 'a:', k]).
 entry('Maier', [m, aI, '6']).
 entry('Maifeiertag', [m, aI, f, aI, '6', t, 'a:', k]).
-entry('Maihälfte', [m, aI, h, 'E', l, f, t, @]).
+entry('Maihaelfte', [m, aI, h, 'E', l, f, t, @]).
 entry('Mailand', [m, aI, l, a, n, t]).
 entry(mail, [m, 'e:', l]).
 entry('Mai', [m, aI]).
@@ -5987,7 +5988,7 @@ entry('Mallinckrodt', [m, a, l, 'I', 'N', k, r, 'o:', t]).
 entry('Mallorca', [m, a, j, 'O', '6', k, a]).
 entry(mal, [m, 'a:', l]).
 entry(ma, [m, a]).
-entry('Mä', [m, 'E:']).
+entry('Mae', [m, 'E:']).
 entry('Mammet', [m, a, m, e, t]).
 entry(managen, [m, 'E', n, 'I', d, 'Z', @, n]).
 entry('Manager', [m, 'E', n, 'I', d, 'Z', '6']).
@@ -5995,8 +5996,8 @@ entry(manche, [m, a, n, 'C', @]).
 entry(manchmal, [m, a, n, 'C', m, 'a:', l]).
 entry(mangiare, [m, a, n, d, 'Z', 'a:', r, @]).
 entry(man, [m, a, n]).
-entry('Männern', [m, 'E', n, '6', n]).
-entry('Männer-Selbsterfahrungs-Gruppe', [m, 'E', n, '6', z, 'E', l, p, s, t, 'E', '6', f, 'a:', r, 'U', 'N', s, g, r, 'U', p, @]).
+entry('Maennern', [m, 'E', n, '6', n]).
+entry('Maenner-Selbsterfahrungs-Gruppe', [m, 'E', n, '6', z, 'E', l, p, s, t, 'E', '6', f, 'a:', r, 'U', 'N', s, g, r, 'U', p, @]).
 entry('Mannheim', [m, a, n, h, aI, m]).
 entry('Mannhein', [m, a, n, h, aI, n]).
 entry('Manning', [m, 'E', n, 'I', 'N']).
@@ -6006,12 +6007,12 @@ entry('Maredo', [m, a, r, 'e:', d, o]).
 entry('Maria-Himmelfah', [m, a, r, 'i:', a, h, 'I', m, @, l, f, 'a:']).
 entry('Maria-Himmelfahr', [m, a, r, 'i:', a, h, 'I', m, @, l, f, a, r]).
 entry('Maria-Himmelfahrt', [m, a, r, 'i:', a, h, 'I', m, @, l, f, a, r, t]).
-entry('Mariä-Himmelfahrt', [m, a, r, 'i:', 'E', h, 'I', m, @, l, f, a, r, t]).
+entry('Mariae-Himmelfahrt', [m, a, r, 'i:', 'E', h, 'I', m, @, l, f, a, r, t]).
 entry('Marie', [m, a, r, 'i:']).
 entry('Marienplatz', [m, a, r, 'i:', @, n, p, l, a, ts]).
 entry('Marionettentheater', [m, a, r, j, o, n, 'E', t, @, n, t, e, 'a:', t, '6']).
 entry('Marion', [m, 'a:', r, j, 'O', n]).
-entry('Maritä', [m, a, r, 'I', t, 'E:']).
+entry('Maritae', [m, a, r, 'I', t, 'E:']).
 entry('Maritim-Airport-Hotel', [m, a, r, i, t, 'i:', m, 'E', '6', p, 'O', '6', t, h, o, t, 'E', l]).
 entry('Maritim-Grand-Hotel', [m, a, r, i, t, 'i:', m, g, r, 'a~:', h, o, t, 'E', l]).
 entry('Maritim-Hotel', [m, a, r, i, t, 'i:', m, h, o, t, 'E', l]).
@@ -6022,7 +6023,7 @@ entry('Mariusch', [m, a, r, i, 'U', 'S']).
 entry('Markgrafen', [m, a, r, k, g, r, 'a:', f, @, n]).
 entry('Mark', [m, a, r, k]).
 entry('Markt', [m, a, r, k, t]).
-entry('Mär', [m, 'E', '6']).
+entry('Maer', [m, 'E', '6']).
 entry('Marmelade', [m, a, r, m, @, l, 'a:', d, @]).
 entry('Marriott-Ho', [m, 'E', r, 'I', j, 'E', t, h, o]).
 entry('Marriott-Hotel', [m, 'E', r, 'I', j, 'E', t, h, o, t, 'E', l]).
@@ -6030,10 +6031,10 @@ entry('Marriott', [m, 'E', r, 'I', j, 'E', t]).
 entry('Marriotts', [m, 'E', r, 'I', j, 'E', ts]).
 entry('Martha', [m, a, r, t, a]).
 entry('Martin', [m, a, r, t, 'i:', n]).
-entry('März', [m, 'E', '6', ts]).
-entry('Märztagen', [m, 'E', '6', ts, t, 'a:', g, @, n]).
-entry('Märzwoche', [m, 'E', '6', ts, v, 'O', x, @]).
-entry('Märzwochenende', [m, 'E', '6', ts, v, 'O', x, @, n, 'E', n, d, @]).
+entry('Maerz', [m, 'E', '6', ts]).
+entry('Maerztagen', [m, 'E', '6', ts, t, 'a:', g, @, n]).
+entry('Maerzwoche', [m, 'E', '6', ts, v, 'O', x, @]).
+entry('Maerzwochenende', [m, 'E', '6', ts, v, 'O', x, @, n, 'E', n, d, @]).
 entry('Maschine', [m, a, 'S', 'i:', n, @]).
 entry('Maschsee', [m, a, 'S', z, 'e:']).
 entry('Maschsee-Tage', [m, a, 'S', z, 'e:', t, 'a:', g, @]).
@@ -6041,7 +6042,7 @@ entry(mas, [m, 'a:', s]).
 entry('Master-Card', [m, 'a:', s, t, '6', k, 'a:', r, d]).
 entry('Material', [m, a, t, e, '6', j, 'a:', l]).
 entry('Matinin', [m, 'a:', t, i, n, 'I', n]).
-entry('Matthäi', [m, a, t, 'E:', i]).
+entry('Matthaei', [m, a, t, 'E:', i]).
 entry('Mattheis', [m, a, t, aI, s]).
 entry('Matthias', [m, a, t, 'i:', a, s]).
 entry('Matysiak', [m, a, t, 'I', s, j, a, k]).
@@ -6096,10 +6097,10 @@ entry(merke, [m, 'E', '6', k, @]).
 entry(merken, [m, 'E', '6', k, @, n]).
 entry(merkt, [m, 'E', '6', k, t]).
 entry('Merkur', [m, 'E', '6', k, 'U', '6']).
-entry(merkwürdigerweise, [m, 'E', '6', k, v, 'Y', '6', d, 'I', g, '6', v, aI, z, @]).
-entry(merkwürdig, [m, 'E', '6', k, v, 'Y', '6', d, 'I', 'C']).
+entry(merkwuerdigerweise, [m, 'E', '6', k, v, 'Y', '6', d, 'I', g, '6', v, aI, z, @]).
+entry(merkwuerdig, [m, 'E', '6', k, v, 'Y', '6', d, 'I', 'C']).
 entry('Merrettig', [m, e, r, 'E', t, 'I', 'C']).
-entry('Messegelände', [m, 'E', s, @, g, @, l, 'E', n, d, @]).
+entry('Messegelaende', [m, 'E', s, @, g, @, l, 'E', n, d, @]).
 entry('Messehalle', [m, 'E', s, @, h, a, l, @]).
 entry('Messehallen', [m, 'E', s, @, h, a, l, @, n]).
 entry('Messe', [m, 'E', s, @]).
@@ -6149,7 +6150,7 @@ entry('Miriam', [m, i, r, i, a, m]).
 entry(mir, [m, 'i:', '6']).
 entry('Mister', [m, 'I', s, t, '6']).
 entry(mißverstanden, [m, 'I', s, f, 'E', '6', 'S', t, a, n, d, @, n]).
-entry('Mißverständnis', [m, 'I', s, f, 'E', '6', 'S', t, 'E', n, t, n, 'I', s]).
+entry('Mißverstaendnis', [m, 'I', s, f, 'E', '6', 'S', t, 'E', n, t, n, 'I', s]).
 entry(mitarbeiten, [m, 'I', t, a, r, b, aI, t, @, n]).
 entry('Mitarbeiterbesprechung', [m, 'I', t, a, r, b, aI, t, '6', b, @, 'S', p, r, 'E', 'C', 'U', 'N']).
 entry('Mitarbeiterin', [m, 'I', t, a, r, b, aI, t, @, r, 'I', n]).
@@ -6201,7 +6202,7 @@ entry(mitspielt, [m, 'I', tS, p, 'i:', l, t]).
 entry(mittage, [m, 'I', t, 'a:', g, @]).
 entry(mittagessen, [m, 'I', t, 'a:', k, 'E', s, @, n]).
 entry(mittag, [m, 'I', t, 'a:', k]).
-entry('Mittagsküche', [m, 'I', t, 'a:', k, s, k, 'Y', 'C', @]).
+entry('Mittagskueche', [m, 'I', t, 'a:', k, s, k, 'Y', 'C', @]).
 entry(mittags, [m, 'I', t, 'a:', k, s]).
 entry('Mittagspause', [m, 'I', t, 'a:', k, s, p, aU, z, @]).
 entry('Mittagstermin', [m, 'I', t, 'a:', k, s, t, 'E', '6', m, 'i:', n]).
@@ -6246,38 +6247,38 @@ entry(mm, [m, m]).
 entry(moa, [m, o, a]).
 entry('Mobil-Box', [m, o, b, 'i:', l, b, 'O', k, s]).
 entry(mobil, [m, o, b, 'i:', l]).
-entry(möch, [m, '9', 'C']).
+entry(moech, [m, '9', 'C']).
 entry(moch, [m, 'O', x]).
-entry(möchte, [m, '9', 'C', t, @]).
-entry(möchten, [m, '9', 'C', t, @, n]).
-entry(möchtest, [m, '9', 'C', t, @, s, t]).
-entry('Möckl', [m, '9', k, l]).
-entry(modalitäten, [m, o, d, a, l, i, t, 'E:', t, @, n]).
+entry(moechte, [m, '9', 'C', t, @]).
+entry(moechten, [m, '9', 'C', t, @, n]).
+entry(moechtest, [m, '9', 'C', t, @, s, t]).
+entry('Moeckl', [m, '9', k, l]).
+entry(modalitaeten, [m, o, d, a, l, i, t, 'E:', t, @, n]).
 entry('Modell', [m, o, d, 'E', l]).
 entry(moderat, [m, o, d, e, r, 'a:', t]).
 entry(moderne, [m, o, d, 'E', '6', n, @]).
 entry(moderner, [m, o, d, 'E', '6', n, '6']).
 entry('Modus', [m, 'o:', d, 'U', s]).
 entry('Moers', [m, '9', '6', s]).
-entry(mögen, [m, '2:', g, @, n]).
+entry(moegen, [m, '2:', g, @, n]).
 entry('Mogen', [m, 'o:', g, @, n]).
-entry(mögliche, [m, '2:', k, l, 'I', 'C', @]).
-entry(möglichen, [m, '2:', k, l, 'I', 'C', @, n]).
-entry(möglicher, [m, '2:', k, l, 'I', 'C', '6']).
-entry(möglicherweise, [m, '2:', k, l, 'I', 'C', '6', v, aI, z, @]).
-entry('Möglichkei', [m, '2:', k, l, 'I', 'C', k, aI]).
-entry(möglichkeiten, [m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
-entry(möglichkeit, [m, '2:', k, l, 'I', 'C', k, aI, t]).
-entry('Möglichke', [m, '2:', k, l, 'I', 'C', k, @]).
-entry(möglich, [m, '2:', k, l, 'I', 'C']).
-entry(möglichst, [m, '2:', k, l, 'I', 'C', s, t]).
-entry(mögli, [m, '2:', k, l, 'I']).
-entry(mögl, [m, '2:', k, l]).
-entry(mög, [m, '2:', k]).
+entry(moegliche, [m, '2:', k, l, 'I', 'C', @]).
+entry(moeglichen, [m, '2:', k, l, 'I', 'C', @, n]).
+entry(moeglicher, [m, '2:', k, l, 'I', 'C', '6']).
+entry(moeglicherweise, [m, '2:', k, l, 'I', 'C', '6', v, aI, z, @]).
+entry('Moeglichkei', [m, '2:', k, l, 'I', 'C', k, aI]).
+entry(moeglichkeiten, [m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
+entry(moeglichkeit, [m, '2:', k, l, 'I', 'C', k, aI, t]).
+entry('Moeglichke', [m, '2:', k, l, 'I', 'C', k, @]).
+entry(moeglich, [m, '2:', k, l, 'I', 'C']).
+entry(moeglichst, [m, '2:', k, l, 'I', 'C', s, t]).
+entry(moegli, [m, '2:', k, l, 'I']).
+entry(moegl, [m, '2:', k, l]).
+entry(moeg, [m, '2:', k]).
 entry('Mohr', [m, 'o:', '6']).
 entry(moin, [m, 'OY', n]).
-entry('Möllenkamp', [m, '9', l, @, n, k, a, m, p]).
-entry(mö, [m, '9']).
+entry('Moellenkamp', [m, '9', l, @, n, k, a, m, p]).
+entry(moe, [m, '9']).
 entry('Momen', [m, o, m, 'E', n]).
 entry(momentan, [m, o, m, 'E', n, t, 'a:', n]).
 entry('Momentchen', [m, o, m, 'E', n, t, 'C', @, n]).
@@ -6296,7 +6297,7 @@ entry('Monatsmitte', [m, 'o:', n, a, ts, m, 'I', t, @]).
 entry('Monats', [m, 'o:', n, a, ts]).
 entry('Monatsplan', [m, 'o:', n, a, ts, p, l, 'a:', n]).
 entry('Monatswechsel', [m, 'o:', n, a, ts, v, 'E', k, s, @, l]).
-entry('Mönchengladbach', [m, '9', n, 'C', @, n, g, l, a, t, b, a, x]).
+entry('Moenchengladbach', [m, '9', n, 'C', @, n, g, l, a, t, b, a, x]).
 entry('Mon', [m, o, n]).
 entry(montag, [m, 'o:', n, t, 'a:', k]).
 entry(montags, [m, 'o:', n, t, 'a:', k, s]).
@@ -6306,44 +6307,44 @@ entry('Mont', [m, 'o:', n, t]).
 entry('Mooshammer', [m, 'o:', s, h, a, m, '6']).
 entry('Morgenmensch', [m, 'O', '6', g, @, n, m, 'E', n, 'S']).
 entry(morgen, [m, 'O', '6', g, @, n]).
-entry('Morgen-Produktivität', [m, 'O', '6', g, @, n, p, r, o, d, 'U', k, t, i, v, i, t, 'E:', t]).
+entry('Morgen-Produktivitaet', [m, 'O', '6', g, @, n, p, r, o, d, 'U', k, t, i, v, i, t, 'E:', t]).
 entry(morgens, [m, 'O', '6', g, @, n, s]).
 entry('Morgenzug', [m, 'O', '6', g, @, n, ts, 'u:', k]).
 entry(morgige, [m, 'O', '6', g, 'I', g, @]).
 entry(morgigen, [m, 'O', '6', g, 'I', g, @, n]).
 entry(morgiger, [m, 'O', '6', g, 'I', g, '6']).
 entry('Mor', [m, 'O', '6']).
-entry(mösch, [m, '9', 'S']).
+entry(moesch, [m, '9', 'S']).
 entry(mosert, [m, 'o:', z, '6', t]).
 entry(motiviert, [m, o, t, i, v, 'i:', '6', t]).
-entry('Motorsäge', [m, 'o:', t, 'o:', '6', z, 'E:', g, @]).
+entry('Motorsaege', [m, 'o:', t, 'o:', '6', z, 'E:', g, @]).
 entry(motzen, [m, 'O', ts, @, n]).
 entry(mou, [m, 'o:']).
-entry('Mövenpick', [m, '2:', v, @, n, p, 'I', k]).
+entry('Moevenpick', [m, '2:', v, @, n, p, 'I', k]).
 entry(m, ['E', m]).
 entry('Mrs', [m, 'I', s, 'I', z]).
 entry('Mt', [m, t]).
 entry('Much', [m, 'U', x]).
-entry(müde, [m, 'y:', d, @]).
+entry(muede, [m, 'y:', d, @]).
 entry('Mueller', [m, 'Y', l, '6']).
-entry('Mühe', [m, 'y:', @]).
-entry('Mühlbauer', [m, 'y:', l, b, aU, '6']).
+entry('Muehe', [m, 'y:', @]).
+entry('Muehlbauer', [m, 'y:', l, b, aU, '6']).
 entry('Mula', [m, 'u:', l, a]).
-entry('Müller-Elektronik', [m, 'Y', l, '6', e, l, 'E', k, t, r, 'o:', n, 'I', k]).
-entry('Müller-Lüdenscheidt', [m, 'Y', l, '6', l, 'y:', d, @, n, 'S', aI, t]).
-entry('Müll', [m, 'Y', l]).
+entry('Mueller-Elektronik', [m, 'Y', l, '6', e, l, 'E', k, t, r, 'o:', n, 'I', k]).
+entry('Mueller-Luedenscheidt', [m, 'Y', l, '6', l, 'y:', d, @, n, 'S', aI, t]).
+entry('Muell', [m, 'Y', l]).
 entry(mu, [m, 'U']).
-entry(mü, [m, 'Y']).
-entry('München-Hannover', [m, 'Y', n, 'C', @, n, h, a, n, 'o:', f, '6']).
-entry('München', [m, 'Y', n, 'C', @, n]).
-entry('Münchens', [m, 'y:', n, 'C', @, n, s]).
-entry('Münch', [m, 'Y', n, 'C']).
-entry('Münchner', [m, 'Y', n, 'C', @, n, '6']).
+entry(mue, [m, 'Y']).
+entry('Muenchen-Hannover', [m, 'Y', n, 'C', @, n, h, a, n, 'o:', f, '6']).
+entry('Muenchen', [m, 'Y', n, 'C', @, n]).
+entry('Muenchens', [m, 'y:', n, 'C', @, n, s]).
+entry('Muench', [m, 'Y', n, 'C']).
+entry('Muenchner', [m, 'Y', n, 'C', @, n, '6']).
 entry(munkelt, [m, 'U', 'N', k, @, l, t]).
-entry('Münster', [m, 'Y', n, s, t, '6']).
+entry('Muenster', [m, 'Y', n, s, t, '6']).
 entry(munter, [m, 'U', n, t, '6']).
-entry('Münt', [m, 'Y', n, t]).
-entry('Müria-Himmelfahrt', [m, y, r, 'i:', a, h, 'I', m, @, l, f, 'a:', r, t]).
+entry('Muent', [m, 'Y', n, t]).
+entry('Mueria-Himmelfahrt', [m, y, r, 'i:', a, h, 'I', m, @, l, f, 'a:', r, t]).
 entry('Muschweck', [m, 'U', 'S', v, 'E', k]).
 entry('Museen', [m, u, z, 'e:', @, n]).
 entry('Muße', [m, 'u:', s, @]).
@@ -6359,13 +6360,13 @@ entry(musikbegeistert, [m, u, z, 'i:', k, b, @, g, aI, s, t, '6', t]).
 entry('Musik', [m, u, z, 'i:', k]).
 entry('Mußmann', [m, 'U', s, m, a, n]).
 entry(muß, [m, 'U', s]).
-entry(müß, [m, 'Y', s]).
-entry(müssen, [m, 'Y', s, @, n]).
+entry(mueß, [m, 'Y', s]).
+entry(muessen, [m, 'Y', s, @, n]).
 entry(mußte, [m, 'U', s, t, @]).
-entry(müßte, [m, 'Y', s, t, @]).
+entry(mueßte, [m, 'Y', s, t, @]).
 entry(mußten, [m, 'U', s, t, @, n]).
-entry(müßten, [m, 'Y', s, t, @, n]).
-entry(müßtest, [m, 'Y', s, t, @, s, t]).
+entry(mueßten, [m, 'Y', s, t, @, n]).
+entry(mueßtest, [m, 'Y', s, t, @, s, t]).
 entry(mußt, [m, 'U', s, t]).
 entry('Mutlu', [m, 'U', t, l, u]).
 entry('Mutterhaus', [m, 'U', t, '6', h, aU, s]).
@@ -6385,17 +6386,17 @@ entry(nachdenkt, [n, 'a:', x, d, 'E', 'N', k, t]).
 entry(nacheinander, [n, 'a:', x, aI, n, a, n, d, '6']).
 entry('Nachfrage', [n, 'a:', x, f, r, 'a:', g, @]).
 entry(nachfragen, [n, 'a:', x, f, r, 'a:', g, @, n]).
-entry(nachfühlen, [n, 'a:', x, f, 'y:', l, @, n]).
+entry(nachfuehlen, [n, 'a:', x, f, 'y:', l, @, n]).
 entry(nachgedacht, [n, 'a:', x, g, @, d, a, x, t]).
 entry(nachgehen, [n, 'a:', x, g, 'e:', @, n]).
 entry(nachgekuckt, [n, 'a:', x, g, @, k, 'U', k, t]).
 entry(nachgeschaut, [n, 'a:', x, g, @, 'S', aU, t]).
 entry(nachgesehen, [n, 'a:', x, g, @, z, 'e:', @, n]).
 entry(nachgesendet, [n, 'a:', x, g, @, z, 'E', n, d, @, t]).
-entry(nachgezählt, [n, 'a:', x, g, @, ts, 'E:', l, t]).
+entry(nachgezaehlt, [n, 'a:', x, g, @, ts, 'E:', l, t]).
 entry(nachgiebig, [n, 'a:', x, g, 'i:', b, 'I', 'C']).
 entry(nachgucken, [n, 'a:', x, g, 'U', k, @, n]).
-entry(nachhängen, [n, 'a:', x, h, 'E', 'N', @, n]).
+entry(nachhaengen, [n, 'a:', x, h, 'E', 'N', @, n]).
 entry('Nachhauseweg', [n, 'a:', x, h, aU, z, @, v, 'e:', k]).
 entry(nachher, [n, 'a:', x, h, 'e:', '6']).
 entry(nachhinein, [n, 'a:', x, h, 'I', n, aI, n]).
@@ -6414,72 +6415,72 @@ entry('Nachmittagstreffen', [n, 'a:', x, m, 'I', t, 'a:', k, s, t, r, 'E', f, @,
 entry(nachmitt, [n, 'a:', x, m, 'I', t]).
 entry('Nachnamen', [n, 'a:', x, n, 'a:', m, @, n]).
 entry(nach, [n, 'a:', x]).
-entry(näch, [n, 'E:', 'C']).
-entry(nachprüfen, [n, 'a:', x, p, r, 'y:', f, @, n]).
+entry(naech, [n, 'E:', 'C']).
+entry(nachpruefen, [n, 'a:', x, p, r, 'y:', f, @, n]).
 entry(nachrechnen, [n, 'a:', x, r, 'E', 'C', n, @, n]).
 entry('Nachricht', [n, 'a:', x, r, 'I', 'C', t]).
 entry(nachschauen, [n, 'a:', x, 'S', aU, @, n]).
 entry(nachschlagen, [n, 'a:', x, 'S', l, 'a:', g, @, n]).
 entry(nachsch, [n, 'a:', x, 'S']).
 entry(nachsehen, [n, 'a:', x, z, 'e:', @, n]).
-entry(nächs, [n, 'E:', 'C', s]).
-entry(nächstbilligere, [n, 'E:', 'C', s, t, b, 'I', l, 'I', g, @, r, @]).
-entry(nächste, [n, 'E:', 'C', s, t, @]).
-entry(nächsten, [n, 'E:', 'C', s, t, @, n]).
-entry(nächster, [n, 'E:', 'C', s, t, '6']).
-entry(nächstes, [n, 'E:', 'C', s, t, @, s]).
-entry(nächstfreier, [n, 'E:', 'C', s, t, f, r, aI, '6']).
-entry(nächstfrühere, [n, 'E:', 'C', s, t, f, r, 'y:', @, r, @]).
-entry(nächstjährige, [n, 'E:', 'C', s, t, j, 'E:', r, 'I', g, @]).
-entry(nächstkommenden, [n, 'E:', 'C', s, t, k, 'O', m, @, n, d, @, n]).
-entry(nächstmögliche, [n, 'E:', 'C', s, t, m, '2:', k, l, 'I', 'C', @]).
-entry(nächstmöglichen, [n, 'E:', 'C', s, t, m, '2:', k, l, 'I', 'C', @, n]).
+entry(naechs, [n, 'E:', 'C', s]).
+entry(naechstbilligere, [n, 'E:', 'C', s, t, b, 'I', l, 'I', g, @, r, @]).
+entry(naechste, [n, 'E:', 'C', s, t, @]).
+entry(naechsten, [n, 'E:', 'C', s, t, @, n]).
+entry(naechster, [n, 'E:', 'C', s, t, '6']).
+entry(naechstes, [n, 'E:', 'C', s, t, @, s]).
+entry(naechstfreier, [n, 'E:', 'C', s, t, f, r, aI, '6']).
+entry(naechstfruehere, [n, 'E:', 'C', s, t, f, r, 'y:', @, r, @]).
+entry(naechstjaehrige, [n, 'E:', 'C', s, t, j, 'E:', r, 'I', g, @]).
+entry(naechstkommenden, [n, 'E:', 'C', s, t, k, 'O', m, @, n, d, @, n]).
+entry(naechstmoegliche, [n, 'E:', 'C', s, t, m, '2:', k, l, 'I', 'C', @]).
+entry(naechstmoeglichen, [n, 'E:', 'C', s, t, m, '2:', k, l, 'I', 'C', @, n]).
 entry('Nachst', [n, 'a:', x, s, t]).
-entry(nächst, [n, 'E:', 'C', s, t]).
+entry(naechst, [n, 'E:', 'C', s, t]).
 entry('Nachteil', [n, 'a:', x, t, aI, l]).
-entry('Nächte', [n, 'E', 'C', t, @]).
-entry('Nächten', [n, 'E', 'C', t, @, n]).
+entry('Naechte', [n, 'E', 'C', t, @]).
+entry('Naechten', [n, 'E', 'C', t, @, n]).
 entry('Nachtexpreß', [n, a, x, t, 'E', k, s, p, r, 'E', s]).
-entry(nächtigen, [n, 'E', 'C', t, 'I', g, @, n]).
+entry(naechtigen, [n, 'E', 'C', t, 'I', g, @, n]).
 entry('Nachtleben', [n, a, x, t, l, 'e:', b, @, n]).
 entry(nacht, [n, a, x, t]).
 entry('Nachtreffen', [n, 'a:', x, t, r, 'E', f, @, n]).
 entry('Nachtricht', [n, 'a:', x, t, r, 'I', 'C', t]).
 entry(nachts, [n, a, x, ts]).
-entry('Nachtzüge', [n, a, x, t, ts, 'y:', g, @]).
+entry('Nachtzuege', [n, a, x, t, ts, 'y:', g, @]).
 entry('Nachtzug', [n, a, x, t, ts, 'u:', k]).
-entry(nachzählen, [n, 'a:', x, ts, 'E:', l, @, n]).
+entry(nachzaehlen, [n, 'a:', x, ts, 'E:', l, @, n]).
 entry(nachzuarbeiten, [n, 'a:', x, ts, u, a, r, b, aI, t, @, n]).
 entry(nachzubesprechen, [n, 'a:', x, ts, u, b, @, 'S', p, r, 'E', 'C', @, n]).
 entry('Nadolmy', [n, a, d, 'O', l, m, i]).
 entry('Nadolny', [n, a, d, 'O', l, n, i]).
 entry('Nagel', [n, 'a:', g, @, l]).
-entry('Nägel', [n, 'E:', g, @, l]).
+entry('Naegel', [n, 'E:', g, @, l]).
 entry(nahegelegenen, [n, 'a:', @, g, @, l, 'e:', g, @, n, @, n]).
 entry(nahe, [n, 'a:', @]).
-entry('Nähe', [n, 'E:', @]).
-entry(nähere, [n, 'E:', @, r, @]).
-entry(näheren, [n, 'E:', @, r, @, n]).
-entry(näherer, [n, 'E:', @, r, '6']).
-entry('Näheres', [n, 'E:', @, r, @, s]).
-entry(näher, [n, 'E:', '6']).
-entry(nähern, [n, 'E:', '6', n]).
-entry(nähesten, [n, 'E:', @, s, t, @, n]).
-entry('Nähler', [n, 'E:', l, '6']).
-entry(nähme, [n, 'E:', m, @]).
-entry(nähmen, [n, 'E:', m, @, n]).
+entry('Naehe', [n, 'E:', @]).
+entry(naehere, [n, 'E:', @, r, @]).
+entry(naeheren, [n, 'E:', @, r, @, n]).
+entry(naeherer, [n, 'E:', @, r, '6']).
+entry('Naeheres', [n, 'E:', @, r, @, s]).
+entry(naeher, [n, 'E:', '6']).
+entry(naehern, [n, 'E:', '6', n]).
+entry(naehesten, [n, 'E:', @, s, t, @, n]).
+entry('Naehler', [n, 'E:', l, '6']).
+entry(naehme, [n, 'E:', m, @]).
+entry(naehmen, [n, 'E:', m, @, n]).
 entry(nah, [n, 'a:']).
 entry(nak, [n, a, k]).
 entry('Name', [n, 'a:', m, @]).
 entry(name, [n, e, 'I', m]).
 entry('Namen', [n, 'a:', m, @, n]).
 entry('Namensbestandteil', [n, 'a:', m, @, n, s, b, @, 'S', t, a, n, t, t, aI, l]).
-entry(nämlich, [n, 'E:', m, l, 'I', 'C']).
+entry(naemlich, [n, 'E:', m, l, 'I', 'C']).
 entry(na, [n, a]).
-entry(nä, [n, 'E:']).
+entry(nae, [n, 'E:']).
 entry(nat, [n, 'a:', t]).
-entry(naturgemäß, [n, a, t, 'u:', '6', g, @, m, 'E:', s]).
-entry(natürlich, [n, a, t, 'y:', '6', l, 'I', 'C']).
+entry(naturgemaeß, [n, a, t, 'u:', '6', g, @, m, 'E:', s]).
+entry(natuerlich, [n, a, t, 'y:', '6', l, 'I', 'C']).
 entry(nau, [n, aU]).
 entry('Navigationssystemen', [n, a, v, i, g, a, ts, j, 'o:', n, s, z, 'Y', s, t, 'e:', m, @, n]).
 entry(neas, [n, 'e:', a, s]).
@@ -6534,16 +6535,16 @@ entry(neugierig, [n, 'OY', g, 'i:', r, 'I', 'C']).
 entry('Neuigkeiten', [n, 'OY', 'I', 'C', k, aI, t, @, n]).
 entry('Neujahr', [n, 'OY', j, 'a:', r]).
 entry(neulich, [n, 'OY', l, 'I', 'C']).
-entry('Neumann-Häfelin', [n, 'OY', m, a, n, h, 'E', f, @, l, i, n]).
+entry('Neumann-Haefelin', [n, 'OY', m, a, n, h, 'E', f, @, l, i, n]).
 entry(neun, [n, 'OY', n]).
 entry(neu, [n, 'OY']).
 entry(neunten, [n, 'OY', n, t, @, n]).
 entry(neunte, [n, 'OY', n, t, @]).
 entry(neunter, [n, 'OY', n, t, '6']).
-entry('Neun-Uhr-fünf-Maschine', [n, 'OY', n, 'u:', '6', f, 'Y', n, f, m, a, 'S', 'i:', n, @]).
+entry('Neun-Uhr-fuenf-Maschine', [n, 'OY', n, 'u:', '6', f, 'Y', n, f, m, a, 'S', 'i:', n, @]).
 entry(neununddreißig, [n, 'OY', n, 'U', n, t, d, r, aI, s, 'I', 'C']).
 entry(neununddreißigsten, [n, 'OY', n, 'U', n, t, d, r, aI, s, 'I', 'C', s, t, @, n]).
-entry(neunundfünfzig, [n, 'OY', n, 'U', n, t, f, 'Y', n, f, ts, 'I', 'C']).
+entry(neunundfuenfzig, [n, 'OY', n, 'U', n, t, f, 'Y', n, f, ts, 'I', 'C']).
 entry(neunundneunzig, [n, 'OY', n, 'U', n, t, n, 'OY', n, ts, 'I', 'C']).
 entry(neunund, [n, 'OY', n, 'U', n, t]).
 entry(neunundsechzig, [n, 'OY', n, 'U', n, t, z, 'E', 'C', ts, 'I', 'C']).
@@ -6582,7 +6583,7 @@ entry(nich, [n, 'I', 'C']).
 entry(nicht, [n, 'I', 'C', t]).
 entry('Nichtraucher-Abteil', [n, 'I', 'C', t, r, aU, x, '6', a, p, t, aI, l]).
 entry('Nichtraucher-Etage', [n, 'I', 'C', t, r, aU, x, '6', e, t, 'a:', 'Z', @]).
-entry('Nichtraucher-Flüge', [n, 'I', 'C', t, r, aU, x, '6', f, l, 'y:', g, @]).
+entry('Nichtraucher-Fluege', [n, 'I', 'C', t, r, aU, x, '6', f, l, 'y:', g, @]).
 entry('Nichtraucherin', [n, 'I', 'C', t, r, aU, x, @, r, 'I', n]).
 entry('Nichtraucher', [n, 'I', 'C', t, r, aU, x, '6']).
 entry('nichtraucher-speziellem', [n, 'I', 'C', t, r, aU, x, '6', 'S', p, e, ts, j, 'E', l, @, m]).
@@ -6623,15 +6624,15 @@ entry(nobles, [n, 'o:', b, l, @, s]).
 entry(nochmaligen, [n, 'O', x, m, 'a:', l, 'I', g, @, n]).
 entry(nochmals, [n, 'O', x, m, 'a:', l, s]).
 entry(noch, [n, 'O', x]).
-entry('Nöhre', [n, '2:', r, @]).
-entry(nö, [n, '2:']).
+entry('Noehre', [n, '2:', r, @]).
+entry(noe, [n, '2:']).
 entry('Nonnenstraße', [n, 'O', n, @, n, 'S', t, r, 'a:', s, @]).
 entry(no, [n, 'O']).
 entry('No', [n, o]).
 entry('Norbert', [n, 'O', '6', b, 'E', '6', t]).
 entry('Norddeutschen', [n, 'O', '6', t, d, 'OY', tS, @, n]).
 entry('Norden', [n, 'O', '6', d, @, n]).
-entry(nördlicher, [n, '9', '6', t, l, 'I', 'C', '6']).
+entry(noerdlicher, [n, '9', '6', t, l, 'I', 'C', '6']).
 entry('Nordpol', [n, 'O', '6', t, p, 'o:', l]).
 entry(normalen, [n, 'O', '6', m, 'a:', l, @, n]).
 entry(normale, [n, 'O', '6', m, 'a:', l, @]).
@@ -6639,26 +6640,26 @@ entry(normalerweise, [n, 'O', '6', m, 'a:', l, '6', v, aI, z, @]).
 entry(normales, [n, 'O', '6', m, 'a:', l, @, s]).
 entry(normal, [n, 'O', '6', m, 'a:', l]).
 entry('Norman', [n, 'O', '6', m, @, n]).
-entry('Nöten', [n, '2:', t, @, n]).
+entry('Noeten', [n, '2:', t, @, n]).
 entry('Notfall', [n, 'o:', t, f, a, l]).
 entry(notfalls, [n, 'o:', t, f, a, l, s]).
 entry(notieren, [n, o, t, 'i:', r, @, n]).
 entry(notiere, [n, o, t, 'i:', r, @]).
 entry(notiert, [n, o, t, 'i:', '6', t]).
-entry(nötige, [n, '2:', t, 'I', g, @]).
-entry(nötigen, [n, '2:', t, 'I', g, @, n]).
-entry(nötig, [n, '2:', t, 'I', 'C']).
-entry(nötigsten, [n, '2:', t, 'I', 'C', s, t, @, n]).
+entry(noetige, [n, '2:', t, 'I', g, @]).
+entry(noetigen, [n, '2:', t, 'I', g, @, n]).
+entry(noetig, [n, '2:', t, 'I', 'C']).
+entry(noetigsten, [n, '2:', t, 'I', 'C', s, t, @, n]).
 entry('Noti', [n, o, t, 'i:']).
 entry('Notizbuch', [n, o, t, 'i:', ts, b, 'u:', x]).
 entry('Notizen', [n, o, t, 'i:', ts, @, n]).
 entry('Notiz', [n, o, t, 'i:', ts]).
-entry('Notlösung', [n, 'o:', t, l, '2:', z, 'U', 'N']).
+entry('Notloesung', [n, 'o:', t, l, '2:', z, 'U', 'N']).
 entry(not, [n, 'o:', t]).
 entry(notorisch, [n, o, t, 'o:', r, 'I', 'S']).
 entry('Notwendigkeit', [n, 'o:', t, v, 'E', n, d, 'I', 'C', k, aI, t]).
 entry(notwendig, [n, 'o:', t, v, 'E', n, d, 'I', 'C']).
-entry('Novemberhälfte', [n, 'o:', v, 'E', m, b, '6', h, 'E', l, f, t, @]).
+entry('Novemberhaelfte', [n, 'o:', v, 'E', m, b, '6', h, 'E', l, f, t, @]).
 entry('November', [n, 'o:', v, 'E', m, b, '6']).
 entry('Novembers', [n, 'o:', v, 'E', m, b, '6', s]).
 entry('Novemberwoche', [n, 'o:', v, 'E', m, b, '6', v, 'O', x, @]).
@@ -6675,18 +6676,18 @@ entry('Nummern', [n, 'U', m, '6', n]).
 entry('Nummer', [n, 'U', m, '6']).
 entry(nung, [n, 'U', 'N']).
 entry(nun, [n, 'u:', n]).
-entry('Nürnberg', [n, 'Y', '6', n, b, 'E', '6', k]).
+entry('Nuernberg', [n, 'Y', '6', n, b, 'E', '6', k]).
 entry(nur, [n, 'u:', '6']).
 entry(nutzen, [n, 'U', ts, @, n]).
-entry(nützen, [n, 'Y', ts, @, n]).
-entry('Nützlichen', [n, 'Y', ts, l, 'I', 'C', @, n]).
-entry(nützlich, [n, 'Y', ts, l, 'I', 'C']).
-entry(nützt, [n, 'Y', ts, t]).
+entry(nuetzen, [n, 'Y', ts, @, n]).
+entry('Nuetzlichen', [n, 'Y', ts, l, 'I', 'C', @, n]).
+entry(nuetzlich, [n, 'Y', ts, l, 'I', 'C']).
+entry(nuetzt, [n, 'Y', ts, t]).
 entry(obenhin, ['o:', b, @, n, h, 'I', n]).
 entry(oben, ['o:', b, @, n]).
 entry(oberen, ['o:', b, @, r, @, n]).
 entry(obere, ['o:', b, @, r, @]).
-entry('Oberföhringer-Straße', ['o:', b, '6', f, '2:', r, 'I', 'N', '6', 'S', t, r, 'a:', s, @]).
+entry('Oberfoehringer-Straße', ['o:', b, '6', f, '2:', r, 'I', 'N', '6', 'S', t, r, 'a:', s, @]).
 entry('Oberressel', ['o:', b, '6', r, 'E', s, @, l]).
 entry(oberster, ['o:', b, '6', 'S', t, '6']).
 entry('Objekte', ['O', p, j, 'E', k, t, @]).
@@ -6700,7 +6701,7 @@ entry(ochenende, ['O', x, @, n, 'E', n, d, @]).
 entry(och, ['O', x]).
 entry(ode, ['o:', d, @]).
 entry(oder, ['o:', d, '6']).
-entry('Ödipus', ['2:', d, i, p, 'U', s]).
+entry('oedipus', ['2:', d, i, p, 'U', s]).
 entry(od, ['o:', t]).
 entry('Oertel', ['9', '6', t, @, l]).
 entry('Offenbach', ['O', f, @, n, b, a, x]).
@@ -6712,25 +6713,25 @@ entry(offenhalten, ['O', f, @, n, h, a, l, t, @, n]).
 entry(offenlassen, ['O', f, @, n, l, a, s, @, n]).
 entry(offen, ['O', f, @, n]).
 entry(offensichtlich, ['O', f, @, n, z, 'I', 'C', t, l, 'I', 'C']).
-entry(öffentlichen, ['9', f, @, n, t, l, 'I', 'C', @, n]).
-entry(öffentliche, ['9', f, @, n, t, l, 'I', 'C', @]).
+entry(oeffentlichen, ['9', f, @, n, t, l, 'I', 'C', @, n]).
+entry(oeffentliche, ['9', f, @, n, t, l, 'I', 'C', @]).
 entry('Offergeld', ['O', f, '6', g, 'E', l, t]).
 entry(office, ['O', f, 'I', s]).
-entry(öffnet, ['9', f, n, @, t]).
-entry('Öffnungszeiten', ['9', f, n, 'U', 'N', s, ts, aI, t, @, n]).
-entry('Öffnungszeit', ['9', f, n, 'U', 'N', s, ts, aI, t]).
+entry(oeffnet, ['9', f, n, @, t]).
+entry('oeffnungszeiten', ['9', f, n, 'U', 'N', s, ts, aI, t, @, n]).
+entry('oeffnungszeit', ['9', f, n, 'U', 'N', s, ts, aI, t]).
 entry('of-Phonetics', ['O', f, f, o, n, 'E', t, 'I', k, s]).
-entry('Öf', ['9', f]).
-entry(öfteren, ['9', f, t, @, r, @, n]).
-entry(öfter, ['9', f, t, '6']).
-entry(öfters, ['9', f, t, '6', s]).
+entry('oef', ['9', f]).
+entry(oefteren, ['9', f, t, @, r, @, n]).
+entry(oefter, ['9', f, t, '6']).
+entry(oefters, ['9', f, t, '6', s]).
 entry(oftmals, ['O', f, t, m, 'a:', l, s]).
 entry(oft, ['O', f, t]).
-entry('Ögai', ['2:', g, aI]).
+entry('oegai', ['2:', g, aI]).
 entry(ohnehin, ['o:', n, @, h, 'I', n]).
 entry(ohne, ['o:', n, @]).
 entry(ohohoho, [o, h, o, h, o, h, o]).
-entry(öh, ['2:']).
+entry(oeh, ['2:']).
 entry(oh, ['o:']).
 entry('Ohren', ['o:', r, @, n]).
 entry('Ohres', ['o:', r, @, s]).
@@ -6739,15 +6740,15 @@ entry(oi, ['O', 'i:']).
 entry(oje, [o, j, 'e:']).
 entry(oka, [o, k, @]).
 entry(okay, [o, k, 'e:']).
-entry(ökologischem, ['2', k, o, l, 'o:', g, 'I', 'S', @, m]).
-entry(ökologischer, ['2', k, o, l, 'o:', g, 'I', 'S', '6']).
-entry(ökologisch, ['2', k, o, l, 'o:', g, 'I', 'S']).
-entry(ökonomisch, ['2', k, o, n, 'o:', m, 'I', 'S']).
+entry(oekologischem, ['2', k, o, l, 'o:', g, 'I', 'S', @, m]).
+entry(oekologischer, ['2', k, o, l, 'o:', g, 'I', 'S', '6']).
+entry(oekologisch, ['2', k, o, l, 'o:', g, 'I', 'S']).
+entry(oekonomisch, ['2', k, o, n, 'o:', m, 'I', 'S']).
 entry('Okpue', ['O', k, p, 'u:', @]).
 entry(ok, [o, k]).
 entry('Ok', ['O', k]).
 entry('Oktobe', ['O', k, t, 'o:', b, @]).
-entry('Oktoberhälfte', ['O', k, t, 'o:', b, '6', h, 'E', l, f, t, @]).
+entry('Oktoberhaelfte', ['O', k, t, 'o:', b, '6', h, 'E', l, f, t, @]).
 entry('Oktober', ['O', k, t, 'o:', b, '6']).
 entry('Oktobers', ['O', k, t, 'o:', b, '6', s]).
 entry('Oktobertermine', ['O', k, t, 'o:', b, '6', t, 'E', '6', m, 'i:', n, @]).
@@ -6758,7 +6759,7 @@ entry(old, ['O', l, t]).
 entry(ole, [o, l, 'e:']).
 entry('Oli', ['O', l, i]).
 entry('Oliver', ['O', l, i, v, '6']).
-entry('Öl', ['2:', l]).
+entry('oel', ['2:', l]).
 entry('Olympiadorf', [o, l, 'Y', m, p, j, a, d, 'O', '6', f]).
 entry(om, ['O', m]).
 entry(onegai, ['o:', n, 'e:', g, aI]).
@@ -6785,7 +6786,7 @@ entry(ordentlich, ['O', '6', d, @, n, t, l, 'I', 'C']).
 entry(ordern, ['O', '6', d, '6', n]).
 entry('Ordnung', ['O', '6', d, n, 'U', 'N']).
 entry('Ordnu', ['O', '6', d, n, 'U']).
-entry(ören, ['2:', r, @, n]).
+entry(oeren, ['2:', r, @, n]).
 entry('Organi', ['O', '6', g, a, n, i]).
 entry('Organisation', ['O', '6', g, a, n, i, z, a, ts, j, 'o:', n]).
 entry('Organisationstalent', ['O', '6', g, a, n, i, z, a, ts, j, 'o:', n, s, t, a, l, 'E', n, t]).
@@ -6799,13 +6800,13 @@ entry(original, [o, r, i, g, i, n, 'a:', l]).
 entry(orlesung, ['o:', '6', l, 'e:', z, 'U', 'N']).
 entry(orragend, ['o:', '6', r, 'a:', g, @, n, t]).
 entry(orschlagen, ['o:', '6', 'S', l, 'a:', g, @, n]).
-entry('Örtlichkeit', ['9', '6', t, l, 'I', 'C', k, aI, t]).
+entry('oertlichkeit', ['9', '6', t, l, 'I', 'C', k, aI, t]).
 entry('Ortmeier', ['O', '6', t, m, aI, '6']).
 entry(ort, ['O', '6', t]).
 entry('Ortsbesichtigung', ['O', '6', ts, b, @, z, 'I', 'C', t, 'I', g, 'U', 'N']).
 entry('Ortskern', ['O', '6', ts, k, 'E', '6', n]).
 entry(ortskundig, ['O', '6', ts, k, 'U', n, d, 'I', 'C']).
-entry('Osnabrück', ['O', s, n, a, b, r, 'Y', k]).
+entry('Osnabrueck', ['O', s, n, a, b, r, 'Y', k]).
 entry('Osna', ['O', s, n, a]).
 entry('Osten', ['O', s, t, @, n]).
 entry('Osterdienstag', ['o:', s, t, '6', d, 'i:', n, s, t, 'a:', k]).
@@ -6827,7 +6828,7 @@ entry('Ostseestraße', ['O', s, t, z, 'e:', 'S', t, r, 'a:', s, @]).
 entry('Otto', ['O', t, o]).
 entry(over, ['o:', v, '6']).
 entry(paar, [p, a, r]).
-entry('Päckchen', [p, 'E', k, 'C', @, n]).
+entry('Paeckchen', [p, 'E', k, 'C', @, n]).
 entry(packen, [p, a, k, @, n]).
 entry(packe, [p, a, k, @]).
 entry(packt, [p, a, k, t]).
@@ -6839,17 +6840,17 @@ entry('Panasonic', [p, a, n, a, z, 'o:', n, 'I', k]).
 entry('Panik', [p, 'a:', n, 'I', k]).
 entry(pa, [p, a]).
 entry('Pa', [p, 'a:']).
-entry(pä, [p, 'E:']).
+entry(pae, [p, 'E:']).
 entry('Papier', [p, a, p, 'i:', '6']).
 entry(parat, [p, a, r, 'a:', t]).
 entry('Pardon', [p, a, r, d, 'O', 'N']).
 entry('Paris', [p, a, r, 'i:', s]).
 entry('Parkanlage', [p, a, r, k, a, n, l, 'a:', g, @]).
 entry(parken, [p, a, r, k, @]).
-entry('Parkgebühren', [p, a, r, k, g, @, b, 'y:', r, @, n]).
+entry('Parkgebuehren', [p, a, r, k, g, @, b, 'y:', r, @, n]).
 entry('Parkhotel', [p, a, r, k, h, o, t, 'E', l]).
-entry('Parkmöglichkeiten', [p, a, r, k, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
-entry('Parkmöglichkeit', [p, a, r, k, m, '2:', k, l, 'I', 'C', k, aI, t]).
+entry('Parkmoeglichkeiten', [p, a, r, k, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
+entry('Parkmoeglichkeit', [p, a, r, k, m, '2:', k, l, 'I', 'C', k, aI, t]).
 entry('Park', [p, a, r, k]).
 entry('Parkplatz', [p, a, r, k, p, l, a, ts]).
 entry('Parkplatzsuche', [p, a, r, k, p, l, a, ts, s, 'U', x, @]).
@@ -6875,8 +6876,8 @@ entry(passiert, [p, a, s, 'i:', '6', t]).
 entry(paßten, [p, a, s, t, @, n]).
 entry(paßte, [p, a, s, t, @]).
 entry(paßt, [p, a, s, t]).
-entry('Pätsch', [p, 'E', tS]).
-entry('Pätzold', [p, 'E', ts, 'O', l, t]).
+entry('Paetsch', [p, 'E', tS]).
+entry('Paetzold', [p, 'E', ts, 'O', l, t]).
 entry('Paula', [p, aU, l, a]).
 entry('Paul-Klee', [p, aU, l, k, l, 'e:']).
 entry('Paul', [p, aU, l]).
@@ -6904,9 +6905,9 @@ entry('Personal', [p, 'E', '6', z, o, n, 'a:', l]).
 entry('Personalplanung', [p, 'E', '6', z, o, n, 'a:', l, p, l, 'a:', n, 'U', 'N']).
 entry('Personalratssitzung', [p, 'E', '6', z, o, n, 'a:', l, r, 'a:', ts, z, 'I', ts, 'U', 'N']).
 entry('Personen', [p, 'E', '6', z, 'o:', n, @, n]).
-entry(persönlichen, [p, 'E', '6', z, '2:', n, l, 'I', 'C', @, n]).
-entry(persönliche, [p, 'E', '6', z, '2:', n, l, 'I', 'C', @]).
-entry(persönlich, [p, 'E', '6', z, '2:', n, l, 'I', 'C']).
+entry(persoenlichen, [p, 'E', '6', z, '2:', n, l, 'I', 'C', @, n]).
+entry(persoenliche, [p, 'E', '6', z, '2:', n, l, 'I', 'C', @]).
+entry(persoenlich, [p, 'E', '6', z, '2:', n, l, 'I', 'C']).
 entry('Person', [p, 'E', '6', z, 'o:', n]).
 entry(pessimistisch, [p, 'E', s, i, m, 'I', s, t, 'I', 'S']).
 entry('Petermann', [p, 'e:', t, '6', m, a, n]).
@@ -6936,10 +6937,10 @@ entry(pflichtungen, [pf, l, 'I', 'C', t, 'U', 'N', @, n]).
 entry('Pforte', [pf, 'O', '6', t, @]).
 entry('Pforzheim', [pf, 'O', '6', ts, h, aI, m]).
 entry(pf, [pf]).
-entry(pfüa, [pf, 'Y', a]).
+entry(pfuea, [pf, 'Y', a]).
 entry('Pfunde', [pf, 'U', n, d, @]).
-entry(pfü, [pf, y]).
-entry(phänomenal, [f, 'E', n, o, m, e, n, 'a:', l]).
+entry(pfue, [pf, y]).
+entry(phaenomenal, [f, 'E', n, o, m, e, n, 'a:', l]).
 entry(phantastische, [f, a, n, t, a, s, t, 'I', 'S', @]).
 entry(phantastisch, [f, a, n, t, a, s, t, 'I', 'S']).
 entry('Phase', [f, 'a:', z, @]).
@@ -6957,13 +6958,13 @@ entry('Pillmann', [p, 'I', l, m, a, n]).
 entry('Pilot', [p, i, l, 'o:', t]).
 entry('Piske', [p, 'I', s, k, @]).
 entry('Piste', [p, 'I', s, t, @]).
-entry(plädieren, [p, l, 'E', d, 'i:', r, @, n]).
-entry(plädiere, [p, l, 'E', d, 'i:', r, @]).
+entry(plaedieren, [p, l, 'E', d, 'i:', r, @, n]).
+entry(plaediere, [p, l, 'E', d, 'i:', r, @]).
 entry(plagt, [p, l, 'a:', k, t]).
 entry(planen, [p, l, 'a:', n, @, n]).
-entry('Plänen', [p, l, 'E:', n, @, n]).
+entry('Plaenen', [p, l, 'E:', n, @, n]).
 entry(plane, [p, l, 'a:', n, @]).
-entry('Pläne', [p, l, 'E:', n, @]).
+entry('Plaene', [p, l, 'E:', n, @]).
 entry('Planer', [p, l, 'a:', n, '6']).
 entry(plan, [p, l, 'a:', n]).
 entry(plant, [p, l, 'a:', n, t]).
@@ -6974,8 +6975,8 @@ entry('Planu', [p, l, 'a:', n, 'U']).
 entry(pla, [p, l, a]).
 entry('Plath', [p, l, 'a:', t]).
 entry('Plattform', [p, l, a, t, f, 'O', '6', m]).
-entry('Plätzchen', [p, l, 'E', ts, 'C', @, n]).
-entry('Plätze', [p, l, 'E', ts, @]).
+entry('Plaetzchen', [p, l, 'E', ts, 'C', @, n]).
+entry('Plaetze', [p, l, 'E', ts, @]).
 entry('Platzkarten', [p, l, a, ts, k, a, r, t, @, n]).
 entry('Platz', [p, l, a, ts]).
 entry('Platzreservierungen', [p, l, a, ts, r, e, z, 'E', '6', v, 'i:', r, 'U', 'N', @, n]).
@@ -6983,7 +6984,7 @@ entry('Platzreservierung', [p, l, a, ts, r, e, z, 'E', '6', v, 'i:', r, 'U', 'N'
 entry('Plecas', [p, l, 'E', k, 'a:', s]).
 entry('Plex', [p, l, 'E', k, s]).
 entry('Ploss', [p, l, 'O', s]).
-entry(plötzlich, [p, l, '9', ts, l, 'I', 'C']).
+entry(ploetzlich, [p, l, '9', ts, l, 'I', 'C']).
 entry(pl, [p, l]).
 entry(plus, [p, l, 'U', s]).
 entry('Pohl', [p, 'o:', l]).
@@ -7000,18 +7001,18 @@ entry('Position', [p, o, z, i, ts, j, 'o:', n]).
 entry('Positive', [p, 'o:', z, i, t, 'i:', v, @]).
 entry(positiv, [p, 'o:', z, i, t, 'i:', f]).
 entry('Poster', [p, 'o:', s, t, '6']).
-entry(pößt, [p, '9', s, t]).
+entry(poeßt, [p, '9', s, t]).
 entry('Post', [p, 'O', s, t]).
 entry(potenziert, [p, o, t, 'E', n, ts, 'i:', '6', t]).
 entry('Potsdam', [p, 'O', ts, d, a, m]).
 entry('Potte', [p, 'O', t, @]).
 entry(p, [p]).
 entry('P', [p, 'e:']).
-entry(prächtig, [p, r, 'E', 'C', t, 'I', 'C']).
-entry('Präferenzen', [p, r, 'E', f, e, r, 'E', n, ts, @, n]).
-entry('Präferenz', [p, r, 'E', f, e, r, 'E', n, ts]).
-entry(präferieren, [p, r, 'E', f, e, r, 'i:', r, @, n]).
-entry(präferierten, [p, r, 'E', f, e, r, 'i:', '6', t, @, n]).
+entry(praechtig, [p, r, 'E', 'C', t, 'I', 'C']).
+entry('Praeferenzen', [p, r, 'E', f, e, r, 'E', n, ts, @, n]).
+entry('Praeferenz', [p, r, 'E', f, e, r, 'E', n, ts]).
+entry(praeferieren, [p, r, 'E', f, e, r, 'i:', r, @, n]).
+entry(praeferierten, [p, r, 'E', f, e, r, 'i:', '6', t, @, n]).
 entry(praktikable, [p, r, a, k, t, i, k, 'a:', b, l, @]).
 entry('Praktikantin', [p, r, a, k, t, i, k, a, n, t, 'I', n]).
 entry('Praktikum', [p, r, a, k, t, i, k, 'U', m]).
@@ -7019,19 +7020,19 @@ entry(prakti, [p, r, a, k, t, 'I']).
 entry(praktischer, [p, r, a, k, t, 'I', 'S', '6']).
 entry(praktisch, [p, r, a, k, t, 'I', 'S']).
 entry(prakt, [p, r, a, k, t]).
-entry('Präsentation', [p, r, 'E', z, 'E', n, t, a, ts, j, 'o:', n]).
-entry(präsentieren, [p, r, 'E', z, 'E', n, t, 'i:', r, @, n]).
-entry(präsent, [p, r, 'E', z, 'E', n, t]).
+entry('Praesentation', [p, r, 'E', z, 'E', n, t, a, ts, j, 'o:', n]).
+entry(praesentieren, [p, r, 'E', z, 'E', n, t, 'i:', r, @, n]).
+entry(praesent, [p, r, 'E', z, 'E', n, t]).
 entry(predigen, [p, r, 'e:', d, 'I', g, @, n]).
 entry('Preisbereich', [p, r, aI, s, b, @, r, aI, 'C']).
 entry('Preisdifferenz', [p, r, aI, s, d, 'I', f, @, r, 'E', n, ts]).
 entry('Preisen', [p, r, aI, z, @, n]).
 entry('Preise', [p, r, aI, z, @]).
 entry('Preisfrage', [p, r, aI, s, f, r, 'a:', g, @]).
-entry(preisgünstigeres, [p, r, aI, s, g, 'Y', n, s, t, 'I', g, @, r, @, s]).
-entry(preisgünstiger, [p, r, aI, s, g, 'Y', n, s, t, 'I', g, '6']).
-entry(preisgünstiges, [p, r, aI, s, g, 'Y', n, s, t, 'I', g, @, s]).
-entry(preisgünstig, [p, r, aI, s, g, 'Y', n, s, t, 'I', 'C']).
+entry(preisguenstigeres, [p, r, aI, s, g, 'Y', n, s, t, 'I', g, @, r, @, s]).
+entry(preisguenstiger, [p, r, aI, s, g, 'Y', n, s, t, 'I', g, '6']).
+entry(preisguenstiges, [p, r, aI, s, g, 'Y', n, s, t, 'I', g, @, s]).
+entry(preisguenstig, [p, r, aI, s, g, 'Y', n, s, t, 'I', 'C']).
 entry('Preiskategorien', [p, r, aI, s, k, a, t, e, g, o, r, 'i:', @, n]).
 entry('Preiskategorie', [p, r, aI, s, k, a, t, e, g, o, r, 'i:']).
 entry('Preisklassen', [p, r, aI, s, k, l, a, s, @, n]).
@@ -7041,11 +7042,11 @@ entry('Preislagen', [p, r, aI, s, l, 'a:', g, @, n]).
 entry('Preislage', [p, r, aI, s, l, 'a:', g, @]).
 entry('Preislichen', [p, r, aI, s, l, 'I', 'C', @, n]).
 entry(preislich, [p, r, aI, s, l, 'I', 'C']).
-entry(preismäßig, [p, r, aI, s, m, 'E:', s, 'I', 'C']).
+entry(preismaeßig, [p, r, aI, s, m, 'E:', s, 'I', 'C']).
 entry('Preis', [p, r, aI, s]).
 entry('Preisunterschiede', [p, r, aI, s, 'U', n, t, '6', 'S', 'i:', d, @]).
 entry('Preisunterschied', [p, r, aI, s, 'U', n, t, '6', 'S', 'i:', t]).
-entry('Preisverhältnisse', [p, r, aI, s, f, 'E', '6', h, 'E', l, t, n, 'I', s, @]).
+entry('Preisverhaeltnisse', [p, r, aI, s, f, 'E', '6', h, 'E', l, t, n, 'I', s, @]).
 entry('Preisvorstellungen', [p, r, aI, s, f, 'o:', '6', 'S', t, 'E', l, 'U', 'N', @, n]).
 entry('Preisvorstellung', [p, r, aI, s, f, 'o:', '6', 'S', t, 'E', l, 'U', 'N']).
 entry(preiswerte, [p, r, aI, s, v, 'e:', '6', t, @]).
@@ -7078,7 +7079,7 @@ entry(prinzipie, [p, r, 'I', n, ts, i, p, j, 'E']).
 entry('Prinzip', [p, r, 'I', n, ts, 'i:', p]).
 entry(prinzi, [p, r, 'I', n, ts, i]).
 entry('Prinz', [p, r, 'I', n, ts]).
-entry('Priorität', [p, r, i, o, r, i, t, 'E:', t]).
+entry('Prioritaet', [p, r, i, o, r, i, t, 'E:', t]).
 entry(pri, [p, r, i]).
 entry(priva, [p, r, i, v, a]).
 entry('Privatauto', [p, r, i, v, 'a:', t, aU, t, o]).
@@ -7088,7 +7089,7 @@ entry(privater, [p, r, i, v, 'a:', t, '6']).
 entry('Privatnummer', [p, r, i, v, 'a:', t, n, 'U', m, '6']).
 entry(privat, [p, r, i, v, 'a:', t]).
 entry('Privatsache', [p, r, i, v, 'a:', t, z, a, x, @]).
-entry('Privatsphäre', [p, r, i, v, 'a:', ts, f, 'E:', r, @]).
+entry('Privatsphaere', [p, r, i, v, 'a:', ts, f, 'E:', r, @]).
 entry('Privattutorium', [p, r, i, v, 'a:', t, t, u, t, 'o:', '6', j, 'U', m]).
 entry(probieren, [p, r, o, b, 'i:', r, @, n]).
 entry(probiere, [p, r, o, b, 'i:', r, @]).
@@ -7100,11 +7101,11 @@ entry('Problemchen', [p, r, o, b, l, 'e:', m, 'C', @, n]).
 entry('Probleme', [p, r, o, b, l, 'e:', m, @]).
 entry(problemlos, [p, r, o, b, l, 'e:', m, l, 'o:', s]).
 entry('Problem', [p, r, o, b, l, 'e:', m]).
-entry('Prodöhl', [p, r, o, d, '2:', l]).
+entry('Prodoehl', [p, r, o, d, '2:', l]).
 entry('Produktes', [p, r, o, d, 'U', k, t, @, s]).
 entry('Produktion', [p, r, o, d, 'U', k, ts, j, 'o:', n]).
 entry(produktiv, [p, r, o, d, 'U', k, t, 'i:', f]).
-entry('Produktpräsentation', [p, r, o, d, 'U', k, t, p, r, 'E', z, 'E', n, t, a, ts, j, 'o:', n]).
+entry('Produktpraesentation', [p, r, o, d, 'U', k, t, p, r, 'E', z, 'E', n, t, a, ts, j, 'o:', n]).
 entry('Produkt', [p, r, o, d, 'U', k, t]).
 entry('Professor', [p, r, o, f, 'E', s, 'o:', '6']).
 entry(prof, [p, r, 'O', f]).
@@ -7131,22 +7132,22 @@ entry(protestantischer, [p, r, o, t, 'E', s, t, a, n, t, 'I', 'S', '6']).
 entry('Prozedur', [p, r, o, ts, e, d, 'u:', '6']).
 entry('Prozent', [p, r, o, ts, 'E', n, t]).
 entry(pr, [p, r]).
-entry(prüfen, [p, r, 'y:', f, @, n]).
-entry('Prüfung', [p, r, 'y:', f, 'U', 'N']).
-entry(prügeln, [p, r, 'y:', g, @, l, n]).
+entry(pruefen, [p, r, 'y:', f, @, n]).
+entry('Pruefung', [p, r, 'y:', f, 'U', 'N']).
+entry(pruegeln, [p, r, 'y:', g, @, l, n]).
 entry('Puchta', [p, 'U', x, t, a]).
 entry('Puffer', [p, 'U', f, '6']).
 entry('Pufferzeit', [p, 'U', f, '6', ts, aI, t]).
 entry(puh, [p, 'u:']).
 entry('Pulsnitz', [p, 'U', l, s, n, 'I', ts]).
 entry('Punkte', [p, 'U', 'N', k, t, @]).
-entry(pünktlich, [p, 'Y', 'N', k, t, l, 'I', 'C']).
+entry(puenktlich, [p, 'Y', 'N', k, t, l, 'I', 'C']).
 entry('Punkt', [p, 'U', 'N', k, t]).
 entry('Pusch', [p, 'U', 'S']).
 entry('Putis', [p, u, t, 'I', s]).
 entry('Putz', [p, 'U', ts]).
 entry('Q', [k, 'u:']).
-entry('Qualität', [k, v, a, l, i, t, 'E:', t]).
+entry('Qualitaet', [k, v, a, l, i, t, 'E:', t]).
 entry('Quartalen', [k, v, a, r, t, 'a:', l, @, n]).
 entry('Quartales', [k, v, a, r, t, 'a:', l, @, s]).
 entry('Quartal', [k, v, a, r, t, 'a:', l]).
@@ -7183,7 +7184,7 @@ entry('Rande', [r, a, n, d, @]).
 entry(randvoll, [r, a, n, t, f, 'O', l]).
 entry('Rang', [r, a, 'N']).
 entry(ranhalten, [r, a, n, h, a, l, t, @, n]).
-entry(ranhängen, [r, a, n, h, 'E', 'N', @, n]).
+entry(ranhaengen, [r, a, n, h, 'E', 'N', @, n]).
 entry(ranmachen, [r, a, n, m, a, x, @, n]).
 entry(ran, [r, a, n]).
 entry(rappeldickevoll, [r, a, p, @, l, d, 'I', k, @, f, 'O', l]).
@@ -7203,15 +7204,15 @@ entry(raubt, [r, aU, p, t]).
 entry(rauchen, [r, aU, x, @, n]).
 entry('Raucherabteil', [r, aU, x, '6', a, p, t, aI, l]).
 entry(rauche, [r, aU, x, @]).
-entry('Raucher-Plätze', [r, aU, x, '6', p, l, 'E', ts, @]).
+entry('Raucher-Plaetze', [r, aU, x, '6', p, l, 'E', ts, @]).
 entry('Raucher', [r, aU, x, '6']).
 entry('Raucher-Zimmer', [r, aU, x, '6', ts, 'I', m, '6']).
 entry(rauffahren, [r, aU, f, f, 'a:', r, @, n]).
 entry(raufkommen, [r, aU, f, k, 'O', m, @, n]).
 entry(rauf, [r, aU, f]).
-entry('Räume', [r, 'OY', m, @]).
-entry('Räumliche', [r, 'OY', m, l, 'I', 'C', @]).
-entry('Räumlichkeiten', [r, 'OY', m, l, 'I', 'C', k, aI, t, @, n]).
+entry('Raeume', [r, 'OY', m, @]).
+entry('Raeumliche', [r, 'OY', m, l, 'I', 'C', @]).
+entry('Raeumlichkeiten', [r, 'OY', m, l, 'I', 'C', k, aI, t, @, n]).
 entry(raum, [r, aU, m]).
 entry(rau, [r, aU]).
 entry(rausbekommen, [r, aU, s, b, @, k, 'O', m, @, n]).
@@ -7220,14 +7221,14 @@ entry(raußen, [r, aU, s, @, n]).
 entry('Rause', [r, aU, z, @]).
 entry(rausfahren, [r, aU, s, f, 'a:', r, @, n]).
 entry(rausfallen, [r, aU, s, f, a, l, @, n]).
-entry(rausfällt, [r, aU, s, f, 'E', l, t]).
+entry(rausfaellt, [r, aU, s, f, 'E', l, t]).
 entry(rausgefunden, [r, aU, s, g, @, f, 'U', n, d, @, n]).
 entry(rausgehen, [r, aU, s, g, 'e:', @, n]).
 entry(rausgekommen, [r, aU, s, g, @, k, 'O', m, @, n]).
 entry(rausgeschaut, [r, aU, s, g, @, 'S', aU, t]).
 entry(rausgeschrieben, [r, aU, s, g, @, 'S', r, 'i:', b, @, n]).
 entry(rausgesucht, [r, aU, s, g, @, z, 'u:', x, t]).
-entry(rausgezögert, [r, aU, s, g, @, ts, '2:', g, '6', t]).
+entry(rausgezoegert, [r, aU, s, g, @, ts, '2:', g, '6', t]).
 entry(rausholen, [r, aU, s, h, 'o:', l, @, n]).
 entry(rauskommen, [r, aU, s, k, 'O', m, @, n]).
 entry(rauskommt, [r, aU, s, k, 'O', m, t]).
@@ -7241,7 +7242,7 @@ entry(rausschicken, [r, aU, s, 'S', 'I', k, @, n]).
 entry(rausschmeißen, [r, aU, s, 'S', m, aI, s, @, n]).
 entry(rausschreiben, [r, aU, s, 'S', r, aI, b, @, n]).
 entry(raussuchen, [r, aU, s, z, 'u:', x, @, n]).
-entry(rauszögern, [r, aU, s, ts, '2:', g, '6', n]).
+entry(rauszoegern, [r, aU, s, ts, '2:', g, '6', n]).
 entry(rauszufinden, [r, aU, s, ts, u, f, 'I', n, d, @, n]).
 entry(rauszukommen, [r, aU, s, ts, u, k, 'O', m, @, n]).
 entry(rauszusuchen, [r, aU, s, ts, u, z, 'u:', x, @, n]).
@@ -7254,7 +7255,7 @@ entry(rechne, [r, 'E', 'C', n, @]).
 entry('Rechnervernetzung', [r, 'E', 'C', n, '6', f, 'E', '6', n, 'E', ts, 'U', 'N']).
 entry('Rechnung', [r, 'E', 'C', n, 'U', 'N']).
 entry('Rechnungsabteilung', [r, 'E', 'C', n, 'U', 'N', s, a, p, t, aI, l, 'U', 'N']).
-entry('Rechnungsprüfer', [r, 'E', 'C', n, 'U', 'N', s, p, r, 'y:', f, '6']).
+entry('Rechnungspruefer', [r, 'E', 'C', n, 'U', 'N', s, p, r, 'y:', f, '6']).
 entry(rech, [r, 'E', 'C']).
 entry(rechtesten, [r, 'E', 'C', t, @, s, t, @, n]).
 entry(rechtfertigt, [r, 'E', 'C', t, f, 'E', '6', t, 'I', 'C', t]).
@@ -7273,9 +7274,9 @@ entry('Referenten', [r, e, f, e, r, 'E', n, t, @, n]).
 entry(reflektieren, [r, e, f, l, 'E', k, t, 'i:', r, @, n]).
 entry('Reformationstag', [r, e, f, 'O', '6', m, a, ts, j, 'o:', n, s, t, 'a:', k]).
 entry(regele, [r, 'e:', g, @, l, @]).
-entry(regelmäßige, [r, 'e:', g, @, l, m, 'E:', s, 'I', g, @]).
-entry('Regelmäßigkeit', [r, 'e:', g, @, l, m, 'E:', s, 'I', 'C', k, aI, t]).
-entry(regelmäßig, [r, 'e:', g, @, l, m, 'E:', s, 'I', 'C']).
+entry(regelmaeßige, [r, 'e:', g, @, l, m, 'E:', s, 'I', g, @]).
+entry('Regelmaeßigkeit', [r, 'e:', g, @, l, m, 'E:', s, 'I', 'C', k, aI, t]).
+entry(regelmaeßig, [r, 'e:', g, @, l, m, 'E:', s, 'I', 'C']).
 entry(regeln, [r, 'e:', g, @, l, n]).
 entry('Regel', [r, 'e:', g, @, l]).
 entry('Regelung', [r, 'e:', g, @, l, 'U', 'N']).
@@ -7300,7 +7301,7 @@ entry(reicht, [r, aI, 'C', t]).
 entry('Reihenfolge', [r, aI, @, n, f, 'O', l, g, @]).
 entry('Reihe', [r, aI, @]).
 entry(reinarbeiten, [r, aI, n, a, r, b, aI, t, @, n]).
-entry(reinblättern, [r, aI, n, b, l, 'E', t, '6', n]).
+entry(reinblaettern, [r, aI, n, b, l, 'E', t, '6', n]).
 entry(reinbringen, [r, aI, n, b, r, 'I', 'N', @, n]).
 entry(reinen, [r, aI, n, @, n]).
 entry(reine, [r, aI, n, @]).
@@ -7313,15 +7314,15 @@ entry(reingeht, [r, aI, n, g, 'e:', t]).
 entry(reingelegt, [r, aI, n, g, @, l, 'e:', k, t]).
 entry(reinge, [r, aI, n, g, @]).
 entry(reingespart, [r, aI, n, g, @, 'S', p, 'a:', r, t]).
-entry(reinhängen, [r, aI, n, h, 'E', 'N', @, n]).
+entry(reinhaengen, [r, aI, n, h, 'E', 'N', @, n]).
 entry('Reinhard', [r, aI, n, h, a, r, t]).
 entry(reinkommen, [r, aI, n, k, 'O', m, @, n]).
 entry(reinkommt, [r, aI, n, k, 'O', m, t]).
 entry(reinkucken, [r, aI, n, k, 'U', k, @, n]).
 entry(reinlegen, [r, aI, n, l, 'e:', g, @, n]).
-entry(reinmüssen, [r, aI, n, m, 'Y', s, @, n]).
+entry(reinmuessen, [r, aI, n, m, 'Y', s, @, n]).
 entry(reinnehmen, [r, aI, n, n, 'e:', m, @, n]).
-entry('Reinöhl', [r, aI, n, '2:', l]).
+entry('Reinoehl', [r, aI, n, '2:', l]).
 entry(reinpacken, [r, aI, n, p, a, k, @, n]).
 entry(reinpassen, [r, aI, n, p, a, s, @, n]).
 entry(reinpl, [r, aI, n, p, l]).
@@ -7331,7 +7332,7 @@ entry(reinschauen, [r, aI, n, 'S', aU, @, n]).
 entry(reinschieben, [r, aI, n, 'S', 'i:', b, @, n]).
 entry(reinsetzen, [r, aI, n, z, 'E', ts, @, n]).
 entry(reinspielt, [r, aI, n, 'S', p, 'i:', l, t]).
-entry(reinübernachten, [r, aI, n, 'y:', b, '6', n, a, x, t, @, n]).
+entry(reinuebernachten, [r, aI, n, 'y:', b, '6', n, a, x, t, @, n]).
 entry(reinzupacken, [r, aI, n, ts, u, p, a, k, @, n]).
 entry(reinzuquetschen, [r, aI, n, ts, u, k, v, 'E', tS, @, n]).
 entry(rei, [r, aI]).
@@ -7344,18 +7345,18 @@ entry('Reisebe', [r, aI, z, @, b, @]).
 entry('Reisebericht', [r, aI, z, @, b, @, r, 'I', 'C', t]).
 entry('Reisebuchung', [r, aI, z, @, b, 'u:', x, 'U', 'N']).
 entry('Reisebudget', [r, aI, z, @, b, 'Y', d, 'Z', 'e:']).
-entry('Reisebüro', [r, aI, z, @, b, 'Y', r, 'o:']).
+entry('Reisebuero', [r, aI, z, @, b, 'Y', r, 'o:']).
 entry('Reisedauer', [r, aI, z, @, d, aU, '6']).
 entry('Reisegelegenheiten', [r, aI, z, @, g, @, l, 'e:', g, @, n, h, aI, t, @, n]).
 entry('Reiseinformationen', [r, aI, z, @, 'I', n, f, 'O', '6', m, a, ts, j, 'o:', n, @, n]).
 entry('Reisekosten-Abrechnung', [r, aI, z, @, k, 'O', s, t, @, n, a, p, r, 'E', 'C', n, 'U', 'N']).
 entry('Reisekosten', [r, aI, z, @, k, 'O', s, t, @, n]).
 entry('Reisele', [r, aI, z, @, l, @]).
-entry('Reisemöglichkeiten', [r, aI, z, @, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
+entry('Reisemoeglichkeiten', [r, aI, z, @, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
 entry(reisende, [r, aI, z, @, n, d, @]).
 entry(reisen, [r, aI, z, @, n]).
-entry('Reiseplänen', [r, aI, z, @, p, l, 'E:', n, @, n]).
-entry('Reisepläne', [r, aI, z, @, p, l, 'E:', n, @]).
+entry('Reiseplaenen', [r, aI, z, @, p, l, 'E:', n, @, n]).
+entry('Reiseplaene', [r, aI, z, @, p, l, 'E:', n, @]).
 entry('Reisepreis', [r, aI, z, @, p, r, aI, s]).
 entry(reise, [r, aI, z, @]).
 entry('Reiser', [r, aI, z, '6']).
@@ -7384,8 +7385,8 @@ entry(relaviel, [r, e, l, a, f, 'i:', l]).
 entry(relaxed, [r, 'I', l, 'E', k, s, t]).
 entry(relevanten, [r, e, l, e, v, a, n, t, @, n]).
 entry(relevant, [r, e, l, e, v, a, n, t]).
-entry(religiösem, [r, e, l, i, g, j, '2:', z, @, m]).
-entry(religiösen, [r, e, l, i, g, j, '2:', z, @, n]).
+entry(religioesem, [r, e, l, i, g, j, '2:', z, @, m]).
+entry(religioesen, [r, e, l, i, g, j, '2:', z, @, n]).
 entry(rel, [r, e, l]).
 entry('Rendsburg', [r, 'E', n, ts, b, 'U', '6', k]).
 entry(rennen, [r, 'E', n, @, n]).
@@ -7420,7 +7421,7 @@ entry(revanchieren, [r, e, v, 'a~', 'S', 'i:', r, @, n]).
 entry('Revisionstreffen', [r, e, v, i, z, j, 'o:', n, s, t, r, 'E', f, @, n]).
 entry('Revue', [r, e, v, 'y:']).
 entry('Rezepte', [r, e, ts, 'E', p, t, @]).
-entry('Rheinländer', [r, aI, n, l, 'E', n, d, '6']).
+entry('Rheinlaender', [r, aI, n, l, 'E', n, d, '6']).
 entry('Rheinland', [r, aI, n, l, a, n, t]).
 entry('Rhetorikkurse', [r, e, t, 'o:', r, 'I', k, k, 'U', '6', z, @]).
 entry('Rhetorikkurs', [r, e, t, 'o:', r, 'I', k, k, 'U', '6', s]).
@@ -7455,14 +7456,14 @@ entry('Rochusstraße', [r, 'O', x, 'U', s, 'S', t, r, 'a:', s, @]).
 entry(roger, [r, 'O', d, 'Z', '6']).
 entry('Rohde', [r, 'o:', d, @]).
 entry('Rohlfling', [r, 'o:', l, f, l, 'I', 'N']).
-entry('Röhre', [r, '2:', r, @]).
+entry('Roehre', [r, '2:', r, @]).
 entry('Rollen', [r, 'O', l, @, n]).
 entry('Rolle', [r, 'O', l, @]).
 entry('Rollschuhen', [r, 'O', l, 'S', 'u:', @, n]).
 entry(romantischen, [r, o, m, a, n, t, 'I', 'S', @, n]).
 entry(romantischer, [r, o, m, a, n, t, 'I', 'S', '6']).
 entry(romantisch, [r, o, m, a, n, t, 'I', 'S']).
-entry('Römer', [r, '2:', m, '6']).
+entry('Roemer', [r, '2:', m, '6']).
 entry('Rooster-Group', [r, 'u:', s, t, '6', g, r, 'u:', p]).
 entry(ro, [r, o]).
 entry('Rosenmontag', [r, 'o:', z, @, n, m, 'o:', n, t, 'a:', k]).
@@ -7470,7 +7471,7 @@ entry('Rosenmontags', [r, 'o:', z, @, n, m, 'o:', n, t, 'a:', k, s]).
 entry('Rosenmontags-Sendung', [r, 'o:', z, @, n, m, 'o:', n, t, 'a:', k, s, z, 'E', n, d, 'U', 'N']).
 entry('Rosenstock', [r, 'o:', z, @, n, 'S', t, 'O', k]).
 entry(rosig, [r, 'o:', z, 'I', 'C']).
-entry('Rössner', [r, '9', s, n, '6']).
+entry('Roessner', [r, '9', s, n, '6']).
 entry('Rostock', [r, 'O', s, t, 'O', k]).
 entry(roten, [r, 'o:', t, @, n]).
 entry('Rothenbaumchaussee', [r, @, 'U', f, @, n, b, aU, m, 'S', @, 'U', s, 'i:']).
@@ -7484,42 +7485,42 @@ entry('Routine', [r, u, t, 'i:', n, @]).
 entry('Routineuntersuchung', [r, u, t, 'i:', n, @, 'U', n, t, '6', z, 'u:', x, 'U', 'N']).
 entry('Royal', [r, 'O', a, j, 'a:', l]).
 entry(r, ['E', '6']).
-entry('Rübenschmidt', [r, 'y:', b, @, n, 'S', m, 'I', t]).
-entry(rüberfahren, [r, 'y:', b, '6', f, 'a:', r, @, n]).
-entry(rüberfaxen, [r, 'y:', b, '6', f, a, k, s, @, n]).
-entry(rübergehend, [r, 'y:', b, '6', g, 'e:', @, n, t]).
-entry(rüberjetten, [r, 'y:', b, '6', d, 'Z', 'E', t, @, n]).
-entry(rüberkommen, [r, 'y:', b, '6', k, 'O', m, @, n]).
-entry(rüberreichen, [r, 'y:', b, '6', r, aI, 'C', @, n]).
-entry(rüber, [r, 'y:', b, '6']).
+entry('Ruebenschmidt', [r, 'y:', b, @, n, 'S', m, 'I', t]).
+entry(rueberfahren, [r, 'y:', b, '6', f, 'a:', r, @, n]).
+entry(rueberfaxen, [r, 'y:', b, '6', f, a, k, s, @, n]).
+entry(ruebergehend, [r, 'y:', b, '6', g, 'e:', @, n, t]).
+entry(rueberjetten, [r, 'y:', b, '6', d, 'Z', 'E', t, @, n]).
+entry(rueberkommen, [r, 'y:', b, '6', k, 'O', m, @, n]).
+entry(rueberreichen, [r, 'y:', b, '6', r, aI, 'C', @, n]).
+entry(rueber, [r, 'y:', b, '6']).
 entry(ruckelt, [r, 'U', k, @, l, t]).
-entry('Rückenleiden', [r, 'Y', k, @, n, l, aI, d, @, n]).
-entry('Rückfahren', [r, 'Y', k, f, 'a:', r, @, n]).
-entry('Rückfahrkarte', [r, 'Y', k, f, 'a:', r, k, a, r, t, @]).
-entry('Rückfahrmöglichkeit', [r, 'Y', k, f, 'a:', r, m, '2:', k, l, 'I', 'C', k, aI, t]).
-entry('Rückfahr', [r, 'Y', k, f, 'a:', r]).
-entry('Rückfahrticket', [r, 'Y', k, f, 'a:', r, t, 'I', k, @, t]).
-entry('Rückfahrtickets', [r, 'Y', k, f, 'a:', r, t, 'I', k, @, ts]).
-entry('Rückfahrt', [r, 'Y', k, f, 'a:', r, t]).
-entry('Rückfliegen', [r, 'Y', k, f, l, 'i:', g, @, n]).
-entry('Rückflüge', [r, 'Y', k, f, l, 'y:', g, @]).
-entry('Rückflug', [r, 'Y', k, f, l, 'u:', k]).
-entry('Rückflugzeit', [r, 'Y', k, f, l, 'u:', k, ts, aI, t]).
-entry(rückfragen, [r, 'Y', k, f, r, 'a:', g, @, n]).
-entry('Rückf', [r, 'Y', k, f]).
-entry(rückgängig, [r, 'Y', k, g, 'E', 'N', 'I', 'C']).
-entry('Rückkehr', [r, 'Y', k, k, 'e:', '6']).
-entry('Rückmeldung', [r, 'Y', k, m, 'E', l, d, 'U', 'N']).
-entry('Rückreise', [r, 'Y', k, r, aI, z, @]).
-entry('Rückreisetermin', [r, 'Y', k, r, aI, z, @, t, 'E', '6', m, 'i:', n]).
-entry('Rückreisewelle', [r, 'Y', k, r, aI, z, @, v, 'E', l, @]).
-entry('Rück', [r, 'Y', k]).
-entry('Rückscha', [r, 'Y', k, 'S', a]).
-entry('Rücksprache', [r, 'Y', k, 'S', p, r, 'a:', x, @]).
-entry('Rücktermin', [r, 'Y', k, t, 'E', '6', m, 'i:', n]).
-entry('Rückverbindungen', [r, 'Y', k, f, 'E', '6', b, 'I', n, d, 'U', 'N', @, n]).
-entry(rückwärts, [r, 'Y', k, v, 'E', '6', ts]).
-entry('Rückweg', [r, 'Y', k, v, 'e:', k]).
+entry('Rueckenleiden', [r, 'Y', k, @, n, l, aI, d, @, n]).
+entry('Rueckfahren', [r, 'Y', k, f, 'a:', r, @, n]).
+entry('Rueckfahrkarte', [r, 'Y', k, f, 'a:', r, k, a, r, t, @]).
+entry('Rueckfahrmoeglichkeit', [r, 'Y', k, f, 'a:', r, m, '2:', k, l, 'I', 'C', k, aI, t]).
+entry('Rueckfahr', [r, 'Y', k, f, 'a:', r]).
+entry('Rueckfahrticket', [r, 'Y', k, f, 'a:', r, t, 'I', k, @, t]).
+entry('Rueckfahrtickets', [r, 'Y', k, f, 'a:', r, t, 'I', k, @, ts]).
+entry('Rueckfahrt', [r, 'Y', k, f, 'a:', r, t]).
+entry('Rueckfliegen', [r, 'Y', k, f, l, 'i:', g, @, n]).
+entry('Rueckfluege', [r, 'Y', k, f, l, 'y:', g, @]).
+entry('Rueckflug', [r, 'Y', k, f, l, 'u:', k]).
+entry('Rueckflugzeit', [r, 'Y', k, f, l, 'u:', k, ts, aI, t]).
+entry(rueckfragen, [r, 'Y', k, f, r, 'a:', g, @, n]).
+entry('Rueckf', [r, 'Y', k, f]).
+entry(rueckgaengig, [r, 'Y', k, g, 'E', 'N', 'I', 'C']).
+entry('Rueckkehr', [r, 'Y', k, k, 'e:', '6']).
+entry('Rueckmeldung', [r, 'Y', k, m, 'E', l, d, 'U', 'N']).
+entry('Rueckreise', [r, 'Y', k, r, aI, z, @]).
+entry('Rueckreisetermin', [r, 'Y', k, r, aI, z, @, t, 'E', '6', m, 'i:', n]).
+entry('Rueckreisewelle', [r, 'Y', k, r, aI, z, @, v, 'E', l, @]).
+entry('Rueck', [r, 'Y', k]).
+entry('Rueckscha', [r, 'Y', k, 'S', a]).
+entry('Ruecksprache', [r, 'Y', k, 'S', p, r, 'a:', x, @]).
+entry('Ruecktermin', [r, 'Y', k, t, 'E', '6', m, 'i:', n]).
+entry('Rueckverbindungen', [r, 'Y', k, f, 'E', '6', b, 'I', n, d, 'U', 'N', @, n]).
+entry(rueckwaerts, [r, 'Y', k, v, 'E', '6', ts]).
+entry('Rueckweg', [r, 'Y', k, v, 'e:', k]).
 entry(rufen, [r, 'u:', f, @, n]).
 entry(rufe, [r, 'u:', f, @]).
 entry('Ruf', [r, 'u:', f]).
@@ -7532,10 +7533,10 @@ entry(ruhige, [r, 'u:', 'I', g, @]).
 entry(ruhiges, [r, 'u:', 'I', g, @, s]).
 entry(ruhig, [r, 'u:', 'I', 'C']).
 entry(ruhigste, [r, 'u:', 'I', 'C', s, t, @]).
-entry(rühre, [r, 'y:', r, @]).
+entry(ruehre, [r, 'y:', r, @]).
 entry(ruh, [r, u]).
-entry(rülpsen, [r, 'Y', l, p, s, @, n]).
-entry(rumdrücken, [r, 'U', m, d, r, 'Y', k, @, n]).
+entry(ruelpsen, [r, 'Y', l, p, s, @, n]).
+entry(rumdruecken, [r, 'U', m, d, r, 'Y', k, @, n]).
 entry(rumgehen, [r, 'U', m, g, 'e:', @, n]).
 entry(rumkriegen, [r, 'U', m, k, r, 'i:', g, @, n]).
 entry(rumreisen, [r, 'U', m, r, aI, z, @, n]).
@@ -7545,7 +7546,7 @@ entry(rumsehen, [r, 'U', m, z, 'e:', @, n]).
 entry(rumstehen, [r, 'U', m, 'S', t, 'e:', @, n]).
 entry(rumtelefonieren, [r, 'U', m, t, e, l, e, f, o, n, 'i:', r, @, n]).
 entry(rumzubringen, [r, 'U', m, ts, u, b, r, 'I', 'N', @, n]).
-entry(rumzuhüpfen, [r, 'U', m, ts, u, h, 'Y', pf, @, n]).
+entry(rumzuhuepfen, [r, 'U', m, ts, u, h, 'Y', pf, @, n]).
 entry(rumzusitzen, [r, 'U', m, ts, u, z, 'I', ts, @, n]).
 entry(rumzustehen, [r, 'U', m, ts, u, 'S', t, 'e:', @, n]).
 entry(runden, [r, 'U', n, d, @, n]).
@@ -7560,13 +7561,13 @@ entry(runtergeschaut, [r, 'U', n, t, '6', g, @, 'S', aU, t]).
 entry(runter, [r, 'U', n, t, '6']).
 entry(runterzufahren, [r, 'U', n, t, '6', ts, u, f, 'a:', r, @, n]).
 entry('Ruppert', [r, 'U', p, '6', t]).
-entry(rü, [r, 'y:']).
-entry('Rüt', [r, 'y:', t]).
+entry(rue, [r, 'y:']).
+entry('Ruet', [r, 'y:', t]).
 entry('Rutsch', [r, 'U', tS]).
-entry(rütteln, [r, 'Y', t, @, l, n]).
+entry(ruetteln, [r, 'Y', t, @, l, n]).
 entry('Rutzinger', [r, 'U', ts, 'I', 'N', '6']).
 entry(rz, ['6', ts]).
-entry('Saarbrücken', [z, a, r, b, r, 'Y', k, @, n]).
+entry('Saarbruecken', [z, a, r, b, r, 'Y', k, @, n]).
 entry('Sabena', [z, a, b, 'e:', n, a]).
 entry('Sabine', [z, a, b, 'i:', n, @]).
 entry('Sachbearbeiterin', [z, a, x, b, @, a, r, b, aI, t, @, r, 'I', n]).
@@ -7575,7 +7576,7 @@ entry(sachen, [z, a, x, @, n]).
 entry('Sache', [z, a, x, @]).
 entry('Sachverhalt', [z, a, x, f, 'E', '6', h, a, l, t]).
 entry(sacken, [z, a, k, @, n]).
-entry('Safaribüchse', [z, a, f, 'a:', r, i, b, 'Y', k, s, @]).
+entry('Safaribuechse', [z, a, f, 'a:', r, i, b, 'Y', k, s, @]).
 entry(sagen, [z, 'a:', g, @, n]).
 entry('Sagerer', [z, 'a:', g, @, r, '6']).
 entry(sage, [z, 'a:', g, @]).
@@ -7583,8 +7584,8 @@ entry(sagst, [z, 'a:', k, s, t]).
 entry(sagten, [z, 'a:', k, t, @, n]).
 entry(sagte, [z, 'a:', k, t, @]).
 entry(sagt, [z, 'a:', k, t]).
-entry(sähe, [z, 'E:', @]).
-entry(säh, [z, 'E:']).
+entry(saehe, [z, 'E:', @]).
+entry(saeh, [z, 'E:']).
 entry('Salatbuffet', [z, a, l, 'a:', t, b, 'Y', f, 'e:']).
 entry('Salatteller', [z, a, l, 'a:', t, t, 'E', l, '6']).
 entry(sammeln, [z, a, m, @, l, n]).
@@ -7593,8 +7594,8 @@ entry('Samstage', [z, a, m, s, t, 'a:', g, @]).
 entry(samstags, [z, a, m, s, t, 'a:', k, s]).
 entry('Samstag', [z, a, m, s, t, 'a:', k]).
 entry('Sams', [z, a, m, s]).
-entry(sämtlichen, [z, 'E', m, t, l, 'I', 'C', @, n]).
-entry(sämtliche, [z, 'E', m, t, l, 'I', 'C', @]).
+entry(saemtlichen, [z, 'E', m, t, l, 'I', 'C', @, n]).
+entry(saemtliche, [z, 'E', m, t, l, 'I', 'C', @]).
 entry(sam, [z, 'a:', m]).
 entry('Sam', [z, a, m]).
 entry('Sanders', [z, a, n, d, '6', s]).
@@ -7610,7 +7611,7 @@ entry('Sauer', [z, aU, '6']).
 entry('Saunaangebot', [z, aU, n, 'a:', a, n, g, @, b, 'o:', t]).
 entry('Saunafan', [z, aU, n, a, f, 'E:', n]).
 entry('Saunafreak', [z, aU, n, a, f, r, 'i:', k]).
-entry('Saunagänger', [z, aU, n, a, g, 'E', 'N', '6']).
+entry('Saunagaenger', [z, aU, n, a, g, 'E', 'N', '6']).
 entry('Sauna', [z, aU, n, a]).
 entry('Saun', [z, aU, n]).
 entry(sauren, [z, aU, r, @, n]).
@@ -7621,29 +7622,29 @@ entry(sa, [z, a]).
 entry('Scapoff', [s, k, 'E', p, 'O', f]).
 entry('Schaaf', ['S', 'a:', f]).
 entry(schaden, ['S', 'a:', d, @, n]).
-entry('Schäden', ['S', 'E:', d, @, n]).
+entry('Schaeden', ['S', 'E:', d, @, n]).
 entry(schade, ['S', 'a:', d, @]).
 entry(schadet, ['S', 'a:', d, @, t]).
 entry('Schaeffler', ['S', 'E', f, l, '6']).
-entry('Schäfer', ['S', 'E:', f, '6']).
+entry('Schaefer', ['S', 'E:', f, '6']).
 entry(schaffbar, ['S', a, f, b, 'a:', r]).
 entry(schaffen, ['S', a, f, @, n]).
 entry(schaffe, ['S', a, f, @]).
 entry(schag, ['S', 'a:', k]).
 entry(schahrscheinlich, ['S', 'a:', r, 'S', aI, n, l, 'I', 'C']).
 entry('Schalter', ['S', a, l, t, '6']).
-entry(schäme, ['S', 'E:', m, @]).
+entry(schaeme, ['S', 'E:', m, @]).
 entry('Schampus', ['S', a, m, p, 'U', s]).
 entry('Schande', ['S', a, n, d, @]).
 entry(scharfes, ['S', a, r, f, @, s]).
 entry(scharf, ['S', a, r, f]).
-entry(schäts, ['S', 'E:', ts]).
+entry(schaets, ['S', 'E:', ts]).
 entry('Schatten', ['S', a, t, @, n]).
-entry(schätzen, ['S', 'E', ts, @, n]).
-entry(schätze, ['S', 'E', ts, @]).
-entry('Schätzle', ['S', 'E', ts, l, @]).
-entry('Schätz', ['S', 'E', ts]).
-entry(schätzungsweise, ['S', 'E', ts, u, 'N', s, v, aI, z, @]).
+entry(schaetzen, ['S', 'E', ts, @, n]).
+entry(schaetze, ['S', 'E', ts, @]).
+entry('Schaetzle', ['S', 'E', ts, l, @]).
+entry('Schaetz', ['S', 'E', ts]).
+entry(schaetzungsweise, ['S', 'E', ts, u, 'N', s, v, aI, z, @]).
 entry(schauen, ['S', aU, @, n]).
 entry(schaue, ['S', aU, @]).
 entry(schaukeln, ['S', aU, k, @, l, n]).
@@ -7692,13 +7693,13 @@ entry('Schislowsky', ['S', 'I', s, l, 'O', f, s, k, i]).
 entry(schlafen, ['S', l, 'a:', f, @, n]).
 entry(schlafe, ['S', l, 'a:', f, @]).
 entry('Schlaf', ['S', l, 'a:', f]).
-entry(schläft, ['S', l, 'E:', f, t]).
+entry(schlaeft, ['S', l, 'E:', f, t]).
 entry('Schlafwagen', ['S', l, 'a:', f, v, 'a:', g, @, n]).
 entry('Schlafwaggon', ['S', l, 'a:', f, v, a, g, 'O', 'N']).
 entry(schlagen, ['S', l, 'a:', g, @, n]).
 entry(schlage, ['S', l, 'a:', g, @]).
 entry(schlag, ['S', l, 'a:', k]).
-entry(schlägt, ['S', l, 'E:', k, t]).
+entry(schlaegt, ['S', l, 'E:', k, t]).
 entry('Schlange', ['S', l, a, 'N', @]).
 entry(schla, ['S', l, a]).
 entry(schlauer, ['S', l, aU, '6']).
@@ -7727,23 +7728,23 @@ entry(schlimm, ['S', l, 'I', m]).
 entry(schlimmste, ['S', l, 'I', m, s, t, @]).
 entry('Schlitz', ['S', l, 'I', ts]).
 entry('Schlizio', ['S', l, 'I', ts, j, o]).
-entry('Schlör-Quell', ['S', l, '2:', '6', k, v, 'E', l]).
-entry('Schloßgaststätte', ['S', l, 'O', s, g, a, s, tS, t, 'E', t, @]).
+entry('Schloer-Quell', ['S', l, '2:', '6', k, v, 'E', l]).
+entry('Schloßgaststaette', ['S', l, 'O', s, g, a, s, tS, t, 'E', t, @]).
 entry('Schloßhotel', ['S', l, 'O', s, h, o, t, 'E', l]).
 entry('Schloß', ['S', l, 'O', s]).
 entry('Schlott', ['S', l, 'O', t]).
 entry(schl, ['S', l]).
-entry(schlüge, ['S', l, 'y:', g, @]).
+entry(schluege, ['S', l, 'y:', g, @]).
 entry(schlug, ['S', l, 'u:', k]).
 entry('Schlummertrunk', ['S', l, 'U', m, '6', t, r, u, 'N', k]).
 entry('Schlu', ['S', l, 'U']).
-entry('Schlüssel', ['S', l, 'Y', s, @, l]).
-entry(schlüssig, ['S', l, 'Y', s, 'I', 'C']).
+entry('Schluessel', ['S', l, 'Y', s, @, l]).
+entry(schluessig, ['S', l, 'Y', s, 'I', 'C']).
 entry('Schluß', ['S', l, 'U', s]).
 entry('Schmarren', ['S', m, a, r, @, n]).
 entry(schmeckt, ['S', m, 'E', k, t]).
 entry(schmeiße, ['S', m, aI, s, @]).
-entry('Schmid-Müller-Bardorf', ['S', m, 'I', t, m, 'Y', l, '6', b, 'a:', r, d, 'O', '6', f]).
+entry('Schmid-Mueller-Bardorf', ['S', m, 'I', t, m, 'Y', l, '6', b, 'a:', r, d, 'O', '6', f]).
 entry('Schmid', ['S', m, 'I', t]).
 entry('Schmied', ['S', m, 'i:', t]).
 entry('Schmitz', ['S', m, 'I', ts]).
@@ -7769,19 +7770,19 @@ entry(schnuckelige, ['S', n, 'U', k, @, l, 'I', g, @]).
 entry('Schnulze', ['S', n, 'U', l, ts, @]).
 entry(schnurzegal, ['S', n, 'U', '6', ts, e, g, 'a:', l]).
 entry('Schoen', ['S', 'O', 'I', n]).
-entry(schönen, ['S', '2:', n, @, n]).
+entry(schoenen, ['S', '2:', n, @, n]).
 entry(schonen, ['S', 'o:', n, @, n]).
-entry(schöneres, ['S', '2:', n, @, r, @, s]).
-entry(schöner, ['S', '2:', n, '6']).
-entry(schöne, ['S', '2:', n, @]).
-entry(schönes, ['S', '2:', n, @, s]).
-entry('Schönkirchen', ['S', '2:', n, k, 'I', '6', 'C', @, n]).
-entry(schön, ['S', '2:', n]).
+entry(schoeneres, ['S', '2:', n, @, r, @, s]).
+entry(schoener, ['S', '2:', n, '6']).
+entry(schoene, ['S', '2:', n, @]).
+entry(schoenes, ['S', '2:', n, @, s]).
+entry('Schoenkirchen', ['S', '2:', n, k, 'I', '6', 'C', @, n]).
+entry(schoen, ['S', '2:', n]).
 entry(schon, ['S', 'o:', n]).
-entry(schönsten, ['S', '2:', n, s, t, @, n]).
-entry(schönste, ['S', '2:', n, s, t, @]).
+entry(schoensten, ['S', '2:', n, s, t, @, n]).
+entry(schoenste, ['S', '2:', n, s, t, @]).
 entry('Schoppen', ['S', 'O', p, @, n]).
-entry(schö, ['S', '2:']).
+entry(schoe, ['S', '2:']).
 entry(scho, ['S', 'o:']).
 entry('Schotten', ['S', 'O', t, @, n]).
 entry('Schrade', ['S', r, 'a:', d, @]).
@@ -7800,7 +7801,7 @@ entry(schreiten, ['S', r, aI, t, @, n]).
 entry(schrie, ['S', r, 'i:']).
 entry(schriftlich, ['S', r, 'I', f, t, l, 'I', 'C']).
 entry('Schritten', ['S', r, 'I', t, @, n]).
-entry('Schröder', ['S', r, '2:', d, '6']).
+entry('Schroeder', ['S', r, '2:', d, '6']).
 entry('Schrot', ['S', r, 'o:', t]).
 entry(schr, ['S', r]).
 entry(sch, ['S']).
@@ -7809,7 +7810,7 @@ entry('Schuler', ['S', 'u:', l, '6']).
 entry('Schule', ['S', 'u:', l, @]).
 entry('Schulferien', ['S', 'u:', l, f, 'e:', '6', j, @, n]).
 entry('Schulkinder', ['S', 'u:', l, k, 'I', n, d, '6']).
-entry('Schüller', ['S', 'Y', l, '6']).
+entry('Schueller', ['S', 'Y', l, '6']).
 entry('Schulte', ['S', 'U', l, t, @]).
 entry('Schulungstreffen', ['S', 'u:', l, 'U', 'N', s, t, r, 'E', f, @, n]).
 entry('Schulung', ['S', 'u:', l, 'U', 'N']).
@@ -7818,24 +7819,24 @@ entry('Schulze', ['S', 'U', l, ts, @]).
 entry('Schulz', ['S', 'U', l, ts]).
 entry('Schumacher', ['S', 'u:', m, a, x, '6']).
 entry(schun, ['S', 'U', n]).
-entry('Schür', ['S', 'y:', '6']).
+entry('Schuer', ['S', 'y:', '6']).
 entry('Schuß', ['S', 'U', s]).
 entry('Schuster', ['S', 'u:', s, t, '6']).
 entry('Schuth', ['S', 'u:', t]).
-entry('Schüttauf', ['S', 'Y', t, aU, f]).
-entry('Schüttemeyer', ['S', 'Y', t, @, m, aI, '6']).
-entry('Schützenfes', ['S', 'Y', ts, @, n, f, 'E', s]).
-entry('Schützenfest', ['S', 'Y', ts, @, n, f, 'E', s, t]).
-entry('Schützenverein', ['S', 'Y', ts, @, n, f, 'E', '6', aI, n]).
+entry('Schuettauf', ['S', 'Y', t, aU, f]).
+entry('Schuettemeyer', ['S', 'Y', t, @, m, aI, '6']).
+entry('Schuetzenfes', ['S', 'Y', ts, @, n, f, 'E', s]).
+entry('Schuetzenfest', ['S', 'Y', ts, @, n, f, 'E', s, t]).
+entry('Schuetzenverein', ['S', 'Y', ts, @, n, f, 'E', '6', aI, n]).
 entry('Schwaben', ['S', v, 'a:', b, @, n]).
-entry('Schwäbisch-Gmünd', ['S', v, 'E:', b, 'I', 'S', g, m, 'Y', n, t]).
+entry('Schwaebisch-Gmuend', ['S', v, 'E:', b, 'I', 'S', g, m, 'Y', n, t]).
 entry(schwache, ['S', v, a, x, @]).
 entry(schwach, ['S', v, a, x]).
-entry('Schwägerin', ['S', v, 'E:', g, @, r, 'I', n]).
+entry('Schwaegerin', ['S', v, 'E:', g, @, r, 'I', n]).
 entry('Schwaiger', ['S', v, aI, g, '6']).
 entry('Schwarze', ['S', v, a, r, ts, @]).
 entry(schwarz, ['S', v, a, r, ts]).
-entry('Schwarzwälder', ['S', v, a, r, ts, v, 'E', l, d, '6']).
+entry('Schwarzwaelder', ['S', v, a, r, ts, v, 'E', l, d, '6']).
 entry(schwebt, ['S', v, 'e:', p, t]).
 entry(schweifen, ['S', v, aI, f, @, n]).
 entry('Schweikl', ['S', v, aI, k, l]).
@@ -7847,7 +7848,7 @@ entry(schweren, ['S', v, 'e:', r, @, n]).
 entry(schweres, ['S', v, 'e:', r, @, s]).
 entry('Schwerin', ['S', v, e, r, 'i:', n]).
 entry('Schwerpunkte', ['S', v, 'e:', '6', p, 'U', 'N', k, t, @]).
-entry(schwerpunktmäßig, ['S', v, 'e:', '6', p, 'U', 'N', k, t, m, 'E:', s, 'I', 'C']).
+entry(schwerpunktmaeßig, ['S', v, 'e:', '6', p, 'U', 'N', k, t, m, 'E:', s, 'I', 'C']).
 entry(schwer, ['S', v, 'e:', '6']).
 entry('Schwester', ['S', v, 'E', s, t, '6']).
 entry('Schwidewski', ['S', v, i, d, 'E', f, s, k, i]).
@@ -7870,7 +7871,7 @@ entry(schw, ['S', v]).
 entry('Schwung', ['S', v, 'U', 'N']).
 entry('Sebastian', [z, e, b, a, s, t, j, a, n]).
 entry(sechshundert, [z, 'E', k, s, h, 'U', n, d, '6', t]).
-entry(sechstägigen, [z, 'E', k, s, t, 'E:', g, 'I', g, @, n]).
+entry(sechstaegigen, [z, 'E', k, s, t, 'E:', g, 'I', g, @, n]).
 entry(sechsten, [z, 'E', k, s, t, @, n]).
 entry(sechster, [z, 'E', k, s, t, '6']).
 entry(sechste, [z, 'E', k, s, t, @]).
@@ -7879,8 +7880,8 @@ entry(sechsundachtzig, [z, 'E', k, s, 'U', n, t, a, x, ts, 'I', 'C']).
 entry(sechsunddreißigsten, [z, 'E', k, s, 'U', n, t, d, r, aI, s, 'I', 'C', s, t, @, n]).
 entry(sechsunddreißigste, [z, 'E', k, s, 'U', n, t, d, r, aI, s, 'I', 'C', s, t, @]).
 entry(sechsunddreißig, [z, 'E', k, s, 'U', n, t, d, r, aI, s, 'I', 'C']).
-entry(sechsundfünf, [z, 'E', k, s, 'U', n, t, f, 'Y', n, f]).
-entry(sechsundfünfzig, [z, 'E', k, s, 'U', n, t, f, 'Y', n, f, ts, 'I', 'C']).
+entry(sechsundfuenf, [z, 'E', k, s, 'U', n, t, f, 'Y', n, f]).
+entry(sechsundfuenfzig, [z, 'E', k, s, 'U', n, t, f, 'Y', n, f, ts, 'I', 'C']).
 entry(sechsundneunzig, [z, 'E', k, s, 'U', n, t, n, 'OY', n, ts, 'I', 'C']).
 entry(sechsundvierzigsten, [z, 'E', k, s, 'U', n, t, f, 'I', '6', ts, 'I', 'C', s, t, @, n]).
 entry(sechsundvierzig, [z, 'E', k, s, 'U', n, t, f, 'I', '6', ts, 'I', 'C']).
@@ -7902,8 +7903,8 @@ entry('Sedlmayer', [z, 'e:', d, l, m, aI, '6']).
 entry('See', [z, 'e:']).
 entry(segeln, [z, 'e:', g, @, l, n]).
 entry(seg, [z, 'e:', k]).
-entry('Sehenswürdigkeiten', [z, 'e:', @, n, s, v, 'Y', '6', d, 'I', 'C', k, aI, t, @, n]).
-entry('Sehenswürdigkeit', [z, 'e:', @, n, s, v, 'Y', '6', d, 'I', 'C', k, aI, t]).
+entry('Sehenswuerdigkeiten', [z, 'e:', @, n, s, v, 'Y', '6', d, 'I', 'C', k, aI, t, @, n]).
+entry('Sehenswuerdigkeit', [z, 'e:', @, n, s, v, 'Y', '6', d, 'I', 'C', k, aI, t]).
 entry(sehen, [z, 'e:', @, n]).
 entry(sehe, [z, 'e:', @]).
 entry(sehr, [z, 'e:', '6']).
@@ -7917,9 +7918,9 @@ entry(seitdem, [z, aI, t, d, 'e:', m]).
 entry('Seite', [z, aI, t, @]).
 entry(seit, [z, aI, t]).
 entry(sei, [z, aI]).
-entry('Sekretärinnen', [z, e, k, r, e, t, 'E:', r, 'I', n, @, n]).
-entry('Sekretärin', [z, e, k, r, e, t, 'E:', r, 'I', n]).
-entry('Sekretär', [z, e, k, r, e, t, 'E:', '6']).
+entry('Sekretaerinnen', [z, e, k, r, e, t, 'E:', r, 'I', n, @, n]).
+entry('Sekretaerin', [z, e, k, r, e, t, 'E:', r, 'I', n]).
+entry('Sekretaer', [z, e, k, r, e, t, 'E:', '6']).
 entry('Sekre', [z, e, k, r, e]).
 entry('Sektion', [z, 'E', k, ts, j, 'o:', n]).
 entry('Sekt', [z, 'E', k, t]).
@@ -7927,7 +7928,7 @@ entry('Sekunde', [z, e, k, 'U', n, d, @]).
 entry(selben, [z, 'E', l, b, @, n]).
 entry(selber, [z, 'E', l, b, '6']).
 entry(selbe, [z, 'E', l, b, @]).
-entry(selbstverständlich, [z, 'E', l, p, s, t, f, 'E', '6', 'S', t, 'E', n, t, l, 'I', 'C']).
+entry(selbstverstaendlich, [z, 'E', l, p, s, t, f, 'E', '6', 'S', t, 'E', n, t, l, 'I', 'C']).
 entry(selbst, [z, 'E', l, p, s, t]).
 entry(seltenes, [z, 'E', l, t, @, n, @, s]).
 entry(selten, [z, 'E', l, t, @, n]).
@@ -7936,8 +7937,8 @@ entry('Semester', [z, e, m, 'E', s, t, '6']).
 entry('Seminaren', [z, e, m, i, n, 'a:', r, @, n]).
 entry('Seminare', [z, e, m, i, n, 'a:', r, @]).
 entry('Seminarhaus', [z, e, m, i, n, 'a:', r, h, aU, s]).
-entry(seminarmäßig, [z, e, m, i, n, 'a:', r, m, 'E:', s, 'I', 'C']).
-entry('Seminarräume', [z, e, m, i, n, 'a:', r, r, 'OY', m, @]).
+entry(seminarmaeßig, [z, e, m, i, n, 'a:', r, m, 'E:', s, 'I', 'C']).
+entry('Seminarraeume', [z, e, m, i, n, 'a:', r, r, 'OY', m, @]).
 entry('Seminarraum', [z, e, m, i, n, 'a:', r, r, aU, m]).
 entry('Seminars', [z, e, m, i, n, 'a:', r, s]).
 entry('Seminarvortrag', [z, e, m, i, n, 'a:', r, f, 'o:', '6', t, r, 'a:', k]).
@@ -7988,9 +7989,9 @@ entry(siebenhundert, [z, 'i:', b, @, n, h, 'U', n, d, '6', t]).
 entry(siebenten, [z, 'i:', b, @, n, t, @, n]).
 entry(siebenter, [z, 'i:', b, @, n, t, '6']).
 entry(siebente, [z, 'i:', b, @, n, t, @]).
-entry('Sieben-Uhr-fünfzehn-Flieger', [z, 'i:', b, @, n, 'u:', '6', f, 'Y', n, f, z, 'e:', n, f, l, 'i:', g, '6']).
+entry('Sieben-Uhr-fuenfzehn-Flieger', [z, 'i:', b, @, n, 'u:', '6', f, 'Y', n, f, z, 'e:', n, f, l, 'i:', g, '6']).
 entry(siebenunddreißigsten, [z, 'i:', b, @, n, 'U', n, t, d, r, aI, s, 'I', 'C', s, t, @, n]).
-entry(siebenundfünfzig, [z, 'i:', b, @, n, 'U', n, t, f, 'Y', n, f, ts, 'I', 'C']).
+entry(siebenundfuenfzig, [z, 'i:', b, @, n, 'U', n, t, f, 'Y', n, f, ts, 'I', 'C']).
 entry(siebenundneunzig, [z, 'i:', b, @, n, 'U', n, t, n, 'OY', n, ts, 'I', 'C']).
 entry(siebenundsiebzig, [z, 'i:', b, @, n, 'U', n, t, z, 'i:', p, ts, 'I', 'C']).
 entry(siebenundvierzigsten, [z, 'i:', b, @, n, 'U', n, t, f, 'I', '6', ts, 'I', 'C', s, t, @, n]).
@@ -8050,7 +8051,7 @@ entry('Situation', [z, i, t, u, a, ts, j, 'o:', n]).
 entry(situell, [z, i, t, u, 'E', l]).
 entry(sitzen, [z, 'I', ts, @, n]).
 entry(sitze, [z, 'I', ts, @]).
-entry('Sitzplätze', [z, 'I', ts, p, l, 'E', ts, @]).
+entry('Sitzplaetze', [z, 'I', ts, p, l, 'E', ts, @]).
 entry('Sitzplatzreservierung', [z, 'I', ts, p, l, a, ts, r, 'e:', z, @, r, v, 'i:', r, 'U', 'N']).
 entry('Sitzplatz', [z, 'I', ts, p, l, a, ts]).
 entry(sitzt, [z, 'I', ts, t]).
@@ -8085,7 +8086,7 @@ entry(solltest, [z, 'O', l, t, @, s, t]).
 entry(sollte, [z, 'O', l, t, @]).
 entry(sollt, [z, 'O', l, t]).
 entry(soll, [z, 'O', l]).
-entry('Sölter', [z, '9', l, t, '6']).
+entry('Soelter', [z, '9', l, t, '6']).
 entry(somit, [z, o, m, 'I', t]).
 entry('Somman', [z, 'O', m, a, n]).
 entry('Sommerabend', [z, 'O', m, '6', 'a:', b, @, n, t]).
@@ -8104,7 +8105,7 @@ entry(sondern, [z, 'O', n, d, '6', n]).
 entry('Sonderpreis', [z, 'O', n, d, '6', p, r, aI, s]).
 entry('Sonderreisen', [z, 'O', n, d, '6', r, aI, z, @, n]).
 entry('Sonderspartarif', [z, 'O', n, d, '6', 'S', p, 'a:', r, t, a, r, 'i:', f]).
-entry('Sönksen', [s, '9', 'N', k, s, @, n]).
+entry('Soenksen', [s, '9', 'N', k, s, @, n]).
 entry('Sonnabend', [z, 'O', n, 'a:', b, @, n, t]).
 entry('Sonnenschein', [z, 'O', n, @, n, 'S', aI, n]).
 entry('Sonnenstrahlen', [z, 'O', n, @, n, 'S', t, r, 'a:', l, @, n]).
@@ -8145,20 +8146,20 @@ entry(sparsamer, ['S', p, 'a:', r, z, 'a:', m, '6']).
 entry(spart, ['S', p, 'a:', r, t]).
 entry(spaßiger, ['S', p, 'a:', s, 'I', g, '6']).
 entry('Spaß', ['S', p, 'a:', s]).
-entry(spätabends, ['S', p, 'E:', t, 'a:', b, @, n, ts]).
-entry(späten, ['S', p, 'E:', t, @, n]).
-entry(späteren, ['S', p, 'E:', t, @, r, @, n]).
-entry(spätere, ['S', p, 'E:', t, @, r, @]).
-entry(späteres, ['S', p, 'E:', t, @, r, @, s]).
-entry(später, ['S', p, 'E:', t, '6']).
-entry(spätes, ['S', p, 'E:', t, @, s]).
-entry(spätesten, ['S', p, 'E:', t, @, s, t, @, n]).
-entry(spätestens, ['S', p, 'E:', t, @, s, t, @, n, s]).
-entry(spätester, ['S', p, 'E:', t, @, s, t, '6']).
-entry(späteste, ['S', p, 'E:', t, @, s, t, @]).
-entry('Spätnachmittag', ['S', p, 'E:', t, n, 'a:', x, m, 'I', t, 'a:', k]).
-entry('Spätnachmittags', ['S', p, 'E:', t, n, 'a:', x, m, 'I', t, 'a:', k, s]).
-entry(spät, ['S', p, 'E:', t]).
+entry(spaetabends, ['S', p, 'E:', t, 'a:', b, @, n, ts]).
+entry(spaeten, ['S', p, 'E:', t, @, n]).
+entry(spaeteren, ['S', p, 'E:', t, @, r, @, n]).
+entry(spaetere, ['S', p, 'E:', t, @, r, @]).
+entry(spaeteres, ['S', p, 'E:', t, @, r, @, s]).
+entry(spaeter, ['S', p, 'E:', t, '6']).
+entry(spaetes, ['S', p, 'E:', t, @, s]).
+entry(spaetesten, ['S', p, 'E:', t, @, s, t, @, n]).
+entry(spaetestens, ['S', p, 'E:', t, @, s, t, @, n, s]).
+entry(spaetester, ['S', p, 'E:', t, @, s, t, '6']).
+entry(spaeteste, ['S', p, 'E:', t, @, s, t, @]).
+entry('Spaetnachmittag', ['S', p, 'E:', t, n, 'a:', x, m, 'I', t, 'a:', k]).
+entry('Spaetnachmittags', ['S', p, 'E:', t, n, 'a:', x, m, 'I', t, 'a:', k, s]).
+entry(spaet, ['S', p, 'E:', t]).
 entry(spazierengehen, ['S', p, a, ts, 'i:', r, @, n, g, 'e:', @, n]).
 entry('Spaziergang', ['S', p, a, ts, 'i:', '6', g, a, 'N']).
 entry('Specht', ['S', p, 'E', 'C', t]).
@@ -8167,7 +8168,7 @@ entry('Speisen', ['S', p, aI, z, @, n]).
 entry('Speisewagen', ['S', p, aI, z, @, v, 'a:', g, @, n]).
 entry(spekuliere, ['S', p, e, k, u, l, 'i:', r, @]).
 entry('Spesenkosten-Abrechnung', ['S', p, 'e:', z, @, n, k, 'O', s, t, @, n, a, p, r, 'E', 'C', n, 'U', 'N']).
-entry(spesenmäßig, ['S', p, 'e:', z, @, n, m, 'E:', s, 'I', 'C']).
+entry(spesenmaeßig, ['S', p, 'e:', z, @, n, m, 'E:', s, 'I', 'C']).
 entry('Spesenrechnung', ['S', p, 'e:', z, @, n, r, 'E', 'C', n, 'U', 'N']).
 entry('Spesen', ['S', p, 'e:', z, @, n]).
 entry('Speyer', ['S', p, aI, '6']).
@@ -8191,7 +8192,7 @@ entry(spontan, ['S', p, 'O', n, t, 'a:', n]).
 entry(sportbegeistert, ['S', p, 'O', '6', t, b, @, g, aI, s, t, '6', t]).
 entry(sportliche, ['S', p, 'O', '6', t, l, 'I', 'C', @]).
 entry(sportlich, ['S', p, 'O', '6', t, l, 'I', 'C']).
-entry('Sportmöglichkeit', ['S', p, 'O', '6', t, m, '2:', k, l, 'I', 'C', k, aI, t]).
+entry('Sportmoeglichkeit', ['S', p, 'O', '6', t, m, '2:', k, l, 'I', 'C', k, aI, t]).
 entry('Sportplatz', ['S', p, 'O', '6', t, p, l, a, ts]).
 entry('Sportschau', ['S', p, 'O', '6', tS, aU]).
 entry('Sport', ['S', p, 'O', '6', t]).
@@ -8211,23 +8212,23 @@ entry(sprich, ['S', p, r, 'I', 'C']).
 entry(spricht, ['S', p, r, 'I', 'C', t]).
 entry(springen, ['S', p, r, 'I', 'N', @, n]).
 entry(springt, ['S', p, r, 'I', 'N', t]).
-entry('Sprünge', ['S', p, r, 'Y', 'N', @]).
+entry('Spruenge', ['S', p, r, 'Y', 'N', @]).
 entry(sp, ['S', p]).
-entry('Spürsinn', ['S', p, 'y:', '6', z, 'I', n]).
+entry('Spuersinn', ['S', p, 'y:', '6', z, 'I', n]).
 entry(sputen, ['S', p, 'u:', t, @, n]).
 entry(s, [s]).
 entry('Staaten', ['S', t, 'a:', t, @, n]).
 entry('Staatsoper', ['S', t, 'a:', ts, 'o:', p, '6']).
 entry('Stab', ['S', t, 'a:', p]).
 entry('Stadtbesichtigung', ['S', t, a, t, b, @, z, 'I', 'C', t, 'I', g, 'U', 'N']).
-entry('Stadtbroschüre', ['S', t, a, t, b, r, 'O', 'S', 'y:', r, @]).
-entry('Städte', ['S', t, 'E:', t, @]).
+entry('Stadtbroschuere', ['S', t, a, t, b, r, 'O', 'S', 'y:', r, @]).
+entry('Staedte', ['S', t, 'E:', t, @]).
 entry('Stadtfest', ['S', t, a, t, f, 'E', s, t]).
-entry('Stadtführer', ['S', t, a, t, f, 'y:', r, '6']).
+entry('Stadtfuehrer', ['S', t, a, t, f, 'y:', r, '6']).
 entry('Stadthotel', ['S', t, a, t, h, o, t, 'E', l]).
-entry(städtische, ['S', t, 'E', t, 'I', 'S', @]).
+entry(staedtische, ['S', t, 'E', t, 'I', 'S', @]).
 entry('Stadtmitte', ['S', t, a, t, m, 'I', t, @]).
-entry('Stadtnähe', ['S', t, a, t, n, 'E:', @]).
+entry('Stadtnaehe', ['S', t, a, t, n, 'E:', @]).
 entry(stadtnah, ['S', t, a, t, n, 'a:']).
 entry('Stadtpark', ['S', t, a, t, p, a, r, k]).
 entry('Stadtplanes', ['S', t, a, t, p, l, 'a:', n, @, s]).
@@ -8245,10 +8246,10 @@ entry('Stammstrecke', ['S', t, a, m, 'S', t, r, 'E', k, @]).
 entry('Standardpreis', ['S', t, a, n, d, a, r, t, p, r, aI, s]).
 entry('Standard', ['S', t, a, n, d, a, r, t]).
 entry(standen, ['S', t, a, n, d, @, n]).
-entry(ständen, ['S', t, 'E', n, d, @, n]).
-entry(standesgemäß, ['S', t, a, n, d, @, s, g, @, m, 'E:', s]).
-entry(stände, ['S', t, 'E', n, d, @]).
-entry(ständig, ['S', t, 'E', n, d, 'I', 'C']).
+entry(staenden, ['S', t, 'E', n, d, @, n]).
+entry(standesgemaeß, ['S', t, a, n, d, @, s, g, @, m, 'E:', s]).
+entry(staende, ['S', t, 'E', n, d, @]).
+entry(staendig, ['S', t, 'E', n, d, 'I', 'C']).
 entry(stand, ['S', t, a, n, t]).
 entry('Standvorbereiten', ['S', t, a, n, t, f, 'o:', '6', b, @, r, aI, t, @, n]).
 entry(starke, ['S', t, a, r, k, @]).
@@ -8310,28 +8311,28 @@ entry('Stoffauswahl', ['S', t, 'O', f, aU, s, v, 'a:', l]).
 entry('Stoff', ['S', t, 'O', f]).
 entry('Stolle', ['S', t, 'O', l, @]).
 entry(stop, ['S', t, 'O', p]).
-entry(störend, ['S', t, '2:', r, @, n, t]).
-entry(stören, ['S', t, '2:', r, @, n]).
+entry(stoerend, ['S', t, '2:', r, @, n, t]).
+entry(stoeren, ['S', t, '2:', r, @, n]).
 entry(stornieren, ['S', t, 'O', '6', n, 'i:', r, @, n]).
-entry(stör, ['S', t, '2:', '6']).
-entry(stört, ['S', t, '2:', '6', t]).
-entry('Störung', ['S', t, '2:', r, 'U', 'N']).
+entry(stoer, ['S', t, '2:', '6']).
+entry(stoert, ['S', t, '2:', '6', t]).
+entry('Stoerung', ['S', t, '2:', r, 'U', 'N']).
 entry('Stoßzeiten', ['S', t, 'o:', s, ts, aI, t, @, n]).
 entry('Strack', ['S', t, r, a, k]).
 entry(straffer, ['S', t, r, a, f, '6']).
 entry(straff, ['S', t, r, a, f]).
 entry('Stralsund', ['S', t, r, 'a:', l, z, 'U', n, t]).
 entry('Strandvilla', ['S', t, r, a, n, t, v, 'I', l, a]).
-entry('Stränge', ['S', t, r, 'E', 'N', @]).
+entry('Straenge', ['S', t, r, 'E', 'N', @]).
 entry(strapazieren, ['S', t, r, a, p, a, ts, 'i:', r, @, n]).
-entry(strapaziös, ['S', t, r, a, p, a, ts, j, '2:', s]).
+entry(strapazioes, ['S', t, r, a, p, a, ts, j, '2:', s]).
 entry('Straßenbahn', ['S', t, r, 'a:', s, @, n, b, 'a:', n]).
 entry('Straße', ['S', t, r, 'a:', s, @]).
-entry('Sträßner', ['S', t, r, 'E', s, n, '6']).
+entry('Straeßner', ['S', t, r, 'E', s, n, '6']).
 entry('Strassburg', ['S', t, r, 'a:', s, b, 'U', '6', k]).
 entry('Strategie', ['S', t, r, a, t, e, g, 'i:']).
-entry('Strätz', ['S', t, r, 'E', ts]).
-entry(sträuben, ['S', t, r, 'OY', b, @, n]).
+entry('Straetz', ['S', t, r, 'E', ts]).
+entry(straeuben, ['S', t, r, 'OY', b, @, n]).
 entry(strecken, ['S', t, r, 'E', k, @, n]).
 entry('Strecke', ['S', t, r, 'E', k, @]).
 entry(streichen, ['S', t, r, aI, 'C', @, n]).
@@ -8349,9 +8350,9 @@ entry('Strohbusch', ['S', t, r, 'o:', b, 'U', 'S']).
 entry('Strohschnieder', ['S', t, r, 'o:', 'S', n, 'i:', d, '6']).
 entry('Strom', ['S', t, r, 'o:', m]).
 entry(strukturiert, ['S', t, r, 'U', k, t, u, r, 'i:', '6', t]).
-entry('Stückeleien', ['S', t, 'Y', k, @, l, aI, @, n]).
-entry('Stücke', ['S', t, 'Y', k, @]).
-entry('Stück', ['S', t, 'Y', k]).
+entry('Stueckeleien', ['S', t, 'Y', k, @, l, aI, @, n]).
+entry('Stuecke', ['S', t, 'Y', k, @]).
+entry('Stueck', ['S', t, 'Y', k]).
 entry('Studenten', ['S', t, u, d, 'E', n, t, @, n]).
 entry('Studienfach', ['S', t, 'u:', d, j, @, n, f, a, x]).
 entry('Studienfreund', ['S', t, 'u:', d, j, @, n, f, r, 'OY', n, t]).
@@ -8362,37 +8363,37 @@ entry('Studio', ['S', t, 'u:', d, j, o]).
 entry('Stuhl', ['S', t, 'u:', l]).
 entry('Stumpfecker', ['S', t, 'U', m, pf, 'E', k, '6']).
 entry('Stumpfegger', ['S', t, 'U', m, pf, 'E', g, '6']).
-entry('Stündchen', ['S', t, 'Y', n, t, 'C', @, n]).
+entry('Stuendchen', ['S', t, 'Y', n, t, 'C', @, n]).
 entry(stundenlang, ['S', t, 'U', n, d, @, n, l, a, 'N']).
 entry(stundenplan, ['S', t, 'U', n, d, @, n, p, l, 'a:', n]).
 entry('Stunden', ['S', t, 'U', n, d, @, n]).
-entry(stünden, ['S', t, 'Y', n, d, @, n]).
+entry(stuenden, ['S', t, 'Y', n, d, @, n]).
 entry('Stundentakt', ['S', t, 'U', n, d, @, n, t, a, k, t]).
 entry(stundenweise, ['S', t, 'U', n, d, @, n, v, aI, z, @]).
 entry('Stunde', ['S', t, 'U', n, d, @]).
-entry(stünde, ['S', t, 'Y', n, d, @]).
-entry(stündliche, ['S', t, 'Y', n, t, l, 'I', 'C', @]).
-entry(stündlich, ['S', t, 'Y', n, t, l, 'I', 'C']).
-entry(stündli, ['S', t, 'Y', n, t, l, 'I']).
-entry(stündl, ['S', t, 'Y', n, t, l]).
-entry('Stünd', ['S', t, 'Y', n, t]).
-entry('Stürme', ['S', t, 'Y', '6', m, @]).
+entry(stuende, ['S', t, 'Y', n, d, @]).
+entry(stuendliche, ['S', t, 'Y', n, t, l, 'I', 'C', @]).
+entry(stuendlich, ['S', t, 'Y', n, t, l, 'I', 'C']).
+entry(stuendli, ['S', t, 'Y', n, t, l, 'I']).
+entry(stuendl, ['S', t, 'Y', n, t, l]).
+entry('Stuend', ['S', t, 'Y', n, t]).
+entry('Stuerme', ['S', t, 'Y', '6', m, @]).
 entry(stur, ['S', t, 'u:', '6']).
-entry(stürzen, ['S', t, 'Y', '6', ts, @, n]).
+entry(stuerzen, ['S', t, 'Y', '6', ts, @, n]).
 entry(stu, ['S', t, u]).
 entry('Stu', ['S', t, 'U']).
-entry(stüt, ['S', t, 'Y', t]).
+entry(stuet, ['S', t, 'Y', t]).
 entry('Stuttgarter', ['S', t, 'U', t, g, a, r, t, '6']).
 entry('Stuttgart', ['S', t, 'U', t, g, a, r, t]).
 entry(suchen, [z, 'u:', x, @, n]).
 entry(suche, [z, 'u:', x, @]).
-entry('Süchtigen', [z, 'Y', 'C', t, 'I', g, @, n]).
+entry('Suechtigen', [z, 'Y', 'C', t, 'I', g, @, n]).
 entry(sucht, [z, 'u:', x, t]).
 entry(such, [z, 'u:', x]).
-entry(südamerikanisch, [z, 'y:', t, a, m, e, r, i, k, 'a:', n, 'I', 'S']).
-entry('Süden', [z, 'y:', d, @, n]).
-entry('Südfrankreich', [z, 'y:', t, f, r, a, 'N', k, r, aI, 'C']).
-entry(südlicher, [z, 'y:', t, l, 'I', 'C', '6']).
+entry(suedamerikanisch, [z, 'y:', t, a, m, e, r, i, k, 'a:', n, 'I', 'S']).
+entry('Sueden', [z, 'y:', d, @, n]).
+entry('Suedfrankreich', [z, 'y:', t, f, r, a, 'N', k, r, aI, 'C']).
+entry(suedlicher, [z, 'y:', t, l, 'I', 'C', '6']).
 entry('Sudnig', [z, 'u:', d, n, 'I', 'C']).
 entry('Sudniz', [z, 'u:', t, n, 'I', ts]).
 entry('Suite', [s, v, 'i:', t, @]).
@@ -8406,7 +8407,7 @@ entry('Susanne', [z, u, z, a, n, @]).
 entry('Susen', [z, 'u:', z, @, n]).
 entry('Suska', [z, 'U', s, k, a]).
 entry('Sus', [z, 'u:', s]).
-entry('Süß', [z, 'y:', s]).
+entry('Sueß', [z, 'y:', s]).
 entry('Suzuki', [z, u, z, 'u:', k, i]).
 entry('Swimmingpool', [s, v, 'I', m, 'I', 'N', p, 'u:', l]).
 entry('Sylvesterraketen', [s, 'I', l, v, 'E', s, t, '6', r, a, k, 'e:', t, @, n]).
@@ -8421,7 +8422,7 @@ entry('Tabelle', [t, a, b, 'E', l, @]).
 entry('Tablee', [t, a, b, l, 'e:']).
 entry(table, [t, 'e:', b, @, l]).
 entry('Tabu', [t, a, b, 'u:']).
-entry(tädiges, [t, 'E:', d, 'I', g, @, s]).
+entry(taediges, [t, 'E:', d, 'I', g, @, s]).
 entry('Tagebuch', [t, 'a:', g, @, b, 'u:', x]).
 entry(tagen, [t, 'a:', g, @, n]).
 entry('Tagesbesuch', [t, 'a:', g, @, s, b, @, z, 'u:', x]).
@@ -8432,14 +8433,14 @@ entry('Tagestermin', [t, 'a:', g, @, s, t, 'E', '6', m, 'i:', n]).
 entry('Tagestreffen', [t, 'a:', g, @, s, t, r, 'E', f, @, n]).
 entry('Tagesverfassung', [t, 'a:', g, @, s, f, 'E', '6', f, a, s, 'U', 'N']).
 entry('Tage', [t, 'a:', g, @]).
-entry(tägigen, [t, 'E:', g, 'I', g, @, n]).
-entry(tägiges, [t, 'E:', g, 'I', g, @, s]).
-entry(tägige, [t, 'E:', g, 'I', g, @]).
-entry(tägig, [t, 'E:', g, 'I', 'C']).
-entry(tägin, [t, 'E:', g, 'I', n]).
-entry(tägi, [t, 'E:', g, 'I']).
-entry(täglich, [t, 'E:', k, l, 'I', 'C']).
-entry(tagsüber, [t, 'a:', k, s, 'y:', b, '6']).
+entry(taegigen, [t, 'E:', g, 'I', g, @, n]).
+entry(taegiges, [t, 'E:', g, 'I', g, @, s]).
+entry(taegige, [t, 'E:', g, 'I', g, @]).
+entry(taegig, [t, 'E:', g, 'I', 'C']).
+entry(taegin, [t, 'E:', g, 'I', n]).
+entry(taegi, [t, 'E:', g, 'I']).
+entry(taeglich, [t, 'E:', k, l, 'I', 'C']).
+entry(tagsueber, [t, 'a:', k, s, 'y:', b, '6']).
 entry(tag, [t, 'a:', k]).
 entry(tagt, [t, 'a:', k, t]).
 entry('Tagungen', [t, 'a:', g, 'U', 'N', @, n]).
@@ -8447,7 +8448,7 @@ entry('Tagungsordnungspunkte', [t, 'a:', g, 'U', 'N', s, 'O', '6', d, n, 'U', 'N
 entry('Tagungsort', [t, 'a:', g, 'U', 'N', s, 'O', '6', t]).
 entry('Tagungsraum', [t, 'a:', g, 'U', 'N', s, r, aU, m]).
 entry('Tagung', [t, 'a:', g, 'U', 'N']).
-entry(tähiges, [t, 'E:', 'I', g, @, s]).
+entry(taehiges, [t, 'E:', 'I', g, @, s]).
 entry('Tai-Pen', [t, aI, p, 'E', n]).
 entry('Taki', [t, 'a:', k, i]).
 entry('Talinkalender', [t, 'a:', l, 'I', n, k, a, l, 'E', n, d, '6']).
@@ -8460,22 +8461,22 @@ entry(tanzen, [t, a, n, ts, @, n]).
 entry(tanze, [t, a, n, ts, @]).
 entry('Tarife', [t, a, r, 'i:', f, @]).
 entry('Tarif', [t, a, r, 'i:', f]).
-entry('Täßchen', [t, 'E', s, 'C', @, n]).
+entry('Taeßchen', [t, 'E', s, 'C', @, n]).
 entry('Tasche', [t, a, 'S', @]).
 entry('Tasse', [t, a, s, @]).
 entry(ta, [t, a]).
-entry(tä, [t, 'E']).
-entry(täten, [t, 'E:', t, @, n]).
-entry(täte, [t, 'E:', t, @]).
-entry(tätigen, [t, 'E:', t, 'I', g, @, n]).
-entry('Tätigkeiten', [t, 'E:', t, 'I', 'C', k, aI, t, @, n]).
-entry('Tätigkeit', [t, 'E:', t, 'I', 'C', k, aI, t]).
-entry(tätig, [t, 'E:', t, 'I', 'C']).
+entry(tae, [t, 'E']).
+entry(taeten, [t, 'E:', t, @, n]).
+entry(taete, [t, 'E:', t, @]).
+entry(taetigen, [t, 'E:', t, 'I', g, @, n]).
+entry('Taetigkeiten', [t, 'E:', t, 'I', 'C', k, aI, t, @, n]).
+entry('Taetigkeit', [t, 'E:', t, 'I', 'C', k, aI, t]).
+entry(taetig, [t, 'E:', t, 'I', 'C']).
 entry('Tatsache', [t, 'a:', t, z, a, x, @]).
-entry(tatsächlich, [t, 'a:', t, z, 'E', 'C', l, 'I', 'C']).
-entry(tätsstädte, [t, 'E:', ts, 'S', t, 'E', t, @]).
+entry(tatsaechlich, [t, 'a:', t, z, 'E', 'C', l, 'I', 'C']).
+entry(taetsstaedte, [t, 'E:', ts, 'S', t, 'E', t, @]).
 entry('Tat', [t, 'a:', t]).
-entry(tät, [t, 'E:', t]).
+entry(taet, [t, 'E:', t]).
 entry(tauchen, [t, aU, x, @, n]).
 entry(taufrisch, [t, aU, f, r, 'I', 'S']).
 entry('Taxe', [t, a, k, s, @]).
@@ -8551,9 +8552,9 @@ entry('Terminknappheit', [t, 'E', '6', m, 'i:', n, k, n, a, p, h, aI, t]).
 entry(terminlichen, [t, 'E', '6', m, 'i:', n, l, 'I', 'C', @, n]).
 entry(terminliche, [t, 'E', '6', m, 'i:', n, l, 'I', 'C', @]).
 entry(terminlich, [t, 'E', '6', m, 'i:', n, l, 'I', 'C']).
-entry(terminmäßig, [t, 'E', '6', m, 'i:', n, m, 'E:', s, 'I', 'C']).
+entry(terminmaeßig, [t, 'E', '6', m, 'i:', n, m, 'E:', s, 'I', 'C']).
 entry('Terminplaner', [t, 'E', '6', m, 'i:', n, p, l, 'a:', n, '6']).
-entry('Terminpläne', [t, 'E', '6', m, 'i:', n, p, l, 'E:', n, @]).
+entry('Terminplaene', [t, 'E', '6', m, 'i:', n, p, l, 'E:', n, @]).
 entry('Terminplan', [t, 'E', '6', m, 'i:', n, p, l, 'a:', n]).
 entry('Terminplanung', [t, 'E', '6', m, 'i:', n, p, l, 'a:', n, 'U', 'N']).
 entry('Terminschwierigkeiten', [t, 'E', '6', m, 'i:', n, 'S', v, 'i:', r, 'I', 'C', k, aI, t, @, n]).
@@ -8563,10 +8564,10 @@ entry(termin, [t, 'E', '6', m, 'i:', n]).
 entry('Terminvereinbarungen', [t, 'E', '6', m, 'i:', n, f, 'E', '6', aI, n, b, 'a:', r, 'U', 'N', @, n]).
 entry('Terminvereinbarung', [t, 'E', '6', m, 'i:', n, f, 'E', '6', aI, n, b, 'a:', r, 'U', 'N']).
 entry('Terminverschiebung', [t, 'E', '6', m, 'i:', n, f, 'E', '6', 'S', 'i:', b, 'U', 'N']).
-entry('Terminvorschläge', [t, 'E', '6', m, 'i:', n, f, 'o:', '6', 'S', l, 'E:', g, @]).
+entry('Terminvorschlaege', [t, 'E', '6', m, 'i:', n, f, 'o:', '6', 'S', l, 'E:', g, @]).
 entry('Terminvorschlag', [t, 'E', '6', m, 'i:', n, f, 'o:', '6', 'S', l, 'a:', k]).
 entry('Terminvorstellung', [t, 'E', '6', m, 'i:', n, f, 'o:', '6', 'S', t, 'E', l, 'U', 'N']).
-entry('Terminwünsche', [t, 'E', '6', m, 'i:', n, v, 'Y', n, 'S', @]).
+entry('Terminwuensche', [t, 'E', '6', m, 'i:', n, v, 'Y', n, 'S', @]).
 entry('Terminzusage', [t, 'E', '6', m, 'i:', n, ts, 'u:', z, 'a:', g, @]).
 entry('Termi', [t, 'E', '6', m, 'i:']).
 entry('Termonierung', [t, 'E', '6', m, o, n, 'i:', r, 'U', 'N']).
@@ -8590,15 +8591,15 @@ entry(teurere, [t, 'OY', r, @, r, @]).
 entry(teurer, [t, 'OY', r, '6']).
 entry(teures, [t, 'OY', r, @, s]).
 entry(teure, [t, 'OY', r, @]).
-entry('Thailänder', [t, aI, l, 'E', n, d, '6']).
-entry(thailändisch, [t, aI, l, 'E', n, d, 'I', 'S']).
+entry('Thailaender', [t, aI, l, 'E', n, d, '6']).
+entry(thailaendisch, [t, aI, l, 'E', n, d, 'I', 'S']).
 entry('Thailand', [t, aI, l, @, n, d]).
 entry('Thalia-Theater', [t, a, l, 'i:', a, t, e, 'a:', t, '6']).
 entry(that, [z, 'E', t]).
 entry('Thea', [t, 'e:', a]).
 entry('Theater-am-Aegi', [t, e, 'a:', t, '6', a, m, 'E:', g, i]).
 entry('Theaterangebote', [t, e, 'a:', t, '6', a, n, g, @, b, 'o:', t, @]).
-entry('Theateraufführung', [t, e, 'a:', t, '6', aU, f, f, 'y:', r, 'U', 'N']).
+entry('Theaterauffuehrung', [t, e, 'a:', t, '6', aU, f, f, 'y:', r, 'U', 'N']).
 entry('Theaterbesuch', [t, e, 'a:', t, '6', b, @, z, 'u:', x]).
 entry('Theaterfan', [t, e, 'a:', t, '6', f, 'E:', n]).
 entry('Theaterinformationen', [t, e, 'a:', t, '6', 'I', n, f, 'O', '6', m, a, ts, j, 'o:', n, @, n]).
@@ -8609,8 +8610,8 @@ entry('Theaterprogramm', [t, e, 'a:', t, '6', p, r, o, g, r, a, m]).
 entry('Theater-schauen', [t, e, 'a:', t, '6', 'S', aU, @, n]).
 entry('Theaterstadt', [t, e, 'a:', t, '6', 'S', t, a, t]).
 entry('Theaters', [t, e, 'a:', t, '6', s]).
-entry('Theaterstücke', [t, e, 'a:', t, '6', 'S', t, 'Y', k, @]).
-entry('Theaterstück', [t, e, 'a:', t, '6', 'S', t, 'Y', k]).
+entry('Theaterstuecke', [t, e, 'a:', t, '6', 'S', t, 'Y', k, @]).
+entry('Theaterstueck', [t, e, 'a:', t, '6', 'S', t, 'Y', k]).
 entry('Theaterszene', [t, e, 'a:', t, '6', s, ts, 'e:', n, @]).
 entry('Theater', [t, e, 'a:', t, '6']).
 entry('Theatertermine', [t, e, 'a:', t, '6', t, 'E', '6', m, 'i:', n, @]).
@@ -8631,7 +8632,7 @@ entry('Thielenplatz', [t, 'i:', l, @, n, p, l, a, ts]).
 entry('Thiele', [t, 'i:', l, @]).
 entry('Thomas', [t, 'o:', m, a, s]).
 entry('Thompson', [t, 'O', m, p, s, @, n]).
-entry('Thüringer-Hof', [t, 'y:', r, 'I', 'N', '6', h, 'o:', f]).
+entry('Thueringer-Hof', [t, 'y:', r, 'I', 'N', '6', h, 'o:', f]).
 entry('Thyssen-Schulte', [t, 'Y', s, @, n, 'S', 'U', l, t, @]).
 entry(tickets, [t, 'I', k, @, ts]).
 entry('Ticket', [t, 'I', k, @, t]).
@@ -8660,7 +8661,7 @@ entry('Totensonntags', [t, 'o:', t, @, n, z, 'O', n, t, 'a:', k, s]).
 entry('Totensonntag', [t, 'o:', t, @, n, z, 'O', n, t, 'a:', k]).
 entry(to, [t, 'O']).
 entry(touch, [t, a, tS]).
-entry('Tourismus-Führer', [t, u, r, 'I', s, m, 'U', s, f, 'y:', r, '6']).
+entry('Tourismus-Fuehrer', [t, u, r, 'I', s, m, 'U', s, f, 'y:', r, '6']).
 entry('Tourismus', [t, u, r, 'I', s, m, 'U', s]).
 entry('Touristen', [t, u, r, 'I', s, t, @, n]).
 entry('Tourist-Information', [t, 'u:', r, 'I', s, t, 'I', n, f, 'O', '6', m, 'e:', 'S', n]).
@@ -8671,7 +8672,7 @@ entry(tragbar, [t, r, 'a:', k, b, 'a:', r]).
 entry(tragen, [t, r, 'a:', g, @, n]).
 entry(trage, [t, r, 'a:', g, @]).
 entry(tragisch, [t, r, 'a:', g, 'I', 'S']).
-entry(trägt, [t, r, 'E:', k, t]).
+entry(traegt, [t, r, 'E:', k, t]).
 entry(trainieren, [t, r, 'e:', n, 'i:', r, @, n]).
 entry('Transferbusse', [t, r, a, n, s, f, 'e:', '6', b, 'U', s, @]).
 entry('Transfer', [t, r, a, n, s, f, 'e:', '6']).
@@ -8679,7 +8680,7 @@ entry('Transferzeit', [t, r, a, n, s, f, 'e:', '6', ts, aI, t]).
 entry('Transportation', [t, r, a, n, s, p, 'O', '6', t, a, ts, j, 'o:', n]).
 entry(transportieren, [t, r, a, n, s, p, 'O', '6', t, 'i:', r, @, n]).
 entry('Transportmittel', [t, r, a, n, s, p, 'O', '6', t, m, 'I', t, @, l]).
-entry('Transportmöglichkeiten', [t, r, a, n, s, p, 'O', '6', t, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
+entry('Transportmoeglichkeiten', [t, r, a, n, s, p, 'O', '6', t, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
 entry('Transport', [t, r, a, n, s, p, 'O', '6', t]).
 entry('Transportverbindungen', [t, r, a, n, s, p, 'O', '6', t, f, 'E', '6', b, 'I', n, d, 'U', 'N', @, n]).
 entry(tra, [t, r, 'a:']).
@@ -8701,7 +8702,7 @@ entry(treiben, [t, r, aI, b, @, n]).
 entry(treibt, [t, r, aI, p, t]).
 entry(trennen, [t, r, 'E', n, @, n]).
 entry(trennt, [t, r, 'E', n, t]).
-entry('Trenntür', [t, r, 'E', n, t, 'y:', '6']).
+entry('Trenntuer', [t, r, 'E', n, t, 'y:', '6']).
 entry(treten, [t, r, 'e:', t, @, n]).
 entry(tre, [t, r, 'E']).
 entry('Trier', [t, r, 'i:', '6']).
@@ -8723,135 +8724,135 @@ entry(tschamtatam, [tS, a, m, t, a, t, a, m]).
 entry(tschau, [tS, aU]).
 entry('Tscheschlok', [tS, 'E', 'S', l, 'O', k]).
 entry(tsch, [tS]).
-entry(tschüßgen, [tS, 'Y', s, g, @, n]).
-entry(tschüß, [tS, 'Y', s]).
-entry('Tübingen', [t, 'y:', b, 'I', 'N', @, n]).
+entry(tschueßgen, [tS, 'Y', s, g, @, n]).
+entry(tschueß, [tS, 'Y', s]).
+entry('Tuebingen', [t, 'y:', b, 'I', 'N', @, n]).
 entry(tue, [t, 'u:', @]).
 entry(tummeln, [t, 'U', m, @, l, n]).
 entry('Tum', [t, 'u:', m]).
 entry(tun, [t, 'u:', n]).
 entry('Turbulenzen', [t, 'U', '6', b, u, l, 'E', n, ts, @, n]).
-entry('Türen', [t, 'y:', r, @, n]).
-entry('Türe', [t, 'y:', r, @]).
-entry(türlich, [t, 'y:', '6', l, 'I', 'C']).
-entry('Tür', [t, 'y:', '6']).
+entry('Tueren', [t, 'y:', r, @, n]).
+entry('Tuere', [t, 'y:', r, @]).
+entry(tuerlich, [t, 'y:', '6', l, 'I', 'C']).
+entry('Tuer', [t, 'y:', '6']).
 entry('Tutoren', [t, u, t, 'o:', r, @, n]).
 entry('Tutorium', [t, u, t, 'o:', '6', j, 'U', m]).
 entry('Tutor', [t, 'u:', t, 'o:', '6']).
 entry(tut, [t, 'u:', t]).
-entry('TÜV-Termin', [t, 'Y', f, t, 'E', '6', m, 'i:', n]).
-entry('TÜV', [t, 'Y', f]).
+entry('TueV-Termin', [t, 'Y', f, t, 'E', '6', m, 'i:', n]).
+entry('TueV', [t, 'Y', f]).
 entry(typisch, [t, 'y:', p, 'I', 'S']).
 entry('Typ', [t, 'y:', p]).
 entry('Tzislinski', [ts, 'I', s, l, 'I', n, s, k, i]).
 entry(uah, [u, 'a:']).
-entry(übel, ['y:', b, @, l]).
-entry(überall, ['y:', b, '6', a, l]).
-entry(überarbeiten, ['y:', b, '6', a, r, b, aI, t, @, n]).
-entry(überarbeitet, ['y:', b, '6', a, r, b, aI, t, @, t]).
-entry(überblicken, ['y:', b, '6', b, l, 'I', k, @, n]).
-entry(überblicke, ['y:', b, '6', b, l, 'I', k, @]).
-entry(überbracht, ['y:', b, '6', b, r, a, x, t]).
-entry(überbrücken, ['y:', b, '6', b, r, 'Y', k, @, n]).
-entry(überbrückt, ['y:', b, '6', b, r, 'Y', k, t]).
-entry(überbucht, ['y:', b, '6', b, 'u:', x, t]).
-entry(übereinkommen, ['y:', b, '6', aI, n, k, 'O', m, @, n]).
-entry('Übereinkunft', ['y:', b, '6', aI, n, k, 'U', n, f, t]).
-entry(überein, ['y:', b, '6', aI, n]).
-entry(übereinstimmen, ['y:', b, '6', aI, n, 'S', t, 'I', m, @, n]).
-entry(übereinstimmt, ['y:', b, '6', aI, n, 'S', t, 'I', m, t]).
-entry('Übereinstimmungen', ['y:', b, '6', aI, n, 'S', t, 'I', m, 'U', 'N', @, n]).
-entry('Übereinstimmung', ['y:', b, '6', aI, n, 'S', t, 'I', m, 'U', 'N']).
-entry(überfalle, ['y:', b, '6', f, a, l, @]).
-entry(überflüssig, ['y:', b, '6', f, l, 'Y', s, 'I', 'C']).
-entry(überfordert, ['y:', b, '6', f, 'O', '6', d, '6', t]).
-entry(überfragt, ['y:', b, '6', f, r, 'a:', k, t]).
-entry(überfüllt, ['y:', b, '6', f, 'Y', l, t]).
-entry('Übergang', ['y:', b, '6', g, a, 'N']).
-entry(übergeben, ['y:', b, '6', g, 'e:', b, @, n]).
-entry(übergehen, ['y:', b, '6', g, 'e:', @, n]).
-entry(überhaupt, ['y:', b, '6', h, aU, p, t]).
-entry(überhau, ['y:', b, '6', h, aU]).
-entry(überkomfortabel, ['y:', b, '6', k, 'O', m, f, 'O', '6', t, 'a:', b, @, l]).
-entry(überlassen, ['y:', b, '6', l, a, s, @, n]).
-entry(überlasse, ['y:', b, '6', l, a, s, @]).
-entry(überlaufen, ['y:', b, '6', l, aU, f, @, n]).
-entry(überleben, ['y:', b, '6', l, 'e:', b, @, n]).
-entry(überlegen, ['y:', b, '6', l, 'e:', g, @, n]).
-entry(überlege, ['y:', b, '6', l, 'e:', g, @]).
-entry(überlegt, ['y:', b, '6', l, 'e:', k, t]).
-entry(überl, ['y:', b, '6', l]).
-entry(übermorgen, ['y:', b, '6', m, 'O', '6', g, @, n]).
-entry(übermüdet, ['y:', b, '6', m, 'y:', d, @, t]).
-entry(übernächsten, ['y:', b, '6', n, 'E:', 'C', s, t, @, n]).
-entry(übernächste, ['y:', b, '6', n, 'E:', 'C', s, t, @]).
-entry(übernachten, ['y:', b, '6', n, a, x, t, @, n]).
-entry(übernachte, ['y:', b, '6', n, a, x, t, @]).
-entry(übernachtete, ['y:', b, '6', n, a, x, t, @, t, @]).
-entry(übernachtet, ['y:', b, '6', n, a, x, t, @, t]).
-entry('Übernachtungen', ['y:', b, '6', n, a, x, t, 'U', 'N', @, n]).
-entry('Übernachtung', ['y:', b, '6', n, a, x, t, 'U', 'N']).
-entry('Übernachtungskosten', ['y:', b, '6', n, a, x, t, 'U', 'N', s, k, 'O', s, t, @, n]).
-entry('Übernachtungsmöglichkeiten', ['y:', b, '6', n, a, x, t, 'U', 'N', s, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
-entry('Übernachtungsmöglichkeit', ['y:', b, '6', n, a, x, t, 'U', 'N', s, m, '2:', k, l, 'I', 'C', k, aI, t]).
-entry('Übernachtungsmöglichk', ['y:', b, '6', n, a, x, t, 'U', 'N', s, m, '2:', k, l, 'I', 'C', k]).
-entry(übernehmen, ['y:', b, '6', n, 'e:', m, @, n]).
-entry(übernehme, ['y:', b, '6', n, 'e:', m, @]).
-entry(übernimmt, ['y:', b, '6', n, 'I', m, t]).
-entry(übernommen, ['y:', b, '6', n, 'O', m, @, n]).
-entry(übern, ['y:', b, '6', n]).
-entry(überprüfen, ['y:', b, '6', p, r, 'y:', f, @, n]).
-entry(über, ['y:', b, '6']).
-entry(überragend, ['y:', b, '6', r, 'a:', g, @, n, t]).
-entry(überraschen, ['y:', b, '6', r, a, 'S', @, n]).
-entry(überrascht, ['y:', b, '6', r, a, 'S', t]).
-entry(überreden, ['y:', b, '6', r, 'e:', d, @, n]).
-entry(überschaubarer, ['y:', b, '6', 'S', aU, b, 'a:', r, '6']).
-entry(überschaue, ['y:', b, '6', 'S', aU, @]).
-entry(überschlagen, ['y:', b, '6', 'S', l, 'a:', g, @, n]).
-entry(überschlage, ['y:', b, '6', 'S', l, 'a:', g, @]).
-entry(überschneidenden, ['y:', b, '6', 'S', n, aI, d, @, n, d, @, n]).
-entry(überschneidend, ['y:', b, '6', 'S', n, aI, d, @, n, t]).
-entry(überschneiden, ['y:', b, '6', 'S', n, aI, d, @, n]).
-entry(überschneidet, ['y:', b, '6', 'S', n, aI, d, @, t]).
-entry('Überschneidungen', ['y:', b, '6', 'S', n, aI, d, 'U', 'N', @, n]).
-entry('Überschneidung', ['y:', b, '6', 'S', n, aI, d, 'U', 'N']).
-entry('Überschneidungsprobleme', ['y:', b, '6', 'S', n, aI, d, 'U', 'N', s, p, r, o, b, l, 'e:', m, @]).
-entry('Überschneidungspunkt', ['y:', b, '6', 'S', n, aI, d, 'U', 'N', s, p, 'U', 'N', k, t]).
-entry('Überschneidungstermine', ['y:', b, '6', 'S', n, aI, d, 'U', 'N', s, t, 'E', '6', m, 'i:', n, @]).
-entry(überschreiten, ['y:', b, '6', 'S', r, aI, t, @, n]).
-entry(übersehen, ['y:', b, '6', z, 'e:', @, n]).
-entry('Übersetzungshilfe', ['y:', b, '6', z, 'E', ts, 'U', 'N', s, h, 'I', l, f, @]).
-entry('Übersicht', ['y:', b, '6', z, 'I', 'C', t]).
-entry(übers, ['y:', b, '6', s]).
-entry(überstanden, ['y:', b, '6', 'S', t, a, n, d, @, n]).
-entry(übertreiben, ['y:', b, '6', t, r, aI, b, @, n]).
-entry(übertrieben, ['y:', b, '6', t, r, 'i:', b, @, n]).
-entry(überübermorgen, ['y:', b, '6', 'y:', b, '6', m, 'O', '6', g, @, n]).
-entry(überweisen, ['y:', b, '6', v, aI, z, @, n]).
-entry(überweise, ['y:', b, '6', v, aI, z, @]).
-entry(überwinden, ['y:', b, '6', v, 'I', n, d, @, n]).
-entry(überzeugend, ['y:', b, '6', ts, 'OY', g, @, n, t]).
-entry(überzeugen, ['y:', b, '6', ts, 'OY', g, @, n]).
-entry(überzeugt, ['y:', b, '6', ts, 'OY', k, t]).
-entry('Überzeugung', ['y:', b, '6', ts, 'OY', g, 'U', 'N']).
-entry(überziehen, ['y:', b, '6', ts, 'i:', @, n]).
-entry(üblichen, ['y:', p, l, 'I', 'C', @, n]).
-entry(übliche, ['y:', p, l, 'I', 'C', @]).
-entry(üblicherweise, ['y:', p, l, 'I', 'C', '6', v, aI, z, @]).
-entry(üblich, ['y:', p, l, 'I', 'C']).
-entry(übrich, ['y:', b, r, 'I', 'C']).
-entry(übrigbleiben, ['y:', b, r, 'I', 'C', b, l, aI, b, @, n]).
-entry(übrigen, ['y:', b, r, 'I', g, @, n]).
-entry(übrigens, ['y:', b, r, 'I', g, @, n, s]).
-entry(übriggebliebene, ['y:', b, r, 'I', 'C', g, @, b, l, 'i:', b, @, n, @]).
-entry(übri, ['y:', b, r, 'I']).
-entry('Übung', ['y:', b, 'U', 'N']).
-entry('Übungsblätter', ['y:', b, 'U', 'N', s, b, l, 'E', t, '6']).
-entry('Übungsblatt', ['y:', b, 'U', 'N', s, b, l, a, t]).
-entry('Übungs', ['y:', b, 'U', 'N', s]).
-entry('Übungssaal', ['y:', b, 'U', 'N', s, z, 'a:', l]).
-entry(üb, ['y:', p]).
+entry(uebel, ['y:', b, @, l]).
+entry(ueberall, ['y:', b, '6', a, l]).
+entry(ueberarbeiten, ['y:', b, '6', a, r, b, aI, t, @, n]).
+entry(ueberarbeitet, ['y:', b, '6', a, r, b, aI, t, @, t]).
+entry(ueberblicken, ['y:', b, '6', b, l, 'I', k, @, n]).
+entry(ueberblicke, ['y:', b, '6', b, l, 'I', k, @]).
+entry(ueberbracht, ['y:', b, '6', b, r, a, x, t]).
+entry(ueberbruecken, ['y:', b, '6', b, r, 'Y', k, @, n]).
+entry(ueberbrueckt, ['y:', b, '6', b, r, 'Y', k, t]).
+entry(ueberbucht, ['y:', b, '6', b, 'u:', x, t]).
+entry(uebereinkommen, ['y:', b, '6', aI, n, k, 'O', m, @, n]).
+entry('uebereinkunft', ['y:', b, '6', aI, n, k, 'U', n, f, t]).
+entry(ueberein, ['y:', b, '6', aI, n]).
+entry(uebereinstimmen, ['y:', b, '6', aI, n, 'S', t, 'I', m, @, n]).
+entry(uebereinstimmt, ['y:', b, '6', aI, n, 'S', t, 'I', m, t]).
+entry('uebereinstimmungen', ['y:', b, '6', aI, n, 'S', t, 'I', m, 'U', 'N', @, n]).
+entry('uebereinstimmung', ['y:', b, '6', aI, n, 'S', t, 'I', m, 'U', 'N']).
+entry(ueberfalle, ['y:', b, '6', f, a, l, @]).
+entry(ueberfluessig, ['y:', b, '6', f, l, 'Y', s, 'I', 'C']).
+entry(ueberfordert, ['y:', b, '6', f, 'O', '6', d, '6', t]).
+entry(ueberfragt, ['y:', b, '6', f, r, 'a:', k, t]).
+entry(ueberfuellt, ['y:', b, '6', f, 'Y', l, t]).
+entry('uebergang', ['y:', b, '6', g, a, 'N']).
+entry(uebergeben, ['y:', b, '6', g, 'e:', b, @, n]).
+entry(uebergehen, ['y:', b, '6', g, 'e:', @, n]).
+entry(ueberhaupt, ['y:', b, '6', h, aU, p, t]).
+entry(ueberhau, ['y:', b, '6', h, aU]).
+entry(ueberkomfortabel, ['y:', b, '6', k, 'O', m, f, 'O', '6', t, 'a:', b, @, l]).
+entry(ueberlassen, ['y:', b, '6', l, a, s, @, n]).
+entry(ueberlasse, ['y:', b, '6', l, a, s, @]).
+entry(ueberlaufen, ['y:', b, '6', l, aU, f, @, n]).
+entry(ueberleben, ['y:', b, '6', l, 'e:', b, @, n]).
+entry(ueberlegen, ['y:', b, '6', l, 'e:', g, @, n]).
+entry(ueberlege, ['y:', b, '6', l, 'e:', g, @]).
+entry(ueberlegt, ['y:', b, '6', l, 'e:', k, t]).
+entry(ueberl, ['y:', b, '6', l]).
+entry(uebermorgen, ['y:', b, '6', m, 'O', '6', g, @, n]).
+entry(uebermuedet, ['y:', b, '6', m, 'y:', d, @, t]).
+entry(uebernaechsten, ['y:', b, '6', n, 'E:', 'C', s, t, @, n]).
+entry(uebernaechste, ['y:', b, '6', n, 'E:', 'C', s, t, @]).
+entry(uebernachten, ['y:', b, '6', n, a, x, t, @, n]).
+entry(uebernachte, ['y:', b, '6', n, a, x, t, @]).
+entry(uebernachtete, ['y:', b, '6', n, a, x, t, @, t, @]).
+entry(uebernachtet, ['y:', b, '6', n, a, x, t, @, t]).
+entry('uebernachtungen', ['y:', b, '6', n, a, x, t, 'U', 'N', @, n]).
+entry('uebernachtung', ['y:', b, '6', n, a, x, t, 'U', 'N']).
+entry('uebernachtungskosten', ['y:', b, '6', n, a, x, t, 'U', 'N', s, k, 'O', s, t, @, n]).
+entry('uebernachtungsmoeglichkeiten', ['y:', b, '6', n, a, x, t, 'U', 'N', s, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
+entry('uebernachtungsmoeglichkeit', ['y:', b, '6', n, a, x, t, 'U', 'N', s, m, '2:', k, l, 'I', 'C', k, aI, t]).
+entry('uebernachtungsmoeglichk', ['y:', b, '6', n, a, x, t, 'U', 'N', s, m, '2:', k, l, 'I', 'C', k]).
+entry(uebernehmen, ['y:', b, '6', n, 'e:', m, @, n]).
+entry(uebernehme, ['y:', b, '6', n, 'e:', m, @]).
+entry(uebernimmt, ['y:', b, '6', n, 'I', m, t]).
+entry(uebernommen, ['y:', b, '6', n, 'O', m, @, n]).
+entry(uebern, ['y:', b, '6', n]).
+entry(ueberpruefen, ['y:', b, '6', p, r, 'y:', f, @, n]).
+entry(ueber, ['y:', b, '6']).
+entry(ueberragend, ['y:', b, '6', r, 'a:', g, @, n, t]).
+entry(ueberraschen, ['y:', b, '6', r, a, 'S', @, n]).
+entry(ueberrascht, ['y:', b, '6', r, a, 'S', t]).
+entry(ueberreden, ['y:', b, '6', r, 'e:', d, @, n]).
+entry(ueberschaubarer, ['y:', b, '6', 'S', aU, b, 'a:', r, '6']).
+entry(ueberschaue, ['y:', b, '6', 'S', aU, @]).
+entry(ueberschlagen, ['y:', b, '6', 'S', l, 'a:', g, @, n]).
+entry(ueberschlage, ['y:', b, '6', 'S', l, 'a:', g, @]).
+entry(ueberschneidenden, ['y:', b, '6', 'S', n, aI, d, @, n, d, @, n]).
+entry(ueberschneidend, ['y:', b, '6', 'S', n, aI, d, @, n, t]).
+entry(ueberschneiden, ['y:', b, '6', 'S', n, aI, d, @, n]).
+entry(ueberschneidet, ['y:', b, '6', 'S', n, aI, d, @, t]).
+entry('ueberschneidungen', ['y:', b, '6', 'S', n, aI, d, 'U', 'N', @, n]).
+entry('ueberschneidung', ['y:', b, '6', 'S', n, aI, d, 'U', 'N']).
+entry('ueberschneidungsprobleme', ['y:', b, '6', 'S', n, aI, d, 'U', 'N', s, p, r, o, b, l, 'e:', m, @]).
+entry('ueberschneidungspunkt', ['y:', b, '6', 'S', n, aI, d, 'U', 'N', s, p, 'U', 'N', k, t]).
+entry('ueberschneidungstermine', ['y:', b, '6', 'S', n, aI, d, 'U', 'N', s, t, 'E', '6', m, 'i:', n, @]).
+entry(ueberschreiten, ['y:', b, '6', 'S', r, aI, t, @, n]).
+entry(uebersehen, ['y:', b, '6', z, 'e:', @, n]).
+entry('uebersetzungshilfe', ['y:', b, '6', z, 'E', ts, 'U', 'N', s, h, 'I', l, f, @]).
+entry('uebersicht', ['y:', b, '6', z, 'I', 'C', t]).
+entry(uebers, ['y:', b, '6', s]).
+entry(ueberstanden, ['y:', b, '6', 'S', t, a, n, d, @, n]).
+entry(uebertreiben, ['y:', b, '6', t, r, aI, b, @, n]).
+entry(uebertrieben, ['y:', b, '6', t, r, 'i:', b, @, n]).
+entry(ueberuebermorgen, ['y:', b, '6', 'y:', b, '6', m, 'O', '6', g, @, n]).
+entry(ueberweisen, ['y:', b, '6', v, aI, z, @, n]).
+entry(ueberweise, ['y:', b, '6', v, aI, z, @]).
+entry(ueberwinden, ['y:', b, '6', v, 'I', n, d, @, n]).
+entry(ueberzeugend, ['y:', b, '6', ts, 'OY', g, @, n, t]).
+entry(ueberzeugen, ['y:', b, '6', ts, 'OY', g, @, n]).
+entry(ueberzeugt, ['y:', b, '6', ts, 'OY', k, t]).
+entry('ueberzeugung', ['y:', b, '6', ts, 'OY', g, 'U', 'N']).
+entry(ueberziehen, ['y:', b, '6', ts, 'i:', @, n]).
+entry(ueblichen, ['y:', p, l, 'I', 'C', @, n]).
+entry(uebliche, ['y:', p, l, 'I', 'C', @]).
+entry(ueblicherweise, ['y:', p, l, 'I', 'C', '6', v, aI, z, @]).
+entry(ueblich, ['y:', p, l, 'I', 'C']).
+entry(uebrich, ['y:', b, r, 'I', 'C']).
+entry(uebrigbleiben, ['y:', b, r, 'I', 'C', b, l, aI, b, @, n]).
+entry(uebrigen, ['y:', b, r, 'I', g, @, n]).
+entry(uebrigens, ['y:', b, r, 'I', g, @, n, s]).
+entry(uebriggebliebene, ['y:', b, r, 'I', 'C', g, @, b, l, 'i:', b, @, n, @]).
+entry(uebri, ['y:', b, r, 'I']).
+entry('uebung', ['y:', b, 'U', 'N']).
+entry('uebungsblaetter', ['y:', b, 'U', 'N', s, b, l, 'E', t, '6']).
+entry('uebungsblatt', ['y:', b, 'U', 'N', s, b, l, a, t]).
+entry('uebungs', ['y:', b, 'U', 'N', s]).
+entry('uebungssaal', ['y:', b, 'U', 'N', s, z, 'a:', l]).
+entry(ueb, ['y:', p]).
 entry('Udelhofen', ['u:', d, @, l, h, 'o:', f, @, n]).
 entry('Udo', ['u:', d, o]).
 entry('Ueding', ['y:', d, 'I', 'N']).
@@ -8867,48 +8868,48 @@ entry('Uli', ['U', l, i]).
 entry(uli, ['u:', l, i]).
 entry('Ulm', ['U', l, m]).
 entry('Ulrich', ['U', l, r, 'I', 'C']).
-entry(umändern, [u, m, 'E', n, d, '6', n]).
+entry(umaendern, [u, m, 'E', n, d, '6', n]).
 entry('Umbau', ['U', m, b, aU]).
 entry(umbuchen, ['U', m, b, 'u:', x, @, n]).
 entry(umdisponieren, ['U', m, d, 'I', s, p, o, n, 'i:', r, @, n]).
 entry(umem, ['U', m, @, m]).
 entry(umentscheiden, ['U', m, 'E', n, tS, aI, d, @, n]).
-entry(ümen, ['y:', m, @, n]).
+entry(uemen, ['y:', m, @, n]).
 entry(umfangreichen, ['U', m, f, a, 'N', r, aI, 'C', @, n]).
 entry(umfangreiches, ['U', m, f, a, 'N', r, aI, 'C', @, s]).
 entry(umfangreich, ['U', m, f, a, 'N', r, aI, 'C']).
 entry(umfaßt, ['U', m, f, a, s, t]).
 entry('Umgebung', ['U', m, g, 'e:', b, 'U', 'N']).
 entry(umgehen, ['U', m, g, 'e:', @, n]).
-entry(umgehört, ['U', m, g, @, h, '2:', '6', t]).
+entry(umgehoert, ['U', m, g, @, h, '2:', '6', t]).
 entry(umgekehrt, ['U', m, g, @, k, 'e:', '6', t]).
 entry(umgerechnet, ['U', m, g, @, r, 'E', 'C', n, @, t]).
 entry(umgeschmissen, ['U', m, g, @, 'S', m, 'I', s, @, n]).
 entry(umgesehen, ['U', m, g, @, z, 'e:', @, n]).
 entry(umgetan, ['U', m, g, @, t, 'a:', n]).
-entry(umhören, ['U', m, h, '2:', r, @, n]).
+entry(umhoeren, ['U', m, h, '2:', r, @, n]).
 entry(umkucken, ['U', m, k, 'U', k, @, n]).
 entry('Umland', ['U', m, l, a, n, t]).
 entry('Umlauf', ['U', m, l, aU, f]).
 entry('Umlaut-Anton', ['U', m, l, aU, t, a, n, t, 'o:', n]).
 entry(umlegen, ['U', m, l, 'e:', g, @, n]).
-entry(ummäntelt, ['U', m, m, 'E', n, t, @, l, t]).
+entry(ummaentelt, ['U', m, m, 'E', n, t, @, l, t]).
 entry(umplanen, ['U', m, p, l, 'a:', n, @, n]).
 entry(um, ['U', m]).
 entry(umschauen, ['U', m, 'S', aU, @, n]).
 entry(umschaue, ['U', m, 'S', aU, @]).
-entry(umschlagplätze, ['U', m, 'S', l, 'a:', k, p, l, 'E', ts, @]).
+entry(umschlagplaetze, ['U', m, 'S', l, 'a:', k, p, l, 'E', ts, @]).
 entry(umschreiben, ['U', m, 'S', r, aI, b, @, n]).
 entry(ums, ['U', m, s]).
-entry('Umständen', ['U', m, 'S', t, 'E', n, d, @, n]).
-entry('Umstände', ['U', m, 'S', t, 'E', n, d, @]).
-entry(umständlich, ['U', m, 'S', t, 'E', n, t, l, 'I', 'C']).
+entry('Umstaenden', ['U', m, 'S', t, 'E', n, d, @, n]).
+entry('Umstaende', ['U', m, 'S', t, 'E', n, d, @]).
+entry(umstaendlich, ['U', m, 'S', t, 'E', n, t, l, 'I', 'C']).
 entry(umsteigen, ['U', m, 'S', t, aI, g, @, n]).
 entry('Umtrunk', ['U', m, t, r, 'U', 'N', k]).
 entry('Umweg', ['U', m, v, 'e:', k]).
 entry('Umweltaspekten', ['U', m, v, 'E', l, t, a, s, p, 'E', k, t, @, n]).
 entry(umweltfreundlicher, ['U', m, v, 'E', l, t, f, r, 'OY', n, t, l, 'I', 'C', '6']).
-entry('Umweltgründen', ['U', m, v, 'E', l, t, g, r, 'Y', n, d, @, n]).
+entry('Umweltgruenden', ['U', m, v, 'E', l, t, g, r, 'Y', n, d, @, n]).
 entry('Umwelt', ['U', m, v, 'E', l, t]).
 entry(umweltschonender, ['U', m, v, 'E', l, tS, 'o:', n, @, n, d, '6']).
 entry('Umweltseminar', ['U', m, v, 'E', l, t, z, e, m, i, n, 'a:', r]).
@@ -8917,13 +8918,13 @@ entry('Umweltverschmutzung', ['U', m, v, 'E', l, t, f, 'E', '6', 'S', m, 'U', ts
 entry(umziehe, ['U', m, ts, 'i:', @]).
 entry(umzubuchen, ['U', m, ts, u, b, 'u:', x, @, n]).
 entry('Umzug', ['U', m, ts, 'u:', k]).
-entry(umzuhören, ['U', m, ts, u, h, '2:', r, @, n]).
+entry(umzuhoeren, ['U', m, ts, u, h, '2:', r, @, n]).
 entry(umzukrempeln, ['U', m, ts, u, k, r, 'E', m, p, @, l, n]).
 entry(umzu, ['U', m, ts, u]).
 entry(umzusteigen, ['U', m, ts, u, 'S', t, aI, g, @, n]).
-entry(unabhängiger, ['U', n, a, p, h, 'E', 'N', 'I', g, '6']).
-entry(unabhängig, ['U', n, a, p, h, 'E', 'N', 'I', 'C']).
-entry(unabkömmlich, ['U', n, a, p, k, '9', m, l, 'I', 'C']).
+entry(unabhaengiger, ['U', n, a, p, h, 'E', 'N', 'I', g, '6']).
+entry(unabhaengig, ['U', n, a, p, h, 'E', 'N', 'I', 'C']).
+entry(unabkoemmlich, ['U', n, a, p, k, '9', m, l, 'I', 'C']).
 entry('Unangenehme', ['U', n, a, n, g, @, n, 'e:', m, @]).
 entry('Unangenehmes', ['U', n, a, n, g, @, n, 'e:', m, @, s]).
 entry(unangenehm, ['U', n, a, n, g, @, n, 'e:', m]).
@@ -8933,61 +8934,61 @@ entry(unbedingt, ['U', n, b, @, d, 'I', 'N', t]).
 entry(unbelegt, ['U', n, b, @, l, 'e:', k, t]).
 entry(unbequeme, ['U', n, b, @, k, v, 'e:', m, @]).
 entry(unbequem, ['U', n, b, @, k, v, 'e:', m]).
-entry(unberücksichtigt, ['U', n, b, @, r, 'Y', k, z, 'I', 'C', t, 'I', 'C', t]).
-entry(unbeschränkt, ['U', n, b, @, 'S', r, 'E', 'N', k, t]).
+entry(unberuecksichtigt, ['U', n, b, @, r, 'Y', k, z, 'I', 'C', t, 'I', 'C', t]).
+entry(unbeschraenkt, ['U', n, b, @, 'S', r, 'E', 'N', k, t]).
 entry(unchristliche, ['U', n, k, r, 'I', s, t, l, 'I', 'C', @]).
 entry(unddreißigsten, ['U', n, t, d, r, aI, s, 'I', 'C', s, t, @, n]).
 entry(underbar, ['U', n, d, '6', b, 'a:', r]).
 entry(und, ['U', n, t]).
 entry(undzwanzigster, ['U', n, t, ts, v, a, n, ts, 'I', 'C', s, t, '6']).
-entry(uneigennützig, ['U', n, aI, g, @, n, n, 'Y', ts, 'I', 'C']).
-entry(uneingeschränkt, ['U', n, aI, n, g, @, 'S', r, 'E', 'N', k, t]).
+entry(uneigennuetzig, ['U', n, aI, g, @, n, n, 'Y', ts, 'I', 'C']).
+entry(uneingeschraenkt, ['U', n, aI, n, g, @, 'S', r, 'E', 'N', k, t]).
 entry(unerheblich, ['U', n, 'E', '6', h, 'e:', p, l, 'I', 'C']).
-entry(unerhört, ['U', n, 'E', '6', h, '2:', '6', t]).
-entry(unerträglich, ['U', n, 'E', '6', t, r, 'E:', k, l, 'I', 'C']).
+entry(unerhoert, ['U', n, 'E', '6', h, '2:', '6', t]).
+entry(unertraeglich, ['U', n, 'E', '6', t, r, 'E:', k, l, 'I', 'C']).
 entry(unerwartet, ['U', n, 'E', '6', v, a, r, t, @, t]).
-entry('Unfällen', ['U', n, f, 'E', l, @, n]).
-entry('Unfälle', ['U', n, f, 'E', l, @]).
+entry('Unfaellen', ['U', n, f, 'E', l, @, n]).
+entry('Unfaelle', ['U', n, f, 'E', l, @]).
 entry('Unfall', ['U', n, f, a, l]).
 entry('Unfallquoten', ['U', n, f, a, l, k, v, 'o:', t, @, n]).
 entry(ungebunden, ['U', n, g, @, b, 'U', n, d, @, n]).
-entry(ungefähr, ['U', n, g, @, f, 'E:', '6']).
+entry(ungefaehr, ['U', n, g, @, f, 'E:', '6']).
 entry(ungef, ['U', n, g, @, f]).
 entry(ungelegen, ['U', n, g, @, l, 'e:', g, @, n]).
 entry(ungenau, ['U', n, g, @, n, aU]).
 entry(ungerne, ['U', n, g, 'E', '6', n, @]).
 entry(ungern, ['U', n, g, 'E', '6', n]).
 entry(ungeschickt, ['U', n, g, @, 'S', 'I', k, t]).
-entry(ungestörtesten, ['U', n, g, @, 'S', t, '2:', '6', t, @, s, t, @, n]).
-entry(ungestört, ['U', n, g, @, 'S', t, '2:', '6', t]).
-entry(ungewöhnlich, ['U', n, g, @, v, '2:', n, l, 'I', 'C']).
+entry(ungestoertesten, ['U', n, g, @, 'S', t, '2:', '6', t, @, s, t, @, n]).
+entry(ungestoert, ['U', n, g, @, 'S', t, '2:', '6', t]).
+entry(ungewoehnlich, ['U', n, g, @, v, '2:', n, l, 'I', 'C']).
 entry(unglaubliche, ['U', n, g, l, aU, p, l, 'I', 'C', @]).
 entry(unglaublich, ['U', n, g, l, aU, p, l, 'I', 'C']).
-entry(unglücklicherweise, ['U', n, g, l, 'Y', k, l, 'I', 'C', '6', v, aI, z, @]).
-entry(unglücklich, ['U', n, g, l, 'Y', k, l, 'I', 'C']).
-entry('Unglück', ['U', n, g, l, 'Y', k]).
-entry(ungülstich, ['U', n, g, 'Y', l, s, t, 'I', 'C']).
+entry(ungluecklicherweise, ['U', n, g, l, 'Y', k, l, 'I', 'C', '6', v, aI, z, @]).
+entry(ungluecklich, ['U', n, g, l, 'Y', k, l, 'I', 'C']).
+entry('Unglueck', ['U', n, g, l, 'Y', k]).
+entry(unguelstich, ['U', n, g, 'Y', l, s, t, 'I', 'C']).
 entry(ung, ['U', 'N']).
-entry(ungünstiger, ['U', n, g, 'Y', n, s, t, 'I', g, '6']).
-entry(ungünstig, ['U', n, g, 'Y', n, s, t, 'I', 'C']).
+entry(unguenstiger, ['U', n, g, 'Y', n, s, t, 'I', g, '6']).
+entry(unguenstig, ['U', n, g, 'Y', n, s, t, 'I', 'C']).
 entry(unheimlich, ['U', n, h, aI, m, l, 'I', 'C']).
 entry(uninteressant, ['U', n, 'I', n, t, @, r, 'E', s, a, n, t]).
 entry('Uni', ['U', n, i]).
 entry('Universi', [u, n, i, v, 'E', '6', z, i]).
-entry('Universitäten', [u, n, i, v, 'E', '6', z, i, t, 'E:', t, @, n]).
-entry('Universität', [u, n, i, v, 'E', '6', z, i, t, 'E:', t]).
-entry('Universitätsmensa', [u, n, i, v, 'E', '6', z, i, t, 'E:', ts, m, 'E', n, z, a]).
-entry('Universitätsstädten', [u, n, i, v, 'E', '6', z, i, t, 'E:', ts, 'S', t, 'E:', t, @, n]).
-entry('Universitätsstädte', [u, n, i, v, 'E', '6', z, i, t, 'E:', ts, 'S', t, 'E:', t, @]).
-entry('Universitschät', [u, n, i, v, 'E', '6', z, i, tS, 'E:', t]).
+entry('Universitaeten', [u, n, i, v, 'E', '6', z, i, t, 'E:', t, @, n]).
+entry('Universitaet', [u, n, i, v, 'E', '6', z, i, t, 'E:', t]).
+entry('Universitaetsmensa', [u, n, i, v, 'E', '6', z, i, t, 'E:', ts, m, 'E', n, z, a]).
+entry('Universitaetsstaedten', [u, n, i, v, 'E', '6', z, i, t, 'E:', ts, 'S', t, 'E:', t, @, n]).
+entry('Universitaetsstaedte', [u, n, i, v, 'E', '6', z, i, t, 'E:', ts, 'S', t, 'E:', t, @]).
+entry('Universitschaet', [u, n, i, v, 'E', '6', z, i, tS, 'E:', t]).
 entry('Univerti', [u, n, i, v, 'E', '6', t, i]).
 entry(unkompliziert, ['U', n, k, 'O', m, p, l, i, ts, 'i:', '6', t]).
 entry(unkonzentrierter, ['U', n, k, 'O', n, ts, 'E', n, t, r, 'i:', '6', t, '6']).
 entry('Unkosten', ['U', n, k, 'O', s, t, @, n]).
 entry('Unk', ['U', 'N', k]).
 entry(unmittelbar, ['U', n, m, 'I', t, @, l, b, 'a:', r]).
-entry(unmöglich, ['U', n, m, '2:', k, l, 'I', 'C']).
-entry('Unpäßlichkeiten', ['U', n, p, 'E', s, l, 'I', 'C', k, aI, t, @, n]).
+entry(unmoeglich, ['U', n, m, '2:', k, l, 'I', 'C']).
+entry('Unpaeßlichkeiten', ['U', n, p, 'E', s, l, 'I', 'C', k, aI, t, @, n]).
 entry(unpaß, ['U', n, p, a, s]).
 entry(unpassend, ['U', n, p, a, s, @, n, t]).
 entry(unpraktisch, ['U', n, p, r, a, k, t, 'I', 'S']).
@@ -8995,7 +8996,7 @@ entry(unproblematisch, ['U', n, p, r, o, b, l, e, m, 'a:', t, 'I', 'S']).
 entry(un, ['U', n]).
 entry(unrealistisch, ['U', n, r, e, a, l, 'I', s, t, 'I', 'S']).
 entry(unrecht, ['U', n, r, 'E', 'C', t]).
-entry(unsägliche, ['U', n, z, 'E:', k, l, 'I', 'C', @]).
+entry(unsaegliche, ['U', n, z, 'E:', k, l, 'I', 'C', @]).
 entry(unse, ['U', n, z, @]).
 entry(unserem, ['U', n, z, @, r, @, m]).
 entry(unseren, ['U', n, z, @, r, @, n]).
@@ -9020,7 +9021,7 @@ entry('Unterbrechung', ['U', n, t, '6', b, r, 'E', 'C', 'U', 'N']).
 entry(unterbreite, ['U', n, t, '6', b, r, aI, t, @]).
 entry(unterbringen, ['U', n, t, '6', b, r, 'I', 'N', @, n]).
 entry('Unterbringung', ['U', n, t, '6', b, r, 'I', 'N', 'U', 'N']).
-entry('Unterbringungsmöglichkeiten', ['U', n, t, '6', b, r, 'I', 'N', 'U', 'N', s, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
+entry('Unterbringungsmoeglichkeiten', ['U', n, t, '6', b, r, 'I', 'N', 'U', 'N', s, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
 entry(unterbrochen, ['U', n, t, '6', b, r, 'O', x, @, n]).
 entry(unteren, ['U', n, t, @, r, @, n]).
 entry(untere, ['U', n, t, @, r, @]).
@@ -9038,11 +9039,11 @@ entry(unterher, ['U', n, t, '6', h, 'e:', '6']).
 entry(unterkommen, ['U', n, t, '6', k, 'O', m, @, n]).
 entry(unterkomme, ['U', n, t, '6', k, 'O', m, @]).
 entry(unterkriegen, ['U', n, t, '6', k, r, 'i:', g, @, n]).
-entry('Unterkünften', ['U', n, t, '6', k, 'Y', n, f, t, @, n]).
-entry('Unterkünfte', ['U', n, t, '6', k, 'Y', n, f, t, @]).
+entry('Unterkuenften', ['U', n, t, '6', k, 'Y', n, f, t, @, n]).
+entry('Unterkuenfte', ['U', n, t, '6', k, 'Y', n, f, t, @]).
 entry('Unterkunft', ['U', n, t, '6', k, 'U', n, f, t]).
-entry(unterkunftsmäßig, ['U', n, t, '6', k, 'U', n, f, ts, m, 'E:', s, 'I', 'C']).
-entry('Unterkunftsmöglichkeit', ['U', n, t, '6', k, 'U', n, f, ts, m, '2:', k, l, 'I', 'C', k, aI, t]).
+entry(unterkunftsmaeßig, ['U', n, t, '6', k, 'U', n, f, ts, m, 'E:', s, 'I', 'C']).
+entry('Unterkunftsmoeglichkeit', ['U', n, t, '6', k, 'U', n, f, ts, m, '2:', k, l, 'I', 'C', k, aI, t]).
 entry('Unterkunfts', ['U', n, t, '6', k, 'U', n, f, ts]).
 entry('Unterkunftsverzeichnis', ['U', n, t, '6', k, 'U', n, f, ts, f, 'E', '6', ts, aI, 'C', n, 'I', s]).
 entry('Unterlagen', ['U', n, t, '6', l, 'a:', g, @, n]).
@@ -9052,7 +9053,7 @@ entry('Unternehmensberatung', ['U', n, t, '6', n, 'e:', m, @, n, s, b, @, r, 'a:
 entry('Unternehmensberatungs-Gesellschaft', ['U', n, t, '6', n, 'e:', m, @, n, s, b, @, r, 'a:', t, 'U', 'N', s, g, @, z, 'E', l, 'S', a, f, t]).
 entry('Unternehmungen', ['U', n, t, '6', n, 'e:', m, 'U', 'N', @, n]).
 entry('Unternehmung', ['U', n, t, '6', n, 'e:', m, 'U', 'N']).
-entry('Unternehmungsmöglichkeiten', ['U', n, t, '6', n, 'e:', m, 'U', 'N', s, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
+entry('Unternehmungsmoeglichkeiten', ['U', n, t, '6', n, 'e:', m, 'U', 'N', s, m, '2:', k, l, 'I', 'C', k, aI, t, @, n]).
 entry(untern, ['U', n, t, '6', n]).
 entry(unter, ['U', n, t, '6']).
 entry(unterrichten, ['U', n, t, '6', r, 'I', 'C', t, @, n]).
@@ -9066,26 +9067,26 @@ entry('Unterschrift', ['U', n, t, '6', 'S', r, 'I', f, t]).
 entry(unters, ['U', n, t, '6', s]).
 entry(unterstellen, ['U', n, t, '6', 'S', t, 'E', l, @, n]).
 entry(unterste, ['U', n, t, '6', s, t, @]).
-entry('Unterstützung', ['U', n, t, '6', 'S', t, 'Y', ts, 'U', 'N']).
+entry('Unterstuetzung', ['U', n, t, '6', 'S', t, 'Y', ts, 'U', 'N']).
 entry('Unterteilung', ['U', n, t, '6', t, aI, l, 'U', 'N']).
 entry(unterwegs, ['U', n, t, '6', v, 'e:', k, s]).
 entry('Unterweisungsprobe', ['U', n, t, '6', v, aI, z, 'U', 'N', s, p, r, 'o:', b, @]).
 entry(unterzubringen, ['U', n, t, '6', ts, u, b, r, 'I', 'N', @, n]).
 entry(unterzukommen, ['U', n, t, '6', ts, u, k, 'O', m, @, n]).
-entry(unübersichtlich, ['U', n, 'y:', b, '6', z, 'I', 'C', t, l, 'I', 'C']).
-entry(unüblich, ['U', n, 'y:', p, l, 'I', 'C']).
-entry(unverschämt, ['U', n, f, 'E', '6', 'S', 'E:', m, t]).
+entry(unuebersichtlich, ['U', n, 'y:', b, '6', z, 'I', 'C', t, l, 'I', 'C']).
+entry(unueblich, ['U', n, 'y:', p, l, 'I', 'C']).
+entry(unverschaemt, ['U', n, f, 'E', '6', 'S', 'E:', m, t]).
 entry('Unves', ['U', n, v, @, s]).
 entry(unvorbereitet, ['U', n, f, 'o:', '6', b, @, r, aI, t, @, t]).
 entry(unwahrscheinlich, ['U', n, v, 'a:', r, 'S', aI, n, l, 'I', 'C']).
-entry('Unweltschützgründen', ['U', n, v, 'E', l, tS, 'Y', ts, g, r, 'Y', n, d, @, n]).
+entry('Unweltschuetzgruenden', ['U', n, v, 'E', l, tS, 'Y', ts, g, r, 'Y', n, d, @, n]).
 entry(unwesentlich, ['U', n, v, 'e:', z, @, n, t, l, 'I', 'C']).
 entry(unwichtig, ['U', n, v, 'I', 'C', t, 'I', 'C']).
 entry(unwirksam, ['U', n, v, 'I', '6', k, z, 'a:', m]).
 entry(unzufrieden, ['U', n, ts, u, f, r, 'i:', d, @, n]).
 entry(unzumutbar, ['U', n, ts, u, m, 'u:', t, b, 'a:', r]).
 entry('up-to-date', [a, p, t, u, d, 'e:', t]).
-entry(ürd, ['y:', '6', t]).
+entry(uerd, ['y:', '6', t]).
 entry('Urgroßvater', ['u:', '6', g, r, 'o:', s, f, 'a:', t, '6']).
 entry('Urlaub', ['u:', '6', l, aU, p]).
 entry('Urlaubserinnerungen', ['u:', '6', l, aU, p, s, 'E', '6', 'I', n, '6', r, 'U', 'N', @, n]).
@@ -9096,13 +9097,13 @@ entry('Urlaubstages', ['u:', '6', l, aU, p, s, t, 'a:', g, @, s]).
 entry('Urlaubstag', ['u:', '6', l, aU, p, s, t, 'a:', k]).
 entry('Urlaubszeit', ['u:', '6', l, aU, p, s, ts, aI, t]).
 entry('Ursache', ['u:', '6', z, a, x, @]).
-entry(ür, ['y:', '6']).
-entry(üß, ['y:', s]).
+entry(uer, ['y:', '6']).
+entry(ueß, ['y:', s]).
 entry('Uta', ['u:', t, a]).
 entry(uten, ['u:', t, @, n]).
 entry('Ute', ['u:', t, @]).
 entry(ut, ['u:', t]).
-entry(ü, ['y:']).
+entry(ue, ['y:']).
 entry(vage, [v, 'a:', g, @]).
 entry('Vahrenwald', [f, 'a:', r, @, n, v, a, l, t]).
 entry('Valentinstag', [v, a, l, 'E', n, t, 'i:', n, s, t, 'a:', k]).
@@ -9130,8 +9131,8 @@ entry(verabre, [f, 'E', '6', a, p, r, e]).
 entry(verabschiede, [f, 'E', '6', a, p, 'S', 'i:', d, @]).
 entry(verabschieden, [f, 'E', '6', a, p, 'S', 'i:', d, @, n]).
 entry(verachten, [f, 'E', '6', a, x, t, @, n]).
-entry(verändern, [f, 'E', '6', 'E', n, d, '6', n]).
-entry(verändert, [f, 'E', '6', 'E', n, d, '6', t]).
+entry(veraendern, [f, 'E', '6', 'E', n, d, '6', n]).
+entry(veraendert, [f, 'E', '6', 'E', n, d, '6', t]).
 entry(veranlasse, [f, 'E', '6', a, n, l, a, s, @]).
 entry(veranlassen, [f, 'E', '6', a, n, l, a, s, @, n]).
 entry(veranschlagen, [f, 'E', '6', a, n, 'S', l, 'a:', g, @, n]).
@@ -9191,14 +9192,14 @@ entry(verfassen, [f, 'E', '6', f, a, s, @, n]).
 entry(ver, [f, 'E', '6']).
 entry(verfehlt, [f, 'E', '6', f, 'e:', l, t]).
 entry(verflixte, [f, 'E', '6', f, l, 'I', k, s, t, @]).
-entry(verfrüht, [f, 'E', '6', f, r, 'y:', t]).
-entry(verfügbaren, [f, 'E', '6', f, 'y:', k, b, 'a:', r, @, n]).
-entry(verfügbar, [f, 'E', '6', f, 'y:', k, b, 'a:', r]).
-entry('Verfügbarkeit', [f, 'E', '6', f, 'y:', k, b, 'a:', r, k, aI, t]).
-entry(verfügen, [f, 'E', '6', f, 'y:', g, @, n]).
-entry(verfügten, [f, 'E', '6', f, 'y:', k, t, @, n]).
-entry(verfügt, [f, 'E', '6', f, 'y:', k, t]).
-entry('Verfügung', [f, 'E', '6', f, 'y:', g, 'U', 'N']).
+entry(verfrueht, [f, 'E', '6', f, r, 'y:', t]).
+entry(verfuegbaren, [f, 'E', '6', f, 'y:', k, b, 'a:', r, @, n]).
+entry(verfuegbar, [f, 'E', '6', f, 'y:', k, b, 'a:', r]).
+entry('Verfuegbarkeit', [f, 'E', '6', f, 'y:', k, b, 'a:', r, k, aI, t]).
+entry(verfuegen, [f, 'E', '6', f, 'y:', g, @, n]).
+entry(verfuegten, [f, 'E', '6', f, 'y:', k, t, @, n]).
+entry(verfuegt, [f, 'E', '6', f, 'y:', k, t]).
+entry('Verfuegung', [f, 'E', '6', f, 'y:', g, 'U', 'N']).
 entry('Vergangenheit', [f, 'E', '6', g, a, 'N', @, n, h, aI, t]).
 entry(vergaß, [f, 'E', '6', g, 'a:', s]).
 entry(vergeben, [f, 'E', '6', g, 'e:', b, @, n]).
@@ -9213,34 +9214,34 @@ entry(vergleichbar, [f, 'E', '6', g, l, aI, 'C', b, 'a:', r]).
 entry(vergleichen, [f, 'E', '6', g, l, aI, 'C', @, n]).
 entry('Vergleich', [f, 'E', '6', g, l, aI, 'C']).
 entry(vergleichsweise, [f, 'E', '6', g, l, aI, 'C', s, v, aI, z, @]).
-entry(vergnüge, [f, 'E', '6', g, n, 'y:', g, @]).
-entry(vergnügen, [f, 'E', '6', g, n, 'y:', g, @, n]).
-entry('Vergnügungen', [f, 'E', '6', g, n, 'y:', g, 'U', 'N', @, n]).
+entry(vergnuege, [f, 'E', '6', g, n, 'y:', g, @]).
+entry(vergnuegen, [f, 'E', '6', g, n, 'y:', g, @, n]).
+entry('Vergnuegungen', [f, 'E', '6', g, n, 'y:', g, 'U', 'N', @, n]).
 entry(vergraulen, [f, 'E', '6', g, r, aU, l, @, n]).
 entry(verguckt, [f, 'E', '6', g, 'U', k, t]).
-entry(vergünstigt, [f, 'E', '6', g, 'Y', n, s, t, 'I', 'C', t]).
-entry(verhält, [f, 'E', '6', h, 'E', l, t]).
-entry('Verhältnis', [f, 'E', '6', h, 'E', l, t, n, 'I', s]).
-entry(verhältnismäßig, [f, 'E', '6', h, 'E', l, t, n, 'I', s, m, 'E:', s, 'I', 'C']).
+entry(verguenstigt, [f, 'E', '6', g, 'Y', n, s, t, 'I', 'C', t]).
+entry(verhaelt, [f, 'E', '6', h, 'E', l, t]).
+entry('Verhaeltnis', [f, 'E', '6', h, 'E', l, t, n, 'I', s]).
+entry(verhaeltnismaeßig, [f, 'E', '6', h, 'E', l, t, n, 'I', s, m, 'E:', s, 'I', 'C']).
 entry(verhandeln, [f, 'E', '6', h, a, n, d, @, l, n]).
 entry(verhandlungen, [f, 'E', '6', h, a, n, d, l, 'U', 'N', @, n]).
-entry(verhandlungsfähig, [f, 'E', '6', h, a, n, d, l, 'U', 'N', s, f, 'E:', 'I', 'C']).
+entry(verhandlungsfaehig, [f, 'E', '6', h, a, n, d, l, 'U', 'N', s, f, 'E:', 'I', 'C']).
 entry(verhaspeln, [f, 'E', '6', h, a, s, p, @, l, n]).
 entry(verheiratet, [f, 'E', '6', h, aI, r, a, t, @, t]).
 entry(verhext, [f, 'E', '6', h, 'E', k, s, t]).
 entry(verhindern, [f, 'E', '6', h, 'I', n, d, '6', n]).
 entry(verhindert, [f, 'E', '6', h, 'I', n, d, '6', t]).
-entry(verhört, [f, 'E', '6', h, '2:', '6', t]).
+entry(verhoert, [f, 'E', '6', h, '2:', '6', t]).
 entry(verkappter, [f, 'E', '6', k, a, p, t, '6']).
 entry(verkaufen, [f, 'E', '6', k, aU, f, @, n]).
-entry('Verkaufsgespräch', [f, 'E', '6', k, aU, f, s, g, @, 'S', p, r, 'E:', 'C']).
+entry('Verkaufsgespraech', [f, 'E', '6', k, aU, f, s, g, @, 'S', p, r, 'E:', 'C']).
 entry('Verkaufsschlager', [f, 'E', '6', k, aU, f, s, 'S', l, 'a:', g, '6']).
 entry(verkehren, [f, 'E', '6', k, 'e:', r, @, n]).
 entry('Verkehr', [f, 'E', '6', k, 'e:', '6']).
 entry('Verkehrsanbindungen', [f, 'E', '6', k, 'e:', '6', s, a, n, b, 'I', n, d, 'U', 'N', @, n]).
 entry('Verkehrsanbindung', [f, 'E', '6', k, 'e:', '6', s, a, n, b, 'I', n, d, 'U', 'N']).
 entry('Verkehrs', [f, 'E', '6', k, 'e:', '6', s]).
-entry(verkehrsgünstig, [f, 'E', '6', k, 'e:', '6', s, g, 'Y', n, s, t, 'I', 'C']).
+entry(verkehrsguenstig, [f, 'E', '6', k, 'e:', '6', s, g, 'Y', n, s, t, 'I', 'C']).
 entry('Verkehrsmittel', [f, 'E', '6', k, 'e:', '6', s, m, 'I', t, @, l]).
 entry('Verkehrsmitteln', [f, 'E', '6', k, 'e:', '6', s, m, 'I', t, @, l, n]).
 entry('Verkehrsmittels', [f, 'E', '6', k, 'e:', '6', s, m, 'I', t, @, l, s]).
@@ -9249,24 +9250,24 @@ entry('Verkehrsverbindungen', [f, 'E', '6', k, 'e:', '6', s, f, 'E', '6', b, 'I'
 entry('Verkehrsverbindung', [f, 'E', '6', k, 'e:', '6', s, f, 'E', '6', b, 'I', n, d, 'U', 'N']).
 entry(verkehrt, [f, 'E', '6', k, 'e:', '6', t]).
 entry(verkraften, [f, 'E', '6', k, r, a, f, t, @, n]).
-entry(verkrümeln, [f, 'E', '6', k, r, 'y:', m, @, l, n]).
+entry(verkruemeln, [f, 'E', '6', k, r, 'y:', m, @, l, n]).
 entry(verkuckt, [f, 'E', '6', k, 'U', k, t]).
-entry(verkürzen, [f, 'E', '6', k, 'Y', '6', ts, @, n]).
+entry(verkuerzen, [f, 'E', '6', k, 'Y', '6', ts, @, n]).
 entry('Verlag', [f, 'E', '6', l, 'a:', k]).
 entry('Verlagsleiter', [f, 'E', '6', l, 'a:', k, s, l, aI, t, '6']).
 entry(verlangen, [f, 'E', '6', l, a, 'N', @, n]).
-entry(verlängern, [f, 'E', '6', l, 'E', 'N', '6', n]).
-entry(verlängerte, [f, 'E', '6', l, 'E', 'N', '6', t, @]).
-entry(verlängertes, [f, 'E', '6', l, 'E', 'N', '6', t, @, s]).
-entry('Verlängerung', [f, 'E', '6', l, 'E', 'N', '6', r, 'U', 'N']).
+entry(verlaengern, [f, 'E', '6', l, 'E', 'N', '6', n]).
+entry(verlaengerte, [f, 'E', '6', l, 'E', 'N', '6', t, @]).
+entry(verlaengertes, [f, 'E', '6', l, 'E', 'N', '6', t, @, s]).
+entry('Verlaengerung', [f, 'E', '6', l, 'E', 'N', '6', r, 'U', 'N']).
 entry(verlangt, [f, 'E', '6', l, a, 'N', t]).
 entry(verlasse, [f, 'E', '6', l, a, s, @]).
 entry(verlassen, [f, 'E', '6', l, a, s, @, n]).
-entry(verläßt, [f, 'E', '6', l, 'E', s, t]).
+entry(verlaeßt, [f, 'E', '6', l, 'E', s, t]).
 entry('Verlaufe', [f, 'E', '6', l, aU, f, @]).
 entry(verlaufen, [f, 'E', '6', l, aU, f, @, n]).
 entry('Verlauf', [f, 'E', '6', l, aU, f]).
-entry(verläuft, [f, 'E', '6', l, 'OY', f, t]).
+entry(verlaeuft, [f, 'E', '6', l, 'OY', f, t]).
 entry(verle, [f, 'E', '6', l, e]).
 entry(verlegbar, [f, 'E', '6', l, 'e:', k, b, 'a:', r]).
 entry(verlegen, [f, 'E', '6', l, 'e:', g, @, n]).
@@ -9289,12 +9290,12 @@ entry(vermutlich, [f, 'E', '6', m, 'u:', t, l, 'I', 'C']).
 entry('Vermutung', [f, 'E', '6', m, 'u:', t, 'U', 'N']).
 entry(verneinen, [f, 'E', '6', n, aI, n, @, n]).
 entry(vernommen, [f, 'E', '6', n, 'O', m, @, n]).
-entry(vernünftige, [f, 'E', '6', n, 'Y', n, f, t, 'I', g, @]).
-entry(vernünftigen, [f, 'E', '6', n, 'Y', n, f, t, 'I', g, @, n]).
-entry(vernünftiger, [f, 'E', '6', n, 'Y', n, f, t, 'I', g, '6']).
-entry(vernünftig, [f, 'E', '6', n, 'Y', n, f, t, 'I', 'C']).
-entry(vernünftigste, [f, 'E', '6', n, 'Y', n, f, t, 'I', 'C', s, t, @]).
-entry('Veröffentlichung', [f, 'E', '6', '9', f, @, n, t, l, 'I', 'C', 'U', 'N']).
+entry(vernuenftige, [f, 'E', '6', n, 'Y', n, f, t, 'I', g, @]).
+entry(vernuenftigen, [f, 'E', '6', n, 'Y', n, f, t, 'I', g, @, n]).
+entry(vernuenftiger, [f, 'E', '6', n, 'Y', n, f, t, 'I', g, '6']).
+entry(vernuenftig, [f, 'E', '6', n, 'Y', n, f, t, 'I', 'C']).
+entry(vernuenftigste, [f, 'E', '6', n, 'Y', n, f, t, 'I', 'C', s, t, @]).
+entry('Veroeffentlichung', [f, 'E', '6', '9', f, @, n, t, l, 'I', 'C', 'U', 'N']).
 entry(verpassen, [f, 'E', '6', p, a, s, @, n]).
 entry(verpflegen, [f, 'E', '6', pf, l, 'e:', g, @, n]).
 entry('Verpflegung', [f, 'E', '6', pf, l, 'e:', g, 'U', 'N']).
@@ -9307,18 +9308,18 @@ entry(verplant, [f, 'E', '6', p, l, 'a:', n, t]).
 entry(verplempern, [f, 'E', '6', p, l, 'E', m, p, '6', n]).
 entry(verraten, [f, 'E', '6', r, 'a:', t, @, n]).
 entry(verraucht, [f, 'E', '6', r, aU, x, t]).
-entry(verräumt, [f, 'E', '6', r, 'OY', m, t]).
+entry(verraeumt, [f, 'E', '6', r, 'OY', m, t]).
 entry(verrechne, [f, 'E', '6', r, 'E', 'C', n, @]).
 entry(verrechnet, [f, 'E', '6', r, 'E', 'C', n, @, t]).
 entry(verreise, [f, 'E', '6', r, aI, z, @]).
 entry(verreisen, [f, 'E', '6', r, aI, z, @, n]).
 entry(verreist, [f, 'E', '6', r, aI, s, t]).
-entry(verrückter, [f, 'E', '6', r, 'Y', k, t, '6']).
-entry(verrückt, [f, 'E', '6', r, 'Y', k, t]).
+entry(verrueckter, [f, 'E', '6', r, 'Y', k, t, '6']).
+entry(verrueckt, [f, 'E', '6', r, 'Y', k, t]).
 entry(verrutscht, [f, 'E', '6', r, 'U', tS, t]).
 entry('Versammlung', [f, 'E', '6', z, a, m, l, 'U', 'N']).
-entry(versäumen, [f, 'E', '6', z, 'OY', m, @, n]).
-entry(verschärft, [f, 'E', '6', 'S', 'E', '6', f, t]).
+entry(versaeumen, [f, 'E', '6', z, 'OY', m, @, n]).
+entry(verschaerft, [f, 'E', '6', 'S', 'E', '6', f, t]).
 entry(verschaut, [f, 'E', '6', 'S', aU, t]).
 entry(versch, [f, 'E', '6', 'S']).
 entry(verschiebbar, [f, 'E', '6', 'S', 'i:', p, b, 'a:', r]).
@@ -9328,10 +9329,10 @@ entry(verschiebt, [f, 'E', '6', 'S', 'i:', p, t]).
 entry(verschiedene, [f, 'E', '6', 'S', 'i:', d, @, n, @]).
 entry(verschiedenen, [f, 'E', '6', 'S', 'i:', d, @, n, @, n]).
 entry(verschlagen, [f, 'E', '6', 'S', l, 'a:', g, @, n]).
-entry(verschlägt, [f, 'E', '6', 'S', l, 'E:', k, t]).
+entry(verschlaegt, [f, 'E', '6', 'S', l, 'E:', k, t]).
 entry(verschlossenen, [f, 'E', '6', 'S', l, 'O', s, @, n, @, n]).
 entry(verschmutzt, [f, 'E', '6', 'S', m, 'U', ts, t]).
-entry(verschnörkelt, [f, 'E', '6', 'S', n, '9', '6', k, @, l, t]).
+entry(verschnoerkelt, [f, 'E', '6', 'S', n, '9', '6', k, @, l, t]).
 entry(verschnupft, [f, 'E', '6', 'S', n, 'U', pf, t]).
 entry(verschoben, [f, 'E', '6', 'S', 'o:', b, @, n]).
 entry(verschwenden, [f, 'E', '6', 'S', v, 'E', n, d, @, n]).
@@ -9345,9 +9346,9 @@ entry(versichern, [f, 'E', '6', z, 'I', 'C', '6', n]).
 entry('Version', [v, 'E', '6', z, j, 'o:', n]).
 entry(versorgen, [f, 'E', '6', z, 'O', '6', g, @, n]).
 entry(versorgt, [f, 'E', '6', z, 'O', '6', k, t]).
-entry(verspätet, [f, 'E', '6', 'S', p, 'E:', t, @, t]).
-entry('Verspätungen', [f, 'E', '6', 'S', p, 'E:', t, 'U', 'N', @, n]).
-entry('Verspätung', [f, 'E', '6', 'S', p, 'E:', t, 'U', 'N']).
+entry(verspaetet, [f, 'E', '6', 'S', p, 'E:', t, @, t]).
+entry('Verspaetungen', [f, 'E', '6', 'S', p, 'E:', t, 'U', 'N', @, n]).
+entry('Verspaetung', [f, 'E', '6', 'S', p, 'E:', t, 'U', 'N']).
 entry(versprechend, [f, 'E', '6', 'S', p, r, 'E', 'C', @, n, t]).
 entry(versprechen, [f, 'E', '6', 'S', p, r, 'E', 'C', @, n]).
 entry('Versprechung', [f, 'E', '6', 'S', p, r, 'E', 'C', 'U', 'N']).
@@ -9355,10 +9356,10 @@ entry(verspricht, [f, 'E', 'E', '6', 'S', p, r, 'I', 'C', t]).
 entry(versprochen, [f, 'E', '6', 'S', p, r, 'O', x, @, n]).
 entry(versta, [f, 'E', '6', 'S', t, a]).
 entry(verstanden, [f, 'E', '6', 'S', t, a, n, d, @, n]).
-entry(verständige, [f, 'E', '6', 'S', t, 'E', n, d, 'I', g, @]).
-entry(verständigen, [f, 'E', '6', 'S', t, 'E', n, d, 'I', g, @, n]).
-entry(verständlich, [f, 'E', '6', 'S', t, 'E', n, t, l, 'I', 'C']).
-entry('Verständnis', [f, 'E', '6', 'S', t, 'E', n, t, n, 'I', s]).
+entry(verstaendige, [f, 'E', '6', 'S', t, 'E', n, d, 'I', g, @]).
+entry(verstaendigen, [f, 'E', '6', 'S', t, 'E', n, d, 'I', g, @, n]).
+entry(verstaendlich, [f, 'E', '6', 'S', t, 'E', n, t, l, 'I', 'C']).
+entry('Verstaendnis', [f, 'E', '6', 'S', t, 'E', n, t, n, 'I', s]).
 entry(versteckt, [f, 'E', '6', 'S', t, 'E', k, t]).
 entry(verstehe, [f, 'E', '6', 'S', t, 'e:', @]).
 entry(verstehen, [f, 'E', '6', 'S', t, 'e:', @, n]).
@@ -9389,9 +9390,9 @@ entry('Vertretung', [f, 'E', '6', t, r, 'e:', t, 'U', 'N']).
 entry(vertr, [f, 'E', '6', t, r]).
 entry('Vertriebsleiter', [f, 'E', '6', t, r, 'i:', p, s, l, aI, t, '6']).
 entry('Vertriebssystem', [f, 'E', '6', t, r, 'i:', p, s, z, 'Y', s, t, 'e:', m]).
-entry(verunglücken, [f, 'E', '6', 'U', n, g, l, 'Y', k, @, n]).
+entry(verungluecken, [f, 'E', '6', 'U', n, g, l, 'Y', k, @, n]).
 entry(verurlaubt, [f, 'E', '6', 'U', '6', l, aU, p, t]).
-entry(vervollständigen, [f, 'E', '6', f, 'O', l, 'S', t, 'E', n, d, 'I', g, @, n]).
+entry(vervollstaendigen, [f, 'E', '6', f, 'O', l, 'S', t, 'E', n, d, 'I', g, @, n]).
 entry('Verwandten', [f, 'E', '6', v, a, n, t, @, n]).
 entry('Verwandtschaft', [f, 'E', '6', v, a, n, tS, a, f, t]).
 entry(verwechselt, [f, 'E', '6', v, 'E', k, s, @, l, t]).
@@ -9400,13 +9401,13 @@ entry(verwenden, [f, 'E', '6', v, 'E', n, d, @, n]).
 entry(verwendet, [f, 'E', '6', v, 'E', n, d, @, t]).
 entry('Verwicklungen', [f, 'E', '6', v, 'I', k, l, 'U', 'N', @, n]).
 entry(verwirrt, [f, 'E', '6', v, 'I', '6', t]).
-entry(verwöhnen, [f, 'E', '6', v, '2:', n, @, n]).
+entry(verwoehnen, [f, 'E', '6', v, '2:', n, @, n]).
 entry(verzeihen, [f, 'E', '6', ts, aI, @, n]).
 entry('Verzeihung', [f, 'E', '6', ts, aI, 'U', 'N']).
 entry(verzichte, [f, 'E', '6', ts, 'I', 'C', t, @]).
 entry(verzichten, [f, 'E', '6', ts, 'I', 'C', t, @, n]).
-entry('Verzögerungen', [f, 'E', '6', ts, '2:', g, @, r, 'U', 'N', @, n]).
-entry('Verzögerung', [f, 'E', '6', ts, '2:', g, @, r, 'U', 'N']).
+entry('Verzoegerungen', [f, 'E', '6', ts, '2:', g, @, r, 'U', 'N', @, n]).
+entry('Verzoegerung', [f, 'E', '6', ts, '2:', g, @, r, 'U', 'N']).
 entry(ve, [v, e]).
 entry('V', [f]).
 entry(v, [f, aU]).
@@ -9414,12 +9415,12 @@ entry(vibrations, [v, aI, b, r, 'e:', 'S', @, n, s]).
 entry('Videoraum', [v, 'i:', d, e, o, r, aU, m]).
 entry('Videos', [v, 'i:', d, e, o, s]).
 entry('Video', [v, 'i:', d, e, o]).
-entry(vielbeschäftigter, [f, 'i:', l, b, @, 'S', 'E', f, t, 'I', 'C', t, '6']).
-entry(vielbeschäftigt, [f, 'i:', l, b, @, 'S', 'E', f, t, 'I', 'C', t]).
+entry(vielbeschaeftigter, [f, 'i:', l, b, @, 'S', 'E', f, t, 'I', 'C', t, '6']).
+entry(vielbeschaeftigt, [f, 'i:', l, b, @, 'S', 'E', f, t, 'I', 'C', t]).
 entry(vielen, [f, 'i:', l, @, n]).
 entry('Vielfaches', [f, 'i:', l, f, a, x, @, s]).
-entry(vielfältige, [f, 'i:', l, f, 'E', l, t, 'I', g, @]).
-entry(vielfältig, [f, 'i:', l, f, 'E', l, t, 'I', 'C']).
+entry(vielfaeltige, [f, 'i:', l, f, 'E', l, t, 'I', g, @]).
+entry(vielfaeltig, [f, 'i:', l, f, 'E', l, t, 'I', 'C']).
 entry('Vielflieger-Angebot', [f, 'i:', l, f, l, 'i:', g, '6', a, n, g, @, b, 'o:', t]).
 entry(vielleich, [f, i, l, aI, 'C']).
 entry(vielleicht, [f, i, l, aI, 'C', t]).
@@ -9429,14 +9430,14 @@ entry(vielmals, [f, 'i:', l, m, 'a:', l, s]).
 entry(vielmehr, [f, 'i:', l, m, 'e:', '6']).
 entry(vielversprechend, [f, 'i:', l, f, 'E', '6', 'S', p, r, 'E', 'C', @, n, t]).
 entry(viereinhalb, [f, 'i:', '6', aI, n, h, a, l, p]).
-entry(viereinhalbstündige, [f, 'i:', '6', aI, n, h, a, l, p, 'S', t, 'Y', n, d, 'I', g, @]).
+entry(viereinhalbstuendige, [f, 'i:', '6', aI, n, h, a, l, p, 'S', t, 'Y', n, d, 'I', g, @]).
 entry(vieren, [f, 'i:', r, @, n]).
 entry('Vierer-Platz', [f, 'i:', r, '6', p, l, a, ts]).
 entry(vierhundert, [f, 'I', '6', h, 'U', n, d, '6', t]).
 entry('Vier-Jahreszeiten', [f, 'i:', '6', j, 'a:', r, @, s, ts, aI, t, @, n]).
 entry(viermal, [f, 'i:', r, m, 'a:', l]).
-entry(viertägige, [f, 'i:', '6', t, 'E:', g, 'I', g, @]).
-entry(viertägiges, [f, 'i:', '6', t, 'E:', g, 'I', g, @, s]).
+entry(viertaegige, [f, 'i:', '6', t, 'E:', g, 'I', g, @]).
+entry(viertaegiges, [f, 'i:', '6', t, 'E:', g, 'I', g, @, s]).
 entry(vierte, [f, 'i:', '6', t, @]).
 entry(viertel, [f, 'I', '6', t, @, l]).
 entry('Viertelstunde', [f, 'I', '6', t, @, l, 'S', t, 'U', n, d, @]).
@@ -9463,7 +9464,7 @@ entry(vierundzwanzigst, [f, 'i:', '6', 'U', n, t, ts, v, a, n, ts, 'I', 'C', s, 
 entry(vierun, [f, 'i:', '6', 'U', n]).
 entry(vierzehn, [f, 'I', '6', ts, 'e:', n]).
 entry('Vierzehn-Tage-Turnus', [f, 'I', '6', ts, 'e:', n, t, 'a:', g, @, t, 'U', '6', n, 'U', s]).
-entry(vierzehntägig, [f, 'I', '6', ts, 'e:', n, t, 'E:', g, 'I', 'C']).
+entry(vierzehntaegig, [f, 'I', '6', ts, 'e:', n, t, 'E:', g, 'I', 'C']).
 entry(vierzehnte, [f, 'I', '6', ts, 'e:', n, t, @]).
 entry(vierzehnten, [f, 'I', '6', ts, 'e:', n, t, @, n]).
 entry('Vierzehntens', [f, 'I', '6', ts, 'e:', n, t, @, n, s]).
@@ -9482,7 +9483,7 @@ entry('Visa-Karte', [v, 'i:', z, a, k, a, r, t, @]).
 entry('Visa', [v, 'i:', z, @]).
 entry('Visier', [v, i, z, 'i:', '6']).
 entry('Visitenkarte', [v, i, z, 'i:', t, @, n, k, a, r, t, @]).
-entry(vö, [f, '9']).
+entry(voe, [f, '9']).
 entry(vo, [f, 'O']).
 entry('Vogel', [f, 'o:', g, @, l]).
 entry('Voggesser', [v, 'O', g, 'E', s, '6']).
@@ -9490,7 +9491,7 @@ entry('Vogsch', [f, 'O', g, 'S']).
 entry('Vokalperzeption', [v, o, k, 'a:', l, p, 'E', '6', ts, 'E', p, ts, j, 'o:', n]).
 entry('Vol', [f, 'O', l]).
 entry('Volk', [f, 'O', l, k]).
-entry('Volksbühne', [f, 'O', k, s, b, j, 'u:', n, @]).
+entry('Volksbuehne', [f, 'O', k, s, b, j, 'u:', n, @]).
 entry('Volkssternwarte', [f, 'O', l, k, s, 'S', t, 'E', '6', n, v, a, r, t, @]).
 entry('Volkstrauertag', [f, 'O', l, k, s, t, r, aU, '6', t, 'a:', k]).
 entry('Vollack', [f, 'O', l, a, k]).
@@ -9505,19 +9506,19 @@ entry(vollgepackt, [f, 'O', l, g, @, p, a, k, t]).
 entry(vollgeplant, [f, 'O', l, g, @, p, l, 'a:', n, t]).
 entry(vollgestopfter, [f, 'O', l, g, @, 'S', t, 'O', pf, t, '6']).
 entry(vollgestopft, [f, 'O', l, g, @, 'S', t, 'O', pf, t]).
-entry(völlig, [f, '9', l, 'I', 'C']).
+entry(voellig, [f, '9', l, 'I', 'C']).
 entry(vollkommen, [f, 'O', l, k, 'O', m, @, n]).
 entry(vollpacken, [f, 'O', l, p, a, k, @, n]).
 entry('Vollpension', [f, 'O', l, p, 'E', n, z, j, 'o:', n]).
-entry(vollständige, [f, 'O', l, 'S', t, 'E', n, d, 'I', g, @]).
-entry(vollständigen, [f, 'O', l, 'S', t, 'E', n, d, 'I', g, @, n]).
-entry(vollständig, [f, 'O', l, 'S', t, 'E', n, d, 'I', 'C']).
+entry(vollstaendige, [f, 'O', l, 'S', t, 'E', n, d, 'I', g, @]).
+entry(vollstaendigen, [f, 'O', l, 'S', t, 'E', n, d, 'I', g, @, n]).
+entry(vollstaendig, [f, 'O', l, 'S', t, 'E', n, d, 'I', 'C']).
 entry('Vollstedt', [f, 'O', l, 'S', t, 'E', t]).
 entry('Volltreffer', [f, 'O', l, t, r, 'E', f, '6']).
 entry(vom, [f, 'O', m]).
 entry(voneinander, [f, 'O', n, aI, n, a, n, d, '6']).
 entry(von, [f, 'O', n]).
-entry(vonnöten, [f, 'O', n, n, '2:', t, @, n]).
+entry(vonnoeten, [f, 'O', n, n, '2:', t, @, n]).
 entry(vonstatten, [f, 'O', n, 'S', t, a, t, @, n]).
 entry('von-Sudiz', [f, 'O', n, z, 'u:', d, 'I', ts]).
 entry('von-Sudniz', [f, 'O', n, z, 'U', t, n, 'I', ts]).
@@ -9558,7 +9559,7 @@ entry(vorbereitet, [f, 'o:', '6', b, @, r, aI, t, @, t]).
 entry(vorbereitungen, [f, 'o:', '6', b, @, r, aI, t, 'U', 'N', @, n]).
 entry(vorbereitung, [f, 'o:', '6', b, @, r, aI, t, 'U', 'N']).
 entry('Vorbereitungs', [f, 'o:', '6', b, @, r, aI, t, 'U', 'N', s]).
-entry('Vorbereitungsgespräch', [f, 'o:', '6', b, @, r, aI, t, 'U', 'N', s, g, @, 'S', p, r, 'E:', 'C']).
+entry('Vorbereitungsgespraech', [f, 'o:', '6', b, @, r, aI, t, 'U', 'N', s, g, @, 'S', p, r, 'E:', 'C']).
 entry('Vorbereitungsphase', [f, 'o:', '6', b, @, r, aI, t, 'U', 'N', s, f, 'a:', z, @]).
 entry('Vorbereitungstermin', [f, 'o:', '6', b, @, r, aI, t, 'U', 'N', s, t, 'E', '6', m, 'i:', n]).
 entry('Vorbereitungstermins', [f, 'o:', '6', b, @, r, aI, t, 'U', 'N', s, t, 'E', '6', m, 'i:', n, s]).
@@ -9579,10 +9580,10 @@ entry(vorerst, [f, 'o:', '6', 'e:', '6', s, t]).
 entry(vorfahren, [f, 'o:', '6', f, 'a:', r, @, n]).
 entry('Vorfeld', [f, 'o:', '6', f, 'E', l, t]).
 entry(vor, [f, 'o:', '6']).
-entry('Vorführungen', [f, 'o:', '6', f, 'y:', r, 'U', 'N', @, n]).
+entry('Vorfuehrungen', [f, 'o:', '6', f, 'y:', r, 'U', 'N', @, n]).
 entry('Vorgabe', [f, 'o:', '6', g, 'a:', b, @]).
 entry('Vorgaben', [f, 'o:', '6', g, 'a:', b, @, n]).
-entry('Vorgänge', [f, 'o:', '6', g, 'E', 'N', @]).
+entry('Vorgaenge', [f, 'o:', '6', g, 'E', 'N', @]).
 entry(vorgefunden, [f, 'o:', '6', g, @, f, 'U', n, d, @, n]).
 entry(vorgegeben, [f, 'o:', '6', g, @, g, 'e:', b, @, n]).
 entry(vorgego, [f, 'o:', '6', g, @, g, 'O']).
@@ -9608,10 +9609,10 @@ entry(vorherigen, [f, 'o:', '6', h, 'e:', r, 'I', g, @, n]).
 entry(vorhin, [f, 'o:', '6', h, 'I', n]).
 entry(vorige, [f, 'o:', r, 'I', g, @]).
 entry(vorigen, [f, 'o:', r, 'I', g, @, n]).
-entry(vorklären, [f, 'o:', '6', k, l, 'E:', r, @, n]).
+entry(vorklaeren, [f, 'o:', '6', k, l, 'E:', r, @, n]).
 entry(vorkommen, [f, 'o:', '6', k, 'O', m, @, n]).
 entry('Vorlage', [f, 'o:', '6', l, 'a:', g, @]).
-entry(vorläufig, [f, 'o:', '6', l, 'OY', f, 'I', 'C']).
+entry(vorlaeufig, [f, 'o:', '6', l, 'OY', f, 'I', 'C']).
 entry('Vorlaufzeit', [f, 'o:', '6', l, aU, f, ts, aI, t]).
 entry(vorlesen, [f, 'o:', '6', l, 'e:', z, @, n]).
 entry('Vorlesungen', [f, 'o:', '6', l, 'e:', z, 'U', 'N', @, n]).
@@ -9630,7 +9631,7 @@ entry(vormerken, [f, 'o:', '6', m, 'E', '6', k, @, n]).
 entry(vorm, [f, 'o:', '6', m]).
 entry('Vormittages', [f, 'o:', '6', m, 'I', t, 'a:', g, @, s]).
 entry(vormittag, [f, 'o:', '6', m, 'I', t, 'a:', k]).
-entry('Vormittägliches', [f, 'o:', '6', m, 'I', t, 'E:', k, l, 'I', 'C', @, s]).
+entry('Vormittaegliches', [f, 'o:', '6', m, 'I', t, 'E:', k, l, 'I', 'C', @, s]).
 entry(vormittags, [f, 'o:', '6', m, 'I', t, 'a:', k, s]).
 entry('Vormittags-Maschine', [f, 'o:', '6', m, 'I', t, 'a:', k, s, m, a, 'S', 'i:', n, @]).
 entry('Vormittagsstunden', [f, 'o:', '6', m, 'I', t, 'a:', k, s, 'S', t, 'U', n, d, @, n]).
@@ -9651,9 +9652,9 @@ entry(vorreservieren, [f, 'o:', '6', r, e, z, 'E', '6', v, 'i:', r, @, n]).
 entry(vorschieben, [f, 'o:', '6', 'S', 'i:', b, @, n]).
 entry(vorschla, [f, 'o:', '6', 'S', l, a]).
 entry(vorschlage, [f, 'o:', '6', 'S', l, 'a:', g, @]).
-entry(vorschläge, [f, 'o:', '6', 'S', l, 'E:', g, @]).
+entry(vorschlaege, [f, 'o:', '6', 'S', l, 'E:', g, @]).
 entry(vorschlagen, [f, 'o:', '6', 'S', l, 'a:', g, @, n]).
-entry('Vorschlägen', [f, 'o:', '6', 'S', l, 'E:', g, @, n]).
+entry('Vorschlaegen', [f, 'o:', '6', 'S', l, 'E:', g, @, n]).
 entry(vorschlag, [f, 'o:', '6', 'S', l, 'a:', k]).
 entry(vorschlegen, [f, 'o:', '6', 'S', l, 'e:', g, @, n]).
 entry(vorschweben, [f, 'o:', '6', 'S', v, 'e:', b, @, n]).
@@ -9666,20 +9667,20 @@ entry(vorstelle, [f, 'o:', '6', 'S', t, 'E', l, @]).
 entry(vorstellen, [f, 'o:', '6', 'S', t, 'E', l, @, n]).
 entry('Vorstellungen', [f, 'o:', '6', 'S', t, 'E', l, 'U', 'N', @, n]).
 entry('Vorstellung', [f, 'o:', '6', 'S', t, 'E', l, 'U', 'N']).
-entry('Vorstellungsgespräch', [f, 'o:', '6', 'S', t, 'E', l, 'U', 'N', s, g, @, 'S', p, r, 'E:', 'C']).
+entry('Vorstellungsgespraech', [f, 'o:', '6', 'S', t, 'E', l, 'U', 'N', s, g, @, 'S', p, r, 'E:', 'C']).
 entry('Vortages', [f, 'o:', '6', t, 'a:', g, @, s]).
 entry(vortanzen, [f, 'o:', '6', t, a, n, ts, @, n]).
 entry('Vorteile', [f, 'o:', '6', t, aI, l, @]).
 entry('Vorteil', [f, 'o:', '6', t, aI, l]).
 entry(vorteilhafter, [f, 'o:', '6', t, aI, l, h, a, f, t, '6']).
 entry(vorteilhaft, [f, 'o:', '6', t, aI, l, h, a, f, t]).
-entry('Vorträge', [f, 'o:', '6', t, r, 'E:', g, @]).
+entry('Vortraege', [f, 'o:', '6', t, r, 'E:', g, @]).
 entry(vortragen, [f, 'o:', '6', t, r, 'a:', g, @, n]).
 entry('Vortrag', [f, 'o:', '6', t, r, 'a:', k]).
 entry('Vortragsreihe', [f, 'o:', '6', t, r, 'a:', k, s, r, aI, @]).
 entry(vortreffen, [f, 'o:', '6', t, r, 'E', f, @, n]).
 entry('Vortritt', [f, 'o:', '6', t, r, 'I', t]).
-entry('Vorverkaufsgebühr', [f, 'o:', '6', f, 'E', '6', k, aU, f, s, g, @, b, 'y:', '6']).
+entry('Vorverkaufsgebuehr', [f, 'o:', '6', f, 'E', '6', k, aU, f, s, g, @, b, 'y:', '6']).
 entry(vorverlegen, [f, 'o:', '6', f, 'E', '6', l, 'e:', g, @, n]).
 entry(vorverschieben, [f, 'o:', '6', f, 'E', '6', 'S', 'i:', b, @, n]).
 entry(vorweg, [f, 'o:', '6', v, 'E', k]).
@@ -9690,8 +9691,8 @@ entry('Vorzimmer', [f, 'o:', '6', ts, 'I', m, '6']).
 entry(vorzuarbeiten, [f, 'o:', '6', ts, u, a, r, b, aI, t, @, n]).
 entry(vorzubereiten, [f, 'o:', '6', ts, u, b, @, r, aI, t, @, n]).
 entry(vorzubesprechen, [f, 'o:', '6', ts, u, b, @, 'S', p, r, 'E', 'C', @, n]).
-entry('Vorzüge', [f, 'o:', '6', ts, 'y:', g, @]).
-entry(vorzüglich, [f, 'o:', '6', ts, 'y:', k, l, 'I', 'C']).
+entry('Vorzuege', [f, 'o:', '6', ts, 'y:', g, @]).
+entry(vorzueglich, [f, 'o:', '6', ts, 'y:', k, l, 'I', 'C']).
 entry(vorzugsweise, [f, 'o:', '6', ts, 'u:', k, s, v, aI, z, @]).
 entry('Vorzugung', [f, 'o:', '6', ts, 'u:', g, 'U', 'N']).
 entry(vorzulesen, [f, 'o:', '6', ts, u, l, 'e:', z, @, n]).
@@ -9700,22 +9701,22 @@ entry(vorzuschlagen, [f, 'o:', '6', ts, u, 'S', l, 'a:', g, @, n]).
 entry(vorzustellen, [f, 'o:', '6', ts, u, 'S', t, 'E', l, @, n]).
 entry(vorzuziehen, [f, 'o:', '6', ts, u, ts, 'i:', @, n]).
 entry(vrauchen, [v, r, aU, x, @, n]).
-entry(wächst, [v, 'E', k, s, t]).
+entry(waechst, [v, 'E', k, s, t]).
 entry(wach, [v, a, x]).
 entry('Wagen', [v, 'a:', g, @, n]).
 entry('Waggon', [v, a, g, 'O', 'N']).
 entry('Wagner-Festspiele', [v, 'a:', g, n, '6', f, 'E', s, tS, p, 'i:', l, @]).
 entry('Wagner', [v, 'a:', g, n, '6']).
-entry(wählen, [v, 'E:', l, @, n]).
-entry(wählerisch, [v, 'E:', l, @, r, 'I', 'S']).
+entry(waehlen, [v, 'E:', l, @, n]).
+entry(waehlerisch, [v, 'E:', l, @, r, 'I', 'S']).
 entry(wahlfrei, [v, 'a:', l, f, r, aI]).
 entry(wahl, [v, 'a:', l]).
 entry(wahlweise, [v, 'a:', l, v, aI, z, @]).
 entry(wahnsinnig, [v, 'a:', n, z, 'I', n, 'I', 'C']).
 entry('Wahnsinn', [v, 'a:', n, z, 'I', n]).
 entry('Wahn', [v, 'a:', n]).
-entry(während, [v, 'E:', r, @, n, t]).
-entry(währen, [v, 'E:', r, @, n]).
+entry(waehrend, [v, 'E:', r, @, n, t]).
+entry(waehren, [v, 'E:', r, @, n]).
 entry(wahrnehmen, [v, 'a:', r, n, 'e:', m, @, n]).
 entry(wahrscheinlich, [v, 'a:', r, 'S', aI, n, l, 'I', 'C']).
 entry(wahrscheinl, [v, 'a:', r, 'S', aI, n, l]).
@@ -9727,23 +9728,23 @@ entry('Walberg', [v, 'a:', l, b, 'E', '6', k]).
 entry('Walch', [v, a, l, 'C']).
 entry('Waldvogel', [v, a, l, t, f, 'o:', g, @, l]).
 entry('Wallbaum', [v, a, l, b, aU, m]).
-entry('Wallbrühl', [v, a, l, b, r, 'y:', l]).
+entry('Wallbruehl', [v, a, l, b, r, 'y:', l]).
 entry('Walter', [v, a, l, t, '6']).
 entry('Walzer-Restaurant', [v, a, l, ts, '6', r, 'E', s, t, o, r, 'a~:']).
 entry(wandern, [v, a, n, d, '6', n]).
 entry(wann, [v, a, n]).
 entry(waren, [v, 'a:', r, @, n]).
-entry(wäre, [v, 'E:', r, @]).
+entry(waere, [v, 'E:', r, @]).
 entry(warme, [v, a, r, m, @]).
 entry(warm, [v, a, r, m]).
-entry(wärst, [v, 'E:', '6', s, t]).
+entry(waerst, [v, 'E:', '6', s, t]).
 entry(warten, [v, a, r, t, @, n]).
 entry(wartet, [v, a, r, t, @, t]).
 entry(warte, [v, a, r, t, @]).
 entry('Wartezeiten', [v, a, r, t, @, ts, aI, t, @, n]).
 entry(warum, [v, a, r, 'U', m]).
-entry(wär, [v, 'E:', '6']).
-entry('Wäsche', [v, 'E', 'S', @]).
+entry(waer, [v, 'E:', '6']).
+entry('Waesche', [v, 'E', 'S', @]).
 entry('Washington', [v, 'O', 'S', 'I', 'N', t, @, n]).
 entry(wasserscheuen, [v, a, s, '6', 'S', 'OY', @, n]).
 entry('Wasserskifahren', [v, a, s, '6', 'S', 'i:', f, 'a:', r, @, n]).
@@ -9752,7 +9753,7 @@ entry('Wasser', [v, a, s, '6']).
 entry(was, [v, a, s]).
 entry(wa, [v, a]).
 entry('Wa', [v, 'a:']).
-entry(wä, [v, 'E']).
+entry(wae, [v, 'E']).
 entry(way, [v, 'e:']).
 entry('Weber', [v, 'e:', b, '6']).
 entry('Web-Seite', [v, 'E', p, z, aI, t, @]).
@@ -9769,9 +9770,9 @@ entry(wegen, [v, 'e:', g, @, n]).
 entry('Wege', [v, 'e:', g, @]).
 entry(wegfahren, [v, 'E', k, f, 'a:', r, @, n]).
 entry(wegfahre, [v, 'E', k, f, 'a:', r, @]).
-entry(wegfährt, [v, 'E', k, f, 'E:', '6', t]).
+entry(wegfaehrt, [v, 'E', k, f, 'E:', '6', t]).
 entry(wegfallen, [v, 'E', k, f, a, l, @, n]).
-entry(wegfällt, [v, 'E', k, f, 'E', l, t]).
+entry(wegfaellt, [v, 'E', k, f, 'E', l, t]).
 entry(wegfliegen, [v, 'E', k, f, l, 'i:', g, @, n]).
 entry(wegfliege, [v, 'E', k, f, l, 'i:', g, @]).
 entry(weggefahren, [v, 'E', k, g, @, f, 'a:', r, @, n]).
@@ -9779,7 +9780,7 @@ entry(weggehen, [v, 'E', k, g, 'e:', @, n]).
 entry(weggeht, [v, 'E', k, g, 'e:', t]).
 entry(wegkommen, [v, 'E', k, k, 'O', m, @, n]).
 entry(wegkomme, [v, 'E', k, k, 'O', m, @]).
-entry(wegkönnen, [v, 'E', k, k, '9', n, @, n]).
+entry(wegkoennen, [v, 'E', k, k, '9', n, @, n]).
 entry(weglassen, [v, 'E', k, l, a, s, @, n]).
 entry('Wegner', [v, 'e:', g, n, '6']).
 entry(wegschnappen, [v, 'E', k, 'S', n, a, p, @, n]).
@@ -9796,7 +9797,7 @@ entry('Weidmann', [v, aI, t, m, a, n]).
 entry(weigern, [v, aI, g, '6', n]).
 entry('Weihnachten', [v, aI, n, a, x, t, @, n]).
 entry(weihnachtliche, [v, aI, n, a, x, t, l, 'I', 'C', @]).
-entry('Weihnachtseinkäufen', [v, aI, n, a, x, ts, aI, n, k, 'OY', f, @, n]).
+entry('Weihnachtseinkaeufen', [v, aI, n, a, x, ts, aI, n, k, 'OY', f, @, n]).
 entry('Weihnachtsfeiern', [v, aI, n, a, x, ts, f, aI, '6', n]).
 entry('Weihnachtsfeiertagen', [v, aI, n, a, x, ts, f, aI, '6', t, 'a:', g, @, n]).
 entry('Weihnachtsfeiertage', [v, aI, n, a, x, ts, f, aI, '6', t, 'a:', g, @]).
@@ -9822,8 +9823,8 @@ entry('Weinchen', [v, aI, n, 'C', @, n]).
 entry(weisen, [v, aI, z, @, n]).
 entry(weiser, [v, aI, z, '6']).
 entry(weise, [v, aI, z, @]).
-entry('Weisheitszähnen', [v, aI, s, h, aI, ts, ts, 'E:', n, @, n]).
-entry('Weisheitszähne', [v, aI, s, h, aI, ts, ts, 'E:', n, @]).
+entry('Weisheitszaehnen', [v, aI, s, h, aI, ts, ts, 'E:', n, @, n]).
+entry('Weisheitszaehne', [v, aI, s, h, aI, ts, ts, 'E:', n, @]).
 entry('Weißpflug', [v, aI, s, pf, l, 'u:', k]).
 entry('Weiss', [v, aI, s, s]).
 entry(weißt, [v, aI, s, t]).
@@ -9911,7 +9912,7 @@ entry(wessen, [v, 'E', s, @, n]).
 entry(westdeutschen, [v, 'E', s, t, d, 'OY', tS, @, n]).
 entry('Westensee', [v, 'E', s, t, @, n, z, 'e:']).
 entry(weswegen, [v, 'E', s, v, 'e:', g, @, n]).
-entry(wetterfühlig, [v, 'E', t, '6', f, 'y:', l, 'I', 'C']).
+entry(wetterfuehlig, [v, 'E', t, '6', f, 'y:', l, 'I', 'C']).
 entry('Wetters', [v, 'E', t, '6', s]).
 entry('Wetter', [v, 'E', t, '6']).
 entry('Wetzlar', [v, 'E', ts, l, a, r]).
@@ -9939,8 +9940,8 @@ entry(wiedererkennen, [v, 'i:', d, '6', 'E', '6', k, 'E', n, @, n]).
 entry(wiederholen, [v, 'i:', d, '6', h, 'o:', l, @, n]).
 entry(wiederhole, [v, 'i:', d, '6', h, 'o:', l, @]).
 entry(wiederholt, [v, 'i:', d, '6', h, 'o:', l, t]).
-entry('Wiederhören', [v, 'i:', d, '6', h, '2:', r, @, n]).
-entry('Wiederhör', [v, 'i:', d, '6', h, '2:', '6']).
+entry('Wiederhoeren', [v, 'i:', d, '6', h, '2:', r, @, n]).
+entry('Wiederhoer', [v, 'i:', d, '6', h, '2:', '6']).
 entry('Wiederh', [v, 'i:', d, '6', h]).
 entry(wiederkommen, [v, 'i:', d, '6', k, 'O', m, @, n]).
 entry(wiederkomme, [v, 'i:', d, '6', k, 'O', m, @]).
@@ -9994,7 +9995,7 @@ entry(wirst, [v, 'I', '6', s, t]).
 entry('Wirtschaftsenglisch-Kurses', [v, 'I', '6', tS, a, f, ts, 'E', 'N', l, 'I', 'S', k, 'U', '6', z, @, s]).
 entry('Wirtschaftsenglisch-Kursus', [v, 'I', '6', tS, a, f, ts, 'E', 'N', l, 'I', 'S', k, 'U', '6', z, 'U', s]).
 entry('Wirtschaftsenglisch', [v, 'I', '6', tS, a, f, ts, 'E', 'N', l, 'I', 'S']).
-entry('Wirtschafts-Staatssekretär', [v, 'I', '6', tS, a, f, ts, 'S', t, 'a:', ts, z, e, k, r, e, t, 'E:', '6']).
+entry('Wirtschafts-Staatssekretaer', [v, 'I', '6', tS, a, f, ts, 'S', t, 'a:', ts, z, e, k, r, e, t, 'E:', '6']).
 entry('Wirtschaft', [v, 'I', '6', tS, a, f, t]).
 entry(wir, [v, 'i:', '6']).
 entry(wissen, [v, 'I', s, @, n]).
@@ -10025,7 +10026,7 @@ entry('Wochenendticket', [v, 'O', x, @, n, 'E', n, t, t, 'I', k, @, t]).
 entry('Wochenend', [v, 'O', x, @, n, 'E', n, t]).
 entry('Wochenen', [v, 'O', x, @, n, 'E', n]).
 entry('Wochene', [v, 'O', x, @, n, 'E']).
-entry('Wochenhälfte', [v, 'O', x, @, n, h, 'E', l, f, t, @]).
+entry('Wochenhaelfte', [v, 'O', x, @, n, h, 'E', l, f, t, @]).
 entry('Wochenkalender', [v, 'O', x, @, n, k, a, l, 'E', n, d, '6']).
 entry('Wochenmitte', [v, 'O', x, @, n, m, 'I', t, @]).
 entry('Wochenplanungs-Sitzung', [v, 'O', x, @, n, p, l, 'a:', n, 'U', 'N', s, z, 'I', ts, 'U', 'N']).
@@ -10035,32 +10036,32 @@ entry('Wochentagen', [v, 'O', x, @, n, t, 'a:', g, @, n]).
 entry('Wochentage', [v, 'O', x, @, n, t, 'a:', g, @]).
 entry('Wochentag', [v, 'O', x, @, n, t, 'a:', k]).
 entry('Wochenteil', [v, 'O', x, @, n, t, aI, l]).
-entry(wöchentlichen, [v, '9', 'C', @, n, t, l, 'I', 'C', @, n]).
-entry(wöchentliche, [v, '9', 'C', @, n, t, l, 'I', 'C', @]).
-entry(wöchentlich, [v, '9', 'C', @, n, t, l, 'I', 'C']).
+entry(woechentlichen, [v, '9', 'C', @, n, t, l, 'I', 'C', @, n]).
+entry(woechentliche, [v, '9', 'C', @, n, t, l, 'I', 'C', @]).
+entry(woechentlich, [v, '9', 'C', @, n, t, l, 'I', 'C']).
 entry(wochen, [v, 'O', x, @, n]).
 entry(wochenweise, [v, 'O', x, @, n, v, aI, z, @]).
 entry(woche, [v, 'O', x, @]).
-entry(wöchi, [v, '9', 'C', 'I']).
+entry(woechi, [v, '9', 'C', 'I']).
 entry('Woch', [v, 'O', x]).
 entry('Wocke', [v, 'O', k, @]).
-entry(wofür, [v, o, f, 'y:', '6']).
+entry(wofuer, [v, o, f, 'y:', '6']).
 entry(wohe, [v, o, h, 'e:']).
 entry(wohin, [v, o, h, 'I', n]).
 entry(wohler, [v, 'o:', l, '6']).
-entry(wohlfühlen, [v, 'o:', l, f, 'y:', l, @, n]).
+entry(wohlfuehlen, [v, 'o:', l, f, 'y:', l, @, n]).
 entry(wohlsten, [v, 'o:', l, s, t, @, n]).
 entry(wohl, [v, 'o:', l]).
 entry(wohnen, [v, 'o:', n, @, n]).
 entry(wohne, [v, 'o:', n, @]).
 entry(wohnst, [v, 'o:', n, s, t]).
 entry(wohnt, [v, 'o:', n, t]).
-entry('Wolfenbüttel', [v, 'O', l, f, @, n, b, 'Y', t, @, l]).
+entry('Wolfenbuettel', [v, 'O', l, f, @, n, b, 'Y', t, @, l]).
 entry('Wolfgang', [v, 'O', l, f, g, a, 'N']).
 entry('Wolfrum', [v, 'O', l, f, r, 'U', m]).
 entry('Wolfsburg', [v, 'O', l, f, s, b, 'U', '6', k]).
 entry(wollen, [v, 'O', l, @, n]).
-entry('Wöllnatz', [v, '9', l, n, a, ts]).
+entry('Woellnatz', [v, '9', l, n, a, ts]).
 entry(wollten, [v, 'O', l, t, @, n]).
 entry(wolltest, [v, 'O', l, t, @, s, t]).
 entry(wollte, [v, 'O', l, t, @]).
@@ -10068,27 +10069,27 @@ entry(wollt, [v, 'O', l, t]).
 entry(woll, [v, 'O', l]).
 entry('Wolters', [v, 'O', l, t, '6', s]).
 entry(womit, [v, o, m, 'I', t]).
-entry(womöglich, [v, o, m, '2:', k, l, 'I', 'C']).
+entry(womoeglich, [v, o, m, '2:', k, l, 'I', 'C']).
 entry(wonach, [v, o, n, 'a:', x]).
 entry(wonschen, [v, 'O', n, 'S', @, n]).
 entry(woran, [v, o, r, a, n]).
 entry(worauf, [v, o, r, aU, f]).
-entry('Wörb', [v, '9', '6', p]).
+entry('Woerb', [v, '9', '6', p]).
 entry(worden, [v, 'O', '6', d, @, n]).
 entry('Workaholic', [v, '9', '6', k, a, h, 'O', l, 'I', k]).
 entry('Workshop', [v, '9', '6', k, 'S', 'O', p]).
 entry('Worten', [v, 'O', '6', t, @, n]).
-entry('Wörter', [v, '9', '6', t, '6']).
+entry('Woerter', [v, '9', '6', t, '6']).
 entry('Worte', [v, 'O', '6', t, @]).
 entry('Wort', [v, 'O', '6', t]).
-entry(worüber, [v, o, r, 'y:', b, '6']).
+entry(worueber, [v, o, r, 'y:', b, '6']).
 entry(worum, [v, 'o:', r, 'U', m]).
 entry(wo, [v, 'o:']).
 entry(wovon, [v, o, f, 'O', n]).
 entry(wow, [v, aU]).
 entry('Woyzek', [v, 'OY', ts, 'E', k]).
-entry('Wübbena', [v, 'Y', b, @, n, a]).
-entry('Wühr', [v, 'y:', '6']).
+entry('Wuebbena', [v, 'Y', b, @, n, a]).
+entry('Wuehr', [v, 'y:', '6']).
 entry(wunden, [v, 'U', n, d, @, n]).
 entry(wunderbaren, [v, 'U', n, d, '6', b, 'a:', r, @, n]).
 entry(wunderbarer, [v, 'U', n, d, '6', b, 'a:', r, '6']).
@@ -10096,35 +10097,35 @@ entry(wunderbare, [v, 'U', n, d, '6', b, 'a:', r, @]).
 entry(wunderbar, [v, 'U', n, d, '6', b, 'a:', r]).
 entry(wunderba, [v, 'U', n, d, '6', b, a]).
 entry(wundern, [v, 'U', n, d, '6', n]).
-entry(wunderschönen, [v, 'U', n, d, '6', 'S', '2:', n, @, n]).
-entry(wunderschönes, [v, 'U', n, d, '6', 'S', '2:', n, @, s]).
-entry(wunderschöne, [v, 'U', n, d, '6', 'S', '2:', n, @]).
-entry(wunderschön, [v, 'U', n, d, '6', 'S', '2:', n]).
+entry(wunderschoenen, [v, 'U', n, d, '6', 'S', '2:', n, @, n]).
+entry(wunderschoenes, [v, 'U', n, d, '6', 'S', '2:', n, @, s]).
+entry(wunderschoene, [v, 'U', n, d, '6', 'S', '2:', n, @]).
+entry(wunderschoen, [v, 'U', n, d, '6', 'S', '2:', n]).
 entry(wundervoll, [v, 'U', n, d, '6', f, 'O', l, @]).
 entry(wunder, [v, 'U', n, d, '6']).
-entry(wünschen, [v, 'Y', n, 'S', @, n]).
-entry(wünsche, [v, 'Y', n, 'S', @]).
+entry(wuenschen, [v, 'Y', n, 'S', @, n]).
+entry(wuensche, [v, 'Y', n, 'S', @]).
 entry('Wunschtermin', [v, 'U', n, 'S', t, 'E', '6', m, 'i:', n]).
 entry('Wunsch', [v, 'U', n, 'S']).
-entry(wünsch, [v, 'Y', n, 'S']).
+entry(wuensch, [v, 'Y', n, 'S']).
 entry(wun, [v, 'U', n]).
 entry('Wuppertal', [v, 'U', p, '6', t, 'a:', l]).
 entry(wurden, [v, 'U', '6', d, @, n]).
-entry(würden, [v, 'Y', '6', d, @, n]).
-entry(würderum, [v, 'Y', '6', d, @, r, 'U', m]).
-entry(würdest, [v, 'Y', '6', d, @, s, t]).
+entry(wuerden, [v, 'Y', '6', d, @, n]).
+entry(wuerderum, [v, 'Y', '6', d, @, r, 'U', m]).
+entry(wuerdest, [v, 'Y', '6', d, @, s, t]).
 entry(wurde, [v, 'U', '6', d, @]).
-entry(würde, [v, 'Y', '6', d, @]).
+entry(wuerde, [v, 'Y', '6', d, @]).
 entry('Wurscht', [v, 'U', '6', 'S', t]).
-entry('Würstchen', [v, 'Y', '6', s, t, 'C', @, n]).
-entry(wür, [v, 'Y', '6']).
-entry('Würzburg', [v, 'Y', '6', ts, b, 'U', '6', k]).
-entry('Würze', [v, 'Y', '6', ts, @]).
-entry(wüssen, [v, 'Y', s, @, n]).
-entry(wüßten, [v, 'Y', s, t, @, n]).
+entry('Wuerstchen', [v, 'Y', '6', s, t, 'C', @, n]).
+entry(wuer, [v, 'Y', '6']).
+entry('Wuerzburg', [v, 'Y', '6', ts, b, 'U', '6', k]).
+entry('Wuerze', [v, 'Y', '6', ts, @]).
+entry(wuessen, [v, 'Y', s, @, n]).
+entry(wueßten, [v, 'Y', s, t, @, n]).
 entry(wußte, [v, 'U', s, t, @]).
-entry(wüßte, [v, 'Y', s, t, @]).
-entry(wü, [v, 'Y']).
+entry(wueßte, [v, 'Y', s, t, @]).
+entry(wue, [v, 'Y']).
 entry(w, [v]).
 entry('Xaver', [k, s, 'a:', v, '6']).
 entry('Xylophon', [k, s, y, l, o, f, 'o:', n]).
@@ -10134,19 +10135,19 @@ entry('Yoshimura', [j, o, s, i, m, 'u:', r, a]).
 entry('Yps', ['Y', p, s]).
 entry(zack, [ts, a, k]).
 entry(zahlen, [ts, 'a:', l, @, n]).
-entry(zählen, [ts, 'E:', l, @, n]).
+entry(zaehlen, [ts, 'E:', l, @, n]).
 entry(zahle, [ts, 'a:', l, @]).
-entry(zähle, [ts, 'E:', l, @]).
+entry(zaehle, [ts, 'E:', l, @]).
 entry(zahlreiche, [ts, 'a:', l, r, aI, 'C', @]).
 entry('Zahl', [ts, 'a:', l]).
 entry(zahlt, [ts, 'a:', l, t]).
-entry(zählt, [ts, 'E:', l, t]).
+entry(zaehlt, [ts, 'E:', l, t]).
 entry('Zahlungs', [ts, 'a:', l, 'U', 'N', s]).
-entry('Zählung', [ts, 'E:', l, 'U', 'N']).
+entry('Zaehlung', [ts, 'E:', l, 'U', 'N']).
 entry('Zahnarzttermin', [ts, 'a:', n, a, r, ts, t, t, 'E', '6', m, 'i:', n]).
 entry('Zahnarzt', [ts, 'a:', n, a, r, ts, t]).
 entry('Zanker', [ts, a, 'N', k, '6']).
-entry(zäumen, [ts, 'OY', m, @, n]).
+entry(zaeumen, [ts, 'OY', m, @, n]).
 entry(zaze, [ts, a, ts, @]).
 entry('Zboril', [s, b, 'o:', r, i, l]).
 entry('Zechnall', [ts, 'E', 'C', n, a, l]).
@@ -10169,17 +10170,17 @@ entry('Zeitersparnis', [ts, aI, t, 'E', '6', 'S', p, 'a:', r, n, 'I', s]).
 entry('Zeitfrage', [ts, aI, t, f, r, 'a:', g, @]).
 entry('Zeitgeschichte', [ts, aI, t, g, @, 'S', 'I', 'C', t, @]).
 entry('Zeitgestaltung', [ts, aI, t, g, @, 'S', t, a, l, t, 'U', 'N']).
-entry('Zeitgründen', [ts, aI, t, g, r, 'Y', n, d, @, n]).
+entry('Zeitgruenden', [ts, aI, t, g, r, 'Y', n, d, @, n]).
 entry(zeitig, [ts, aI, t, 'I', 'C']).
 entry(zeitlichen, [ts, aI, t, l, 'I', 'C', @, n]).
 entry(zeitliches, [ts, aI, t, l, 'I', 'C', @, s]).
 entry(zeitlich, [ts, aI, t, l, 'I', 'C']).
-entry(zeitmäßig, [ts, aI, t, m, 'E:', s, 'I', 'C']).
+entry(zeitmaeßig, [ts, aI, t, m, 'E:', s, 'I', 'C']).
 entry('Zeitnot', [ts, aI, t, n, 'o:', t]).
-entry('Zeitpläne', [ts, aI, t, p, l, 'E:', n, @]).
+entry('Zeitplaene', [ts, aI, t, p, l, 'E:', n, @]).
 entry('Zeitplan', [ts, aI, t, p, l, 'a:', n]).
 entry('Zeitpunkt', [ts, aI, t, p, 'U', 'N', k, t]).
-entry('Zeiträume', [ts, aI, t, r, 'OY', m, @]).
+entry('Zeitraeume', [ts, aI, t, r, 'OY', m, @]).
 entry('Zeitraums', [ts, aI, t, r, aU, m, s]).
 entry('Zeitraum', [ts, aI, t, r, aU, m]).
 entry('Zeitreserven', [ts, aI, t, r, e, z, 'E', '6', v, @, n]).
@@ -10208,7 +10209,7 @@ entry(zentralste, [ts, 'E', n, t, r, 'a:', l, s, t, @]).
 entry(zentral, [ts, 'E', n, t, r, 'a:', l]).
 entry(zentra, [ts, 'E', n, t, r, a]).
 entry(zentrier, [ts, 'E', n, t, r, 'i:', '6']).
-entry('Zentrumsnähe', [ts, 'E', n, t, r, 'U', m, s, n, 'E:', @]).
+entry('Zentrumsnaehe', [ts, 'E', n, t, r, 'U', m, s, n, 'E:', @]).
 entry(zentrumsnah, [ts, 'E', n, t, r, 'U', m, s, n, 'a:']).
 entry('Zentrums', [ts, 'E', n, t, r, 'U', m, s]).
 entry('Zentrum', [ts, 'E', n, t, r, 'U', m]).
@@ -10220,8 +10221,8 @@ entry(zerhackt, [ts, 'E', '6', h, a, k, t]).
 entry(zerrissen, [ts, 'E', '6', r, 'I', s, @, n]).
 entry(zerschlagen, [ts, 'E', '6', 'S', l, 'a:', g, @, n]).
 entry('Zerstreuung', [ts, 'E', '6', 'S', t, r, 'OY', 'U', 'N']).
-entry(zerstückeln, [ts, 'E', '6', 'S', t, 'Y', k, @, l, n]).
-entry(zerstückelt, [ts, 'E', '6', 'S', t, 'Y', k, @, l, t]).
+entry(zerstueckeln, [ts, 'E', '6', 'S', t, 'Y', k, @, l, n]).
+entry(zerstueckelt, [ts, 'E', '6', 'S', t, 'Y', k, @, l, t]).
 entry(ze, [ts, e]).
 entry('Zettel', [ts, 'E', t, @, l]).
 entry(zeug, [ts, 'OY', k]).
@@ -10256,12 +10257,12 @@ entry(zo, [ts, o]).
 entry('Zovember', [ts, o, v, 'E', m, b, '6']).
 entry(zuallererst, [ts, u, a, l, '6', 'e:', '6', s, t]).
 entry(zubringen, [ts, 'u:', b, r, 'I', 'N', @, n]).
-entry(zücken, [ts, 'Y', k, @, n]).
-entry(zücke, [ts, 'Y', k, @]).
+entry(zuecken, [ts, 'Y', k, @, n]).
+entry(zuecke, [ts, 'Y', k, @]).
 entry(zudem, [ts, u, d, 'e:', m]).
 entry(zuerst, [ts, u, 'e:', '6', s, t]).
-entry(zufälligerweise, [ts, 'u:', f, 'E', l, 'I', g, '6', v, aI, z, @]).
-entry(zufällig, [ts, 'u:', f, 'E', l, 'I', 'C']).
+entry(zufaelligerweise, [ts, 'u:', f, 'E', l, 'I', g, '6', v, aI, z, @]).
+entry(zufaellig, [ts, 'u:', f, 'E', l, 'I', 'C']).
 entry('Zufall', [ts, 'u:', f, a, l]).
 entry(zufrieden, [ts, u, f, r, 'i:', d, @, n]).
 entry('Zugangebot', [ts, 'u:', k, a, n, g, @, b, 'o:', t]).
@@ -10272,7 +10273,7 @@ entry(zugeben, [ts, 'u:', g, 'e:', b, @, n]).
 entry(zugegebenermaßen, [ts, 'u:', g, @, g, 'e:', b, @, n, '6', m, 'a:', s, @, n]).
 entry(zugekommen, [ts, 'u:', g, @, k, 'O', m, @, n]).
 entry(zugelassen, [ts, 'u:', g, @, l, a, s, @, n]).
-entry('Zügen', [ts, 'y:', g, @, n]).
+entry('Zuegen', [ts, 'y:', g, @, n]).
 entry(zugeordnet, [ts, 'u:', g, @, 'O', '6', d, n, @, t]).
 entry(zugepackt, [ts, 'u:', g, @, p, a, k, t]).
 entry(zugepflastert, [ts, 'u:', g, @, pf, l, a, s, t, '6', t]).
@@ -10280,23 +10281,23 @@ entry(zugeplant, [ts, 'u:', g, @, p, l, 'a:', n, t]).
 entry(zugereicht, [ts, 'u:', g, @, r, aI, 'C', t]).
 entry(zugesandt, [ts, 'u:', g, @, z, a, n, t]).
 entry(zugeschickt, [ts, 'u:', g, @, 'S', 'I', k, t]).
-entry('Zugeständnisse', [ts, 'u:', g, @, 'S', t, 'E', n, t, n, 'I', s, @]).
+entry('Zugestaendnisse', [ts, 'u:', g, @, 'S', t, 'E', n, t, n, 'I', s, @]).
 entry(zugestopft, [ts, 'u:', g, @, 'S', t, 'O', pf, t]).
 entry('Zuges', [ts, 'u:', g, @, s]).
 entry(zugetragen, [ts, 'u:', g, @, t, r, 'a:', g, @, n]).
-entry('Züge', [ts, 'y:', g, @]).
+entry('Zuege', [ts, 'y:', g, @]).
 entry('Zugfahren', [ts, 'u:', k, f, 'a:', r, @, n]).
 entry('Zugfahrkarten', [ts, 'u:', k, f, 'a:', r, k, a, r, t, @, n]).
-entry('Zugfahrpläne', [ts, 'u:', k, f, 'a:', r, p, l, 'E:', n, @]).
+entry('Zugfahrplaene', [ts, 'u:', k, f, 'a:', r, p, l, 'E:', n, @]).
 entry('Zugfahrplan', [ts, 'u:', k, f, 'a:', r, p, l, 'a:', n]).
 entry('Zugfahrten', [ts, 'u:', k, f, 'a:', r, t, @, n]).
 entry('Zugfahr', [ts, 'u:', k, f, 'a:', r]).
 entry('Zugfahrt', [ts, 'u:', k, f, 'a:', r, t]).
 entry('Zugfa', [ts, 'u:', k, f, a]).
-entry(zügig, [ts, 'y:', g, 'I', 'C']).
-entry(zugmäßig, [ts, 'u:', k, m, 'E:', s, 'I', 'C']).
+entry(zuegig, [ts, 'y:', g, 'I', 'C']).
+entry(zugmaeßig, [ts, 'u:', k, m, 'E:', s, 'I', 'C']).
 entry('Zugnummer', [ts, 'u:', k, n, 'U', m, '6']).
-entry('Zugplätze', [ts, 'u:', k, p, l, 'E', ts, @]).
+entry('Zugplaetze', [ts, 'u:', k, p, l, 'E', ts, @]).
 entry('Zugreise', [ts, 'u:', k, r, aI, z, @]).
 entry('Zugreservierungen', [ts, 'u:', k, r, e, z, 'E', '6', v, 'i:', r, 'U', 'N', @, n]).
 entry('Zugreservierung', [ts, 'u:', k, r, e, z, 'E', '6', v, 'i:', r, 'U', 'N']).
@@ -10305,7 +10306,7 @@ entry('Zugsystem', [ts, 'u:', k, z, 'Y', s, t, 'e:', m]).
 entry('Zugtickets', [ts, 'u:', k, t, 'I', k, @, ts]).
 entry('Zugticket', [ts, 'u:', k, t, 'I', k, @, t]).
 entry(zug, [ts, 'u:', k]).
-entry('Zugunglück', [ts, 'u:', k, 'U', n, g, l, 'Y', k]).
+entry('Zugunglueck', [ts, 'u:', k, 'U', n, g, l, 'Y', k]).
 entry(zugunsten, [ts, u, g, 'U', n, s, t, @, n]).
 entry(zugute, [ts, u, g, 'u:', t, @]).
 entry('Zugverbindungen', [ts, 'u:', k, f, 'E', '6', b, 'I', n, d, 'U', 'N', @, n]).
@@ -10315,82 +10316,82 @@ entry('Zugverb', [ts, 'u:', k, f, 'E', '6', p]).
 entry('Zugv', [ts, 'u:', k, f]).
 entry('Zugzeiten', [ts, 'u:', k, ts, aI, t, @, n]).
 entry('Zugzeit', [ts, 'u:', k, ts, aI, t]).
-entry(zuklären, [ts, u, k, l, 'E:', r, @, n]).
+entry(zuklaeren, [ts, u, k, l, 'E:', r, @, n]).
 entry(zukommen, [ts, 'u:', k, 'O', m, @, n]).
 entry(zukommt, [ts, 'u:', k, 'O', m, t]).
 entry('Zukunft', [ts, 'u:', k, 'U', n, f, t]).
 entry(zuliebe, [ts, u, l, 'i:', b, @]).
 entry(zumal, [ts, u, m, 'a:', l]).
 entry('Zum-Funkturm', [ts, 'U', m, f, 'U', 'N', k, t, 'U', '6', m]).
-entry('Zum-Goldenen-Löwen', [ts, 'U', m, g, 'O', l, d, @, n, @, n, l, '2:', v, @, n]).
+entry('Zum-Goldenen-Loewen', [ts, 'U', m, g, 'O', l, d, @, n, @, n, l, '2:', v, @, n]).
 entry(zumindestens, [ts, u, m, 'I', n, d, @, s, t, @, n, s]).
 entry(zumindest, [ts, u, m, 'I', n, d, @, s, t]).
-entry('Zum-Löwen', [ts, 'U', m, l, '2:', v, @, n]).
+entry('Zum-Loewen', [ts, 'U', m, l, '2:', v, @, n]).
 entry(zum, [ts, 'U', m]).
 entry(zumutbar, [ts, 'u:', m, 'u:', t, b, 'a:', r]).
 entry(zumuten, [ts, 'u:', m, 'u:', t, @, n]).
 entry(zumute, [ts, u, m, 'u:', t, @]).
 entry('Zumutung', [ts, 'u:', m, 'u:', t, 'U', 'N']).
-entry(zunächst, [ts, u, n, 'E:', 'C', s, t]).
+entry(zunaechst, [ts, u, n, 'E:', 'C', s, t]).
 entry(zun, [ts, 'u:', n]).
 entry(zupaß, [ts, u, p, a, s]).
 entry(zurechtfinden, [ts, u, r, 'E', 'C', t, f, 'I', n, d, @, n]).
 entry(zurechtgelegt, [ts, u, r, 'E', 'C', t, g, @, l, 'e:', k, t]).
 entry(zurechtkommen, [ts, u, r, 'E', 'C', t, k, 'O', m, @, n]).
 entry(zurechtmachen, [ts, u, r, 'E', 'C', t, m, a, x, @, n]).
-entry('Zürich', [ts, 'y:', r, 'I', 'C']).
+entry('Zuerich', [ts, 'y:', r, 'I', 'C']).
 entry(zur, [ts, 'u:', '6']).
-entry(zurückfahren, [ts, u, r, 'Y', k, f, 'a:', r, @, n]).
-entry(zurückfliegen, [ts, u, r, 'Y', k, f, l, 'i:', g, @, n]).
-entry(zurückfliegt, [ts, u, r, 'Y', k, f, l, 'i:', k, t]).
-entry('Zurückflug', [ts, u, r, 'Y', k, f, l, 'u:', k]).
-entry(zurückführen, [ts, u, r, 'Y', k, f, 'y:', r, @, n]).
-entry(zurückgeben, [ts, u, r, 'Y', k, g, 'e:', b, @, n]).
-entry(zurückgefahren, [ts, u, r, 'Y', k, g, @, f, 'a:', r, @, n]).
-entry(zurückgehen, [ts, u, r, 'Y', k, g, 'e:', @, n]).
-entry(zurückgeht, [ts, u, r, 'Y', k, g, 'e:', t]).
-entry(zurückgreifen, [ts, u, r, 'Y', k, g, r, aI, f, @, n]).
-entry(zurückhalten, [ts, u, r, 'Y', k, h, a, l, t, @, n]).
-entry(zurückkehren, [ts, u, r, 'Y', k, k, 'e:', r, @, n]).
-entry(zurückkommen, [ts, u, r, 'Y', k, k, 'O', m, @, n]).
-entry(zurückkomme, [ts, u, r, 'Y', k, k, 'O', m, @]).
-entry(zurückko, [ts, u, r, 'Y', k, k, 'O']).
-entry(zurücklegen, [ts, u, r, 'Y', k, l, 'e:', g, @, n]).
-entry(zurücknehmen, [ts, u, r, 'Y', k, n, 'e:', m, @, n]).
-entry(zurückrechnen, [ts, u, r, 'Y', k, r, 'E', 'C', n, @, n]).
-entry(zurückrechnet, [ts, u, r, 'Y', k, r, 'E', 'C', n, @, t]).
-entry(zurückreisen, [ts, u, r, 'Y', k, r, aI, z, @, n]).
-entry(zurückrufen, [ts, u, r, 'Y', k, r, 'u:', f, @, n]).
-entry(zurückrufe, [ts, u, r, 'Y', k, r, 'u:', f, @]).
-entry(zurück, [ts, u, r, 'Y', k]).
-entry('Zurückziehen', [ts, u, r, 'Y', k, ts, 'i:', @, n]).
-entry(zurückzufahren, [ts, u, r, 'Y', k, ts, u, f, 'a:', r, @, n]).
-entry(zurückzufliegen, [ts, u, r, 'Y', k, ts, u, f, l, 'i:', g, @, n]).
-entry(zurückzugehen, [ts, u, r, 'Y', k, ts, u, g, 'e:', @, n]).
-entry(zurückzukommen, [ts, u, r, 'Y', k, ts, u, k, 'O', m, @, n]).
-entry(zurückzurufen, [ts, u, r, 'Y', k, ts, u, r, 'u:', f, @, n]).
-entry(zurü, [ts, u, r, 'Y']).
+entry(zurueckfahren, [ts, u, r, 'Y', k, f, 'a:', r, @, n]).
+entry(zurueckfliegen, [ts, u, r, 'Y', k, f, l, 'i:', g, @, n]).
+entry(zurueckfliegt, [ts, u, r, 'Y', k, f, l, 'i:', k, t]).
+entry('Zurueckflug', [ts, u, r, 'Y', k, f, l, 'u:', k]).
+entry(zurueckfuehren, [ts, u, r, 'Y', k, f, 'y:', r, @, n]).
+entry(zurueckgeben, [ts, u, r, 'Y', k, g, 'e:', b, @, n]).
+entry(zurueckgefahren, [ts, u, r, 'Y', k, g, @, f, 'a:', r, @, n]).
+entry(zurueckgehen, [ts, u, r, 'Y', k, g, 'e:', @, n]).
+entry(zurueckgeht, [ts, u, r, 'Y', k, g, 'e:', t]).
+entry(zurueckgreifen, [ts, u, r, 'Y', k, g, r, aI, f, @, n]).
+entry(zurueckhalten, [ts, u, r, 'Y', k, h, a, l, t, @, n]).
+entry(zurueckkehren, [ts, u, r, 'Y', k, k, 'e:', r, @, n]).
+entry(zurueckkommen, [ts, u, r, 'Y', k, k, 'O', m, @, n]).
+entry(zurueckkomme, [ts, u, r, 'Y', k, k, 'O', m, @]).
+entry(zurueckko, [ts, u, r, 'Y', k, k, 'O']).
+entry(zuruecklegen, [ts, u, r, 'Y', k, l, 'e:', g, @, n]).
+entry(zuruecknehmen, [ts, u, r, 'Y', k, n, 'e:', m, @, n]).
+entry(zurueckrechnen, [ts, u, r, 'Y', k, r, 'E', 'C', n, @, n]).
+entry(zurueckrechnet, [ts, u, r, 'Y', k, r, 'E', 'C', n, @, t]).
+entry(zurueckreisen, [ts, u, r, 'Y', k, r, aI, z, @, n]).
+entry(zurueckrufen, [ts, u, r, 'Y', k, r, 'u:', f, @, n]).
+entry(zurueckrufe, [ts, u, r, 'Y', k, r, 'u:', f, @]).
+entry(zurueck, [ts, u, r, 'Y', k]).
+entry('Zurueckziehen', [ts, u, r, 'Y', k, ts, 'i:', @, n]).
+entry(zurueckzufahren, [ts, u, r, 'Y', k, ts, u, f, 'a:', r, @, n]).
+entry(zurueckzufliegen, [ts, u, r, 'Y', k, ts, u, f, l, 'i:', g, @, n]).
+entry(zurueckzugehen, [ts, u, r, 'Y', k, ts, u, g, 'e:', @, n]).
+entry(zurueckzukommen, [ts, u, r, 'Y', k, ts, u, k, 'O', m, @, n]).
+entry(zurueckzurufen, [ts, u, r, 'Y', k, ts, u, r, 'u:', f, @, n]).
+entry(zurue, [ts, u, r, 'Y']).
 entry(zusagen, [ts, 'u:', z, 'a:', g, @, n]).
 entry(zusagt, [ts, 'u:', z, a, k, t]).
 entry(zusammenarbeiten, [ts, u, z, a, m, @, n, a, r, b, aI, t, @, n]).
 entry('Zusammenarbeit', [ts, u, z, a, m, @, n, a, r, b, aI, t]).
 entry(zusammenbekommen, [ts, u, z, a, m, @, n, b, @, k, 'O', m, @, n]).
-entry(zusammendrängt, [ts, u, z, a, m, @, n, d, r, 'E', 'N', t]).
+entry(zusammendraengt, [ts, u, z, a, m, @, n, d, r, 'E', 'N', t]).
 entry(zusammenfassen, [ts, u, z, a, m, @, n, f, a, s, @, n]).
 entry('Zusammenfassung', [ts, u, z, a, m, @, n, f, a, s, 'U', 'N']).
 entry(zusammenfinden, [ts, u, z, a, m, @, n, f, 'I', n, d, @, n]).
-entry(zusammengedrückt, [ts, u, z, a, m, @, n, g, @, d, r, 'Y', k, t]).
+entry(zusammengedrueckt, [ts, u, z, a, m, @, n, g, @, d, r, 'Y', k, t]).
 entry(zusammengefaßt, [ts, u, z, a, m, @, n, g, @, f, a, s, t]).
 entry(zusammengekommen, [ts, u, z, a, m, @, n, g, @, k, 'O', m, @, n]).
 entry(zusammengerechnet, [ts, u, z, a, m, @, n, g, @, r, 'E', 'C', n, @, t]).
 entry(zusammengerufen, [ts, u, z, a, m, @, n, g, @, r, 'u:', f, @, n]).
 entry(zusammengesammelt, [ts, u, z, a, m, @, n, g, @, z, a, m, 'E', l, t]).
 entry(zusammengestellt, [ts, u, z, a, m, @, n, g, @, 'S', t, 'E', l, t]).
-entry(zusammenhängenden, [ts, u, z, a, m, @, n, h, 'E', 'N', @, n, d, @, n]).
-entry(zusammenhängende, [ts, u, z, a, m, @, n, h, 'E', 'N', @, n, d, @]).
-entry(zusammenhängend, [ts, u, z, a, m, @, n, h, 'E', 'N', @, n, t]).
+entry(zusammenhaengenden, [ts, u, z, a, m, @, n, h, 'E', 'N', @, n, d, @, n]).
+entry(zusammenhaengende, [ts, u, z, a, m, @, n, h, 'E', 'N', @, n, d, @]).
+entry(zusammenhaengend, [ts, u, z, a, m, @, n, h, 'E', 'N', @, n, t]).
 entry('Zusammenhang', [ts, u, z, a, m, @, n, h, a, 'N']).
-entry(zusammenkämen, [ts, u, z, a, m, @, n, k, 'E:', m, @, n]).
+entry(zusammenkaemen, [ts, u, z, a, m, @, n, k, 'E:', m, @, n]).
 entry(zusammenklauben, [ts, u, z, a, m, @, n, k, l, aU, b, @, n]).
 entry(zusammenkommen, [ts, u, z, a, m, @, n, k, 'O', m, @, n]).
 entry(zusammenkriegen, [ts, u, z, a, m, @, n, k, r, 'i:', g, @, n]).
@@ -10414,8 +10415,8 @@ entry(zusammenzulegen, [ts, u, z, a, m, @, n, ts, u, l, 'e:', g, @, n]).
 entry(zusammenzurufen, [ts, u, z, a, m, @, n, ts, u, r, 'u:', f, @, n]).
 entry(zusammenzusetzen, [ts, u, z, a, m, @, n, ts, u, z, 'E', ts, @, n]).
 entry(zusa, [ts, u, z, a]).
-entry(zusätzliche, [ts, 'u:', z, 'E', ts, l, 'I', 'C', @]).
-entry(zusätzlich, [ts, 'u:', z, 'E', ts, l, 'I', 'C']).
+entry(zusaetzliche, [ts, 'u:', z, 'E', ts, l, 'I', 'C', @]).
+entry(zusaetzlich, [ts, 'u:', z, 'E', ts, l, 'I', 'C']).
 entry(zuschicken, [ts, 'u:', 'S', 'I', k, @, n]).
 entry(zuschicke, [ts, 'u:', 'S', 'I', k, @]).
 entry(zuschlagen, [ts, 'u:', 'S', l, 'a:', g, @, n]).
@@ -10424,9 +10425,9 @@ entry(zuschneiden, [ts, 'u:', 'S', n, aI, d, @, n]).
 entry(zusehen, [ts, 'u:', z, 'e:', @, n]).
 entry(zusenden, [ts, 'u:', z, 'E', n, d, @, n]).
 entry(zustande, [ts, u, 'S', t, a, n, d, @]).
-entry(zuständigen, [ts, 'u:', 'S', t, 'E', n, d, 'I', g, @, n]).
-entry(zuständige, [ts, 'u:', 'S', t, 'E', n, d, 'I', g, @]).
-entry(zuständig, [ts, 'u:', 'S', t, 'E', n, d, 'I', 'C']).
+entry(zustaendigen, [ts, 'u:', 'S', t, 'E', n, d, 'I', g, @, n]).
+entry(zustaendige, [ts, 'u:', 'S', t, 'E', n, d, 'I', g, @]).
+entry(zustaendig, [ts, 'u:', 'S', t, 'E', n, d, 'I', 'C']).
 entry('Zustand', [ts, 'u:', 'S', t, a, n, t]).
 entry(zusteigen, [ts, 'u:', 'S', t, aI, g, @, n]).
 entry(zusteige, [ts, 'u:', 'S', t, aI, g, @]).
@@ -10437,19 +10438,19 @@ entry(zutreffend, [ts, 'u:', t, r, 'E', f, @, n, t]).
 entry(zutreffen, [ts, 'u:', t, r, 'E', f, @, n]).
 entry(zu, [ts, 'u:']).
 entry('Zu', [ts, u]).
-entry(zuverlässiger, [ts, 'u:', f, 'E', '6', l, 'E', s, 'I', g, '6']).
+entry(zuverlaessiger, [ts, 'u:', f, 'E', '6', l, 'E', s, 'I', g, '6']).
 entry(zuviel, [ts, u, f, 'i:', l]).
 entry(zuvorkommen, [ts, u, f, 'o:', '6', k, 'O', m, @, n]).
 entry(zuvor, [ts, u, f, 'o:', '6']).
 entry(zuwenig, [ts, u, v, 'e:', n, 'I', 'C']).
 entry(zuzahlen, [ts, 'u:', ts, 'a:', l, @, n]).
 entry('Zuzahlung', [ts, 'u:', ts, 'a:', l, 'U', 'N']).
-entry(zuzüglich, [ts, 'u:', ts, 'y:', k, l, 'I', 'C']).
+entry(zuzueglich, [ts, 'u:', ts, 'y:', k, l, 'I', 'C']).
 entry(zuzusagen, [ts, 'u:', ts, u, z, 'a:', g, @, n]).
-entry(zwangsläufig, [ts, v, a, 'N', s, l, 'OY', f, 'I', 'C']).
-entry(zwängt, [ts, v, 'E', 'N', t]).
+entry(zwangslaeufig, [ts, v, a, 'N', s, l, 'OY', f, 'I', 'C']).
+entry(zwaengt, [ts, v, 'E', 'N', t]).
 entry(zwan, [ts, v, a, n]).
-entry(zwanzigminütigen, [ts, v, a, n, ts, 'I', 'C', m, 'I', n, 'y:', t, 'I', g, @, n]).
+entry(zwanzigminuetigen, [ts, v, a, n, ts, 'I', 'C', m, 'I', n, 'y:', t, 'I', g, @, n]).
 entry(zwanzigstem, [ts, v, a, n, ts, 'I', 'C', s, t, @, m]).
 entry(zwanzigsten, [ts, v, a, n, ts, 'I', 'C', s, t, @, n]).
 entry(zwanzigster, [ts, v, a, n, ts, 'I', 'C', s, t, '6']).
@@ -10473,12 +10474,12 @@ entry(zweihundert, [ts, v, aI, h, 'U', n, d, '6', t]).
 entry(zweimal, [ts, v, aI, m, 'a:', l]).
 entry(zweimonatsweise, [ts, v, aI, m, 'o:', n, a, ts, v, aI, z, @]).
 entry('Zwei-Stunden-Takt', [ts, v, aI, 'S', t, 'U', n, d, @, n, t, a, k, t]).
-entry(zweitägigen, [ts, v, aI, t, 'E:', g, 'I', g, @, n]).
-entry(zweitägiger, [ts, v, aI, t, 'E:', g, 'I', g, '6']).
-entry(zweitägiges, [ts, v, aI, t, 'E:', g, 'I', g, @, s]).
-entry(zweitägige, [ts, v, aI, t, 'E:', g, 'I', g, @]).
-entry(zweitägig, [ts, v, aI, t, 'E:', g, 'I', 'C']).
-entry(zweitägi, [ts, v, aI, t, 'E:', g, 'I']).
+entry(zweitaegigen, [ts, v, aI, t, 'E:', g, 'I', g, @, n]).
+entry(zweitaegiger, [ts, v, aI, t, 'E:', g, 'I', g, '6']).
+entry(zweitaegiges, [ts, v, aI, t, 'E:', g, 'I', g, @, s]).
+entry(zweitaegige, [ts, v, aI, t, 'E:', g, 'I', g, @]).
+entry(zweitaegig, [ts, v, aI, t, 'E:', g, 'I', 'C']).
+entry(zweitaegi, [ts, v, aI, t, 'E:', g, 'I']).
 entry(zweitausend, [ts, v, aI, t, aU, z, @, n, t]).
 entry(zweiteilen, [ts, v, aI, t, aI, l, @, n]).
 entry(zweitens, [ts, v, aI, t, @, n, s]).
@@ -10522,12 +10523,12 @@ entry(zwisch, [ts, v, 'I', 'S']).
 entry(zwisn, [ts, v, 'I', s, n]).
 entry(zwi, [ts, v, 'I']).
 entry(zwohundert, [ts, v, 'o:', h, 'U', n, d, '6', t]).
-entry(zwölftem, [ts, v, '9', l, f, t, @, m]).
-entry(zwölften, [ts, v, '9', l, f, t, @, n]).
-entry(zwölfter, [ts, v, '9', l, f, t, '6']).
-entry(zwölfte, [ts, v, '9', l, f, t, @]).
-entry(zwölf, [ts, v, '9', l, f]).
-entry(zwölft, [ts, v, '9', l, f, t]).
+entry(zwoelftem, [ts, v, '9', l, f, t, @, m]).
+entry(zwoelften, [ts, v, '9', l, f, t, @, n]).
+entry(zwoelfter, [ts, v, '9', l, f, t, '6']).
+entry(zwoelfte, [ts, v, '9', l, f, t, @]).
+entry(zwoelf, [ts, v, '9', l, f]).
+entry(zwoelft, [ts, v, '9', l, f, t]).
 entry(zwomal, [ts, v, 'o:', m, 'a:', l]).
 entry(zwom, [ts, v, 'o:', m]).
 entry(zwoten, [ts, v, 'o:', t, @, n]).
