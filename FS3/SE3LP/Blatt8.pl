@@ -349,11 +349,80 @@ fuegeMuenzenHinzu([H|T], [], NeuerGeldspeicher) :-
 %%%% Aufgabe 2.2
 
 % CFG:
-% Terminale: S(Startsymbol), B(Baum), U(Unterbaum), 
-% Nichtterminale: b(Buchstabe), e(Wortende)
+% Terminale: S(Startsymbol), B(Baum), U(Unterbaum), E(Wortende)
+% Nichtterminale: b(Buchstabe), e(Wortende Symbol), i(Zusatzinfos)
 % S -> B
 % B -> U|UB
-% U -> b|e|U
+% U -> b|E|U
+% E -> ei
+
+%%%% Aufgabe 2.3
+
+word2trie([], Infos, [[*, Infos]]).
+word2trie([H|T], Infos, Trie) :-
+    word2trie(T, Infos, Trie2),
+    Trie = [[H|Trie2]].
+
+%%%% Aufgabe 2.4
+
+% insert_entry(Schluessel, Nutzinformation, Alter_Trie, Neuer_Trie).
+
+insert_entry(Schluessel, Nutzinformation, [], Neuer_Trie) :- % Teilfall b.
+    word2trie(Schluessel, Nutzerinformation, Neuer_Trie). % Wenn der Schluessel nirgendswo rein passt, dann erstelle einen neuen Unterbaum
+
+insert_entry([H|T], Nutzinformation, [Unterbaum|Restliche_Unterbaeume], Neuer_Trie) :- % Teilfall a. Das aktuelle Zeichen liegt im ersten Unterbaum
+    Unterbaum = [H|Trie_T], % erster Unterbaum
+    insert_entry(T, Nutzinformation, Unterbaum, Neuer_Unterbaum), % integriert das neue wort in den Unterbaum
+    Neuer_Trie = [Neuer_Unterbaum|Restliche_Unterbaeume].
+
+insert_entry([H|T], Nutzinformation, [Unterbaum|Restliche_Unterbaeume], Neuer_Trie) :- % Teilfall a. Das aktuelle Zeichen liegt nicht im ersten Unterbaum
+    Unterbaum = [Trie_H|Trie_T], % erster Unterbaum
+    insert_entry([H|T], Nutzinformation, Restliche_Unterbaeume, Neuer_Trie2),
+    Neuer_Trie = [Unterbaum|Neuer_Trie2].
+
+insert_entry([], Nutzinformation, Unterbaum, [[*, Nutzerinformationen]|Unterbaum]). % Teilfall c
+
+%%%% Aufgabe 2.5
+
+key2trie(Key, Trie).
+    atom_chars(Key, Key_List),
+    word2trie(Key_List, default, Trie).
+
+%%%% Aufgabe 2.6
+
+% word(?Word, ?Infos, ?Trie).
+
+word([], Infos, [[*, Infos]|_]).
+
+word([C|RW], Infos, [[C|RT]|_]) :-
+    word(RW, Infos, RT).
+
+word(W, Infos, [_|Alt]) :-
+    word(W, Infos, Alt).
+
+%%%% Aufgabe 2.Bonus1
+
+% Mehrere Enden : [[*, Info1], [*, Info2] ... ]
+
+%%%% Aufgabe 2.Bonus2
+
+woerterbuch2trie(Trie) :-
+    dictionary(Dic),
+    findall(Wort, (entry(Schluessel, _), atom_chars(Schluessel, Wort)), Woerter),
+    insert_entry(Woerter, ein_komplettes_woerterbuch, [], Trie).
+
+% Eine Funktion zum Zeitmessen ist mir nicht bekannt, die help/1 Klausel wirft bei mir nen Fehlen und die Prolog-Website ist down (503).
+
+%%%% Aufgabe 2.Bonus3
+
+% Was für Indexstrukturen sind hier gemeint?
+
+%%%% Aufgabe 2.Bonus4
+
+% Man könnte sich am Anfang wenn genügend Speicher zur verfügung steht einfach am Anfang einmal den gesamten Baum kopieren und dann immer wieder die Infos rausholen, die man benötigt.
+% Man könnte auch den Baum jeweils in die Datenbasis schreiben udn dort verändern.
+
+
 
 
 
