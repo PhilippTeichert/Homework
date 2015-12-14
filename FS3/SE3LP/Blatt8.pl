@@ -6,7 +6,7 @@
 
 :- dynamic(muenze/1).
 
-% alleUnterverzeichnisse(?Wert)
+% muenze(?Wert)
 % 'Wert' ist eine Argumentposition,
 % so dass 'Wert' der Wert einer Münze ist.
 
