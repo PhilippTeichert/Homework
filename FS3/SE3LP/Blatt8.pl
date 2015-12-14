@@ -350,7 +350,7 @@ fuegeMuenzenHinzu([H|T], [], NeuerGeldspeicher) :-
 
 % CFG:
 % Terminale: S(Startsymbol), B(Baum), U(Unterbaum), E(Wortende)
-% Nichtterminale: b(Buchstabe), e(Wortende Symbol), i(Nutzerinformationen)
+% Nichtterminale: b(Buchstabe), e(Wortende Symbol), i(Nutzerinformation)
 % S -> B
 % B -> U|UB
 % U -> b|E|B
@@ -365,26 +365,27 @@ word2trie([H|T], Infos, Trie) :-
 
 %%%% Aufgabe 2.4
 
-% insert_entry(Schluessel, Nutzinformation, Alter_Trie, Neuer_Trie).
+% insert_entry(Schluessel, Nutzerinformation, Alter_Trie, Neuer_Trie).
 
-insert_entry(Schluessel, Nutzinformation, [], Neuer_Trie) :- % Teilfall b.
+insert_entry(Schluessel, Nutzerinformation, [], Neuer_Trie) :- % Teilfall b.
     word2trie(Schluessel, Nutzerinformation, Neuer_Trie). % Wenn der Schluessel nirgendswo rein passt, dann erstelle einen neuen Unterbaum
 
-insert_entry([H|T], Nutzinformation, [Unterbaum|Restliche_Unterbaeume], Neuer_Trie) :- % Teilfall a. Das aktuelle Zeichen liegt im ersten Unterbaum
-    Unterbaum = [H|Trie_T], % erster Unterbaum
-    insert_entry(T, Nutzinformation, Unterbaum, Neuer_Unterbaum), % integriert das neue wort in den Unterbaum
+insert_entry([H|T], Nutzerinformation, [Unterbaum|Restliche_Unterbaeume], Neuer_Trie) :- % Teilfall a. Das aktuelle Zeichen liegt im ersten Unterbaum
+    Unterbaum = [H|_], % Das aktuelle Zeichen ist das erste Zeichen des aktuellen Unterbaums
+    insert_entry(T, Nutzerinformation, Unterbaum, Neuer_Unterbaum), % integriert das neue wort in den Unterbaum
     Neuer_Trie = [Neuer_Unterbaum|Restliche_Unterbaeume].
 
-insert_entry([H|T], Nutzinformation, [Unterbaum|Restliche_Unterbaeume], Neuer_Trie) :- % Teilfall a. Das aktuelle Zeichen liegt nicht im ersten Unterbaum
-    Unterbaum = [Trie_H|Trie_T], % erster Unterbaum
-    insert_entry([H|T], Nutzinformation, Restliche_Unterbaeume, Neuer_Trie2),
+insert_entry([H|T], Nutzerinformation, [Unterbaum|Restliche_Unterbaeume], Neuer_Trie) :- % Teilfall a. Das aktuelle Zeichen liegt nicht im ersten Unterbaum
+    Unterbaum = [Trie_H|_], % erster Unterbaum
+    Trie_H \= H, % Das aktuelle Zeichen ist nicht das erste Zeichen des aktuellen Unterbaums
+    insert_entry([H|T], Nutzerinformation, Restliche_Unterbaeume, Neuer_Trie2),
     Neuer_Trie = [Unterbaum|Neuer_Trie2].
 
-insert_entry([], Nutzinformation, Unterbaum, [[*, Nutzerinformationen]|Unterbaum]). % Teilfall c
+insert_entry([], Nutzerinformation, Unterbaum, [[*, Nutzerinformation]|Unterbaum]). % Teilfall c
 
 %%%% Aufgabe 2.5
 
-key2trie(Key, Trie).
+key2trie(Key, Trie) :-
     atom_chars(Key, Key_List),
     word2trie(Key_List, default, Trie).
 
