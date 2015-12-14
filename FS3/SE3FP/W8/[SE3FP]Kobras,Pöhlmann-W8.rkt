@@ -29,19 +29,24 @@ d: nein, weil sie nur eine Zahl übernimmt und keine Funktion
 |#
 ;;;; Aufgabe 1.3
 #|
-f wird mit max belegt;
-arg1 wird mit 5 belegt;
-arg2 wird mit 7 belegt.
+Pepper führt eine Vorinstantiierung der Argumentfunktion aus (Closure).
+Vom Aufruf (pepper max 5) wird eine lambda-Funktion zurückgegeben.
+Hier wird die Funktion 'max' mit dem Parameter 5 gekoppelt, wonach die anonyme Funktion aufgerufen wird und den Parameter 7 übergibt.
+5 wird an arg1 gebunden sowie 7 an arg2.
+Als letzter Schritt wird max auf 5 und 7 angewandt.
 |#
 ;;;; Aufgabe 1.4
-;(foldl (curry / 2) 1 '(1 1 2 3))
-;(map cons '(1 2 3 4) '(1 2 3 4))
-;(filter pair? '((a b ) () 1 (())))
-;(map (compose (curry + 32) (curry * 1.8))
-;     '(5505 100 0 1 1000 -273.15))
+(foldl (curry / 2) 1 '(1 1 2 3))
+(map cons '(1 2 3 4) '(1 2 3 4))
+(filter pair? '((a b ) () 1 (())))
+(map (compose (curry + 32) (curry * 1.8))
+     '(5505 100 0 1 1000 -273.15))
 #|
 1.  2/3
-    Begründung: #keineAhnung, hätte 1/3 erwartet.
+    Begründung: Zuerst wird 2 durch 1 und 1 geteilt.
+                Dann wird 2 durch das Ergebnis (2) und 1 geteilt (2 / (2 * 1) = 1).
+                Dann wird 2 wieder durch das Ergebnis und 2 geteilt (2 / (1 * 2) = 1).
+                Abschließend wird 2 durch das Ergebnis und 3 geteilt (2 / (1 * 3) = 2/3).
 2.  '((1 . 1) (2 . 2) (3 . 3) (4 . 4))
     Begründung: map wendet cons jeweils auf die beiden Listenelemente
                 mit dem gleichen Index an
@@ -121,13 +126,13 @@ des Ergebnisses um.
 
 ;; Test-Aufurf für Aufgabe 2.1: Wurzel aller Listenelemente
 ;; Ergebnis: Stimmt so
-;(root-of-all '(1 2 3 5 8 13 21 34 4 9 16 25))
+(root-of-all '(1 2 3 5 8 13 21 34 4 9 16 25))
 ;; Test-Aufruf für Aufgabe 2.2: Teilbar durch 3
 ;; Ergebnis: '(3 6 9)
-;(n-divides '(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20))
+(n-divides '(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20))
 ;; Test-Aufruf für Aufgabe 2.3: Summe ungerader Zahlen größer 10
 ;; Ergebnis: 39
-;(sum-of-odd-greater-n '(3 4 10 2 11 13 9 14 15))
+(sum-of-odd-greater-n '(3 4 10 2 11 13 9 14 15))
 
 ;;;;;;;;; Aufgabe 3
 ;;;; Aufgabe 3.1
@@ -140,12 +145,20 @@ des Ergebnisses um.
 (define Fuellung '(outline solid hatched))
 (define Colour '(red green blue))
 
+;; Erstellt eine Karte in Form einer Liste
+;; @param n: {1,2,3}
+;; @param Muster: {waves, oval, rectangle}
+;; @param Form: {outline, solid, hatched}
+;; @param Farbe: {red, green, blue}
 (define (erstelleKarte n Muster Form Farbe)
   (list n
         Muster
         Form
         Farbe))
 
+;; Gegeben eine Karte, zeige diese mithilfe der Funktion
+;; setkarten-module::show-set-card in der Konsole an
+;; @param Karte: eine Karte als 4-stellige Liste
 (define (zeigeKarte Karte)
   (show-set-card
    (list-ref Karte 0)
@@ -153,11 +166,12 @@ des Ergebnisses um.
    (list-ref Karte 2)
    (list-ref Karte 3)))
 
-
+;; Zeige eine zufällig erstellte Karte an
 (define (zeigeRandomKarte)
   (zeigeKarte
    (randomKarte)))
 
+;; Erstelle eine zufällige Karte
 (define (randomKarte)
   (erstelleKarte
    (list-ref Anzahl (random 3))
@@ -166,6 +180,11 @@ des Ergebnisses um.
    (list-ref Colour (random 3))))
 
 ;;;; Aufgabe 3.2
+;; Erstellt alle 81 möglichen Attributkombinationen
+;; und gibt diese in einer Liste von Listen aus
+;; @param attribute: Die Listen, deren Kombination gefragt ist.
+;; Wird $attribute leer gelassen, werden die im Programm definierten
+;; Attribute des SET-Spiels übernommen.
 (define (alleKarten [attribute (list Anzahl Pattern Fuellung Colour)])
   (if (empty? attribute)
       '(())
@@ -178,6 +197,8 @@ des Ergebnisses um.
                               erstesAttribut))
                        kombinationen)))))
 
+;; Zeigt alle Karten an, indem die eigene Anzeigefunktion mit
+;; 'map' auf die oben erstellte Funktion 'alleKarten' angewandt wird.
 (define (zeigeAlleKarten)
   (map zeigeKarte
        (alleKarten)))
