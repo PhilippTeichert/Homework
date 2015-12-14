@@ -17,7 +17,7 @@
 ;;;; Aufgabe 1.1
 #|
 Eine Funktion ist dann eine Funktion höherer Ordnung,
-wenn sie eine andere Funktion als Parameter übernimmt
+wenn sie eine andere Funktion und nicht deren Ergebnis als Parameter übernimmt
 |#
 ;;;; Aufgabe 1.2
 #|
@@ -30,15 +30,20 @@ d: nein, weil sie nur eine Zahl übernimmt und keine Funktion
 ;;;; Aufgabe 1.3
 #|
 Pepper führt eine Vorinstantiierung der Argumentfunktion aus (Closure).
-Vom Aufruf (pepper max 5) wird eine lambda-Funktion zurückgegeben.
-Hier wird die Funktion 'max' mit dem Parameter 5 gekoppelt, wonach die anonyme Funktion aufgerufen wird und den Parameter 7 übergibt.
+Vom Aufruf (pepper max 5) wird eine lambda-Funktion zurückgegeben, wobei die Funktion
+'max' mit dem Parameter 5 gekoppelt wird, wonach die anonyme Funktion aufgerufen wird
+und den Parameter 7 übergeben bekommt.
 5 wird an arg1 gebunden sowie 7 an arg2.
 Als letzter Schritt wird max auf 5 und 7 angewandt.
 |#
 ;;;; Aufgabe 1.4
+"Aufgabe 1.4.1"
 (foldl (curry / 2) 1 '(1 1 2 3))
+"Aufgabe 1.4.2"
 (map cons '(1 2 3 4) '(1 2 3 4))
+"Aufgabe 1.4.3"
 (filter pair? '((a b ) () 1 (())))
+"Aufgabe 1.4.4"
 (map (compose (curry + 32) (curry * 1.8))
      '(5505 100 0 1 1000 -273.15))
 #|
@@ -126,12 +131,15 @@ des Ergebnisses um.
 
 ;; Test-Aufurf für Aufgabe 2.1: Wurzel aller Listenelemente
 ;; Ergebnis: Stimmt so
+"Wurzeln aller Elemente"
 (root-of-all '(1 2 3 5 8 13 21 34 4 9 16 25))
 ;; Test-Aufruf für Aufgabe 2.2: Teilbar durch 3
-;; Ergebnis: '(3 6 9)
-(n-divides '(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20))
+;; Ergebnis: '(3 6 9 12 15 18 21 24 27 30 33 36 39 42 45 48)
+"teilt durch n"
+(n-divides (build-list 50 (lambda (x) (+ x 1))))
 ;; Test-Aufruf für Aufgabe 2.3: Summe ungerader Zahlen größer 10
-;; Ergebnis: 39
+;; Ergebnis: 39 = 11+13+15
+"Summe ungerader Zahlen größer 10"
 (sum-of-odd-greater-n '(3 4 10 2 11 13 9 14 15))
 
 ;;;;;;;;; Aufgabe 3
@@ -205,6 +213,10 @@ des Ergebnisses um.
 
 
 ;;;; Aufgabe 3.3
+;; Gegeben drei Karten, wird überprüft, ob es sich bei ihnen um ein SET handelt.
+;;; FUNKTIONIERT NICHT, GRUND UNBEKANNT
+;; @param Karte1, Karte2, Karte3: Die zu prüfenden Karten
+;; @param akku: leer zu lassen, wird intern für die Rekursion benötigt
 (define (is-a-set? [Karte1 (randomKarte)] [Karte2 (randomKarte)] [Karte3 (randomKarte)] [akku '()])
   (if (equal? Karte1 '())
       (and (equal? (car akku)
@@ -215,17 +227,16 @@ des Ergebnisses um.
                    #t)
            (equal? (cadddr akku)
                    #t))
-      (if (equal? (car Karte1)
-                  (car Karte2))
-          (if (equal? (car Karte2)
-                      (car Karte3))
-              (append akku #t)
-              (append akku #f)
-              )
-          (if (not (equal? (car Karte2)
-                           (car Karte3)))
-              (append akku #t)
-              (append akku #f))))
-  (is-a-set? (cdr Karte1) (cdr Karte2) (cdr Karte3) akku))
-
-;;;; Aufgabe 3.4 (Zusatzaufgabe)
+      ((if (equal? (car Karte1)
+                   (car Karte2))
+           (if (equal? (car Karte2)
+                       (car Karte3))
+               (cons akku #t)
+               (cons akku #f))
+           (if (and (not (equal? (car Karte2)
+                                 (car Karte3)))
+                    (not (equal? (car Karte1)
+                                 (car Karte3))))
+               (cons akku #t)
+               (cons akku #f)))
+       (is-a-set? (cdr Karte1) (cdr Karte2) (cdr Karte3) akku))))
