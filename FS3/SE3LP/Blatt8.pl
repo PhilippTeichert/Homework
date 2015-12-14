@@ -407,7 +407,6 @@ word(W, Infos, [_|Alt]) :-
 %%%% Aufgabe 2.Bonus2
 
 woerterbuch2trie(Trie) :-
-    dictionary(Dic),
     findall(Wort, (entry(Schluessel, _), atom_chars(Schluessel, Wort)), Woerter),
     insert_entry(Woerter, ein_komplettes_woerterbuch, [], Trie).
 
