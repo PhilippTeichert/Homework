@@ -350,10 +350,10 @@ fuegeMuenzenHinzu([H|T], [], NeuerGeldspeicher) :-
 
 % CFG:
 % Terminale: S(Startsymbol), B(Baum), U(Unterbaum), E(Wortende)
-% Nichtterminale: b(Buchstabe), e(Wortende Symbol), i(Zusatzinfos)
+% Nichtterminale: b(Buchstabe), e(Wortende Symbol), i(Nutzerinformationen)
 % S -> B
 % B -> U|UB
-% U -> b|E|U
+% U -> b|E|B
 % E -> ei
 
 %%%% Aufgabe 2.3
