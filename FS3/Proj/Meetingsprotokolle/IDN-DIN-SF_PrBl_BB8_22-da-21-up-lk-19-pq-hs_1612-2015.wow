@@ -1,0 +1,67 @@
+Beginn: 19.15
+Anwesend: Louis, Hauke, Philipp
+Beschlussfähig: Ja
+Protokoll: Louis
+Vorsitz: Louis
+
+TOP 1: Probleme
+	Problem 1: Zu wenig Zeit / zu wenig Geld
+		Beschreibung: 
+			- Deadline zu kurzfristig
+			- Aufwand verschätzt
+			- Budget reicht nicht, um eine Grundqualität bei der Umsetzung zu gewährleisten
+			  :- Billig-Maschinerie
+		Fällt auf durch:
+			- Meilenstein nicht fristgerecht
+			- feststellen, dass selbstgesteckte Ziele nach hinten verschoben werden
+			- Man kann die Rechnungen nicht bezahlen
+			- länger für eine Aufgabe benötigen, als erwartet
+	
+	Problem 2: Falsche oder teilweise defekte Materialien
+		Beschreibung:
+			- Lieferung entspricht nicht der Bestellung
+			- Teil der gelieferten Gegenstände kaputt
+		Fällt auf durch:
+			- Artikel sieht anders aus als bei Amazon
+			  :- anderer Artikel geliefert als bestellt
+			- Falsche Chargennummer
+			- funktioniert nicht bzw. nicht so wie vom Lieferanten zugesichert
+	
+	Problem 3: Änderung an Zeitplan \lor Projektauftrag
+		Beschreibung:
+			- Kunde verlangt frühere Abgabe
+			- Will doch "ein Riesenrad" und nicht "eine Achterbahn"
+			- zu viele kleine Änderungswünsche für Deadline
+		Fällt auf durch:
+			- Kunde verlangt frühere Abgabe
+			- Kunde verlangt große Änderungen
+			- Kunde verlangt viele kleine Änderungen
+			  :- führt zu this.Problem 1
+
+TOP 2: Projektstatus:
+	Summary:
+		ÖPNV:					[gelb|Schwierigkeiten, an aktuelle Daten zu kommen]
+		Gepäck-Verfolgung:		[rot|Fluggesellschaften verweigern Kooperation]
+		Fluginformationen:		[grün|Datenstrom steht, UI fertig]
+		Anfahrt:				[grün|Karte und Google Maps eingebaut]
+		Lageplan:				[rot|Karte ist noch nicht fertig]
+		Werbeinterface:			[grün|passt, wackelt und hat Luft]
+		Notfallsignalgeber:		[gelb|der blinkt noch nicht]
+		Verwaltungsinterface:	[gelb|noch nicht DAU-fähig]
+	Milestones:
+		Hauptmenü:					[grün|läuft]
+		Einzelne Teilprogramme:		[gelb|Teilweise hinter Zeitplan]
+		Plattformunabhängigkeit:	[gelb|Mac ist doof]
+		Vernetzung:					[rot|Sender sind noch nicht da]
+		Final Release:				[rot|noch nicht vernetzt, keine Datenströme]
+			  
+			  
+TOP 3: Kurzvortrag:
+	Louis bastelt da was
+		Seiten 1-3: Probleme 1-3
+		Seite 4: Link auf Report
+TOP 4: Sonstiges:
+	N/A
+
+
+Ende: 20.01
