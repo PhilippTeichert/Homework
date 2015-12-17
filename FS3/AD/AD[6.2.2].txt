@@ -1,0 +1,16 @@
+\textbf{Reduktion von 3KNF auf Kreuzgo:}\\
+Eine Spalte wird als Klausel interpretiert, die dann wahr ist, wenn für jedes Feld gilt:
+\[
+    ((schwarz \land \lnot weiß) \lor (\lnot schwarz \land weiß) \lor null)
+\]
+je nachdem, ob der erste gefundene Stein in der Spalte schwarz oder weiß ist.\\
+Ebenso wird eine Zeile als Klausel interpetier, die dann wahr ist, wenn für mindestens ein Feld gilt:
+\[
+    (schwarz \lor weiß \lor \lnot null)
+\]
+Diese Belegung muss für jede Zeile bzw. jede Spalte respektive gelten; die einzelnen Klauseln sind konjunkt.\\
+Gibt es eine erfüllende Belegung für die dadurch entstehende KNF, so ist diese Lösung auch eine Lösung für Kreuzgo.\\
+\vspace{1cm}\\
+
+\textbf{Reduktion von Kreuzgo auf 3KNF:}\\
+Da jede Klausel in der Form $(a \lor b \lor c)$ vorliegt mit $a \in \{schwarz, \lnot schwarz\}, b \in \{weiß, \lnot weiß\}, c \in \{null, \lnot null\}$, 
