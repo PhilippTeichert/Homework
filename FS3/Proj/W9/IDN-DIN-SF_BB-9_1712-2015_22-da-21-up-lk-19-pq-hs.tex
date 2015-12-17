@@ -20,15 +20,14 @@
 \author{CS3 - Dev Team Alpha}
 
 % formatting and layout
-\usepackage{color}
-\definecolor{pblue}{rgb}{0.13,0.13,1}
-\definecolor{pgreen}{rgb}{0,0.5,0}
-% macro commands
-%% requires color package and the custom colors defined here 
-\newcommand{\todo}[1]{
-	\addcontentsline{toc}{subsubsection}{TODO: #1}
-	\textcolor{pgreen}{\texttt{\-\\ \-\\//TODO: #1\-\\ \-\\}}
-	}
+\usepackage{xcolor,colortbl}
+\newcommand{\hgreen}{{\cellcolor{green}}}
+\newcommand{\hyellow}{{\cellcolor{yellow}}}
+\newcommand{\hred}{{\cellcolor{red}}}
+\usepackage{array}
+\newcolumntype{L}{>{\flushleft\arraybackslash}m{0.58\textwidth}}
+\newcolumntype{C}{>{\centering\arraybackslash}m{3cm}}
+\newcolumntype{R}{>{\flushright\arraybackslash}m{3cm}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	TITLE slide
@@ -43,7 +42,7 @@
 			\textbf{Projektmanagement WS15/16}\\
 		\end{Large}
 		\vspace{0.3cm}
-		\textbf{Woche 8}\\
+		\textbf{Woche 9}\\
 		\vspace{0.5cm}
 		\begin{tabular}{cc}
 			\begin{tabular}{c}
@@ -86,29 +85,98 @@
 
 \frame{
 	\frametitle{Problem 1: Zu wenig Ressourcen}
-
-
+	\pause
+	\begin{minipage}[t]{0.48\textwidth}
+	\textbf{Beschreibung:}
+	\begin{itemize}
+		\item Deadline zu kurzfristig
+		\item Aufwand verschätzt
+		\item Budget reicht nicht, um eine Grundqualität bei der Umsetzung zu gewährleisten
+			\begin{itemize}
+				\item Billig-Maschinerie
+			\end{itemize}
+	\end{itemize}
+	\end{minipage}
+	\pause
+	\begin{minipage}[t]{0.48\textwidth}
+	\textbf{Fällt auf durch:}
+	\begin{itemize}
+		\item Meilenstein nicht fristgerecht
+		\item feststellen, dass selbstgesteckte Ziele nach hinten verschoben werden
+		\item Man kann die Rechnungen nicht bezahlen
+		\item länger für eine Aufgabe benötigen, als erwartet
+	\end{itemize}
+	\end{minipage}
 
 }
 %%-------------------------------------------------------
 \frame{
 	\frametitle{Problem 2: Falsche / defekte Materialien}
-
-
+	\pause
+	\begin{minipage}[t]{0.48\textwidth}
+	\textbf{Beschreibung:}
+	\begin{itemize}
+		\item Lieferung entspricht nicht der Bestellung
+		\item Teil der gelieferten Gegenstände beschädigt
+		\item Funktionsstörungen (Bugs, Falsche Frequenz\dots)
+	\end{itemize}
+	\end{minipage}
+	\pause
+	\begin{minipage}[t]{0.48\textwidth}
+	\textbf{Fällt auf durch:}
+	\begin{itemize}
+			\item Artikel sieht anders aus als bei Amazon
+			\begin{itemize}
+				\item anderer Artikel geliefert als bestellt
+			\end{itemize}
+			\item Falsche Chargennummer
+			\item funktioniert nicht bzw. nicht so wie vom Lieferanten zugesichert
+	\end{itemize}
+	\end{minipage}
 
 }
 %%-------------------------------------------------------
 \frame{
-	\frametitle{Problem 3: Änderungen an Zeitplan/Projektauftrag}
-
-
+	\frametitle{Problem 3: Änderungen an Zeitplan $\lor$ Projektauftrag}
+	\pause
+	\begin{minipage}[t]{0.48\textwidth}
+	\textbf{Beschreibung:}
+	\begin{itemize}
+		\item Kunde verlangt frühere Abgabe
+		\item Will doch "ein Riesenrad" und nicht "eine Achterbahn"
+		\item zu viele kleine Änderungswünsche für Deadline
+	\end{itemize}
+	\end{minipage}
+	\pause
+	\begin{minipage}[t]{0.48\textwidth}
+	\textbf{Fällt auf durch:}
+	\begin{itemize}
+		\item Kunde verlangt frühere Abgabe
+		\item Kunde verlangt große Änderungen
+		\item Kunde verlangt viele kleine Änderungen
+			\begin{itemize}
+				\item führt zu this.Problem 1
+			\end{itemize}
+	\end{itemize}
+	\end{minipage}
 
 }
 %%-------------------------------------------------------
 \frame{
 	\frametitle{Statusbericht}
-
-
+	\pause
+	\begin{tabular}{|l|l|L|}
+		\hline
+		\textbf{Status:}	&	\textbf{Teil:}			&	\textbf{Notiz}									\\	\hline
+		\hyellow			&	ÖPNV					&	Schwierigkeiten, an aktuelle Daten zu kommen	\\	\hline
+		\hred				&	Gepäckverfolgung		&	Fluggesellschaften verweigern Kooperation		\\	\hline
+		\hgreen				&	Fluginformationen		&	Datenstrom steht, UI fertig						\\	\hline
+		\hgreen				&	Anfahrt					&	Karte und Google Maps eingebaut					\\	\hline
+		\hred				&	Lageplan				&	Karte ist noch nicht fertig						\\	\hline
+		\hgreen				&	Werbeinterface			&	all is said and done							\\	\hline
+		\hyellow			&	Notfallsignalgeber		&	noch nich deutlich genug						\\	\hline
+		\hyellow			&	Verwaltungsinterface	&	noch nicht DAU-fähig							\\	\hline
+	\end{tabular}
 
 }
 %%-------------------------------------------------------
