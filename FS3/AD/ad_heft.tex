@@ -1586,43 +1586,6 @@ Füge 7 ein:\\
 	;
 \end{tikzpicture}
 \end{minipage}\\
-%\begin{tikzpicture}
-%\node	[circle,draw,dotted]	(root)	{\texttt{nil}}
-%	child{
-%		node	[circle,draw]	(5)	{5}		
-%		child{
-%			node	[circle,draw,dotted]	(leaf1)	{\texttt{nil}}
-%		}
-%		child{
-%			node	[circle,draw]	(8)	{8}
-%			child{
-%				node	[circle,draw]	(6)	{6}
-%					child{
-%						node	[circle,draw,dotted]	(leaf4)	{\texttt{nil}}
-%					}
-%					child{
-%						node	[circle,draw]	(7)		{7}
-%							child{
-%								node	[circle,draw,dotted]	(leaf5)	{\texttt{nil}}
-%							}
-%							child{
-%								node	[circle,draw,dotted]	(leaf6)	{\texttt{nil}}
-%							}
-%					}
-%			}
-%			child{
-%				node	[circle,draw]	(9)	{9}
-%					child{
-%						node	[circle,draw,dotted]	(leaf2)	{\texttt{nil}}
-%					}
-%					child{
-%						node	[circle,draw,dotted]	(leaf3)	{\texttt{nil}}
-%					}
-%			}
-%		}
-%	};
-%
-%\end{tikzpicture}
 
 
 %---------------%
@@ -1966,5 +1929,256 @@ Verifikationsalgorithmus, der die Richtigkeit eines gegebenen Zertifikates in po
 Durch diesen Verifikationsalgorithmus ist unser Problem in NP.\\
 Unter der Annahme P = NP existiert allerdings auch ein P-Algorithmus und dieser ist deterministisch.
 
+\newpage
+%#+--------------------------------------------------+#%
+%#+						ZETTEL 5				     +#%
+%#+--------------------------------------------------+#%
+\addcontentsline{toc}{section}{Zettel vom 10. 12. -- Abgabe: 04. 01. 2016}
+\section*{Zettel vom 10. 12. -- Abgabe: 04. 01. 2016}
+\addcontentsline{toc}{subsection}{Übungsaufgabe 6.1}
+\subsection*{Übungsaufgabe 6.1}
+\label{ssec:6.1}
+\begin{flushright}
+\begin{Large}
+[~~~~~\string| ~10~]
+\end{Large}
+\end{flushright}
+%---------------%
+%	Aufgabe	    %
+%---------------%
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,semithick]
+\node	[state]	(s)						{S};
+\node	[state]	(b)	[right=2cm of s]	{B};
+\node	[state]	(a)	[above=1cm of b]	{A};
+\node	[state]	(c)	[below=1cm of b]	{C};
+\node	[state]	(e)	[right=2cm of b]	{E};
+\node	[state]	(d)	[above=1cm of e]	{D};
+\node	[state]	(f)	[below=1cm of e]	{F};
+\node	[state]	(g)	[right=2cm of e]	{G};
+
+\path
+	(s)	edge	[above]	node	[align=center]	{1}	(a)
+	(s)	edge			node	[align=center]	{4}	(b)
+	(s)	edge			node	[align=center]	{9}	(c)
+	(a)	edge			node	[align=center]	{1}	(d)
+	(a)	edge	[above]	node	[align=center]	{5}	(e)
+	(b)	edge			node	[align=center]	{5}	(a)
+	(b)	edge			node	[align=center]	{2}	(e)
+	(c)	edge			node	[align=center]	{1}	(b)
+	(c)	edge			node	[align=center]	{6}	(f)
+	(d)	edge	[below]	node	[align=center]	{1}	(b)
+	(d)	edge			node	[align=center]	{15}(g)
+	(e)	edge			node	[align=center]	{3}	(c)
+	(f)	edge			node	[align=center]	{1}	(g)
+	(g)	edge			node	[align=center]	{4}	(e)
+;
+\end{tikzpicture}
+\end{center}
+Betrachten Sie obigen Graphen $G$.
+Wenden Sie jeweils das verlangte Verfahren an bzw. beantwortet Sie die Frage oder begründen Sie, warum dies nicht nicht.
+(Bei den ersten sechs Teilaufgaben spielen die Kantengewichte keine Rolle.)
+
+\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.1}
+\subsubsection*{Aufgabe 6.1.1}
+\label{sssec:6.1.1}
+%---------------%
+%	Aufgabe	    %
+%---------------%
+Ermittel Sie mit der Breitensuche einen Breitensuchbaum.
+Starten Sie den Algorithmus bei $s$. (1 Pkt.)
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung %
+%---------------%
+
+\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.2}
+\subsubsection*{Aufgabe 6.1.2}
+\label{sssec:6.1.2}
+%---------------%
+%	Aufgabe	    %
+%---------------%
+Ist das Ergebnis der Breitensuche eindeutig? (1 Pkt.)
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung %
+%---------------%
+
+\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.3}
+\subsubsection*{Aufgabe 6.1.3}
+\label{sssec:6.1.3}
+%---------------%
+%	Aufgabe	    %
+%---------------%
+Ermitteln Sie mit der Tiefensuche einen Tiefensuchwald und insb. die Zeiten $d[v]$ und $f[v]$ für jeden Knoten $v$.
+Starten Sie den Algorithmus wieder bei $s$. (1 Pkt.)
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung %
+%---------------%
+\begin{minipage}[t]{0.42\textwidth}
+\begin{tabular}{l|l||c|c}
+\textbf{Ergebnis}	&	\textbf{Stack}	&	$d[v]$	&	$f[v]$	\\ \hline
+/			&	S			&	--	&	--	\\
+S			&	SA			&	S:0	&	--	\\
+SA			&	SAD			&	A:1	&	--	\\
+SAD			&	SADB		&	D:2	&	--	\\
+SADB		&	SADBE		&	B:3	&	--	\\
+SADBE		&	SADBEC		&	E:4	&	--	\\
+SADBEC		&	SADBECF		&	C:5	&	--	\\
+SADBECF		&	SADBECFG	&	F:6	&	--	\\
+SADBECFG	&	SADBECFG	&	G:7	&	--	
+\end{tabular}
+\end{minipage}
+\begin{minipage}[t]{0.42\textwidth}
+\begin{tabular}{l|l||c|c}
+\textbf{Ergebnis}	&	\textbf{Stack}	&	$d[v]$	&	$f[v]$	\\ \hline
+SADBECFG	&	SADBECF	&	--	&	G:8		\\
+SADBECFG	&	SADBEC	&	--	&	F:9		\\
+SADBECFG	&	SADBE	&	--	&	C:10	\\
+SADBECFG	&	SADB	&	--	&	E:11	\\
+SADBECFG	&	SAD		&	--	&	B:12	\\
+SADBECFG	&	SA		&	--	&	D:13	\\
+SADBECFG	&	S		&	--	&	A:14	\\
+SADBECFG	&	/		&	--	&	S:15	
+\end{tabular}
+\end{minipage}
+\begin{minipage}[t]{0.22\textwidth}
+\begin{tabular}{c||c|r}
+\textbf{Knoten}	&	$d[v]$	&	$f[v]$	\\	\hline
+S	&	0	&	15\\
+A	&	1	&	14\\
+B	&	3	&	12\\
+C	&	5	&	10\\
+D	&	2	&	13\\
+E	&	4	&	11\\
+F	&	6	&	9\\
+G	&	7	&	8
+\end{tabular}
+\end{minipage}
+\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.4}
+\subsubsection*{Aufgabe 6.1.4}
+\label{sssec:6.1.4}
+%---------------%
+%	Aufgabe	    %
+%---------------%
+Geben Sie eine topologische Sortierung des Graphen $G$ an. (1 Pkt.)
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung %
+%---------------%
+Es ist nicht möglich, eine topologische Sortierung für $G$ anzugeben, da $G$ zyklisch ist und somit unabhängig von der gewählten Reihenfolge keine Möglichkeit besteht, rückwärtige Kanten zu vermeiden.
+\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.5}
+\subsubsection*{Aufgabe 6.1.5}
+\label{sssec:6.1.5}
+%---------------%
+%	Aufgabe	    %
+%---------------%
+Bestimmen Sie mit dem Algorithmus aus der Vorlesung die starken Zusammenhangskomponenten von $G$.
+Geben Sie dazu das Ergebnis von $DFS(G)$ und $DFS(G^T)$ sowie die starken Zusammenhangskomponenten an. (1 Pkt.)
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung %
+%---------------%
+
+\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.6}
+\subsubsection*{Aufgabe 6.1.6}
+\label{sssec:6.1.6}
+%---------------%
+%	Aufgabe	    %
+%---------------%
+Geben Sie den Komponentengraphen von $G$ an. (1 Pkt.)
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung %
+%---------------%
+
+\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.7}
+\subsubsection*{Aufgabe 6.1.7}
+\label{sssec:6.1.7}
+%---------------%
+%	Aufgabe	    %
+%---------------%
+Interpretieren Sie $G$ nun als ungerichteten Graphen.
+Wenden Sie den Algorithmus von Kruskal an, um einen minimalen Spannbaum zu bestimmen.
+(Es genügt hier anzugeben welche kanten in den minimalen Spannbaum aufgenommen werden und in welcher Reihenfolge dies geschieht!) (1 Pkt.)
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung %
+%---------------%
+
+\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.8}
+\subsubsection*{Aufgabe 6.1.8}
+\label{sssec:6.1.8}
+%---------------%
+%	Aufgabe	    %
+%---------------%
+Bestimmen Sie mit dem Algorithmus von Dijkstra kürzeste Pfade von $s$ zu allen anderen Knoten.
+Geben Sie hierzu jeweils den Graph mit den Werten ovn $d[v]$ nach jeder Iteration der while-Schleife an und machen Sie $\pi[v]$ z.B. durch dickere kanten deutlich. (2 Pkt.)
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung %
+%---------------%
+
+\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.9}
+\subsubsection*{Aufgabe 6.1.9}
+\label{sssec:6.1.9}
+%---------------%
+%	Aufgabe	    %
+%---------------%
+Betrachten Sie den Sourcecode von Dijkstras Algorithmus und vom Algorithmus von Prim.
+Was ist der hauptsächliche Unterschied der beiden Algorithmen bei der Ausführung? (1 Pkt.)
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung %
+%---------------%
+
+\addcontentsline{toc}{subsection}{Übungsaufgabe 6.2}
+\subsection*{Übungsaufgabe 6.2}
+\label{ssec:6.2}
+\begin{flushright}
+\begin{Large}
+[~~~~\string| ~~6~]
+\end{Large}
+\end{flushright}
+\addcontentsline{toc}{subsubsection}{Aufgabe 6.2.1}
+\subsubsection*{Aufgabe 6.2.1}
+\label{sssec:6.2.1}
+%---------------%
+%	Aufgabe	    %
+%---------------%
+Sei $G = (V,E)$ ein ungerichteter Graph.
+Bei einer $k$-Färbung von $G$ wird jedem Knoten $v \in V$ eine Farbe $c \in [k] = \{1,2,\dots,k\}$ zugewiesen.
+Die Färbung ist korrekt, wenn zwei benachbarte Knoten nie die gleiche Farbe haben.
+Formal ist eine \textit{k-Färbung} dann also eine Abbildung $f : V \rightarrow [k]$ und eine \textit{korrekte k-Färbung} erfüllt $f(x) \neq f(x)$ für jede Kante $\{x,y\} \in E$.
+Wir definieren folgendes Problem:
+\[
+	k-col = \{\langle G \rangle | G \text{ besitzt eine korrekte } k\text{-Färbung}\}
+\]
+Angenommen Sie wissen, dass 3-col \textit{NP}-vollständig ist.
+Zeigen Sie, dass auch 8-col \textit{NP}-vollständig ist. (2 Pkt.)
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung %
+%---------------%
+
+\addcontentsline{toc}{subsubsection}{Aufgabe 6.2.2}
+\subsubsection*{Aufgabe 6.2.2}
+\label{sssec:6.2.2}
+%---------------%
+%	Aufgabe	    %
+%---------------%
+Wir betrachten das folgende Spiel: Auf eiem Feld mit $n$ Spalten, $n$ Zeilen und $n \times n $ Feldern können auf jeder der $n^2$ Positionen entweder ein weißer oder ein schwarzer Stein liegen oder das Feld kann leer sein.
+Eine Anfangsmarkierung besteht aus einer Zuweisung von Spielsteinen zu Feldern.
+Das Spiel wird dann (alleine) gespielt, indem beliebig viele Steine entfernt werden.
+Ziel ist es, dass jede Spalte nur noch Steine einer Farbe enthält (oder leer ist) und jede Zeile mindestens einen Stein enthält.
+Ob man dieses Ziel erreichen kann (und damit gewinnt), hängt von der Anfangsmarkierung ab.
+Die Eingabe ist ein Spiel $S$ bestehend aus dem Feld und der Anfangsmarkierung (für das Feld reicht die Zahl n).
+Die Eingabe wird akzeptiert, wenn $S$ gewonnen werden kann.
+Zeigen Sie, dass dieses Problem \textit{NP}-vollständig ist. (4 Pkt.)
+\vspace{1cm}\-\\
+%---------------%
+%	Bearbeitung %
+%---------------%
 
 \end{document}
