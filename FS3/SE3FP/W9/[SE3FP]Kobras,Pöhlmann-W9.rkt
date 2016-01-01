@@ -101,7 +101,7 @@
                             :init-verlag "Minority-Verlag"
                             :init-verlagsort "Inverness"
                             :init-reihe "Die besondere Biographie"
-                            :init-seriennummer "Band 1"))
+                            :init-seriennummer "Band 2"))
 
 ;; Erstellt das Objekt Ford-Buch
 (define Beispiel-Sammelband (make sammelband
@@ -114,7 +114,7 @@
                                   :init-reihe "Travel in Style"
                                   :init-seriennummer "Volume 5"
                                   :init-herausgeber "Adams, D."
-                                  :init-seitenangabe 500))
+                                  :init-seitenangabe 420))
 
 ;; Erstellt das Objekt Wells-Buch
 (define Beispiel-Zeitschriftenartikel (make zeitschriftenartikel
