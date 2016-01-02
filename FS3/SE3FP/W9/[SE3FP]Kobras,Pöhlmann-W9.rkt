@@ -154,6 +154,164 @@
   (list (string-append (read-zeitschrift za) " " (number->string (read-heftnummer za)) "(" (number->string (read-bandnummer za)) "): ")))
 
 ;; Druckt in die Konsole die Cites der Beispiel-Literaturen
+(displayln "Zeige die Beispielbücher:")
 (displayln (cite Beispiel-Buch))
 (displayln (cite Beispiel-Sammelband))
 (displayln (cite Beispiel-Zeitschriftenartikel))
+
+
+;;;; Aufgabe 1.3: Ergänzungsmethoden
+#|
+Bei Ergänzungsmethoden handelt es sich um Wrapper-Funktionen, die den übergebenen Quellcode
+vor bzw. nach bzw. sowohl vor als auch nach (abhängig davon, ob 'before', 'after' oder
+'around' übergeben wurde) dem 'super call' ausführen, welcher innerhalb der Erg.m. implizit stattfindet.
+
+Vorteile gegenüber dem 'super call' liegen z.b. darin, dass sichergestellt ist, dass
+alle Erg.m. ausgeührt werden und die Ausführung somit nicht z.B. an einer fehlenden
+Initialisierung scheitert; außerdem müssen geerbte Methoden nicht mit Modifikaitonen
+überlagert werden, sondern nur ergänzt.
+|#
+
+
+;;;;;;;; Aufgabe 2: CLOS und Vererbung
+;;;; Aufgabe 2.1: Definition von Klassen
+
+;; Supertyp
+;; @field medium: Medium, in dem sich das Fahrzeug bewegen kann
+;; @field maximalgeschwindigkeit: Höchstgeschwindigkeit des Fahrzeugs
+;; @field zuladung: Maximale Tragfähigkeit des Fahrzeugs
+;; @field verbrauch: Verbrauch an Treibstoff pro 100km
+;; @field n_passagiere: Maximale Anzahl an Passagieren
+(defclass fahrzeug ()
+  (medium
+   :initarg :medium
+   :reader read-medium)
+  (maximalgeschwindigkeit
+   :initarg :vmax
+   :reader read-vmax)
+  (zuladung
+   :initarg :cmax
+   :reader read-cmax)
+  (verbrauch
+   :initarg :verbrauch
+   :reader read-verbrauch)
+  (passagieranzahl
+   :initarg :passagier
+   :reader read-passagier))
+;; Erben
+(defclass landfahrzeug (fahrzeug)
+  (medium
+   :initvalue 'land
+   :reader read-medium))
+(defclass wasserfahrzeug (fahrzeug)
+  (medium
+   :initvalue 'wasser
+   :reader read-medium))
+(defclass luftfahrzeug (fahrzeug)
+  (medium
+   :initvalue 'luft
+   :reader read-medium))
+;; Erben zweiten Grades
+(defclass straßenfahrzeug (landfahrzeug)
+  (medium
+   :initvalue 'straßen
+   :reader read-medium))
+(defclass schienenfahrzeug (landfahrzeug)
+  (medium
+   :initvalue 'schienen
+   :reader read-medium))
+;; Hybriden
+(defclass amphibienfahrzeug (landfahrzeug wasserfahrzeug))
+(defclass amphibienflugzeug (luftfahrzeug wasserfahrzeug))
+(defclass zweiwegefahrzeug (straßenfahrzeug schienenfahrzeug))
+(defclass zeitzug (schienenfahrzeug luftfahrzeug))
+
+;; Da alle Medien gewünscht sind, wird append verwendet, um von einem Typen jeweils das eigene als
+;; auch das des Supertypen abzufragen
+(defgeneric get-medium ((fahrzeug))
+  ; Gibt die Bewegungsmedien des gebenenen Fahrzeuges als Liste zurück
+  :combination generic-append-combination)
+;; Um die Medien als Liste zu bekommen, wird der reader des Feldes medium der list-Funktion übergeben
+(defmethod get-medium ((lf landfahrzeug))
+  (list (read-medium lf)))
+(defmethod get-medium ((wf wasserfahrzeug))
+  (list (read-medium wf)))
+(defmethod get-medium ((lf luftfahrzeug))
+  (list (read-medium lf)))
+(defmethod get-medium ((sf straßenfahrzeug))
+  (list (read-medium sf)))
+(defmethod get-medium ((sf schienenfahrzeug))
+  (list (read-medium sf)))
+(defmethod get-medium ((af amphibienfahrzeug))
+  (list (read-medium af)))
+(defmethod get-medium ((af amphibienflugzeug))
+  (list (read-medium af)))
+(defmethod get-medium ((zf zweiwegefahrzeug))
+  (list (read-medium zf)))
+(defmethod get-medium ((zz zeitzug))
+  (list (read-medium zz)))
+
+;; Da sich die Geschwindigkeiten möglicherweise unterscheiden können,
+;; wird nach dem höchstmöglichen Wert gefragt
+(defgeneric get-maximalgeschwindigkeit ((fahrzeug))
+  ; gibt die Maximalgeschwindigkeit des Fahrzeuges zurück
+  :combination generic-max-combination)
+;; Da die maximale Kapazität sich je nach Medium unterscheiden kann
+;; (Auftrieb und so) und eine höhere Kapazität aus dem falschen Medium
+;; fatal sein kann, sollte das Minimum angegeben werden
+(defgeneric get-tragfähigkeit ((fahrzeug))
+  ; gibt die Tragfähigkeit des Fahrzeugs zurück
+  :combination generic-min-combination)
+;; Der Verbrauch kann sich zwar je nach Medium ändern (Reibungswiderstand),
+;; da uns aber nicht bewusst ist, wie sich das elegant lösen lässt,
+;; wird der Verbrauch höchste Verbrauch zurück gegeben, um so die
+;; worst-case-Angabe zu haben
+(defgeneric get-verbrauch ((fahrzeug))
+  ; gibt den Verbrauch des Fahrzeugs zurück
+  :combination generic-max-combination)
+;; Die Passagieranzahl kann ebenso wie die Tragfähigkeit je nach
+;; Medium leicht variieren. Widerum wird der worst-case-Wert abgefragt
+(defgeneric get-passagiere ((fahrzeug))
+  :combination generic-min-combination)
+
+;; Erstellt ein Beispiel-Amphibienfahrzeug
+(define bsp-amphiauto (make amphibienfahrzeug
+                            :init-vmax 50
+                            :init-cmax 100
+                            :init-verbrauch 12
+                            :init-passagiere 4))
+;; Erstellt ein Beispiel-Zweiwegeefahrzeug
+(define bsp-amphiplane (make amphibienflugzeug
+                             :init-vmax 800
+                             :init-cmax 300
+                             :init-verbrauch 30
+                             :init-passagiere 10))
+;; Erstellt ein Beispiel-Zweiwegefahrzeug
+(define bsp-hybrid (make zweiwegefahrzeug
+                         :init-vmax 150
+                         :init-cmax 130
+                         :init-verbrauch 20
+                         :init-passagiere 10))
+;; erstellt einen Beispiel-Zeitzug
+(define bsp-zug (make zeitzug
+                      :init-vmax 141.592 ; 88 MPH in Km/h
+                      :init-cmax 99999
+                      :init-verbrauch 300
+                      :init-passagiere 6))
+
+#|
+Zeigt das Ergebnis der exemplarisch implementierten get-medium-Methode
+Da sowohl die Klassendefinition als auch die Methodendefinition unsauber sind,
+kommt ein komisches Ergebnis zurück
+Allerdings ist uns nicht klar, wie genau die Definition angepasst werden müsste,
+um das richtige Ergebnis zu erhalten
+Die implementierte Funktion gibt das Medium des Fahrzeugs konkateniert mit den Medien
+der Supertypen zurück. Durch das Überschreiben beim Erben fällt hierbei der Typ
+eines der beiden direkten Supertypen weg. Welcher Wert welchen überschreibt, wird
+durch die Klassenpräzedenzliste festgelegt (eine diskrete Datensammlung, welche angibt, in
+welcher Reihenfolge die Vererbung ausgewertet wird)
+|#
+(displayln (list "Medien des Amphibienfahrzeuges:" (get-medium bsp-amphiauto)))
+(displayln (list "Medien des Amphibienflugzeuges:" (get-medium bsp-amphiplane)))
+(displayln (list "Medien des Zweiwegefahrzeuges:" (get-medium bsp-hybrid)))
+(displayln (list "Medien des Zeitzuges:" (get-medium bsp-zug)))
