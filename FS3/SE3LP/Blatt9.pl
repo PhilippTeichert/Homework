@@ -47,13 +47,13 @@
 % 'Pattern' und 'Response' sind Argumentpositionen,
 % so dass 'Response' die Ausgabe auf eine Eingabe 'Pattern' ist.
     
-rule2(Pattern, Response) :-
+rule2(Pattern, Response) :- % entweder ist das Pattern eins von mehreren für diee Regel
     findall(Patterns2, rule(Patterns2, _), Liste),
     member(Patterns, Liste),
     member(Pattern, Patterns),
     rule(Patterns, Response).
 
-rule2(Pattern, Response) :-
+rule2(Pattern, Response) :- % oder das einzige
     findall(Patterns2, rule(Patterns2, _), Liste),
     member(Pattern, Liste),
     rule(Pattern, Response).
