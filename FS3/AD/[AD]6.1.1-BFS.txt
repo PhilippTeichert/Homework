@@ -1,0 +1,40 @@
+Queue:
+	S
+Output:
+	-
+Queue:
+	A B C
+Output:
+	S
+Queue:
+	B C
+Output:
+	S A
+Queue:
+	B C D E
+Output:
+	S A
+Queue:
+	C D E
+Output:
+	S A B
+Queue:
+	D E F
+Output:
+	S A B C
+Queue:
+	E F G
+Output:
+	S A B C D
+Queue:
+	F G
+Output:
+	S A B C D E
+Queue:
+	G
+Output:
+	S A B C D E F
+Queue:
+	-
+Output:
+	S A B C D E F G
