@@ -28,7 +28,24 @@
 \newcommand{\todo}[1]{
 	\addcontentsline{toc}{subsubsection}{TODO: #1}
 	\textcolor{pgreen}{\texttt{\-\\ \-\\//TODO: #1\-\\ \-\\}}
-	}
+}
+\newcommand{\sus}[1]{
+	\addcontentsline{toc}{subsection}{Übungsaufgabe #1}
+	\subsection*{Übungsaufgabe #1}
+	\label{ssec:#1}
+}
+\newcommand{\sss}[1]{
+	\addcontentsline{toc}{subsubsection}{Aufgabe #1}
+	\subsubsection*{Aufgabe #1}
+	\label{sssec:#1}
+}
+\newcommand{\points}[1]{
+	\begin{flushright}
+		\begin{Large}
+			[~~~~\string| ~#1~]
+		\end{Large}
+	\end{flushright}
+}
 % tikz
 \usepackage{tikz}
 \usetikzlibrary{arrows,automata,positioning}
@@ -110,42 +127,41 @@
 	\textbf{Punkte für den Hausaufgabenteil:}\\
 	\vspace{1cm}
 	\begin{tabular}{c|c|c|c|c}
-	~5.1~&~5.2~&~5.3~&~5.4~&~$\Sigma$~	\\	\hline
-		 &	   &	 &	   &
+	~7.1~&~7.2~&~$\Sigma$~	\\	\hline
+		 &	   &
 	\end{tabular}
 \end{center}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 %#+-------------------------------------------------+#%
 %#+						INHALT  			     	+#%
 %#+-------------------------------------------------+#%
@@ -1935,14 +1951,8 @@ Unter der Annahme P = NP existiert allerdings auch ein P-Algorithmus und dieser 
 %#+--------------------------------------------------+#%
 \addcontentsline{toc}{section}{Zettel vom 10. 12. -- Abgabe: 04. 01. 2016}
 \section*{Zettel vom 10. 12. -- Abgabe: 04. 01. 2016}
-\addcontentsline{toc}{subsection}{Übungsaufgabe 6.1}
-\subsection*{Übungsaufgabe 6.1}
-\label{ssec:6.1}
-\begin{flushright}
-\begin{Large}
-[~~~~~\string| ~10~]
-\end{Large}
-\end{flushright}
+\sus{6.1}
+\points{10}
 %---------------%
 %	Aufgabe	    %
 %---------------%
@@ -1979,9 +1989,7 @@ Betrachten Sie obigen Graphen $G$.
 Wenden Sie jeweils das verlangte Verfahren an bzw. beantwortet Sie die Frage oder begründen Sie, warum dies nicht nicht.
 (Bei den ersten sechs Teilaufgaben spielen die Kantengewichte keine Rolle.)
 
-\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.1}
-\subsubsection*{Aufgabe 6.1.1}
-\label{sssec:6.1.1}
+\sss{6.1.1}
 %---------------%
 %	Aufgabe	    %
 %---------------%
@@ -1991,10 +1999,14 @@ Starten Sie den Algorithmus bei $s$. (1 Pkt.)
 %---------------%
 %	Bearbeitung %
 %---------------%
+Ergebnis der Breitensuche:
 
-\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.2}
-\subsubsection*{Aufgabe 6.1.2}
-\label{sssec:6.1.2}
+S A B C D E F G\\
+BFS-Baum:
+\begin{center}
+	\includegraphics[scale=0.5]{w6-ressourcen/6-1-BFS-Tree.png}
+\end{center}
+\sss{6.1.2}
 %---------------%
 %	Aufgabe	    %
 %---------------%
@@ -2003,10 +2015,11 @@ Ist das Ergebnis der Breitensuche eindeutig? (1 Pkt.)
 %---------------%
 %	Bearbeitung %
 %---------------%
+Ja, ist es, da die Reihenfolge der Kanten, die gewählt werden, gegeben ist durch die Struktur der Adjazenzmatrix des Graphen.
+Zumindest ist dies der Fall bei den bisher im Modul gegebenen Algorithmen.
+Liegt keine Adjazenzmatrix vor oder arbeitet ein Algorithmus mit einer Modifikation der BFS, so kann es, gegeben es gibt mehrere gültige Breitensuchbäume, dazu kommen, dass unterschiedliche Ergebnisse zurückgegeben werden.
 
-\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.3}
-\subsubsection*{Aufgabe 6.1.3}
-\label{sssec:6.1.3}
+\sss{6.1.3}
 %---------------%
 %	Aufgabe	    %
 %---------------%
@@ -2056,9 +2069,8 @@ F	&	6	&	9\\
 G	&	7	&	8
 \end{tabular}
 \end{minipage}
-\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.4}
-\subsubsection*{Aufgabe 6.1.4}
-\label{sssec:6.1.4}
+
+\sss{6.1.4}
 %---------------%
 %	Aufgabe	    %
 %---------------%
@@ -2068,9 +2080,8 @@ Geben Sie eine topologische Sortierung des Graphen $G$ an. (1 Pkt.)
 %	Bearbeitung %
 %---------------%
 Es ist nicht möglich, eine topologische Sortierung für $G$ anzugeben, da $G$ zyklisch ist und somit unabhängig von der gewählten Reihenfolge keine Möglichkeit besteht, rückwärtige Kanten zu vermeiden.
-\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.5}
-\subsubsection*{Aufgabe 6.1.5}
-\label{sssec:6.1.5}
+
+\sss{6.1.5}
 %---------------%
 %	Aufgabe	    %
 %---------------%
@@ -2080,10 +2091,13 @@ Geben Sie dazu das Ergebnis von $DFS(G)$ und $DFS(G^T)$ sowie die starken Zusamm
 %---------------%
 %	Bearbeitung %
 %---------------%
+$DFS(G):$ s. 6.1.3.\\
+$DFS(G^T):$ nicht möglich, da keine topologische Sortierung vorliegt.\\
+Starke Zusammenhangskomponenten:
 
-\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.6}
-\subsubsection*{Aufgabe 6.1.6}
-\label{sssec:6.1.6}
+[S], [A,B,C,D,E,F,G]
+
+\sss{6.1.6}
 %---------------%
 %	Aufgabe	    %
 %---------------%
@@ -2092,37 +2106,171 @@ Geben Sie den Komponentengraphen von $G$ an. (1 Pkt.)
 %---------------%
 %	Bearbeitung %
 %---------------%
-
-\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.7}
-\subsubsection*{Aufgabe 6.1.7}
-\label{sssec:6.1.7}
+Der Übersicht halber wurden die Kantengewichte, da sie für diese Aufgabe ohnehin irrelevant sind, weggelassen.
+\begin{center}
+	\includegraphics[scale=0.6]{w6-ressourcen/6-1-6-cpg.png}
+\end{center}
+\sss{6.1.7}
 %---------------%
 %	Aufgabe	    %
 %---------------%
 Interpretieren Sie $G$ nun als ungerichteten Graphen.
 Wenden Sie den Algorithmus von Kruskal an, um einen minimalen Spannbaum zu bestimmen.
-(Es genügt hier anzugeben welche kanten in den minimalen Spannbaum aufgenommen werden und in welcher Reihenfolge dies geschieht!) (1 Pkt.)
+(Es genügt hier anzugeben welche Kanten in den minimalen Spannbaum aufgenommen werden und in welcher Reihenfolge dies geschieht!) (1 Pkt.)
 \vspace{1cm}\-\\
 %---------------%
 %	Bearbeitung %
 %---------------%
+\textbf{Schritt 1:} Hinzufügen aller Kanten mit Gewicht 1.\\
+$\{(S,A),(A,D),(B,D),(B,C),(F,G)\}$
+\begin{center}
+	\includegraphics[scale=.6]{w6-ressourcen/6-1-7-1.png}
+\end{center}
+\textbf{Schritt 2:} Hinzufügen aller Kanten mit Gewicht 2.\\
+$\{(B,E)\}$
+\begin{center}
+	\includegraphics[scale=.6]{w6-ressourcen/6-1-7-2.png}
+\end{center}
+\textbf{Schritt 3:} Kanten mit Gewicht 3 sind redundant.
+Fahre fort mit Kanten mit Gewicht 4.\\
+$\{(E,G)\}$
+\begin{center}
+	\includegraphics[scale=.6]{w6-ressourcen/6-1-7-3.png}
+\end{center}
 
-\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.8}
-\subsubsection*{Aufgabe 6.1.8}
-\label{sssec:6.1.8}
+\sss{6.1.8}
 %---------------%
 %	Aufgabe	    %
 %---------------%
 Bestimmen Sie mit dem Algorithmus von Dijkstra kürzeste Pfade von $s$ zu allen anderen Knoten.
-Geben Sie hierzu jeweils den Graph mit den Werten ovn $d[v]$ nach jeder Iteration der while-Schleife an und machen Sie $\pi[v]$ z.B. durch dickere kanten deutlich. (2 Pkt.)
+Geben Sie hierzu jeweils den Graph mit den Werten von $d[v]$ nach jeder Iteration der while-Schleife an und machen Sie $\pi[v]$ z.B. durch dickere Kanten deutlich. (2 Pkt.)
 \vspace{1cm}\-\\
 %---------------%
 %	Bearbeitung %
 %---------------%
+Sei $v \in V(G)$.
+Dann ordnet $d(v)$ jedem Knoten seine Distanz zum Startknoten zu.
+Sei desweiteren die Startdistanz jedes Knoten zum Startknoten zunächst $\infty$.
+Außerdem werden fertig bearbeitete Knoten mit \textcolor{red}{roter} Schrift markiert, der als nächstes geprüfte Knoten in \textcolor{green}{grüner} Schrift.
+\newpage
+\begin{enumerate}
+	\item \textbf{Anfang}\\
+	\begin{minipage}[t]{0.48\textwidth}
+		\begin{tabular}{l||c|c|c|c|c|c|c|c}
+			$v$		&	\textcolor{green}{S}	&	A	&	B	&	C	&	D	&	E	&	F	&	G	\\	\hline
+			$d(v)$	&	0						&	$\infty$	&	$\infty$	&	$\infty$	&	$\infty$	& $\infty$	&	$\infty$	&	$\infty$
+		\end{tabular}
+	\end{minipage}
+	\begin{minipage}[t]{0.48\textwidth}
+		\includegraphics[scale=0.5]{w6-ressourcen/6-1-8-0.png}
+	\end{minipage}
+	
+	\item \textbf{S}\\
+	\begin{minipage}[t]{0.48\textwidth}
+		\begin{tabular}{l||c|c|c|c|c|c|c|c}
+			$v$		&	\textcolor{red}{S}	&	\textcolor{green}{A}	&	B	&	C	&	D	&	E	&	F	&	G	\\	\hline
+			$d(v)$	&	0					&	1	&	4	&	9	&	$\infty$	&	$\infty$	&	$\infty$	&	$\infty$
+		\end{tabular}\\\\
+		Kanten:\\
+		$(s,a),(s,b),(s,c)$
+	\end{minipage}
+	\begin{minipage}[t]{0.48\textwidth}
+		\includegraphics[scale=0.5]{w6-ressourcen/6-1-8-1.png}
+	\end{minipage}
+	
+	\item \textbf{A}\\
+	\begin{minipage}[t]{0.48\textwidth}
+		\begin{tabular}{l||c|c|c|c|c|c|c|c}
+			$v$		&	\textcolor{red}{S}	&	\textcolor{red}{A}	&	B	&	C	&	\textcolor{green}{D}	&	E	&	F	&	G	\\	\hline
+			$d(v)$	&	0					&	1					&	4	&	9	&	2	&	6	&	$\infty$	&	$\infty$
+		\end{tabular}\\\\
+		Kanten:\\
+		$(s,a),(s,b),(s,c),(a,d),(a,e)$
+	\end{minipage}
+	\begin{minipage}[t]{0.48\textwidth}
+		\includegraphics[scale=0.5]{w6-ressourcen/6-1-8-2.png}
+	\end{minipage}
+	
+	\item \textbf{D}\\
+	\begin{minipage}[t]{0.48\textwidth}
+		\begin{tabular}{l||c|c|c|c|c|c|c|c}
+			$v$		&	\textcolor{red}{S}	&	\textcolor{red}{A}	&	\textcolor{green}{B}	&	C	&	\textcolor{red}{D}&	E	&	F	&	G	\\	\hline
+			$d(v)$	&	0	&	1	&	4	&	9	&	2	&	6	&	$\infty$	&	17
+		\end{tabular}\\\\
+		Kanten:\\
+		$(s,a),(s,c),(a,d),(a,e),(d,b),(d,g)$
+	\end{minipage}
+	\begin{minipage}[t]{0.48\textwidth}
+		\includegraphics[scale=0.5]{w6-ressourcen/6-1-8-3.png}
+	\end{minipage}
+	
+	\item \textbf{B}\\
+	\begin{minipage}[t]{0.48\textwidth}
+		\begin{tabular}{l||c|c|c|c|c|c|c|c}
+			$v$		&	\textcolor{red}{S}	&	\textcolor{red}{A}	&	\textcolor{red}{B}	&	C	&	\textcolor{red}{D}	&	\textcolor{green}{E}	&	F	&	G	\\	\hline
+			$d(v)$	&	0	&	1	&	3	&	9	&	2	&	5	&	$\infty$	&	17
+		\end{tabular}\\\\
+		Kanten:\\
+		$(s,a),(s,b),(s,c),(a,d),(a,e)$
+	\end{minipage}
+	\begin{minipage}[t]{0.48\textwidth}
+		\includegraphics[scale=0.5]{w6-ressourcen/6-1-8-4.png}
+	\end{minipage}
+	
+	\item \textbf{E}\\
+	\begin{minipage}[t]{0.48\textwidth}
+		\begin{tabular}{l||c|c|c|c|c|c|c|c}
+			$v$		&	\textcolor{red}{S}	&	\textcolor{red}{A}	&	\textcolor{red}{B}	&	\textcolor{green}{C}	&	\textcolor{red}{D}	&	\textcolor{red}{E}	&	F	&	G	\\	\hline
+			$d(v)$	&	0	&	1	&	3	&	8	&	2	&	5	&	$\infty$	&	17
+		\end{tabular}\\\\
+		Kanten:\\
+		$(s,a),(a,d),(d,b),(d,g),(b,e),(e,c)$
+	\end{minipage}
+	\begin{minipage}[t]{0.48\textwidth}
+		\includegraphics[scale=0.5]{w6-ressourcen/6-1-8-5.png}
+	\end{minipage}
+	
+	\item \textbf{C}\\
+	\begin{minipage}[t]{0.48\textwidth}
+		\begin{tabular}{l||c|c|c|c|c|c|c|c}
+			$v$		&	\textcolor{red}{S}	&	\textcolor{red}{A}	&	\textcolor{red}{B}	&	\textcolor{red}{C}	&	\textcolor{red}{D}	&	\textcolor{red}{E}	&	\textcolor{green}{F}	&	G	\\	\hline
+			$d(v)$	&	0	&	1	&	3	&	8	&	2	&	5	&	14	&	17
+		\end{tabular}\\\\
+		Kanten:\\
+		$(s,a),(a,d),(d,b),(d,g),(b,e),(e,c),(c,f)$
+	\end{minipage}
+	\begin{minipage}[t]{0.48\textwidth}
+		\includegraphics[scale=0.5]{w6-ressourcen/6-1-8-6.png}
+	\end{minipage}
+	
+	\item \textbf{F}\\
+	\begin{minipage}[t]{0.48\textwidth}
+		\begin{tabular}{l||c|c|c|c|c|c|c|c}
+			$v$		&	\textcolor{red}{S}	&	\textcolor{red}{A}	&	\textcolor{red}{B}	&	\textcolor{red}{C}	&	\textcolor{red}{D}	&	\textcolor{red}{E}	&	\textcolor{red}{F}	&	\textcolor{green}{G}	\\	\hline
+			$d(v)$	&	0	&	1	&	3	&	8	&	2	&	5	&	14	&	15
+		\end{tabular}\\\\
+		Kanten:\\
+		$(s,a),(a,d),(d,b),(b,e),(e,c),(c,f),(f,g)$
+	\end{minipage}
+	\begin{minipage}[t]{0.48\textwidth}
+		\includegraphics[scale=0.5]{w6-ressourcen/6-1-8-7.png}
+	\end{minipage}
+	
+	\item \textbf{G}\\
+	\begin{minipage}[t]{0.48\textwidth}
+		\begin{tabular}{l||c|c|c|c|c|c|c|c}
+			$v$		&	\textcolor{red}{S}	&	\textcolor{red}{A}	&	\textcolor{red}{B}	&	\textcolor{red}{C}	&	\textcolor{red}{D}	&	\textcolor{red}{E}	&	\textcolor{red}{F}	&	\textcolor{red}{G}	\\	\hline
+			$d(v)$	&	0	&	1	&	3	&	8	&	2	&	5	&	14	&	15
+		\end{tabular}\\\\
+		Kanten:\\
+		$(s,a),(a,d),(d,b),(b,e),(e,c),(c,f),(f,g)$
+	\end{minipage}
+	\begin{minipage}[t]{0.48\textwidth}
+		\includegraphics[scale=0.5]{w6-ressourcen/6-1-8-7.png}
+	\end{minipage}
+\end{enumerate}
 
-\addcontentsline{toc}{subsubsection}{Aufgabe 6.1.9}
-\subsubsection*{Aufgabe 6.1.9}
-\label{sssec:6.1.9}
+\sss{6.1.9}
 %---------------%
 %	Aufgabe	    %
 %---------------%
@@ -2132,25 +2280,19 @@ Was ist der hauptsächliche Unterschied der beiden Algorithmen bei der Ausführu
 %---------------%
 %	Bearbeitung %
 %---------------%
+Während Dijkstra die Entfernung jedes Knotens zum Startknoten speichert, enthalten die Knoten nach Prim jeweils nur die Entfernung zum Vorgängerknoten.
+Dieser Unterschied wird durch Dijkstra's \texttt{Relax} in Zeile 8ff\footnote{Foliensatz 9, Version 03.01.2016, Seite 119} hervorgerufen (Dieser \texttt{if}-Block ist äquivalent zur Funktion \texttt{Relax} von der Seite vorher).
 
-\addcontentsline{toc}{subsection}{Übungsaufgabe 6.2}
-\subsection*{Übungsaufgabe 6.2}
-\label{ssec:6.2}
-\begin{flushright}
-\begin{Large}
-[~~~~\string| ~~6~]
-\end{Large}
-\end{flushright}
-\addcontentsline{toc}{subsubsection}{Aufgabe 6.2.1}
-\subsubsection*{Aufgabe 6.2.1}
-\label{sssec:6.2.1}
+\sus{6.2}
+\points{6}
+\sss{6.2.1}
 %---------------%
 %	Aufgabe	    %
 %---------------%
 Sei $G = (V,E)$ ein ungerichteter Graph.
 Bei einer $k$-Färbung von $G$ wird jedem Knoten $v \in V$ eine Farbe $c \in [k] = \{1,2,\dots,k\}$ zugewiesen.
 Die Färbung ist korrekt, wenn zwei benachbarte Knoten nie die gleiche Farbe haben.
-Formal ist eine \textit{k-Färbung} dann also eine Abbildung $f : V \rightarrow [k]$ und eine \textit{korrekte k-Färbung} erfüllt $f(x) \neq f(x)$ für jede Kante $\{x,y\} \in E$.
+Formal ist eine \textit{k-Färbung} dann also eine Abbildung $f : V \rightarrow [k]$ und eine \textit{korrekte k-Färbung} erfüllt $f(x) \neq f(y)$ für jede Kante $\{x,y\} \in E$.
 Wir definieren folgendes Problem:
 \[
 	k-col = \{\langle G \rangle | G \text{ besitzt eine korrekte } k\text{-Färbung}\}
@@ -2161,10 +2303,22 @@ Zeigen Sie, dass auch 8-col \textit{NP}-vollständig ist. (2 Pkt.)
 %---------------%
 %	Bearbeitung %
 %---------------%
+Sei das Zertifikat eine Menge bestehend aus einem Graphen $G=(V,E)$ und einer Färbungsfunktion $f$.
+Die Prüfung des korrekten Ergebnisses der Funktion in Form von $f(x) \neq f(y)$ für zwei benachbarte Knoten $x,y \in V$ lässt sich in polynomieller Zeit erledigen, womit 8-col in NP liegt.\\
+\\
+\textbf{Reduktion}\\
+Es wird nach Aufgabenstellung 3-col auf 8-col reduziert.\\
+Nach Aufgabenstellung ist bekannt, dass 3-col in NP liegt.\\
+\\
+Sei die Gruppe $H$ eine Menge von Knoten, die eine erfüllende Belegung von 3-col darstellt.
+Zu $H$ wird ein Knoten hinzugefügt, der paarweise mit allen drei Knoten aus $H$ verbunden wird.
+Da der neue Knoten mit allen anderen Knoten verbunden ist, muss er eine Farbe erhalten, die bisher nicht vergeben ist.
+$H'$ ist nun eine erfüllende Belegung für 4-col und jede 3 Knoten aus $H$ sind eine erfüllende Belegung für 3-col.
+Dies wird wiederholt, bis $H'_neu$ 8 Knoten vorweist.
+Für jede k Knoten gilt hierbei, dass es sich um eine erfüllende Belegung für k-col handelt, und jede Auswahl aus k-1 Knoten aus $H$ eine erfüllende Belegung für (k-1)-col ist.
+Diese Erweiterung liegt in $\mathcal{O}(k-|V_{H_0}|)$.
 
-\addcontentsline{toc}{subsubsection}{Aufgabe 6.2.2}
-\subsubsection*{Aufgabe 6.2.2}
-\label{sssec:6.2.2}
+\sss{6.2.2}
 %---------------%
 %	Aufgabe	    %
 %---------------%
@@ -2180,5 +2334,27 @@ Zeigen Sie, dass dieses Problem \textit{NP}-vollständig ist. (4 Pkt.)
 %---------------%
 %	Bearbeitung %
 %---------------%
+\textbf{Reduktion von 3KNF auf Kreuzgo\footnote{Wir haben das Spiel in Ermangelung eines Namen so getauft}:}\\
+Eine Spalte wird als Klausel interpretiert, die dann wahr ist, wenn für jedes Feld gilt:
+\[
+    ((schwarz \land \lnot weiss) \lor (\lnot schwarz \land weiss) \lor null)
+\]
+je nachdem, ob der erste gefundene Stein in der Spalte schwarz oder weiß ist.\\
+Ebenso wird eine Zeile als Klausel interpretiert, die dann wahr ist, wenn für mindestens ein Feld gilt:
+\[
+    (schwarz \lor weiss \lor \lnot null)
+\]
+Diese Belegung muss für jede Zeile bzw. jede Spalte respektive gelten; die einzelnen Klauseln sind konjunkt.\\
+Gibt es eine erfüllende Belegung für die dadurch entstehende KNF, so ist diese Lösung auch eine Lösung für Kreuzgo.
+
+
+
+%#+-------------------------------------------------+#%
+%#+						ZETTEL 8					+#%
+%#+-------------------------------------------------+#%
+\newpage
+\addcontentsline{toc}{section}{Zettel vom 06. 01. -- Abgabe: 18. 01. 2016}
+\section*{Zettel vom 06. 01. -- Abgabe: 18. 01. 2016}
+
 
 \end{document}
