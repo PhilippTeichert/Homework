@@ -1,0 +1,56 @@
+Beginn: 18.07
+Anwesend: Louis, Utz
+Beschlussfähig: muss
+Protokoll: Louis
+Vorsitz: Louis
+
+TOP 1: Change Requests sammeln
+	1.: Sei der Fall, es wäre die Entscheidung auf Farbstreifen an Wand/Boden/Decke gefallen (vgl. früher),
+		dann wünscht sich der Auftraggeber nun eine andere Farbkodierung.
+		AUSWIRKUNG: Sagen dem Maler, er muss mit der anderen Palette nochmal anrücken
+	2.: Neues Feature.
+		AUSWIRKUNG: Dauert X Personenstunden länger, WHERE X = Komplexität des Features in virtueller Maßeinheit
+	3.: Änderungen am bestehenden Projekt.
+		AUSWIRKUNG: Kann komplette Infrastruktur zerschießen, wenn scheiße gebaut. Sonst eine Personenstunde.
+			Dauert dann 1-X Personenstunden länger
+TOP 2: CR definieren
+	Welche Infos?
+		Art der Änderung/Details
+		Auftraggeber
+		Ersteller des Requests
+		Ressourcenschätzung (~~)
+		Zugesicherte Ressourcen
+		Bindende Zusage des Auftraggebers
+		Deadline
+	Modus der Erfassung?
+		Speicherung an PC und in Akte
+		Akte mit folgendem Inhalt:
+			Change Request
+			Notizen dazu
+			Nach Datum sortiert
+			mit fortlaufender ID versehen
+		Akte mit folgendem Inhalt:
+			abgelehnte Change Requests
+			wer will, kann sich in der Mittagspause damit auseinander setzen
+			  
+TOP 3: RS definieren
+	RS wird mangels Informationen als 'Risikomanagement' interpretiert.
+	Notfallplan für häufige Risiken wird mit Vertretern der Stakeholder sowie dem Lenkungsausschuss nach Projektauftrag besprochen. (Murphy's Law)
+	Bei vernünftiger Planung ist genügend Luft, um die meisten Situationen abzufangen.
+TOP 4: Welche CRs annehmen?
+	Angenommen:
+		Alle, sofern mit entsprechenden Ressourcenanforderungen unterschrieben
+	Abgelehnt:
+		Alle, die nicht mit unserem Teil des Projektes zu tun haben
+		Alle, bei denen uns die notwendigen Ressourcen nicht zugesprochen werden
+TOP 5: Risikoliste
+	1. Dinge sind nicht pünktlich (Server, Leute, Busse)
+	2. Interne Kommunikation (Mangelnde Absprache bei Schnittstellen)
+	3. Zu viel externe Kommunikation (Kunde weiß nicht genau, was er will, und lässt uns im Kreis rennen, stört Arbeitsfluss)
+	4. Truck Faktor
+	5. Fehlende externe Kommunikation (Kunde sagt nicht genau, was er haben will, und beschwert sich hinterher)
+TOP 6: Sonstiges:
+	Hauke macht Risikotabelle, wenn Bock drauf, sonst Louis morgen in AD.
+
+
+Ende: 19.10
