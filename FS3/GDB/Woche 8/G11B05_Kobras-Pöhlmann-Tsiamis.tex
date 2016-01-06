@@ -1,0 +1,323 @@
+\documentclass[ngerman]{gdb-aufgabenblatt}
+
+
+\renewcommand{\Aufgabenblatt}{5}
+\renewcommand{\Ausgabedatum}{Mi. 09.12.2015}
+\renewcommand{\Abgabedatum}{Fr. 08.01.2016}
+\renewcommand{\Gruppe}{Kobras, Pöhlmann, Tsiamis}
+\renewcommand{\STiNEGruppe}{11}
+
+
+\begin{document}
+\section{Referentiell Aktionen}
+\subsection{Teilaufgabe a}
+Ein bezüglich der referentiellen Aktion sicheres Schema darf nicht Reihenfolge-abhängig sein. Dies gewährleistet die referentielle Integrität.
+
+%---------------------------------------------------------------
+
+\subsection{Teilaufgabe b}
+\begin{center}
+\begin{tikzpicture}
+
+\node[entity] (Rubriken) {Rubriken};
+\node[entity] (BenutzerIn)      [below right=4cm and 2cm of Rubriken.south] {BenutzerIn};
+\node[entity] (RubrikZuordnung) [below left=2cm and 2cm of Rubriken.south] {RubrikZuordnung};
+\node[entity] (Websites)       [below left=2cm and 2cm of BenutzerIn.south] {Websites};
+
+
+%\path (Websites) edge node[smallr,near start,above right] {EingestelltVon ->\\Benutzer.UID} (BenutzerIn);
+\draw[->] (Websites) -| (BenutzerIn) node[smallr, near end, below right]{\textbf{ON DELETE}\\\textbf{RESTRICT}} node[smallr, near start, below right]{EingestelltVon ->\\Benutzer.UID};
+\draw[->] (BenutzerIn) -| (Websites) node[smallr, near end, above left]{\textbf{ON DELETE}\\\textbf{SET NULL}} node[smallr, near start, above left]{Homepage ->\\Websites.WID};
+\draw[->] (Rubriken) -| (BenutzerIn) node[smallr, near end, above right]{\textbf{ON DELETE}\\\textbf{CASCADE}} node[smallr, near start, above right]{VerwalterIn ->\\BenutzerIn.UID};
+\draw[->] (RubrikZuordnung) |- (Websites) node[smallr, near end, below left]{\textbf{ON DELETE}\\\textbf{CASCADE}} node[smallr, near start, below left]{WID ->\\Websites.WID};
+\draw[->] (RubrikZuordnung) -| (BenutzerIn) node[smallr, near start, above right]{\textbf{ON DELETE}\\\textbf{CASCADE}} node[smallr, at start, above right]{ZugeordnetVon ->\\BenutzerIn.UID};
+\draw[->] (RubrikZuordnung) |- (Rubriken) node[smallr, near end, above left]{\textbf{ON DELETE}\\\textbf{RESTRICT}} node[smallr, near start, above left]{RID ->\\Rubriken.RID};
+
+
+
+\end{tikzpicture}\footnote{Zwischen "Rubriken", "RubrikZuordnung\string" und "BenutzerIn\string" ist keine Kreuzung, hier überlagern sich nur 2 Linien, weil ich es nicht besser zeichnen konnte.}
+\end{center}
+
+%---------------------------------------------------------------
+
+\subsection{Teilaufgabe c}
+Das Schema ist in folgenden Fällen unsicher bezüglich referentiellen Aktionen:\\
+Ein Eintrag der Tabelle "BenutzerIn" wird gelöscht.\\
+Aktualisiert man zuerst die Tabelle "RubrikZuordnung\string" und danach erst die Tabelle "Rubriken", kann dies dazu führen, dass sich Rubriken jetzt löschen lassen, die auf anderem Wege abgelehnt worden wären.
+
+%---------------------------------------------------------------
+
+\subsection{Teilaufgabe d}
+Dieser Missstand lässt sich z.B. dadurch beheben, dass man das \textbf{ON DELETE RESTRICT} zwischen "Rubriken\string" und "RubrikZuordnung\string" in ein \textbf{ON DELETE CASCADE} umändert.\\
+Andernfalls könnte man auch die beiden \textbf{ON DELETE CASCADE} zwischen "BenutzerIn\string" und "Rubriken\string" und zwischen "BenutzerIn\string" und "RubrikZuordnung\string" jeweils in ein \textbf{ON DELETE RESTRICT} umändern.
+
+%---------------------------------------------------------------
+%
+%---------------------------------------------------------------
+
+\section{Änderbarkeit von Sichten}
+\subsection{Teilaufgabe a}
+\subsubsection{i}
+
+\begin{verbatim}
+CREATE VIEW EnterpriseCrew
+  AS SELECT BNr, Name, Rang
+    FROM Besatzungsmitglieder
+    WHERE IN
+      (SELECT * FROM Besatzungsmitglieder, Raumschiffe
+        WHERE Besatzungsmitglieder.Schiff = Raumschiffe.RNr
+        AND Raumschiffe.Name = 'Enterprise')
+        WITH CASCADED CHECK OPTION;
+\end{verbatim}
+Diese Relation ist änderbar.
+Deshalb wurde eine \textbf{CHECK OPTION} eingefügt.
+
+\subsubsection{ii}
+\begin{verbatim}
+CREATE VIEW Captains
+  AS SELECT Name
+    FROM Besatzungsmitglieder
+    WHERE Besatzungsmitglieder.Rang = 'Captain';
+\end{verbatim}
+Diese Relation ist nicht änderbar, da der Primärschlüssel fehlt.
+
+\subsubsection{iii}
+\begin{verbatim}
+CREATE VIEW WarpFed
+  AS SELECT RNr, Fraktion, Baujahr
+    FROM Raumschiffe
+    WHERE Raumschiffe.Geschwindigkeit >= 1
+    AND Raumschiffe.Fraktion = 'Föderation'
+    WITH CASCADED CHECK OPTION;
+\end{verbatim}
+Diese Relation ist änderbar.
+Deshalb wurde eine \textbf{CHECK OPTION} eingefügt.
+
+
+%---------------------------------------------------------------
+
+\subsection{Teilaufgabe b}
+\subsubsection{i}
+Diese SQL-Anweisung kann durchgeführt werden.\\
+Die geänderten Tupel sind in folgenden Sichten auf jeden Fall alle zu sehen:
+\begin{itemize}
+    \item Föderationsschiffe
+\end{itemize}
+
+\subsubsection{ii}
+Diese SQL-Anweisung kann durchgeführt werden.\\
+Die geänderten Tupel sind in folgenden Sichten auf jeden Fall alle zu sehen:
+\begin{itemize}
+    \item Föderationsschiffe
+    \item Forschungsschiffe
+\end{itemize}
+
+\subsubsection{iii}
+Diese SQL-Anweisung kann durchgeführt werden.\\
+Die geänderten Tupel sind in folgenden Sichten auf jeden Fall alle zu sehen:
+\begin{itemize}
+    \item Föderationsschiffe
+    \item Forschungsschiffe
+    \item GalaxyKlasse
+\end{itemize}
+
+\subsubsection{iv}
+Diese SQL-Anweisung kann nicht durchgeführt werden.
+
+\subsubsection{v}
+Diese SQL-Anweisung kann durchgeführt werden.\\
+Die geänderten Tupel sind in folgenden Sichten auf jeden Fall alle zu sehen:
+\begin{itemize}
+    \item Föderationsschiffe
+    \item Forschungsschiffe
+\end{itemize}
+
+%---------------------------------------------------------------
+%
+%---------------------------------------------------------------
+
+\section{Serialisierbarkeit und Anomalien}
+\subsection{Teilaufgabe a}
+Die Bindung für A und B nach den folgenden Zeitplänen:
+\begin{itemize}
+    \item S\textsubscript{1}
+    \begin{itemize}
+        \item A = 305
+        \item B = 195
+    \end{itemize}
+    
+    \item S\textsubscript{2}
+    \begin{itemize}
+        \item A = 195
+        \item B = 5
+    \end{itemize}
+    
+    \item S\textsubscript{3}
+    \begin{itemize}
+        \item A = 300
+        \item B = 5
+    \end{itemize}
+    
+    \item S\textsubscript{4}
+    \begin{itemize}
+        \item A = 190
+        \item B = 5
+    \end{itemize}
+    
+    \item S\textsubscript{5}
+    \begin{itemize}
+        \item A = 115
+        \item B = 5
+    \end{itemize}
+    
+    \item S\textsubscript{6}
+    \begin{itemize}
+        \item A = 300
+        \item B = 5
+    \end{itemize}
+\end{itemize}
+
+%---------------------------------------------------------------
+
+\subsection{Teilaufgabe b}
+Es existieren folgende Abhängigkeiten:
+\begin{itemize}
+    \item T\textsubscript{1} liest A und T\textsubscript{2} schreibt A.
+    \item T\textsubscript{2} liest A und T\textsubscript{1} schreibt A.
+    \item T\textsubscript{1} liest B und T\textsubscript{2} schreibt B.
+\end{itemize}
+Daraus folgt, dass verschiedene Werte für A und B raus kommen, je nachdem welche dieser 6 Aktionen an welcher Stelle kommt.\\
+So greifen z.B:\\
+w\textsubscript{1}(A), r\textsubscript{1}(A), w\textsubscript{2}(A), r\textsubscript{2}(A)\\
+alle auf das erste Feld zu.\\
+Und\\
+w\textsubscript{1}(B), r\textsubscript{2}(B)\\
+beide auf das zweite Feld.\\
+\\
+Dies bedeutet für die folgenden Schedules:
+\begin{itemize}
+    \item S\textsubscript{1}
+    \begin{itemize}
+        \item Abhängigkeit(w\textsubscript{1}(A) vor r\textsubscript{2}(A))
+    \end{itemize}
+    
+    \item S\textsubscript{2}
+    \begin{itemize}
+        \item Abhängigkeit(r\textsubscript{1}(A) vor w\textsubscript{2}(A))
+        \item Abhängigkeit(r\textsubscript{1}(B) vor w\textsubscript{2}(B))
+        \item Abhängigkeit(w\textsubscript{2}(A) vor w\textsubscript{1}(A))
+    \end{itemize}
+    
+    \item S\textsubscript{3}
+    \begin{itemize}
+        \item Abhängigkeit(w\textsubscript{2}(B) vor r\textsubscript{1}(B))
+        \item Abhängigkeit(w\textsubscript{2}(A) vor r\textsubscript{1}(A))
+    \end{itemize}
+    
+    \item S\textsubscript{4}
+    \begin{itemize}
+        \item Abhängigkeit(w\textsubscript{2}(B) vor r\textsubscript{1}(B))
+        \item Abhängigkeit(r\textsubscript{1}(A) vor w\textsubscript{2}(A))
+        \item Abhängigkeit(w\textsubscript{2}(A) vor w\textsubscript{1}(A))
+    \end{itemize}
+    
+    \item S\textsubscript{5}
+    \begin{itemize}
+        \item Abhängigkeit(r\textsubscript{2}(A) vor w\textsubscript{1}(A))
+        \item Abhängigkeit(w\textsubscript{1}(A) vor w\textsubscript{2}(A))
+    \end{itemize}
+    
+    \item S\textsubscript{6}
+    \begin{itemize}
+        \item Abhängigkeit(w\textsubscript{2}(B) vor r\textsubscript{1}(B))
+        \item Abhängigkeit(w\textsubscript{2}(A) vor r\textsubscript{1}(A))
+    \end{itemize}
+\end{itemize}
+
+%---------------------------------------------------------------
+
+\subsection{Teilaufgabe c}
+Die Zeitpläne sind:
+\begin{itemize}
+    \item S\textsubscript{1}
+    \begin{itemize}
+        \item seriell, da erst alle Operationen von T\textsubscript{1} und danach alle Operationen von T\textsubscript{2} ausgeführt werden\\
+        (da Abhängigkeit(w\textsubscript{1}(A) vor r\textsubscript{2}(A)) gilt).
+    \end{itemize}
+    
+    \item S\textsubscript{2}
+    \begin{itemize}
+        \item nicht serialisierbar, da T\textsubscript{1} den Grundwert liest und danach das Ergebnis von T\textsubscript{2} überschreibt\\(da Abhängigkeit(w\textsubscript{2}(A) vor w\textsubscript{1}(A)) und Abhängigkeit(r\textsubscript{1}(A) vor w\textsubscript{2}(A)) gilt).
+        \item Datenanomalie: T\textsubscript{2} hat in den Daten
+        nicht statt gefunden.
+    \end{itemize}
+    
+    \item S\textsubscript{3}
+    \begin{itemize}
+        \item serialisierbar, da T\textsubscript{1} erst liest, nachdem T\textsubscript{2} sie nicht mehr weiter bearbeitet\\
+        (da Abhängigkeit(w\textsubscript{2}(B) vor r\textsubscript{1}(B)) und Abhängigkeit(w\textsubscript{2}(A) vor r\textsubscript{1}(A)) gilt).
+    \end{itemize}
+    
+    \item S\textsubscript{4}
+    \begin{itemize}
+        \item nicht serialisierbar, da die Veränderung des Wertes A von T\textsubscript{2} nicht in der Datenbank auftaucht\\
+        (da Abhängigkeit(r\textsubscript{1}(A) vor w\textsubscript{2}(A)) und Abhängigkeit(w\textsubscript{2}(A) vor w\textsubscript{1}(A)) gilt).
+        \item Datenanomalie: T\textsubscript{2} verändert in den Daten nur B nicht jedoch A.
+    \end{itemize}
+    
+    \item S\textsubscript{5}
+    \begin{itemize}
+        \item nicht serialisierbar, da die Veränderung des Wertes A von T\textsubscript{1} nicht in der Datenbank auftaucht\\
+        (da Abhängigkeit(r\textsubscript{2}(A) vor w\textsubscript{1}(A)) und Abhängigkeit(w\textsubscript{1}(A) vor w\textsubscript{2}(A)) gilt).
+        \item Datenanomalie: T\textsubscript{1} hat in den Daten nicht statt gefunden.
+    \end{itemize}
+    
+    \item S\textsubscript{6}
+    \begin{itemize}
+        \item seriell, da erst T\textsubscript{2} und danach T\textsubscript{1} ausgeführt wird\\
+        (da Abhängigkeit(w\textsubscript{2}(B) vor r\textsubscript{1}(B)) und Abhängigkeit(w\textsubscript{2}(A) vor r\textsubscript{1}(A)) gilt).
+    \end{itemize}
+\end{itemize}
+
+%---------------------------------------------------------------
+%
+%---------------------------------------------------------------
+
+\section{Transaktionen}
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{Zeitschritt} & \textbf{T\textsubscript{1}} & \textbf{T\textsubscript{2}} & \textbf{T\textsubscript{3}} & \textbf{x} & \textbf{y} & \textbf{z} & \textbf{Bemerkung:}\\\hline
+0 & & & & NL & NL & NL &\\\hline
+1 & lock(x, X) & & & X\textsubscript{1} & NL & NL &\\\hline
+2 & write(x) & lock(y, R) & & X\textsubscript{1} & R\textsubscript{2} & NL &\\\hline
+3 & & read(y) & lock(z, R) & X\textsubscript{1} & R\textsubscript{2} & R\textsubscript{3} &\\\hline
+4 & & & read(z) & X\textsubscript{1} & R\textsubscript{2} & R\textsubscript{3} &\\\hline
+5 & & & lock(y, X) & X\textsubscript{1} & R\textsubscript{2} & R\textsubscript{3} & T\textsubscript{3} wartet auf Freigabe von y\\\hline
+6 & & lock(z, R) & & X\textsubscript{1} & R\textsubscript{2} & R\textsubscript{3} $\land$ R\textsubscript{2} & z hat nun 2 Lesesperren auf sich\\\hline
+7 & lock(z, X) & read(z) & & X\textsubscript{1} & R\textsubscript{2} & R\textsubscript{3} $\land$ R\textsubscript{2} & T\textsubscript{1} wartet auf Freigabe von z\\\hline
+8 & & read(y) & & X\textsubscript{1} & R\textsubscript{2} & R\textsubscript{3} $\land$ R\textsubscript{2} &\\\hline
+9 & & unlock(y) & & X\textsubscript{1} & X\textsubscript{3} & R\textsubscript{3} $\land$ R\textsubscript{2} & Benachrichtigung von T\textsubscript{3}\\\hline
+10 & & unlock(z) & write(y) & X\textsubscript{1} & X\textsubscript{3} & R\textsubscript{3} & erste Lesesperre wird von z entfernt\\\hline
+11 & & commit & lock(z, X) & X\textsubscript{1} & X\textsubscript{3} & X\textsubscript{3} &\\\hline
+12 & & & write(z) & X\textsubscript{1} & X\textsubscript{3} & X\textsubscript{3} &\\\hline
+13 & & & unlock(y) & X\textsubscript{1} & NL & X\textsubscript{3} &\\\hline
+14 & & & unlock(z) & X\textsubscript{1} & NL & X\textsubscript{1} & Benachrichtigung von T\textsubscript{1}\\\hline
+15 & write(z) & & commit & X\textsubscript{1} & NL & X\textsubscript{1} &\\\hline
+16 & unlock(x) & & & NL & NL & X\textsubscript{1} &\\\hline
+17 & unlock(z) & & & NL & NL & NL & alle Objekte sind wieder freigegeben\\\hline
+18 & commit & & & NL & NL & NL & alle Transaktionen sind fertig\\\hline
+19 & & & & NL & NL & NL &\\\hline
+20 & & & & NL & NL & NL &\\\hline
+21 & & & & NL & NL & NL &\\\hline
+22 & & & & NL & NL & NL &\\\hline
+23 & & & & NL & NL & NL &\\\hline
+24 & & & & NL & NL & NL &\\\hline
+25 & & & & NL & NL & NL &\\\hline
+\end{tabular}
+
+
+%---------------------------------------------------------------
+%
+%---------------------------------------------------------------
+
+\end{document}
