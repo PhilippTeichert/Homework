@@ -192,15 +192,15 @@
 ; prüft, ob in einer gegebenen Indexliste "indizes" jede Ziffer nur maximal einmal vorkommt (außer 0)
 ; indizes: die Indexliste, die geprüft wird
 (define pruefeRegel (lambda (indizes)
-  (and (<= (length (filter (lambda (x) (= x 1)) indizes)) 1)
-       (<= (length (filter (lambda (x) (= x 2)) indizes)) 1)
-       (<= (length (filter (lambda (x) (= x 3)) indizes)) 1)
-       (<= (length (filter (lambda (x) (= x 4)) indizes)) 1)
-       (<= (length (filter (lambda (x) (= x 5)) indizes)) 1)
-       (<= (length (filter (lambda (x) (= x 6)) indizes)) 1)
-       (<= (length (filter (lambda (x) (= x 7)) indizes)) 1)
-       (<= (length (filter (lambda (x) (= x 8)) indizes)) 1)
-       (<= (length (filter (lambda (x) (= x 9)) indizes)) 1))))
+  (and (<= (length (filter (lambda (x) (equal? x 1)) indizes)) 1)
+       (<= (length (filter (lambda (x) (equal? x 2)) indizes)) 1)
+       (<= (length (filter (lambda (x) (equal? x 3)) indizes)) 1)
+       (<= (length (filter (lambda (x) (equal? x 4)) indizes)) 1)
+       (<= (length (filter (lambda (x) (equal? x 5)) indizes)) 1)
+       (<= (length (filter (lambda (x) (equal? x 6)) indizes)) 1)
+       (<= (length (filter (lambda (x) (equal? x 7)) indizes)) 1)
+       (<= (length (filter (lambda (x) (equal? x 8)) indizes)) 1)
+       (<= (length (filter (lambda (x) (equal? x 9)) indizes)) 1))))
 
 
 ; prüft, ob die Regel 1 (s. Aufgabenzettel 10 Seite 2) für ein gegebenes Spielfeld "Spiel" gilt
@@ -227,8 +227,8 @@
 
 ;;;; Aufgabe 1.2.1
 
-; erstellt einen Vektor abhängig von "spiel" mit 0en, wo die Zahl "ziffer" noch eingesetzt werden kann
-; spiel: das Spiel, auf dem geprüft wird
+; erstellt einen Vektor abhängig von "spiel" mit 0en, wo die Zahl "ziffer" noch eingesetzt werden kann#
+; spiel: das Spiel, auf dem geprüft wird (es muss in folgender Form sein: "(and/c vector? (not/c immutable?))")
 ; ziffer: die Ziffer die geprüft wird
 (define markiere-ausschluss (lambda (spiel ziffer)
   (if (spiel-konsistent? spiel)
@@ -569,7 +569,9 @@
        (> 10 zahl))))
 
 ;(zeichne-spiel fehlerhaftesSpiel)
-;(print (color-frame "black" zeichne-spiel))
+;(zeichne-spiel unloesbaresSpiel)
+;(print (color-frame "black" (zeichne-spiel spiel)))
+;((lambda (spiel) (let ([neuesSpiel (vector-copy spiel)]) (markiere-ausschluss neuesSpiel 5) (zeichne-spiel neuesSpiel))) spiel)
 
 
 ;;;; Aufgabe 1.3.2
