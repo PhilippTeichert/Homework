@@ -5,7 +5,7 @@
 ;
 ;+++++++++++++++++++++++
 ;
-;;  Seppke/Gr. 9 - Abgabe 14.12.2015 12:00
+;;  Seppke/Gr. 9 - Abgabe 11.01.2016 12:00
 ;
 ;+++++++++++++++++++++++
 
@@ -599,3 +599,149 @@
                                              (list (string-append "Schritt " (number->string index) ":") (zeichne-spiel spiel)))]
                             [else '()])
         (gibErgebnisGrafisch spiel zwischenschritte? (+ 1 index)))))))
+		
+		
+		
+
+;;;;;;;; Aufgabe 2: Wiederholung, Klausurvorbereitung
+;;;; Aufgabe 2.1: Zu welchen Werten evaluieren die folgenden Racket-Ausdrücke?
+#|
+;(a)
+(max (min 2 (- 2 3)))
+;evaluiert zu: -1
+
+;(b)
+'(+ ,(- 2 4) 2)
+;evaluiert zu: '(+ ,(- 2 4) 2)
+
+;(c)
+(car '(Alle meine Entchen))
+;evaluiert zu: 'Alle
+
+;(d)
+(cdr '(schwimmen auf (dem See)))
+;evaluiert zu: '(auf (dem See))
+
+;(e)
+(cons 'Listen '(sind einfach))
+;evaluiert zu: '(Listen sind einfach)
+
+;(f)
+(cons 'Paare 'auch)
+;evaluiert zu: '(Paare . auch)
+
+;(g)
+(equal?
+ (list 'Racket 'Prolog 'Java)
+ '(Racket Prolog Java))
+;evaluiert zu: #t
+
+;(h)
+(eq?
+ (list 'Racket 'Prolog 'Java)
+ (cons 'Racket '(Prolog Java)))
+;evaluiert zu: #f
+
+;(i)
+(map
+ (lambda (x) (* x x x))
+ '(1 2 3))
+;evaluiert zu: '(1 8 27)
+
+;(j)
+(filter odd? '(1 2 3 4 5))
+;evaluiert zu: '(1 3 5)
+
+;(k)
+((curry min 6) 2)
+;evaluiert zu: 2
+
+;(l)
+((curry = 2) 2)
+;evaluiert zu: #t
+|#
+
+;;;; Aufgabe 2.2: Zur Syntax von Racket
+#|
+(define *a* 10)
+(define *b* '*a*)
+(define (merke x) (lambda () x))
+(define (test x)
+ (let ((x (+ x *a*)))
+  (+ x 2)))
+
+;(a)
+*a*
+;evaluiert zu: 10
+
+;(b)
+;;(+ *a* *b*)
+;evaluiert zu: contract violation '*a* is not a number
+
+;(c)
+;;(+ (eval *a*) (eval *b*))
+;;evaluiert zu: literal data is not allowed
+
+;(d)
+(and (> *a* 10) (> *b* 3))
+;evaluiert zu: #f
+
+;(e)
+;;(or (> *a* 10) (/ *a* 0))
+; /: division by zero
+
+;(f)
+;;(+ 2 (merke 3))
+;evaluiert zu: contract violation expected number? given #<procedure>
+
+;(g)
+(+ 2 ((merke 3)))
+;evaluiert zu: 5
+
+;(h)
+(test 4)
+;evaluiert zu: 16
+|#
+
+
+;;;; Aufgabe 2.3: Geeignete Ausdrücke für Berechnungen
+(define (a)
+  (+ (* 3 4)
+     (* 5 6)))
+
+(define (b x)
+  (sqrt(- (1 (* sin(x) sin(x))))))
+
+;;;; Aufgabe 2.4: Funktionsdefinitionen
+(define (c a b)
+  (sqrt(+ (* a a)
+          (* b b))))
+
+(define (mytan a)
+  (/ (sin a)
+     (b a))) ; b aus 2.3
+
+;;;; Aufgabe 2.5: In Präfixnotation
+(+ 1 (/ 4 2) -1)
+
+(/ (- 2 (/ (+ 1 3)
+           (+ 3
+              (* 2 3)))
+      (sqrt 3)))
+
+;;;; Aufgabe 2.6: In Infixnotation
+; (1+2+3)*(2-3-(2-1))
+
+
+
+
+;;;; Aufgabe 2.8: Längen von Listen
+(define (laengen xss)
+  (if (= xss '())
+      '()
+      (cons ml(car xss) laengen(cdr xss))))
+
+(define (ml lst)
+  (if (= lst '())
+      0
+      (+ 1 ml(cdr(lst)))))
