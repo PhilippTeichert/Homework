@@ -90,11 +90,11 @@
 	\arrow{insert 9 (operation causes split at [root.child-1])}\\
 	\begin{tikzpicture}
 		\btreeinodefour{root}{11}{30}{75}{83};
-		\xyshift{-80mm}{-20mm}{\btreelnodefour{n1}{1}{9}{}{}}
-		\xyshift{-40mm}{-20mm}{\btreelnodefour{n2}{27}{29}{}{}}
-		\xyshift{-0mm}{-20mm}{\btreelnodefour{n3}{38}{72}{}{}}
-		\xyshift{40mm}{-20mm}{\btreelnodefour{n4}{79}{81}{}{}}
-		\xyshift{80mm}{-20mm}{\btreelnodefour{n5}{85}{86}{92}{98}}
+		\xyshift{-60mm}{-20mm}{\btreelnodefour{n1}{1}{9}{}{}}
+		\xyshift{-50mm}{-30mm}{\btreelnodefour{n2}{27}{29}{}{}}
+		\xyshift{-40mm}{-40mm}{\btreelnodefour{n3}{38}{72}{}{}}
+		\xyshift{50mm}{-30mm}{\btreelnodefour{n4}{79}{81}{}{}}
+		\xyshift{60mm}{-20mm}{\btreelnodefour{n5}{85}{86}{92}{98}}
 		%
 		\foreach \x in {1,2,...,5} { \btreelink{root-\x}{n\x} }
 	\end{tikzpicture}\\
@@ -206,6 +206,146 @@
 
 \subsection{Teilaufgabe b}
 
+\begin{center}
+	\arrow{initial tree}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{43}{}{}{};
+		% first child level
+		\xyshift{-30mm}{-20mm}{\btreeinodefour{left}{21}{32}{}{}}
+		\xyshift{30mm}{-20mm}{\btreeinodefour{right}{58}{94}{}{}}
+		% second child level
+		\xyshift{-60mm}{-40mm}{\btreelnodefour{lc1}{4}{8}{}{}}
+		\xyshift{-50mm}{-50mm}{\btreelnodefour{lc2}{24}{28}{}{}}
+		\xyshift{-40mm}{-60mm}{\btreelnodefour{lc3}{34}{38}{41}{}}
+		%
+		\xyshift{40mm}{-60mm}{\btreelnodefour{rc1}{45}{52}{53}{57}}
+		\xyshift{50mm}{-50mm}{\btreelnodefour{rc2}{61}{62}{}{}}
+		\xyshift{60mm}{-40mm}{\btreelnodefour{rc3}{97}{98}{}{}}
+		% connectors
+		\btreelink{root-1}{left}
+		\btreelink{root-2}{right}
+		\foreach \y in {1,2,3} { \btreelink{left-\y}{lc\y} }
+		\foreach \y in {1,2,3} { \btreelink{right-\y}{rc\y} }
+	\end{tikzpicture}\\
+	\arrow{delete (einfaches Löschen) 52}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{43}{}{}{};
+		% first child level
+		\xyshift{-30mm}{-20mm}{\btreeinodefour{left}{21}{32}{}{}}
+		\xyshift{30mm}{-20mm}{\btreeinodefour{right}{58}{94}{}{}}
+		% second child level
+		\xyshift{-60mm}{-40mm}{\btreelnodefour{lc1}{4}{8}{}{}}
+		\xyshift{-50mm}{-50mm}{\btreelnodefour{lc2}{24}{28}{}{}}
+		\xyshift{-40mm}{-60mm}{\btreelnodefour{lc3}{34}{38}{41}{}}
+		%
+		\xyshift{40mm}{-60mm}{\btreelnodefour{rc1}{45}{}{53}{57}{}}
+		\xyshift{50mm}{-50mm}{\btreelnodefour{rc2}{61}{62}{}{}}
+		\xyshift{60mm}{-40mm}{\btreelnodefour{rc3}{97}{98}{}{}}
+		% connectors
+		\btreelink{root-1}{left}
+		\btreelink{root-2}{right}
+		\foreach \y in {1,2,3} { \btreelink{left-\y}{lc\y} }
+		\foreach \y in {1,2,3} { \btreelink{right-\y}{rc\y} }
+	\end{tikzpicture}\\
+	\arrow{delete 34}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{43}{}{}{};
+		% first child level
+		\xyshift{-30mm}{-20mm}{\btreeinodefour{left}{21}{32}{}{}}
+		\xyshift{30mm}{-20mm}{\btreeinodefour{right}{58}{94}{}{}}
+		% second child level
+		\xyshift{-60mm}{-40mm}{\btreelnodefour{lc1}{4}{8}{}{}}
+		\xyshift{-50mm}{-50mm}{\btreelnodefour{lc2}{24}{28}{}{}}
+		\xyshift{-40mm}{-60mm}{\btreelnodefour{lc3}{38}{41}{}{}}
+		%
+		\xyshift{40mm}{-60mm}{\btreelnodefour{rc1}{45}{53}{57}{}}
+		\xyshift{50mm}{-50mm}{\btreelnodefour{rc2}{61}{62}{}{}}
+		\xyshift{60mm}{-40mm}{\btreelnodefour{rc3}{97}{98}{}{}}
+		% connectors
+		\btreelink{root-1}{left}
+		\btreelink{root-2}{right}
+		\foreach \y in {1,2,3} { \btreelink{left-\y}{lc\y} }
+		\foreach \y in {1,2,3} { \btreelink{right-\y}{rc\y} }
+	\end{tikzpicture}\\
+	\arrow{delete 97 (operation causes mix)}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{24}{43}{58}{};
+		% first child level
+		\xyshift{-60mm}{-20mm}{\btreelnodefour{n1}{4}{8}{21}{}}
+		\xyshift{-20mm}{-20mm}{\btreelnodefour{n2}{28}{32}{38}{41}}
+		\xyshift{20mm}{-20mm}{\btreelnodefour{n3}{45}{53}{57}{}}
+		\xyshift{60mm}{-20mm}{\btreelnodefour{n4}{61}{82}{94}{98}}
+		% connectors
+		\foreach \y in {1,2,3,4} {%
+			\btreelink{root-\y}{n\y}
+		}
+	\end{tikzpicture}\\
+	\arrow{delete 41}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{24}{43}{58}{};
+		% first child level
+		\xyshift{-60mm}{-20mm}{\btreelnodefour{n1}{4}{8}{21}{}}
+		\xyshift{-20mm}{-20mm}{\btreelnodefour{n2}{28}{32}{38}{}}
+		\xyshift{20mm}{-20mm}{\btreelnodefour{n3}{45}{53}{57}{}}
+		\xyshift{60mm}{-20mm}{\btreelnodefour{n4}{61}{82}{94}{98}}
+		% connectors
+		\foreach \y in {1,2,3,4} {%
+			\btreelink{root-\y}{n\y}
+		}
+	\end{tikzpicture}\\
+	\arrow{delete 94}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{24}{43}{58}{};
+		% first child level
+		\xyshift{-60mm}{-20mm}{\btreelnodefour{n1}{4}{8}{21}{}}
+		\xyshift{-20mm}{-20mm}{\btreelnodefour{n2}{28}{32}{38}{}}
+		\xyshift{20mm}{-20mm}{\btreelnodefour{n3}{45}{53}{57}{}}
+		\xyshift{60mm}{-20mm}{\btreelnodefour{n4}{61}{82}{98}{}}
+		% connectors
+		\foreach \y in {1,2,3,4} {%
+			\btreelink{root-\y}{n\y}
+		}
+	\end{tikzpicture}\\
+	\arrow{delete 28}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{24}{43}{58}{};
+		% first child level
+		\xyshift{-60mm}{-20mm}{\btreelnodefour{n1}{4}{8}{21}{}}
+		\xyshift{-20mm}{-20mm}{\btreelnodefour{n2}{32}{38}{41}{}}
+		\xyshift{20mm}{-20mm}{\btreelnodefour{n3}{45}{53}{57}{}}
+		\xyshift{60mm}{-20mm}{\btreelnodefour{n4}{61}{82}{94}{98}}
+		% connectors
+		\foreach \y in {1,2,3,4} {%
+			\btreelink{root-\y}{n\y}
+		}
+	\end{tikzpicture}\\
+	\arrow{delete 98}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{24}{43}{58}{};
+		% first child level
+		\xyshift{-60mm}{-20mm}{\btreelnodefour{n1}{4}{8}{21}{}}
+		\xyshift{-20mm}{-20mm}{\btreelnodefour{n2}{32}{38}{}{}}
+		\xyshift{20mm}{-20mm}{\btreelnodefour{n3}{45}{53}{57}{}}
+		\xyshift{60mm}{-20mm}{\btreelnodefour{n4}{61}{82}{98}{}}
+		% connectors
+		\foreach \y in {1,2,3,4} {%
+			\btreelink{root-\y}{n\y}
+		}
+	\end{tikzpicture}\\
+	\arrow{delete 4}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{24}{43}{58}{};
+		% first child level
+		\xyshift{-60mm}{-20mm}{\btreelnodefour{n1}{8}{21}{}{}}
+		\xyshift{-20mm}{-20mm}{\btreelnodefour{n2}{32}{38}{}{}}
+		\xyshift{20mm}{-20mm}{\btreelnodefour{n3}{45}{53}{57}{}}
+		\xyshift{60mm}{-20mm}{\btreelnodefour{n4}{61}{82}{98}{}}
+		% connectors
+		\foreach \y in {1,2,3,4} {%
+			\btreelink{root-\y}{n\y}
+		}
+	\end{tikzpicture}
+\end{center}
 
 
 %---------------------------------------------------------------
