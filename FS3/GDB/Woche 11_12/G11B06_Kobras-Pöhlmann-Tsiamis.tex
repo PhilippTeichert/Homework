@@ -1,0 +1,253 @@
+\documentclass[ngerman]{gdb-aufgabenblatt}
+
+\usepackage{weiwBTree}
+
+\renewcommand{\Aufgabenblatt}{6}
+\renewcommand{\Ausgabedatum}{Mi. 01.01.2016}
+\renewcommand{\Abgabedatum}{Fr. 22.01.2016}
+\renewcommand{\Gruppe}{Kobras, Pöhlmann, Tsiamis}
+\renewcommand{\STiNEGruppe}{11}
+
+\usetikzlibrary{fadings}
+
+\tikzfading[name=arrowfading, top color=transparent!0, bottom color=transparent!95]
+\tikzset{arrowfill/.style={top color=red!20, bottom color=red}}
+\tikzset{arrowstyle/.style={draw=red, arrowfill, single arrow, minimum height=#1, single arrow, single arrow head extend=.4cm,}}
+\newcommand{\arrow}[2][2cm]{\tikz[baseline=-0.5ex]\node [arrowstyle=#1] {\texttt{#2}};}
+
+
+\begin{document}
+\section{B-Bäume}
+\subsection{Teilaufgabe a}
+\begin{center}
+	\arrow{initial tree}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{30}{83}{}{};
+		\xyshift{-40mm}{-20mm}{\btreelnodefour{n1}{11}{27}{}{}}
+		\xyshift{-0mm}{-20mm}{\btreelnodefour{n2}{38}{72}{75}{}}
+		\xyshift{40mm}{-20mm}{\btreelnodefour{n3}{86}{98}{}{}}
+		%
+		\foreach \x in {1,2,3} { \btreelink{root-\x}{n\x} }
+	\end{tikzpicture}\\
+	\arrow{insert (einfaches Einfügen) 79}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{30}{83}{}{};
+		\xyshift{-40mm}{-20mm}{\btreelnodefour{n1}{11}{27}{}{}}
+		\xyshift{-0mm}{-20mm}{\btreelnodefour{n2}{38}{72}{75}{79}}
+		\xyshift{40mm}{-20mm}{\btreelnodefour{n3}{86}{98}{}{}}
+		%
+		\foreach \x in {1,2,3} { \btreelink{root-\x}{n\x} }
+	\end{tikzpicture}\\
+	\arrow{insert 85}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{30}{83}{}{};
+		\xyshift{-40mm}{-20mm}{\btreelnodefour{n1}{11}{27}{}{}}
+		\xyshift{-0mm}{-20mm}{\btreelnodefour{n2}{38}{72}{75}{79}}
+		\xyshift{40mm}{-20mm}{\btreelnodefour{n3}{85}{86}{98}{}}
+		%
+		\foreach \x in {1,2,3} { \btreelink{root-\x}{n\x} }
+	\end{tikzpicture}\\
+	\arrow{insert 81 (operation causes split at [root.child-2])}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{30}{75}{83}{};
+		\xyshift{-60mm}{-20mm}{\btreelnodefour{n1}{11}{27}{}{}}
+		\xyshift{-20mm}{-20mm}{\btreelnodefour{n2}{38}{72}{}{}}
+		\xyshift{20mm}{-20mm}{\btreelnodefour{n3}{79}{81}{}{}}
+		\xyshift{60mm}{-20mm}{\btreelnodefour{n4}{85}{86}{98}{}}
+		%
+		\foreach \x in {1,2,...,4} { \btreelink{root-\x}{n\x} }
+	\end{tikzpicture}\\
+	\arrow{insert 1}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{30}{75}{83}{};
+		\xyshift{-60mm}{-20mm}{\btreelnodefour{n1}{1}{11}{27}{}}
+		\xyshift{-20mm}{-20mm}{\btreelnodefour{n2}{38}{72}{}{}}
+		\xyshift{20mm}{-20mm}{\btreelnodefour{n3}{79}{81}{}{}}
+		\xyshift{60mm}{-20mm}{\btreelnodefour{n4}{85}{86}{98}{}}
+		%
+		\foreach \x in {1,2,...,4} { \btreelink{root-\x}{n\x} }
+	\end{tikzpicture}\\
+	\arrow{insert 29}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{30}{75}{83}{};
+		\xyshift{-60mm}{-20mm}{\btreelnodefour{n1}{1}{11}{27}{29}}
+		\xyshift{-20mm}{-20mm}{\btreelnodefour{n2}{38}{72}{}{}}
+		\xyshift{20mm}{-20mm}{\btreelnodefour{n3}{79}{81}{}{}}
+		\xyshift{60mm}{-20mm}{\btreelnodefour{n4}{85}{86}{98}{}}
+		%
+		\foreach \x in {1,2,...,4} { \btreelink{root-\x}{n\x} }
+	\end{tikzpicture}\\
+	\arrow{insert 92}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{30}{75}{83}{};
+		\xyshift{-60mm}{-20mm}{\btreelnodefour{n1}{1}{11}{27}{29}}
+		\xyshift{-20mm}{-20mm}{\btreelnodefour{n2}{38}{72}{}{}}
+		\xyshift{20mm}{-20mm}{\btreelnodefour{n3}{79}{81}{}{}}
+		\xyshift{60mm}{-20mm}{\btreelnodefour{n4}{85}{86}{92}{98}}
+		%
+		\foreach \x in {1,2,...,4} { \btreelink{root-\x}{n\x} }
+	\end{tikzpicture}\\
+	\arrow{insert 9 (operation causes split at [root.child-1])}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{11}{30}{75}{83};
+		\xyshift{-80mm}{-20mm}{\btreelnodefour{n1}{1}{9}{}{}}
+		\xyshift{-40mm}{-20mm}{\btreelnodefour{n2}{27}{29}{}{}}
+		\xyshift{-0mm}{-20mm}{\btreelnodefour{n3}{38}{72}{}{}}
+		\xyshift{40mm}{-20mm}{\btreelnodefour{n4}{79}{81}{}{}}
+		\xyshift{80mm}{-20mm}{\btreelnodefour{n5}{85}{86}{92}{98}}
+		%
+		\foreach \x in {1,2,...,5} { \btreelink{root-\x}{n\x} }
+	\end{tikzpicture}\\
+	\arrow{insert 94 (operation causes split at [root.child-5],[root])}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{75}{}{}{};
+		% first child level
+		\xyshift{-30mm}{-20mm}{\btreeinodefour{left}{11}{30}{}{}}
+		\xyshift{30mm}{-20mm}{\btreeinodefour{right}{83}{92}{}{}}
+		% second child level
+		\xyshift{-60mm}{-40mm}{\btreelnodefour{lc1}{1}{9}{}{}}
+		\xyshift{-50mm}{-50mm}{\btreelnodefour{lc2}{27}{29}{}{}}
+		\xyshift{-40mm}{-60mm}{\btreelnodefour{lc3}{38}{72}{}{}}
+		%
+		\xyshift{40mm}{-60mm}{\btreelnodefour{rc1}{79}{81}{}{}}
+		\xyshift{50mm}{-50mm}{\btreelnodefour{rc2}{85}{86}{}{}}
+		\xyshift{60mm}{-40mm}{\btreelnodefour{rc3}{94}{98}{}{}}
+		% connectors
+		\btreelink{root-1}{left}
+		\btreelink{root-2}{right}
+		\foreach \y in {1,2,3} { \btreelink{left-\y}{lc\y} }
+		\foreach \y in {1,2,3} { \btreelink{right-\y}{rc\y} }
+	\end{tikzpicture}\\
+	\arrow{insert 16}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{75}{}{}{};
+		% first child level
+		\xyshift{-30mm}{-20mm}{\btreeinodefour{left}{11}{30}{}{}}
+		\xyshift{30mm}{-20mm}{\btreeinodefour{right}{83}{92}{}{}}
+		% second child level
+		\xyshift{-60mm}{-40mm}{\btreelnodefour{lc1}{1}{9}{}{}}
+		\xyshift{-50mm}{-50mm}{\btreelnodefour{lc2}{16}{27}{29}{}}
+		\xyshift{-40mm}{-60mm}{\btreelnodefour{lc3}{38}{72}{}{}}
+		%
+		\xyshift{40mm}{-60mm}{\btreelnodefour{rc1}{79}{81}{}{}}
+		\xyshift{50mm}{-50mm}{\btreelnodefour{rc2}{85}{86}{}{}}
+		\xyshift{60mm}{-40mm}{\btreelnodefour{rc3}{94}{98}{}{}}
+		% connectors
+		\btreelink{root-1}{left}
+		\btreelink{root-2}{right}
+		\foreach \y in {1,2,3} { \btreelink{left-\y}{lc\y} }
+		\foreach \y in {1,2,3} { \btreelink{right-\y}{rc\y} }
+	\end{tikzpicture}\\
+	\arrow{insert 31}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{75}{}{}{};
+		% first child level
+		\xyshift{-30mm}{-20mm}{\btreeinodefour{left}{11}{30}{}{}}
+		\xyshift{30mm}{-20mm}{\btreeinodefour{right}{83}{92}{}{}}
+		% second child level
+		\xyshift{-60mm}{-40mm}{\btreelnodefour{lc1}{1}{9}{}{}}
+		\xyshift{-50mm}{-50mm}{\btreelnodefour{lc2}{16}{27}{29}{31}}
+		\xyshift{-40mm}{-60mm}{\btreelnodefour{lc3}{38}{72}{}{}}
+		%
+		\xyshift{40mm}{-60mm}{\btreelnodefour{rc1}{79}{81}{}{}}
+		\xyshift{50mm}{-50mm}{\btreelnodefour{rc2}{85}{86}{}{}}
+		\xyshift{60mm}{-40mm}{\btreelnodefour{rc3}{94}{98}{}{}}
+		% connectors
+		\btreelink{root-1}{left}
+		\btreelink{root-2}{right}
+		\foreach \y in {1,2,3} { \btreelink{left-\y}{lc\y} }
+		\foreach \y in {1,2,3} { \btreelink{right-\y}{rc\y} }
+	\end{tikzpicture}\\
+	\arrow{insert 21 (operation causes split at [root.child-1.child-2])}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{75}{}{}{};
+		% first child level
+		\xyshift{-30mm}{-20mm}{\btreeinodefour{left}{11}{29}{30}{}}
+		\xyshift{30mm}{-20mm}{\btreeinodefour{right}{83}{92}{}{}}
+		% second child level
+		\xyshift{-60mm}{-40mm}{\btreelnodefour{lc1}{1}{9}{}{}}
+		\xyshift{-50mm}{-50mm}{\btreelnodefour{lc2}{16}{27}{}{}}
+		\xyshift{-40mm}{-60mm}{\btreelnodefour{lc3}{29}{31}{}{}}
+		\xyshift{-30mm}{-70mm}{\btreelnodefour{lc4}{38}{72}{}{}}
+		%
+		\xyshift{40mm}{-60mm}{\btreelnodefour{rc1}{79}{81}{}{}}
+		\xyshift{50mm}{-50mm}{\btreelnodefour{rc2}{85}{86}{}{}}
+		\xyshift{60mm}{-40mm}{\btreelnodefour{rc3}{94}{98}{}{}}
+		% connectors
+		\btreelink{root-1}{left}
+		\btreelink{root-2}{right}
+		\foreach \y in {1,2,...,4} { \btreelink{left-\y}{lc\y} }
+		\foreach \y in {1,2,3} { \btreelink{right-\y}{rc\y} }
+	\end{tikzpicture}\\
+	\arrow{insert 14}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{75}{}{}{};
+		% first child level
+		\xyshift{-30mm}{-20mm}{\btreeinodefour{left}{11}{29}{30}{}}
+		\xyshift{30mm}{-20mm}{\btreeinodefour{right}{83}{92}{}{}}
+		% second child level
+		\xyshift{-60mm}{-40mm}{\btreelnodefour{lc1}{1}{9}{}{}}
+		\xyshift{-50mm}{-50mm}{\btreelnodefour{lc2}{14}{16}{27}{}}
+		\xyshift{-40mm}{-60mm}{\btreelnodefour{lc3}{29}{31}{}{}}
+		\xyshift{-30mm}{-70mm}{\btreelnodefour{lc4}{38}{72}{}{}}
+		%
+		\xyshift{40mm}{-60mm}{\btreelnodefour{rc1}{79}{81}{}{}}
+		\xyshift{50mm}{-50mm}{\btreelnodefour{rc2}{85}{86}{}{}}
+		\xyshift{60mm}{-40mm}{\btreelnodefour{rc3}{94}{98}{}{}}
+		% connectors
+		\btreelink{root-1}{left}
+		\btreelink{root-2}{right}
+		\foreach \y in {1,2,...,4} { \btreelink{left-\y}{lc\y} }
+		\foreach \y in {1,2,3} { \btreelink{right-\y}{rc\y} }
+	\end{tikzpicture}\\
+\end{center}
+
+%---------------------------------------------------------------
+
+\subsection{Teilaufgabe b}
+
+
+
+%---------------------------------------------------------------
+%
+%---------------------------------------------------------------
+
+\section{B*-Bäume}
+\subsection{Teilaufgabe a}
+
+%---------------------------------------------------------------
+
+\subsection{Teilaufgabe b}
+
+%---------------------------------------------------------------
+%
+%---------------------------------------------------------------
+
+\section{Berechnungen in B- und B*-Bäumen}
+\subsection{Teilaufgabe a}
+\subsubsection{i}
+\subsubsection{ii}
+
+%---------------------------------------------------------------
+
+\subsection{Teilaufgabe b}
+
+%---------------------------------------------------------------
+
+\subsection{Teilaufgabe c}
+
+%---------------------------------------------------------------
+%
+%---------------------------------------------------------------
+
+\section{Normalformenlehre}
+\subsubsection{i}
+\subsubsection{ii}
+\subsubsection{iii}
+
+
+%---------------------------------------------------------------
+%
+%---------------------------------------------------------------
+
+\end{document}
