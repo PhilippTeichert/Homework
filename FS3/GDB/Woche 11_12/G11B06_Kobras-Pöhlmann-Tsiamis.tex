@@ -606,7 +606,7 @@ Gegeben: Die obigen Werte sowie die Eigenschaften, Nach Übung, Seite 9, Stand 14
 
 \subsection{Teilaufgabe b}
 Nach Übung, S.2 gilt: $n_{Blätter} \cdot n_{Knoten}^{Pfadlänge-1}=n_{Datensätze}$.\\
-\#Satz den ich nicht entziffern kann; Utz, größer schreiben \dots\\
+Um den minimalen Wert von $h$ zu errechnen, werden die maximalen Werte für die Knoten und Blätter eingesetzt:
 \[
 	2k \cdot (2k+1)^{h-1}
 \]
@@ -626,7 +626,7 @@ $h \in \mathbb{N} \Rightarrow h \geq 3$.
 Damit ist die Untergrenze von $h$ gezeigt.\\\\
 \textbf{Obergrenze:}
 \begin{equation*}
-	\begin{array}{lcrl}
+	\begin{array}{lcll}
 		4 \cdot 2^{h-1}						&	\leq	&	60	~~~~~~~~~~~~		& / : 4\\
 		2^{h-1}								&	\leq	&	15						& /\operatorname{ln}\\
 		(h-1) \cdot \operatorname{ln}(2)	&	\leq	&	\operatorname{ln}(15)	& / : \operatorname{ln}(2)\\
@@ -640,16 +640,30 @@ Daraus ergibt sich für $h$ das Gültigkeitsintervall $[3;4]$.
 %---------------------------------------------------------------
 
 \subsection{Teilaufgabe c}
-
+Ein Knoten hat $n \in [(3+1); (2\cdot 3+1)]$ Kinder.\\
+Ein Blatt hat $2\cdot 1$ Einträge.\\
+\\
+$h$ muss also zwischen $2 \cdot 4^h \leq 42$ und $2 \cdot 7^h \leq 42$ liegen.
+Umstellung der ersten Gleichung nach $h$ ergibt $h \leq 2.19616 \approx 2.20$.\\
+Umstellung der zweiten Gleichung nach $h$ ergibt $h \geq 1.56458 \approx 1.56$.\\
+Durch die Ungleichheitsbeziehung und dem Umstand $h \in \mathbb{N}$ ergibt sich: $2 \leq h \leq 2 \Rightarrow h = 2$.
 %---------------------------------------------------------------
 %
 %---------------------------------------------------------------
 
 \section{Normalformenlehre}
 \subsubsection{i}
+\textbf{Schlüsselkandidaten:} $\{B\}, \{A,C\}$.\\
+Wegen der Minimalität: nur $\{B\}$.
 \subsubsection{ii}
+\textbf{Nicht-Primär-Attribute:} $\{A, C, D, E\}$ (Komplement zu $\{B\}$ bezüglich $R$)
 \subsubsection{iii}
-
+zitiert nach [Utz, 2016]:
+\begin{enumerate}
+	\item[NF1] klar,, zumindest war es das bis jetzt immer und ich habe keine Ahnung, was nicht atomare Attribute sein sollten
+	\item[NF2] auch klar, da unser Schlüsselkandidat nur ein einzelnes Atom/Buchstabe/ wie auch immer die heißen ist, kann nichts nur von einem Teil von ihm abhängen
+	\item[NF3] auch klar, da unser Schlüsselkandidat nur ein s.o. ist, kann auch ncihts transitiv partiell von ihm anhängen
+\end{enumerate}
 
 %---------------------------------------------------------------
 %
