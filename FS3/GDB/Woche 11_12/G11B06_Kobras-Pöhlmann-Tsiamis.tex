@@ -1,6 +1,10 @@
 \documentclass[ngerman]{gdb-aufgabenblatt}
 
 \usepackage{weiwBTree}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
 
 \renewcommand{\Aufgabenblatt}{6}
 \renewcommand{\Ausgabedatum}{Mi. 01.01.2016}
@@ -353,25 +357,286 @@
 %---------------------------------------------------------------
 
 \section{B*-Bäume}
+\textbf{Anmerkung:} $\emptyset$ meint an dieser Stelle, dass dieser Slot nicht zur Verfügung steht, allerdings habe ich ihn beim texen nicht wegbekommen.
+Der Asterisk an den Elementen in den Blättern ist durch die Formatierung des Package (\texttt{weiwBTree} - Ein third-party package von Wei Wang, Professor der Universität New South Wales, Australien) bedingt.
 \subsection{Teilaufgabe a}
+\begin{center}
+	\arrow{initial tree}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{9}{}{$\emptyset$}{$\emptyset$};
+		% first child level
+		\xyshift{-20mm}{-20mm}{ \btreelnodefour{n1}{1}{4}{7}{8} }
+		\xyshift{20mm}{-20mm}{ \btreelnodefour{n2}{40}{53}{61}{} }
+		% connectors
+		\foreach \x in {1,2} {%
+			\btreelink{root-\x} {n\x}
+		}
+	\end{tikzpicture}\\
+	\arrow{insert 64}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{9}{}{$\emptyset$}{$\emptyset$};
+		% first child level
+		\xyshift{-20mm}{-20mm}{ \btreelnodefour{n1}{1}{4}{7}{8} }
+		\xyshift{20mm}{-20mm}{ \btreelnodefour{n2}{40}{53}{61}{64} }
+		% connectors
+		\foreach \x in {1,2} {%
+			\btreelink{root-\x} {n\x}
+		}
+	\end{tikzpicture}\\
+	\arrow{insert 3 (operation causes split at [root.child-1]}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{5}{9}{$\emptyset$}{$\emptyset$};
+		% first child level
+		\xyshift{-40mm}{-20mm}{ \btreelnodefour{n1}{1}{3}{5}{} }
+		\xyshift{0mm}{-20mm}{ \btreelnodefour{n2}{7}{8}{}{} }
+		\xyshift{40mm}{-20mm}{ \btreelnodefour{n3}{40}{53}{61}{64} }
+		% connectors
+		\foreach \x in {1,2,3} {%
+			\btreelink{root-\x} {n\x}
+		}
+	\end{tikzpicture}\\
+	\arrow{insert 6}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{5}{9}{$\emptyset$}{$\emptyset$};
+		% first child level
+		\xyshift{-40mm}{-20mm}{ \btreelnodefour{n1}{1}{3}{5}{6} }
+		\xyshift{0mm}{-20mm}{ \btreelnodefour{n2}{7}{8}{}{} }
+		\xyshift{40mm}{-20mm}{ \btreelnodefour{n3}{40}{53}{61}{64} }
+		% connectors
+		\foreach \x in {1,2,3} {%
+			\btreelink{root-\x} {n\x}
+		}
+	\end{tikzpicture}\\
+	\arrow{insert 80 (operation causes split at [root.child-3],[root]}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{9}{}{$\emptyset$}{$\emptyset$};
+		% first child level
+		\xyshift{-30mm}{-20mm}{ \btreeinodefour{n1}{5}{}{$\emptyset$}{$\emptyset$} }
+		\xyshift{30mm}{-20mm}{ \btreeinodefour{n2}{61}{}{$\emptyset$}{$\emptyset$} }
+		% second child level
+		\xyshift{-60mm}{-40mm}{ \btreelnodefour{ln1}{1}{3}{5}{} }
+		\xyshift{-40mm}{-50mm}{ \btreelnodefour{ln2}{6}{7}{8}{} }
+		\xyshift{40mm}{-50mm}{ \btreelnodefour{rn1}{40}{53}{61}{} }
+		\xyshift{60mm}{-40mm}{ \btreelnodefour{rn2}{64}{80}{}{} }
+		% connectors
+		\foreach \x in {1,2} {%
+			\btreelink{root-\x} {n\x}
+		}
+		\foreach \x in {1,2} {%
+			\btreelink{n1-\x} {ln\x}
+		}
+		\foreach \x in {1,2} {%
+			\btreelink{n2-\x} {rn\x}
+		}
+	\end{tikzpicture}\\
+	\arrow{insert 4}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{9}{}{$\emptyset$}{$\emptyset$};
+		% first child level
+		\xyshift{-30mm}{-20mm}{ \btreeinodefour{n1}{4}{5}{$\emptyset$}{$\emptyset$} }
+		\xyshift{30mm}{-20mm}{ \btreeinodefour{n2}{61}{}{$\emptyset$}{$\emptyset$} }
+		% second child level
+		\xyshift{-60mm}{-40mm}{ \btreelnodefour{ln1}{1}{3}{5}{} }
+		\xyshift{-40mm}{-50mm}{ \btreelnodefour{ln2}{6}{7}{8}{} }
+		\xyshift{40mm}{-50mm}{ \btreelnodefour{rn1}{40}{53}{61}{} }
+		\xyshift{60mm}{-40mm}{ \btreelnodefour{n3}{64}{80}{}{} }
+		% connectors
+		\foreach \x in {1,2} {%
+			\btreelink{root-\x} {n\x}
+		}
+		\foreach \x in {1,2} {%
+			\btreelink{n1-\x} {ln\x}
+		}
+		\foreach \x in {1,2} {%
+			\btreelink{n2-\x} {rn\x}
+		}
+	\end{tikzpicture}\\
+	\arrow{insert 63}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{9}{}{$\emptyset$}{$\emptyset$};
+		% first child level
+		\xyshift{-30mm}{-20mm}{ \btreeinodefour{n1}{4}{5}{$\emptyset$}{$\emptyset$} }
+		\xyshift{30mm}{-20mm}{ \btreeinodefour{n2}{61}{}{$\emptyset$}{$\emptyset$} }
+		% second child level
+		\xyshift{-60mm}{-40mm}{ \btreelnodefour{ln1}{1}{3}{5}{} }
+		\xyshift{-40mm}{-50mm}{ \btreelnodefour{ln2}{6}{7}{8}{} }
+		\xyshift{40mm}{-50mm}{ \btreelnodefour{rn1}{40}{53}{61}{} }
+		\xyshift{60mm}{-40mm}{ \btreelnodefour{n3}{63}{64}{80}{} }
+		% connectors
+		\foreach \x in {1,2} {%
+			\btreelink{root-\x} {n\x}
+		}
+		\foreach \x in {1,2} {%
+			\btreelink{n1-\x} {ln\x}
+		}
+		\foreach \x in {1,2} {%
+			\btreelink{n2-\x} {rn\x}
+		}
+	\end{tikzpicture}
+\end{center}
 
 %---------------------------------------------------------------
 
 \subsection{Teilaufgabe b}
-
+\begin{center}
+	\arrow{initial tree}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{54}{}{$\emptyset$}{$\emptyset$}
+		% first child level
+		\xyshift{-40mm}{-20mm}{ \btreeinodefour{l}{34}{40}{$\emptyset$}{$\emptyset$} }
+		\xyshift{40mm}{-20mm}{ \btreeinodefour{r}{76}{}{$\emptyset$}{$\emptyset$} }
+		% second child level
+		\xyshift{-60mm}{-40mm}{ \btreelnodefour{l1}{12}{14}{$\emptyset$}{$\emptyset$} }
+		\xyshift{-50mm}{-50mm}{ \btreelnodefour{l2}{38}{}{$\emptyset$}{$\emptyset$} }
+		\xyshift{-40mm}{-60mm}{ \btreelnodefour{l3}{44}{46}{$\emptyset$}{$\emptyset$} }
+		%
+		\xyshift{50mm}{-50mm}{ \btreelnodefour{r1}{68}{}{$\emptyset$}{$\emptyset$} }
+		\xyshift{60mm}{-40mm}{ \btreelnodefour{r2}{86}{}{$\emptyset$}{$\emptyset$} }
+		% connectors
+		\btreelink{root-1} {l}
+		\btreelink{root-2} {r}
+		\foreach \x in {1,2,3} {%
+			\btreelink{l-\x} {l\x}
+		}
+		\foreach \x in {1,2} {%
+			\btreelink{r-\x} {r\x}
+		}
+	\end{tikzpicture}\\
+	\arrow{delete 14}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{54}{}{$\emptyset$}{$\emptyset$}
+		% first child level
+		\xyshift{-40mm}{-20mm}{ \btreeinodefour{l}{34}{40}{$\emptyset$}{$\emptyset$} }
+		\xyshift{40mm}{-20mm}{ \btreeinodefour{r}{76}{}{$\emptyset$}{$\emptyset$} }
+		% second child level
+		\xyshift{-60mm}{-40mm}{ \btreelnodefour{l1}{12}{}{$\emptyset$}{$\emptyset$} }
+		\xyshift{-50mm}{-50mm}{ \btreelnodefour{l2}{38}{}{$\emptyset$}{$\emptyset$} }
+		\xyshift{-40mm}{-60mm}{ \btreelnodefour{l3}{44}{46}{$\emptyset$}{$\emptyset$} }
+		%
+		\xyshift{50mm}{-50mm}{ \btreelnodefour{r1}{68}{}{$\emptyset$}{$\emptyset$} }
+		\xyshift{60mm}{-40mm}{ \btreelnodefour{r2}{86}{}{$\emptyset$}{$\emptyset$} }
+		% connectors
+		\btreelink{root-1} {l}
+		\btreelink{root-2} {r}
+		\foreach \x in {1,2,3} {%
+			\btreelink{l-\x} {l\x}
+		}
+		\foreach \x in {1,2} {%
+			\btreelink{r-\x} {r\x}
+		}
+	\end{tikzpicture}\\
+	\arrow{delete 38 (operation causes rebalancing of tree)}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{54}{}{$\emptyset$}{$\emptyset$}
+		% first child level
+		\xyshift{-40mm}{-20mm}{ \btreeinodefour{l}{34}{44}{$\emptyset$}{$\emptyset$} }
+		\xyshift{40mm}{-20mm}{ \btreeinodefour{r}{76}{}{$\emptyset$}{$\emptyset$} }
+		% second child level
+		\xyshift{-60mm}{-40mm}{ \btreelnodefour{l1}{12}{}{$\emptyset$}{$\emptyset$} }
+		\xyshift{-50mm}{-50mm}{ \btreelnodefour{l2}{44}{}{$\emptyset$}{$\emptyset$} }
+		\xyshift{-40mm}{-60mm}{ \btreelnodefour{l3}{46}{}{$\emptyset$}{$\emptyset$} }
+		%
+		\xyshift{50mm}{-50mm}{ \btreelnodefour{r1}{68}{}{$\emptyset$}{$\emptyset$} }
+		\xyshift{60mm}{-40mm}{ \btreelnodefour{r2}{86}{}{$\emptyset$}{$\emptyset$} }
+		% connectors
+		\btreelink{root-1} {l}
+		\btreelink{root-2} {r}
+		\foreach \x in {1,2,3} {%
+			\btreelink{l-\x} {l\x}
+		}
+		\foreach \x in {1,2} {%
+			\btreelink{r-\x} {r\x}
+		}
+	\end{tikzpicture}\\
+	\arrow{delete 12 (operation causes shuffle of tree)}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{54}{}{$\emptyset$}{$\emptyset$}
+		% first child level
+		\xyshift{-40mm}{-20mm}{ \btreeinodefour{l}{44}{}{$\emptyset$}{$\emptyset$} }
+		\xyshift{40mm}{-20mm}{ \btreeinodefour{r}{76}{}{$\emptyset$}{$\emptyset$} }
+		% second child level
+		\xyshift{-60mm}{-40mm}{ \btreelnodefour{l1}{44}{}{$\emptyset$}{$\emptyset$} }
+		\xyshift{-50mm}{-50mm}{ \btreelnodefour{l2}{46}{}{$\emptyset$}{$\emptyset$} }
+		%
+		\xyshift{50mm}{-50mm}{ \btreelnodefour{r1}{68}{}{$\emptyset$}{$\emptyset$} }
+		\xyshift{60mm}{-40mm}{ \btreelnodefour{r2}{86}{}{$\emptyset$}{$\emptyset$} }
+		% connectors
+		\btreelink{root-1} {l}
+		\btreelink{root-2} {r}
+		\foreach \x in {1,2} {%
+			\btreelink{l-\x} {l\x}
+		}
+		\foreach \x in {1,2} {%
+			\btreelink{r-\x} {r\x}
+		}
+	\end{tikzpicture}\\
+	\arrow{delete 44 (operation causes shuffle of tree)}\\
+	\begin{tikzpicture}
+		\btreeinodefour{root}{54}{76}{$\emptyset$}{$\emptyset$}
+		% first child level
+		\xyshift{-40mm}{-20mm}{ \btreelnodefour{n1}{46}{}{$\emptyset$}{$\emptyset$} }
+		\xyshift{-0mm}{-20mm}{ \btreelnodefour{n2}{68}{}{$\emptyset$}{$\emptyset$} }
+		\xyshift{40mm}{-20mm}{ \btreelnodefour{n3}{86}{}{$\emptyset$}{$\emptyset$} }
+		% connectors
+		\foreach \x in {1,2,3} {%
+			\btreelink{root-\x} {n\x}
+		}
+	\end{tikzpicture}
+\end{center}
 %---------------------------------------------------------------
 %
 %---------------------------------------------------------------
 
 \section{Berechnungen in B- und B*-Bäumen}
 \subsection{Teilaufgabe a}
+Nach Definition: $B^*(k,k^*,h) :- B(3,5,4)$.\\
+Gegeben: Die obigen Werte sowie die Eigenschaften, Nach Übung, Seite 9, Stand 14.01.2016:
 \subsubsection{i}
+($2k^*=10$) Einträge pro Blatt, ($2k+1=7$) Knoten pro Ebene auf ($h-1=3$) Ebenen:
+\[
+	\text{maximal }2k^* \cdot (2k+1)^{h-1}=10 \cdot 7^3 = 3430\text{ Datensätze}
+\]
 \subsubsection{ii}
+($k^*=5$) Einträge zu ($h-1=3$) Ebenen mit ($k+1=4$) Knoten pro Ebene:
+\[
+	\text{minimal }k^* \cdot (k+1)^{h-1} = 5 \cdot 4^3 = 320\text{ Datensätze}
+\]
 
 %---------------------------------------------------------------
 
 \subsection{Teilaufgabe b}
-
+Nach Übung, S.2 gilt: $n_{Blätter} \cdot n_{Knoten}^{Pfadlänge-1}=n_{Datensätze}$.\\
+\#Satz den ich nicht entziffern kann; Utz, größer schreiben \dots\\
+\[
+	2k \cdot (2k+1)^{h-1}
+\]
+Einsetzen der Werte aus der Aufgabe:
+\begin{equation*}
+	\begin{array}{lcll}
+		2 \cdot 4 \cdot (2 \cdot 4 +1)^{h-1}	&	\geq	&	60			~~~~~~~~~~~~	& \geq\text{, da mind. 60 Datensätze in den Baum passen müssen}\\
+		8 \cdot 9^{h-1}							&	\geq	&	60							& / : 8\\
+		9^{h-1}									&	\geq	&	7.5							& / \operatorname{ln}\\
+		(h-1) \cdot \operatorname{ln}(9)		&	\geq	&	\operatorname{ln}(7.5)		& / : \operatorname{ln}(9)\\
+		h-1										&	\geq	&	\frac{\operatorname{ln}(7.5)}{\operatorname{ln}(9)}	&	\\
+		h-1										&	\geq	&	1.91						& / + 1\\
+		h										&	\geq	&	2.91	&
+	\end{array}
+\end{equation*}
+$h \in \mathbb{N} \Rightarrow h \geq 3$.
+Damit ist die Untergrenze von $h$ gezeigt.\\\\
+\textbf{Obergrenze:}
+\begin{equation*}
+	\begin{array}{lcrl}
+		4 \cdot 2^{h-1}						&	\leq	&	60	~~~~~~~~~~~~		& / : 4\\
+		2^{h-1}								&	\leq	&	15						& /\operatorname{ln}\\
+		(h-1) \cdot \operatorname{ln}(2)	&	\leq	&	\operatorname{ln}(15)	& / : \operatorname{ln}(2)\\
+		h-1									&	\leq	&	\frac{\operatorname{ln}(15)}{\operatorname{ln}(2)}\\
+		h-1									&	\leq	&	3.91					& / + 1\\
+		h									&	\leq	&	4.91					&
+	\end{array}
+\end{equation*}
+Da wiederum $h \in \mathbb{N} \Rightarrow h \leq 4$.
+Daraus ergibt sich für $h$ das Gültigkeitsintervall $[3;4]$.
 %---------------------------------------------------------------
 
 \subsection{Teilaufgabe c}
