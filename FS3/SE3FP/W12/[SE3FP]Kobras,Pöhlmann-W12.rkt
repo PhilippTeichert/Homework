@@ -32,15 +32,9 @@
       1
       (* Zahl (fakultaet (sub1 Zahl)))))
 
-; Eine Memo-Funktion, die die Fakultäet berechnet
-(define memo-fak (memo fakultaet))
-
 ; rekursiven Aufruf an memo binden für Laufzeiteffizienz
 (set! fakultaet (memo fakultaet))
 ; Zum tracen, um zu sehen, ob es auch wirklich den Memo-Teil benutzt
-(trace memo-fak)
-(memo-fak 10)
-(memo-fak 12)
 (trace fakultaet)
 (fakultaet 10)
-(fakultaet 12)
+(fakultaet 15)
