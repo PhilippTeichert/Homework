@@ -1,3 +1,15 @@
+;+++++++++++++++++++++++
+;
+;;  Kobras    6658699
+;;  Pöhlmann  6663579
+;
+;+++++++++++++++++++++++
+;
+;;  Seppke/Gr. 9 - Abgabe 25.01.2016 12:00
+;
+;+++++++++++++++++++++++
+
+
 ; #lang lazy ; für Aufgabe 2 auskommentieren
 #lang racket ; für Aufgabe 3 auskommentieren
 
@@ -23,6 +35,8 @@
 ; Eine Memo-Funktion, die die Fakultäet berechnet
 (define memo-fak (memo fakultaet))
 
+; rekursiven Aufruf an memo binden für Laufzeiteffizienz
+(set! fakultaet (memo fakultaet))
 ; Zum tracen, um zu sehen, ob es auch wirklich den Memo-Teil benutzt
 (trace memo-fak)
 (memo-fak 10)
