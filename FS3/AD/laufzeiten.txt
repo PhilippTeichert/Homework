@@ -1,0 +1,26 @@
+Dijkstra:			V^2 / VlogV+E
+Bellman-Ford:		VE
+Floyd-Warshall:		V^3
+Ford-Fulkerson:		E*(f*) (maximaler Fluss)
+Edmonds-Karp:		E^2*(f*)
+BFS:				E
+DFS:				E
+Counting:			n
+Radix:				n
+Heap:				nlogn
+Merge:				nlogn
+Quick:				nlogn
+Bubble:				n^2
+Insertion:			n^2
+Selection:			n^2
+
+Stabil:					inplace:
+	Bubble					Bubble
+	Counting				Heap
+	Insertion				Quick
+	Merge					Selection
+	Radix				offplace:
+Instabil:					Counting
+	Heap					Insertion
+	Quick					Merge
+	Selection				Radix
