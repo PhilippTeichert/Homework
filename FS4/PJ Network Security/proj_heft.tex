@@ -1,0 +1,204 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage[margin=2.5cm]{geometry}
+
+% import math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% contradiction lightning
+\usepackage{stmaryrd}
+% algorithms and pseudo code
+\usepackage{algorithmic}
+\usepackage{algorithm}
+%\usepackage{clrscode3e}
+% formatting and layout
+\usepackage{color}
+% settings
+\usepackage{perpage}
+\MakePerPage{footnote}
+% custom text colors
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+% macro commands
+%% requires color package and the custom colors defined here 
+\newcommand{\todo}[1]{
+	\addcontentsline{toc}{subsubsection}{TODO: #1}
+	\textcolor{pgreen}{\texttt{\-\\ \-\\//TODO: #1\-\\ \-\\}}
+}
+\newcommand{\sus}[1]{
+	\addcontentsline{toc}{subsection}{Übungsaufgabe #1}
+	\subsection*{Übungsaufgabe #1}
+	\label{ssec:#1}
+}
+\newcommand{\sss}[1]{
+	\addcontentsline{toc}{subsubsection}{Aufgabe #1}
+	\subsubsection*{Aufgabe #1}
+	\label{sssec:#1}
+}
+\newcommand{\points}[1]{
+	\begin{flushright}
+		\begin{Large}
+			[~~~~\string| ~#1~]
+		\end{Large}
+	\end{flushright}
+}
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata,positioning}
+\usepackage{pgf}
+
+%#+-------------------------------------------------+#%
+%#+						VARIABLEN			     	+#%
+%#+-------------------------------------------------+#%
+
+\begin{document}
+
+%% Fach-Daten
+\newcommand{\fachname}{Projekt Network Security}
+\newcommand{\fachnummer}{InfB-Proj}
+\newcommand{\veranstaltungsnummer}{64-185}
+\newcommand{\stinegruppe}{$ $}
+\newcommand{\termin}{Donnerstag, 12.00 - 18.00\\F-027}
+%% Gruppenmitglied 1
+\newcommand{\memOneName}{Utz Pöhlmann}
+\newcommand{\memOneMail}{4poehlma@informatik.uni-hamburg.de}
+\newcommand{\memOneNr}{6663579}
+%% Gruppenmitglied 2
+\newcommand{\memTwoName}{Louis Kobras}
+\newcommand{\memTwoMail}{4kobras@informatik.uni-hamburg.de}
+\newcommand{\memTwoNr}{6658699}
+%% Gruppenmitglied 3
+\newcommand{\memThreeName}{}
+\newcommand{\memThreeMail}{}
+\newcommand{\memThreeNr}{}
+%% Gruppenmitglied 4
+\newcommand{\memFourName}{}
+\newcommand{\memFourMail}{}
+\newcommand{\memFourNr}{}
+%% Datum
+\newcommand{\datum}{\today\\}
+
+
+
+
+
+
+%#+-------------------------------------------------+#%
+%#+						FORMATIERUNG		     	+#%
+%#+-------------------------------------------------+#%
+
+\newcommand{\fach}{
+	\begin{Huge}
+		\fachname\\
+	\end{Huge}
+	\begin{LARGE}
+		Modul: \fachnummer\\
+		Veranstaltung: \veranstaltungsnummer\\
+	\end{LARGE}
+}
+
+\newcommand{\gruppe}{
+	\begin{LARGE}
+		\stinegruppe\\
+	\end{LARGE}
+	\begin{Large}
+		\termin\\
+	\end{Large}
+}
+
+\newcommand{\memberOfGroup}[3]{
+	\begin{center}
+		\begin{Large}
+			#1
+		\end{Large}\\
+		#2\\
+		#3\\
+	\end{center}
+	\vspace{.5cm}
+}
+\newcommand{\datumf}{
+	\begin{Large}
+		\datum\-\\
+	\end{Large}
+}
+
+
+
+%#+-------------------------------------------------+#%
+%#+						DECKBLATT  			     	+#%
+%#+-------------------------------------------------+#%
+
+\thispagestyle{empty}
+\-\vspace{0.5cm}
+\begin{center}
+	\fach
+	\vspace{1.5cm}
+	\gruppe
+	\vspace{1.5cm}
+	% group members
+	\memberOfGroup{\memOneName}{\memOneMail}{\memOneNr}
+	\memberOfGroup{\memTwoName}{\memTwoMail}{\memTwoNr}
+	\memberOfGroup{$ $}{$ $}{$ $}
+	\memberOfGroup{$ $}{$ $}{$ $}
+	% 1 cm to next element
+	\vspace{1cm}
+	\datumf
+	\vspace{1cm}
+	
+	\textbf{Punkte für den Hausaufgabenteil:}\\
+	\vspace{1cm}
+	\begin{tabular}{c|c}
+	~7.1~&~$\Sigma$~	\\	\hline
+		 &
+	\end{tabular}
+	
+\end{center}
+\newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%#+-------------------------------------------------+#%
+%#+						INHALT  			     	+#%
+%#+-------------------------------------------------+#%
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+%#+-------------------------------------------------+#%
+%#+						ZETTEL 1					+#%
+%#+-------------------------------------------------+#%
+
+
+\end{document}
