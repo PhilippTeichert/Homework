@@ -23,23 +23,37 @@
 % custom text colors
 \definecolor{pblue}{rgb}{0.13,0.13,1}
 \definecolor{pgreen}{rgb}{0,0.5,0}
+% header and footer
+\usepackage{fancyhdr}
+% filler text
+\usepackage{lipsum}
 % macro commands
 %% requires color package and the custom colors defined here 
 \newcommand{\todo}[1]{
 	\addcontentsline{toc}{subsubsection}{TODO: #1}
 	\textcolor{pgreen}{\texttt{\-\\ \-\\//TODO: #1\-\\ \-\\}}
 }
-\newcommand{\sus}[1]{
+\newcommand{\sect}[3]{	%	custom section (level 1)
+	\newpage
+	\addcontentsline{toc}{section}{Zettel #1 (#2)}
+	\section*{Zettel Nr. #1 (Empfang: #2, Abgabe: #3)}
+	\label{sec:#1}
+}
+\newcommand{\sus}[1]{	%	custom section (level 2)
 	\addcontentsline{toc}{subsection}{Übungsaufgabe #1}
 	\subsection*{Übungsaufgabe #1}
 	\label{ssec:#1}
 }
-\newcommand{\sss}[1]{
+\newcommand{\susP}[2]{
+	\sus{#1}
+	\points{#2}
+}
+\newcommand{\sss}[1]{	%	custom section (level 3)
 	\addcontentsline{toc}{subsubsection}{Aufgabe #1}
 	\subsubsection*{Aufgabe #1}
 	\label{sssec:#1}
 }
-\newcommand{\points}[1]{
+\newcommand{\points}[1]{	%	adds a box where the points' worth of a task is written
 	\begin{flushright}
 		\begin{Large}
 			[~~~~\string| ~#1~]
@@ -61,8 +75,8 @@
 \newcommand{\fachname}{Grundlagen der Systemsoftware}
 \newcommand{\fachnummer}{InfB-GSS}
 \newcommand{\veranstaltungsnummer}{64-091}
-\newcommand{\stinegruppe}{Übungsgruppe /n}
-\newcommand{\termin}{/Tag, /Uhrzeit\\/Raum}
+\newcommand{\stinegruppe}{N/A}
+\newcommand{\termin}{Mittwoch, 10-12}
 %% Gruppenmitglied 1
 \newcommand{\memOneName}{Utz Pöhlmann}
 \newcommand{\memOneMail}{4poehlma@informatik.uni-hamburg.de}
@@ -72,13 +86,17 @@
 \newcommand{\memTwoMail}{4kobras@informatik.uni-hamburg.de}
 \newcommand{\memTwoNr}{6658699}
 %% Gruppenmitglied 3
-\newcommand{\memThreeName}{}
-\newcommand{\memThreeMail}{}
-\newcommand{\memThreeNr}{}
+\newcommand{\memThreeName}{Hans Wurst}
+\newcommand{\memThreeMail}{hwurst@sausage.de}
+\newcommand{\memThreeNr}{6654232}
 %% Gruppenmitglied 4
-\newcommand{\memFourName}{}
-\newcommand{\memFourMail}{}
-\newcommand{\memFourNr}{}
+\newcommand{\memFourName}{Nobody Nose}
+\newcommand{\memFourMail}{nobody@nose.de}
+\newcommand{\memFourNr}{6543216}
+%% Gruppenmitglied 5
+\newcommand{\memFiveName}{Steve}
+\newcommand{\memFiveMail}{steve@steve.de}
+\newcommand{\memFiveNr}{6666666}
 %% Datum
 \newcommand{\datum}{\today\\}
 
@@ -128,7 +146,9 @@
 	\end{Large}
 }
 
-
+% default header and footer formatting overwrite
+\fancyhead{}
+\fancyfoot{}
 
 
 %#+-------------------------------------------------+#%
@@ -140,23 +160,24 @@
 \begin{center}
 	\fach
 	\vspace{1.5cm}
-	\gruppe
-	\vspace{1.5cm}
+%	\gruppe
+%	\vspace{1.5cm}
 	% group members
 	\memberOfGroup{\memOneName}{\memOneMail}{\memOneNr}
 	\memberOfGroup{\memTwoName}{\memTwoMail}{\memTwoNr}
-	\memberOfGroup{$ $}{$ $}{$ $}
-	\memberOfGroup{$ $}{$ $}{$ $}
+	\memberOfGroup{\memThreeName}{\memThreeMail}{\memThreeNr}
+	\memberOfGroup{\memFourName}{\memFourMail}{\memFourNr}
+	\memberOfGroup{\memFiveName}{\memFiveMail}{\memFiveNr}
 	% 1 cm to next element
 	\vspace{1cm}
 	\datumf
 	\vspace{1cm}
 	
-	\textbf{Punkte für den Hausaufgabenteil:}\\
+	\textbf{Punkte für den Pflichtteil:}\\
 	\vspace{1cm}
-	\begin{tabular}{c|c}
-	~7.1~&~$\Sigma$~	\\	\hline
-		 &
+	\begin{tabular}{c|c|c|c}
+	~1.1~&~1.2~&~1.3~&~$\Sigma$~	\\	\hline
+		 &	   &	 &
 	\end{tabular}
 	
 \end{center}
@@ -197,12 +218,33 @@
 \thispagestyle{empty}
 \tableofcontents
 \newpage
+% formatting commands for the rest of the document
 \pagenumbering{arabic}
+\pagestyle{fancy}	%	allows for headers and footers
+\lhead{\memOneName \\ \memTwoName}	% first two group members
+\chead{\memThreeName \\}			% third group member
+\rhead{\memFourName \\ Steve}		% last two group members
+\lfoot{\today}
+\rfoot{\thepage}
+
 
 %#+-------------------------------------------------+#%
 %#+						ZETTEL 1					+#%
 %#+-------------------------------------------------+#%
-
-
+\sect{1}{11. April 2016}{20. April 2016}
+\susP{1.1}{5}
+\lipsum[1-2]
+\susP{1.2}{9}
+\sss{1.2.1}
+\lipsum[3]
+\sss{1.2.2}
+\lipsum[29]
+\lipsum[4]
+\susP{1.3}{6}
+\lipsum[5]
+\sss{1.3.1}
+\lipsum[6]
+\sss{1.3.2}
+\lipsum[7]
 
 \end{document}
