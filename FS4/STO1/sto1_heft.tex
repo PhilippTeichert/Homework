@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[twoside]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[ngerman]{babel}
@@ -17,8 +17,10 @@
 %\usepackage{clrscode3e}
 % formatting and layout
 \usepackage{color}
+\usepackage{fancyhdr}
 % references and links
 \usepackage{hyperref}
+\usepackage{lastpage}
 % settings
 \usepackage{perpage}
 \MakePerPage{footnote}
@@ -34,7 +36,7 @@
 \newcommand{\sect}[3]{	%	custom section (level 1)
 	\newpage
 	\addcontentsline{toc}{section}{Zettel #1 (#2)}
-	\section*{Zettel Nr. #1 (Empfang: #2, Abgabe: #3)}
+	\section*{Zettel Nr. #1 (Ausgabe: #2, Abgabe: #3)}
 	\label{sec:#1}
 }
 \newcommand{\sus}[1]{
@@ -99,6 +101,13 @@
 \newcommand{\memFourNr}{}
 %% Datum
 \newcommand{\datum}{\today\\}
+%% leere Seite
+\newcommand{\leereSeite}{
+	\newpage
+	\thispagestyle{empty}
+	\mbox{}
+	\newpage
+}
 
 
 
@@ -209,9 +218,21 @@
 %#+-------------------------------------------------+#%
 %#+						INHALT  			     	+#%
 %#+-------------------------------------------------+#%
+\leereSeite
 \thispagestyle{empty}
 \tableofcontents
 \newpage
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\lhead{\memOneName\-\\\memTwoNr}
+\chead{\textbf{----- Draft -----}\\}
+\rhead{\memTwoName\-\\\memTwoNr}
+\lfoot{}
+\cfoot{\fachname}
+\rfoot{}
+\fancyfoot[LE,RO]{Seite \thepage  von \pageref{LastPage}}
+\renewcommand{\footrulewidth}{0.4pt}
 \pagenumbering{arabic}
 
 %#+-------------------------------------------------+#%
