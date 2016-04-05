@@ -29,10 +29,20 @@
 	\addcontentsline{toc}{subsubsection}{TODO: #1}
 	\textcolor{pgreen}{\texttt{\-\\ \-\\//TODO: #1\-\\ \-\\}}
 }
+\newcommand{\sect}[3]{	%	custom section (level 1)
+	\newpage
+	\addcontentsline{toc}{section}{Zettel #1 (#2)}
+	\section*{Zettel Nr. #1 (Empfang: #2, Abgabe: #3)}
+	\label{sec:#1}
+}
 \newcommand{\sus}[1]{
-	\addcontentsline{toc}{subsection}{Übungsaufgabe #1}
+	\addcontentsline{toc}{subsection}{#1}
 	\subsection*{Übungsaufgabe #1}
 	\label{ssec:#1}
+}
+\newcommand{\susP}[2]{
+	\sus{#1}
+	\points{#2}
 }
 \newcommand{\sss}[1]{
 	\addcontentsline{toc}{subsubsection}{Aufgabe #1}
@@ -48,7 +58,13 @@
 }
 % tikz
 \usepackage{tikz}
-\usetikzlibrary{arrows,automata,positioning}
+\usetikzlibrary{%
+	arrows,			% arrow types
+	automata,		% states and transitions
+	positioning,	% position shifting
+	shapes,			% circles and stuff for Venn diagrams
+	backgrounds		% coloring and stuff
+}
 \usepackage{pgf}
 
 %#+-------------------------------------------------+#%
@@ -198,6 +214,178 @@
 
 %#+-------------------------------------------------+#%
 %#+						ZETTEL 1					+#%
+%#+-------------------------------------------------+#%
+\sect{1}{05. April 2016}{12. April 2016}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%%%% Aufgabe 1
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\susP{Hausübung 1.1}{8}
+(Zufallsexperimente, 2+2+2+2 Punkte).
+Handelt es sich in den folgenden Situationen um Zufallsexperimente?
+Begründen Sie ihre Antwort.
+\begin{enumerate}
+	%%%%% Aufgabe 1a ---------------
+	\item[a)] Sonnenaktivität am 07.04.2016 um 10:00.\\
+	\vspace{.5cm}\\
+	%%%%% Bearbeitung 1a ----------
+	
+	
+	%%%%% Aufgabe 1b ---------------
+	\item[b)] Verkehrssituation am Schlump Donnerstags 10:00.\\
+	\vspace{.5cm}\\
+	%%%%% Bearbeitung 1b ----------
+	
+	
+	%%%%% Aufgabe 1c ---------------
+	\item[c)] Gleichzeitiger Wurf von drei fairen Würfeln, Beobachtung der Augensumme.\\
+	\vspace{.5cm}\\
+	%%%%% Bearbeitung 1c ----------
+	
+	
+	%%%%% Aufgabe 1d ---------------
+	\item[d)] Lebenszeit römischer Kaiser nach Inthronisierung.\\
+	\vspace{.5cm}\\
+	%%%%% Bearbeitung 1d ----------
+	
+	
+	
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%%%% Aufgabe 2
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\susP{Hausübung 1.2}{12}
+(Zufall in der Praxis, 6+6 Punkte).
+Stellen Sie in den beiden folgenden Situationen dar, an welchen Stellen sich Zufallseinflüsse auswirken.
+Geben Sie darüber hinaus kurz an, welche Ziele (ggf. aus Sicht der unterschiedlichen Parteien) erreicht werden sollen.
+\begin{enumerate}
+	%%%%% Aufgabe 2a ---------------
+	\item[a)] Ein Flughafen hat eine Landebahn, die Flugzeuge müssen beim Landen einen gewissen zeitlichen Abstand halten (vorangegangenes Flugzeug muss die Landebahn verlassen und sich weit genug entfernt haben, Wirbelschleppen müssen "verflogen" sein, \dots).
+	Nach Flugplan kommen die Flugzeuge gleichmäßig an, der Abstand zwischen zwei Ankünften ist im Mittel etwas größer als der notwendige zeitliche Abstand zwischen zwei Landungen.
+	Ist eine Landung für ein Flugzeug noch nicht möglich, da die Landebahn noch nicht wieder freigegeben ist, muss das Flugzeug eine Warteschleife fliegen.\\
+	\vspace{.5cm}\\
+	%%%%% Bearbeitung 2a ----------
+	
+	
+	
+	
+	%%%%% Aufgabe 2b ---------------
+	\item[b)]
+	Die Universität Hamburg betreibt das System STiNE zur Vorlesungsplanung, -information und -unterstützung auf einem Server.
+	Von Studierenden und Dozenten kommen Anfragen an und werden bearbeitet.
+	Wird eine Anfrage nicht nach einer bestimmten Zeit erfolgreich bearbeitet, so wird sie unerfolgreich abgelehnt.
+	\vspace{.5cm}\\
+	%%%%% Bearbeitung 2b ----------
+	
+	
+	
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%%%% Aufgabe 3
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\susP{Hausübung 1.3}{5}
+(Mengenoperationen und Venn-Diagramme, 1+1+1+2 Punkte).
+In einem Venn-Diagramm werden die Grundmengen symbolisch durch geometrische Objekte, meistens Kreise oder Ellipsen dargestellt.
+Die Resultate betrachteter Mengenverknüpfungen werden
+dann farblich oder durch Markierung hervorgehoben.
+Beispielsweise veranschaulicht das folgende Diagramm den Schnitt $A \cap B$ zweier Mengen $A$ und $B$.
+
+\def\firstcircle{(0,0) circle (1.5cm)}
+\def\secondcircle{(45:2cm) circle (1.5cm)}
+\def\thirdcircle{(0:2cm) circle (1.5cm)}
+\begin{center}
+	\begin{tikzpicture}
+		\draw \firstcircle node {$A$};
+		\draw \thirdcircle node {$B$};
+		\begin{scope}[fill opacity=0.5]
+			\clip \firstcircle;
+			\fill[gray] \thirdcircle;
+		\end{scope}
+	\end{tikzpicture}
+\end{center}
+Zeichnen Sie die entsprechenden Diagramme für die folgenden Operationen.
+\begin{enumerate}
+	%%%%% Aufgabe 3a ---------------
+	\item[a)] $A \setminus B = \{x \in A: x \not \in B\}$ für zwei Mengen $A,B$.\\
+	%%%%% Bearbeitung 3a ----------
+	\begin{tikzpicture}
+	\begin{scope}[shift={(0cm,0cm)}]
+        \begin{scope}[even odd rule]% first circle without the second
+            \clip \thirdcircle (-3,-3) rectangle (3,3);
+        	\fill[yellow] \firstcircle;
+        \end{scope}
+        \draw \firstcircle node {$A$};
+        \draw \thirdcircle node {$B$};
+    \end{scope}
+    \end{tikzpicture}
+	
+	
+	%%%%% Aufgabe 3b ---------------
+	\item[b)]$A \Delta B := (A \setminus B) \cup (B \setminus A)$ für zwei Mengen $A,B$.
+	($A \Delta B$ heißt auch \textit{symmetrische Mengendifferenz}.)\\
+	%%%%% Bearbeitung 3b ----------
+	\begin{tikzpicture}
+	\begin{scope}[shift={(0cm,0cm)}]
+        \begin{scope}[even odd rule]% first circle without the second
+            \clip \thirdcircle (-3,-3) rectangle (3,3);
+        	\fill[yellow] \firstcircle;
+        \end{scope}
+        \begin{scope}[even odd rule]% first circle without the second
+            \clip \firstcircle (-3,-3) rectangle (5,3);
+        	\fill[yellow] \thirdcircle;
+        \end{scope}
+        \draw \firstcircle node {$A$};
+        \draw \thirdcircle node {$B$};
+    \end{scope}
+    \end{tikzpicture}
+	
+	
+	%%%%% Aufgabe 3c ---------------
+	\item[c)]$A \cap B \cap C$ für drei Mengen $A,B,C$.\\
+	%%%%% Bearbeitung 3c ----------
+	\begin{tikzpicture}
+		\begin{scope}
+    		\clip \firstcircle;
+    		\clip \secondcircle;
+			\fill[green] \thirdcircle;
+		\end{scope}
+		\draw \firstcircle node {$A$};
+		\draw \secondcircle node[above] {$B$};
+		\draw \thirdcircle node[below] {$C$};
+	\end{tikzpicture}
+	
+	
+	%%%%% Aufgabe 3d ---------------
+	\item[d)]$(A \cap B) \cup (A \cap C) \cup (B \cap C)$ für drei Mengen $A,B,C$.\\
+	%%%%% Bearbeitung 3d ----------
+	\begin{tikzpicture}
+		\draw \firstcircle node {$A$};
+		\draw \secondcircle node[above] {$B$};
+		\draw \thirdcircle node[below] {$C$};
+		\begin{scope}[fill opacity=0.5]
+			\clip \firstcircle;
+			\fill[gray] \thirdcircle;
+		\end{scope}
+		\begin{scope}[fill opacity=0.5]
+			\clip \firstcircle;
+			\fill[gray] \secondcircle;
+		\end{scope}
+		\begin{scope}[fill opacity=0.5]
+			\clip \secondcircle;
+			\fill[gray] \thirdcircle;
+		\end{scope}
+	\end{tikzpicture}
+\end{enumerate}
+
+%#+-------------------------------------------------+#%
+%#+						ZETTEL 2					+#%
 %#+-------------------------------------------------+#%
 
 
