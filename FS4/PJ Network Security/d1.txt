@@ -37,8 +37,12 @@ Anlegen neuer Datei mit "sudo touch bericht1.txt".
 Eingeben folgender Zeichen erfolgt: hkgfhk
 Speichern mit "Ctrl+O", Beenden mit "Ctrl+X".
 
-
-
+Das Verändern der Zugriffsrechte erfolgt mithilfe der Befehle "chgrp" [3] und "chmod" [4].
+Zunächst muss mit "chgrp labortests beispiel1.txt" die Gruppe, der die Datei gehört, auf "labortests" gesetzt werden (sonst gehört die Datei der Gruppe, die nur den Eigentümer enthält).
+Danach können mit der Oktal-Variante von "chmod" [5] die Zugriffsrechte derart gesetzt werden, dass Eigentümer und Gruppe Lese- und Schreibzugriff, sonst jedoch kein Zugriff möglich ist. Dies entspricht dem Befehl "chmod 660 beispiel1.txt"
+Die Ziffer 6 steht hierbei für einen Lese- und Schreibzugriff und die Ziffer 0 steht für Keine Zugriffsrechte.
+Die erste Stelle ist die Einstufung für den Eigentümer, die zweite Stelle ist die Einstufung für die Gruppe, die dritte Stelle ist die Einstufung für andere Nutzer.
+(Anmerkung: Dieser spezifische Fall ist bei [5] als eines der Anwendungsbeispiele gelistet.)
 
 
 
@@ -49,3 +53,6 @@ Speichern mit "Ctrl+O", Beenden mit "Ctrl+X".
 [0]: https://help.ubuntu.com/community/AddUsersHowto
 [1]: https://help.ubuntu.com/community/RootSudo
 [2]: http://www.namhuy.net/44/add-delete-and-switch-user-in-ubuntu-by-command-lines.html
+[3]: https://wiki.ubuntuusers.de/chgrp/
+[4]: https://wiki.ubuntuusers.de/chmod/
+[5]: https://wiki.ubuntuusers.de/chmod/#Oktal-Modus
