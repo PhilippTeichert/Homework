@@ -1,0 +1,51 @@
+Beim Aufruf von "man ls" im Terminal wird eine Liste von Optionen und Parametern angegeben, die mit dem Befehl "ls" verwendet werden können. Die 'man page' muss durch drücken der q-Taste verlassen werden.
+Wird statt "man ls" "ls --help" eingegeben, so wird der komplette Hilfetext ins Terminal gedruckt und anschließend direkt der Prompt wieder angegeben.
+
+
+Der Befehl "script" startet eine Wrapper-Shell (Default: Bourne Shell, wenn SHELL Parameter nicht gesetzt ist) und zeichnet alle I/O-Streams in der beim Aufruf angegebenen Datei auf. Die Wrapper-Shell kann mit Ctrl+D (oder exit)  beendet werden. Die Formatierung ist für den neuen Nutzer bzw. auf den ersten Blick ein wenig strange, dafür enthält die Datei alle relevanten Informationen.
+Dies ist unter bei "man script" unter BUGS vermerkt, und zwar dass "script" alles in den log file schreibt, inklusive line feeds und Backspaces. "This is not what the naive user expects."
+Der Befehl kann in soweit helfen, dass der komplette Shell-Dialog aufgezeichnet wird.
+
+
+
+AUFGABE 2:
+Neuen user angelegt mit "sudo adduser <username>"| <username> = labmate [0]. Nach Eingabe von sudo ist die Authentifizierung mit dem eigenen Passwort erforderlich.
+Ist dies geschehen, so wird man aufgefordert, zunächst das Passwort und dann weitere persönliche Daten für "labmate" einzugeben (Passwort "laborratte").
+
+Die Benutzergruppen von "labmate" werden mit "groups labmate" angezeigt.
+Output:
+
+	labmate : labmate
+
+Die neue Gruppe "labortests" wird erstellt mit dem Befehl "sudo addgroup labortests".
+"labmate" wird der Gruppe "labortests" mit dem Befehl "sudo adduser labmate labortests". Alternativ kann dazu der Befehl "sudo usermod -aG labortests labmate" verwendet werden.
+"usermod ist ein mächtigerer Befehl zur Benutzerverwaltung und -manipulation, welcher sicherstellt, dass Manipulation der Nutzerdaten keine laufenden Prozesse beeinflusst.
+
+Um "labmate" zu erlauben, "sudo" zu benutzen, muss er der entsprechenden Gruppe namens "admin" (seit 12.04 "sudo") hinzugefügt werden: "sudo adduser labmate admin" [1].
+
+
+
+AUFGABE 3:
+Das Wechseln des Benutzers erfolgt mit "su <username>" [2]. Dabei muss man das Passwort des neuen Nutzers eingeben.
+
+Das Wechseln in das home-Verzeichnis erfolgt (unabhängig vom Nutzer) mit "cd /home".
+Der aktuelle Pfad wird mit "pwd" angezeigt.
+Das neue Verzeichnis wird mit "mkdir <pathname>" angelegt (hierbei ist wiederum "sudo" vonnöten).
+Wechseln in den neuen Ordner mit "cd labreports".
+Anlegen neuer Datei mit "sudo touch bericht1.txt".
+Öffnen mit "sudo pico bericht1.txt".
+Eingeben folgender Zeichen erfolgt: hkgfhk
+Speichern mit "Ctrl+O", Beenden mit "Ctrl+X".
+
+
+
+
+
+
+
+
+
+
+[0]: https://help.ubuntu.com/community/AddUsersHowto
+[1]: https://help.ubuntu.com/community/RootSudo
+[2]: http://www.namhuy.net/44/add-delete-and-switch-user-in-ubuntu-by-command-lines.html
