@@ -3,6 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[ngerman]{babel}
 \usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
 
 % import math packages
 \usepackage{amsmath}
@@ -20,6 +21,13 @@
 % settings
 \usepackage{perpage}
 \MakePerPage{footnote}
+% quotation marks
+\usepackage[
+    left = ``,%
+    right = '',%
+    leftsub = `,%
+    rightsub = '%
+]{dirtytalk}
 % custom text colors
 \definecolor{pblue}{rgb}{0.13,0.13,1}
 \definecolor{pgreen}{rgb}{0,0.5,0}
@@ -29,13 +37,19 @@
 	\addcontentsline{toc}{subsubsection}{TODO: #1}
 	\textcolor{pgreen}{\texttt{\-\\ \-\\//TODO: #1\-\\ \-\\}}
 }
+\newcommand{\sect}[3]{	%	custom section (level 1)
+	\newpage
+	\addcontentsline{toc}{section}{Zettel #1 (#2)}
+	\section*{Zettel Nr. #1 (Ausgabe: #2, Abgabe: #3)}
+	\label{sec:#1}
+}
 \newcommand{\sus}[1]{
-	\addcontentsline{toc}{subsection}{Übungsaufgabe #1}
+	\addcontentsline{toc}{subsection}{Aufgabe #1}
 	\subsection*{Übungsaufgabe #1}
 	\label{ssec:#1}
 }
 \newcommand{\sss}[1]{
-	\addcontentsline{toc}{subsubsection}{Aufgabe #1}
+	\addcontentsline{toc}{subsubsection}{Teilaufgabe #1}
 	\subsubsection*{Aufgabe #1}
 	\label{sssec:#1}
 }
@@ -46,6 +60,7 @@
 		\end{Large}
 	\end{flushright}
 }
+\newcommand{\command}[1]{\say{\texttt{#1}}}
 % tikz
 \usepackage{tikz}
 \usetikzlibrary{arrows,automata,positioning}
@@ -199,6 +214,83 @@
 %#+-------------------------------------------------+#%
 %#+						ZETTEL 1					+#%
 %#+-------------------------------------------------+#%
+\sect{1}{07. April 2016}{14. April 2016}
+\sus{1.1: Hilfe zu Befehlen}
+Beim Aufruf von \command{man ls} im Terminal wird eine Liste von Optionen und Parametern angegeben, die mit dem Befehl \command{ls} verwendet werden können.
+Die \textit{man page} muss durch drücken der q-Taste verlassen werden.
+Wird statt \command{man ls} \command{ls help} eingegeben, so wird der komplette Hilfetext ins Terminal gedruckt und anschließend direkt der Prompt wieder angegeben.
 
+Der Befehl \command{script} startet eine Wrapper-Shell (Default: Bourne Shell, wenn SHELL Parameter nicht gesetzt ist) und zeichnet alle I/O-Streams in der beim Aufruf angegebenen Datei auf.
+Die Wrapper-Shell kann mit Ctrl+D (oder exit)  beendet werden.
+Die Formatierung ist für den neuen Nutzer bzw. auf den ersten Blick ein wenig strange, dafür enthält die Datei alle relevanten Informationen.
+Dies ist bei \command{man script} unter BUGS vermerkt, und zwar dass \command{script} alles in den log file schreibt, inklusive line feeds und Backspaces.
+"This is not what the naive user expects."\footnote{Aus der manual-Seite von \texttt{script}}
+Der Befehl kann in soweit helfen, dass der komplette Shell-Dialog aufgezeichnet wird.
+
+\sus{1.2: Benutzerkonten und -Verwaltung}
+Neuen user angelegt mit \command{sudo adduser <username>} \cite{1}, wobei für \texttt{<username>} in diesem Fall \texttt{labmate} eingesetzt wird.
+Nach Eingabe von sudo ist die Authentifizierung mit dem eigenen Passwort erforderlich.
+Ist dies geschehen, so wird man aufgefordert, zunächst das Passwort und dann weitere persönliche Daten für \texttt{labmate} einzugeben (Passwort \texttt{laborratte}).
+
+Die Benutzergruppen von \texttt{labmate} werden mit \command{groups labmate} angezeigt.
+Output:
+\begin{itemize}\item \texttt{labmate : labmate}\footnote{\texttt{labmate} ist derzeit nur in der Gruppe, die genau ihn selber enthält und genauso heißt wie er}\end{itemize}
+
+Die neue Gruppe \texttt{labortests} wird erstellt mit dem Befehl \command{sudo addgroup labortests} \cite[1].
+\texttt{labmate} wird der Gruppe \texttt{labortests} mit dem Befehl \command{sudo adduser labmate labortests}\cite{1} zugewiesen.
+Alternativ kann dazu der Befehl \command{sudo usermod -aG labortests labmate} verwendet werden\cite{1}.
+\texttt{usermod} ist ein Befehl zur Benutzerverwaltung und -manipulation, welcher sicherstellt, dass Manipulation der Nutzerdaten keine laufenden Prozesse beeinflusst\cite{7}.
+
+Um \texttt{labmate} zu erlauben, \texttt{sudo} zu benutzen, muss er der entsprechenden Gruppe namens \texttt{admin} (seit 12.04 \texttt{sudo}) hinzugefügt werden: \command{sudo adduser labmate admin} \cite{2}.
+
+
+
+\sus{1.3: Datei- und Rechteverwaltung}
+Das Wechseln des Benutzers erfolgt mit \command{su <username>} \cite{3}.
+Dabei muss man das Passwort des neuen Nutzers eingeben.
+
+Das Wechseln in das home-Verzeichnis erfolgt (unabhängig vom Nutzer) mit \command{cd /home}.
+Der aktuelle Pfad wird mit \command{pwd} angezeigt.
+Das neue Verzeichnis wird mit \command{mkdir <pathname>} angelegt (hierbei ist wiederum \command{sudo} vonnöten).
+Wechseln in den neuen Ordner mit \command{cd labreports}.
+Anlegen neuer Dateien erfolgt mit \command{sudo touch bericht1.txt}.
+Geöffnet wird die Datei mit \command{sudo pico bericht1.txt}.
+Eingeben folgender Zeichen erfolgt: \textit{hkgfhk}.
+Speichern mit \command{Ctrl+O}, Beenden mit \command{Ctrl+X}.
+
+Das Verändern der Zugriffsrechte erfolgt mithilfe der Befehle \command{chgrp} \cite{4} und \command{chmod} \cite{5}.
+Zunächst muss mit \command{chgrp labortests beispiel1.txt} die Gruppe, der die Datei gehört, auf \command{labortests} gesetzt werden (sonst gehört die Datei der Gruppe, die nur den Eigentümer enthält).
+Danach können mit der Oktal-Variante von \command{chmod} \cite{6} die Zugriffsrechte derart gesetzt werden, dass Eigentümer und Gruppe Lese- und Schreibzugriff, sonst jedoch kein Zugriff möglich ist.
+Dies entspricht dem Befehl \command{chmod 660 beispiel1.txt}.
+Die Ziffer 6 steht hierbei für einen Lese- und Schreibzugriff und die Ziffer 0 steht für Keine Zugriffsrechte.
+Die erste Stelle ist die Einstufung für den Eigentümer, die zweite Stelle ist die Einstufung für die Gruppe, die dritte Stelle ist die Einstufung für andere Nutzer.
+(\textit{Anmerkung: Dieser spezifische Fall ist bei \cite{6} als eines der Anwendungsbeispiele gelistet.})
+
+Der Befehl \texttt{wget} lädt eine angegebene Datei herunter.
+Verwendung: \command{wget <URL>}.
+Die Datei wird dabei in das aktuelle Arbeitsverzeichnis heruntergeladen.
+
+
+\sus{1.4: Administration und Aktualisierung}
+\texttt{apt-get} ist der Paket-Manager für Ubuntu und Debian-basierende Systeme (das Stück Kernel, welches für die Installation und Verwaltung von Software-Paketen verantwortlich ist).
+\command{apt-get upgrade} aktualisiert sämtliche derzeit installierten Pakete.
+Der Parameter \texttt{-y} kann übergeben werden, um die Installation zu automatisieren (den Prompt automatisch mit 'Ja' zu beantworten).
+\command{apt-get upgdate} aktualisiert die systeminterne Liste von Paketquellen\footnote{Eine Reihe von Servern, von denen die installierte Software heruntergeladen wurde. Die Liste umfasst die offiziellen Ubuntu-Server sowie Adressen, die vom Benutzer hinzugefügt wurden}.
+Auch hier kann der Parameter \texttt{-y} übergeben werden für den gleichen Effekt wie bei \texttt{upgrade}.
+
+
+
+
+
+\begin{thebibliography}{1}
+\addcontentsline{toc}{section}{Literatur}
+\bibitem{1} https://help.ubuntu.com/community/AddUsersHowto
+\bibitem{2} https://help.ubuntu.com/community/RootSudo
+\bibitem{3} http://www.namhuy.net/44/add-delete-and-switch-user-in-ubuntu-by-command-lines.html
+\bibitem{4} https://wiki.ubuntuusers.de/chgrp/
+\bibitem{5} https://wiki.ubuntuusers.de/chmod/
+\bibitem{6} https://wiki.ubuntuusers.de/chmod/\string#Oktal-Modus
+\bibitem{7} http://linux.die.net/man/8/usermod
+\end{thebibliography}
 
 \end{document}
