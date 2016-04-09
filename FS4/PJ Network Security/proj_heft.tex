@@ -250,17 +250,17 @@ Das Wechseln des Benutzers erfolgt mit \command{su <username>} \cite{3}.
 Dabei muss man das Passwort des neuen Nutzers eingeben.
 
 Das Wechseln in das home-Verzeichnis erfolgt (unabhängig vom Nutzer) mit \command{cd /home}.
-Der aktuelle Pfad wird mit \command{pwd} angezeigt.
-Das neue Verzeichnis wird mit \command{mkdir <pathname>} angelegt (hierbei ist wiederum \command{sudo} vonnöten).
+Der aktuelle Pfad wird mit \texttt{pwd} angezeigt.
+Das neue Verzeichnis wird mit \command{mkdir <pathname>} angelegt (hierbei ist wiederum \texttt{sudo} vonnöten).
 Wechseln in den neuen Ordner mit \command{cd labreports}.
 Anlegen neuer Dateien erfolgt mit \command{sudo touch bericht1.txt}.
 Geöffnet wird die Datei mit \command{sudo pico bericht1.txt}.
 Eingeben folgender Zeichen erfolgt: \textit{hkgfhk}.
-Speichern mit \command{Ctrl+O}, Beenden mit \command{Ctrl+X}.
+Speichern mit \texttt{Ctrl+O}, Beenden mit \texttt{Ctrl+X}.
 
-Das Verändern der Zugriffsrechte erfolgt mithilfe der Befehle \command{chgrp} \cite{4} und \command{chmod} \cite{5}.
-Zunächst muss mit \command{chgrp labortests beispiel1.txt} die Gruppe, der die Datei gehört, auf \command{labortests} gesetzt werden (sonst gehört die Datei der Gruppe, die nur den Eigentümer enthält).
-Danach können mit der Oktal-Variante von \command{chmod} \cite{6} die Zugriffsrechte derart gesetzt werden, dass Eigentümer und Gruppe Lese- und Schreibzugriff, sonst jedoch kein Zugriff möglich ist.
+Das Verändern der Zugriffsrechte erfolgt mithilfe der Befehle \texttt{chgrp} \cite{4} und \texttt{chmod} \cite{5}.
+Zunächst muss mit \command{chgrp labortests beispiel1.txt} die Gruppe, der die Datei gehört, auf \texttt{labortests} gesetzt werden (sonst gehört die Datei der Gruppe, die nur den Eigentümer enthält).
+Danach können mit der Oktal-Variante von \texttt{chmod} \cite{6} die Zugriffsrechte derart gesetzt werden, dass Eigentümer und Gruppe Lese- und Schreibzugriff, sonst jedoch kein Zugriff möglich ist.
 Dies entspricht dem Befehl \command{chmod 660 beispiel1.txt}.
 Die Ziffer 6 steht hierbei für einen Lese- und Schreibzugriff und die Ziffer 0 steht für Keine Zugriffsrechte.
 Die erste Stelle ist die Einstufung für den Eigentümer, die zweite Stelle ist die Einstufung für die Gruppe, die dritte Stelle ist die Einstufung für andere Nutzer.
@@ -269,6 +269,22 @@ Die erste Stelle ist die Einstufung für den Eigentümer, die zweite Stelle ist 
 Der Befehl \texttt{wget} lädt eine angegebene Datei herunter.
 Verwendung: \command{wget <URL>}.
 Die Datei wird dabei in das aktuelle Arbeitsverzeichnis heruntergeladen.
+
+Das Setzen der Rechte erfolgt wie oben (der \texttt{chmod}-Parameter 660 ist äquivalent zum Parameter 0660).
+Durch den Befehl \command{sudo chmod 0660 /home/labmate/labrepots} werden die Rechte für das Verzeichnis \textit{labreports} wie in der Aufgabe gefordert gesetzt.
+In der Verzeichnisliste ist folgende Zeile zu sehen: \command{drw-rw---- 2 labmate labmate 4096 <Timestamp> \textcolor{pblue}{labreports}}.
+
+Der Versuch, mit \texttt{labmate} in das Verzeichnis \texttt{/root} zu wechseln, scheitert aufgrund mangelnder Berechtigungen.
+
+Das Verzeichnis test wird erstellt mit \command{sudo mkdir test}, die Rechte werden gesetzt mit \command{sudo chmod 0770 test} (dies bedeutet, dass Eigentümer und Gruppe Lese-, Schreib- und Ausführungsrechte haben, andere Nutzer gar keine).
+Der Eigentümer des Verzeichnisses wird mit \command{sudo chown labmate test} auf \texttt{labmate} gesetzt.
+Als Gruppe wird \texttt{admin} gewählt, da dies derzeit die einzige Gruppe ist, die sowohl \texttt{labmate} als auch \texttt{user} enthält.
+Das Setzen der Gruppe erfolgt mit \command{sudo chgrp admin test}.
+
+Die eben heruntergeladene Datei wird mit dem Befehl \command{cp /home/labmate/labreports/index.html test/} in das neue Verzeichnis kopiert (\command{c(o)p(y) <source> <destination>}).
+
+Davon ausgehend, dass \texttt{labmate} als Eigentümer und \texttt{admin} als Gruppe eingestellt ist, erfolgt die Rechte-Modifikation durch \command{sudo chmod 0640 /opt/test/index.html}.
+Damit hat der Eigentümer Lese- und Schreiberechte, die Gruppe (die derzeit nur \texttt{labmate} und \texttt{user} enthält) hat nur Leserechte, andere Nutzer haben keine Zugriffsrechte.
 
 
 \sus{1.4: Administration und Aktualisierung}
