@@ -41,7 +41,7 @@
 }
 \newcommand{\sus}[1]{
 	\addcontentsline{toc}{subsection}{#1}
-	\subsection*{#1}
+	\subsection*{Hausübung #1}
 	\label{ssec:#1}
 }
 \newcommand{\susP}[2]{
@@ -49,8 +49,8 @@
 	\points{#2}
 }
 \newcommand{\sss}[1]{
-	\addcontentsline{toc}{subsubsection}{Aufgabe #1}
-	\subsubsection*{Aufgabe #1}
+	\addcontentsline{toc}{subsubsection}{Teilaufgabe #1}
+	\subsubsection*{Teilaufgabe #1}
 	\label{sssec:#1}
 }
 \newcommand{\points}[1]{
@@ -153,6 +153,30 @@
 	\end{Large}
 }
 
+% setting up footers and headers
+%% setting page style so that footers and headers can be used
+\pagestyle{fancy}
+%% overwrite default values
+\fancyhead{}
+\fancyfoot{}
+%% first group member in upper left corner
+\lhead{\memOneName\-\\\memOneNr}
+%% upper center (empty)
+\chead{}
+%% second group member in upper right corner
+\rhead{\memTwoName\-\\\memTwoNr}
+%% lower left corner (empty)
+\lfoot{}
+%% subject name in lower center
+\cfoot{\fachname}
+%% lower right corner (empty)
+\rfoot{}
+%% sets the page number to appear in either the lower left or lower right corner,
+%% depending on whether the page number is even or odd, in the format "page X of Y"
+\fancyfoot[LE,RO]{Seite \thepage  von \pageref{LastPage}}
+%% thin separation line over the footer
+\renewcommand{\footrulewidth}{0.4pt}
+
 
 
 %#+-------------------------------------------------+#%
@@ -222,29 +246,19 @@
 \thispagestyle{empty}
 \tableofcontents
 \newpage
-\pagestyle{fancy}
-\fancyhead{}
-\fancyfoot{}
-\lhead{\memOneName\-\\\memTwoNr}
-\chead{\textbf{----- Draft -----}\\}
-\rhead{\memTwoName\-\\\memTwoNr}
-\lfoot{}
-\cfoot{\fachname}
-\rfoot{}
-\fancyfoot[LE,RO]{Seite \thepage  von \pageref{LastPage}}
-\renewcommand{\footrulewidth}{0.4pt}
 \pagenumbering{arabic}
 
 %#+-------------------------------------------------+#%
 %#+						ZETTEL 1					+#%
 %#+-------------------------------------------------+#%
 \sect{1}{05. April 2016}{12. April 2016}
+\chead{\textbf{----- Draft -----}\\}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %%%% Aufgabe 1
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\susP{Hausübung 1.1}{8}
+\susP{1.1}{8}
 (Zufallsexperimente, 2+2+2+2 Punkte).
 Handelt es sich in den folgenden Situationen um Zufallsexperimente?
 Begründen Sie ihre Antwort.
@@ -278,7 +292,7 @@ Begründen Sie ihre Antwort.
 %%%% Aufgabe 2
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\susP{Hausübung 1.2}{12}
+\susP{1.2}{12}
 (Zufall in der Praxis, 6+6 Punkte).
 Stellen Sie in den beiden folgenden Situationen dar, an welchen Stellen sich Zufallseinflüsse auswirken.
 Geben Sie darüber hinaus kurz an, welche Ziele (ggf. aus Sicht der unterschiedlichen Parteien) erreicht werden sollen.
@@ -322,7 +336,7 @@ Geben Sie darüber hinaus kurz an, welche Ziele (ggf. aus Sicht der unterschiedl
 %%%% Aufgabe 3
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\susP{Hausübung 1.3}{5}
+\susP{1.3}{5}
 (Mengenoperationen und Venn-Diagramme, 1+1+1+2 Punkte).
 In einem Venn-Diagramm werden die Grundmengen symbolisch durch geometrische Objekte, meistens Kreise oder Ellipsen dargestellt.
 Die Resultate betrachteter Mengenverknüpfungen werden
@@ -418,6 +432,7 @@ Zeichnen Sie die entsprechenden Diagramme für die folgenden Operationen.
 %#+-------------------------------------------------+#%
 %#+						ZETTEL 2					+#%
 %#+-------------------------------------------------+#%
-
+\sect{2}{12. April 2016}{19. April 2016}
+\chead{\textbf{----- Draft -----}\\}
 
 \end{document}
