@@ -1,9 +1,10 @@
-\documentclass{article}
+\documentclass[twoside]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[ngerman]{babel}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{hyperref}
+\usepackage{lastpage}
 \usepackage{lipsum}
 
 % import math packages
@@ -18,6 +19,7 @@
 \usepackage{algorithm}
 % formatting and layout
 \usepackage{color}
+\usepackage{fancyhdr}
 % settings
 \usepackage{perpage}
 \MakePerPage{footnote}
@@ -141,6 +143,30 @@
 	\end{Large}
 }
 
+
+% setting up footers and headers
+%% setting page style so that footers and headers can be used
+\pagestyle{fancy}
+%% overwrite default values
+\fancyhead{}
+\fancyfoot{}
+%% first group member in upper left corner
+\lhead{\memOneName\-\\\memOneNr}
+%% upper center (empty)
+\chead{}
+%% second group member in upper right corner
+\rhead{\memTwoName\-\\\memTwoNr}
+%% lower left corner (empty)
+\lfoot{}
+%% subject name in lower center
+\cfoot{\fachname}
+%% lower right corner (empty)
+\rfoot{}
+%% sets the page number to appear in either the lower left or lower right corner,
+%% depending on whether the page number is even or odd, in the format "page X of Y"
+\fancyfoot[LE,RO]{Seite \thepage ~von \pageref{LastPage}}
+%% thin separation line over the footer
+\renewcommand{\footrulewidth}{0.4pt}
 
 
 %#+-------------------------------------------------+#%
@@ -293,15 +319,18 @@ Das Setzen der Gruppe erfolgt mit \command{sudo chgrp admin test}.
 
 Die eben heruntergeladene Datei wird mit dem Befehl \command{cp ~/ 	 	labreports/index.html test/} in das neue Verzeichnis kopiert (\command{c(o)p(y) <source> <destination>}).
 
-Davon ausgehend, dass \texttt{labmate} als Eigentümer und \texttt{admin} als Gruppe eingestellt ist, erfolgt die Rechte-Modifikation durch \command{sudo chmod 0640 /opt/test/index.html}.
-Damit hat der Eigentümer Lese- und Schreiberechte, die Gruppe (die derzeit nur \texttt{labmate} und \texttt{user} enthält) hat nur Leserechte, andere Nutzer haben keine Zugriffsrechte.
+Davon ausgehend, dass \texttt{labmate} als Eigentümer ist, erfolgt die Rechte-Modifikation durch \command{sudo chmod 0640 /opt/test/index.html}.
+Damit hat der Eigentümer Lese- und Schreiberechte, die Gruppe hat nur Leserechte, andere Nutzer haben keine Zugriffsrechte.
+Die Gruppe wird mit \command{sudo chgrp user index.html} auf ebenjene persönliche Benutzergruppe gesetzt, die nur \texttt{user} enthält, womit auch nur \texttt{user} neben dem Eigentümer Leserechte hat.
+
+Durch Öffnen eines neuen Terminals mit der Tastenkombination \texttt{Ctrl+Alt+T} ist wieder ein Terminal als \texttt{user} verfügbar.
 
 Da \texttt{user} Lesezugriffsrechte hat, gelingt es, die Datei mithilfe von \command{cat /opt/test/index.html} auszulesen.
 
 Auch der Zugriff mit einem Texteditor wie beispielsweise \texttt{vim} oder \texttt{nano} ist möglich, da jedoch die Schreibe-Berechtigung fehlt, kann sie nicht verändert werden (\texttt{nano} warnt sofort, dass man kein Schreibrecht besitzt).
 Editieren ist mit beiden Editoren möglich, das Speichern jedoch scheitert an den Berechtigungen.
 
-Die Datei wurde erfolgreich mit \command{cp index.html userindex.html} kopiert (das aktuelle Arbeitsverzeichnis ist \texttt{/opt/test}).
+Die Datei wurde erfolgreich mit \command{cp index.html userindex.html} kopiert (das aktuelle Arbeitsverzeichnis ist \texttt{/opt/test}, weswegen der absolute Pfad nicht angegeben werden muss).
 
 Durch das Anlegen der neuen Datei \texttt{userindex.html} mithilfe des Terminals wurden die Werte des Wurzelverzeichnisses für die Berechtigungen übernommen (\texttt{root} hat Lese- und Schreibzugriff und die Gruppe \texttt{root} hat Lesezugriff).
 Weder das Lesen noch das Schreiben gelingen als \texttt{user}.
@@ -329,7 +358,19 @@ Dann wird der Inhalt der hier gewählten \texttt{bla.txt} von \texttt{cat} ausge
 Bei \texttt{cowsay} können das Abbild der Kuh sowie Formatierungsoptionen gesetzt werden.
 
 \sus{1.5: Prozesse und Prozessverwaltung}
-\lipsum[11-15]
+\lipsum[11]
+
+Der Befehl \texttt{ps} gibt eine Momentaufnahme aller laufenden Prozesse aus.
+Mit \command{ps -e} werden alle Prozesse angezeigt, die derzeit laufen.
+Der Befehl \texttt{top} gibt ein stetig aktualisiertes Abbild der laufenden Prozesse zurück.
+
+Bei Verwendung des Befehls \command{cat /dec/urandom} als \texttt{labmate} erscheint im \texttt{top}-Fenster ein neuer Prozess, der \texttt{labmate} zugeordnet ist und eine Menge Speicher futtert.
+Er hat (in diesem Fall) die Prozess-ID (\texttt{PID}) 3658.
+
+Der direkte Aufruf von \texttt{kill}, welchem eine \texttt{PID} übergeben werden muss, gibt zurück, dass die Operation nicht zulässig ist.
+Nur mit \command{sudo kill 3658} ist es gelungen, den Prozess von außen zu terminieren.
+
+Der Befehl, um als \texttt{labmate} das System neuzustarten, ist \command{sudo shutdown -r now}, wobei \texttt{sudo} erforderlich ist, da der \texttt{shutdown}-Befehl Administratorrechte benötigt, \texttt{-r} gibt dem System an, dass es doch bitte auch wieder hochfahren möge, und \texttt{now} gibt den Zeitpunkt des Neustartes an.
 
 
 \sus{1.6: VMWare-Tools installieren}
