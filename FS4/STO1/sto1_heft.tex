@@ -35,12 +35,13 @@
 }
 \newcommand{\sect}[3]{	%	custom section (level 1)
 	\newpage
+	\chead{}
 	\addcontentsline{toc}{section}{Zettel #1 (#2)}
 	\section*{Zettel Nr. #1 (Ausgabe: #2, Abgabe: #3)}
 	\label{sec:#1}
 }
 \newcommand{\sus}[1]{
-	\addcontentsline{toc}{subsection}{#1}
+	\addcontentsline{toc}{subsection}{Hausübung #1}
 	\subsection*{Hausübung #1}
 	\label{ssec:#1}
 }
@@ -252,7 +253,6 @@
 %#+						ZETTEL 1					+#%
 %#+-------------------------------------------------+#%
 \sect{1}{05. April 2016}{12. April 2016}
-\chead{\textbf{----- Draft -----}\\}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %%%% Aufgabe 1
