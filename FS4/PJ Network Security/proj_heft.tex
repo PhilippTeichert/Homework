@@ -4,6 +4,7 @@
 \usepackage[ngerman]{babel}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{hyperref}
+\usepackage{lipsum}
 
 % import math packages
 \usepackage{amsmath}
@@ -15,7 +16,6 @@
 % algorithms and pseudo code
 \usepackage{algorithmic}
 \usepackage{algorithm}
-%\usepackage{clrscode3e}
 % formatting and layout
 \usepackage{color}
 % settings
@@ -217,31 +217,35 @@
 \sect{1}{07. April 2016}{14. April 2016}
 \sus{1.1: Hilfe zu Befehlen}
 Beim Aufruf von \command{man ls} im Terminal wird eine Liste von Optionen und Parametern angegeben, die mit dem Befehl \command{ls} verwendet werden können.
-Die \textit{man page} muss durch drücken der q-Taste verlassen werden.
+\texttt{ls} zeigt alle Dateien und Verzeichnisse, die direkte Kinder des aktuellen Arbeitsverzeichnisses sind.
+Die \texttt{Manual page} muss durch drücken der q-Taste verlassen werden.
+
 Wird statt \command{man ls} \command{ls help} eingegeben, so wird der komplette Hilfetext ins Terminal gedruckt und anschließend direkt der Prompt wieder angegeben.
 
-Der Befehl \command{script} startet eine Wrapper-Shell (Default: Bourne Shell, wenn SHELL Parameter nicht gesetzt ist) und zeichnet alle I/O-Streams in der beim Aufruf angegebenen Datei auf.
-Die Wrapper-Shell kann mit Ctrl+D (oder exit)  beendet werden.
+Der Befehl \command{script} startet eine Wrapper-Shell (Default: Bourne Shell, wenn der \texttt{SHELL} Parameter nicht gesetzt ist) und zeichnet alle I/O-Streams in der beim Aufruf angegebenen Datei auf.
+Die Wrapper-Shell kann mit \texttt{Ctrl+D} (oder exit)  beendet werden.
 Die Formatierung ist für den neuen Nutzer bzw. auf den ersten Blick ein wenig strange, dafür enthält die Datei alle relevanten Informationen.
 Dies ist bei \command{man script} unter BUGS vermerkt, und zwar dass \command{script} alles in den log file schreibt, inklusive line feeds und Backspaces.
 "This is not what the naive user expects."\footnote{Aus der manual-Seite von \texttt{script}}
 Der Befehl kann in soweit helfen, dass der komplette Shell-Dialog aufgezeichnet wird.
 
 \sus{1.2: Benutzerkonten und -Verwaltung}
-Neuen user angelegt mit \command{sudo adduser <username>} \cite{1}, wobei für \texttt{<username>} in diesem Fall \texttt{labmate} eingesetzt wird.
+Es wurde ein neuer Benutzer angelegt mit \command{sudo adduser <username>} \cite{1}, wobei für \texttt{<username>} in diesem Fall \texttt{labmate} eingesetzt wird.
 Nach Eingabe von sudo ist die Authentifizierung mit dem eigenen Passwort erforderlich.
 Ist dies geschehen, so wird man aufgefordert, zunächst das Passwort und dann weitere persönliche Daten für \texttt{labmate} einzugeben (Passwort \texttt{laborratte}).
+Es wurden die Default-Werte angenommen (welche in diesem Fall leer waren).
 
 Die Benutzergruppen von \texttt{labmate} werden mit \command{groups labmate} angezeigt.
 Output:
-\begin{itemize}\item \texttt{labmate : labmate}\footnote{\texttt{labmate} ist derzeit nur in der Gruppe, die genau ihn selber enthält und genauso heißt wie er}\end{itemize}
+\begin{center}\texttt{labmate : labmate}\footnote{\texttt{labmate} ist derzeit nur in der Gruppe, die genau ihn selber enthält und genauso heißt wie er}\end{center}
 
-Die neue Gruppe \texttt{labortests} wird erstellt mit dem Befehl \command{sudo addgroup labortests} \cite[1].
+Die neue Gruppe \texttt{labortests} wird erstellt mit dem Befehl \command{sudo addgroup labortests} \cite{1}.
+
 \texttt{labmate} wird der Gruppe \texttt{labortests} mit dem Befehl \command{sudo adduser labmate labortests}\cite{1} zugewiesen.
 Alternativ kann dazu der Befehl \command{sudo usermod -aG labortests labmate} verwendet werden\cite{1}.
 \texttt{usermod} ist ein Befehl zur Benutzerverwaltung und -manipulation, welcher sicherstellt, dass Manipulation der Nutzerdaten keine laufenden Prozesse beeinflusst\cite{7}.
 
-Um \texttt{labmate} zu erlauben, \texttt{sudo} zu benutzen, muss er der entsprechenden Gruppe namens \texttt{admin} (seit 12.04 \texttt{sudo}) hinzugefügt werden: \command{sudo adduser labmate admin} \cite{2}.
+Um \texttt{labmate} zu erlauben, \texttt{sudo} zu benutzen, muss er der entsprechenden Gruppe namens \texttt{admin} (seit Ubuntu-Version 12.04 \texttt{sudo}) hinzugefügt werden: \command{sudo adduser labmate admin} \cite{2}.
 
 
 
@@ -249,14 +253,17 @@ Um \texttt{labmate} zu erlauben, \texttt{sudo} zu benutzen, muss er der entsprec
 Das Wechseln des Benutzers erfolgt mit \command{su <username>} \cite{3}.
 Dabei muss man das Passwort des neuen Nutzers eingeben.
 
-Das Wechseln in das home-Verzeichnis erfolgt (unabhängig vom Nutzer) mit \command{cd /home}.
+Das Wechseln in das home-Verzeichnis erfolgt (unabhängig vom Nutzer) mit \command{cd ~} oder synonym mit \command{cd}.
 Der aktuelle Pfad wird mit \texttt{pwd} angezeigt.
+
 Das neue Verzeichnis wird mit \command{mkdir <pathname>} angelegt (hierbei ist wiederum \texttt{sudo} vonnöten).
-Wechseln in den neuen Ordner mit \command{cd labreports}.
-Anlegen neuer Dateien erfolgt mit \command{sudo touch bericht1.txt}.
-Geöffnet wird die Datei mit \command{sudo pico bericht1.txt}.
-Eingeben folgender Zeichen erfolgt: \textit{hkgfhk}.
-Speichern mit \texttt{Ctrl+O}, Beenden mit \texttt{Ctrl+X}.
+
+Der Wechsel in den neuen Ordner geschieht mit dem Befehl \command{cd labreports}.
+
+Das Anlegen neuer Dateien erfolgt mit \command{touch bericht1.txt}.
+Geöffnet wird die Datei mit \say{\texttt{pico be} \texttt{richt1.txt}}.
+Es wurden folgende Zeichen eingegeben: \textit{hkgfhk}.
+Speichern erfolgt mit \texttt{Ctrl+O}, Beenden mit \texttt{Ctrl+X}.
 
 Das Verändern der Zugriffsrechte erfolgt mithilfe der Befehle \texttt{chgrp} \cite{4} und \texttt{chmod} \cite{5}.
 Zunächst muss mit \command{chgrp labortests beispiel1.txt} die Gruppe, der die Datei gehört, auf \texttt{labortests} gesetzt werden (sonst gehört die Datei der Gruppe, die nur den Eigentümer enthält).
@@ -273,18 +280,36 @@ Die Datei wird dabei in das aktuelle Arbeitsverzeichnis heruntergeladen.
 Das Setzen der Rechte erfolgt wie oben (der \texttt{chmod}-Parameter 660 ist äquivalent zum Parameter 0660).
 Durch den Befehl \command{sudo chmod 0660 /home/labmate/labrepots} werden die Rechte für das Verzeichnis \textit{labreports} wie in der Aufgabe gefordert gesetzt.
 In der Verzeichnisliste ist folgende Zeile zu sehen: \command{drw-rw---- 2 labmate labmate 4096 <Timestamp> \textcolor{pblue}{labreports}}.
+Als Ergebnis davon kann man das Verzeichnis zwar sehen, der Versuch, in es hineinzunavigieren, scheitert jedoch aufgrund mangelnder Berechtigungen.
+Eine Lösung wäre, die Berechtigungen auf \texttt{0770} zu setzen, was dem Eigentümer und der Gruppe erlaubt, ausführend auf ein Verzeichnis bzw. eine Datei zuzugreifen.
+Damit gelingt es auch wieder, auf das Verzeichnis und seine Inhalte zuzugreifen.
 
 Der Versuch, mit \texttt{labmate} in das Verzeichnis \texttt{/root} zu wechseln, scheitert aufgrund mangelnder Berechtigungen.
 
-Das Verzeichnis test wird erstellt mit \command{sudo mkdir test}, die Rechte werden gesetzt mit \command{sudo chmod 0770 test} (dies bedeutet, dass Eigentümer und Gruppe Lese-, Schreib- und Ausführungsrechte haben, andere Nutzer gar keine).
+Das Verzeichnis test wird erstellt mit \command{sudo mkdir test}\footnote{Da das Stammverzeichnis \texttt{root} gehört, sind hier e{sudo}-Rechte erforderlich}, die Rechte werden gesetzt mit \command{sudo chmod 0770 test} (dies bedeutet, dass Eigentümer und Gruppe Lese-, Schreib- und Ausführungsrechte haben, andere Nutzer gar keine).
 Der Eigentümer des Verzeichnisses wird mit \command{sudo chown labmate test} auf \texttt{labmate} gesetzt.
 Als Gruppe wird \texttt{admin} gewählt, da dies derzeit die einzige Gruppe ist, die sowohl \texttt{labmate} als auch \texttt{user} enthält.
 Das Setzen der Gruppe erfolgt mit \command{sudo chgrp admin test}.
 
-Die eben heruntergeladene Datei wird mit dem Befehl \command{cp /home/labmate/labreports/index.html test/} in das neue Verzeichnis kopiert (\command{c(o)p(y) <source> <destination>}).
+Die eben heruntergeladene Datei wird mit dem Befehl \command{cp ~/ 	 	labreports/index.html test/} in das neue Verzeichnis kopiert (\command{c(o)p(y) <source> <destination>}).
 
 Davon ausgehend, dass \texttt{labmate} als Eigentümer und \texttt{admin} als Gruppe eingestellt ist, erfolgt die Rechte-Modifikation durch \command{sudo chmod 0640 /opt/test/index.html}.
 Damit hat der Eigentümer Lese- und Schreiberechte, die Gruppe (die derzeit nur \texttt{labmate} und \texttt{user} enthält) hat nur Leserechte, andere Nutzer haben keine Zugriffsrechte.
+
+Da \texttt{user} Lesezugriffsrechte hat, gelingt es, die Datei mithilfe von \command{cat /opt/test/index.html} auszulesen.
+
+Auch der Zugriff mit einem Texteditor wie beispielsweise \texttt{vim} oder \texttt{nano} ist möglich, da jedoch die Schreibe-Berechtigung fehlt, kann sie nicht verändert werden (\texttt{nano} warnt sofort, dass man kein Schreibrecht besitzt).
+Editieren ist mit beiden Editoren möglich, das Speichern jedoch scheitert an den Berechtigungen.
+
+Die Datei wurde erfolgreich mit \command{cp index.html userindex.html} kopiert (das aktuelle Arbeitsverzeichnis ist \texttt{/opt/test}).
+
+Durch das Anlegen der neuen Datei \texttt{userindex.html} mithilfe des Terminals wurden die Werte des Wurzelverzeichnisses für die Berechtigungen übernommen (\texttt{root} hat Lese- und Schreibzugriff und die Gruppe \texttt{root} hat Lesezugriff).
+Weder das Lesen noch das Schreiben gelingen als \texttt{user}.
+Dies kann jedoch mit \texttt{sudo} übergangen werden.
+
+Beim Versuch, die Datei mit \command{rm userindex.html} zu löschen, wird erst gefragt, ob man die schreibgeschützte Datei löschen möchte.
+Bejaht man, bricht der Vorgang mangels Berechtigung ab.
+Durch Verwendung von \texttt{sudo} kann die Durchführung des Prozesses wiederum erzwungen werden.
 
 
 \sus{1.4: Administration und Aktualisierung}
@@ -293,7 +318,26 @@ Damit hat der Eigentümer Lese- und Schreiberechte, die Gruppe (die derzeit nur 
 Der Parameter \texttt{-y} kann übergeben werden, um die Installation zu automatisieren (den Prompt automatisch mit 'Ja' zu beantworten).
 \command{apt-get upgdate} aktualisiert die systeminterne Liste von Paketquellen\footnote{Eine Reihe von Servern, von denen die installierte Software heruntergeladen wurde. Die Liste umfasst die offiziellen Ubuntu-Server sowie Adressen, die vom Benutzer hinzugefügt wurden}.
 Auch hier kann der Parameter \texttt{-y} übergeben werden für den gleichen Effekt wie bei \texttt{upgrade}.
+Für beide Befehle ist die Verwendung von \texttt{sudo} erforderlich.
 
+Zum Installieren neuer Pakete mit \texttt{apt-get install} ist ebenfalls \texttt{sudo} nötig, sodass der Befehl zur Installation letztlich so aussieht: \command{sudo apt-get install cowsay}.
+\texttt{cowsay} nimmt Text als Parameter entgegen und druckt eine ASCII-Kuh, die den Text in einer Sprechblase über sich hat.
+Diese hat, je nachdem, ob \texttt{cowsay} oder \texttt{cowthink} als Befehl verwendet wird, gerade oder gekrümmte Seiten.
+Durch Verwendung von Variablen kann auch eine Datei eingelesen werden:
+\command{cowsay \$(cat bla.txt)}.
+Dann wird der Inhalt der hier gewählten \texttt{bla.txt} von \texttt{cat} ausgelesen und durch das \$ als Variable gelesen, welche von \texttt{cowsay} angenommen und ausgedruckt wird.
+Bei \texttt{cowsay} können das Abbild der Kuh sowie Formatierungsoptionen gesetzt werden.
+
+\sus{1.5: Prozesse und Prozessverwaltung}
+
+
+
+\sus{1.6: VMWare-Tools installieren}
+\lipsum[1-5]
+
+
+\sus{1.7: VMWare bedienen}
+\lipsum[6-10]
 
 
 
