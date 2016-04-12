@@ -93,9 +93,9 @@
 \newcommand{\memTwoMail}{4kobras@informatik.uni-hamburg.de}
 \newcommand{\memTwoNr}{6658699}
 %% Gruppenmitglied 3
-\newcommand{\memThreeName}{}
-\newcommand{\memThreeMail}{}
-\newcommand{\memThreeNr}{}
+\newcommand{\memThreeName}{Felix Gebauer}
+\newcommand{\memThreeMail}{4gebauer@informatik.uni-hamburg.de}
+\newcommand{\memThreeNr}{6671660}
 %% Gruppenmitglied 4
 \newcommand{\memFourName}{}
 \newcommand{\memFourMail}{}
@@ -142,9 +142,9 @@
 	\begin{center}
 		\begin{Large}
 			#1
-		\end{Large}\\
-		#2\\
-		#3\\
+		\end{Large}\-\\
+		#2\-\\
+		#3\-\\
 	\end{center}
 	\vspace{.5cm}
 }
@@ -163,11 +163,11 @@
 %% first group member in upper left corner
 \lhead{\memOneName\-\\\memOneNr}
 %% date in the upper center
-\chead{\datum\-\\}
+\chead{\memTwoName\-\\\memTwoNr}
 %% second group member in upper right corner
-\rhead{\memTwoName\-\\\memTwoNr}
+\rhead{}
 %% lower left corner (empty)
-\lfoot{}
+\lfoot{\memThreeName\-\\\memThreeNr}
 %% subject name in lower center
 \cfoot{\fachname}
 %% lower right corner (empty)
@@ -194,8 +194,8 @@
 	% group members
 	\memberOfGroup{\memOneName}{\memOneMail}{\memOneNr}
 	\memberOfGroup{\memTwoName}{\memTwoMail}{\memTwoNr}
-	\memberOfGroup{$ $}{$ $}{$ $}
-	\memberOfGroup{$ $}{$ $}{$ $}
+	\memberOfGroup{\memThreeName}{\memThreeMail}{\memThreeNr}
+	\memberOfGroup{\memFourName}{\memFourMail}{\memFourNr}
 	% 1 cm to next element
 	\vspace{1cm}
 	\datumf
