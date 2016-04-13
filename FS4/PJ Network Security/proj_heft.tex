@@ -36,8 +36,13 @@
 % macro commands
 %% requires color package and the custom colors defined here 
 \newcommand{\todo}[1]{
+	% add TODO to table of contents
 	\addcontentsline{toc}{subsubsection}{TODO: #1}
-	\textcolor{pgreen}{\texttt{\-\\ \-\\//TODO: #1\-\\ \-\\}}
+	\textcolor{pgreen}{ % color TODO green
+		\texttt{ % make TODO have fancy font
+			\-\\ \-\\//TODO: #1\-\\ \-\\
+		}
+	}
 }
 \newcommand{\sect}[3]{	%	custom section (level 1)
 	\newpage
@@ -357,14 +362,14 @@ Durch Verwendung von Variablen kann auch eine Datei eingelesen werden:
 Dann wird der Inhalt der hier gewählten \texttt{bla.txt} von \texttt{cat} ausgelesen und durch das \$ als Variable gelesen, welche von \texttt{cowsay} angenommen und ausgedruckt wird.
 Bei \texttt{cowsay} können das Abbild der Kuh sowie Formatierungsoptionen gesetzt werden.
 
-\sus{1.5: Prozesse und Prozessverwaltung}
-\lipsum[11]
 
+
+\sus{1.5: Prozesse und Prozessverwaltung}
 Der Befehl \texttt{ps} gibt eine Momentaufnahme aller laufenden Prozesse aus.
 Mit \command{ps -e} werden alle Prozesse angezeigt, die derzeit laufen.
 Der Befehl \texttt{top} gibt ein stetig aktualisiertes Abbild der laufenden Prozesse zurück.
 
-Bei Verwendung des Befehls \command{cat /dec/urandom} als \texttt{labmate} erscheint im \texttt{top}-Fenster ein neuer Prozess, der \texttt{labmate} zugeordnet ist und eine Menge Speicher futtert.
+Bei Verwendung des Befehls \command{cat /dec/urandom} als \texttt{labmate} erscheint im \texttt{top}-Fenster ein neuer Prozess, der \texttt{labmate} zugeordnet ist.
 Er hat (in diesem Fall) die Prozess-ID (\texttt{PID}) 3658.
 
 Der direkte Aufruf von \texttt{kill}, welchem eine \texttt{PID} übergeben werden muss, gibt zurück, dass die Operation nicht zulässig ist.
@@ -372,15 +377,59 @@ Nur mit \command{sudo kill 3658} ist es gelungen, den Prozess von außen zu term
 
 Der Befehl, um als \texttt{labmate} das System neuzustarten, ist \command{sudo shutdown -r now}, wobei \texttt{sudo} erforderlich ist, da der \texttt{shutdown}-Befehl Administratorrechte benötigt, \texttt{-r} gibt dem System an, dass es doch bitte auch wieder hochfahren möge, und \texttt{now} gibt den Zeitpunkt des Neustartes an.
 
+\texttt{Cronjob}s werden in der \texttt{Crontab}-Tabelle editiert.
+Diese wird mit dem Befehl \command{crontab -e} geöffnet.
+Dort wird der Befehl mit den entsprechenden Intervallen eingegeben.
+Vollständig sieht dies so aus:
+\begin{center}
+	\begin{tabular}{llllllll}
+		\string#		m	& h & dom 	& mon	& dow	& command																	\\
+						*/5	& * & * 	& * 	& *		& echo \$(sudo hwclock {-}{-}show) >> /home/labmate/zeitstempel.txt
+	\end{tabular}
+\end{center}
+Am Ende der \texttt{Crontable} muss eine Leerzeile oder ein Kommentar stehen.
+Hierbei steht \texttt{m} für \texttt{Minute}, \texttt{h} für \texttt{Stunde}, \texttt{dom} für \texttt{Tag des Monats}, \texttt{mon} für \texttt{Monat}, \texttt{dow} für \texttt{Wochentag} und \texttt{command} für den auszuführenden Befehl.
+Der Befehl setzt sich zusammen aus \texttt{echo} für eine Ausgabe von Text, der Variable \texttt{\$(sudo hwlock {-}-show)} für das Anzeigen des Zeitstempels sowie \texttt{>> <path>} als Angabe für \texttt{echo}, wohin die Ausgabe erfolgen soll.
+
+
 
 \sus{1.6: VMWare-Tools installieren}
-\lipsum[1-5]
+Der Menüpunkt zum Installieren der \texttt{VMware Tools} ist bei \texttt{Workstation 11} zu finden unter \texttt{VM -> Install VMware \underline{T}ools...}
+Dieser Menüpunkt \textit{mounted} ein digitales Medium in der VM, welches die benötigten Installationsdateien bereitstellt.
+
+Das Installationsverzeichnis wird mit dem Befehl \say{\texttt{tar -xzf /media/VMware\textbackslash ~Tools/VMwareTools-9.9.} \texttt{0-2304977.tar.gz -C \~}}\cite{10} in das home-Verzeichnis des aktuellen Nutzers (hier \texttt{user}) entpackt.
+Die Paramter für \texttt{tar}, nämlich \texttt{xzf} xtrahieren erstellt wurde.
+
+Das Perl-Skript wird mit \command{perl vmware-install.pl} ausgeführt.
+Die Standard-Einstellungen werden übernommen, indem bei jedem Prompt Enter gedrückt wird.
+Wird versucht, das Skript ohne \texttt{sudo} auszuführen, gibt es eine Fehlermeldung.
+Anschließend wurde die VM neu gestartet, um die Installation abzuschließen.
+
 
 
 \sus{1.7: VMWare bedienen}
-\lipsum[6-10]
+Die VM wurde gestartet, es wurde sich mit dem User \texttt{user} angemeldet.
+
+Ein Terminal wurde gestartet und der Befehl \command{top} wurde gestartet.
+
+Die VM wurde mit dem gelben Pause-Button pausiert.
+Beim Fortfahren erschienen für einen kurzen Moment eine größere Anzahl Prozesse im Top-Fenster.
+
+Es wurde mit dem Fullscreen-Knopf die Fullscreen-Ansicht gewechselt und diese mit ebenjenem Knopf wieder verlassen.
+Auch hier erschienen kurz Prozesse im Top-Fenster.
+
+Die VM wurde mit \texttt{V\underline{M} -> \underline{P}ower -> Power \underline{O}ff} beendet, wonach wieder die Hauptansicht der Workstation sichtbar ist.
+Es wird jedoch darauf hingewiesen, die VM vorher intern herunterzufahren.
 
 
+Es wurden zwei Snapshots \texttt{top}\footnote{während \texttt{top} lief} und \texttt{Browser}\footnote{während \texttt{Firefox} lief} erstellt mit \texttt{VM -> Snapshot -> \underline{T}ake Snapshot...}.
+Durch Klicken von \texttt{V\underline{M} -> S\underline{n}apshot -> \underline{2}. top - <timestamp>} wurde der Snapshot \texttt{top} wiederhergestellt, wodurch die VM auch wieder auf den Zustand gesetzt wurde, in dem sie war, als der Snapshot erstellt worden ist.
+
+Die GUI-Anwendung \texttt{Calculator} wurde durch \texttt{Applications -> Accessories -> Calculator} gestartet und ein weiterer Snapshot wurde erstellt.
+
+Die Snapshots werden derart angeordnet, dass sie in der Reihenfolge der letzten Ansprache angeordnet sind.
+
+Snapshots müssen über \texttt{V\underline{M} -> S\underline{n}apshot -> Snapshot \underline{M}anager} einzeln gelöscht werden; hierbei wird dem Benutzer eine Baumstruktur der Snapshot-Historie angezeigt.
 
 
 \begin{thebibliography}{1}
@@ -392,6 +441,9 @@ Der Befehl, um als \texttt{labmate} das System neuzustarten, ist \command{sudo s
 \bibitem{5} https://wiki.ubuntuusers.de/chmod/
 \bibitem{6} https://wiki.ubuntuusers.de/chmod/\string#Oktal-Modus
 \bibitem{7} http://linux.die.net/man/8/usermod
+\bibitem{8} https://de.wikipedia.org/wiki/Cron
+\bibitem{9} https://wiki.ubuntusers.de/Cron/
+\bibitem{10} https://wiki.ubuntusers.de/tar/
 \end{thebibliography}
 
 \end{document}
