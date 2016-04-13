@@ -247,10 +247,10 @@ Wird statt \command{man ls} \command{ls help} eingegeben, so wird der komplette 
 
 Der Befehl \command{script} startet eine Wrapper-Shell (Default: Bourne Shell, wenn der \texttt{SHELL} Parameter nicht gesetzt ist) und zeichnet alle I/O-Streams in der beim Aufruf angegebenen Datei auf.
 Die Wrapper-Shell kann mit \texttt{Ctrl+D} (oder exit)  beendet werden.
-Die Formatierung ist für den neuen Nutzer bzw. auf den ersten Blick ein wenig strange, dafür enthält die Datei alle relevanten Informationen.
+Die Formatierung ist für den neuen Nutzer bzw. auf den ersten Blick ein wenig ungewohnt, dafür enthält die Datei alle relevanten Informationen.
 Dies ist bei \command{man script} unter BUGS vermerkt, und zwar dass \command{script} alles in den log file schreibt, inklusive line feeds und Backspaces.
 "This is not what the naive user expects."\footnote{Aus der manual-Seite von \texttt{script}}
-Der Befehl kann in soweit helfen, dass der komplette Shell-Dialog aufgezeichnet wird.
+Der Befehl kann in soweit helfen, als dass der komplette Shell-Dialog aufgezeichnet wird.
 
 \sus{1.2: Benutzerkonten und -Verwaltung}
 Es wurde ein neuer Benutzer angelegt mit \command{sudo adduser <username>} \cite{1}, wobei für \texttt{<username>} in diesem Fall \texttt{labmate} eingesetzt wird.
@@ -276,7 +276,7 @@ Um \texttt{labmate} zu erlauben, \texttt{sudo} zu benutzen, muss er der entsprec
 Das Wechseln des Benutzers erfolgt mit \command{su <username>} \cite{3}.
 Dabei muss man das Passwort des neuen Nutzers eingeben.
 
-Das Wechseln in das home-Verzeichnis erfolgt (unabhängig vom Nutzer) mit \command{cd ~} oder synonym mit \command{cd}.
+Das Wechseln in das home-Verzeichnis erfolgt (unabhängig vom Nutzer) mit \command{cd \textasciitilde} oder synonym mit \command{cd}.
 Der aktuelle Pfad wird mit \texttt{pwd} angezeigt.
 
 Das neue Verzeichnis wird mit \command{mkdir <pathname>} angelegt (hierbei ist wiederum \texttt{sudo} vonnöten).
@@ -314,7 +314,7 @@ Der Eigentümer des Verzeichnisses wird mit \command{sudo chown labmate test} au
 Als Gruppe wird \texttt{admin} gewählt, da dies derzeit die einzige Gruppe ist, die sowohl \texttt{labmate} als auch \texttt{user} enthält.
 Das Setzen der Gruppe erfolgt mit \command{sudo chgrp admin test}.
 
-Die eben heruntergeladene Datei wird mit dem Befehl \command{cp ~/ 	 	labreports/index.html test/} in das neue Verzeichnis kopiert (\command{c(o)p(y) <source> <destination>}).
+Die eben heruntergeladene Datei wird mit dem Befehl \command{cp \textasciitilde/labreports/index.html test/} in das neue Verzeichnis kopiert (\command{c(o)p(y) <source> <destination>}).
 
 Davon ausgehend, dass \texttt{labmate} als Eigentümer ist, erfolgt die Rechte-Modifikation durch \command{sudo chmod 0640 /opt/test/index.html}.
 Damit hat der Eigentümer Lese- und Schreiberechte, die Gruppe hat nur Leserechte, andere Nutzer haben keine Zugriffsrechte.
@@ -342,7 +342,7 @@ Durch Verwendung von \texttt{sudo} kann die Durchführung des Prozesses wiederum
 \texttt{apt-get} ist der Paket-Manager für Ubuntu und Debian-basierende Systeme (das Stück Kernel, welches für die Installation und Verwaltung von Software-Paketen verantwortlich ist).
 \command{apt-get upgrade} aktualisiert sämtliche derzeit installierten Pakete.
 Der Parameter \texttt{-y} kann übergeben werden, um die Installation zu automatisieren (den Prompt automatisch mit 'Ja' zu beantworten).
-\command{apt-get upgdate} aktualisiert die systeminterne Liste von Paketquellen\footnote{Eine Reihe von Servern, von denen die installierte Software heruntergeladen wurde. Die Liste umfasst die offiziellen Ubuntu-Server sowie Adressen, die vom Benutzer hinzugefügt wurden}.
+\command{apt-get update} aktualisiert die systeminterne Liste von Paketquellen\footnote{Eine Reihe von Servern, von denen die installierte Software heruntergeladen wurde. Die Liste umfasst die offiziellen Ubuntu-Server sowie Adressen, die vom Benutzer hinzugefügt wurden}.
 Auch hier kann der Parameter \texttt{-y} übergeben werden für den gleichen Effekt wie bei \texttt{upgrade}.
 Für beide Befehle ist die Verwendung von \texttt{sudo} erforderlich.
 
@@ -380,17 +380,18 @@ Vollständig sieht dies so aus:
 	\end{tabular}
 \end{center}
 Am Ende der \texttt{Crontable} muss eine Leerzeile oder ein Kommentar stehen\cite{9}.
-Hierbei steht \texttt{m} für \texttt{Minute}, \texttt{h} für \texttt{Stunde}, \texttt{dom} für \texttt{Tag des Monats}, \texttt{mon} für \texttt{Monat}, \texttt{dow} für \texttt{Wochentag} und \texttt{command} für den auszuführenden Befehl\cite{8}.
+Hierbei steht \texttt{m} für \texttt{Minute} (wobei \texttt{*/5} für einen 5-Minuten-Rhythmus steht), \texttt{h} für \texttt{Stunde}, \texttt{dom} für \texttt{Tag des Monats}, \texttt{mon} für \texttt{Monat}, \texttt{dow} für \texttt{Wochentag} und \texttt{command} für den auszuführenden Befehl\cite{8}.
 Der Befehl setzt sich zusammen aus \texttt{echo} für eine Ausgabe von Text, der Variable \texttt{\$(sudo hwlock {-}-show)} für das Anzeigen des Zeitstempels sowie \texttt{>> <path>} als Angabe für \texttt{echo}, wohin die Ausgabe erfolgen soll.
 
 
 
 \sus{1.6: VMWare-Tools installieren}
 Der Menüpunkt zum Installieren der \texttt{VMware Tools} ist bei \texttt{Workstation 11} zu finden unter \texttt{VM -> Install VMware \underline{T}ools...}
-Dieser Menüpunkt \textit{mounted} ein digitales Medium in der VM, welches die benötigten Installationsdateien bereitstellt.
+Dieser Menüpunkt \textit{mounted} ein virtuelles Medium in der VM, welches die benötigten Installationsdateien bereitstellt.
 
 Das Installationsverzeichnis wird mit dem Befehl \say{\texttt{tar -xzf /media/VMware\textbackslash ~Tools/VMwareTools-9.9.} \texttt{0-2304977.tar.gz -C \~}}\cite{10} in das home-Verzeichnis des aktuellen Nutzers (hier \texttt{user}) entpackt.
-Die Paramter für \texttt{tar}, nämlich \texttt{xzf} xtrahieren erstellt wurde.
+Die Paramter für \texttt{tar}, nämlich \texttt{xzf}, stehen für \texttt{(e)xtrahieren}, \texttt{(g)zip} für das Dateiformat \texttt{.tar.gz} und \texttt{file} für den Dateipfad zum Stammarchiv.
+Mit \texttt{-C} wird ein Zielverzeichnis angegeben.
 
 Das Perl-Skript wird mit \command{perl vmware-install.pl} ausgeführt.
 Die Standard-Einstellungen werden übernommen, indem bei jedem Prompt Enter gedrückt wird.
