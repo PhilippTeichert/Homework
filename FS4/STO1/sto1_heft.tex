@@ -35,10 +35,10 @@
 }
 \newcommand{\sect}[3]{	%	custom section (level 1)
 	\newpage
-	\chead{}
 	\addcontentsline{toc}{section}{Zettel #1 (#2)}
 	\section*{Zettel Nr. #1 (Ausgabe: #2, Abgabe: #3)}
 	\label{sec:#1}
+	\fancyfoot[LO,RE]{Abgabe: #3}
 }
 \newcommand{\sus}[1]{
 	\addcontentsline{toc}{subsection}{Hausübung #1}
@@ -60,6 +60,14 @@
 			[~~~~\string| ~#1~]
 		\end{Large}
 	\end{flushright}
+}
+%% custom short command for blue text
+\newcommand{\tcb}[1]{
+	\textcolor{blue}{#1}
+}
+%% custom short command for green text
+\newcommand{\tcg}[1]{
+	\textcolor{green}{#1}
 }
 % tikz
 \usepackage{tikz}
@@ -162,19 +170,19 @@
 \fancyfoot{}
 %% first group member in upper left corner
 \lhead{\memOneName\-\\\memOneNr}
-%% date in the upper center
+%% second group member in the upper center
 \chead{\memTwoName\-\\\memTwoNr}
-%% second group member in upper right corner
-\rhead{}
+%% third group member in upper right corner
+\rhead{\memThreeName\-\\\memThreeNr}
 %% lower left corner (empty)
-\lfoot{\memThreeName\-\\\memThreeNr}
+\lfoot{}
 %% subject name in lower center
 \cfoot{\fachname}
 %% lower right corner (empty)
 \rfoot{}
 %% sets the page number to appear in either the lower left or lower right corner,
 %% depending on whether the page number is even or odd, in the format "page X of Y"
-\fancyfoot[LE,RO]{Seite \thepage  von \pageref{LastPage}}
+\fancyfoot[LE,RO]{Seite \thepage ~von \pageref{LastPage}}
 %% thin separation line over the footer
 \renewcommand{\footrulewidth}{0.4pt}
 
@@ -433,6 +441,106 @@ Zeichnen Sie die entsprechenden Diagramme für die folgenden Operationen.
 %#+						ZETTEL 2					+#%
 %#+-------------------------------------------------+#%
 \sect{2}{12. April 2016}{19. April 2016}
-\chead{\textbf{----- Draft -----}\\}
+\susP{2.1}{6}
+(Ereignisse und Mengen, 3+3 Punkte).
+Es sei $\Omega \neq \emptyset$ eine Ergebnismenge, außerdem seen $A,B,C \subset \Omega$ Ereignisse.
+\begin{enumerate}
+	%%%%% Aufgabe 1a ----------
+	\item[a)] Beschreiben Sie das Ereignis $A \cup (B \cap C)$ verbal.\\
+	\vspace{.5cm}\\ 
+	%%%%% Bearbeitung 1a ----------
+	Es tritt das Ereignis $A$ ein oder die Ereignisse $B$ und $C$.
+	
+	%%%%% Aufgabe 1b ----------
+	\item[b)]Beschreiben Sie das Ereignis \dq Höchstens zwei der Ereignisse $A,B,C$ treten ein\dq ~mengentheoretisch.
+	%%%%% Bearbeitung 1b ----------
+	\[
+		(A \cup B \cup C) \setminus (A \cap B \cap C)
+	\]
+\end{enumerate}
+
+\susP{2.2}{4}
+(Warten auf Zahl, 2+2 Punkte).
+In einem Zufallsexperiment wird eine Münze solange geworfen, bis zum ersten Mal \dq Zahl\dq ~erscheint, die möglichen Ausgänge sind die natürlichen Zahlen, d.h. $\mathbb{N}$ ist die Ergebnismenge.
+\begin{enumerate}
+	%%%%% Aufgabe 2a ------------
+	\item[a)]
+	Stellen Sie das Ereignis \dq Der erste Wurf, bei dem Zahl erscheint, hat eine ungerade Nummer\dq ~als Menge dar.\\\vspace{.5cm}\\
+	%%%%% Bearbeitung 2a ------------
+	\[
+		\{k, k \in \mathbb{N}, 2 \not | k\}
+	\]
+	$k$ ist die Anzahl der Würfe, nach denen zum ersten Mal \textit{Zahl} erscheint.
+	%%%%% Aufgabe 2b ------------	
+	\item[b)] Stellen Sie das Ereignis \dq Spätestens nach 10 Würfen ist einmal Zahl erschienen\dq ~als Menge dar.\\\vspace{.5cm}\\
+	%%%%% Bearbeitung 2b ------------
+	\[
+		\{k, k \in \mathbb{N}, k \leq 10\}
+	\]
+	$k$ ist die Anzahl der Würfe, nach denen zum ersten Mal \textit{Zahl} erscheint.
+\end{enumerate}
+
+\susP{2.3}{7}
+(Wahrscheinlichkeitsmaße, 2+5 Punkte).
+Über $\Omega=\{1,2,3\}$ soll ein Wahrscheinlichkeitsmaß $P$ definiert werden.
+\begin{enumerate}
+	%%%%% Aufgabe 3a ------------
+	\item[a)] Vervollständigen Sie die folgende Tabelle so, dass $P$ ein Wahrscheinlichkeitsmaß wird.\\\vspace{.5cm}\\
+	\begin{center}\begin{tabular}{|c|c|c|c|c|c|c|c|c|}\hline
+		$A$		&	$\emptyset$	&	$\{1\}$			&	$\{2\}$				&	$\{3\}$				&	$\{1,2\}$			&	$\{1,3\}$		&	$\{2,3\}$			&	$\{1,2,3\}$		\\ \hline
+		$P(A)$	&	\tcg{$0$}	&	$\frac{1}{3}$	&	\tcb{$\frac{1}{2}$}	&	\tcb{$\frac{1}{6}$}	&	\tcb{$\frac{5}{6}$}	&	$\frac{1}{2}$	&	\tcb{$\frac{2}{3}$}	&	\tcg{$1$}		\\ \hline
+	\end{tabular}\end{center}
+	$P(\emptyset)=0$ und $P(\Omega)=1$ sind nach Definition gegeben.
+	
+	Es gilt $ \frac{1}{2} = P(\{1,3\}) = P(\{1\} \cup \{3\}) = P(\{1\}) + P(\{3\}) - P(\{1\} \cap \{3\}) = \frac{1}{3} + x - 0 \Rightarrow P(\{3\}) = \frac{1}{6}$.
+	
+	Desweiteren kann über $P(\Omega)=P(\{1,2,3\})=P(\{1\} \cap \{2\} \cap \{3\})=1$ der Wert von $P(\{2\})$ folgendermaßen ermittelt werden: $1 = P(\Omega) = P(\{1\} \cap \{2\} \cap \{3\}) = P(\{1\} \cap \{3\} \cap \{2\}) = P((\{1\} \cap \{3\}) \cap \{2\}) = P(\{1,3\}) + P(\{2\}) - P((\{1\} \cap \{3\}) \cup \{2\}) = \frac{1}{2} + x \Rightarrow x = P(\{2\}) = \frac{1}{2}$.
+	
+	Über den Additionssatz gilt dann $\frac{1}{3} + \frac{1}{2} (- 0) = P(\{1\}) + P(\{2\}) - P(\{1\} \cap \{2\}) = P(\{1\} \cap \{2\}) = P(\{1,2\}) = \frac{5}{6}$.
+	
+	Analog dazu $\frac{1}{2} + \frac{1}{6} (- 0) = P(\{2\}) + P(\{3\}) - P(\{1\} \cap \{3\}) = P(\{2\} \cap \{3\}) = P(\{2,3\}) = \frac{2}{3}$.
+	
+	%%%%% Aufgabe 3b ------------
+	\item[b)] In einer anderen Situation kennen Sie über $\Omega = \{1,2,3\}$ nur Angaben zu $P(\{1\})$ und $P(\{2,3\})$.
+	Begründen Sie, warum diese Information nicht ausreicht, um $P:2^{\Omega} \rightarrow \mathbb{R}$ eindeutig festzulegen.\\\vspace{.5cm}\\
+	%%%%% Bearbeitung 3b -----------
+	$P$ ist nicht eindeutig festlegbar, da keine eindeutige Aussage über $P(\{2\})$ und $P(\{3\})$ getroffen werden kann; es ist lediglich deren Vereinigung bekannt.
+	Ohne definitive Werte für $P(\{2\})$ und $P(\{3\})$ lassen sich deren Vereinigungen mit $P(\{1\})$ nicht berechnen, weswegen die Tabelle nicht vervollständigt werden kann.
+	
+	
+	Diese Information reicht nicht aus, um P eindeutig festzulegen, da man nur 2 Informationen gegeben hat, die weder eine Schnittmenge haben, um auf eine dritte schließen zu können, noch jedes bis auf ein Elementarereignis gegeben ist, um auf das letze schließen zu können.
+	Somit sind keine weiteren Informationen extrahierbar.
+	
+	
+\end{enumerate}
+
+\susP{2.4}{8}
+(Rechnen mit Wahrscheinlichkeiten, 3+5 Punkte).
+Es werden zwei faire Würfel geworfen, dabei werden die folgenden Ereignisse betrachtet.
+\begin{itemize}
+	\item $A$ sei das Ereignis \dq Pasch gewürfelt\dq ~, d.h. beide Würfel zeigen die gleiche Augenzahl.
+	Es gilt $P(A)=\frac{6}{36}=\frac{1}{6}$.
+	\item $B$ sei das Ereignis \dq Maximum der Augenzahlen ist $\leq 3$, es gilt $P(B) = \frac{9}{36} = \frac{1}{4}$.
+	\item $C$ sei das Ereignis \dq Augensumme 7 gewürfelt\dq ~, es gilt $P(C) = \frac{6}{36} = \frac{1}{6}$.
+	\item $D$ sei das Ereignis \dq Augensumme 11 gewürfelt\dq ~, es gilt $P(D) = \frac{2}{36} = \frac{1}{18}$.
+\end{itemize}
+\begin{enumerate}
+	\item[a)] Es gilt außerdem $P(A \cap B) = \frac{3}{36} = \frac{1}{12}$.
+	Nutzen Sie diese Information und den Additionssatz, um $P(A \cup B)$ zu berechnen.\\\vspace{.5cm}\\
+	Additionssatz: $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+	\[
+		P(A \cup B) = P(A) + P(B) - P(A \cap B) = \frac{6}{36} + \frac{9}{36} - \frac{3}{36} = \frac{12}{36} = \frac{1}{3}
+	\]
+	\item[b)] Begründen Sie, dass $A,C,D$ paarweise disjunkt sind.
+	Berechnen Sie anschließend $P(A \cup C \cup D)$.\\\vspace{.5cm}\\
+	Da bei $C$ und $D$ unterschiedliche Summen gefordert sind, kann es nicht ein Ergebnis geben, welches auf beide Szenarien zutrifft.
+	Die Summen, die in $C$ und $D$ gefordert werden, sind beide ungerade.
+	Bei $A$ wird ein Pasch gefordert, d.h. beide Würfel zeigen die Augenzahl $i$.
+	Demnach gilt für die Augensumme $i+i=2i$, welches eine gerade Zahl ist, womit sie weder den Wert 7 noch den Wert 11 annehmen kann.
+	\begin{align*}
+		P(A \cup C \cup D)	=& P(A) + P(C) + P(D) - (P(A \cap C) + P(A \cap D) + P(C \cap D)) + P(A \cap C \cap D)\\
+							=& \frac{6}{36} + \frac{6}{36} + \frac{2}{36} - (0 + 0 + 0) + 0 = \frac{14}{36} = \frac{7}{18}
+	\end{align*}
+\end{enumerate}
 
 \end{document}
