@@ -1,3 +1,10 @@
+%%%%%%%%%%%%%%%%%%
+%
+%	SUBMISSION CODES
+%		Woche 1:
+%			PROJEKT16-1-YXYZ7-NGMMQ-9SPEH-D2DJE 
+%
+%%%%%%%%%%%%%%%%%%
 \documentclass[twoside]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -193,14 +200,6 @@
 	% 1 cm to next element
 	\vspace{1cm}
 	\datumf
-	\vspace{1cm}
-	
-	\textbf{Punkte für den Hausaufgabenteil:}\\
-	\vspace{1cm}
-	\begin{tabular}{c|c}
-	~7.1~&~$\Sigma$~	\\	\hline
-		 &
-	\end{tabular}
 	
 \end{center}
 \newpage
@@ -237,10 +236,10 @@
 %#+-------------------------------------------------+#%
 %#+						INHALT  			     	+#%
 %#+-------------------------------------------------+#%
-\thispagestyle{empty}
-\tableofcontents
-\newpage
-\pagenumbering{arabic}
+%\thispagestyle{empty}
+%\tableofcontents
+%\newpage
+%\pagenumbering{arabic}
 
 %#+-------------------------------------------------+#%
 %#+						ZETTEL 1					+#%
@@ -378,7 +377,7 @@ Nur mit \command{sudo kill 3658} ist es gelungen, den Prozess von außen zu term
 Der Befehl, um als \texttt{labmate} das System neuzustarten, ist \command{sudo shutdown -r now}, wobei \texttt{sudo} erforderlich ist, da der \texttt{shutdown}-Befehl Administratorrechte benötigt, \texttt{-r} gibt dem System an, dass es doch bitte auch wieder hochfahren möge, und \texttt{now} gibt den Zeitpunkt des Neustartes an.
 
 \texttt{Cronjob}s werden in der \texttt{Crontab}-Tabelle editiert.
-Diese wird mit dem Befehl \command{crontab -e} geöffnet.
+Diese wird mit dem Befehl \command{crontab -e} geöffnet\cite{9}.
 Dort wird der Befehl mit den entsprechenden Intervallen eingegeben.
 Vollständig sieht dies so aus:
 \begin{center}
@@ -387,8 +386,8 @@ Vollständig sieht dies so aus:
 						*/5	& * & * 	& * 	& *		& echo \$(sudo hwclock {-}{-}show) >> /home/labmate/zeitstempel.txt
 	\end{tabular}
 \end{center}
-Am Ende der \texttt{Crontable} muss eine Leerzeile oder ein Kommentar stehen.
-Hierbei steht \texttt{m} für \texttt{Minute}, \texttt{h} für \texttt{Stunde}, \texttt{dom} für \texttt{Tag des Monats}, \texttt{mon} für \texttt{Monat}, \texttt{dow} für \texttt{Wochentag} und \texttt{command} für den auszuführenden Befehl.
+Am Ende der \texttt{Crontable} muss eine Leerzeile oder ein Kommentar stehen\cite{9}.
+Hierbei steht \texttt{m} für \texttt{Minute}, \texttt{h} für \texttt{Stunde}, \texttt{dom} für \texttt{Tag des Monats}, \texttt{mon} für \texttt{Monat}, \texttt{dow} für \texttt{Wochentag} und \texttt{command} für den auszuführenden Befehl\cite{8}.
 Der Befehl setzt sich zusammen aus \texttt{echo} für eine Ausgabe von Text, der Variable \texttt{\$(sudo hwlock {-}-show)} für das Anzeigen des Zeitstempels sowie \texttt{>> <path>} als Angabe für \texttt{echo}, wohin die Ausgabe erfolgen soll.
 
 

@@ -1,0 +1,146 @@
+Übungsblatt 1:
+    Aufgabe 1:
+        Aufgabenteil 1:
+            Eine Menge interagierender Prozesse doer Systeme, die miteinander über Nachrichten kommunizieren.
+            Beispiele:
+                SETI
+                Stine
+                Wikipedia
+        
+        Aufgabenteil 2:
+            Vorteile:
+                Schwerer angreifbar
+                Redundanz
+                Diversität
+                
+            Nachteile:
+                Schwerer verteidigbar
+                (bist du in einem drin, bist du in allen drin)
+                Latenzzeiten
+        
+        Aufgabenteil 3:
+            zu viele Rechte für einzelne Benutzer
+            zu wenig Geld
+            DAU
+            
+            Referenzen:
+                Internet
+        
+        Aufgabenteil 4:
+            
+        
+    Aufgabe 2:
+        Aufgabenteil 1:
+        a)
+            Anonymität:
+                eigene Identität wird niemandem offenbart
+            Pseudonymität:
+                falsche Identität (Pseudonym) wird offenbart
+            Unbeobachtbarkeit:
+                eigene Existenz wird geheim gehalten
+            
+            Abgrenzung:
+                Der Unterschied zwischen Anonymität, Pseudonymität und Unbeobachtbarkeit ist, dass der Gesprächspartner im ersten Fall zwar weiß, dass jemand da ist, aber nicht, wer.
+                Im zweiten Fall glaubt er, zu wissen, wer da ist, was aber nicht der Wahrheit entspricht.
+                Im dritten Fall ist er sich nicht mal über die Anwesenheit einer weiteren Entität im klaren.
+                
+        b)
+            Vertraulichkeit:
+                jemand ist sich der Übertragung bewusst, kann sie aber nicht auslesen
+            Verdecktheit:
+                die Übertragung bleibt unentdeckt
+                
+            Abgrenzung:
+                Der Unterschied zwischen Vertraulichkeit und Verdecktheit ist, dass dritte im ersten Fall zwar wissen, dass etwas versendet wurde, aber nicht, was und im zweiten sind sie sich nicht einmal einer Übertragung bewusst.
+        
+        Aufgabenteil 2:
+        a)
+            Integrität:
+                Änderungen der Inhalte können durch den Empfänger festgestellt werden
+            Zurechenbarkeit:
+                es ist nachweisbar, wer die Daten gesendet und wer sie empfangen hat
+            
+            Abgrenzung:
+                Der Unterschied zwischen Integrität und Zurechenbarkeit ist, dass im ersten Fall zwar festgestellt werden kann, ob die Daten verändert wurden, aber nicht eingesehen werden kann, wer die Daten verändert hat.
+                Im zweiten Fall geht es darum, dass man definitiv weiß, wenn eine dritte Entität in den Datenstrom eingegriffen hat.
+                
+        b)
+            Verfügbarkeit:
+                Ressourcen sind vorhanden, wenn jemand darauf zugreifen will
+            Erreichbarkeit:
+                Ressourcen sind abrufbar, wenn jemand sie benötigt
+            
+            Abgrenzung:
+                Der Unterschied zwischen Verfügbarkeit und Erreichbarkeit ist, dass im ersten Fall die Ressourcen nur Vorhanden sind, aber nichts darüber gesagt wird, ob sie auch abrufbar sind.
+                Im zweiten Fall geht es darum, dass verfügbare Ressourcen auch abrufbar sind.
+                
+        Aufgabenteil 3:
+        Schutzziel:
+            Anonymität:
+                VPN
+            
+            Pseudonymität:
+                VPN
+            
+            Unbeobachtbarkeit:
+                VPN
+            
+            Vertraulichkeit:
+                RSA
+            
+            Verdecktheit:
+                F5
+            
+            Integrität:
+                Prüfsummen
+                
+            Zurechenbarkeit:
+                Signatur
+            
+            Verfügbarkeit:
+                Diversität der Daten
+            
+            Erreichbarkeit:
+                Redundanz der Daten
+            
+    Aufgabe 3:
+        Aufgabenteil 1:
+            Was:
+                Modellierung der Stärke eines Angreifers und realistischer Schutzmechanismen
+            
+            Kriterien:
+                Rollen (Insider, Outsider)
+                Verbreitung (Zugriffsreichweite)
+                Verhalten (aktiv, passiv)
+                Rechenkapazität (beschränkt, unbeschränkt)
+            
+            Warum:
+                zur Definition der maximal berücksichtigten Stärke eines Angreifers
+            
+        
+        Aufgabenteil 2:
+            Rolle:
+                Außenstehender
+                
+            Verbreitung:
+                Pin erahnen bis errechnen
+                Magnetstreifen auslesen
+            
+            Verhalten:
+                passiv
+                beobachtend
+            
+            Rechenkapazität:
+                beschränkt
+                
+    Aufgabe 5:
+        Aufgabenteil 3:
+            62 alphanumerische Zeichen
+            Länge 8
+                ca. 7 Jahre
+            
+            10 Ziffern
+            Länge 1-16
+                ca. 350 Jahre
+            
+            => ja, es wäre aufwändiger
