@@ -1,0 +1,299 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage[margin=2.5cm]{geometry}
+
+% import math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% contradiction lightning
+\usepackage{stmaryrd}
+% algorithms and pseudo code
+\usepackage{algorithmic}
+\usepackage{algorithm}
+%\usepackage{clrscode3e}
+% formatting and layout
+\usepackage{color}
+% settings
+\usepackage{perpage}
+\MakePerPage{footnote}
+% custom text colors
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+% header and footer
+\usepackage{fancyhdr}
+% filler text
+\usepackage{lipsum}
+% macro commands
+%% requires color package and the custom colors defined here 
+\newcommand{\todo}[1]{
+	\addcontentsline{toc}{subsubsection}{TODO: #1}
+	\textcolor{pgreen}{\texttt{\-\\ \-\\//TODO: #1\-\\ \-\\}}
+}
+\newcommand{\sect}[3]{	%	custom section (level 1)
+	\newpage
+	\addcontentsline{toc}{section}{Zettel #1 (#2)}
+	\section*{Zettel Nr. #1 (Ausgabe: #2, Abgabe: #3)}
+	\label{sec:#1}
+}
+\newcommand{\sus}[1]{	%	custom section (level 2)
+	\addcontentsline{toc}{subsection}{Übungsaufgabe #1}
+	\subsection*{Übungsaufgabe #1}
+	\label{ssec:#1}
+}
+\newcommand{\susP}[2]{
+	\sus{#1}
+	\points{#2}
+}
+\newcommand{\sss}[1]{	%	custom section (level 3)
+	\addcontentsline{toc}{subsubsection}{Aufgabe #1}
+	\subsubsection*{Aufgabe #1}
+	\label{sssec:#1}
+}
+\newcommand{\points}[1]{	%	adds a box where the points' worth of a task is written
+	\begin{flushright}
+		\begin{Large}
+			[~~~~\string| ~#1~]
+		\end{Large}
+	\end{flushright}
+}
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata,positioning}
+\usepackage{pgf}
+
+%#+-------------------------------------------------+#%
+%#+						VARIABLEN			     	+#%
+%#+-------------------------------------------------+#%
+
+\begin{document}
+
+%% Fach-Daten
+\newcommand{\fachname}{Grundlagen der Systemsoftware}
+\newcommand{\fachnummer}{InfB-GSS}
+\newcommand{\veranstaltungsnummer}{64-091}
+\newcommand{\stinegruppe}{}
+\newcommand{\termin}{Mittwoch, 10-12}
+%% Gruppenmitglied 1
+\newcommand{\memOneName}{Utz Pöhlmann}
+\newcommand{\memOneMail}{4poehlma@informatik.uni-hamburg.de}
+\newcommand{\memOneNr}{6663579}
+%% Gruppenmitglied 2
+\newcommand{\memTwoName}{Louis Kobras}
+\newcommand{\memTwoMail}{4kobras@informatik.uni-hamburg.de}
+\newcommand{\memTwoNr}{6658699}
+%% Gruppenmitglied 3
+\newcommand{\memThreeName}{Hans Wurst}
+\newcommand{\memThreeMail}{hwurst@sausage.de}
+\newcommand{\memThreeNr}{6654232}
+%% Gruppenmitglied 4
+\newcommand{\memFourName}{Nobody Nose}
+\newcommand{\memFourMail}{nobody@nose.de}
+\newcommand{\memFourNr}{6543216}
+%% Gruppenmitglied 5
+\newcommand{\memFiveName}{Steve}
+\newcommand{\memFiveMail}{steve@steve.de}
+\newcommand{\memFiveNr}{6666666}
+%% Datum
+\newcommand{\datum}{\today\\}
+
+
+
+
+
+
+%#+-------------------------------------------------+#%
+%#+						FORMATIERUNG		     	+#%
+%#+-------------------------------------------------+#%
+
+
+\newcommand{\fach}{
+	\begin{Huge}
+		\fachname\\
+	\end{Huge}
+	\begin{LARGE}
+		Modul: \fachnummer\\
+		Veranstaltung: \veranstaltungsnummer\\
+	\end{LARGE}
+}
+
+\newcommand{\gruppe}{
+	\begin{LARGE}
+		\stinegruppe\-\\
+	\end{LARGE}
+	\begin{Large}
+		\termin\\
+	\end{Large}
+}
+
+\newcommand{\memberOfGroup}[3]{
+	\begin{center}
+		\begin{Large}
+			#1
+		\end{Large}\\
+		#2\\
+		#3\\
+	\end{center}
+	\vspace{.5cm}
+}
+
+\newcommand{\datumf}{
+	\begin{Large}
+		\datum\-\\
+	\end{Large}
+}
+
+% default header and footer formatting overwrite
+\fancyhead{}
+\fancyfoot{}
+
+
+%#+-------------------------------------------------+#%
+%#+						DECKBLATT  			     	+#%
+%#+-------------------------------------------------+#%
+
+\thispagestyle{empty}
+%\-\vspace{0.5cm}
+\begin{center}
+	\fach
+	\vspace{1.5cm}
+	\gruppe
+	\vspace{1.5cm}
+	% group members
+	\memberOfGroup{\memOneName}{\memOneMail}{\memOneNr}
+	\memberOfGroup{\memTwoName}{\memTwoMail}{\memTwoNr}
+	\memberOfGroup{\memThreeName}{\memThreeMail}{\memThreeNr}
+	\memberOfGroup{\memFourName}{\memFourMail}{\memFourNr}
+	\memberOfGroup{\memFiveName}{\memFiveMail}{\memFiveNr}
+	% 1 cm to next element
+	\vspace{1cm}
+	\datumf
+	\vspace{1cm}
+	
+	\textbf{Punkte für den Pflichtteil:}\\
+	\vspace{1cm}
+	\begin{tabular}{c|c|c|c}
+	~1.1~&~1.2~&~1.3~&~$\Sigma$~	\\	\hline
+		 &	   &	 &
+	\end{tabular}
+	
+\end{center}
+\newpage
+
+% formatting commands for the rest of the document
+\pagenumbering{arabic}
+\pagestyle{fancy}	%	allows for headers and footers
+\lhead{\memOneName \\ \memTwoName}	% first two group members
+\chead{\memThreeName \\}			% third group member
+\rhead{\memFourName \\ Steve}		% last two group members
+\lfoot{\today}
+\rfoot{\thepage}
+
+
+%#+-------------------------------------------------+#%
+%#+						ZETTEL 1					+#%
+%#+-------------------------------------------------+#%
+\sect{1}{11. April 2016}{20. April 2016}
+\susP{2.1: Schutzziele - Abrenzung I}{5}
+\begin{enumerate}
+	\item[\textbf{a)}]
+		\begin{itemize}
+			\item \textbf{Anonymität:} die eigenen Identität wird niemandem offenbart
+			\item \textbf{Pseudonymität:} anderen wird eine falsche Identität (Pseudonym) offenbart
+			\item \textbf{Unbeobachtbarkeit:} die eigene Anwesenheit bzw. Existenz wird geheim gehalten
+		\end{itemize}
+		\paragraph{Abgrenzung.}
+		Der Unterschied zwischen Anonymität, Pseudonymität und Unbeobachtbarkeit ist, dass der Gesprächspartner im ersten Fall zwar weiß, dass jemand da ist, aber nicht, wer.
+		Im zweiten Fall glaubt der Gesprächspartner, zu wissen, wer da ist, irrt sich aber.
+		Im dritten Fall ist er sich nicht einmal über die Anwesenheit einer weiteren Entität im Klaren.
+	\item[\textbf{b)}]
+		\begin{itemize}
+			\item \textbf{Vertraulichkeit:} jemand ist sich der Übertragung bewusst, kann sie aber nicht auslesen
+			\item \textbf{Verdecktheit:} die Übertragung bleibt unentdeckt
+		\end{itemize}
+		\paragraph{Abgrenzung.}
+		Während eine dritte Partei sich im ersten Fall dessen bewusst ist, dass es eine Übertragung gibt, deren Inhalt allerdings nicht erlangen kann, ist sich die dritte Partei dem Vorhandensein einer  Übertragung im zweiten Fall nicht bewusst.
+\end{enumerate}
+	
+\susP{2.2: Schutzziele - Abgrenzung II}{4}
+\begin{enumerate}
+	\item[\textbf{a)}]
+		\begin{itemize}
+			\item \textbf{Integrität:} Änderung der Inhalte können durch den Empfänger festgestellt werden
+			\item \textbf{Zurechenbarkeit:} es ist nachweisbar, wer die Daten gesendet und wer sie empfangen hat
+		\end{itemize}
+		\paragraph{Abgrenzung.}
+		Der Unterschied zwischen Integrität und Zurechenbarkeit ist, dass im ersten Fall zwar festgestellt werden kann, ob die Daten verändert wurden, aber nicht eingesehen werden kann, wer die Daten verändert hat.
+		Im zweiten Fall geht es darum, dass man definitiv weiß, wenn eine dritte Partei in den Datenstrom eingegriffen hat.
+	\item[b)]
+		\begin{itemize}
+			\item \textbf{Verfügbarkeit:} Ressourcen sind vorhanden, wenn jemand darauf zugreifen will
+			\item \textbf{Erreichbarkeit:} Ressourcen sind abrufbar, wenn jemand sie benötigt
+		\end{itemize}
+		\paragraph{Abgrenzung.}
+		Der Unterschied zwischen Verfügbarkeit und Erreichbarkeit ist, dass im ersten Fall die Ressource nur vorhanden sind, aber nichts darüber gesagt wird, ob sie auch abrufbar sind.
+		Im zweiten Fall geht es darum dass verfügbare Ressourcen auch abrufbar sind.
+\end{enumerate}
+	
+\susP{2.3: Schutzziele - Techniken}{4}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Schutzziel}	&	\textbf{Technik}		\\	\hline
+Anonymität			&	VPN						\\	\hline
+Pseudonymität		&	VPN						\\	\hline
+Unbeobachtbarkeit	&	VPN						\\	\hline
+Vertraulichkeit		&	RSA						\\	\hline
+Verdecktheit		&	F5						\\	\hline
+Integrität			&	Prüfsummen				\\	\hline
+Zurechenbarkeit		&	Signatur (PGP)			\\	\hline
+Verfügbarkeit		&	Diversität der Daten	\\	\hline
+Erreichbarkeit		&	Redundanz der Daten		\\	\hline
+\end{tabular}
+\end{center}
+
+\susP{3.2: Angreifermodell - Praxisbeispiel}{10}
+\begin{itemize}
+	\item \textbf{Rolle:}
+		\begin{itemize}
+			\item Außenstehender
+		\end{itemize}
+	\item \textbf{Verbreitung:}
+		\begin{itemize}
+			\item Pin erahnen bis errechnen
+			\item Magnetstreifen auslesen
+		\end{itemize}
+	\item \textbf{Verhalten:}
+		\begin{itemize}
+			\item passiv
+			\item beobachtend
+		\end{itemize}
+	\item \textbf{Rechenkapazität:}
+		\begin{itemize}
+			\item beschränkt
+		\end{itemize}
+\end{itemize}
+
+\susP{5.3: Passwortsicherheit - Brute-Force-Angriff}{3}
+Das gegebene Tool berechnet $(1.000.000\text{ Passwörter pro Sekunde }*60\text{ Sekunden }*60\text{ Minuten }*24\text{ Stunden }*365\text{ Tage}) = 3.1516x10^{12}$ Passwörter pro Jahr.
+\begin{itemize}
+	\item 62 alphanumerisch Zeichen
+		\begin{itemize}
+			\item 8 Zeichen lang
+			\item $\Rightarrow 62^{8} \approx 2.18x10^{13}$ Möglichkeiten
+			\item $\Longrightarrow 62^8\text{ Möglichkeiten } / 3.1516x10^{13}\text{ Passwörter pro Jahr } \approx 6.92\text{ Jahre }\approx 2527$ Tage dauert es im worst-case, ein solches Passwort zu knacken
+		\end{itemize}
+	\item 10 Ziffern
+		\begin{itemize}
+			\item 1-16 Zeichen lang
+			\item $\Rightarrow \Sigma_{i=1}^{16}(10^i) \approx 1.11x10^{16}$ Möglichkeiten (eine mehr, wenn als Passwort ``kein Passwort'' zugelassen ist, d.h. ein Passwort der Länge 0)
+			\item $\Longrightarrow \Sigma_{i=1\text{ xor }i=1}^{16}(10^i)\text{ Möglichkeiten } / 3.1516x10^{12}\text{ Passwörter pro Jahr } \approx 352.33\text{ Jahre } \approx 128.600$ Tage.
+		\end{itemize}
+\end{itemize}
+Am Exponenten der Basis kann bereits erkannt werden, dass der erste Fall mit dem Passwort statischer Länge, aber mit größerer Wertemenge, einfacher zu lösen ist.
+Um alle Möglichkeiten mit variabler Länge durchzurechnen, wird ein deutlich größerer Zeitaufwand gefordert.
+
+\end{document}
