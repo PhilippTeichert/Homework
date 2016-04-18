@@ -1,0 +1,356 @@
+\documentclass[twoside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{lipsum}
+
+% import math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% contradiction lightning
+\usepackage{stmaryrd}
+% algorithms and pseudo code
+\usepackage{algorithmic}
+\usepackage{algorithm}
+% formatting and layout
+\usepackage{color}
+\usepackage{fancyhdr}
+% settings
+\usepackage{perpage}
+\MakePerPage{footnote}
+% quotation marks
+\usepackage[
+    left = ``,%
+    right = '',%
+    leftsub = `,%
+    rightsub = '%
+]{dirtytalk}
+% custom text colors
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+% macro commands
+%% requires color package and the custom colors defined here 
+\newcommand{\todo}[1]{
+	% add TODO to table of contents
+	\addcontentsline{toc}{subsubsection}{TODO: #1}
+	\textcolor{pgreen}{ % color TODO green
+		\texttt{ % make TODO have fancy font
+			\-\\ \-\\//TODO: #1\-\\ \-\\
+		}
+	}
+}
+\newcommand{\sect}[4]{	%	custom section (level 1)
+	\newpage
+	\addcontentsline{toc}{section}{Zettel #1 (#2)}
+	\section*{Blatt Nr. #1 (Ausgabe: #2, Abgabe: #3)}
+	\begin{center}
+		\begin{LARGE}
+			#4
+		\end{LARGE}
+	\end{center}
+	\label{sec:#1}
+}
+\newcommand{\sus}[1]{
+	\addcontentsline{toc}{subsection}{Aufgabe #1}
+	\subsection*{Übungsaufgabe #1}
+	\label{ssec:#1}
+}
+\newcommand{\sss}[1]{
+	\addcontentsline{toc}{subsubsection}{Teilaufgabe #1}
+	\subsubsection*{Aufgabe #1}
+	\label{sssec:#1}
+}
+\newcommand{\points}[1]{
+	\begin{flushright}
+		\begin{Large}
+			[~~~~\string| ~#1~]
+		\end{Large}
+	\end{flushright}
+}
+\newcommand{\tit}[1]{\textit{#1}}
+\newcommand{\ttt}[1]{\texttt{#1}}
+
+
+\newcommand{\command}[1]{\say{\texttt{#1}}}
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata,positioning}
+\usepackage{pgf}
+
+%#+-------------------------------------------------+#%
+%#+						VARIABLEN			     	+#%
+%#+-------------------------------------------------+#%
+
+\begin{document}
+
+%% Fach-Daten
+\newcommand{\fachname}{Projekt Network Security}
+\newcommand{\fachnummer}{InfB-Proj}
+\newcommand{\veranstaltungsnummer}{64-185}
+\newcommand{\stinegruppe}{$ $}
+\newcommand{\termin}{Donnerstag, 12.00 - 18.00\\F-027}
+%% Gruppenmitglied 1
+\newcommand{\memOneName}{Utz Pöhlmann}
+\newcommand{\memOneMail}{4poehlma@informatik.uni-hamburg.de}
+\newcommand{\memOneNr}{6663579}
+%% Gruppenmitglied 2
+\newcommand{\memTwoName}{Louis Kobras}
+\newcommand{\memTwoMail}{4kobras@informatik.uni-hamburg.de}
+\newcommand{\memTwoNr}{6658699}
+%% Gruppenmitglied 3
+\newcommand{\memThreeName}{}
+\newcommand{\memThreeMail}{}
+\newcommand{\memThreeNr}{}
+%% Gruppenmitglied 4
+\newcommand{\memFourName}{}
+\newcommand{\memFourMail}{}
+\newcommand{\memFourNr}{}
+%% Datum
+\newcommand{\datum}{\today\\}
+
+
+
+
+
+
+%#+-------------------------------------------------+#%
+%#+						FORMATIERUNG		     	+#%
+%#+-------------------------------------------------+#%
+
+\newcommand{\fach}{
+	\begin{Huge}
+		\fachname\\
+	\end{Huge}
+	\begin{LARGE}
+		Modul: \fachnummer\\
+		Veranstaltung: \veranstaltungsnummer\\
+	\end{LARGE}
+}
+
+\newcommand{\gruppe}{
+	\begin{LARGE}
+		\stinegruppe\\
+	\end{LARGE}
+	\begin{Large}
+		\termin\\
+	\end{Large}
+}
+
+\newcommand{\memberOfGroup}[3]{
+	\begin{center}
+		\begin{Large}
+			#1
+		\end{Large}\-\\
+		#2\-\\
+		#3\-\\
+	\end{center}
+	\vspace{.5cm}
+}
+\newcommand{\datumf}{
+	\begin{Large}
+		\datum\-\\
+	\end{Large}
+}
+
+
+% setting up footers and headers
+%% setting page style so that footers and headers can be used
+\pagestyle{fancy}
+%% overwrite default values
+\fancyhead{}
+\fancyfoot{}
+%% first group member in upper left corner
+\lhead{\memOneName\-\\\memOneNr}
+%% upper center (empty)
+\chead{04. Mai 2016\\}
+%% second group member in upper right corner
+\rhead{\memTwoName\-\\\memTwoNr}
+%% lower left corner (empty)
+\lfoot{}
+%% subject name in lower center
+\cfoot{\fachname}
+%% lower right corner (empty)
+\rfoot{}
+%% sets the page number to appear in either the lower left or lower right corner,
+%% depending on whether the page number is even or odd, in the format "page X of Y"
+\fancyfoot[LE,RO]{Seite \thepage ~von \pageref{LastPage}}
+%% thin separation line over the footer
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+%#+-------------------------------------------------+#%
+%#+						DECKBLATT  			     	+#%
+%#+-------------------------------------------------+#%
+
+%\thispagestyle{empty}
+%\-\vspace{0.5cm}
+%\begin{center}
+%	\fach
+%	\vspace{1.5cm}
+%	\gruppe
+%	\vspace{1.5cm}
+%	% group members
+%	\memberOfGroup{\memOneName}{\memOneMail}{\memOneNr}
+%	\memberOfGroup{\memTwoName}{\memTwoMail}{\memTwoNr}
+%	\memberOfGroup{}{}{}
+%	\memberOfGroup{}{}{}
+%	% 1 cm to next element
+%	\vspace{1cm}
+%	\datumf
+%	
+%\end{center}
+%\newpage
+
+
+
+\sect{2}{14. April 2016}{04. Mai 2016}{Kennwortsicherheit}
+\pagenumbering{arabic}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%#+-------------------------------------------------+#%
+%#+						ZETTEL 1					+#%
+%#+-------------------------------------------------+#%
+
+\sus{1. Sicherheit lokaler Rechner}
+\sss{1.1 Zugriff auf /etc/passwd und /etc/shadow des Webservers}
+Überblick über die VM.
+\begin{itemize}
+	\item \tit{Blatt2-Admin-PC.vmwarevm} wurde aus \tit{/home/vmware} nach \tit{/home/ss16g07/vmware} kopiert
+	\item wurde über \tit{\underline{F}ile -> \underline{O}pen...} importiert (die virtuelle Festplatte wurde eingelesen)
+	\item VM wurde gestartet; beim Boot wurde danach gefragt, ob die VM kopiert oder verschoben wurde; nach Aufgabe wurde \say{kopiert} ausgewählt
+\end{itemize}
+Booten von der CD
+\begin{itemize}
+	\item \tit{grml}-iso wurde aus \tit{/home/vmware} nach \tit{/home/ss16g07/vmware} kopiert
+	\item Neues Image wurde in den VM-Einstellungen in das CD-Laufwerk eingelegt
+	\item Ebenfalls unter den VM-Einstellungen wurde das CD-Laufwerk verbunden
+	\item Während des Bootens der VM wurde das BIOS aufgerufen, um sicherzustellen, dass von der CD gebootet wird
+\end{itemize}
+Einlesen und durchsuchen der Root-Partition
+\begin{itemize}
+	\item durch drücken von \tit{d} und \tit{Enter} wurde das deutscha tastaturlayout ausgewählt
+	\item mit \tit{mount -r /dev/sda1} wurde die FEstplatte gemountet
+	\item unter \tit{/etc/fstab} wurde herausgefunden, dass das Verzeichnis nun unter \tit{/mnt/sda1} zugreifbar ist
+	\item die Dateien \tit{passwd} und \tit{shadow} wurden mit \tit{cat \$Dateiname} geöfnnet:
+	\begin{itemize}
+		\item \tit{passwd} enthält Einträge der folgenden Form: \cite{1}
+		\begin{itemize}
+			\item \tit{\$Nutzername}:x\footnote{Das \tit{x} indiziert, dass ein verschlüsseltes Passwort für diesen Nutzer existiert}:\tit{\$Nutzer ID}:\tit{\$Gruppen ID}:\tit{\$Nutzer ID Info}:\tit{\$home Verzeichnis}:\tit{\$Shell}
+		\end{itemize}
+		\item \tit{shadow} enthält Einträge der folgenden Form: \cite{2}
+		\begin{itemize}
+			\item \tit{\$Nutzername}:\tit{\$verschlüsseltes Password}:\tit{\$Tag der letzen Passwortänderung}\footnote{in Tagen seit dem 1. Jan 1970}:\tit{\$minimaler Zeitabstand zwischen Passwortänderungen}:\tit{\$maximaler Zeitabstand zwischen Passwortänderungen}:\tit{\$Warnungszeitraum für auslaufende Passwörter}:\tit{\$Zeit nach der ein Password ausläuft nach Inaktivität des Accounts}:\tit{\$Zeit die seit der Inaktivität des Accounts vergangen ist}:
+		\end{itemize}
+	\end{itemize}
+	\item es gibt die Benutzer \tit{webadmin} und \tit{georg}
+	\item durch Eingabe von \tit{cat group|grep \$Benutzername} wurden die Gruppen der Nutzer herausgefunden:
+	\begin{itemize}
+		\item georg
+		\begin{itemize}
+			\item admin
+			\item georg
+		\end{itemize}
+		\item webadmin
+		\begin{itemize}
+			\item adm
+			\item dialout
+			\item cdrom
+			\item plugdev
+			\item lpadmin
+			\item webadmin
+			\item sambashare
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+\sss{1.2 Auslesen von Kennwörter}
+\begin{itemize}
+	\item salting: Hinzufügen einer zufälligen Zeichenkette (\say{salt})
+	\item hashing: Umrechnung der Daten in Hash-Werte\footnote{Werte fester Länge, typischerweise hexadezimal codiert \cite{3}}
+\end{itemize}
+Installieren und Verwendung von \tit{john}
+\begin{itemize}
+	\item John wurde installiert mit \tit{apt-get install john}, es konnte jedoch nicht authentifiziert werden
+	\item Einfaches Ausführen von \tit{john} zeigt die Hilfe-Seite
+	\item Eingabe des Befehls \tit{john --incremental --users=webadmin /mnt/sda1/etc/shadow}, um das Passwort von \tit{webadmin} im \tit{incremental}-Mode zu ermitteln
+	\item Nach 5 Minuten wurde eine manuelle Terminierung durchgeführt
+\end{itemize}
+Wörterbuchangriff
+\begin{itemize}
+	\item es wurde in das home Verzeichnis navigiert damit wieder Schreibzugriff besteht
+	\item mit \tit{wget http:download.openwall.net/pub/wordlists/all.gz} wurde ein Wörterbuch runtergeladen
+	\item durch \tit{gunzip all.gz} wurde das Wörterbuch entpackt
+	\item und mit \tit{john --wordlist=all --users=webadmin /mnt/sda1/etc/shadow} der Angriff gestartet
+	\item nach 21.01 sec war das Passwort herausgefunden: mockingbird
+\end{itemize}
+\sss{1.3 Setzen von neuen Kennwörtern}
+\begin{itemize}
+	\item Das Passwort von georg ist nicht ohne weiteres ermittelbar, weil es wahrscheinlich nicht im Wörterbuch steht
+	\item zum unmounten von sda1 wurde \tit{umount /dev/sda1} eingegeben
+	\item zum erneuten mounten wurde \tit{mount -w /dev/sda1} eingegeben
+	\item zum Ändern des root Verzeichnsises mit shell Wechsel wurde \tit{chroot /mnt/sda1/ /bin/sh} eigegeben
+	\item nun wurde das Passwort von georg auf \tit{1} gesetzt: \tit{passwd georg 1}
+	\item es wurde das sytem durch \tit{exit} gefolgt von \tit{shutdown -r now} neu gestartet und sich als georg eingeloggt
+\end{itemize}
+
+
+
+\sus{2. Sichere Speicherung von Kennwörtern}
+\sss{2.1 Angriffe mit Hashdatenbanken und Rainbow-Tables}
+\begin{itemize}
+	\item es wurde in das home Verzeichnis von webadmin navigiert durch \tit{cd /home/webadmin/}
+	\item Wechseln in das Unterverzeichnis \tit{Rainbowtables/rcracki}
+	\item Ausführung von \tit{rcracki} mit \tit{./rcracki <table-path> -l <password-file>}
+	\item es konnten nicht alle Passwörter ermittelt werden.Vermutlich weil nicht alle Passwörter in der benutzten RainbowTable codiert waren
+	\item eigene Programme sind immer gut, weil man weiß, was sie können, dementprecehnd dauert es aber auch lange, viel Umfang einzbauen
+	\item diese Speicherung würde (da jedes Passwort einen Hash der Länge 128 Bit\cite{wikimd5} generiert) $\Sigma_{i=1}^{7} 128^i$ Bit $\hat{\approx}$ 71 Terabyte verbrauchen, während eine der gegebenen Rainbowtables nur ca. 40 MB groß ist
+\end{itemize}
+\sss{2.2 Eigener Passwort-Cracker}
+\sss{2.3 Eigene Kennwort-Speicherfunktion in Java}
+
+\sus{3. Forensische Wiederherstellung von Kennwörtern}
+
+\sus{4. Unsicherer Umgang mit Passwörtern in Java}
+
+
+
+
+
+
+
+
+
+\begin{thebibliography}{1}
+\bibitem{1} http://www.cyberciti.biz/faq/understanding-etcpasswd-file-format/
+\bibitem{2} http://www.cyberciti.biz/faq/understanding-etcshadow-file/
+\bibitem{3} http://zeitstempel.hauke-laging.de/hashinfo.php
+\bibitem{wikimd5} http://de.wikipedia.org/wiki/Message-Digest\textunderscore Algorithm\textunderscore 5
+\end{thebibliography}
+
+\end{document}
