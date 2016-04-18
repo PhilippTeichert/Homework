@@ -255,38 +255,25 @@ Booten von der CD
 \end{itemize}
 Einlesen und durchsuchen der Root-Partition
 \begin{itemize}
-	\item durch drücken von \tit{d} und \tit{Enter} wurde das deutscha tastaturlayout ausgewählt
-	\item mit \tit{mount -r /dev/sda1} wurde die FEstplatte gemountet
-	\item unter \tit{/etc/fstab} wurde herausgefunden, dass das Verzeichnis nun unter \tit{/mnt/sda1} zugreifbar ist
-	\item die Dateien \tit{passwd} und \tit{shadow} wurden mit \tit{cat \$Dateiname} geöfnnet:
+	\item Wählen des deutschen Tastaturlayouts mit\tit{d} $\rightarrow$ \tit{Enter}
+	\item mounten der Festplatte mit \tit{mount -r /dev/sda1}
+	\item nach \tit{/etc/fstab} Festplatte nun \tit{/mnt/sda1} zugreifbar
+	\item Auslesen der Dateien \tit{/etc/shadow} und \tit{/etc/passwd} mit \tit{cat}
 	\begin{itemize}
 		\item \tit{passwd} enthält Einträge der folgenden Form: \cite{1}
 		\begin{itemize}
-			\item \tit{\$Nutzername}:x\footnote{Das \tit{x} indiziert, dass ein verschlüsseltes Passwort für diesen Nutzer existiert}:\tit{\$Nutzer ID}:\tit{\$Gruppen ID}:\tit{\$Nutzer ID Info}:\tit{\$home Verzeichnis}:\tit{\$Shell}
+			\item \tit{<Nutzername>}:x\footnote{\tit{x} (bei Ubuntu 14: *) indiziert, dass ein verschlüsseltes Passwort für diesen Nutzer in \tit{/etc/shadow} vermerkt ist}:\tit{<Nutzer ID>}:\tit{<Gruppen ID>}:\tit{<Nutzer ID Info>}:\tit{<home-Verzeichnis>}:\tit{<Shell>}
 		\end{itemize}
 		\item \tit{shadow} enthält Einträge der folgenden Form: \cite{2}
 		\begin{itemize}
-			\item \tit{\$Nutzername}:\tit{\$verschlüsseltes Password}:\tit{\$Tag der letzen Passwortänderung}\footnote{in Tagen seit dem 1. Jan 1970}:\tit{\$minimaler Zeitabstand zwischen Passwortänderungen}:\tit{\$maximaler Zeitabstand zwischen Passwortänderungen}:\tit{\$Warnungszeitraum für auslaufende Passwörter}:\tit{\$Zeit nach der ein Password ausläuft nach Inaktivität des Accounts}:\tit{\$Zeit die seit der Inaktivität des Accounts vergangen ist}:
+			\item \tit{<Nutzername>}:\tit{<verschlüsseltes Password>}:\tit{<Tag der letzen Passwortänderung>}\footnote{in Tagen seit dem 1. Jan 1970}:\tit{<minimaler Zeitabstand zwischen Passwortänderungen>}\footnote{Zeit, bis das Passwort wieder geändert werden kann}:\tit{<maximaler Zeitabstand zwischen Passwortänderungen>}\footnote{Zeitpunkt, an dem das Passwort verfällt}:\tit{<Warnungszeitraum für auslaufende Passwörter>}:\tit{<Zeit nach der ein Password ausläuft>}\footnote{nach Inaktivität des Accounts}:\tit{<Zeit, die seit der Inaktivität des Accounts vergangen ist>}
 		\end{itemize}
 	\end{itemize}
 	\item es gibt die Benutzer \tit{webadmin} und \tit{georg}
-	\item durch Eingabe von \tit{cat group|grep \$Benutzername} wurden die Gruppen der Nutzer herausgefunden:
+	\item Herausfinden der Nutzergruppen mit \tit{cat group} | \tit{grep <Benutzername>}\footnote{Durch die | wird die Ausgabe von \tit{cat group} an den \tit{grep}-Befehl weitergegeben, der alles herausfiltert, was nicht zum ihm angegebenen Parameter passt}
 	\begin{itemize}
-		\item georg
-		\begin{itemize}
-			\item admin
-			\item georg
-		\end{itemize}
-		\item webadmin
-		\begin{itemize}
-			\item adm
-			\item dialout
-			\item cdrom
-			\item plugdev
-			\item lpadmin
-			\item webadmin
-			\item sambashare
-		\end{itemize}
+		\item georg : admin georg 
+		\item webadmin : adm dialout cdrom plugdev lpadmin webadmin sambashare
 	\end{itemize}
 \end{itemize}
 \sss{1.2 Auslesen von Kennwörter}
