@@ -86,6 +86,33 @@
 
 \begin{document}
 
+% flags for compiling
+%% set counts other than True to 1 to print the corresponding section
+\newcount\True
+\True=1
+%% set to false to omit title page
+\newcount\Title
+\Title=1
+%% set to false to omit point tables
+\newcount\Table
+\Table=1
+%% set to false to omit empty page behind title
+\newcount\Empty
+\Empty=1
+%% set to false to omit the table of contents
+\newcount\TOC
+\TOC=1
+%% set to false to omit the first task sheet
+\newcount\ZettelEins
+\ZettelEins=1
+%% set to false to omit the second task sheet
+\newcount\ZettelZwei
+\ZettelZwei=1
+%% set to false to omit the third task sheet
+\newcount\ZettelDrei
+\ZettelDrei=1
+
+% global variables
 %% Fach-Daten
 \newcommand{\fachname}{Stochastik 1 für Studierende der Informatik}
 \newcommand{\fachnummer}{MATH3-Inf}
@@ -191,7 +218,7 @@
 %#+-------------------------------------------------+#%
 %#+						DECKBLATT  			     	+#%
 %#+-------------------------------------------------+#%
-
+\ifnum\Title=\True
 \thispagestyle{empty}
 \-\vspace{0.5cm}
 \begin{center}
@@ -209,57 +236,52 @@
 	\datumf
 	\vspace{1cm}
 	
+	\ifnum\Table=\True
 	\textbf{Punkte für die Hausübungen:}\\
 	\vspace{1cm}
+	\ifnum\ZettelEins=\True
 	\begin{tabular}{c|c|c|c}
 	~1.1~&~1.2~&~1.3~&~$\Sigma$~	\\	\hline
 		 &	   &	 &
 	\end{tabular}
+	\fi
+	\ifnum\ZettelZwei=\True
+	\begin{tabular}{c|c|c|c|c}
+	~2.1~&~2.2~&~2.3~&~2.4~&~$\Sigma$~	\\	\hline
+		 &	   &	 &		&
+	\end{tabular}
+	\fi
+	\ifnum\ZettelDrei=\True
+	\begin{tabular}{c|c|c}
+	~3.1~&~3.2~&~$\Sigma$~	\\	\hline
+		 &	   &
+	\end{tabular}
+	\fi
+	\fi
 	
 \end{center}
 \newpage
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\fi
 
 
 
 %#+-------------------------------------------------+#%
 %#+						INHALT  			     	+#%
 %#+-------------------------------------------------+#%
+\ifnum\Empty=\True
 \leereSeite
+\fi
+\ifnum\TOC=\True
 \thispagestyle{empty}
 \tableofcontents
 \newpage
+\fi
 \pagenumbering{arabic}
 
 %#+-------------------------------------------------+#%
 %#+						ZETTEL 1					+#%
 %#+-------------------------------------------------+#%
+\ifnum\ZettelEins=\True
 \sect{1}{05. April 2016}{12. April 2016}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -436,10 +458,11 @@ Zeichnen Sie die entsprechenden Diagramme für die folgenden Operationen.
 		\end{scope}
 	\end{tikzpicture}
 \end{enumerate}
-
+\fi
 %#+-------------------------------------------------+#%
 %#+						ZETTEL 2					+#%
 %#+-------------------------------------------------+#%
+\ifnum\ZettelZwei=\True
 \sect{2}{12. April 2016}{19. April 2016}
 \susP{2.1}{6}
 (Ereignisse und Mengen, 3+3 Punkte).
@@ -542,5 +565,46 @@ Es werden zwei faire Würfel geworfen, dabei werden die folgenden Ereignisse bet
 							=& \frac{6}{36} + \frac{6}{36} + \frac{2}{36} - (0 + 0 + 0) + 0 = \frac{14}{36} = \frac{7}{18}
 	\end{align*}
 \end{enumerate}
+\fi
+
+\ifnum\ZettelDrei=\True
+\sect{3}{19. April 2016}{26. April 2016}
+\susP{3.1}{15}
+(Die minimale Augenzahl, 5+5+3+2 Punkte).
+Es werden zwei faire Würfel geworfen, der Ergebnisraum ist $\Omega = \{1,2,3,4,5,6\}^2$, das Wahrscheinlichkeitsmaß durch $P(\{(i,j)\})=\frac{1}{36}$ für alle $(i,j) \in \Omega$ definiert.
+Die Zufallsvariable $X$ beschreibe nun das Merkmal \dq minimale Augenzahl\dq , d.h
+\[
+	X : \Omega \rightarrow \Omega ', X((i,j)) = \operatorname{min}\{i,j\}
+\]
+mit $\Omega ' = \{1,2,3,4,5,6\}$.
+\begin{enumerate}
+	\item[a)] Bestimmen Sie $X^{-1}(\{x\})$ für $x=1,2,3,4,5,6$.
+	\item[b)] Charakterisieren Sie die Verteilung von $X$, d.h. ergänzen Sie die Tabelle
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline
+		x	&	1	&	2	&	3	&	4	&	5	&	6	\\	\hline
+		$P(X=x)$	&&&&&&	\\	\hline
+		\end{tabular}
+	\end{center}
+	\item[c)] Ermitteln Sie $P(X \leq 3)$ und bestimmen Sie die Wahrscheinlichkeit dafür, dass die minimale Augenzahl ungerade ist.
+	\item[d)] Hätte $\Omega ' = \{1,2,3,4,5,6,7,8,9,10\}$ gewählt werden dürfen?
+\end{enumerate}
+\susP{3.2}{10}
+(Archäologie, 10 Punkte).
+Bei Ausgrabungen in China haben Archäologen vor einigen Jahren einen Behälter entdeckt, in dem sich eine wohl 2400 Jahre alte \dq Suppe \dq ~befand.
+Die mit Knochen bestückte grünliche Flüssigkeit befand sich in einem Kessel, der in einem Grab in der Stadt Xian entdeckt wurde, wie die Zeitung \dq Global Times\dq berichtete.
+Der Fund wurde bei Ausgrabungen im Rahmen des Ausbaus des Flughafens der Stadt Xian gemacht, die für ihre Terrakotta-Armee bekannt ist.
+Eine Untersuchung sollte nun zeigen, welche Zutaten sich in der Flüssigkeit befanden, und ob es sich tatsächlich um eine Suppe handelt (soweit die Realität \dots)
+
+
+Wissenschaftler und Studierende der Universität Hamburg mischten bei diesen Untersuchungen mit.
+Sie überlegten vorher, ob in dem Behälter wenigstens eine der Zutaten ``Reis'', ``Peking-Ente'' oder ``Brokkoli'' zu identifizieren sei.
+Dabei nehmen sie an, dass die Wahrscheinlichkeit, dass Reis verwendet wurde, bei $\frac{4}{5}$ liegt, die für Peking-Ente bei $\frac{1}{2}$ und die bei Brokkoli bei $\frac{1}{4}$.
+Die Wahrscheinlichkeit, dass Reis und Peking-Ente verwendet wurden, liegt bei $\frac{9}{20}$, die Wahrscheinlichkeit für Reis und Brokkoli bei $\frac{3}{20}$, die Wahrscheinlichkeit für Peking-Ente und Brokkoli bei $\frac{1}{20}$.
+Schließlich liegt die Wahrscheinlichkeit, dass alle drei Zutaten verwendet wurden, ebenfalls bei $\frac{1}{20}$.
+Hätten Sie hier helfen können?
+Ermitteln Sie die gesuchte Wahrscheinlichkeit.
+\fi
 
 \end{document}
