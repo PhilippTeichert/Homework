@@ -69,6 +69,9 @@
 \newcommand{\tcg}[1]{
 	\textcolor{green}{#1}
 }
+%% custom command for better inline fractions
+\newcommand*\ilfrac[2]{{}^{#1}\!/_{#2}}
+
 % tikz
 \usepackage{tikz}
 \usetikzlibrary{%
@@ -579,16 +582,31 @@ Die Zufallsvariable $X$ beschreibe nun das Merkmal \dq minimale Augenzahl\dq , d
 mit $\Omega ' = \{1,2,3,4,5,6\}$.
 \begin{enumerate}
 	\item[a)] Bestimmen Sie $X^{-1}(\{x\})$ für $x=1,2,3,4,5,6$.
+	\begin{itemize}
+		\item	1:	$\{(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(6,1),(5,1),(4,1),(3,1),(2,1)\}$
+		\item	2:	$\{(2,2),(2,3),(2,4),(2,5),(2,6),(6,2),(5,2),(4,2),(3,2)\}$
+		\item	3:	$\{(3,3),(3,4),(3,5),(3,6),(6,3),(5,3),(4,3)\}$
+		\item	4:	$\{(4,4),(4,5),(4,6),(6,4),(5,4)\}$
+		\item	5:	$\{(5,5),(5,6),(6,5)\}$
+		\item	6:	$\{(6,6)\}$
+	\end{itemize}
 	\item[b)] Charakterisieren Sie die Verteilung von $X$, d.h. ergänzen Sie die Tabelle
 	\begin{center}
 		\begin{tabular}{|c|c|c|c|c|c|c|}
 		\hline
 		x	&	1	&	2	&	3	&	4	&	5	&	6	\\	\hline
-		$P(X=x)$	&&&&&&	\\	\hline
+		$P(X=x)$	& $\ilfrac{11}{36}$ & $\ilfrac{9}{36}$ & $\ilfrac{7}{36}$ & $\ilfrac{5}{36}$ & $\ilfrac{3}{36}$ & $\ilfrac{1}{36}$	\\	\hline
 		\end{tabular}
 	\end{center}
 	\item[c)] Ermitteln Sie $P(X \leq 3)$ und bestimmen Sie die Wahrscheinlichkeit dafür, dass die minimale Augenzahl ungerade ist.
+		\begin{itemize}
+			\item $P(X \leq 3) = P(X = 1) + P(X = 2) + P(X = 3) = \ilfrac{11+9+7}{36} = \ilfrac{27}{36}$
+			\item $P(X = x, 2 \nmid x) = P(X = 1) + P(X = 3) + P(X = 5) = \ilfrac{11+7+3}{36} = \ilfrac{21}{36}$
+		\end{itemize}
 	\item[d)] Hätte $\Omega ' = \{1,2,3,4,5,6,7,8,9,10\}$ gewählt werden dürfen?
+	\begin{itemize}
+		\item Ja, da ein Abbild kein Urbild braucht ($X^{-1}(\{7\})=X^{-1}(\{8\})=X^{-1}(\{9\})=X^{-1}(\{10\})=\emptyset$).
+	\end{itemize}
 \end{enumerate}
 \susP{3.2}{10}
 (Archäologie, 10 Punkte).
@@ -605,6 +623,24 @@ Die Wahrscheinlichkeit, dass Reis und Peking-Ente verwendet wurden, liegt bei $\
 Schließlich liegt die Wahrscheinlichkeit, dass alle drei Zutaten verwendet wurden, ebenfalls bei $\frac{1}{20}$.
 Hätten Sie hier helfen können?
 Ermitteln Sie die gesuchte Wahrscheinlichkeit.
+\begin{center}
+
+	\begin{tikzpicture}
+		\draw \firstcircle node[left] {$P=\ilfrac{1}{2}$};
+		\draw \secondcircle node {$R=\ilfrac{4}{5}$};
+		\draw \thirdcircle node[right] {$B=\ilfrac{1}{4}$};
+	\end{tikzpicture}
+\end{center}
+Stehe $P$ für \textit{Peking-Ente}, $R$ für \textit{Reis} und $B$ für \textit{Brokkoli}.
+Neben der Beschriftung des Venn-Diagramms gilt außerdem:
+\begin{itemize}
+	\item $P(\{R\} \cap \{B\}) = \ilfrac{3}{20}$
+	\item $P(\{R\} \cap \{P\}) = \ilfrac{9}{20}$
+	\item $P(\{P\} \cap \{B\}) = \ilfrac{1}{20}$
+	\item $P(\{R\} \cap \{B\} \cap \{P\}) = \ilfrac{1}{20}$
+\end{itemize}
+Die Wahrscheinlichkeit, dass mindestens eine dieser Zutaten verwendet wurde, liegt somit bei
+$P(\{B\} \cup \{P\} \cup \{R\}) = P(\{B\}) + P(\{P\}) + P(\{R\}) - (P(\{R\} \cap \{B\}) + P(\{R\} \cap \{P\}) + P(\{P\} \cap \{B\})) + P(\{R\} \cap \{B\} \cap \{P\}) = \ilfrac{5}{20} + \ilfrac{10}{20} + \ilfrac{16}{20} - (\ilfrac{3}{20} + \ilfrac{9}{20} + \ilfrac{1}{20}) + \ilfrac{1}{20} = \ilfrac{19}{20}$
 \fi
 
 \end{document}
