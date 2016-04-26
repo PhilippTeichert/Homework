@@ -216,6 +216,10 @@
 %% thin separation line over the footer
 \renewcommand{\footrulewidth}{0.4pt}
 
+% preparing some circles for Venn diagrams and stuff
+\def\firstcircle{(0,0) circle (1.5cm)}
+\def\secondcircle{(1,2) circle (1.5cm)}
+\def\thirdcircle{(2,0) circle (1.5cm)}
 
 
 %#+-------------------------------------------------+#%
@@ -375,9 +379,6 @@ In einem Venn-Diagramm werden die Grundmengen symbolisch durch geometrische Obje
 Die Resultate betrachteter Mengenverknüpfungen werden
 dann farblich oder durch Markierung hervorgehoben.
 Beispielsweise veranschaulicht das folgende Diagramm den Schnitt $A \cap B$ zweier Mengen $A$ und $B$.
-\def\firstcircle{(0,0) circle (1.5cm)}
-\def\secondcircle{(1,2) circle (1.5cm)}
-\def\thirdcircle{(2,0) circle (1.5cm)}
 \begin{center}
 	\begin{tikzpicture}
 		\draw \firstcircle node {$A$};
@@ -640,7 +641,11 @@ Neben der Beschriftung des Venn-Diagramms gilt außerdem:
 	\item $P(\{R\} \cap \{B\} \cap \{P\}) = \ilfrac{1}{20}$
 \end{itemize}
 Die Wahrscheinlichkeit, dass mindestens eine dieser Zutaten verwendet wurde, liegt somit bei
-$P(\{B\} \cup \{P\} \cup \{R\}) = P(\{B\}) + P(\{P\}) + P(\{R\}) - (P(\{R\} \cap \{B\}) + P(\{R\} \cap \{P\}) + P(\{P\} \cap \{B\})) + P(\{R\} \cap \{B\} \cap \{P\}) = \ilfrac{5}{20} + \ilfrac{10}{20} + \ilfrac{16}{20} - (\ilfrac{3}{20} + \ilfrac{9}{20} + \ilfrac{1}{20}) + \ilfrac{1}{20} = \ilfrac{19}{20}$
+$P(\{B\} \cup \{P\} \cup \{R\}) = P(\{B\}) + P(\{P\}) + P(\{R\}) - (P(\{R\} \cap \{B\}) + P(\{R\} \cap \{P\}) + P(\{P\} \cap \{B\})) + P(\{R\} \cap \{B\} \cap \{P\}) = \ilfrac{5}{20} + \ilfrac{10}{20} + \ilfrac{16}{20} - (\ilfrac{3}{20} + \ilfrac{9}{20} + \ilfrac{1}{20}) + \ilfrac{1}{20} = \ilfrac{19}{20}$.
+
+Die Wahrscheinlichkeit, dass mindestens zwei dieser Zutaten verwendet wurden, liegt bei $P(\{R\} \cap \{B\}) + P(\{R\} \cap \{P\}) + P(\{P\} \cap \{B\}) - 2 \cdot P(\{R\} \cap \{B\} \cap \{P\}) = \ilfrac{3+9+1-1}{20} = \ilfrac{12}{20}$.
+
+Wie nach Aufgabe ist die Wahrscheinlichkeit dafür, dass alle drei Zutaten verwendet wurden, gerade $P(\{R\} \cap \{B\} \cap \{P\}) = \ilfrac{1}{20}$.
 \fi
 
 \end{document}
