@@ -1,0 +1,43 @@
+UC 2: Buch in Bestand aufnehmen
+	Aktuere:	- Bibliothekar
+	Vorbedingung:	- Buch muss physikalisch vorhanden sein
+	Durchführung:	- neue Buchkarte anlegen
+			- Buchkarte ins Buch
+			- Buchkarteikarte anlegen
+			- BKK ablegen
+	Alternativabläufe: - N/A
+	Nachbedingung:	- Buch ist im Bestand
+			- Buchkarte im Buch
+			- BKK ist abgelegt
+	Ausnahmen:	- Buch ist kritisch beschädigt
+	Bemerkungen:	- N/A
+
+
+
+UC 1: Buchbestand anzeigen
+        Aktuere:        - Bibliothekar
+        Vorbedingung:   - N/A
+        Durchführung:   - anzeigen lassen
+        Alternativabläufe: - N/A
+        Nachbedingung:  - Bestand darf nicht geändert worden sein
+        Ausnahmen:      - N/A
+        Bemerkungen:    - N/A
+
+                                                                                                                                                
+     
+UC 3: Buch aus Bestand entfernen
+        Aktuere:        - Bibliothekar
+        Vorbedingung:   - Buch ist im Bestand
+                        - darf nicht verliehen sein
+        Durchführung:   - Buch suchen
+                        - Buch holen
+                        - Buchkarte ungültig machen
+			- BKK löschen
+			- Buch physikalisch entfernen
+        Alternativabläufe: - N/A
+        Nachbedingung:  - Buch ist nicht mehr im Bestand
+        Ausnahmen:      - Verleihversuch während des Löschprozesses
+        Bemerkungen:    - N/A
+
+
+                                                      
