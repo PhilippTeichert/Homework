@@ -319,18 +319,88 @@ Wörterbuchangriff
 	\item diese Speicherung würde (da jedes Passwort einen Hash der Länge 128 Bit\cite{wikimd5} generiert) $\Sigma_{i=1}^{7} 128^i$ Bit $\hat{\approx}$ 71 Terabyte verbrauchen, während eine der gegebenen Rainbowtables nur ca. 40 MB groß ist
 \end{itemize}
 \sss{2.2 Eigener Passwort-Cracker}
+Quellcode zu dieser Aufgabe zu finden unter \textbf{\nameref{gen}}
+\paragraph{Passwort:} s1v3s
+\paragraph{Lösungsweg:}
+\begin{itemize}
+	\item Darstellung der Passwortstellen wie \dq Walzen\dq bei einem Zahlenschloss (Wert von a bis 9)
+	\item Senden eines Ticks an die Walzen
+	\item Erste Walze wird gedreht, bei Überlauf Weitergabe an nächste Walze (rekursiv über alle sechs Walzen)
+	\item Startwert jeder Walze ist \dq ~\dq
+	\item Abfragen des Walzenstandes (Char-Sequenz) nach jedem Tick
+	\item abgefragten Stand mit salt konkatenieren und hashen
+	\item Kombinationen reichen von \dq a\dq ~bis \dq 999999\dq
+	\item Abbruch, wenn gehashte Kombination mit gegebenem Hash übereinstimmt
+\end{itemize}
 \sss{2.3 Eigene Kennwort-Speicherfunktion in Java}
+Quellcode zu dieser Aufgabe zu finden unter \textbf{\nameref{admin}}
+
+\paragraph{Funktionalität:}
+\begin{itemize}
+	\item Speicherformat: \texttt{username:salt:password-hash}
+	\item Speicherort: Festgelegt auf \texttt{\textasciitilde/Documents/passwoerter.txt}
+	\begin{itemize}
+		\item Verbesserungsoption: Benutzer den Speicherpfad angeben lassen
+	\end{itemize}
+	\item 5000-maliges hashen des Passwortes
+	\item \texttt{checkUser} nimmt das Nutzer-Passwort-Tupel entgegen, hasht das Salt-Passwort-Tupel 5000 mal und vergleicht mit dem Nutzer-Hash-Tupel im Speicher
+	\item \textit{main}-Methode nimmt als zusätzliche Parameter Methodennamen und Nutzernamen entgegen
+	\item Eingabeaufforderung für Passwort (vgl. Zusatzfrage, s.u.)
+	\item Vorhandene Datensätze werden überschrieben
+\end{itemize}
+
+\paragraph{Zusatzfrage.}
+Wenn das Passwort als Konsolenparameter übergeben wird, ist es in der Historie einzusehen und kann über \texttt{script} gespeichert werden.
+Aus diesem Grund wurde sich dazu entschieden, das Passwort über ein \texttt{JOPtionPane} im Programm abzufragen.
 
 \sus{3. Forensische Wiederherstellung von Kennwörtern}
+\sss{3.1}
+\begin{itemize}
+	\item Speicherorte: Swap, Registry, bash-history
+\end{itemize}
+\sss{3.2}
+Es wurde die bash-Chronik ausgelesen mit \texttt{/mnt/sda1/home/user \# cat .bash\textunderscore  history}.\\
+Inhalt:
+\begin{itemize}
+	\item reboot
+	\item cat /etc/inittab
+	\item man intro
+	\item man ls
+	\item exit
+	\item vi /etc/sudoers
+	\item top
+	\item pico
+	\item cd
+	\item exit
+	\item java
+	\item cd Desktop
+	\item jedit wp-config.php
+	\item scp wp-config.php root@10.1.1.2:/var/www/wordpress/
+	\item rm wp-config.php
+	\item exit
+\end{itemize}
+
+
+
+\sss{3.3}
+Es wurden folgende Passwörter gefunden:
+\begin{itemize}
+	\item \textbf{user:} bloguser\\
+			\textbf{password:} Flugentenfederkiel/991199
+	\item \textbf{user:} blog\textunderscore user\\
+			\textbf{password:} DUzvAu22cKatsXyV
+	\item \textbf{user:} bloguser\\
+			\textbf{password:} Kindergeburtstag/119911
+\end{itemize}
+Der letzte Eintrag führte zum erfolgreichen Login.
 
 \sus{4. Unsicherer Umgang mit Passwörtern in Java}
-
-
-
-
-
-
-
+\begin{itemize}
+	\item Mögliche Sicherheitslücke in Klasse \texttt{transport/HTTPTransport.java}
+	\item entschlüsseltes Passwort wird in String gespeichert
+	\item nach \cite{lnxspeicher} sind Strings im Speicher auslesbar
+	\item alternativ kann Prozess gedumped werden, womit später der Dump ausgelesen werden kann
+\end{itemize}
 
 
 \begin{thebibliography}{1}
@@ -338,6 +408,15 @@ Wörterbuchangriff
 \bibitem{2} http://www.cyberciti.biz/faq/understanding-etcshadow-file/
 \bibitem{3} http://zeitstempel.hauke-laging.de/hashinfo.php
 \bibitem{wikimd5} http://de.wikipedia.org/wiki/Message-Digest\textunderscore Algorithm\textunderscore 5
+\bibitem{lnxspeicher} http://www.foo.be/course/dess-20082009/davidoff-clearmem-linux.pdf
 \end{thebibliography}
+
+\newpage
+\section*{Anhang I: Erinnerungshilfe}
+\label{gen}
+
+\newpage
+\section*{Anhang II: Useradmin-Klasse}
+\label{admin}
 
 \end{document}
