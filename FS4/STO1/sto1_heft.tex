@@ -33,10 +33,6 @@
 	\addcontentsline{toc}{subsubsection}{TODO: #1}
 	\textcolor{pgreen}{\texttt{\-\\ \-\\//TODO: #1\-\\ \-\\}}
 }
-%% binomial coefficient
-\newcommand{\bin}[2]{%
-	\left(^{#1}_{#2}\right)
-}
 \newcommand{\sect}[3]{	%	custom section (level 1)
 	\newpage
 	\addcontentsline{toc}{section}{Zettel #1 (#2)}
@@ -108,19 +104,43 @@
 \Empty=1
 %% set to false to omit the table of contents
 \newcount\TOC
-\TOC=0
+\TOC=1
 %% set to false to omit the first task sheet
 \newcount\ZettelEins
-\ZettelEins=0
+\ZettelEins=1
 %% set to false to omit the second task sheet
 \newcount\ZettelZwei
-\ZettelZwei=0
+\ZettelZwei=1
 %% set to false to omit the third task sheet
 \newcount\ZettelDrei
-\ZettelDrei=0
-%% set to false to omit the third task sheet
+\ZettelDrei=1
+%% set to false to omit the fourth task sheet
 \newcount\ZettelVier
 \ZettelVier=1
+%% set to false to omit the fifth task sheet
+\newcount\ZettelFuenf
+\ZettelFuenf=1
+%% set to false to omit the sixth task sheet
+\newcount\ZettelSechs
+\ZettelSechs=1
+%% set to false to omit the seventh task sheet
+\newcount\ZettelSieben
+\ZettelSieben=1
+%% set to false to omit the eigth task sheet
+\newcount\ZettelAcht
+\ZettelAcht=1
+%% set to false to omit the ninth task sheet
+\newcount\ZettelNeun
+\ZettelNeun=1
+%% set to false to omit the tenth task sheet
+\newcount\ZettelZehn
+\ZettelZehn=1
+%% set to false to omit the eleventh task sheet
+\newcount\ZettelElf
+\ZettelElf=1
+%% set to false to omit the twelfth task sheet
+\newcount\ZettelZwoelf
+\ZettelZwoelf=1
 
 
 % global variables
@@ -665,16 +685,15 @@ Wie nach Aufgabe ist die Wahrscheinlichkeit dafür, dass alle drei Zutaten verwe
 
 
 \ifnum\ZettelVier=\True
-\sect{4}{26. Mai 2016}{3. Mai 2016}
+\sect{4}{26. April 2016}{3. Mai 2016}
 \susP{4.1}{10}
 (Fußball, 4+3+3 Punkte).
 Der Trainer eines Fußballklubs hat in seinem Aufgebot drei Torhüter, sieben Verteidiger, acht Mittelfeldspieler und vier Stürmer.
 \paragraph{a.}
 Auf wieviele Arten kann der Trainer ein Team zusammenstellen, wenn er im 4-4-2-Systm spielen will, also mit einem Torhüter, je vier Verteidigern und Mittelfeldspielern sowie zwei Stürmern?
-\-\\\vspace{.5cm}\-\\
 \[
 	\begin{array}{ll}
-		 &	\bin{3}{1} \cdot \bin{7}{4} \cdot \bin{8}{4} \cdot \bin{4}{2}	\\
+		 &	\binom{3}{1} \cdot \binom{7}{4} \cdot \binom{8}{4} \cdot \binom{4}{2}	\\
 		=&	\ilfrac{3!}{1!2!} \cdot \ilfrac{7!}{4!3!} \cdot \ilfrac{8!}{4!4!} \cdot \ilfrac{4!}{2!2!}	\\
 		=&	3 \cdot (7 \cdot 5) \cdot (2 \cdot 5 \cdot 7) \cdot 6\\
 		=&	3 \cdot 35 \cdot 70 \cdot 6\\
@@ -683,20 +702,23 @@ Auf wieviele Arten kann der Trainer ein Team zusammenstellen, wenn er im 4-4-2-S
 	\end{array}
 \]
 
-
-\-\\\vspace{.5cm}\-\\
 \paragraph{b.}
-Mit welcher Wahrscheinlichkeit ist der bei den Fans beliebte Stüberm Abel Bebel im Team, wenn der als Feierbiest bekannte Trainer nach feuchtfröhlichem Beisammensein seine Trainingseindrücke vergisst und aus allen im 4-4-2-System möglichen Aufstellungen rein Zufällig eine auswählt?
-\-\\\vspace{.5cm}\-\\
+Mit welcher Wahrscheinlichkeit ist der bei den Fans beliebte Stürmer Abel Bebel im Team, wenn der als Feierbiest bekannte Trainer nach feuchtfröhlichem Beisammensein seine Trainingseindrücke vergisst und aus allen im 4-4-2-System möglichen Aufstellungen rein Zufällig eine auswählt?
+\\\vspace{.3cm}\\
+Hier wird einer der Stürmer gesetzt, der Trainer hat also noch 1 Slot, den er mit einem von 3 Stürmern besetzen kann, übrig.
+Der Rest ändert sich nicht.
 \[
-	1:\bin{8}{4} = 1:70 \approx 0.0143 \hat{=} 1.43\%
+	\begin{array}{ll}
+		 &	\binom{3}{1} \cdot \binom{7}{4} \cdot \binom{8}{4} \cdot \binom{3}{1}	\\
+		=&	3 \cdot 35 \cdot 70 \cdot 3\\
+		=&	22050
+	\end{array}
 \]
+Es gibt also 22050 Fälle, die Abel Bebel enthalten, und insgesamt 44100.
+Also ist er in der Hälfte der Fälle enthalten, womit er zu 50\% auf dem Platz steht.
 
-
-\-\\\vspace{.5cm}\-\\
 \paragraph{c.}
 Auf wieviele Arten kann der Trainer die vier ausgewählten Verteidiger auf den vier Positionen seiner Abwehrkette verteilen, wenn er davon ausgeht, dass alle ausgewählten Verteidiger jede Position spielen können?
-\-\\\vspace{.5cm}\-\\
 \[
 	4! = 24
 \]
@@ -711,21 +733,15 @@ Diese möchte eine Variante der bekannten Fernsehlotterie ,,Spiel 77 '' auf den 
 	\item Im Unterschied zum bekannten Spiel werden die Ziffern am Ende der Größe nach aufgsteigend sortiert, aus der Ziehung 5,0,7,9,1,7,5 wird also die Zahl 0155779 zusammengesetzt.
 \end{itemize}
 Die sortierte siebenstellige Zahl ist dann das Ergebnis der Ziehung, die Menge aller solchen sortierten Zahlen wird mit $\Omega$ bezeichnet.
-\-\\\vspace{.5cm}\-\\
 \paragraph{a.}
 Wie viele Ergebnisse gibt es, d.h. wie viele Elemente enthält $\Omega$?
-\-\\\vspace{.5cm}\-\\
 \[
-	|\Omega|=9^7=4782969
+	|\Omega|=\binom{n+k-1}{k}=\binom{10+7-1}{7}=\binom{16}{7}=11440
 \]
-
-
-\-\\\vspace{.5cm}\-\\
 \paragraph{b.}
 Ist auf $\Omega$ eine Laplace-Annahme gerechtfertigt?
-\-\\\vspace{.5cm}\-\\
-Nein, da $P(X=``0000000'')$ geringer ist als $P(X=``1234567'')$.
-Dies ist bedingt durch den Umstand der Sortierung, womit z. B. die Ereignisse $X=``1234567''$ und $X=``7654321''$ auf das gleiche Ergebnis abbilden, jedoch Ergenisse wie $X=``iiiiiii'', i \in [1,2,\dots,7]$ jeweils nur ein Urbild haben.
+\paragraph{Nein,} da $P(X=\dq 0000000\dq)$ geringer ist als $P(X=\dq 1234567\dq)$.
+Dies ist bedingt durch den Umstand der Sortierung, womit z. B. die Ereignisse $X=\dq 1234567\dq$ und $X=\dq 7654321\dq$ auf das gleiche Ergebnis abbilden, jedoch Ergenisse wie $X=\dq iiiiiii\dq, i \in [0,1,\dots,9]$ jeweils nur ein Urbild haben.
 
 
 
@@ -740,8 +756,35 @@ Zeigen Sie, dass durch
 	R(A) := \alpha P(A) + (1-\alpha)Q(A),~~~~~A \subset \Omega
 \]
 ebenfalls ein Wahrscheinlichkeitsmaß $R:2^{\Omega} \rightarrow \mathbb{R}$ definiert wird.
-Warum gilt dies fpr $\alpha \not \in [0,1]$ nicht?
+Warum gilt dies für $\alpha \not \in [0,1]$ nicht?
 
+\fi
+
+
+
+\ifnum\ZettelFuenf=\True
+\sect{5}{26. Mai 2016}{3. Mai 2016}
+\fi
+\ifnum\ZettelSechs=\True
+\sect{6}{26. Mai 2016}{3. Mai 2016}
+\fi
+\ifnum\ZettelSieben=\True
+\sect{7}{26. Mai 2016}{3. Mai 2016}
+\fi
+\ifnum\ZettelAcht=\True
+\sect{8}{26. Mai 2016}{3. Mai 2016}
+\fi
+\ifnum\ZettelNeun=\True
+\sect{9}{26. Mai 2016}{3. Mai 2016}
+\fi
+\ifnum\ZettelZehn=\True
+\sect{10}{26. Mai 2016}{3. Mai 2016}
+\fi
+\ifnum\ZettelElf=\True
+\sect{11}{26. Mai 2016}{3. Mai 2016}
+\fi
+\ifnum\ZettelZwoelf=\True
+\sect{12}{26. Mai 2016}{3. Mai 2016}
 \fi
 
 \end{document}
