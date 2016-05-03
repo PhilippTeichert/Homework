@@ -757,6 +757,24 @@ Zeigen Sie, dass durch
 \]
 ebenfalls ein Wahrscheinlichkeitsmaß $R:2^{\Omega} \rightarrow \mathbb{R}$ definiert wird.
 Warum gilt dies für $\alpha \not \in [0,1]$ nicht?
+\[
+	\begin{array}{c}
+		\begin{array}{ll}
+			R(\Omega)	&=\alpha \cdot P(\Omega)+(1-\alpha)\cdot Q(\Omega)~~~~~~~~P(\Omega),Q(\Omega) = 1\text{, da es Wahrscheinlichkeitsmaße sind}\\
+						&=\alpha+1-\alpha\\
+						&=1
+		\end{array}\\\\
+		\begin{array}{c}
+			\alpha \in [0,1]\text{ muss gelten, da } R \rightarrow [0,1] \text{ sonst nicht gilt}
+		\end{array}\\\\
+		\begin{array}{ll}
+			R(\overset{\infty}{\underset{i=1}{\cup}}A_i)	&=	\alpha \cdot P(\overset{\infty}{\underset{i=1}{\cup}} A_i)+ (1-\alpha) \cdot Q(\overset{\infty}{\underset{i=1}{\cup}} A_i)\\
+															&=	\alpha \cdot \sum_{i=1}^{\infty}P(A_i) + (1-\alpha) \cdot \sum_{i=1}{\infty}Q(A_1)\\
+															&=	\sum_{i=1}^{\infty} \alpha \cdot P(A_i) + (1-\alpha) \cdot Q(A_i)\\
+															&=	\sum_{i=1}^{\infty} R(A_i)
+		\end{array}
+	\end{array}
+\]
 
 \fi
 
