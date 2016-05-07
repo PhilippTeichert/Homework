@@ -846,6 +846,15 @@ Warum gilt dies für $\alpha \not \in [0,1]$ nicht?
 		\item höchstens einmal gewinnen,
 		\item mehr als einmal gewinnen.
 	\end{itemize}
+	\[
+		X \textasciitilde{} Bin_{52,0.01} = P(X=n)=\binom{52}{n}\cdot 0.01^n \cdot 0.99^{52-n}
+	\]
+	\begin{equation}
+		P(X=\leq 1)=\mysum{0}{1}\binom{52}{i} \cdot 0.01^k \cdot 0.99^{52-i} \approx 0.9044 \hat{=} 90.44\%
+	\end{equation}
+	\begin{equation}
+		P(X > 1) = 1-P(X\leq 1) \approx 1-0.9044=0.0956 
+	\end{equation}
 	
 	\sss{b)}
 	Setzen Sie eine geeignete Poisson-Verteilung zur Approximation ein, und berechnen Sie mit dieser eine Näherung dafür, dass Sie mehr als einmal gewinnen.
