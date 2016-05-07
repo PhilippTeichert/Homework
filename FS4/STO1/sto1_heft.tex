@@ -11,6 +11,8 @@
 \usepackage{amsthm}
 % contradiction lightning
 \usepackage{stmaryrd}
+% better tilde
+\usepackage{textcomp}
 % algorithms and pseudo code
 \usepackage{algorithmic}
 \usepackage{algorithm}
@@ -27,7 +29,35 @@
 % custom text colors
 \definecolor{pblue}{rgb}{0.13,0.13,1}
 \definecolor{pgreen}{rgb}{0,0.5,0}
-% macro commands
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{%
+	arrows,			% arrow types
+	automata,		% states and transitions
+	positioning,	% position shifting
+	shapes,			% circles and stuff for Venn diagrams
+	backgrounds		% coloring and stuff
+}
+\usepackage{pgf}
+
+
+
+
+
+
+
+\begin{document}
+
+
+
+
+
+
+%#+-------------------------------------------------+#%
+%#+						MAKROS				     	+#%
+%#+-------------------------------------------------+#%
+
+
 %% requires color package and the custom colors defined here 
 \newcommand{\todo}[1]{
 	\addcontentsline{toc}{subsubsection}{TODO: #1}
@@ -71,26 +101,20 @@
 }
 %% custom command for better inline fractions
 \newcommand*\ilfrac[2]{{}^{#1}\!/_{#2}}
-
-% tikz
-\usepackage{tikz}
-\usetikzlibrary{%
-	arrows,			% arrow types
-	automata,		% states and transitions
-	positioning,	% position shifting
-	shapes,			% circles and stuff for Venn diagrams
-	backgrounds		% coloring and stuff
+%% shorter sum
+\newcommand{\mysum}[2]{
+	\sum_{i= #1}^{#2}
 }
-\usepackage{pgf}
+
+
+
 
 %#+-------------------------------------------------+#%
 %#+						VARIABLEN			     	+#%
 %#+-------------------------------------------------+#%
 
-\begin{document}
-
 % flags for compiling
-%% set counts other than True to 1 to print the corresponding section
+%% set counts other than 'True' to 1 to print the corresponding section
 \newcount\True
 \True=1
 %% set to false to omit title page
@@ -781,7 +805,61 @@ Warum gilt dies für $\alpha \not \in [0,1]$ nicht?
 
 
 \ifnum\ZettelFuenf=\True
-\sect{5}{26. Mai 2016}{3. Mai 2016}
+\sect{5}{03. Mai 2016}{10. Mai 2016}
+\susP{5.1}{11}
+	(Stichprobenentnahme, 5+6 Punkte).
+	Aufgrund von Ungenauigkeiten in der Produktion sind in jedem 1000er Pack einer bestimmten Sorte Schrauben immer 70 dabei, die nicht den Qualitätsanforderungen entsprechen.
+	Sie entnehmen einem vollen 1000er Pack acht Schrauben.
+	Da Sie diese nicht zurücklegen, sondern verwenden, wissen Sie, dass die Anzahl $X$ der defekten Schrauben unter den acht entnommenen einer hypergeometrischen Verteilung folgt.
+	
+	\textit{Hinweis:} Sie werden einen Computer oder Taschenrechner benötigen.
+
+	\sss{a)}
+	Geben Sie die Parameter der hypergeometrischen Verteilung an, und bestimmen Sie die Wahrscheinlichkeit, dass höchstens zwei Schrauben defekt sind.
+	
+	\[
+		X  \textasciitilde Hg_{8,70,1000} = \frac{\binom{70}{n} \cdot \binom{1000-70}{8-n}}{\binom{1000}{8}} = P(X=n)
+	\]
+	\[
+		P(X \leq 2) = \mysum{0}{2} \frac{\binom{70}{i} \binom{1000-70}{8-i}}{\binom{1000}{8}}\approx 0.8972 \hat{=} 89.72\%
+	\]
+	
+	\sss{b)}
+	Verwenden Sie eine geeignete Binomialverteilung zur Approximation, und bestimmen Sie darauf basierend eine Näherung für die gesuchte Wahrscheinlichkeit.
+	Wie bewerten Sie die Approximation?
+	\[
+		P(X\leq 2) = \mysum{0}{2}\binom{1000}{8}\cdot\left(\frac{70}{1000}\right)^k\cdot\left(1-\frac{70}{1000}\right)^{1000-k} \approx 7.9257x10^{13}
+	\]
+	Abweichung vehement; Binomialverteilung eignet sich als Näherung erst, wenn die Standardabweichung ($\sigma$) größer als 3 beziehungsweise die Varianz ($V(x)$) größer als 9 ist (hier ist $\sigma \approx 2.1$).
+\susP{5.2}{10}
+	(Glücksspiel, 5+5 Punkte).
+	In einem Glücksspiel haben Sie eine Gewinnwahrscheinlichkeit von $\ilfrac{1}{100}$.
+	Sie spielen ein Jahr lang wöchentlich, also 52 mal.
+	$X$ bezeichne die Anzahl von Spielen, bei denen Sie gewinnen.
+	
+	\textit{Hinweis:} Auch hier werden Sie einen Computer oder Taschenrechner benötigen.
+	
+	\sss{a)}
+	Welcher Verteilung folgt die Zufallsvariable $X$?
+	Bestimmen Sie die Wahrscheinlichkeit dafür, dass Sie
+	\begin{itemize}
+		\item höchstens einmal gewinnen,
+		\item mehr als einmal gewinnen.
+	\end{itemize}
+	
+	\sss{b)}
+	Setzen Sie eine geeignete Poisson-Verteilung zur Approximation ein, und berechnen Sie mit dieser eine Näherung dafür, dass Sie mehr als einmal gewinnen.
+
+\susP{5.3}{4}
+	(Eine Zähldichte, 4 Punkte).
+	Die Funktion $f:\{1,\dots,n\} \rightarrow \mathbb{R}$ mit $k \rightarrow p_k$ soll eine Zähldichte werden.
+	Äquivalent formuliert soll $(p_k)_{k=1}^{n}$ ein Wahrscheinlichkeitsvektor werden.
+	Dabei ist $p_k=c \cdot k$ mit einer Konstanten $c$ gesetzt.
+	
+	Bestimmen Sie $c$ so, dass die Anforderungen an eine Zähldichte bzw. einen Wahrscheinlichkeitsvektor erfüllt sind.\\
+	
+
+	\textit{Hinweis:} Es gilt $\sum_{k=1}^{n}k=\ilfrac{1}{2}n(n+1)$.
 \fi
 \ifnum\ZettelSechs=\True
 \sect{6}{26. Mai 2016}{3. Mai 2016}
