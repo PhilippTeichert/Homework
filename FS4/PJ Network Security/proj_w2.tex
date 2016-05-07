@@ -82,6 +82,37 @@
 \usetikzlibrary{arrows,automata,positioning}
 \usepackage{pgf}
 
+\usepackage{listings}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Source code inclusion
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\lstset{ %
+language=Java,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=b,           					% sets the caption-position to bottom
+breaklines=true,        					% sets automatic line breaking
+xleftmargin=1.5cm,							% space from the left paper edge
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
+\definecolor{light-light-gray}{gray}{0.95}
+
 %#+-------------------------------------------------+#%
 %#+						VARIABLEN			     	+#%
 %#+-------------------------------------------------+#%
@@ -414,9 +445,553 @@ Der letzte Eintrag führte zum erfolgreichen Login.
 \newpage
 \section*{Anhang I: Erinnerungshilfe}
 \label{gen}
+Startklasse:
+\begin{lstlisting}
+package zwei.zwei;
+
+public class Startup {
+
+    private static String password;
+    public static void main (String[] args){
+        Erinnerungshilfe eh = new Erinnerungshilfe();
+        password = eh.get_passwort();
+        System.out.println("Passwort: " + password);
+    }
+}
+\end{lstlisting}
+Eigentliche Erinnerungshilfe:
+\begin{lstlisting}
+package zwei.zwei;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+
+public class Erinnerungshilfe {
+	// Halterung für die Walzen
+	private ArrayList<Integer> _walzen;
+	// Speicher für das aktuelle Passwort
+	private String _passwort;
+	// Halterung für alle gültigen Symbole
+	private ArrayList<String> _charListe;
+	// Liste aller gültigen Symbole
+	private String _symbols;
+	// Halterung für Salt
+	private String _salt;
+	// Walze, die zur Zeit die letzte ist, welche bearbeitet wird.
+	private int _aktuelleWalze;
+
+	/**
+	 * Konstruktor. Ohne Angabe eines Salts wird der Salt aus der Aufgabe
+	 * verwendet
+	 */
+	public Erinnerungshilfe() {
+		this("8kofferradio");
+	}
+
+	/**
+	 * Konstruktor. Probiert automatisch alle Passwörter durch
+	 */
+	public Erinnerungshilfe(String salt) {
+		_walzen = new ArrayList<Integer>();
+		setupWalzenListe();
+		_passwort = "";
+		_symbols = "abcdefghijklmnopqrstuvwxyz0123456789";
+		_charListe = new ArrayList<String>();
+		setupCharListe();
+		_salt = salt;
+		findePasswort();
+	} // end Konstruktor
+
+	/**
+	 * Iteriert über die Walzen, bis die Abbruchbedingung erfüllt ist oder
+	 * alle Werte ausprobiert wurden
+	 */
+	private void findePasswort() {
+		_aktuelleWalze = 0;
+		while (_aktuelleWalze != _walzen.size()) {
+			tick(_walzen.get(_aktuelleWalze));
+			String hashPasswort = getMD5Hash(_salt.concat(_passwort));
+			System.out.println(_passwort);
+
+			if (hashPasswort.equals("2b2935865b8a6749b0fd31697b467bd7")) {
+				break;
+			}
+			_passwort = "";
+		}
+	} // end findePasswort()
+
+	/**
+	 * Dreht die gegebene Walze um ein Feld weiter. Bei Überlauf wird die Walze
+	 * zurückgesetzt und die nächste Walze rekursiv aufgerufen. Anschließend
+	 * wird das zum aktuellen Walzenstand gehörende Passwort generiert.
+	 * 
+	 * @param walze
+	 *            der Stand der aktuellen Walze
+	 * @param walzenIndex
+	 *            der Index der aktuellen Walze (wichtig zum Ändern des Wertes
+	 *            im Walzenarray)
+	 */
+	private void tick(int walze) {
+		walze += 1;
+		_walzen.set(_aktuelleWalze, walze); // setzt den Wert der Walze auch im
+		// Array
+		if (walze == _symbols.length()) {
+			_aktuelleWalze = rolleWalze(_aktuelleWalze); // setzt die nächste
+			// Walze weiter
+			// walze = _walzen.get(walzenIndex);
+			if (_aktuelleWalze < _walzen.size()) {
+				walze = 0; // setzt die aktuelle Walze zurück
+				_walzen.set(_aktuelleWalze, walze); // setzt den Wert der Walze
+				// auch im Array
+			}
+		}
+		if (_aktuelleWalze < _walzen.size()) {
+			for (int w : _walzen) {
+				if (w >= 0) {
+					_passwort += getSymbol(w);
+				}
+			}
+		}
+	} // end tick(int)
+
+	/**
+	 * Wird aufgerufen, sobald eine Walte komplett durchgedreht hat. Setzt die
+	 * nächste Walze einen Index weiter. Methode: Walze 1 dreht durch. Walze 1
+	 * wird wieder auf Wert 1 gesetzt. Walze 2 dreht durch. Walze 2 wird wieder
+	 * auf Wert 1 gesetzt und Walze 1 wird einen Wert weiter gesetzt. Walte 2
+	 * dreht durch. usw.
+	 * 
+	 * @param walzenIndex
+	 *            der Index der aktuell durch gedrehten Walze
+	 * @return der Index der neuen aktuellen Walze
+	 */
+	private int rolleWalze(int walzenIndex) {
+		if (walzenIndex == 0) {
+			if (_walzen.get(walzenIndex) >= 35) {
+				_walzen.set(walzenIndex, 0);
+				return walzenIndex + 1; // gehe zur nächsten Walze
+			} else {
+				_walzen.set(walzenIndex, _walzen.get(walzenIndex) + 1);
+				return walzenIndex;
+			}
+		} else if (0 < walzenIndex && walzenIndex < _walzen.size()) {
+			if (_walzen.get(walzenIndex) >= 35) {
+				_walzen.set(walzenIndex, 0);
+				return rolleWalze(walzenIndex - 1) + 1; // setze letzte Walze +1
+			} else {
+				_walzen.set(walzenIndex, _walzen.get(walzenIndex) + 1);
+				return walzenIndex;
+			}
+		}
+		return -1; // Hier kommt das Programm nie an
+    }
+
+    /**
+     * Holt ein Symbol aus der Symbolliste
+     * 
+     * @param index
+     *            der Index des Symbols
+     * @return das Symbol
+     */
+    private String getSymbol(int index) {
+    	return "" + _symbols.charAt(index);
+    } // end getSymbol()
+    
+    /**
+     * setzt die gültigen Symbole in einer Liste auf
+     */
+    private void setupCharListe() {
+        for (int i = 0; i < _symbols.length(); i++) {
+            _charListe.add(i, _symbols.substring(i, i + 1));
+        }
+    } // end setupCharListe()
+
+    /**
+     * setzt die Walzen auf und sortiert sie in einer Liste
+     */
+    private void setupWalzenListe() {
+        int walze0 = -1;
+        int walze1 = -1;
+        int walze2 = -1;
+        int walze3 = -1;
+        int walze4 = -1;
+        int walze5 = -1;
+        _walzen.add(0, walze0);
+        _walzen.add(1, walze1);
+        _walzen.add(2, walze2);
+        _walzen.add(3, walze3);
+        _walzen.add(4, walze4);
+        _walzen.add(5, walze5);
+    } // end setupWalzenListe()
+
+    /**
+     * Eine Methode zum einhashen von Srings im md5 Format
+     * 
+     * @param yourString
+     *            Der String der gehasht werden soll
+     * @return Der gehashte String
+     */
+    private String getMD5Hash(String yourString) {
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        md.update(yourString.getBytes());
+        byte[] digest = md.digest();
+        StringBuffer sb = new StringBuffer();
+        for (byte b : digest) {
+            sb.append(String.format("%02x", b & 0xff));
+        }
+        return sb.toString();
+    } // end getMD5Hash(String)
+	
+    /**
+     * gettermethode für _passwort
+     * 
+     * @return
+     * 			_passwort
+     */
+    public String get_passwort() {
+        return _passwort;
+    } // end get_passwort()
+
+} // end class
+\end{lstlisting}
 
 \newpage
 \section*{Anhang II: Useradmin-Klasse}
 \label{admin}
+Interface \texttt{Useradmin}
+\begin{lstlisting}
+package zwei.drei;
 
+/**
+ * Kennwortverwalter
+ * 
+ * @author georg
+ *
+ */
+public interface Useradministration {
+	
+	/**
+	 * füge Nutzer hinzu
+	 * 
+	 * @param username
+	 * 				der Nutzer
+	 * @param password
+	 * 				sein Passwort
+	 */
+	public void addUser(String username, char[] password);
+	
+	/**
+	 * prüft, ob das Passwort gültig ist
+	 * 
+	 * @param username
+	 * 				der Nutzer
+	 * @param password
+	 * 				sein Passwort
+	 * @return
+	 * 				ist das Passwort gültig?
+	 */
+	public boolean checkUser(String username, char[] password);
+}
+\end{lstlisting}
+Implementierende Klasse:
+\begin{lstlisting}
+package zwei.drei;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+
+public class Useradmin implements Useradministration {
+
+	private RandomSalt _rs;
+	private DateiVerwalter _ds;
+
+	public static void main(String[] args) {
+		if (args.length == 3) {
+			Useradmin ua = new Useradmin();
+			String name = args[1];
+			char[] passwort = args[2].toCharArray();
+			if (args[0].equals("addUser"))
+				ua.addUser(name, passwort);
+			else if (args[0].equals("checkUser"))
+				System.out.println(ua.checkUser(name, passwort));
+			else
+				System.out.println("Nein");
+
+		} else
+			System.out.println("Nein");
+	}
+
+	public Useradmin() {
+		_rs = new RandomSalt();
+		_ds = new DateiVerwalter();
+	}
+
+	@Override
+	public void addUser(String username, char[] password) {
+		String salt = _rs.getRandomSalt();
+		String hash = hash1k(salt.concat(String.copyValueOf(password)));
+		_ds.fuegeInhaltHinzu(username + ":" + salt + ":" +  hash);
+		_ds.write();
+	}
+
+	private String hash1k(String hash) {
+		for (int i = 0; i < 1001; i++) {
+			hash = getSHA512Hash(hash);
+		}
+		return hash;
+	}
+
+	@Override
+	public boolean checkUser(String username, char[] password) {
+		ArrayList<String> list = _ds.read();
+		String[] laufstring;
+		String nutzer;
+		String salt;
+		String hash;
+		for (String s : list) {
+			laufstring = s.split(":");
+			nutzer = laufstring[0];
+			salt = laufstring[1];
+			hash = laufstring[2];
+			if (nutzer.equals(username) && hash.equals(hash1k(salt
+					.concat(String.copyValueOf(password)))))
+					return true;
+			
+		}
+		return false;
+	}
+
+	/**
+	 * Eine Methode zum einhashen von Srings im SHA512 Format
+	 * 
+	 * @param yourString
+	 *            Der String der gehasht werden soll
+	 * @return Der gehashte String
+	 */
+	private String getSHA512Hash(String yourString) {
+		MessageDigest md = null;
+		try {
+			md = MessageDigest.getInstance("SHA-512");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		md.update(yourString.getBytes());
+		byte[] digest = md.digest();
+		StringBuffer sb = new StringBuffer();
+		for (byte b : digest) {
+			sb.append(Integer.toString((b & 0xff) + 0x100, 16).substring(1));
+		}
+		return sb.toString();
+	} // end getMD5Hash(String)
+}
+\end{lstlisting}
+Datentyp \say{\texttt{DateiVerwalter}}:
+\begin{lstlisting}
+package zwei.drei;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+/**
+ * generiert random Salts
+ * 
+ * @author georg
+ *
+ */
+public class RandomSalt {
+
+	// Halterung für die Walzen
+	private ArrayList<Integer> _walzen;
+	// Halterung für alle gültigen Symbole
+	private ArrayList<String> _charListe;
+	// Liste aller gültigen Symbole
+	private String _symbols;
+	// Random Event
+	private Random _rn;
+
+	/**
+	 * Konstruktor
+	 */
+	public RandomSalt() {
+		_rn = new Random();
+		_walzen = new ArrayList<Integer>();
+		_symbols = "abcdefghijklmnopqrstuvwxyz0123456789";
+		_charListe = new ArrayList<String>();
+		setupCharListe();
+	}
+
+	/**
+	 * erstellt einen random String
+	 * 
+	 * @return
+	 * 				ein random String
+	 */
+	public String getRandomSalt() {
+		setupWalzenListe();
+		
+		String salt = "";
+		for (int w : _walzen) {
+			if (w >= 0) {
+				salt += getSymbol(w);
+			}
+		}
+		_walzen.clear();
+		return salt;
+	}
+
+	/**
+	 * Holt ein Symbol aus der Symbolliste
+	 * 
+	 * @param index
+	 *            der Index des Symbols
+	 * @return das Symbol
+	 */
+	private String getSymbol(int index) {
+		return "" + _symbols.charAt(index);
+	} // end getSymbol()
+
+	/**
+	 * setzt die gültigen Symbole in einer Liste auf
+	 */
+	private void setupCharListe() {
+		for (int i = 0; i < _symbols.length(); i++) {
+			_charListe.add(i, _symbols.substring(i, i + 1));
+		}
+	} // end setupCharListe()
+
+	/**
+	 * setzt die Walzen auf und speichert sie in einer Liste,
+	 * zusammen mit ihrem Ausgabewert
+	 */
+	private void setupWalzenListe() {
+		int anzahl = Zufall(0, 20);
+
+		for (int i = 0; i < anzahl; i++) {
+			_walzen.add(i, Zufall(0, 35));
+		}
+	} // end setupWalzenListe()
+
+	/**
+	 * generiert eine Zufallszahl zwischen min und max
+	 * 
+	 * @param min 
+	 * 				Untergrenze
+	 * @param max
+	 * 				Obergrenze
+	 * @return
+	 * 				der Zufallswert
+	 */
+	private int Zufall(int min, int max) {
+		return _rn.nextInt(max - min + 1) + min;
+	}
+}
+
+\end{lstlisting}
+Datentyp \say{\texttt{RandomSalt}}:
+\begin{lstlisting}
+package zwei.drei;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class DateiVerwalter {
+
+	private ArrayList<String> _passwoerter;
+	private String _filePath;
+
+	public DateiVerwalter() {
+		_passwoerter = new ArrayList<String>();
+		String OS = System.getProperty("os.name");
+		_filePath = System.getProperty("user.home");
+		// Anpassen des Dateipfads entsprechend dem Host-OS
+		if (OS.startsWith("Windows")) {
+			_filePath += "\\Documents\\passwörter.txt";
+		} else if (OS.startsWith("Linux")) {
+			_filePath += "/Documents/passwörter.txt";
+		}
+		_passwoerter = read();
+	}
+
+	/**
+	 * fügt einen String an die Ausgabe an
+	 * 
+	 * @param inhalt
+	 *            der String
+	 * 
+	 */
+	public void fuegeInhaltHinzu(String inhalt) {
+		String[] laufstring;
+		String[] laufstringInhalt;
+		ArrayList<String> passwoerterBuffer = new ArrayList<String>(_passwoerter);
+		for (String s : _passwoerter) {
+			laufstring = s.split(":");
+			laufstringInhalt = inhalt.split(":");
+			if (laufstring[0].equals(laufstringInhalt[0]))
+				passwoerterBuffer.remove(s);
+		}
+		_passwoerter = passwoerterBuffer;
+		_passwoerter.add(inhalt);
+	} // end fuegeInhaltHinzu(String)
+
+	/**
+	 * fügt ein StringAray an die Ausgabe an
+	 * 
+	 * @param inhalt
+	 *            der String
+	 * 
+	 */
+	public void fuegeInhaltHinzu(ArrayList<String> inhalt) {
+		_passwoerter.addAll(inhalt);
+	} // end fuegeInhaltHinzu(ArrayList<String>)
+
+	/**
+	 * Schreibt die Passwortliste in eine Datei 'passwörter.txt' im
+	 * Dokumente-Ordner im Home-Verzeichnis des Nutzers
+	 */
+	public void write() {
+		File file = new File(_filePath);
+		try {
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			FileWriter fw = new FileWriter(file);
+			BufferedWriter bw = new BufferedWriter(fw);
+			for (int i = 0; i < _passwoerter.size(); i++) {
+				bw.write(_passwoerter.get(i));
+			}
+			bw.flush();
+			bw.close();
+		} catch (Exception e) {
+			System.out.println("There was a problem writing your file");
+		}
+	} // end write()
+
+	/**
+	 * Liest ein Dokument aus
+	 */
+	public ArrayList<String> read() {
+		ArrayList<String> list = new ArrayList<String>();
+		try {
+			Scanner s = new Scanner(new File(_filePath));
+			while (s.hasNextLine()) {
+				list.add(s.nextLine());
+			}
+			s.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
+	} // end read()
+}
+\end{lstlisting}
 \end{document}
