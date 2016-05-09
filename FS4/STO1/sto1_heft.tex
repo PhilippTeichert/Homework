@@ -146,25 +146,25 @@
 \ZettelFuenf=1
 %% set to false to omit the sixth task sheet
 \newcount\ZettelSechs
-\ZettelSechs=0
+\ZettelSechs=1
 %% set to false to omit the seventh task sheet
 \newcount\ZettelSieben
-\ZettelSieben=0
+\ZettelSieben=1
 %% set to false to omit the eigth task sheet
 \newcount\ZettelAcht
-\ZettelAcht=0
+\ZettelAcht=1
 %% set to false to omit the ninth task sheet
 \newcount\ZettelNeun
-\ZettelNeun=0
+\ZettelNeun=1
 %% set to false to omit the tenth task sheet
 \newcount\ZettelZehn
-\ZettelZehn=0
+\ZettelZehn=1
 %% set to false to omit the eleventh task sheet
 \newcount\ZettelElf
-\ZettelElf=0
+\ZettelElf=1
 %% set to false to omit the twelfth task sheet
 \newcount\ZettelZwoelf
-\ZettelZwoelf=0
+\ZettelZwoelf=1
 
 
 % global variables
@@ -319,6 +319,54 @@
 	\ifnum\ZettelVier=\True
 	\begin{tabular}{c|c|c|c}
 	~4.1~&~4.2~&~4.3~&~$\Sigma$~	\\	\hline
+		 &	   &	 &
+	\end{tabular}
+	\fi
+	\ifnum\ZettelFuenf=\True
+	\begin{tabular}{c|c|c|c}
+	~5.1~&~5.2~&~5.3~&~$\Sigma$~	\\	\hline
+		 &	   &	 &
+	\end{tabular}
+	\fi
+	\ifnum\ZettelSechs=\True
+	\begin{tabular}{c|c|c|c}
+	~6.1~&~6.2~&~6.3~&~$\Sigma$~	\\	\hline
+		 &	   &	 &
+	\end{tabular}
+	\fi
+	\ifnum\ZettelSieben=\True
+	\begin{tabular}{c|c|c|c}
+	~7.1~&~7.2~&~7.3~&~$\Sigma$~	\\	\hline
+		 &	   &	 &
+	\end{tabular}
+	\fi
+	\ifnum\ZettelAcht=\True
+	\begin{tabular}{c|c|c|c}
+	~8.1~&~8.2~&~8.3~&~$\Sigma$~	\\	\hline
+		 &	   &	 &
+	\end{tabular}
+	\fi
+	\ifnum\ZettelNeun=\True
+	\begin{tabular}{c|c|c|c}
+	~9.1~&~9.2~&~9.3~&~$\Sigma$~	\\	\hline
+		 &	   &	 &
+	\end{tabular}
+	\fi
+	\ifnum\ZettelZehn=\True
+	\begin{tabular}{c|c|c|c}
+	~10.1~&~10.2~&~10.3~&~$\Sigma$~	\\	\hline
+		 &	   &	 &
+	\end{tabular}
+	\fi
+	\ifnum\ZettelElf=\True
+	\begin{tabular}{c|c|c|c}
+	~11.1~&~11.2~&~11.3~&~$\Sigma$~	\\	\hline
+		 &	   &	 &
+	\end{tabular}
+	\fi
+	\ifnum\ZettelZwoelf=\True
+	\begin{tabular}{c|c|c|c}
+	~12.1~&~12.2~&~12.3~&~$\Sigma$~	\\	\hline
 		 &	   &	 &
 	\end{tabular}
 	\fi
@@ -880,25 +928,25 @@ Warum gilt dies für $\alpha \not \in [0,1]$ nicht?
 	\textit{Hinweis:} Es gilt $\sum_{k=1}^{n}k=\ilfrac{1}{2}n(n+1)$.
 \fi
 \ifnum\ZettelSechs=\True
-\sect{6}{26. Mai 2016}{3. Mai 2016}
+\sect{6}{10. Mai 2016}{24. Mai 2016}
 \fi
 \ifnum\ZettelSieben=\True
-\sect{7}{26. Mai 2016}{3. Mai 2016}
+\sect{7}{24. Mai 2016}{31. Mai 2016}
 \fi
 \ifnum\ZettelAcht=\True
-\sect{8}{26. Mai 2016}{3. Mai 2016}
+\sect{8}{31. Mai 2016}{7. Juni 2016}
 \fi
 \ifnum\ZettelNeun=\True
-\sect{9}{26. Mai 2016}{3. Mai 2016}
+\sect{9}{7. Juni 2016}{14. Juni 2016}
 \fi
 \ifnum\ZettelZehn=\True
-\sect{10}{26. Mai 2016}{3. Mai 2016}
+\sect{10}{14. Juni 2016}{21. Juni 2016}
 \fi
 \ifnum\ZettelElf=\True
-\sect{11}{26. Mai 2016}{3. Mai 2016}
+\sect{11}{21. Juni 2016}{28. Juni 2016}
 \fi
 \ifnum\ZettelZwoelf=\True
-\sect{12}{26. Mai 2016}{3. Mai 2016}
+\sect{12}{28. Juni 2016}{5. Juli 2016}
 \fi
 
 \end{document}
