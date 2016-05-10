@@ -926,6 +926,33 @@ Warum gilt dies für $\alpha \not \in [0,1]$ nicht?
 	
 
 	\textit{Hinweis:} Es gilt $\sum_{k=1}^{n}k=\ilfrac{1}{2}n(n+1)$.
+	\\\vspace{.4cm}\\
+	\textit{Anmerkung: $i := k$.}
+	Es gilt: 
+	\[
+		p_i = c \cdot i \Leftrightarrow \mysum{1}{n} c \cdot i = 1
+	\]
+	Durch den Hinweis erhalten wir:
+	\[
+		1 = \mysum {1}{n}ci = c\cdot \mysum{1}{n} i \Leftrightarrow c = \frac{1}{\mysum{1}{n} i} = \frac{1}{\frac{n(n+1)}{2}} = \frac{2}{n(n+1)}
+	\]
+	\paragraph{Nichtnegativität.}
+	$i$ ist stets positiv, ebenso wie $n$.
+	Beide Werte werden an keiner Stelle subtrahiert.
+	Damit nimmt der Term nie einen negativen Wert an.
+	\paragraph{Normiertheit.}
+	Für die Normiertheit muss gelten: $\mysum{1}{n}c\cdot i=1$.
+	\begin{equation*}
+		\begin{array}{rll}
+			1 	&=&	\mysum{1}{n} \frac{2}{n(n+1)}\cdot i\\
+				&=&	\frac{2}{n(n+1)}\mysum{1}{n}i\\
+				\Rightarrow \mysum{1}{n}i	&=& \frac{n(n+1)}{2}
+		\end{array}
+	\end{equation*}
+	Zusammen mit $c$ ergibt sich dann
+	\[
+		c \cdot \mysum{1}{n}i = \frac{n(n+1)}{2} \cdot \frac{2}{n(n+1)} = 1 \qed
+	\]
 \fi
 \ifnum\ZettelSechs=\True
 \sect{6}{10. Mai 2016}{24. Mai 2016}
