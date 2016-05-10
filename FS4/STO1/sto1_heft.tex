@@ -73,7 +73,7 @@
 \newcommand{\sus}[1]{
 	\addcontentsline{toc}{subsection}{Hausübung #1}
 	\subsection*{Hausübung #1}
-	\label{ssec:#1}
+	\label{ssec:\thesection.#1}
 }
 \newcommand{\susP}[2]{
 	\sus{#1}
@@ -82,7 +82,7 @@
 \newcommand{\sss}[1]{
 	\addcontentsline{toc}{subsubsection}{Teilaufgabe #1}
 	\subsubsection*{Teilaufgabe #1}
-	\label{sssec:#1}
+	\label{sssec:\thesection.\thesubsection.#1}
 }
 \newcommand{\points}[1]{
 	\begin{flushright}
@@ -956,6 +956,79 @@ Warum gilt dies für $\alpha \not \in [0,1]$ nicht?
 \fi
 \ifnum\ZettelSechs=\True
 \sect{6}{10. Mai 2016}{24. Mai 2016}
+\susP{6.1}{9}
+(Roulette, 3+4+2 Punkte).
+Beim Roulette sind die möglichen Ausgänge die Zahlen {0, . . . , 36}, bei guten Roulette-Tischen ist eine Laplace-Annahme gerechtfertigt.
+Im Spiel können Sie auf verschiedene Gruppen von Zahlen (einzelne Zahlen, corner, split, rot/schwarz, . . . ) wetten, allen Wettmöglichkeiten ist gemeinsam, dass sie die (grüne) 0 nicht enthalten.
+Als allgemeine Auszahlungsregel gilt: Haben Sie auf eine Gruppe aus k Zahlen gesetzt, erhalten Sie (Ihren Einsatz mitgerechnet) das $\ilfrac{36}{k}$-fache Ihres Einsatzes zurück.
+Setzen Sie $n$ Geldeinheiten ein, so beträgt Ihr Gewinn im Erfolgsfall $n \cdot (\ilfrac{36}{k}-1)$, im Misserfolgsfall verlieren Sie ihren Einsatz, Ihr Gewinn beträgt also $-n$ Geldeinheiten.
+\sss{a)}
+In der einfachsten Variante setzen sie auf ,,rot'' oder ,,schwarz''.
+Beide Zahlengruppen umfassen jeweils 18 der 37 möglichen Ereignisse.
+Setzen Sie $n$ Geldeinheiten ein, so können Sie im Erfolgsfall $n$ Geldeinheiten Gewinn machen, im Misserfolgsfall verlieren Sie $n$ Geldeinheiten.
+Bestimmen Sie den Erwartungswert des Gewinns.
+\[
+	\mu(x) = n \cdot \left(\frac{36}{18}-1 \right) \cdot \frac{18}{37} - n \cdot \frac{18}{37} - n \cdot \frac{1}{37} \approx -0.027n
+\]
+\sss{b)}
+Betrachten Sie nun den allgemeinen Fall mit dem Setzen auf $k$ Zahlen und bestimmen Sie auch hier den Erwartungswert Ihres Gewinns.
+\[
+	\mu(x) = n \cdot \left(\frac{36}{k}-1 \right) \cdot \frac{k}{37} - n \cdot \frac{37-k}{37} \approx xkn
+\]
+\sss{c)}
+Wie hängt der Erwartungswert des Gewinns von $n$ ab?
+Wie hängt er von $k$ ab?\\
+\vspace{.2cm}\\
+Je größer $k$ wird, desto größer der zu erwartende Verlust.
+Der Faktor, mit dem der Gewinn ausgezahlt wird, ist $f(k)$, die Auszahlung ist von $n$ abhängig in $n \cdot f(k)$.
+
+
+\susP{6.2}{7}
+(Die Varianz der Poisson-Verteilung, 7 Punkte).
+Es sei $Z$\textasciitilde$Pois_{\lambda}$.
+Bestimmen Sie \textbf{Var}[Z].
+\textit{Hinweis:} Den Erwartungswert haben Sie bereits in der Präsenzübung bestimmt.
+\todo{Wait for Präsenz}
+
+\susP{6.3}{9}
+(Noch ein Glücksspiel, 3+2+4 Punkte).
+Sie möchten ein neues Glücksspiel anbieten.
+Dazu stehen Ihnen geometrische Objekte zur Verfügung, die mit Wahrscheinlichkeit $\frac{1}{2},\frac{1}{3},\frac{1}{4},\frac{1}{5},\frac{1}{6}\dots$ jeweils einen Smiley anzeigen.
+Der Ablauf des Spiels sieht wie folgt aus: In der ersten Runde wird das Objekt mit Smiley-Wahrscheinlichkeit $\frac{1}{2}$ gewürfelt, in der zweiten Runde das mit Smiley-Wahrscheinlichkeit $\frac{1}{3}$, \dots, allgemein wird in der $n$-ten Runde das Objekt mit Smiley-Wahrscheinlichkeit $\frac{1}{n+1}$ gewürfelt.
+Das Spiel endet, sobald zum ersten Mal ein Smiley erscheint.
+Sie bezeichnen mit $X$ die Runde, in der zum ersten Mal ein Smiley gewürfelt wird.
+Nach etwas Überlegung wissen Sie, dass dann
+\[
+	P(X=k)=\frac{1}{k(k+1)},~~~~~~k \in \mathbb{N}
+\]
+gilt (Sie müssen diese Formel nicht begründen).
+Die Spieler setzen zu Beginn einen festen Betrag, und erhalten in Abhängigkeit von $X$ am Ende des Spiels eine Auszahlung.
+Dabei ziehen Sie folgende Möglichkeiten in Betracht:
+\begin{enumerate}
+	\item[a)] Ist $X=k$, so zahlen Sie $k$ Geldeinheiten aus.
+	\item[b)] Ist $X=k$, so zahlen Sie $k^2$ Geldeinheiten aus.
+	\item[c)] Ist $X=k$, so zahlen Sie $\frac{8}{k+2}$ Geldeinheiten aus.
+\end{enumerate} 
+Geben Sie jeweils an, wie hoch Sie den Einsatz zu Beginn des Spiels wählen müssen, um ein faires Spiel zu erzeugen.\\
+\vspace{.2cm}\\
+\textit{Hinweis:} Es gilt
+\[
+	\sum_{k=1}^{n}\frac{1}{i(i+1)(i+2)}=\frac{n(n+3)}{4(n+1)(n+2)}.
+\]
+\todo{Dinge}
+\sss{a)}
+\[
+	\frac{k}{k(k+1)}=\frac{1}{k+1}
+\]
+\sss{b)}
+\[
+	\frac{k^2}{k(k+1)}=\frac{k}{k+1}=k+1
+\]
+\sss{c)}
+\[
+	\frac{\frac{8}{k+2}}{k(k+1)}=\frac{8}{k(k+1)(k+2)}=8\cdot\frac{1}{k(k+1)(k+2)}
+\]
+
 \fi
 \ifnum\ZettelSieben=\True
 \sect{7}{24. Mai 2016}{31. Mai 2016}
