@@ -1,0 +1,107 @@
+\documentclass[twoside]{article}
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{fancyhdr}
+
+\usepackage[margin=2.54cm]{geometry}
+
+\newcommand{\say}[1]{%
+	``#1''%
+}
+\newcommand{\ttt}[1]{%
+	\texttt{#1}%
+}
+
+
+\begin{document}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{Louis Kobras\\6658699}
+\fancyhead[R]{Utz Pöhlmann\\6663579}
+\fancyfoot[RE,LO]{Seite \thepage}
+
+\begin{center}
+\begin{Huge}
+\textbf{SVS Bachelor-Projekt Network Security}
+\end{Huge}\\\-\\
+\begin{Large}
+\textbf{Blatt 3: Datenkommunikation}
+\end{Large}\\\-\\
+\begin{minipage}[t]{0.48\textwidth}
+\begin{center}\textbf{
+	Louis Kobras\\
+	6658699}
+\end{center}
+\end{minipage}
+\begin{minipage}[t]{0.48\textwidth}
+\begin{center}\textbf{
+	Utz Pöhlmann\\
+	6663579}
+\end{center}
+\end{minipage}
+\end{center}
+
+\section{HTTP}
+\subsection{}
+\begin{itemize}
+	\item hat nicht auf Pings reagiert (VM)
+	\item RealOS: Ping an IP 134.100.56.130 erfolgreich, \ttt{telnet} fehlgeschlagen
+\end{itemize}
+
+
+
+\section{SMPT (Mail Spoofing)}
+\subsection{}
+\# zwei Sätze zum Topic\\
+\# Input Protokoll\\
+\# Kommentar erste Mail vs. echte Mail\\
+\# Modifikation bei zweiter Mail
+
+
+
+\section{License Server (DNS-Spoofing)}
+\subsection{}
+Protokoll:
+\begin{enumerate}
+	\item Key als User-Input
+	\item Übermitteln des Keys an den Server
+	\item Rückgabe vom Server, ob Key gültig oder nicht (\ttt{SERIAL\textunderscore VALID=0} bzw. \ttt{SERIAL\textunderscore VALID=1})
+	\item[4a] Wenn gültig, Dank für Kauf
+	\item[4b] Wenn nicht gültig, FBI ist unterwegs
+\end{enumerate}
+\subsection{}
+\begin{itemize}
+	\item Verhindern der Kommunikation der Software mit dem echten Auth-Server
+	\item Geschehen durch Setzen des Hosts auf \ttt{127.0.0.1    license-server.svslab} in \ttt{/etc/hosts}
+	\item Herunterladen der Java-Klasse \ttt{TCPClient.java}\footnote{https://systembash.com/a-simple-java-tcp-server-and-tcp-client/}
+	\item Manipulieren des Servers: \ttt{ServerSocket} auf svslab-Port (1337) gesetzt
+	\item Manipulieren des Servers: Rückgabe des Servers auf statisch \ttt{\say{SERIAL\textunderscore VALID=1}} gesetzt
+	\item $\Longrightarrow$ alle Keys gültig, unabhängig von Eingabe
+\end{itemize} 
+\subsection{}
+Es gibt zwei anmerkbare Mängel.
+\begin{enumerate}
+	\item Es sollte nicht angegeben werden, ob die Serial-Länge korrekt ist.
+\end{enumerate}
+
+
+\section{License Server (Brute-Force-Angriff)}
+\subsection{}
+\subsection{}
+\subsection{}
+
+
+
+\section{Implementieren eines TCP-Chats}
+\subsection{}
+\subsection{}
+\subsection{}
+\subsection{}
+\subsection{}
+
+
+\end{document}
