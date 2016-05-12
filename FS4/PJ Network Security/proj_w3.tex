@@ -76,7 +76,7 @@ Protokoll:
 \subsection{}
 \begin{itemize}
 	\item Verhindern der Kommunikation der Software mit dem echten Auth-Server
-	\item Geschehen durch Setzen des Hosts auf \ttt{127.0.0.1    license-server.svslab} in \ttt{/etc/hosts}
+	\item Geschehen durch Erweitern des Hosts um \ttt{127.0.0.1    license-server.svslab} in \ttt{/etc/hosts}
 	\item Herunterladen der Java-Klasse \ttt{TCPClient.java}\footnote{https://systembash.com/a-simple-java-tcp-server-and-tcp-client/}
 	\item Manipulieren des Servers: \ttt{ServerSocket} auf svslab-Port (1337) gesetzt
 	\item Manipulieren des Servers: Rückgabe des Servers auf statisch \ttt{\say{SERIAL\textunderscore VALID=1}} gesetzt
@@ -86,12 +86,29 @@ Protokoll:
 Es gibt zwei anmerkbare Mängel.
 \begin{enumerate}
 	\item Es sollte nicht angegeben werden, ob die Serial-Länge korrekt ist.
+	\item Es könnte mithilfe einer eindeutigen Signatur o.Ä. eine Abfrage an den Server eingebunden werden, ob er \say{echt} ist (gehasht).
 \end{enumerate}
 
 
 \section{License Server (Brute-Force-Angriff)}
 \subsection{}
+Das Programm funktioniert an sich, wenn man aber an den Server sendet, kriegt man (scheinbar nach Zufall) entweder \say{invalid command} oder \say{invalid length} zurück, bei Eingabe von \ttt{serial=abcedfgh} ($a,b,c,d,e,f,g,h \in \{0,1,...,9\}$).
+
+Wir baten zwei Gruppen neben uns um Hilfe, jedoch konnten diese uns auch nicht weiterhelfen bzw. haben keinen Fehler in unserem Programm gefunden.
+
+Als Ausgangspunkt wurde die Java-Klasse \ttt{TCPClient.java} von [todo:link] genommen.
+
+gültige Keys:
+\begin{itemize}
+	\item 90877300
+\end{itemize}
 \subsection{}
+Möglichkeiten, sich zu verteidigen, enthalten, sind jedoch nicht beschränkt auf:
+\begin{itemize}
+	\item Sperren des Absenders der Auth-Anfrage nach $n$ Fehlversuchen (Unterbrechen von Brute-Force-Attacken)\footnote{Je nach Art der Sperrung ist dies lediglich eine Bremse; wird z.B. nur die IP gesperrt, kann diese resettet werden, um wieder Zugang zu erlangen.}
+	\item Prüfung der IP bzw. Prüfsumme, ob Empfänger und Absender korrekt sind (Zurechenbarkeit)
+	\item Limitieren der Eingabe auf $k$ pro Minute (Verlangsamen von Brute-Force-Attacken)
+\end{itemize}
 \subsection{}
 
 
