@@ -973,7 +973,7 @@ Bestimmen Sie den Erwartungswert des Gewinns.
 \sss{b)}
 Betrachten Sie nun den allgemeinen Fall mit dem Setzen auf $k$ Zahlen und bestimmen Sie auch hier den Erwartungswert Ihres Gewinns.
 \[
-	\mu(x) = n \cdot \left(\frac{36}{k}-1 \right) \cdot \frac{k}{37} - n \cdot \frac{37-k}{37} \approx xkn
+	\mu(x) = n \cdot \left(\frac{36}{k}-1 \right) \cdot \frac{k}{37} - n \cdot \frac{37-k}{37} = 35n-\frac{2kn}{37}
 \]
 \sss{c)}
 Wie hängt der Erwartungswert des Gewinns von $n$ ab?
@@ -981,6 +981,7 @@ Wie hängt er von $k$ ab?\\
 \vspace{.2cm}\\
 Je größer $k$ wird, desto größer der zu erwartende Verlust.
 Der Faktor, mit dem der Gewinn ausgezahlt wird, ist $f(k)$, die Auszahlung ist von $n$ abhängig in $n \cdot f(k)$.
+$n$ wirkt deutlich stärker in die Auszahlung als $k$.
 
 
 \susP{6.2}{7}
@@ -1026,15 +1027,23 @@ Geben Sie jeweils an, wie hoch Sie den Einsatz zu Beginn des Spiels wählen müs
 \[
 	\frac{k}{k(k+1)}=\frac{1}{k+1}
 \]
+\[
+	\mu(x)=1
+\]
 \sss{b)}
 \[
 	\frac{k^2}{k(k+1)}=\frac{k}{k+1}=k+1
+\]
+\[
+	\mu(x)=x
 \]
 \sss{c)}
 \[
 	\frac{\frac{8}{k+2}}{k(k+1)}=\frac{8}{k(k+1)(k+2)}=8\cdot\frac{1}{k(k+1)(k+2)}
 \]
-
+\[
+	\mu(x)=2
+\]
 \fi
 \ifnum\ZettelSieben=\True
 \sect{7}{24. Mai 2016}{31. Mai 2016}
