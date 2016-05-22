@@ -46,16 +46,14 @@
 \end{center}
 
 \section{HTTP}
-\subsection{}
-\begin{itemize}
-	\item hat nicht auf Pings reagiert (VM)
-	\item RealOS: Ping an IP 134.100.56.130 erfolgreich, \ttt{telnet} fehlgeschlagen
-\end{itemize}
+\subsection{[local]}
+Funktioniert so nicht, da die Website über das HTTPS-Protokoll läuft, welches SSL erfodert, welches wiederum nicht von telnet unterstützt wird.
+Alternativ kann OpenSSL verwendet werden.
 
 
 
 \section{SMPT (Mail Spoofing)}
-\subsection{}
+\subsection{[local]}
 \# zwei Sätze zum Topic\\
 \# Input Protokoll\\
 \# Kommentar erste Mail vs. echte Mail\\
@@ -64,7 +62,7 @@
 
 
 \section{License Server (DNS-Spoofing)}
-\subsection{}
+\subsection{[local]}
 Protokoll:
 \begin{enumerate}
 	\item Key als User-Input
@@ -91,20 +89,49 @@ Es gibt zwei anmerkbare Mängel.
 
 
 \section{License Server (Brute-Force-Angriff)}
-\subsection{}
+\subsection{[local]}
 Das Programm funktioniert an sich, wenn man aber an den Server sendet, kriegt man (scheinbar nach Zufall) entweder \say{invalid command} oder \say{invalid length} zurück, bei Eingabe von \ttt{serial=abcdefgh} ($a,b,c,d,e,f,g,h \in \{0,1,...,9\}$).
 
 Wir baten zwei Gruppen neben uns um Hilfe, jedoch konnten diese uns auch nicht weiterhelfen bzw. haben keinen Fehler in unserem Programm gefunden.
 
 Als Ausgangspunkt wurde die Java-Klasse \ttt{TCPClient.java} von [todo:link] genommen.
 
-gültige Keys:
-\begin{itemize}
-	\item 90877300
-	\item 31337000
-	\item 21935900
-	\item 62674000
-\end{itemize}
+Einige gültige Keys:\\
+\begin{center}
+\begin{minipage}[t]{0.23\textwidth}
+	\begin{itemize}
+		\item 03133700
+		\item 06264700
+		\item 09401100
+		\item 15668500
+	\end{itemize}
+\end{minipage}
+\begin{minipage}[t]{0.23\textwidth}
+	\begin{itemize}
+		\item 18802200
+		\item 21935900
+		\item 25069600
+		\item 31337000
+	\end{itemize}
+\end{minipage}
+\begin{minipage}[t]{0.23\textwidth}
+	\begin{itemize}
+		\item 47005500
+		\item 59540300
+		\item 62674000
+		\item 72075100
+	\end{itemize}
+\end{minipage}
+\begin{minipage}[t]{0.23\textwidth}
+	\begin{itemize}
+		\item 87743600
+		\item 90877300
+		\item 94011000
+		\item 97144700
+	\end{itemize}
+\end{minipage}
+\end{center}
+
 \subsection{}
 Möglichkeiten, sich zu verteidigen, enthalten, sind jedoch nicht beschränkt auf:
 \begin{itemize}
@@ -112,12 +139,19 @@ Möglichkeiten, sich zu verteidigen, enthalten, sind jedoch nicht beschränkt au
 	\item Prüfung der IP bzw. Prüfsumme, ob Empfänger und Absender korrekt sind (Zurechenbarkeit)
 	\item Limitieren der Eingabe auf $k$ pro Minute (Verlangsamen von Brute-Force-Attacken)
 \end{itemize}
-\subsection{}
-
+\subsection{[local]}
+Alle gefundenen gültigen Schlüssel sind durch 100 teilbar, liegen also in der Form $xxxxxx00$ vor.
+Ist ein Schlüssel außderdem durch 1000 teilbar, also in der Form $xxxxx000$, so ist ebenso ein Schlüssel der Form $0xxxxx00$ gültig, der die gleiche Ziffernfolge anstelle der $x$ enthält.
 
 
 \section{Implementieren eines TCP-Chats}
-\subsection{}
+\subsection{[local]}
+Es werden zwei URLs in Fragmenten gesendet.
+Zusammengesetzt sehen sie folgendermaßen aus:
+\begin{itemize}
+	\item $[$URL1$]$ \texttt{http://www.oracle.com/technetwork/java/socket-140484.html}
+	\item $[$URL2$]$ \texttt{http://code.google.com/p/example-of-servlet/source/browse/trunk/}\\\texttt{src/javaLanguage/basic/?r=56\#basic\%2Fsocket}
+\end{itemize}
 \subsection{}
 \subsection{}
 \subsection{}
