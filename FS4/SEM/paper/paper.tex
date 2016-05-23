@@ -11,7 +11,7 @@
 \newcommand{\trtitle}{[Arbeitstitel:]Task-Scheduling in verteilter Softwareentwicklung}
 \newcommand{\trmatrikelnummer}{6658699}
 \newcommand{\tremail}{4kobras@informatik.uni-hamburg.de}
-%\newcommand{\trarbeitsbereich}{Knowledge Technology, WTM}
+\newcommand{\trarbeitsbereich}{Complex Systems Engineering, CSE}
 \newcommand{\trdate}{\today}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -71,7 +71,7 @@
 
 %\lstloadlanguages{C}                   % Set the default language for listings
 \DeclareGraphicsExtensions{.pdf,.svg,.jpg,.png,.eps} % first try pdf, then eps, png and jpg
-\graphicspath{{./src/}} 								% Path to a folder where all pictures are located
+\graphicspath{{../img/}} 								% Path to a folder where all pictures are located
 \pagestyle{fancy} 											% Use nicer header and footer
 
 % Redefine the environments for floating objects:
@@ -170,10 +170,8 @@ literate=%
 \renewcommand{\headheight}{14.5pt}
 
 \fancyhead{}
-\fancyhead[LE]{ \slshape \trauthor}
-\fancyhead[LO]{}
-\fancyhead[RE]{}
-\fancyhead[RO]{ \slshape \trtitle}
+\fancyhead[LO]{ \slshape \trauthor}
+\fancyhead[RE]{ \slshape \trtitle}
 
 \renewcommand{\footrulewidth}{.4pt}
 
@@ -183,11 +181,22 @@ literate=%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Cover Header:
 \begin{titlepage}
-	\begin{flushleft}
-		Universität Hamburg\\
-		Fachbereich Informatik\\
-%		\trarbeitsbereich\\
-	\end{flushleft}
+	\begin{figure}[!h]
+		\begin{minipage}[t]{0.5\textwidth}
+		\vspace{0pt}
+		\begin{flushleft}
+			Universität Hamburg\\
+			Fachbereich Informatik\\
+		\end{flushleft}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.48\textwidth}
+			\vspace{0pt}
+			\begin{flushright}
+				\includegraphics[scale=.3]{uhh-logo}
+			\end{flushright}
+		\end{minipage}
+	\end{figure} 
 	\vspace{3.5cm}
 	\begin{center}
 		\huge \trtitle\\
@@ -226,13 +235,37 @@ literate=%
 \pagenumbering{arabic}
 \clearpage
 
-\section{Einführung}
+\section{Motivation}
 \label{sec:intro}
-\lipsum[2-3]
+Scheduling ist ein kritischer Punkt in großen (Entwicklungs-)Projekten.
+Besteht ein Entwicklerteam aus nur wenigen Leuten, so lassen sich mit relativ geringem Aufwand Punkte finden, an denen sich etwa eine Teambesprechung anbietet, oder eine Deadline festlegen, wann eine Ressource wieder freigegeben werden muss.
+
+Mit wachsender Projektgröße steigt die Anzahl an Anforderungen jedoch immens.
+
+Jede einzelne Person hat private Termine, die eingehalten werden müssen; Teilgruppen innerhalb des Teams müssen sich absprechen; der Kunde will betreut werden; Ressourcen müssen wieder freigegeben werden; Projektteile warten auf andere Projektteile.
+
+All diese Bedingungen und Abhängigkeiten zu vereinen, ist eine zunehmend komplexe Aufgabe, je mehr das Team anwächst, je größer das Projekt wird.
+
+Ziel dieser Arbeit ist es, mithilfe von Algorithmen aus der theoretischen Informatik ein Modell zu finden, welches all jenes miteinander vereint und in der Lage ist, einen optimierten Zeitplan zu bestimmen, der sämtliche ihm bekannten Termine und Abhängigkeiten berücksichtigt.
+
+Dazu wird sich verschiedenen Problemen aus der $NPH$-Klasse bedient, deren Lösungsalgo-rithmen zwar eine lange Laufzeit haben, von denen sich jedoch einige zur Modellierung des hier gegebenen Problems anbieten.
+Zum Abschluss soll ein gefundenes Schedule evaluiert werden:
+Kann es aus Sicht des Teams optimiert werden, d.h. kann die gesamte Projektlaufzeit verkürzt werden?
+Kann es aus Sicht eines Agenten optimiert werden, d.h. ist das Schedule derart gestaltet, dass die Wartezeiten jedes einzelnen Agenten minimal sind?
+Hierzu wird sich einiger Grundkonzepte der Spieltheorie bedient.
 
 \section{Warum kein Dudel?}
 \label{sec:dudel}
-\lipsum[4-6]
+Dudel oder etwas Vergleichbares ist sicherlich vielen ein Begriff.
+Geht es darum, einen einzelnen Zeitslot zu finden, an dem möglichst viele Agenten zur Verfügung stehen, so ist Dudel durchaus eine überlegenswerte Lösung.
+Sowohl das Erstellen als auch das Abstimmen ist einfach in der Handhabung.
+Dennoch gibt es mehrere Gründe, warum für große Projekte Dudel ausscheidet.
+\paragraph{Übersichtlichkeit.}
+\paragraph{Persönliche Motivation.}
+\paragraph{Optimierung.}
+\paragraph{Einzelläufigkeit.}
+
+\lipsum[6]
 \lipsum[51]
 
 \section{Approximation durch NP-schwere Probleme}
