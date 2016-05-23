@@ -34,11 +34,12 @@
 \usepackage{perpage}					% resets specified settings per page
 \MakePerPage{footnote}					% resetting footnote count per page
 
-\usepackage[outer=3.35cm]{geometry} 	% Type area (size, margins...) !!!Release version
+%\usepackage[outer=3.35cm]{geometry} 	% Type area (size, margins...) !!!Release version
 %\usepackage[outer=2.5cm]{geometry} 	% Type area (size, margins...) !!!Print version
 %\usepackage{geometry} 					% Type area (size, margins...) !!!Proofread version
 %\usepackage[outer=3.15cm]{geometry} 	% Type area (size, margins...) !!!Draft version
-\geometry{a4paper,body={5.8in,9in}}
+%\geometry{a4paper,body={5.8in,9in}}
+\usepackage[margin=2.54cm]{geometry}
 
 % changing font
 \usepackage{times}
@@ -227,23 +228,25 @@ literate=%
 
 \section{Einführung}
 \label{sec:intro}
-
+\lipsum[2-3]
 
 \section{Warum kein Dudel?}
 \label{sec:dudel}
-
+\lipsum[4-6]
+\lipsum[51]
 
 \section{Approximation durch NP-schwere Probleme}
 \label{sec:approx}
-
+\lipsum[7-27]
+\lipsum[52-55]
 
 \section{Lösungsansatz}
 \label{sec:sol}
-
+\lipsum[28-39]
 
 \section{Bewerten einer Lösung}
 \label{sec:eval}
-
+\lipsum[40-50]
 
 \newpage
 \addcontentsline{toc}{section}{Definitionen}
@@ -254,6 +257,21 @@ literate=%
 \paragraph*{Pareto-Optimum.}
 	\label{def:pareto}
 	Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+\paragraph*{\#titel}
+	\label{def:todo1}
+	\lipsum[2]
+\paragraph*{\#titel}
+	\label{def:todo2}
+	\lipsum[2]
+\paragraph*{\#titel}
+	\label{def:todo3}
+	\lipsum[2]
+\paragraph*{\#titel}
+	\label{def:todo4}
+	\lipsum[2]
+\paragraph*{\#titel}
+	\label{def:todo5}
+	\lipsum[2]
 \bibliographystyle{plain}
 \addcontentsline{toc}{section}{Quellenverzeichnis}% Add to the TOC
 \bibliography{bib}
