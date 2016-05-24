@@ -4,6 +4,8 @@
 \usepackage[ngerman]{babel}
 \usepackage[margin=2.5cm]{geometry}
 
+% those damn graphs that vsis wants
+\usepackage{blockgraph}
 % import math packages
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -162,8 +164,55 @@
 %#+						ZETTEL 1					+#%
 %#+-------------------------------------------------+#%
 \sect{3}{09. Mai 2016}{25. Mai 2016}
+\textit{\textbf{Scaling aus dem \texttt{Blockgraph}-Package hat rumgesponnen. Deswegen scaled floating image, deswegen kleine Labels. Sorry :'(}}
 \sus{Scheduling-Algorithmen}
 \sss{a}
+\begin{figure}[!h]
+\resizebox{.9\linewidth}{!}{
+\begin{blockgraph}{27}{3}{1}
+	% \bglabelxx erzeut Beschriftung der X-Achse an bestimmter Position
+	%% x axis labels
+	\bglabelxx{0}
+	\bglabelxx{5}
+	\bglabelxx{10}
+	\bglabelxx{15}
+	\bglabelxx{20}
+	\bglabelxx{25}
+	
+	%% y axis labels
+	\bglabely{0}{Prozess}
+	\bglabely{1}{Queue-Platz 1}
+	\bglabely{2}{Queue-Platz 2}
+
+	% \bgblock erzeugt Block innerhalb des Graphen. Parameter:
+	%    Y-Position (z.B. CPU), optional
+	%    Beginn auf der X-Achse
+	%    Ende auf der X-Achse
+	%    Beschriftung
+	%% processes
+	\bgblock[0]{0}{7}{$P_1$}
+	\bgblock[0]{8}{9}{$P_3$}
+	\bgblock[0]{10}{12}{$P_4$}
+	\bgblock[0]{13}{18}{$P_2$}
+	\bgblock[0]{19}{27}{$P_5$}
+	
+	%% load times
+	\bgemptysingleblock[0]{7}
+	\bgemptysingleblock[0]{9}
+	\bgemptysingleblock[0]{12}
+	\bgemptysingleblock[0]{18}
+	
+	%% Queue
+	\bgblock[1]{0}{1}{$P_1$}
+	\bgblock[1]{5}{12}{$P_2$}
+	\bgblock[2]{6}{7}{$P_3$}
+	\bgblock[2]{7}{9}{$P_4$}
+	\bgblock[2]{9}{12}{$P_5$}
+	\bgblock[1]{12}{18}{$P_5$}
+
+\end{blockgraph}
+}
+\end{figure}
 \sss{b}
 
 
