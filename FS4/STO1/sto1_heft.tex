@@ -973,7 +973,7 @@ Bestimmen Sie den Erwartungswert des Gewinns.
 \sss{b)}
 Betrachten Sie nun den allgemeinen Fall mit dem Setzen auf $k$ Zahlen und bestimmen Sie auch hier den Erwartungswert Ihres Gewinns.
 \[
-	\mu(x) = n \cdot \left(\frac{36}{k}-1 \right) \cdot \frac{k}{37} - n \cdot \frac{37-k}{37} = 35n-\frac{2kn}{37}
+	\mu(x) = n \cdot \left(\frac{36}{k}-1 \right) \cdot \frac{k}{37} - n \cdot \frac{37-k}{37} = 35n-\frac{2kn}{37} = n \cdot \left(35-\frac{2k}{37} \right)
 \]
 \sss{c)}
 Wie hängt der Erwartungswert des Gewinns von $n$ ab?
@@ -989,13 +989,21 @@ $n$ wirkt deutlich stärker in die Auszahlung als $k$.
 Es sei $Z$\textasciitilde$Pois_{\lambda}$.
 Bestimmen Sie \textbf{Var}[Z].
 \textit{Hinweis:} Den Erwartungswert haben Sie bereits in der Präsenzübung bestimmt.
-\todo{Wait for Präsenz}
-\[
-	Var[X]=E[(X-E[X])^2]=E[X^2]-E[X]^2
-\]
-\[
-	E[X]=\mu(X)=\sum_{x \in X} x \cdot p_x
-\]
+\\\vspace{.3cm}\\
+$Var[Z] = E[X^{2}]- E[X]^{2} \overset{da~E[X]=\lambda}{=} \mysum{z=0}{\infty} z^{2}\cdot \frac{\lambda^{z}\cdot e^{-\lambda}}{z!} - \lambda^{2}$
+
+Da für $z=0$ die ganze Summe den Wert 2 annimmt, kann die Untergrenze inkrementiert werden.
+
+$Var[Z] = \mysum{z=1}{\infty} z^{2}\cdot \frac{\lambda^{z}\cdot e^{-\lambda}}{z!} - \lambda^{2} = \mysum{z=1}{\infty} z^{2}\cdot \frac{\lambda\cdot\lambda^{z-1}\cdot e^{-\lambda}}{z\cdot(z-1)!} - \lambda^{2} = \lambda \cdot \mysum{z=1}{\infty} z\cdot \frac{\lambda^{z-1}\cdot e^{-\lambda}}{(z-1)!} - \lambda^{2}$
+
+Redekrementierung der Untergrenze ergibt einen Term $(z+1)$, welcher mit dem Bruch ausmultipliziert wird, wodurch zwei Summen entstehen.
+
+$Var[Z] = \lambda \cdot \mysum{z=1}{\infty} z\cdot \frac{\lambda^{z-1}\cdot e^{-\lambda}}{(z-1)!} - \lambda^{2} = \lambda \cdot \mysum{z=0}{\infty} (z+1) \cdot \frac{\lambda^{z}\cdot e^{-\lambda}}{z!} - \lambda^{2} = \lambda \cdot \mysum{z=0}{\infty} z \cdot \frac{\lambda^{z}\cdot e^{-\lambda}}{z!} +  \lambda \cdot \mysum{z=0}{\infty} \frac{\lambda^{z}\cdot e^{-\lambda}}{z!} - \lambda^{2}$
+
+Die erste Summe des Terms ist eben $E[Z]=\lambda$ und die zweite Summe ist die Summe aller Wahrscheinlichkeiten, somit 1.
+Demnach gilt also:
+
+$Var[Z] = \lambda \cdot \mysum{z=0}{\infty} z \cdot \frac{\lambda^{z}\cdot e^{-\lambda}}{z!} +  \lambda \cdot \mysum{z=0}{\infty} \frac{\lambda^{z}\cdot e^{-\lambda}}{z!} - \lambda^{2} = \lambda \cdot \lambda + \lambda \cdot 1 - \lambda^{2}= \lambda \Rightarrow Var[Z]=\lambda \qed$
 
 \susP{6.3}{9}
 (Noch ein Glücksspiel, 3+2+4 Punkte).
@@ -1022,7 +1030,12 @@ Geben Sie jeweils an, wie hoch Sie den Einsatz zu Beginn des Spiels wählen müs
 \[
 	\sum_{k=1}^{n}\frac{1}{i(i+1)(i+2)}=\frac{n(n+3)}{4(n+1)(n+2)}.
 \]
-\todo{Dinge}
+\-\\\vspace{.3cm}\\
+Bei einem fairen Spiel macht keine Seite nennenswerten Gewinn, bei langen Versuchsreihen mitteln sich Gewinn und Verlust einer jeden Partei auf 0.
+Demnach muss der Erwartungswert gleich dem Einsatz sein, damit ein Spiel fair ist, denn nur dann machen im Schnitt weder Spieler noch Bank Gewinn oder Verlust.
+Es gilt: $\mu(X) = \mysum{1}{\infty}i\cdot p_i \overset{Distributivgesetz}{=}\Leftrightarrow \ilfrac{\mu(X)}{\mysum{1}{\infty}p_i} = \mysum{1}{\infty}i \overset{\mysum{1}{\infty}p_i=1}{\Leftrightarrow} \mu(X) = \mysum{1}{\infty}i$
+
+Es wird also jeweils der Erwartungswert bestimmt; der Einsatz ist diesem dann gleichzusetzen.
 \sss{a)}
 \[
 	\frac{k}{k(k+1)}=\frac{1}{k+1}
@@ -1030,6 +1043,7 @@ Geben Sie jeweils an, wie hoch Sie den Einsatz zu Beginn des Spiels wählen müs
 \[
 	\mu(x)=1
 \]
+Der Einsatz sollte also \textbf{1 Geldeinheiten} betragen.
 \sss{b)}
 \[
 	\frac{k^2}{k(k+1)}=\frac{k}{k+1}=k+1
@@ -1037,6 +1051,7 @@ Geben Sie jeweils an, wie hoch Sie den Einsatz zu Beginn des Spiels wählen müs
 \[
 	\mu(x)=x
 \]
+Es lässt sich also \textbf{kein faires Spiel} erzeugen mit dieser Auszahlung.
 \sss{c)}
 \[
 	\frac{\frac{8}{k+2}}{k(k+1)}=\frac{8}{k(k+1)(k+2)}=8\cdot\frac{1}{k(k+1)(k+2)}
@@ -1044,6 +1059,7 @@ Geben Sie jeweils an, wie hoch Sie den Einsatz zu Beginn des Spiels wählen müs
 \[
 	\mu(x)=2
 \]
+Der Einsatz sollte also \textbf{2 Geldeinheiten} betragen.
 \fi
 \ifnum\ZettelSieben=\True
 \sect{7}{24. Mai 2016}{31. Mai 2016}

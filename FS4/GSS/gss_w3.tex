@@ -4,6 +4,8 @@
 \usepackage[ngerman]{babel}
 \usepackage[margin=2.5cm]{geometry}
 
+% those damn graphs that vsis wants
+\usepackage{blockgraph}
 % import math packages
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -124,6 +126,11 @@
 % default header and footer formatting overwrite
 \fancyhead{}
 \fancyfoot{}
+\newcommand{\grafik}[1]{
+\begin{figure}[!h]
+	\begin{center}\resizebox{.9\textwidth}{!}{#1}\end{center}
+\end{figure}
+}
 
 
 %#+-------------------------------------------------+#%
@@ -162,18 +169,228 @@
 %#+						ZETTEL 1					+#%
 %#+-------------------------------------------------+#%
 \sect{3}{09. Mai 2016}{25. Mai 2016}
+\textit{\textbf{Scaling aus dem \texttt{Blockgraph}-Package hat rumgesponnen. Deswegen scaled floating image, deswegen kleine Labels. Sorry :'( (Zur Not reinzoomen, ist ja eine Vektorgrafik)}}
 \sus{Scheduling-Algorithmen}
 \sss{a}
-\sss{b}
+\grafik{
+\begin{blockgraph}{28}{3}{1}
+	% \bglabelxx erzeut Beschriftung der X-Achse an bestimmter Position
+	%% x axis labels
+	\foreach \n in {0,...,28}{\bglabelxx{\n}}
+	
+	%% y axis labels
+	\bglabely{0}{Prozess}
+	\bglabely{1}{Queue-Platz 1}
+	\bglabely{2}{Queue-Platz 2}
 
+	% \bgblock erzeugt Block innerhalb des Graphen. Parameter:
+	%    Y-Position (z.B. CPU), optional
+	%    Beginn auf der X-Achse
+	%    Ende auf der X-Achse
+	%    Beschriftung
+	%% processes
+	\bgblock[0]{1}{7}{$P_1$}
+	\bgblock[0]{8}{9}{$P_3$}
+	\bgblock[0]{10}{12}{$P_4$}
+	\bgblock[0]{13}{18}{$P_2$}
+	\bgblock[0]{19}{28}{$P_5$}
+	
+	%% load times
+	\bgemptysingleblock[0]{0}
+	\bgemptysingleblock[0]{7}
+	\bgemptysingleblock[0]{9}
+	\bgemptysingleblock[0]{12}
+	\bgemptysingleblock[0]{18}
+	
+	%% Queue
+	\bgblock[1]{0}{1}{$P_1$}
+	\bgblock[1]{5}{12}{$P_2$}
+	\bgblock[2]{6}{7}{$P_3$}
+	\bgblock[2]{7}{9}{$P_4$}
+	\bgblock[2]{9}{12}{$P_5$}
+	\bgblock[1]{12}{18}{$P_5$}
+
+\end{blockgraph}
+}
+\sss{b}
+\grafik{
+	\begin{blockgraph}{38}{5}{1}
+		%% x axis labels
+		\foreach \n in {0,...,38}{\bglabelxx{\n}}
+		
+		%% y axis labels
+		\bglabely{0}{Prozess}
+		\bglabely{1}{Queue-Platz 1}
+		\bglabely{2}{Queue-Platz 2}	
+		\bglabely{3}{Queue-Platz 3}	
+		\bglabely{4}{Queue-Platz 4}	
+		
+		%% processes
+		\bgblock[0]{1}{3}{$P_1$}
+		\bgblock[0]{6}{8}{$P_1$}
+		\bgblock[0]{9}{11}{$P_2$}
+		\bgblock[0]{12}{13}{$P_3$}
+		\bgblock[0]{14}{16}{$P_4$}
+		\bgblock[0]{17}{19}{$P_1$}
+		\bgblock[0]{20}{22}{$P_5$}
+		\bgblock[0]{23}{25}{$P_2$}
+		\bgblock[0]{26}{28}{$P_5$}
+		\bgblock[0]{29}{30}{$P_2$}
+		\bgblock[0]{31}{33}{$P_5$}
+		\bgblock[0]{36}{38}{$P_5$}
+		
+		%% load times
+		\bgemptysingleblock[0]{0}
+		\bgemptysingleblock[0]{5}
+		\bgemptysingleblock[0]{8}
+		\bgemptysingleblock[0]{11}
+		\bgemptysingleblock[0]{13}
+		\bgemptysingleblock[0]{16}
+		\bgemptysingleblock[0]{19}
+		\bgemptysingleblock[0]{22}
+		\bgemptysingleblock[0]{25}
+		\bgemptysingleblock[0]{28}
+		\bgemptysingleblock[0]{30}
+		\bgemptysingleblock[0]{35}
+		
+		%% Queue - Slot 1
+		\bgblock[1]{0}{1}{$P_1$}
+		\bgblock[1]{3}{5}{$P_1$}
+		\bgblock[1]{6}{8}{$P_2$}
+		\bgblock[1]{8}{11}{$P_3$}
+		\bgblock[1]{11}{13}{$P_4$}
+		\bgblock[1]{13}{16}{$P_1$}
+		\bgblock[1]{16}{19}{$P_5$}
+		\bgblock[1]{19}{22}{$P_2$}
+		\bgblock[1]{22}{25}{$P_5$}
+		\bgblock[1]{25}{28}{$P_2$}
+		\bgblock[1]{28}{30}{$P_5$}
+		\bgblock[1]{33}{35}{$P_5$}
+		
+		%% Queue - Slot 2
+		\bgblock[2]{5}{6}{$P_2$}
+		\bgblock[2]{6}{8}{$P_3$}
+		\bgblock[2]{8}{11}{$P_4$}
+		\bgblock[2]{11}{13}{$P_1$}
+		\bgblock[2]{13}{16}{$P_5$}
+		\bgblock[2]{16}{19}{$P_2$}
+		
+		%% Queue - Slot 3
+		\bgblock[3]{7}{8}{$P_4$}
+		\bgblock[3]{8}{11}{$P_1$}
+		\bgblock[3]{11}{13}{$P_5$}
+		\bgblock[3]{13}{16}{$P_2$}
+		
+		%% Queue - Slot 4
+		\bgblock[4]{9}{11}{$P_5$}
+		\bgblock[4]{11}{13}{$P_2$}
+		
+	\end{blockgraph}
+}
 
 \sus{Echtzeit \& Mehrprozessor-Scheduling}
 \sss{a}
-\sss{b}
-\sss{c}
+Auftrag A1 benötigt alle 4 Ticks 1 Tick zum Rechnen.\\
+Auftrag A2 benötigt alle 7 Ticks 3 Ticks zum Rechnen.\\
+Auftrag A3 benötigt alle 3 Ticks 1 Tick zum Rechnen.\\
+Bringt man dies alles auf einen Nenner:\\
+Auftrag A1 benötigt alle 84 Ticks 21 Ticks zum Rechnen.\\
+Auftrag A2 benötigt alle 84 Ticks 36 Ticks zum Rechnen.\\
+Auftrag A3 benötigt alle 84 Ticks 28 Ticks zum Rechnen.\\
+21+36+28=85\\
+85 Ticks benötigte Zeit > 84 Ticks zur Verfügung stehende Zeit\\
+Somit gibt es keinen „guten“ Zeitplan.
+\sss{b.ii}
+\grafik{
+	\begin{blockgraph}{25}{5}{1}
+		%% x axis labels
+		\foreach \n in {0,...,25}{\bglabelxx{\n}}
 
+		%% y axis labels
+		\bglabely{0}{Prozess}
+		\bglabely{1}{Queue-Platz 1}
+		\bglabely{2}{Queue-Platz 2}	
+		\bglabely{3}{Queue-Platz 3}
+		\bglabely{4}{Überschrittene Deadline}
+		
+		%% processes
+		\bgblock[0]{0}{1}{$B_2$}
+		\bgblock[0]{1}{2}{$B_4$}
+		\bgblock[0]{2}{4}{$B_3$}
+		\bgblock[0]{4}{5}{$B_4$}
+		\bgblock[0]{5}{8}{$B_1$}
+		\bgblock[0]{8}{9}{$B_4$}
+		\bgblock[0]{9}{11}{$B_3$}
+		\bgblock[0]{11}{12}{$B_2$}
+		\bgblock[0]{12}{13}{$B_4$}
+		\bgblock[0]{13}{16}{$B_1$}
+		\bgblock[0]{16}{17}{$B_4$}
+		\bgblock[0]{17}{20}{$B_1$}
+		\bgblock[0]{20}{21}{$B_4$}
+		\bgblock[0]{21}{23}{$B_3$}
+		\bgblock[0]{23}{25}{$B_1$}
+		
+		%% Queue - Slot 1
+		\bgblock[1]{0}{1}{$B_4$}
+		\bgblock[1]{7}{13}{$B_1$}
+		\bgblock[1]{14}{17}{$B_1$}
+		\bgblock[1]{18}{21}{$B_3$}
+		\bgblock[1]{21}{23}{$B_1$}
+		\bgblock[1]{24}{25}{$B_4$}
+		
+		%% Queue - Slot 2
+		\bgblock[2]{0}{2}{$B_3$}
+		
+		%% Queue - Slot 3
+		\bgblock[3]{0}{5}{$B_1$}
+		
+		%% Überschrittene Deadline
+		\bgblock[4]{7}{8}{$B_1$}
+		\bgblock[4]{14}{16}{$B_1$}
+		
+	\end{blockgraph}
+}\newpage
+\sss{c}
+\grafik{
+	\begin{blockgraph}{13}{5}{1}
+		\foreach \n in {0,...,13}{\bglabelxx{\n}}
+		
+		\bglabely{0}{CPU 1}
+		\bglabely{1}{CPU 2}
+		\bglabely{2}{CPU 3}
+		\bglabely{3}{CPU 4}
+		\bglabely{4}{Queue}
+		
+		%% CPU 1
+		\bgblock[0]{0}{4}{$P_1$}
+		\bgblock[0]{4}{12}{$P_5$}
+		%% CPU 2
+		\bgblock[1]{2}{7}{$P_3$}
+		\bgblock[1]{7}{12}{$P_6$}
+		%% CPU 3
+		\bgblock[2]{2}{8}{$P_2$}
+		\bgblock[2]{9}{13}{$P_7$}
+		%% CPU 4
+		\bgblock[3]{3}{11}{$P_4$}
+		%% Queue
+		\bgblock[4]{3}{4}{$P_5$}
+		\bgblock[4]{5}{7}{$P_6$}
+		
+	\end{blockgraph}
+	
+}
 
 \sus{Prioritätsinversion}
 \sss{a}
+\textit{Anmerkung:} Die x-Achsenabschnitte sind in 10er-Schritten zu lesen.
+\grafik{
+	\begin{blockgraph}{17}{4}{1}
+		\foreach \n in {0,...,17}{\bglabelxx{\n}}
+		\bglabely{0}{Prozessor}
+		\bglabely{1}{Semaphor(B,M)}
+		\bglabely{2}{Queue-Slot 1}
+		\bglabely{3}{Queue-Slot 2}
+	\end{blockgraph}
+}
 
 \end{document}
