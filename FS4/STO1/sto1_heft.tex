@@ -973,7 +973,7 @@ Bestimmen Sie den Erwartungswert des Gewinns.
 \sss{b)}
 Betrachten Sie nun den allgemeinen Fall mit dem Setzen auf $k$ Zahlen und bestimmen Sie auch hier den Erwartungswert Ihres Gewinns.
 \[
-	\mu(x) = n \cdot \left(\frac{36}{k}-1 \right) \cdot \frac{k}{37} - n \cdot \frac{37-k}{37} = 35n-\frac{2kn}{37}
+	\mu(x) = n \cdot \left(\frac{36}{k}-1 \right) \cdot \frac{k}{37} - n \cdot \frac{37-k}{37} = 35n-\frac{2kn}{37} = n \cdot \left(35-\frac{2k}{37} \right)
 \]
 \sss{c)}
 Wie hängt der Erwartungswert des Gewinns von $n$ ab?
@@ -1033,8 +1033,9 @@ Geben Sie jeweils an, wie hoch Sie den Einsatz zu Beginn des Spiels wählen müs
 \-\\\vspace{.3cm}\\
 Bei einem fairen Spiel macht keine Seite nennenswerten Gewinn, bei langen Versuchsreihen mitteln sich Gewinn und Verlust einer jeden Partei auf 0.
 Demnach muss der Erwartungswert gleich dem Einsatz sein, damit ein Spiel fair ist, denn nur dann machen im Schnitt weder Spieler noch Bank Gewinn oder Verlust.
-Es gilt: $\mu(X) = \mysum{1}{\infty}i\cdot p_i \overset{Distributivgesetz}{=}\Leftrightarrow \ilfrac{\mu(X)}{\mysum{1}{\infty}p_i} = \mysum{1}{\infty}i \overset{\mysum{1}{\infty}p_i=1}{=} \mu(X) = \mysum{1}{\infty}i$
-\todo{Dinge}
+Es gilt: $\mu(X) = \mysum{1}{\infty}i\cdot p_i \overset{Distributivgesetz}{=}\Leftrightarrow \ilfrac{\mu(X)}{\mysum{1}{\infty}p_i} = \mysum{1}{\infty}i \overset{\mysum{1}{\infty}p_i=1}{\Leftrightarrow} \mu(X) = \mysum{1}{\infty}i$
+
+Es wird also jeweils der Erwartungswert bestimmt; der Einsatz ist diesem dann gleichzusetzen.
 \sss{a)}
 \[
 	\frac{k}{k(k+1)}=\frac{1}{k+1}
@@ -1042,6 +1043,7 @@ Es gilt: $\mu(X) = \mysum{1}{\infty}i\cdot p_i \overset{Distributivgesetz}{=}\Le
 \[
 	\mu(x)=1
 \]
+Der Einsatz sollte also \textbf{1 Geldeinheiten} betragen.
 \sss{b)}
 \[
 	\frac{k^2}{k(k+1)}=\frac{k}{k+1}=k+1
@@ -1049,6 +1051,7 @@ Es gilt: $\mu(X) = \mysum{1}{\infty}i\cdot p_i \overset{Distributivgesetz}{=}\Le
 \[
 	\mu(x)=x
 \]
+Es lässt sich also \textbf{kein faires Spiel} erzeugen mit dieser Auszahlung.
 \sss{c)}
 \[
 	\frac{\frac{8}{k+2}}{k(k+1)}=\frac{8}{k(k+1)(k+2)}=8\cdot\frac{1}{k(k+1)(k+2)}
@@ -1056,6 +1059,7 @@ Es gilt: $\mu(X) = \mysum{1}{\infty}i\cdot p_i \overset{Distributivgesetz}{=}\Le
 \[
 	\mu(x)=2
 \]
+Der Einsatz sollte also \textbf{2 Geldeinheiten} betragen.
 \fi
 \ifnum\ZettelSieben=\True
 \sect{7}{24. Mai 2016}{31. Mai 2016}
