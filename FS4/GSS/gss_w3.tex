@@ -13,6 +13,8 @@
 \usepackage{amsthm}
 % contradiction lightning
 \usepackage{stmaryrd}
+% links and refs
+\usepackage{hyperref}
 % algorithms and pseudo code
 \usepackage{algorithmic}
 \usepackage{algorithm}
@@ -169,7 +171,7 @@
 %#+						ZETTEL 1					+#%
 %#+-------------------------------------------------+#%
 \sect{3}{09. Mai 2016}{25. Mai 2016}
-\textit{\textbf{Scaling aus dem \texttt{Blockgraph}-Package hat rumgesponnen. Deswegen scaled floating image, deswegen kleine Labels. Sorry :'( (Zur Not reinzoomen, ist ja eine Vektorgrafik)}}
+\textit{\textbf{Scaling aus dem \texttt{Blockgraph}-Package hat rumgesponnen. Deswegen scaled floating image, deswegen kleine Labels. Sorry :'( (Zur Not reinzoomen, ist ja eine Vektorgrafik) Unsere Notizen können ggf. unter [0] als Referenz eingesehen werden.}}
 \sus{Scheduling-Algorithmen}
 \sss{a}
 \grafik{
@@ -390,7 +392,37 @@ Somit gibt es keinen „guten“ Zeitplan.
 		\bglabely{1}{Semaphor(B,M)}
 		\bglabely{2}{Queue-Slot 1}
 		\bglabely{3}{Queue-Slot 2}
+		
+		\bgblock[0]{0}{1}{B}
+		\bgblock[0]{1}{3}{Z}
+		\bgblock[0]{3}{6}{M}
+		\bgblock[0]{6}{7}{B}
+		\bgblock[0]{7}{9}{Z}
+		\bgblock[0]{9}{10}{B}
+		\bgblock[0]{11.5}{14.5}{M}
+		\bgblock[0]{14.5}{15.5}{B}
+		\bgblock[0]{15.5}{17}{Z}
+		
+		\bgblock[1]{0}{1}{lock(B)}
+		\bgblock[1]{3}{6}{lock(M)}
+		\bgblock[1]{6}{7}{lock(B)}
+		\bgblock[1]{9}{10}{lock(B)}
+		\bgblock[1]{11.5}{14.5}{lock(M)}
+		\bgblock[1]{14.5}{15.5}{lock(B)}
+		
+		\bgblock[2]{0}{2}{M}
+		\bgblock[2]{4}{6}{B}
+		\bgblock[2]{6}{7}{Z}
+		\bgblock[2]{8}{9}{B}
+		\bgblock[2]{12}{14.5}{B}
+		\bgblock[2]{16}{17}{B}
+		
+		\bgblock[3]{0}{1}{Z}
+		\bgblock[3]{12}{15.5}{Z}
 	\end{blockgraph}
 }
+\paragraph*{}
+\paragraph*{}
+[0]: \href{https://docs.google.com/document/d/1EJntYgtHZphwCFuU_R3hNkebmw-3NdSDRfhEMgyucB8/edit?usp=sharing}{https://docs.google.com/document/d/1EJntYgtHZphwCFuU\_R3hNkebmw-3NdSDRfhEMgyucB8/edit?usp=sharing}
 
 \end{document}
