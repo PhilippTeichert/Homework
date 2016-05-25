@@ -8,6 +8,8 @@
 
 \usepackage[margin=2.54cm]{geometry}
 
+\usepackage{hyperref}
+
 \newcommand{\say}[1]{%
 	``#1''%
 }
@@ -48,16 +50,43 @@
 \section{HTTP}
 \subsection{[local]}
 Funktioniert so nicht, da die Website über das HTTPS-Protokoll läuft, welches SSL erfodert, welches wiederum nicht von telnet unterstützt wird.
-Alternativ kann OpenSSL verwendet werden.
-
+Alternativ kann OpenSSL verwendet werden.\\
+\\
+Es konnte ein Stylesheet ausgelesen werden; (s. \cite{svscss}).\\
+Kommentar: Zeilenumbrüche schaden nicht.
 
 
 \section{SMPT (Mail Spoofing)}
 \subsection{[local]}
-\# zwei Sätze zum Topic\\
-\# Input Protokoll\\
-\# Kommentar erste Mail vs. echte Mail\\
-\# Modifikation bei zweiter Mail
+\begin{itemize}
+	\item Verbinden zum Mailserver mit \ttt{telnet mailhost.informatik.uni-hamburg.de 25} (25 ist der Port des Servers)
+	\item Eingabe folgender Befehle:
+	\begin{itemize}
+		\item \ttt{EHLO svs-labwall.informatik.uni-hamburg.de}
+		\item \ttt{MAIL FROM: <svsg07@informatik.uni-hamburg.de>}
+		\item \ttt{RCPT TO: <4kobras@informatik.uni-hamburg.de>}
+		\item \ttt{DATA}
+	\end{itemize}
+	\item folgender Mail-Text: \ttt{``Hier könnte Ihr Inhalt stehen''}
+	\item Quelltextvergleich mit ``echter'' Mail ergab fehlende Konfigurationsinformationen
+	\item Mangel nicht offensichtlich, kann durch Ergänzung der obigen Eingabe zwischen \ttt{DATA} und dem Mail-Text angepasst werden
+	\item Fehlende Informationen:
+	\begin{itemize}
+		\item \ttt{MIME-Version: 1.0}
+		\item \ttt{Content-Type: text/plain;\\
+				\-~~~~~~~~charset=ISO-8895-1;\\
+				\-~~~~~~~~DelSp="Yes";\\
+				\-~~~~~~~~format="flowed"}
+		\item \ttt{Content-Disposition: inline}
+		\item \ttt{Content-Transfer-Encoding: 7bit}
+		\item \ttt{User-Agent: Internet Messaging Program (IMP) H3 (4.1.5)}
+	\end{itemize}
+	\item Absender \ttt{gmail.com} ebenfalls möglich; folgender Eintrag ist zu modifizieren:
+	\begin{itemize}
+		\item \ttt{EHLO google.com}
+	\end{itemize}
+	\item Fehlerfall: Shell terminiert \ttt{telnet}-Ausführung mit dem Kommentar \ttt{``I can break rules, too. Goodbye.''}
+\end{itemize}
 
 
 
@@ -75,7 +104,7 @@ Protokoll:
 \begin{itemize}
 	\item Verhindern der Kommunikation der Software mit dem echten Auth-Server
 	\item Geschehen durch Erweitern des Hosts um \ttt{127.0.0.1    license-server.svslab} in \ttt{/etc/hosts}
-	\item Herunterladen der Java-Klasse \ttt{TCPClient.java}\footnote{https://systembash.com/a-simple-java-tcp-server-and-tcp-client/}
+	\item Herunterladen der Java-Klasse \ttt{TCPClient.java} (\cite{javatcp})
 	\item Manipulieren des Servers: \ttt{ServerSocket} auf svslab-Port (1337) gesetzt
 	\item Manipulieren des Servers: Rückgabe des Servers auf statisch \ttt{\say{SERIAL\textunderscore VALID=1}} gesetzt
 	\item $\Longrightarrow$ alle Keys gültig, unabhängig von Eingabe
@@ -94,7 +123,7 @@ Das Programm funktioniert an sich, wenn man aber an den Server sendet, kriegt ma
 
 Wir baten zwei Gruppen neben uns um Hilfe, jedoch konnten diese uns auch nicht weiterhelfen bzw. haben keinen Fehler in unserem Programm gefunden.
 
-Als Ausgangspunkt wurde die Java-Klasse \ttt{TCPClient.java} von [todo:link] genommen.
+Als Ausgangspunkt wurde die Java-Klasse \ttt{TCPClient.java} (source: \cite{javatcp}) genommen.
 
 Einige gültige Keys:\\
 \begin{center}
@@ -157,5 +186,8 @@ Zusammengesetzt sehen sie folgendermaßen aus:
 \subsection{}
 \subsection{}
 
-
+\begin{thebibliography}{1}
+\bibitem{svscss}	\url{https://www.inf.uni-hamburg.de/assets/application-11e3b49e605\\ff8ba1f01d275bd36850edfdfc1fbbb8c22e55fae1baf643a00d0.css}
+\bibitem{javatcp}	\url{https://systembash.com/a-simple-java-tcp-server-and-tcp-client/}
+\end{thebibliography}
 \end{document}
