@@ -8,6 +8,10 @@
 
 \usepackage[margin=2.54cm]{geometry}
 
+\usepackage{listings}
+
+\usepackage{xcolor}
+
 \usepackage{hyperref}
 
 \newcommand{\say}[1]{%
@@ -16,6 +20,36 @@
 \newcommand{\ttt}[1]{%
 	\texttt{#1}%
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Source code inclusion
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\lstset{ %
+language=Java,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=b,           					% sets the caption-position to bottom
+breaklines=true,        					% sets automatic line breaking
+xleftmargin=1.5cm,							% space from the left paper edge
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
+\definecolor{light-light-gray}{gray}{0.95}
 
 
 \begin{document}
@@ -190,4 +224,673 @@ Zusammengesetzt sehen sie folgendermaßen aus:
 \bibitem{svscss}	\url{https://www.inf.uni-hamburg.de/assets/application-11e3b49e605\\ff8ba1f01d275bd36850edfdfc1fbbb8c22e55fae1baf643a00d0.css}
 \bibitem{javatcp}	\url{https://systembash.com/a-simple-java-tcp-server-and-tcp-client/}
 \end{thebibliography}
+\newpage
+\section*{Anhang 1: Quelltext zu Aufgabe 3}
+\subsubsection*{Klasse GeneratorTool.java}
+\begin{lstlisting}
+import java.util.ArrayList;
+
+public class GeneratorTool {
+	// Halterung für die Walzen
+	private ArrayList<Integer> _walzen;
+	// Speicher für das aktuelle Passwort
+	private String _passwort;
+	// Halterung für alle gültigen Symbole//
+	private ArrayList<String> _charListe;
+	// Liste aller gültigen Symbole
+	private final String _symbols;
+	// Walze, die zur Zeit die letzte ist, welche bearbeitet wird.
+	private int _aktuelleWalze;
+
+	/**
+	 * Konstruktor. Probiert automatisch alle Passwörter durch
+	 */
+	public GeneratorTool() {
+		_walzen = new ArrayList<Integer>();
+		setupWalzenListe();
+		_passwort = "";
+		_symbols = "0123456789";
+		_charListe = new ArrayList<String>();
+		setupCharListe();
+		_aktuelleWalze = 0;
+	} // end Konstruktor
+
+	/**
+	 * Iteriert über die Walzen, bis die Abbruchbedingung erfüllt ist oder
+	 * alle Werte ausprobiert wurden
+	 */
+	public void findeEinPasswort() {
+		_aktuelleWalze = 7;
+		_passwort = "";
+		if (_aktuelleWalze != _walzen.size()) {
+			tick(_walzen.get(_aktuelleWalze));
+			// System.out.println(_passwort);
+		}
+	} // end findePasswort()
+
+	/**
+	 * Dreht die gegebene Walze um ein Feld weiter. Bei Überlauf wird die Walze
+	 * zurückgesetzt und die nächste Walze rekursiv aufgerufen. Anschließend
+	 * wird das zum aktuellen Walzenstand gehörende Passwort generiert.
+	 * 
+	 * @param walze
+	 *            der Stand der aktuellen Walze
+	 * @param walzenIndex
+	 *            der Index der aktuellen Walze (wichtig zum Ändern des Wertes
+	 *            im Walzenarray)
+	 */
+	private void tick(int walze) {
+		walze += 1;
+		_walzen.set(_aktuelleWalze, walze); // setzt den Wert der Walze auch im
+		// Array
+		if (walze == _symbols.length()) {
+			_aktuelleWalze = rolleWalze(_aktuelleWalze); // setzt die nächste
+			// Walze weiter
+			// walze = _walzen.get(walzenIndex);
+			if (_aktuelleWalze < _walzen.size()) {
+				walze = 0; // setzt die aktuelle Walze zurück
+				_walzen.set(_aktuelleWalze, walze); // setzt den Wert der Walze
+				// auch im Array
+			}
+		}
+		if (_aktuelleWalze < _walzen.size()) {
+			for (int w : _walzen) {
+				if (w >= 0) {
+					_passwort += getSymbol(w);
+				}
+			}
+		}
+	} // end tick(int)
+
+	/**
+	 * Wird aufgerufen, sobald eine Walte komplett durchgedreht hat. Setzt die
+	 * nächste Walze einen Index weiter. Methode: Walze 1 dreht durch. Walze 1
+	 * wird wieder auf Wert 1 gesetzt. Walze 2 dreht durch. Walze 2 wird wieder
+	 * auf Wert 1 gesetzt und Walze 1 wird einen Wert weiter gesetzt. Walte 2
+	 * dreht durch. usw.
+	 * 
+	 * @param walzenIndex
+	 *            der Index der aktuell durch gedrehten Walze
+	 * @return der Index der neuen aktuellen Walze
+	 */
+	private int rolleWalze(int walzenIndex) {
+		if (walzenIndex == 0) {
+			if (_walzen.get(walzenIndex) >= _symbols.length() - 1) {
+				_walzen.set(walzenIndex, 0);
+				return walzenIndex + 1; // gehe zur nächsten Walze
+			} else {
+				_walzen.set(walzenIndex, _walzen.get(walzenIndex) + 1);
+				return walzenIndex;
+			}
+		} else if (0 < walzenIndex && walzenIndex < _walzen.size()) {
+			if (_walzen.get(walzenIndex) >= _symbols.length() - 1) {
+				_walzen.set(walzenIndex, 0);
+				return rolleWalze(walzenIndex - 1) + 1; // setze letzte Walze +1
+			} else {
+				_walzen.set(walzenIndex, _walzen.get(walzenIndex) + 1);
+				return walzenIndex;
+			}
+		}
+		return -1; // Hier kommt das Programm nie an
+	}
+
+	/**
+	 * Holt ein Symbol aus der Symbolliste
+	 * 
+	 * @param index
+	 *            der Index des Symbols
+	 * @return das Symbol
+	 */
+	private String getSymbol(int index) {
+		return "" + _symbols.charAt(index);
+	} // end getSymbol()
+
+	/**
+	 * setzt die gültigen Symbole in einer Liste auf
+	 */
+	private void setupCharListe() {
+		for (int i = 0; i < _symbols.length(); i++) {
+			_charListe.add(i, _symbols.substring(i, i + 1));
+		}
+	} // end setupCharListe()
+
+	/**
+	 * setzt die Walzen auf und sortiert sie in einer Liste
+	 */
+	private void setupWalzenListe() {
+		int walze0 = 0;
+		int walze1 = 0;
+		int walze2 = 0;
+		int walze3 = 0;
+		int walze4 = 0;
+		int walze5 = 0;
+		int walze6 = 0;
+		int walze7 = -1;
+		_walzen.add(0, walze0);
+		_walzen.add(1, walze1);
+		_walzen.add(2, walze2);
+		_walzen.add(3, walze3);
+		_walzen.add(4, walze4);
+		_walzen.add(5, walze5);
+		_walzen.add(6, walze6);
+		_walzen.add(7, walze7);
+	} // end setupWalzenListe()
+
+	/**
+	 * gettermethode für _passwort
+	 * 
+	 * @return _passwort
+	 */
+	public String getPasswort() {
+		return _passwort;
+	} // end get_passwort()
+
+} // end class
+\end{lstlisting}
+\subsubsection*{Klasse TCPClient.java}
+\begin{lstlisting}
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.util.Scanner;
+
+class TCPClient {
+
+	public static boolean _keyGefunden;
+
+	public static void main(String argv[]) throws Exception {
+		GeneratorTool gt = new GeneratorTool();
+		_keyGefunden = false;
+
+		String sentence;
+		String modifiedSentence;
+		Socket clientSocket = new Socket("localhost", 1337);
+		do {
+		DataOutputStream outToServer = new DataOutputStream(
+				clientSocket.getOutputStream());
+		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(
+				clientSocket.getInputStream()));
+
+			//gt.findeEinPasswort();
+			//sentence = "serial=".concat(gt.getPasswort());
+			sentence = "help";
+			System.out.println(sentence);
+			//outToServer.writeBytes(sentence);
+			outToServer.writeBytes(sentence + '\n');
+			//outToServer.writeBytes(new Scanner(System.in).nextLine());
+			try{Thread.sleep(500);}catch(Exception e){}
+			modifiedSentence = inFromServer.readLine();
+			if (modifiedSentence.contains("SERIAL_VALID=1")
+					|| sentence.equals(""))
+				_keyGefunden = true;
+			System.out.println("FROM SERVER: " + modifiedSentence);
+		} while (!_keyGefunden);
+		clientSocket.close();
+	}
+}
+\end{lstlisting}
+\subsubsection*{Klasse TCPServer.java}
+\begin{lstlisting}
+import java.io.*;
+import java.net.*;
+
+class TCPServer
+{
+   public static void main(String argv[]) throws Exception
+      {
+         String clientSentence;
+         String capitalizedSentence;
+         ServerSocket welcomeSocket = new ServerSocket(1337);
+
+         while(true)
+         {
+            Socket connectionSocket = welcomeSocket.accept();
+            BufferedReader inFromClient =
+               new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
+            DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
+            clientSentence = inFromClient.readLine();
+            System.out.println("Received: " + clientSentence);
+            capitalizedSentence = clientSentence.toUpperCase() + '\n';
+            outToClient.writeBytes("SERIAL_VALID=1");
+         }
+      }
+}
+\end{lstlisting}
+\section*{Anhang 2: Quelltext zu Aufgabe 4}
+\subsubsection*{Klasse GeneratorTool.java}
+wie in Aufgabe 3
+\subsubsection*{Klasse TCPClient.java}
+wie in Aufgabe 3
+\section*{Anhang 3: Quelltext zu Aufgabe 5}
+\subsection*{Aufgabe 5.1}
+\subsubsection*{Klasse UDPClient.java}
+\begin{lstlisting}
+package blatt03.fuenf.eins;
+
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+
+public class UDPClient {
+	public static void main(String args[]) throws Exception {
+		while(true){
+		DatagramSocket clientSocket = new DatagramSocket(9999);
+		byte[] receiveData = new byte[1024];
+		DatagramPacket receivePacket = new DatagramPacket(receiveData,
+				receiveData.length);
+		clientSocket.receive(receivePacket);
+		String modifiedSentence = new String(receivePacket.getData());
+		System.out.println("FROM SERVER:" + modifiedSentence + "\n");
+		clientSocket.close();
+	}}
+}
+\end{lstlisting}
+\subsection*{Aufgabe 5.2}
+\subsubsection*{Klasse ClientWorker.java}
+\begin{lstlisting}
+package blatt03.fuenf.zwei;
+
+import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import javax.swing.JTextArea;
+
+class ClientWorker implements Runnable {
+	  private Socket _client;
+	  private JTextArea _textArea;
+		private SocketClientUI _ui;
+		private Socket _socket;
+		private BufferedReader _in = null;
+		private PrintWriter _out = null;
+
+	//Constructor
+	  ClientWorker(Socket client, JTextArea textArea) {
+	    _client = client;
+	    _textArea = textArea;
+	  }
+	  
+	  public void listenSocket(){
+			
+			//Create socket connection
+			   try{
+			     _socket = new Socket("kq6py", 4444);
+			     _out = new PrintWriter(_socket.getOutputStream(), 
+			                 true);
+			     _in = new BufferedReader(new InputStreamReader(
+			                _socket.getInputStream()));
+			   } catch (UnknownHostException e) {
+			     System.out.println("Unknown host: kq6py");
+			     System.exit(1);
+			   } catch  (IOException e) {
+			     System.out.println("No I/O");
+			     System.exit(1);
+			   }
+			}
+		
+		public void actionPerformed(ActionEvent event){
+			   Object source = event.getSource();
+
+			   if(source == _ui.getButton()){
+			//Send data over socket
+			      String text = _ui.getTextArea().getText();
+			      _out.println(text);
+			      _ui.getTextArea().setText(new String(""));
+			      _out.println(text);
+			   }
+			//Receive text from server
+			   try{
+			     String line = _in.readLine();
+			     System.out.println("Text received: " + line);
+			   } catch (IOException e){
+			     System.out.println("Read failed");
+			     System.exit(1);
+			   }
+			} 
+
+	  public void run(){
+	    String line;
+	    BufferedReader in = null;
+	    PrintWriter out = null;
+	    try{
+	      in = new BufferedReader(new 
+	        InputStreamReader(_client.getInputStream()));
+	      out = new 
+	        PrintWriter(_client.getOutputStream(), true);
+	    } catch (IOException e) {
+	      System.out.println("in or out failed");
+	      System.exit(-1);
+	    }
+
+	    while(true){
+	      try{
+	        line = in.readLine();
+	//Send data back to client
+	        out.println(line);
+	//Append data to text area
+	        appendText(line);
+	       }catch (IOException e) {
+	        System.out.println("Read failed");
+	        System.exit(-1);
+	       }
+	    }
+	  }
+	  
+	  public synchronized void appendText(String line){
+		    _textArea.append(line);
+		  }
+	  
+	  protected void finalize(){
+		//Objects created in run method are finalized when
+		//program terminates and thread exits
+		     try{
+		        _socket.close();
+		    } catch (IOException e) {
+		        System.out.println("Could not close socket");
+		        System.exit(-1);
+		    }
+		  }
+	}
+\end{lstlisting}
+\subsubsection*{Klasse Server.java}
+\begin{lstlisting}
+package blatt03.fuenf.zwei;
+
+import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class Server {
+
+	private SocketServerUI _ui;
+	private String _line;
+
+	public static void main(String args[]) {
+		new Server().listenSocket();
+	}
+
+	public Server() {
+		_ui = new SocketServerUI();
+
+	}
+
+	public void listenSocket() {
+		ServerSocket server = null;
+		Socket client = null;
+		System.out.println("1");
+		try {
+			server = new ServerSocket(4444);
+		} catch (IOException e) {
+			System.out.println("Could not listen on port 4444");
+			System.exit(-1);
+		}
+		System.out.println("2");
+		try {
+			client = server.accept();
+		} catch (IOException e) {
+			System.out.println("Accept failed: 4444");
+			System.exit(-1);
+		}
+		System.out.println("3");
+		try {
+			new BufferedReader(new InputStreamReader(
+					client.getInputStream()));
+			new PrintWriter(client.getOutputStream(), true);
+		} catch (IOException e) {
+			System.out.println("Read failed");
+			System.exit(-1);
+		}
+		System.out.println("4");
+
+		while(true){
+		    ClientWorker w;
+		    //server.accept returns a client connection
+			      System.out.println("5");
+			      w = new ClientWorker(client, _ui.getTextArea());
+			      Thread t = new Thread((Runnable) w);
+			      t.start();
+			      try{Thread.sleep(1000);}catch(Exception e){}
+		  }
+	}
+
+	public void actionPerformed(ActionEvent event) {
+		Object source = event.getSource();
+
+		if (source == _ui.getButton()) {
+			_ui.getTextArea().setText(_line);
+		}
+	}
+}
+\end{lstlisting}
+\subsubsection*{Klasse SocketClient.java}
+\begin{lstlisting}
+package blatt03.fuenf.zwei;
+
+import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+public class SocketClient {
+
+	private SocketServerUI _ui;
+	private Socket _socket;
+	private BufferedReader _in = null;
+	private PrintWriter _out = null;
+
+	public static void main(String args[]) {
+		new SocketClient().listenSocket();
+	}
+
+	public SocketClient() {
+		_ui = new SocketServerUI();
+
+	}
+	
+	public void listenSocket(){
+		
+		//Create socket connection
+		   try{
+		     _socket = new Socket("kq6py", 4321);
+		     _out = new PrintWriter(_socket.getOutputStream(), 
+		                 true);
+		     _in = new BufferedReader(new InputStreamReader(
+		                _socket.getInputStream()));
+		   } catch (UnknownHostException e) {
+		     System.out.println("Unknown host: kq6py");
+		     System.exit(1);
+		   } catch  (IOException e) {
+		     System.out.println("No I/O");
+		     System.exit(1);
+		   }
+		}
+	
+	public void actionPerformed(ActionEvent event){
+		   Object source = event.getSource();
+
+		   if(source == _ui.getButton()){
+		//Send data over socket
+		      String text = _ui.getTextArea().getText();
+		      _out.println(text);
+		      _ui.getTextArea().setText(new String(""));
+		      _out.println(text);
+		   }
+		//Receive text from server
+		   try{
+		     String line = _in.readLine();
+		     System.out.println("Text received: " + line);
+		   } catch (IOException e){
+		     System.out.println("Read failed");
+		     System.exit(1);
+		   }
+		}  
+}
+\end{lstlisting}
+\subsubsection*{Klasse SocketClientUI.java}
+\begin{lstlisting}
+package blatt03.fuenf.zwei;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+
+public class SocketClientUI {
+	private JFrame _frame;
+	private JTextArea _text;
+	private JButton _button;
+	public SocketClientUI(){
+		_frame = new JFrame();
+		_text = new JTextArea();
+		_button = new JButton("Senden");
+		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+		
+		_frame.setLayout(new BorderLayout());
+		_frame.add(_text, BorderLayout.CENTER);
+		_frame.add(_button, BorderLayout.SOUTH);
+		_frame.pack();
+		_frame.setVisible(true);
+	}
+	public JTextArea getTextArea() {
+		return _text;
+		
+	}
+	public JButton getButton() {
+		return _button;
+		
+	}
+}
+\end{lstlisting}
+\subsubsection*{Klasse SocketServer.java}
+\begin{lstlisting}
+package blatt03.fuenf.zwei;
+
+import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class SocketServer {
+
+	private SocketServerUI _ui;
+	private String _line;
+
+	public static void main(String args[]) {
+		new SocketServer().listenSocket();
+	}
+
+	public SocketServer() {
+		_ui = new SocketServerUI();
+
+	}
+
+	public void listenSocket() {
+		ServerSocket server = null;
+		Socket client = null;
+		BufferedReader in = null;
+		PrintWriter out = null;
+		
+		try {
+			server = new ServerSocket(4321);
+		} catch (IOException e) {
+			System.out.println("Could not listen on port 4321");
+			System.exit(-1);
+		}
+		try {
+			client = server.accept();
+		} catch (IOException e) {
+			System.out.println("Accept failed: 4321");
+			System.exit(-1);
+		}
+		try {
+			in = new BufferedReader(new InputStreamReader(
+					client.getInputStream()));
+			out = new PrintWriter(client.getOutputStream(), true);
+		} catch (IOException e) {
+			System.out.println("Read failed");
+			System.exit(-1);
+		}
+
+		while (true) {
+			try {
+				_line = in.readLine();
+				// Send data back to client
+				out.println(_line);
+			} catch (IOException e) {
+				System.out.println("Read failed");
+				System.exit(-1);
+			}
+		}
+	}
+
+	public void actionPerformed(ActionEvent event) {
+		Object source = event.getSource();
+
+		if (source == _ui.getButton()) {
+			_ui.getTextArea().setText(_line);
+		}
+	}
+}
+\end{lstlisting}
+\subsubsection*{Klasse SocketServerUI.java}
+\begin{lstlisting}
+package blatt03.fuenf.zwei;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+
+public class SocketServerUI {
+
+	private JFrame _frame;
+	private JTextArea _text;
+	private JButton _button;
+	public SocketServerUI(){
+		_frame = new JFrame();
+		_text = new JTextArea();
+		_button = new JButton("Empfangen");
+		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+		
+		_frame.setLayout(new BorderLayout());
+		_frame.add(_text, BorderLayout.CENTER);
+		_frame.add(_button, BorderLayout.SOUTH);
+		_frame.pack();
+		_frame.setVisible(true);
+	}
+	public JTextArea getTextArea() {
+		return _text;
+		
+	}
+	public JButton getButton() {
+		return _button;
+		
+	}
+	
+	public void setText(String text){
+		_text.setText(_text.getText() + "\n" + text);
+		_frame.pack();
+	}
+}
+\end{lstlisting}
 \end{document}
