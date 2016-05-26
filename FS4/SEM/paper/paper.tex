@@ -123,9 +123,17 @@
 \newcommand{\erdos}{Erd\H{o}s}
 \newcommand{\renyi}{-R\'{e}nyi}
 
+\newcommand{\ints}{\textsc{Interval-Scheduling}}
+\newcommand{\msat}{\textsc{Max-Sat}}
+\newcommand{\lb}{\textsc{Load Balancing}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Formatting commands
 \newcommand{\pbreak}{\paragraph*{}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macro commands
+\newcommand{\footref}[1]{\footnote{Definition vgl. \nameref{#1}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Source code inclusion
@@ -258,7 +266,7 @@ Dudel oder etwas Vergleichbares ist sicherlich vielen ein Begriff.
 Geht es darum, einen einzelnen Zeitslot zu finden, an dem möglichst viele Agenten zur Verfügung stehen, so ist Dudel durchaus eine überlegenswerte Lösung.
 Sowohl das Erstellen als auch das Abstimmen ist einfach in der Handhabung.
 Dennoch gibt es mehrere Gründe, warum für große Projekte Dudel ausscheidet.
-\paragraph{Übersichtlichkeit.}
+\paragraph{Mangel an Übersichtlichkeit.}
 Bei einem großen Projekt, welches von großem wirtschaftlichem Interesse für einen Kunden ist, kann es nötig sein, für einen Termin auf einen sehr feingliedrigen Zeitplan zurückzugreifen.
 Auch wenn die Erstellung, die Verwaltung und die Teilnahme an einem Dudel selbsterklärend sind, so nimmt die Komplexität zu, umso feingliedriger der Zeitplan sein soll.
 Ausgehend von einer Vollzeitwoche mit möglichen Zeitslots zu jeder Viertelstunde ergibt sich somit eine Zeitslotliste der Mächtigkeit $(8\text{h}\cdot4\text{ Slots pro Stunde})\cdot5\text{ Tage }=160$ Slots in einer Woche.
@@ -268,10 +276,10 @@ Bei einer derartigen Tabelle den Überblick zu behalten, sprengt den Rahmen real
 Gegeben ein Arbeitstag von mehreren Stunden, ist es durchaus nicht undenkbar, dass ein Agent am Abend die Ressource Zeit, die ihm zur Verfügung steht, nicht freigibt, es sei denn, es ist erforderlich.
 Dies ist gerade bei einem Dudel leicht durchzuführen und schwer nachzuvollziehen.
 Ein System, welches die Zeitpläne als Rohmaterial erhält, nimmt keine Rücksicht auf persönliche Abneigungen und eliminiert deswegen diesen Fall.
-\paragraph{Optimierung.}
+\paragraph{Nichtoptimierung.}
 Ein Dudel zählt lediglich, wie viele Agenten zu welchen Zeitslots zur Verfügung stehen; es wird nicht weiter auf die Art der Blockierung der anderen Zeitslots eingegangen.
 Ein System, welches direkt mit Deadlines und Abhängigkeiten arbeitet, kann dazu im Stande sein, den Schedule derart zu berechnen, dass Wartezeiten reduziert werden, und ist deswegen potentiell in der Lage, einen optimierten Schedule zu erstellen, der die allgemeine Projektdauer reduziert und die Wartezeiten einzelner Agenten minimiert und somit die Produktivität maximiert.
-\paragraph{Nebenläufigkeit.}
+\paragraph{Einzelläufigkeit.}
 Ein Dudel hat nicht das Potenzial, nebenläufige Entwicklungsprozesse zu be-rücksichtigen.
 Es wird ein Zeitstrahl vorgegeben, auf dem maximierende Belegungen ausgegeben werden.
 Dem entgegen steht der Umstand, dass durchaus Sachen gleichzeitig geschehen können; so auch Termine, an denen Teilmengen der Agenten beteiligt sind.
@@ -281,6 +289,13 @@ Diese Gründe legen dar, warum die Dudel-Variante in großen Agentensystemen ung
 
 \section{Approximation durch NP-schwere Probleme}
 \label{sec:approx}
+Zur Lösung eines Problems bietet es sich an, nach ähnlichen Problemen zu suchen, die bereits gelöst sind.
+In diesem Fall bieten sich folgende Probleme an:
+\begin{itemize}
+	\item \ints\footref{def:prob:interval-scheduling}
+	\item \msat\footref{def:prob:max-sat}
+	\item \lb\footref{def:prob:load-balancing}
+\end{itemize}
 \lipsum[7-27]
 \lipsum[52-55]
 
@@ -296,26 +311,33 @@ Diese Gründe legen dar, warum die Dudel-Variante in großen Agentensystemen ung
 \addcontentsline{toc}{section}{Definitionen}
 \section*{Definitionen}
 \paragraph*{Nash-Gleichgewicht.}
-	\label{def:nash}
+	\label{def:st:nash}
 	(Spieltheorie) Eine Situation, in der alle beteiligten Agenten die Strategie aller anderen Agenten kennen und kein Agent die Motivation hat, einseitig von seiner Strategie abzuweichen
 \paragraph*{Pareto-Optimum.}
-	\label{def:pareto}
+	\label{def:st:pareto}
 	(Spieltheorie) Eine Situation, in der keine Partei ihre eigene Position verbessern kann, ohne dass sich die Position einer anderen Partei verschlechtert.
-\paragraph*{\#titel}
-	\label{def:todo1}
-	\lipsum[2]
-\paragraph*{\#titel}
-	\label{def:todo2}
-	\lipsum[2]
-\paragraph*{\#titel}
-	\label{def:todo3}
-	\lipsum[2]
-\paragraph*{\#titel}
-	\label{def:todo4}
-	\lipsum[2]
-\paragraph*{\#titel}
-	\label{def:todo5}
-	\lipsum[2]
+\paragraph*{Auszahlungsoptimiert}
+	\label{def:st:auszahlung}
+	Eine Strategie ist genau dann für eine Entität auszahlungsmaximiert, wenn alle anderen Strategien, die diese Entität wählen kann, gleich viel oder weniger Gewinn bringen.
+	
+	Eine Strategie ist genau dann für eine Gruppe auszahlungsmaximiert, wenn sie für alle Entitäten in der Gruppe auszahlungsmaximiert ist (also ein pareto-optimales Nash-Gleichgewicht vorliegt).
+\paragraph*{\lb .}
+	\label{def:prob:load-balancing}
+	(NP-schweres Problem nach \cite{Andreae2016})
+		\subparagraph*{Eingabe.}$m$ identische Maschinen, $n$ Jobs, Job $j$ besitzt die Ausführungsdauer $t_j$.
+		Ein Job muss von einer einzelnen Maschine vollständig ohne Unterbrechung bearbeitet werden.
+		Eine Maschine kann nur einen Job zur Zeit erledigen.
+		\subparagraph*{Frage.} Gibt es eine Verteilung aller Jobs auf alle Maschinen derart, dass die Produktionsdauert minimiert ist?
+\paragraph*{\ints .}
+	\label{def:prob:interval-scheduling}
+	(NP-vollständiges Problem nach \cite{Andreae2016})
+		\subparagraph*{Eingabe.}
+		\subparagraph*{Frage.}
+\paragraph*{\msat .}
+	\label{def:prob:max-sat}
+	(NP-schweres Problem nach \cite{Andreae2016})
+		\subparagraph*{Eingabe.}
+		\subparagraph*{Frage.}
 \bibliographystyle{plain}
 \addcontentsline{toc}{section}{Quellenverzeichnis}% Add to the TOC
 \bibliography{bib}
