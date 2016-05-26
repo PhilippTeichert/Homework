@@ -87,7 +87,7 @@ Funktioniert so nicht, da die Website über das HTTPS-Protokoll läuft, welches 
 Alternativ kann OpenSSL verwendet werden.\\
 \\
 Es konnte ein Stylesheet ausgelesen werden; (s. \cite{svscss}).\\
-Kommentar: Zeilenumbrüche schaden nicht.
+Kommentar: Zeilenumbrüche schaden nicht (Anzeige des Quelltextes enthielt weder Zeilenumbrüche noch (dementsprechend) Einrückung).
 
 
 \section{SMPT (Mail Spoofing)}
@@ -102,6 +102,7 @@ Kommentar: Zeilenumbrüche schaden nicht.
 		\item \ttt{DATA}
 	\end{itemize}
 	\item folgender Mail-Text: \ttt{``Hier könnte Ihr Inhalt stehen''}
+	\item Beenden der Text-Eingabe mit einer Leerzeile, gefolgt von einer Zeile, die nur einen Punkt ('.') enthält $\rightarrow$ Mail wird abgesendet
 	\item Quelltextvergleich mit ``echter'' Mail ergab fehlende Konfigurationsinformationen
 	\item Mangel nicht offensichtlich, kann durch Ergänzung der obigen Eingabe zwischen \ttt{DATA} und dem Mail-Text angepasst werden
 	\item Fehlende Informationen:
@@ -154,8 +155,6 @@ Es gibt zwei anmerkbare Mängel.
 \section{License Server (Brute-Force-Angriff)}
 \subsection{[local]}
 Das Programm funktioniert an sich, wenn man aber an den Server sendet, kriegt man (scheinbar nach Zufall) entweder \say{invalid command} oder \say{invalid length} zurück, bei Eingabe von \ttt{serial=abcdefgh} ($a,b,c,d,e,f,g,h \in \{0,1,...,9\}$).
-
-Wir baten zwei Gruppen neben uns um Hilfe, jedoch konnten diese uns auch nicht weiterhelfen bzw. haben keinen Fehler in unserem Programm gefunden.
 
 Als Ausgangspunkt wurde die Java-Klasse \ttt{TCPClient.java} (source: \cite{javatcp}) genommen.
 
@@ -217,10 +216,22 @@ Zusammengesetzt sehen sie folgendermaßen aus:
 \end{itemize}
 Da UDP ein unzuverlässiges Protokoll ist, war es wie erwartet nötig, einige Zeit zu warten, bis alle Fragmente empfangen wurden (jeweils 4).
 \subsection{}
+\begin{itemize}
+	\item Starten der Klasse \ttt{Server.java} mit Port 4321
+	\item Verbinden mit dem Server durch \ttt{telnet localhost 4321}
+	\item Kommunikation zwischen Server und Terminal erfolgreich
+\end{itemize}
 \subsection{}
+Wir waren nicht in der Lage, den Server derart zu restrukturieren, dass er sich mit mehreren Clients verbindet.
 \subsection{}
+Fehlschlag, da Vorbedingung (A5.3) fehlt.
 \subsection{}
-
+Fehlschlag, da Vorbedingung (A5.3, A5.4) fehlt.\\
+\\
+Eine solche Sicherheitsmethode hilft bei einem menschlichen Gegner, der schließlich dem Verdruss der Langsamkeit erliegt.
+Wenn ein Algorithmus 10.000 Passwörter pro Sekunde prüfen kann, wird die Laufzeit um den Faktor 10.000 verlängert.
+Einen Menschen kann man damit mittelmäßig gut abwehren, denn er wird irgendwann das Interesse verlieren (Wenn er derart motiviert ist, sich davon nicht aufhalten zu lassen, kommt er auch so an das Passwort ran).
+Eine Maschine jedoch kann (noch) nicht der Langeweile erliegen und lässt sich somit von einer Drosselung nicht auf Dauer aufhalten.
 \begin{thebibliography}{1}
 \bibitem{svscss}	\url{https://www.inf.uni-hamburg.de/assets/application-11e3b49e605\\ff8ba1f01d275bd36850edfdfc1fbbb8c22e55fae1baf643a00d0.css}
 \bibitem{javatcp}	\url{https://systembash.com/a-simple-java-tcp-server-and-tcp-client/}
