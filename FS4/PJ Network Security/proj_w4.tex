@@ -95,7 +95,7 @@ literate=%
 	\item Rebooten der SurfingVM
 	\item \textbf{Standartgateway: 192.168.254.1}
 	\item IP: 192.168.254.44
-	\item \textbf{DNS-Nameserver: 10.1.1.1} (ermittelt mit \ttt{route -n}, bestätigt mit \ttt{nslookup ubuntu.com}
+	\item \textbf{DNS-Nameserver: 10.1.1.1} (ermittelt mit \ttt{route -n}, bestätigt mit \ttt{nslookup ubuntu.com})
 \end{itemize}
 \subsection{}
 \begin{itemize}
@@ -227,7 +227,17 @@ Es kann zwischen verschiedenen Darstellungen gewählt werden (Raw/ASCII, HexDump
 
 
 \section{ARP-Spoofing}
-\subsection{}.
+\subsection{}
+Ablauf des ARP-Spoofings:
+\begin{itemize}
+	\item 'Angreifer' sendet gefälschtes ARP-Paket mit seiner eigenen MAC-Adresse an Entity A, sodass Entity A ihre Pakete an den 'Angreifer' schickt statt an Entity B.
+	\item Gleiches geschieht mit Entity B in Bezug auf Entity A.
+	\item 'Angreifer' liest die Pakete von Entity A aus und leitet sie an Entity B weiter, und umgekehrt.
+\end{itemize}
+Funktionsweise von \ttt{arpspoof}:
+\begin{itemize}
+	\item 
+\end{itemize}
 \subsection{}.
 \subsection{}.
 \subsection{}.
