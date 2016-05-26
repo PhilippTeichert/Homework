@@ -25,8 +25,7 @@
 % Source code inclusion
 \definecolor{pblue}{rgb}{0.13,0.13,1}
 \definecolor{pgreen}{rgb}{0,0.5,0}
-\lstset{ %
-language=Java,   							% choose the language of the code
+\lstset{ %   							% choose the language of the code
 basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
 numbers=left,                   			% where to put the line-numbers
 numbersep=5pt,                  			% how far the line-numbers are from the code
@@ -65,7 +64,7 @@ literate=%
 \textbf{SVS Bachelor-Projekt Network Security}
 \end{Huge}\\\-\\
 \begin{Large}
-\textbf{Blatt 3: Datenkommunikation}
+\textbf{Blatt 4: Sniffing und Scanning}
 \end{Large}\\\-\\
 \begin{minipage}[t]{0.48\textwidth}
 \begin{center}\textbf{
@@ -81,10 +80,217 @@ literate=%
 \end{minipage}
 \end{center}
 
+\section{Vertrautmachen mit der Umgebung}
+\subsection{}
+\begin{itemize}
+	\item VMs in unser Verzeichnis kopiert und geöffnet
+	\item Angegeben, dass VMs kopiert wurden
+	\item Bootreihenfolge: MysteryVM, SurfingVM, RoutingVM
+	\item RoutingVM hat 2 Netzwerkadapter: NAT und Host-Only
+\end{itemize}
+\subsection{}
+\begin{itemize}
+	\item SurfingVM hat keine IP auf eth1
+	\item Zurücksetzen der Datei \ttt{/etc/udev/rules.d/70-persistent-net.rules} mit root-Rechten
+	\item Rebooten der SurfingVM
+	\item \textbf{Standartgateway: 192.168.254.1}
+	\item IP: 192.168.254.44
+	\item \textbf{DNS-Nameserver: 10.1.1.1} (ermittelt mit \ttt{route -n}, bestätigt mit \ttt{nslookup ubuntu.com}
+\end{itemize}
+\subsection{}
+\begin{itemize}
+	\item Netzwerkkarte 1: eth0, 172.16.137.222
+	\item Netzwerkkarte 2: eth1, 192.168.254.1
+	\item VMWare-Standart-Gateway: 172.16.137.2
+\end{itemize}
+\subsection{}
+\begin{itemize}
+	\item Ping an 10.1.1.2 aus beiden VMs erfolgreich (0\% Package loss)
+\end{itemize}
+
+\section{Sniffing mit tcpdump}
+\subsection{}
+\begin{itemize}
+	\item \ttt{tcpdump} listet alle Pakete auf, die über die Netzwerkkarte laufen
+	\item Capture-Filter zum Filtern und Sortieren der gefangenen Packages
+\end{itemize}
+\subsection{}
+\begin{itemize}
+	\item Kommando: \ttt{sudo tcpdump -p -i eth1 -s 0 -vvv udp port 53 > log}\footnote{-p: weil Aufgabe. -i ethX: Adapter, der gelistened werden woll. -s 0: Größe des Capture in Bytes (0=alle). -vvv: alle Paketinformationen ausgeben. <<schnittstelle>> port <<port>>. > log: in die Datei 'log' echoen, die ggf. im \$(pwd) angelegt wird.} (\cite{uwtcpdump}, \cite{daniel})
+\end{itemize}
+\subsubsection{Anfrage}
+Output:
+\begin{lstlisting}
+14:01:53:677232 IP (tos 0x0, ttl 64, id 1258, offset 0, flags [DF], proto UDP (17), length 60)
+    192.168.254.44.35616 > server.svslab.domain: [udp sum ok] 19679+ A? www.google.com. (32)
+\end{lstlisting}
+Aufbau (\cite{alex}):
+\begin{lstlisting}
+timestamp protocoll (package-information)
+	nameserver > local-domain checksum-check some-number Question? target. (num)
+\end{lstlisting}
+\textit{Anmerkung:} tcpdump kennt nur wenige Protokolle und gibt, wenn er ein Protokoll nicht erkennt, IP an.
+\subsubsection{Antwort}
+Output:
+\begin{lstlisting}
+14:01:53.677765 IP (tos 0x0, ttl 127, id 21488, offset 0, flags [none], proto UDP (17), length 212)
+    server.svslab.domain > 192.168.254.44.35616: [udp sum ok] 19679 q: A? www.google.com. 1/4/4 www.google.com. [2m33s] A 216.58.213.228 ns: google.com. [1d21h4m48s] NS ns1.google.com., google.com. [1d21h4m48s] NS ns3.google.com., google.com. [1d21h4m48s] NS ns2.google.com., google.com. [1d21h4m48s] NS ns4.google.com. ar: ns1.google.com. [3d21h12m22s] A 216.239.32.10, ns2.google.com. [3d21h12m22s] A 216.239.34.10, ns3.google.com. [3d21h12m22s] A 216.239.36.10, ns4.google.com. [3d21h12m44s] A 216.239.38.10 (184) 
+\end{lstlisting}
+Wieder ist die erste Zeile Meta-Information.
+Die zweite Zeile ist eine Anfrage unserer Domain an unseren Nameserver, welcher dann an Google weiterfragt, wo die Nameserver von Google die Anfrage durch reichen.
+\subsection{}
+\begin{itemize}
+	\item Kommando: \ttt{sudo tcpdump -p -i eth1 -s 0 -vvv '(tcp port 80) or (tcp port 443)' > log}\footnote{s.o., tcp port 80 für HTTP, tcp port 443 für HTTPS} (\cite{uwtcpdump})
+\end{itemize}
+Output:
+\begin{lstlisting}
+14:27:10.394893 IP (tos 0x0, ttl 64, id 18592, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.254.44.35453 > ham04s01-in-f4.1e100.net.www: tcp 0 
+\end{lstlisting}
+Fazit: Unser Nameserver brennt mit einem Hamster durch.
+\subsection{}
+Neuer Befehl: \ttt{sudo tcpdump -p -i eth1 -s 0 -vvv -A 'tcp port 80'}
+Output vgl. Anhang 2
+\subsection{}
+\begin{itemize}
+	\item Aufrufen der URL \ttt{http://10.1.1.2/verysecure/}
+	\item Eingabe der Login-Daten \ttt{alice:sehrgeheim}
+	\item Login-Daten im Package:
+\begin{lstlisting}
+Authorization: Basic YWxpY2U6c2V0cmdlaGVpbQ==
+\end{lstlisting}
+	$\Rightarrow$ Base-64-verschlüsselt.
+	\item Entschlüsselung ergibt: \ttt{alice:sehrgeheim}
+\end{itemize}
+
+
+\section{Sniffing mit dsniff und urlsnarf}
+\subsection{urlsnarf}
+Befehl:
+\begin{lstlisting}
+sudo urlsnarf -i eth1 > log
+\end{lstlisting}
+Aufbau des Output: IP - Timestamp - Adresse - Protokoll - Browser - Systemdaten\\
+Befehl greift alle HTTP-Pakete vom angegebenen Adapter ab und zeigt ihre Daten an.
+\subsection{dsniff}
+Befehl:
+\begin{lstlisting}
+sudo dsniff -i eth1 > log
+\end{lstlisting}
+Aufbau des Output: Timestamp - Senderadresse - Empfängeradresse - Adresse - Protokoll - Host - Paketinhalt (decoded)\\
+Liest den Inhalt von HTTP-Paketen aus und decodiert (zumindest Base-64).
+\section{Sniffing mit Wireshark}
+\subsection{}
+Wireshark liefert eine graphische Darstellung der gesnifften Pakete in lesbarer Tabellenform und zeigt den Inhalt der Pakete an.
+\subsection{}
+\paragraph{Display-Filter.}
+
+\paragraph{Capture-Filter.}
+
+\subsection{}
+Wireshark wurde geöffnet.
+\subsection{}
+\begin{itemize}
+	\item \ttt{eth1} liegt nahe, da dieses Interface das Gateway für die SurfingVM bereitstellt (Capture-Filter).
+	\item Alternativ zur Interface-Wahl kann ein Display-Filter zur Steuerung des Outputs erstellt werden.
+\end{itemize}
+\subsection{}
+Es wird nur ein Ping gesendet. (\#Easteregg).
+Der Server pingt zurück.
+Die Pings werden über ICMP\footnote{Internet Control Message Protocol} übertragen.
+
+Der Klient DARF die Daten so lange behalten, wie er will.
+Jedes Paket hat einen time-to-live-Eintrag; ist dieser überschritten, wird das Paket erneut angefordert.
+
+Weil Linux den DNS nicht cached, erwarten wir die gleiche Antwort.
+
+Wir bekommen die gleiche Antwort, was bedeutet, Linux cached den DNS nicht.
+
+Der Browser sendet Pings über TCP und anschließend HTTP.
+Dies wechselt sich stetig ab.
+
+Es würde erwartet, dass in beiden Fällen das Gleiche passiert
+\subsection{}
+Erstellen des Filters:
+\begin{enumerate}
+	\item Kontextmenü eines HTTP-Eintrages
+	\item Klick auf ``Apply as filter''
+	\item Fertig
+\end{enumerate}
+\subsection{}
+Funktion liegt unter Menüreiter ``Analyze''.
+
+Ausgabe eines HTTP-Response öffnet Popup, in welchem der Content des Package angezeigt wird.
+Es kann zwischen verschiedenen Darstellungen gewählt werden (Raw/ASCII, HexDump, C Arrays)
+\subsection{}.
+\subsection{}.
+
+
+\section{ARP-Spoofing}
+\subsection{}.
+\subsection{}.
+\subsection{}.
+\subsection{}.
+\subsection{}.
+\subsection{}.
+\subsection{}.
+
+
+\section{Scanning mit nmap}
+\subsection{}.
+\subsection{}.
+\subsection{}.
+\subsection{}.
+\subsection{}.
+
+
+\section{OpenVAS}
+\subsection{}.
+\subsection{}.
+\subsection{}.
+\subsection{}.
+\subsection{}.
+\subsection{}.
+\subsection{}.
+
+\newpage
+\section*{Anhang 1:}
+
+\section*{Anhang 2}
+\subsection*{Output des HTTP-Sniffing}
+\begin{lstlisting}
+14:37:51.282324 IP (tos 0x0, ttl 64, id 51836, offset 0, flags [DF], proto TCP (6), length 487)
+    192.168.254.44.35465 > ham04s01-in-f4.1e100.net.www: Flags [P.], cksum 0xbb75 (correct), seq 311797790:311798237, ack 398350995, win 9648, length 447
+E....|@.@......,.:.....P......Z.P.%..u..GET / HTTP/1.1
+Host: www.google.com
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:10.0.1) Gecko/20100101 Firefox/10.0.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-us,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Cookie: NID=79=WlzebisuVRgORNA05jSpuedXCNNs1eBM8yEMd8n30_OluRdkzWbkChEEQ4YgUvHTWB3a64hs LjaseRkBrUN1vGIU56_9YOWlq0yWpZRTS4cdFs9-0wKsmJyANZ1uZ7UPnFbMMSPb
+\end{lstlisting}
+
+\section*{Anhang 3: Outputs von urlsnarf und dsniff}
+\begin{lstlisting}
+urlsnarf
+
+192.168.254.44 - - [26/May/2016:15:03:07 +0200] "GET http://10.1.1.2/verysecure/ HTTP/1.1" - - "-" "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:10.0.1) Gecko/20100101 Firefox/10.0.1"
+
+dsniff
+
+dsniff: listening on eth1
+-----------------
+05/26/16 15:06:17 tcp 192.168.254.44.56594 -> labservervm.svslab.80 (http)
+GET /verysecure/ HTTP/1.1
+Host: 10.1.1.2
+Authorization: Basic YWxpY2U6c2VocmdlaGVpbQ== [alice:sehrgeheim] 
+\end{lstlisting}
 
 \begin{thebibliography}{1}
-\bibitem{svscss}	\url{https://www.inf.uni-hamburg.de/assets/application-11e3b49e605\\ff8ba1f01d275bd36850edfdfc1fbbb8c22e55fae1baf643a00d0.css}
-\bibitem{javatcp}	\url{https://systembash.com/a-simple-java-tcp-server-and-tcp-client/}
+\bibitem{uwtcpdump}		\url{https://wiki.ubuntuusers.de/tcpdump/}
+\bibitem{daniel}		\url{http://danielmessler.com/study/tcpdump/}
+\bibitem{alex}			\url{www.alexonlinux.com/tcpdump-for-dummies\#...}
 \end{thebibliography}
 
 \end{document}
