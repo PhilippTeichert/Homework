@@ -1,0 +1,90 @@
+\documentclass[twoside]{article}
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{fancyhdr}
+
+\usepackage[margin=2.54cm]{geometry}
+
+\usepackage{listings}
+
+\usepackage{xcolor}
+
+\usepackage{hyperref}
+
+\newcommand{\say}[1]{%
+	``#1''%
+}
+\newcommand{\ttt}[1]{%
+	\texttt{#1}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Source code inclusion
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\lstset{ %
+language=Java,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=b,           					% sets the caption-position to bottom
+breaklines=true,        					% sets automatic line breaking
+xleftmargin=1.5cm,							% space from the left paper edge
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
+\definecolor{light-light-gray}{gray}{0.95}
+
+
+\begin{document}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{Louis Kobras\\6658699}
+\fancyhead[R]{Utz Pöhlmann\\6663579}
+\fancyfoot[RE,LO]{Seite \thepage}
+
+\begin{center}
+\begin{Huge}
+\textbf{SVS Bachelor-Projekt Network Security}
+\end{Huge}\\\-\\
+\begin{Large}
+\textbf{Blatt 3: Datenkommunikation}
+\end{Large}\\\-\\
+\begin{minipage}[t]{0.48\textwidth}
+\begin{center}\textbf{
+	Louis Kobras\\
+	6658699}
+\end{center}
+\end{minipage}
+\begin{minipage}[t]{0.48\textwidth}
+\begin{center}\textbf{
+	Utz Pöhlmann\\
+	6663579}
+\end{center}
+\end{minipage}
+\end{center}
+
+
+\begin{thebibliography}{1}
+\bibitem{svscss}	\url{https://www.inf.uni-hamburg.de/assets/application-11e3b49e605\\ff8ba1f01d275bd36850edfdfc1fbbb8c22e55fae1baf643a00d0.css}
+\bibitem{javatcp}	\url{https://systembash.com/a-simple-java-tcp-server-and-tcp-client/}
+\end{thebibliography}
+
+\end{document}
