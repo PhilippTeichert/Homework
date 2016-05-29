@@ -253,7 +253,16 @@ Es wurde der Wireshark-Adapter ``any'' ausgewählt.
 
 \section{Scanning mit nmap}
 \subsection{}.
-\subsection{}.
+\subsection{}
+\begin{itemize}
+	\item Skript vgl. Anhang 4
+	\item gewählte Sprache: Bash
+	\item Liste aktiver Rechner:
+	\begin{itemize}
+		\item 10.1.1.1
+		\item 10.1.1.2
+	\end{itemize}
+\end{itemize}
 \subsection{}.
 \subsection{}.
 \subsection{}.
@@ -300,6 +309,17 @@ dsniff: listening on eth1
 GET /verysecure/ HTTP/1.1
 Host: 10.1.1.2
 Authorization: Basic YWxpY2U6c2VocmdlaGVpbQ== [alice:sehrgeheim] 
+\end{lstlisting}
+
+\section*{Anhang 4: Ping-Skript (Aufgabe 6.2)}
+\begin{lstlisting}[language=Bash]
+#!/bin/bash
+COUNTER=0
+while [ $COUNTER -le 25 ]; do
+	echo "pinging 10.1.1.$COUNTER"
+	ping -c1 10.1.1.$COUNTER
+	let COUNTER=COUNTER+1
+done
 \end{lstlisting}
 
 \begin{thebibliography}{1}
