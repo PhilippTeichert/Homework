@@ -1063,6 +1063,82 @@ Der Einsatz sollte also \textbf{2 Geldeinheiten} betragen.
 \fi
 \ifnum\ZettelSieben=\True
 \sect{7}{24. Mai 2016}{31. Mai 2016}
+\susP{7.1}{4}
+\todo{Aufgabe}
+
+\begin{equation*}
+	\begin{array}{rlll}
+		\mathbb{E}[Z]&=    &\sum_{k \in \mathbb{Z}\setminus\{0\}}(k \cdot P(Z = k))&\\
+		    &=    &\sum_{k = 1}^{\infty}(-k \cdot P(Z = -k)) + \sum_{k=1}^{\infty}(k \cdot P(Z = k))&\\
+		    &=    &\sum_{k = 1}^{\infty}(-k \cdot \frac{1}{2k(k+1)})) + \sum_{k=1}^{\infty}(k \cdot \frac{1}{2k(k+1)})&\\
+		    &=    &\sum_{k = 1}^{\infty}(\frac{-k}{2k(k+1)})) + \sum_{k=1}^{\infty}(\frac{k}{2k(k+1)})&\\
+		    &=    &\sum_{k = 1}^{\infty}(-\frac{1}{2(k+1)})) + \sum_{k=1}^{\infty}(\frac{1}{2(k+1)})&\\
+		    &=    &\sum_{k = 1}^{\infty}(-\frac{1}{2}\cdot\frac{1}{k+1})) + \sum_{k=1}^{\infty}(\frac{1}{2}\cdot\frac{1}{k+1})&\\
+		    &=    &-\frac{1}{2}\cdot\sum_{k = 1}^{\infty}(\frac{1}{k+1})) + \frac{1}{2}\cdot\sum_{k=1}^{\infty}(\frac{1}{k+1})&\\
+		    &=    &\frac{1}{2}\cdot\sum_{k=1}^{\infty}(\frac{1}{k+1}) - \frac{1}{2}\cdot\sum_{k = 1}^{\infty}(\frac{1}{k+1}))&\\
+		    &=    &\frac{1}{2}\cdot\left(\sum_{k=1}^{\infty}(\frac{1}{k+1}) - \cdot\sum_{k = 1}^{\infty}(\frac{1}{k+1})\right)& /\sum_{k=1}^{\infty}(\frac{1}{k+1})=\infty\\
+		    &=    &\frac{1}{2}\cdot\left(\infty - \infty\right)&\\
+	\end{array}
+\end{equation*}
+Da man $\infty - \infty$ nicht genau bestimmen kann, hat diese Aufgabe keine Lösung.
+Somit konvergiert die Reihe auch nicht.
+
+
+\susP{7.2}{13}
+\todo{Aufgabe}
+
+\sss{a)}
+Sei $Y = X - a$.
+Dann gilt: $\Omega'' = \{0, 1, ..., b-a\}$.
+\begin{equation*}
+    \begin{array}{rlll}
+        \mathbb{E}[Y]&=    &\sum_{k \in \Omega''}(k \cdot P(Y = k))&\\
+            &=    &\sum_{k = 0}^{b-a}(k \cdot \frac{1}{(b-a)-(a-a)+1})&\\
+            &=    &\sum_{k = 0}^{b-a}(k \cdot \frac{1}{b-a-0+1})&\\
+            &=    &\sum_{k = 0}^{b-a}(k \cdot \frac{1}{b-a+1})&\\
+            &=    &\sum_{k = 0}^{b-a}(k) \cdot \frac{1}{b-a+1}& /\sum_{k=0}^{n}(k)=\frac{1}{2}\cdot n\cdot(n+1)\\
+            &=    &\frac{1}{2} \cdot (b - a) \cdot((b - a) + 1) \cdot \frac{1}{b-a+1}&\\
+            &=    &\frac{b-a}{2} \cdot \frac{b - a + 1}{b-a+1}&\\
+            &=    &\frac{b - a}{2}&\\
+    \end{array}
+\end{equation*}
+Nun gilt nach anfänglicher Definition für $\mathbb{E}[X] =\mathbb{E}[Y] + a$.
+\begin{equation*}
+    \begin{array}{rlll}
+        \mathbb{E}[X]&=    &\mathbb{E}[Y] + a&\\
+            &=    &\frac{b - a}{2} + a&\\
+            &=    &\frac{b - a}{2} + \frac{2}{2} \cdot a&\\
+            &=    &\frac{b - a}{2} + \frac{2\cdot a}{2}&\\
+            &=    &\frac{b - a}{2} + \frac{a + a}{2}&\\
+            &=    &\frac{b - a + a + a}{2}&\\
+            &=    &\frac{b + a}{2} + a&\\
+    \end{array}
+\end{equation*}
+
+\sss{b)}
+Sei $Y = X - a$.
+Dann gilt: $\Omega'' = \{0, 1, ..., b-a\}$.
+\begin{equation*}
+    \begin{array}{rlll}
+        \textbf{Var}[Y]&=    &\mathbb{E}[Y^2] - \mathbb{E}[Y]^2&\\
+            &=    &\sum_{k \in \Omega''}(k^2 \cdot P(Y = k^2)) - (\frac{b - a}{2})^2&\\
+            &=    &\sum_{k = 0}^{b-a}(k^2 \cdot (\frac{1}{(b-a)-(a-a)+1}))^2&\\
+            &=    &\sum_{k = 0}^{b-a}(k^2 \cdot (\frac{1}{b-a-0+1}))^2&\\
+            &=    &\sum_{k = 0}^{b-a}(k^2 \cdot (\frac{1}{b-a+1}))^2&\\
+            &=    &\sum_{k = 0}^{b-a}(k^2) \cdot (\frac{1}{b-a+1})^2& /\sum_{k=0}^{n}(k^2)=\frac{1}{6}\cdot n\cdot(n+1)\cdot(2\cdot n + 1)\\
+            &=    &\frac{1}{6}\cdot (b - a)\cdot((b - a) + 1)\cdot(2\cdot (b - a) + 1) \cdot (\frac{1}{b-a+1})^2&\\
+            &=    &\frac{b-a}{2} \cdot \frac{b - a + 1}{b-a+1}&\\
+            &=    &\frac{b - a}{2}&\\
+    \end{array}
+\end{equation*}
+Nun gilt nach anfänglicher Definition für $\mathbb{E}[X] =\mathbb{E}[Y] + a$.
+\begin{equation*}
+    \begin{array}{rlll}
+        \textbf{Var}[X]&=    &\textbf{Var}[Y] + a&\\
+            &=    & + a&\\
+    \end{array}
+\end{equation*}
+
 \fi
 \ifnum\ZettelAcht=\True
 \sect{8}{31. Mai 2016}{7. Juni 2016}
