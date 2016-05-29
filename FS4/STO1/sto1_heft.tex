@@ -1122,22 +1122,56 @@ Dann gilt: $\Omega'' = \{0, 1, ..., b-a\}$.
     \begin{array}{rlll}
         \textbf{Var}[Y]&=    &\mathbb{E}[Y^2] - \mathbb{E}[Y]^2&\\
             &=    &\sum_{k \in \Omega''}(k^2 \cdot P(Y = k^2)) - (\frac{b - a}{2})^2&\\
-            &=    &\sum_{k = 0}^{b-a}(k^2 \cdot (\frac{1}{(b-a)-(a-a)+1}))^2&\\
-            &=    &\sum_{k = 0}^{b-a}(k^2 \cdot (\frac{1}{b-a-0+1}))^2&\\
-            &=    &\sum_{k = 0}^{b-a}(k^2 \cdot (\frac{1}{b-a+1}))^2&\\
-            &=    &\sum_{k = 0}^{b-a}(k^2) \cdot (\frac{1}{b-a+1})^2& /\sum_{k=0}^{n}(k^2)=\frac{1}{6}\cdot n\cdot(n+1)\cdot(2\cdot n + 1)\\
-            &=    &\frac{1}{6}\cdot (b - a)\cdot((b - a) + 1)\cdot(2\cdot (b - a) + 1) \cdot (\frac{1}{b-a+1})^2&\\
-            &=    &\frac{b-a}{2} \cdot \frac{b - a + 1}{b-a+1}&\\
-            &=    &\frac{b - a}{2}&\\
+            &=    &\sum_{k = 0}^{b-a}(k^2 \cdot (\frac{1}{(b-a)-(a-a)+1})^2) - (\frac{b - a}{2})^2&\\
+            &=    &\sum_{k = 0}^{b-a}(k^2 \cdot (\frac{1}{b-a-0+1})^2) - (\frac{b - a}{2})^2&\\
+            &=    &\sum_{k = 0}^{b-a}(k^2 \cdot (\frac{1}{b-a+1})^2) - (\frac{b - a}{2})^2&\\
+            &=    &\sum_{k = 0}^{b-a}(k^2) \cdot (\frac{1}{b-a+1})^2 - (\frac{b - a}{2})^2& /\sum_{k=0}^{n}(k^2)=\frac{1}{6}\cdot n\cdot(n+1)\cdot(2\cdot n + 1)\\
+            &=    &\frac{1}{6}\cdot (b - a)\cdot((b - a) + 1)\cdot(2\cdot (b - a) + 1) \cdot (\frac{1}{b-a+1})^2 - (\frac{b - a}{2})^2&\\
+            &=    &\frac{1}{6}\cdot (b - a)\cdot(b - a + 1)\cdot(2\cdot (b - a) + 1) \cdot \frac{1}{b-a+1} \cdot \frac{1}{b-a+1} - (\frac{b - a}{2})^2&\\
+            &=    &\frac{b-a}{6} \cdot \frac{b-a+1}{b-a+1} \cdot \frac{b-a+b-a+1}{b-a+1} - (\frac{b - a}{2})^2&\\
+            &=    &\frac{b-a}{6} \cdot \frac{b-a+b-a+1}{b-a+1} - (\frac{b - a}{2})^2&\\
+            &=    &\frac{b-a}{6} \cdot \frac{2 \cdot (b-a)+1}{b-a+1} - (\frac{b - a}{2})^2&\\
+            &=    &\frac{b-a}{6} \cdot \frac{2 \cdot (b-a)+1}{b-a+1} - \frac{b - a}{2} \cdot \frac{b - a}{2}&\\
+            &=    &\frac{2 \cdot ((b-a)^2)+b-a}{6\cdot(b - a + 1)} - \frac{(b-a)^2}{4}&\\
     \end{array}
 \end{equation*}
-Nun gilt nach anfänglicher Definition für $\mathbb{E}[X] =\mathbb{E}[Y] + a$.
+Nun gilt nach anfänglicher Definition für $\textbf{Var}[X] =\textbf{Var}{E}[Y] + a^2$.
 \begin{equation*}
     \begin{array}{rlll}
-        \textbf{Var}[X]&=    &\textbf{Var}[Y] + a&\\
-            &=    & + a&\\
+        \textbf{Var}[X]&=    &\textbf{Var}[Y] + a^2&\\
+            &=    &\frac{2 \cdot ((b-a)^2)+b-a}{6\cdot(b - a + 1)} - \frac{(b-a)^2}{4} + a^2&\\
     \end{array}
 \end{equation*}
+
+\sss{c)}
+\todo{würfeln}
+
+\sss{d)}
+
+\begin{equation*}
+    \begin{array}{rlll}
+        \mathbb{E}[X_k]&=    &\sum_{k \in \Omega'}(k\cdot P(X_k = k))&\\
+            &=    &\sum_{k=1}^{6}(\sum_{i=k}^{k+6}(i) \cdot \frac{1}{6})&\\
+    \end{array}
+\end{equation*}
+Die Ergebnisse sind: $\mathbb{E}[X_1]=3,5$, $\mathbb{E}[X_2]=4,5$, $\mathbb{E}[X_3]=5,5$, $\mathbb{E}[X_4]=6,5$, $\mathbb{E}[X_5]=7,5$ und $\mathbb{E}[X_6]=8,5$.
+\begin{equation*}
+    \begin{array}{rlll}
+        \mathbb{E}[Z]&=    &\sum_{k = 1}^{6}(\mathbb{E}[X_k]))&\\
+    \end{array}
+\end{equation*}
+Das Ergebnis lautet: $\mathbb{E}[Z] = 36$.
+
+\susP{7.3}{8}
+\todo{aufgabe}
+
+\sss{a)}
+Nach Hinweis 3 ist die Chance des Kandidaten auf einen Gewinn vor dem Wechseln 50%.
+Nach dem Wechseln ändert sich diese Chance nicht.
+
+\sss{b)}
+Nach Hinweis 3 ist dies genau das, was er tun sollte.
+Denn demnach müsste der Hauptgewinn hinter Tor 3 liegen.
 
 \fi
 \ifnum\ZettelAcht=\True
