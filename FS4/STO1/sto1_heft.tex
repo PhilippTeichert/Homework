@@ -1161,7 +1161,7 @@ Nun gilt nach anfänglicher Definition für $\mathbb{E}[X] =\mathbb{E}[Y] + a$.
             &=    &\frac{b - a}{2} + \frac{2\cdot a}{2}&\\
             &=    &\frac{b - a}{2} + \frac{a + a}{2}&\\
             &=    &\frac{b - a + a + a}{2}&\\
-            &=    &\frac{b + a}{2} + a&\\
+            &=    &\frac{b + a}{2}&\\
     \end{array}
 \end{equation*}
 
@@ -1185,7 +1185,7 @@ Dann gilt: $\Omega'' = \{0, 1, ..., b-a\}$.
             &=    &\frac{2 \cdot ((b-a)^2)+b-a}{6\cdot(b - a + 1)} - \frac{(b-a)^2}{4}&\\
     \end{array}
 \end{equation*}
-Nun gilt nach anfänglicher Definition für $\textbf{Var}[X] =\textbf{Var}{E}[Y]$, da das $a$ wegfällt.
+Nun gilt nach anfänglicher Definition für $\textbf{Var}[X] =\textbf{Var}[Y]$, da das $a$ wegfällt.
 \begin{equation*}
     \begin{array}{rlll}
         \textbf{Var}[X]&=    &\textbf{Var}[Y]&\\
@@ -1194,7 +1194,24 @@ Nun gilt nach anfänglicher Definition für $\textbf{Var}[X] =\textbf{Var}{E}[Y]
 \end{equation*}
 
 \sss{c)}
-\todo{würfeln}
+\begin{equation*}
+    \begin{array}{rlll}
+        \mathbb{E}[W$\textit{ü}$rfel]&=    &\frac{b + a}{2}&/b=6;~a=1\\
+            &=    &\frac{6 + 1}{2}&\\
+            &=    &\frac{7}{2}&\\
+            &=    &3,5&\\
+    \end{array}
+\end{equation*}
+Dieses Ergebnis stimmt mit dem aus der Vorlesung überein.
+\begin{equation*}
+    \begin{array}{rlll}
+        \textbf{Var}[W$\textit{ü}$rfel]&=    &\frac{2 \cdot ((b-a)^2)+b-a}{6\cdot(b - a + 1)} - \frac{(b-a)^2}{4}&/b=6;~a=1\\
+            &=    &\frac{2 \cdot ((6-1)^2)+6-1}{6\cdot(6 - 1 + 1)} - \frac{(6-1)^2}{4}&\\
+            &=    &-\frac{85}{18}&\\
+            &=    &-4,7\overline{2}&\\
+    \end{array}
+\end{equation*}
+Dieses Ergebnis stimmt mit dem aus der Vorlesung nicht überein.
 
 \sss{d)}
 
@@ -1204,6 +1221,8 @@ Nun gilt nach anfänglicher Definition für $\textbf{Var}[X] =\textbf{Var}{E}[Y]
             &=    &\sum_{k=1}^{6}(\sum_{i=k}^{k+6}(i) \cdot \frac{1}{6})&\\
     \end{array}
 \end{equation*}
+In der Formel wurde $k$ durch $\sum_{i=k}^{k+6}(i)$ ersetzt, da es nicht um die Nummer des Würfels, sondern um die Zahl, die er zeigt, geht.
+\\
 Die Ergebnisse sind: $\mathbb{E}[X_1]=3.5$, $\mathbb{E}[X_2]=4.5$, $\mathbb{E}[X_3]=5.5$, $\mathbb{E}[X_4]=6.5$, $\mathbb{E}[X_5]=7.5$ und $\mathbb{E}[X_6]=8.5$.
 \begin{equation*}
     \begin{array}{rlll}
