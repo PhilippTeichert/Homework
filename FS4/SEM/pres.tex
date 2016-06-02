@@ -1,4 +1,7 @@
-\documentclass{beamer}
+\documentclass[%
+	handout,
+	compressed
+]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
@@ -11,7 +14,7 @@
 
 
 \author{Louis Kobras}
-\title{Arbeitsplan-Scheduling in verteilten Software-Entwicklungsprojekten}
+\title{[Arbeitstitel:]Task-Scheduling in verteilten Softwareentwicklungsprojekten}
 \renewcommand{\date}{03. Juni 2016}
 
 \begin{document}
@@ -31,6 +34,15 @@
 	\subsection{Der Autor}
 		\begin{frame}
 			\frametitle{Whoami}
+			\begin{itemize}
+				\item 21 Jahre
+				\item B.Sc. SSE FS4
+				\item Interessen: Game Development\pause
+				\item mag: Starcraft, Stargate, Schokolade
+				\item mag nicht: früh aufstehen\pause
+				\item Motivation für das Seminar: Softwareentwicklung ist cool
+				\item Motivation für das Thema: Algorithmen und Spieltheorie sind cool
+			\end{itemize}
 		\end{frame}
 	\subsection{Gliederung}
 		\begin{frame}
@@ -38,29 +50,103 @@
 			\tableofcontents
 		\end{frame}
 
-\section{Einleitung}
+\section{Motivation}
+	\subsection{}
 		\begin{frame}
 			\frametitle{Problem: Scheduling}
+			\begin{itemize}
+				\item wichtig für geordneten Projektablauf\pause
+				\item wichtig für effizienten Projektablauf\pause
+				\item interessant aus algorithmischer Sicht\pause
+				\item Paradebeispiel für Aspekte der Spieltheorie
+			\end{itemize}
 		\end{frame}
-\section{Hauptteil}
 		\begin{frame}
 			\frametitle{Warum nicht Doodle (oder Ähnliches)?}
+			\begin{itemize}
+				\item Mangel an Übersichtlichkeit
+				\item Persönliche Motivation
+				\item Nichtoptimierung
+				\item Einzelläufigkeit
+			\end{itemize}
 		\end{frame}
+\section{Hauptteil}
 	\subsection{Theoretischer Ansatz}	
 		\begin{frame}
+			\frametitle{Lösung einzelner Teilprobleme}
+			\begin{itemize}
+				\item Dependency-Resolving durch TopoSort
+				\item Zeitplanung durch NP-schwere Probleme
+			\end{itemize}
+		\end{frame}
+		\begin{frame}
 				\frametitle{Approximation durch NP-schwere Probleme}
+				Auswahl (möglicherweise) passender Probleme:
+				\begin{itemize}
+					\item Interval Scheduling
+					\item Load Balancing
+					\item Maximierungsprobleme wie Max-Sat
+				\end{itemize}
 		\end{frame}
 	\subsection{Praktischer Ansatz}
 		\begin{frame}
+			\frametitle{Zerlegung in Teilprobleme}
+			\pause
+			\begin{itemize}
+				\item Input
+					\begin{itemize}
+						\item Bearbeitbare Datenstruktur
+					\end{itemize}\pause
+				\item Magic
+					\begin{itemize}
+						\item Zerlegung in Teilprobleme
+						\item Reduktion jedes Teilproblems
+						\item Nutzen von bekannten Algorithmen zur Lösung der Teilprobleme
+						\item Rekonstruktion eines Ergebnisses
+					\end{itemize}\pause
+				\item Output
+					\begin{itemize}
+						\item hübsche graphische Darstellung (Gantt-Diagramm)
+					\end{itemize}
+			\end{itemize}
+		\end{frame}
+		\begin{frame}
 			\frametitle{Lösungsansatz}
+			\begin{itemize}
+				\item mithilfe der gewonnen Kenntnisse Algorithmus schreiben
+				\item mithilfe des Algorithmus ein Beispiel berechnen
+				\item \textit{sehr} praktischer Ansatz: ein Stück Software implementieren
+			\end{itemize}
 		\end{frame}
 	\subsection{Aus der Spieltheorie}
 		\begin{frame}
 			\frametitle{Bewertung einer Lösung}
+			Begriffsdefinitionen aus der Spieltheorie:
+			\begin{itemize}
+				\item1 \textbf{Nash-Equilibrium.}		Keiner will einseitig von seiner Strategie abweichen.\pause
+				\item \textbf{Pareto-Optimum.}			Keiner kann sich verbessern, ohne dass ein anderer sich verschlechtert.\pause
+				\item \textbf{Auszahlungsmaximiert.}	$\lnot \exists$ Möglichkeit, dass eine Partei mehr Gewinn machen kann.
+			\end{itemize}
+		\end{frame}
+		\begin{frame}
+			todo: Errechneten Schedule auf o.g. Begriffe untersuchen\\
+			\-\\
+			Plan: Alle errechneten Schedules erfüllen o.g. Begriffe, sofern sie innerhalb des Projektramens liegen.
 		\end{frame}
 \section{Schluss}
 		\begin{frame}
 			\frametitle{Echtweltbezug}
+			todo...
+		\end{frame}
+\section{Quellen}
+		\begin{frame}
+			\begin{itemize}
+				\item Prof. Andreaes VKO-Unterlagen
+				\item Franks AuD-Unterlagen
+				\item evtl. Franks und Daniels FGI$n$ Unterlagen
+				\item Diekmann, Andreas: \textit{Spieltheorie: Einführung, Beispiele, Experimente}, Rowohlt Taschenbuch Verlag; Auflage: 4 (1. April 2009)
+
+			\end{itemize}
 		\end{frame}
 
 \end{document}

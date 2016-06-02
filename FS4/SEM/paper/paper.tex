@@ -11,7 +11,7 @@
 \newcommand{\trtitle}{[Arbeitstitel:]Task-Scheduling in verteilter Softwareentwicklung}
 \newcommand{\trmatrikelnummer}{6658699}
 \newcommand{\tremail}{4kobras@informatik.uni-hamburg.de}
-\newcommand{\trarbeitsbereich}{Complex Systems Engineering, CSE}
+\newcommand{\trarbeitsbereich}{Fachbereich oder \#Student oder so}
 \newcommand{\trdate}{\today}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -286,6 +286,14 @@ Dem entgegen steht der Umstand, dass durchaus Sachen gleichzeitig geschehen kön
 Für alle solche Ereignisse ein neues Dudel zu erstellen, ist umständlich und kann, da jeder Agent an mehreren Dudels teilnehmen muss, zu einer zeitlichen Belastung werden und somit die Produktivität senken.
 \pbreak
 Diese Gründe legen dar, warum die Dudel-Variante in großen Agentensystemen ungeeignet ist und ein eher dynamisch veranlagtes System zur Berechnung eines Schedules erforderlich ist.
+
+\section{Zerlegung in Teilprobleme}
+Da es leider den einen Superalgorithmus, der ein beliebig komplexes Problem in polynomieller Laufzeit löst, gibt, muss ein schwierigeres Problem in einfachere Teilprobleme aufgeteilt werden, die sich besser lösen lassen und für die möglicherweise schon eine Lösung bekannt ist.
+\pbreak
+Zuerst wird die Fragestellung dreigeteilt in Eingabe, Rechnung und Ausgabe.
+
+Eingabe nimmt die Zeiten einer jeden Entität und bestimmt daraus ein Format, mit dem weiter gearbeitet werden kann.
+Hierbei wird 
 
 \section{Approximation durch NP-schwere Probleme}
 \label{sec:approx}
