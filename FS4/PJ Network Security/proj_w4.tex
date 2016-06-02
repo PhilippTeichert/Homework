@@ -184,9 +184,9 @@ Liest den Inhalt von HTTP-Paketen aus und decodiert (zumindest Base-64).
 Wireshark liefert eine graphische Darstellung der gesnifften Pakete in lesbarer Tabellenform und zeigt den Inhalt der Pakete an.
 \subsection{}
 \paragraph{Display-Filter.}
-
+Bestimmt, welche der aufgefangenen Pakete angezeigt werden.
 \paragraph{Capture-Filter.}
-
+Bestimmt, welche Pakete aufgefangen werden.
 \subsection{}
 Wireshark wurde geöffnet.
 \subsection{}
@@ -222,8 +222,23 @@ Funktion liegt unter Menüreiter ``Analyze''.
 
 Ausgabe eines HTTP-Response öffnet Popup, in welchem der Content des Package angezeigt wird.
 Es kann zwischen verschiedenen Darstellungen gewählt werden (Raw/ASCII, HexDump, C Arrays)
-\subsection{}.
-\subsection{}.
+\subsection{}
+\begin{itemize}
+	\item Server starten auf RoutingVM
+	\item Auf SurfingVM mit telnet auf Server einwählen
+	\item Auf RoutingVM Wireshark starten
+	\item Auf SurfingVM Dinge tun
+	\item Auf der RoutingVM kann der gesamte Chat nun als TCP-Packages ausgelesen werden (u.a. auch die Login Daten)
+\end{itemize}
+\subsection{}
+\begin{itemize}
+	\item Aufrufen von \url{https://de-de.facebook.com}
+	\item Verwendete Protokolle: TCP, TLSv1
+	\item Es wurden nicht alle Pakete in Wireshark angezeigt (Nummerierung nicht durchgehend).
+	Kein Filter eingestellt.
+	Theorie: HTTPS wird verborgen.
+\end{itemize}
+
 
 
 \section{ARP-Spoofing}
@@ -241,18 +256,46 @@ Funktionsweise von \ttt{arpspoof}:
 	\item Domain, deren eingehender Datenstream mitgelesen werden soll
 \end{itemize}
 \subsection{}
-Befehl: \ttt{sudo arpspoof 172.16.137.222}.
+Befehl: \ttt{sudo arpspoof 172.16.137.2}.
 Es wird eine lange Reihe identischer arp-Replys ausgegeben.
 \subsection{}
 Es wurde der Wireshark-Adapter ``any'' ausgewählt.
-\subsection{}.
-\subsection{}.
-\subsection{}.
-\subsection{}.
-
+\subsection{}
+\begin{itemize}
+	\item Display Filter auf \ttt{ICMP}
+	\item IP-Adresse 172.16.137.146 durch Ping-Intervall ermittelt
+\end{itemize}
+\subsection{}
+\begin{itemize}
+	\item Display-Filter \ttt{ip.addr==172.16.137.146 \&\& pop}
+	\item beliebigen Eintrag ausgewählt und per Rechtsklick \say{Follow TCP Stream}
+	\item Nutzerdaten: \ttt{USER bumblebee}, \ttt{PASS Optimus Prime}
+	\item hat eine ungelesene Mail von root@labservervm
+	\item Alternativen: EInhalten von Verdecktheit und Verborgenheit (GSS Sicherheitsziele :P)
+\end{itemize}
+\subsection{}
+	\begin{itemize}
+		\item Browser/Version: Mozilla/5.0
+		\item URL: http://10.1.1.2/secure/secret.html
+		\item Login-Daten: Base-64 encoded im Kopf des Paketes; Daten: \ttt{admin:geheim}
+	\end{itemize}
+Widersprüche zwischen Erkenntnissen:
+\begin{itemize}
+	\item None
+\end{itemize}
+\subsection{}
+\ttt{arpspoof} wurde am Ende des Experiments mit Ctrl-C abgebrochen.
 
 \section{Scanning mit nmap}
-\subsection{}.
+\subsection{}
+Die 5 coolsten NMAP-Funktionen (nach \cite{nmap})
+\begin{enumerate}
+	\item Security audits
+	\item network inventory
+	\item managing service upgrade schedules
+	\item monitoring host uptime
+	\item monitoring service uptime
+\end{enumerate}
 \subsection{}
 \begin{itemize}
 	\item Skript vgl. Anhang 4
@@ -261,24 +304,96 @@ Es wurde der Wireshark-Adapter ``any'' ausgewählt.
 	\begin{itemize}
 		\item 10.1.1.1
 		\item 10.1.1.2
+		\item 10.1.1.5
+		\item 10.1.1.11
+		\item 10.1.1.21
+		\item 10.1.1.31
+		\item 10.1.1.41
+		\item 10.1.1.51
+		\item 10.1.1.61
+		\item 10.1.1.71
+		\item 10.1.1.81
+		\item 10.1.1.91
+		\item 10.1.1.101
+		\item 10.1.1.111
+		\item 10.1.1.121
+		\item 10.1.1.131
+		\item 10.1.1.181
+		\item 10.1.1.186
+		\item 10.1.1.218
+		\item 10.1.1.222
+		\item 10.1.1.235
+		\item 10.1.1.238
+		\item 10.1.1.254
 	\end{itemize}
 \end{itemize}
-\subsection{}.
-\subsection{}.
-\subsection{}.
+\subsection{}
+\begin{itemize}
+	\item \ttt{nmap} sagt, alle sind up.
+	\item ping sagt, fast alle sind down.
+	\item \ttt{nmap} lügt. >.<
+	\item \ttt{nmap} erzeugt:
+		\begin{itemize}
+			\item Ping (ICMP)
+			\item Senden eines HTTPS-Package (TCP)
+			\item Senden eines HTTP-Package (TCP)
+			\item Timestamp anfragen (ICMP)
+			\item Antwort auf HTTP von Remote Host (TCP)
+		\end{itemize}
+	\item \ttt{nmap} erzeugt bei einem Host, den \ttt{ping} gefunden hat:
+		\begin{itemize}
+			\item Ping (ICMP)
+			\item Ping Response vom Remote Host (ICMP)
+			\item Senden eines HTTPS-Package (TCP)
+			\item Senden eines HTTP-Package (TCP)
+			\item Timestamp anfragen (ICMP)
+			\item Antwort auf HTTP von Remote Host (TCP)
+		\end{itemize}
+	\item Ermittlung des Up-Status durch Erhalt der HTTP-Antwort
+\end{itemize}
+\subsection{}
+\begin{itemize}
+	\item Three-Way-Handshake: SequenceNumber(SYN) (x) von Client and Host, Rücksenden von SequenceNumber (y) und AcknowledgeNumber(ACK) (x+1) von Host an Client, Rücksenden von AcknowledgeNumber (y+1) Client an Host. (\cite{wiki3})
+	\item TCP-Connect-Scan durch \ttt{sudo nmap -sT 10.1.1.2} (vollständiger 3-way-handshake, (SYN)->(SYN+ACK)->(ACK))
+	\item TCP-SYN-Scan durch \ttt{sudo nmap -sS 10.1.1.2} (nur halber handshake, (SYN)->(SYN+ACK))
+\end{itemize}
+\subsection{}
+\begin{itemize}
+	\item Scannen aller Ports mit \ttt{sudo nmap -p- -sV 172.16.137.146 -oG logs.txt}
+	\item Output enthält \ttt{5288/open/tcp//http//Apache httpd 2.2.14 ((Ubuntu))/}
+	\item Apache-Webserver im Browser aufgerufen mit 172.16.137.146:5288 (Secret Site)
+\end{itemize}
 
 
 \section{OpenVAS}
-\subsection{}.
-\subsection{}.
-\subsection{}.
-\subsection{}.
-\subsection{}.
-\subsection{}.
-\subsection{}.
+\subsection{}
+Wir haben uns ein wenig mit OpenVAS vertraut gemacht.
+\subsection{}
+Start des OpenVAS-Servers mit \ttt{/etc/init.d/openvas-server start}\\
+\textbf{FEHLGESCHLAGEN}, weil der VAS-Daemon Dinge nicht laden konnte.
+\subsection{}
+Startet
+\subsection{}
+Login auf dem Server als user@localhost:user
+\subsection{}
+Es wurde auf das Fragezeichen geklickt und der Assistent durchgearbeitet.
+Währenddessen wurde als Name \say{localhost} und als IP-Adresse die eigene IP-Adresse gewählt.
+Danach würde auf das Stecker-Symbol gekilckt, die Daten eingegeben und \say{ok} betätigt.
+
+Es wurden keine Schwachstellen gefunden (exportierter Report enthält \say{Number of security holes: 0; Number of security warnings: 0}
+
+Note: OpenVAS-Scan-Server ist veraltet.
+
+Eingabe: File -> Scan Assistant -> Task: \$name -> Scope: \$name -> Targets: IP der MysteryVM (172.16.137.146) -> Execute
+\subsection{}
+MysteryVM hat eine Sicherheitslücke und zwei Sicherheitswarnungen.
+
+Login-Daten: root:password
+\subsection{}
 
 \newpage
 \section*{Anhang 1:}
+
 
 \section*{Anhang 2}
 \subsection*{Output des HTTP-Sniffing}
@@ -311,11 +426,15 @@ Host: 10.1.1.2
 Authorization: Basic YWxpY2U6c2VocmdlaGVpbQ== [alice:sehrgeheim] 
 \end{lstlisting}
 
-\section*{Anhang 4: Ping-Skript (Aufgabe 6.2)}
+\section*{Anhang 4: Chat und so Stuff dem seine Dateien}
+
+
+\section*{Anhang 5: Ping-Skript (Aufgabe 6.2)}
 \begin{lstlisting}[language=Bash]
 #!/bin/bash
 COUNTER=0
-while [ $COUNTER -le 25 ]; do
+LIMIT=255
+while [ $COUNTER -lt $LIMIT ]; do
 	echo "pinging 10.1.1.$COUNTER"
 	ping -c1 10.1.1.$COUNTER
 	let COUNTER=COUNTER+1
@@ -326,6 +445,8 @@ done
 \bibitem{uwtcpdump}		\url{https://wiki.ubuntuusers.de/tcpdump/}
 \bibitem{daniel}		\url{http://danielmessler.com/study/tcpdump/}
 \bibitem{alex}			\url{www.alexonlinux.com/tcpdump-for-dummies\#...}
+\bibitem{nmap}			\url{https://nmap.org/book/man.html}
+\bibitem{wiki3}			\url{https://de.wikipedia.org/wiki/Drei-Wege-Handschlag#/media/File:Three-way-handshake-example.gif}
 \end{thebibliography}
 
 \end{document}
