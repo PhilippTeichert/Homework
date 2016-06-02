@@ -123,13 +123,30 @@
 \newcommand{\erdos}{Erd\H{o}s}
 \newcommand{\renyi}{-R\'{e}nyi}
 
-\newcommand{\ints}{\textsc{Interval-Scheduling}}
-\newcommand{\msat}{\textsc{Max-Sat}}
-\newcommand{\lb}{\textsc{Load Balancing}}
+\newcommand{\ints}{\textsc{Interval-Scheduling} }
+\newcommand{\msat}{\textsc{Max-Sat} }
+\newcommand{\lb}{\textsc{Load Balancing} }
+\newcommand{\ts}{\textsc{TopoSort} }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Formatting commands
 \newcommand{\pbreak}{\paragraph*{}}
+\newcommand{\ttt}[1]{\texttt{#1}}
+\newcommand{\reduktion}[1]{%
+	\-\\\vspace{-.4cm}
+		\begin{center}
+			\fcolorbox{black}{lightgray}{%
+				\parbox{0.9\textwidth}{%
+					#1
+				}
+			}
+		\end{center}
+	\-\\
+}
+\newcommand{\todo}[1]{
+	\addcontentsline{toc}{subsubsection}{TODO: #1}
+	\textcolor{pgreen}{\texttt{\-\\ \-\\//TODO: #1\-\\ \-\\}}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Macro commands
@@ -185,6 +202,15 @@ literate=%
 \fancyfoot{}
 \fancyfoot[LE,RO]{\thepage}
 
+% flags for compiling
+%% set counts other than 'True' to 1 to print the corresponding section
+\newcount\True
+\True=1
+%% lipsum filler text
+\newcount\Lopsum
+\Lopsum=0
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Cover Header:
 \begin{titlepage}
@@ -194,6 +220,7 @@ literate=%
 		\begin{flushleft}
 			Universität Hamburg\\
 			Fachbereich Informatik\\
+			\trarbeitsbereich
 		\end{flushleft}
 		\end{minipage}
 		\hfill
@@ -237,7 +264,7 @@ literate=%
 \section*{Abstract}
 \lipsum[99]
 % Lists:
-\setcounter{tocdepth}{2} 					% depth of the table of contents (for Seminars 2 is recommented)
+\setcounter{tocdepth}{3} 					% depth of the table of contents (for Seminars 2 is recommented)
 \tableofcontents
 \pagenumbering{arabic}
 \clearpage
@@ -277,7 +304,7 @@ Gegeben ein Arbeitstag von mehreren Stunden, ist es durchaus nicht undenkbar, da
 Dies ist gerade bei einem Dudel leicht durchzuführen und schwer nachzuvollziehen.
 Ein System, welches die Zeitpläne als Rohmaterial erhält, nimmt keine Rücksicht auf persönliche Abneigungen und eliminiert deswegen diesen Fall.
 \paragraph{Nichtoptimierung.}
-Ein Dudel zählt lediglich, wie viele Agenten zu welchen Zeitslots zur Verfügung stehen; es wird nicht weiter auf die Art der Blockierung der anderen Zeitslots eingegangen.
+Ein Dudel zählt lediglich, wie viele Agenten zu welchen Zeitslots zur Verfüg-ung stehen; es wird nicht weiter auf die Art der Blockierung der anderen Zeitslots eingegangen.
 Ein System, welches direkt mit Deadlines und Abhängigkeiten arbeitet, kann dazu im Stande sein, den Schedule derart zu berechnen, dass Wartezeiten reduziert werden, und ist deswegen potentiell in der Lage, einen optimierten Schedule zu erstellen, der die allgemeine Projektdauer reduziert und die Wartezeiten einzelner Agenten minimiert und somit die Produktivität maximiert.
 \paragraph{Einzelläufigkeit.}
 Ein Dudel hat nicht das Potenzial, nebenläufige Entwicklungsprozesse zu be-rücksichtigen.
@@ -289,11 +316,58 @@ Diese Gründe legen dar, warum die Dudel-Variante in großen Agentensystemen ung
 
 \section{Zerlegung in Teilprobleme}
 Da es leider den einen Superalgorithmus, der ein beliebig komplexes Problem in polynomieller Laufzeit löst, gibt, muss ein schwierigeres Problem in einfachere Teilprobleme aufgeteilt werden, die sich besser lösen lassen und für die möglicherweise schon eine Lösung bekannt ist.
-\pbreak
 Zuerst wird die Fragestellung dreigeteilt in Eingabe, Rechnung und Ausgabe.
+\pbreak
+Die Eingabe nimmt die Zeiten eines jeden Akteurs und bestimmt daraus ein Format, mit dem weiter gearbeitet werden kann.
+Hierbei wird von allen Teilnehmern am Schedule erwartet, dass sie sämtliche Zeiträume eintragen, in denen sie nicht zur Verfügung stehen, sowie sämtliche Tasks, die sie betreffen, wobei der Projektleiter die Möglichkeit haben soll, die Projekt-Deadline anzugeben.
+Der Algorithmus soll dabei Duplikate erkennen und eliminieren können.
 
-Eingabe nimmt die Zeiten einer jeden Entität und bestimmt daraus ein Format, mit dem weiter gearbeitet werden kann.
-Hierbei wird 
+Diese Eingaben werden auf eine Form gebracht, die vom Algorithmus verarbeitet werden kann.
+
+Anschließend werden diese verarbeiteten Eingaben sortiert, um einen Überblick darüber zu erhalten, wie ein Schedule aufgebaut ist.
+Hier kann bereits geprüft werden, ob es theoretisch ein Schedule geben kann, welches die Ramenbedingungen einhält, indem geprüft wird, ob ein einzelner Task mehr Ressourcen benötigt, als zur Verfügung stehen.
+\pbreak
+Die Rechnung wendet Lösungs- und Approximationsalgorithmen für bekannte und gelöste Probleme an, um die Aufgaben gleichmäßig zu verteilen, so dass ein Task von einer qualifizierten Entität bearbeitet wird, keine Entität gleichzeitig mehrere Tasks zu bearbeiten hat und keine übermäßigen Wartezeiten für untätige Entitäten entstehen.
+Dies impliziert eine größtmögliche Parallelisierung von wechselseitig unabhängigen Teilaufgaben.
+
+Hierbei wird (nach der Sortierung in der Eingabe) darauf geachtet, dass alle Abhängigkeiten eines Tasks erfüllt sind, bevor er zugewiesen wird, und dass kein Task eine Deadline überschreitet.
+
+Das System soll in der Lage sein, dynamisch im Hinblick auf zu erfüllende Abhängigkeiten eigene Deadlines für Meilensteine der Entwicklung festzulegen.
+\pbreak
+Die Ausgabe übernimmt den errechneten Schedule und erstellt daraus ein Diagramm, welches leicht lesbar und verständlich sein soll.
+Als Muster bieten sich Gantt-Diagramme oder Commit-Trees von Versionsverwaltungssystemen an.
+
+\section{Eingabe}
+\label{sec:eingabe}
+\todo{normierung}
+\pbreak
+Es wird eine Reihe von Tasks erwartet, die allesamt eine (möglicherweise leere) Liste von Abhäng-igkeiten sowie optional eine Deadline besitzen.
+Diese Tasks werden mithilfe von \ts soriert.
+
+Dazu folgende Reduktion:
+\reduktion{
+	Es wird ein gerichteter Graph konstruiert.
+	Zunächst werden alle Task-Listen konkateniert.
+	Diese Liste wird sortiert; Duplikate werden eliminiert.
+	
+	Für jeden Task wird nun ein Knoten erzeugt; ist ein Task von einem anderen abhängig, so wird eine Kante entgegen der Richtung der Abhängigkeit zwischen den Knoten hinzugefügt.
+	Auf diesem so entstandenen Graphen wird \ts durchgeführt.
+	\paragraph*{Hinrichtung.}
+	Ist \ts erfolgreich, so gibt es keine Zyklen im Graphen, alle bekannten Abhängigkeiten können also aufgelöst werden.
+	
+	Ist \ts nicht erfolgreich, so gibt es Zyklen im Graphen.
+	Dies bedeutet, dass nicht alle Abhängigkeiten aufgelöst werden können, da einige Tasks indirekt von sich selber abhängen.
+	In diesem Fall tritt eine Deadlock-Situation auf.
+	Diese lässt sich dadurch beheben, einzelne Tasks zurückzuziehen, die einen Zyklus erzeugen.
+	Andernfalls lässt sich kein vollständiges Schedule erzeugen.
+	\paragraph*{Rückrichtung.}
+	Wenn es ein vollständiges Schedule gibt, so müssen alle Abhängigkeiten auflösbar sein.
+	In diesem Fall lässt sich also ein Graph konstruieren, auf dem \ts erfolgreich terminiert.
+	
+	Gibt es kein vollständiges Schedule aus dem Grund nicht aufgelöster Abhängigkeiten, so liegt dies daran, dass eine Abhängigkeit ewig auf Erfüllung wartet.
+	Dies tritt nur bei Deadlock-Sitationen auf.
+	Somit existiert im konstruierten Graphen ein Zyklus und \ts terminiert erfolglos.
+}
 
 \section{Approximation durch NP-schwere Probleme}
 \label{sec:approx}
@@ -301,21 +375,40 @@ Zur Lösung eines Problems bietet es sich an, nach ähnlichen Problemen zu suche
 In diesem Fall bieten sich folgende Probleme an:
 \begin{itemize}
 	\item \ints\footref{def:prob:interval-scheduling}
-	\item \msat\footref{def:prob:max-sat}
+	\item \msat\footref{def:prob:max-sat} / Knapsack
 	\item \lb\footref{def:prob:load-balancing}
 \end{itemize}
-\lipsum[7-27]
-\lipsum[52-55]
+\ifnum\Lopsum=\True
+	\lipsum[7-27]
+	\lipsum[52-55]
+\fi
+
+\begin{algorithm}[H]
+	\caption{\textsc{schedule(List tasks, Date deadline)}}
+	\label{alg:schedule}
+	\begin{algorithmic}[1]
+		\FOR{task \textbf{in} tasks}
+			\IF{task.timeRequirement \textbf{is greater than} deadline.isAway}
+				\RETURN \ttt{\textbf{false}}
+			\ENDIF
+		\ENDFOR
+		\STATE \ttt{Array A = TopoSort(tasks)}
+	\end{algorithmic}
+\end{algorithm}
 
 \section{Lösungsansatz}
 \label{sec:sol}
-\lipsum[28-39]
-
+\ifnum\Lopsum=\True
+	\lipsum[28-39]
+\fi
+\todo{[sic]}
 \section{Bewerten einer Lösung}
 \label{sec:eval}
-\lipsum[40-50]
-\lipsum[9999]
-
+\ifnum\Lopsum=\True
+	\lipsum[40-50]
+	\lipsum[9999]
+\fi
+\todo{[sic]}
 \newpage
 \addcontentsline{toc}{section}{Definitionen}
 \section*{Definitionen}
@@ -330,6 +423,17 @@ In diesem Fall bieten sich folgende Probleme an:
 	Eine Strategie ist für eine Entität auszahlungsmaximiert genau dann, wenn alle anderen Strategien, die diese Entität wählen kann, gleich viel oder weniger Gewinn bringen.
 	
 	Eine Strategie ist für eine Gruppe auszahlungsmaximiert genau dann, wenn sie für alle Entitäten in der Gruppe auszahlungsmaximiert ist (also ein pareto-optimales Nash-Gleichgewicht vorliegt).
+\paragraph*{Task.}
+	Der Begriff \textit{Task} wird hier als Oberbegriff für Aufgaben, Termine und Veranstaltungen verwendet.
+\paragraph*{Entität.}
+	Der Begriff \textit{Entität} bezeichnet hier entweder einen Akteur oder eine Gruppe bzw. Partei.
+\paragraph*{Akteur.}
+	Oberbegriff für handende Menschen und Maschinen
+\paragraph*{Deadline.}
+	\begin{enumerate}
+		\item[a.] Abschlusszeitpunkt eines Projektes
+		\item[b.] Zeitpunkt, zu dem ein Task spätestens erledigt sein muss, um den Schedule einzuhalten
+	\end{enumerate}
 \paragraph*{\lb .}
 	\label{def:prob:load-balancing}
 	(NP-schweres Problem nach \cite{Andreae2016})
@@ -339,14 +443,20 @@ In diesem Fall bieten sich folgende Probleme an:
 		\subparagraph*{Frage.} Gibt es eine Verteilung aller Jobs auf alle Maschinen derart, dass die Produktionsdauert minimiert ist?
 \paragraph*{\ints .}
 	\label{def:prob:interval-scheduling}
+	\todo{[sic]}
 	(NP-vollständiges Problem nach \cite{Andreae2016})
 		\subparagraph*{Eingabe.}
 		\subparagraph*{Frage.}
 \paragraph*{\msat .}
 	\label{def:prob:max-sat}
+	\todo{[sic]}
 	(NP-schweres Problem nach \cite{Andreae2016})
 		\subparagraph*{Eingabe.}
 		\subparagraph*{Frage.}
+\paragraph*{Projekt.}
+\todo{PMBoK Definition}
+		
+\newpage
 \bibliographystyle{plain}
 \addcontentsline{toc}{section}{Quellenverzeichnis}% Add to the TOC
 \bibliography{bib}
