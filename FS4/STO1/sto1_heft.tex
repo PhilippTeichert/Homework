@@ -189,14 +189,14 @@
 \newcommand{\memTwoName}{Louis Kobras}
 \newcommand{\memTwoMail}{4kobras@informatik.uni-hamburg.de}
 \newcommand{\memTwoNr}{6658699}
-%%% Gruppenmitglied 3
-%\newcommand{\memThreeName}{Felix Gebauer}
-%\newcommand{\memThreeMail}{4gebauer@informatik.uni-hamburg.de}
-%\newcommand{\memThreeNr}{6671660}
-%%% Gruppenmitglied 4
-%\newcommand{\memFourName}{}
-%\newcommand{\memFourMail}{}
-%\newcommand{\memFourNr}{}
+%% Gruppenmitglied 3
+\newcommand{\memThreeName}{Felix Gebauer}
+\newcommand{\memThreeMail}{4gebauer@informatik.uni-hamburg.de}
+\newcommand{\memThreeNr}{6671660}
+%% Gruppenmitglied 4
+\newcommand{\memFourName}{}
+\newcommand{\memFourMail}{}
+\newcommand{\memFourNr}{}
 %% Datum
 \newcommand{\datum}{\today\\}
 %% leere Seite
@@ -259,11 +259,10 @@
 \fancyfoot{}
 %% first group member in upper left corner
 \lhead{\memOneName\-\\\memOneNr}
-%%% second group member in the upper center
-%\chead{\memTwoName\-\\\memTwoNr}
-%%% third group member in upper right corner
-%\rhead{\memThreeName\-\\\memThreeNr}
-\rhead{\memTwoName\-\\\memTwoNr}
+%% second group member in the upper center
+\chead{\memTwoName\-\\\memTwoNr}
+%% third group member in upper right corner
+\rhead{\memThreeName\-\\\memThreeNr}
 %% lower left corner (empty)
 \lfoot{}
 %% subject name in lower center
@@ -296,7 +295,7 @@
 	% group members
 	\memberOfGroup{\memOneName}{\memOneMail}{\memOneNr}
 	\memberOfGroup{\memTwoName}{\memTwoMail}{\memTwoNr}
-%	\memberOfGroup{\memThreeName}{\memThreeMail}{\memThreeNr}
+	\memberOfGroup{\memThreeName}{\memThreeMail}{\memThreeNr}
 %	\memberOfGroup{\memFourName}{\memFourMail}{\memFourNr}
 	% 1 cm to next element
 	\vspace{1cm}
@@ -1272,21 +1271,39 @@ Somit ist die Gewinnwahrscheinlichkeit bei einem Wechsel bei 100\%.
 \fi
 \ifnum\ZettelAcht=\True
 \sect{8}{31. Mai 2016}{7. Juni 2016}
+\chead{}
+\rhead{\memTwoName\\\memTwoNr}
 \susP{8.1}{7}
 (Bedingte Wahrscheinlichkeiten, 4+3 Punkte).
 Bei der digitalen Datenübertragung können aufgrund verrauschter Kanäle auf der physikalischen Ebene Fehler auftreten, die sich dann als Verfälschung übermittelter Datenpakete auswirken.
 Das neu entwickelte Verfahren DEPP (Detection of Error-in-Packet Probabilities), ein Verfahren zur Erkennung von
 Datenübertragungsfehlern, zeigt 99\% aller auftretenden Übertragungsfehler richtigerweise als Fehler an.
-Leider weist das Verfahren fälschlicherweise 0.1ß\% aller korrekten Datenübertragungen als fehlerhaft aus.
+Leider weist das Verfahren fälschlicherweise 0.1\% aller korrekten Datenübertragungen als fehlerhaft aus.
 Das Verfahren wird nun zur Prüfung eines Nachrichtenübertragungskanals eingesetzt, bei dem 1\% Übertragungsfehler auftreten. 
 \begin{enumerate}
 	\item[a)] Wie groß ist die Wahrscheinlichkeit, dass das Verfahren bei einer Datenübertragung einen Fehler anzeigt?
 	\item[b)] Wie groß ist die Wahrscheinlichkeit, dass eine Datenübertragung tatsächlich fehlerhaft ist, falls das Verfahren einen Fehler anzeigt?
 \end{enumerate}
 \vspace{.3cm}\-\\
-
-
-
+A := ``Es liegt ein Fehler vor.''\\
+B := ``Das System erkennt einen Fehler.''
+\paragraph{a)}
+Mit einer Wahrscheinlichkeit von 1\% tritt ein Fehler auf, welcher mit einer Wahrscheinlichkeit von 99\% erkannt wird $ \Rightarrow0.01\cdot 0.99$\\
+Mit einer Wahrscheinlichkeit von 99\% tritt kein Fehler auf, welcher mit einer Wahrscheinlichkeit von 0.1\% trotzdem als Fehler erkannt wird $\Rightarrow0.99\cdot 0.001$
+\[
+	P(B)=0.99\cdot0.01+0.99\cdot0.001\approx0.01089\hat{\approx}1.1\%
+\]
+\paragraph{b)}
+Formel von Bayes:
+\[
+	P(A|B)=\frac{P(B|A)\cdot P(A)}{P(B)}
+\]
+$P(B|A)$ liegt bei 99\% (vlg. Aufgabenstellung).\\
+$P(A)$ ist 1\% (vlg. Aufgabenstellung).\\
+$P(B)$ wurde in a) ausgerechnet.
+\[
+	P(A|B)=\frac{0.99\cdot0.01}{0.01089}=\frac{10}{11}\hat{\approx}91\%
+\]
 \susP{8.2}{5}
 (Stochastische Unabhängigkeit, 2+3 Punkte).
 Im Folgenden sind jeweils zwei Ereignisse $A,B$ gegeben.
@@ -1298,8 +1315,21 @@ Im Folgenden sind jeweils zwei Ereignisse $A,B$ gegeben.
 	$A$ sei das Ereignis, dass die Augensumme 6 ist, $B$ sei das Ereignis, dass mindestens ein Würfel eine 3 zeigt.
 \end{enumerate}
 \vspace{.3cm}\-\\
-
-
+\paragraph{a)}
+todo: zeigen
+Definition von stoch. Unabhängigkeit:
+\[
+	P(A|B)=P(A) \Leftrightarrow P(A \cap B) = P(A) \cdot P(B)
+\]
+\paragraph{b)}
+$P(B)=\frac{11}{36}, P(A)=\frac{5}{36}$.
+\[
+	P(B|A)=\frac{1}{5}\text{, da es 5 Fälle für A gibt, von denen jedoch nur einer für B günstig ist.}
+\]
+\[
+	P(A|B)=\frac{1}{11}\text{, da es 11 Fälle für B gibt, von denen jedoch nur einer für A günstig ist.}
+\]
+Da $P(A|B) \neq P(A)$, sind sie nach Definition (vgl. oben) nicht stochastisch unabhängig.
 
 \susP{8.3}{8}
 (Smileys revisited, 3+3+2 Punkte).
@@ -1325,23 +1355,54 @@ Dies soll hier nun begründet werden.
 	\item[c)] Folgern Sie schließlich $P(X=k)=\frac{1}{k(k+1)}$ für alle $k \in \mathbb{N}$.
 \end{enumerate}
 \vspace{.3cm}\-\\
+\paragraph{a)}
+$X>k-1$ bedeutet, dass wir mindestens $k$ Runden brauchen.
+Die Wahrscheinlichkeit, in der $k$-ten Runde zu gewinnen, beträgt $\frac{1}{k+1}$.\\
+Somit schließt 
+\[
+	\Rightarrow P(X=k | X > k-1)=(X=k)=\frac{1}{k+1}
+\]
+\\
+$P(X>k)$ meint die Wahrscheinlichkeit, in einer späteren als der $k$-ten Runde zu gewinnen.
+\[
+	\sum_{i=k + 1}^{\infty} \left(\frac{1}{k+i}\right) = \sum_{i=1}^{\infty}\left(\frac{1}{2k+1}\right)
+\]
+Aus der Divergenz der harmonischen Reihe folgt:
+\[
+	\sum_{k=1}^{\infty} \left(\frac{1}{2k+1}\right)=\infty
+\]
 
-
-
+\[
+	\Rightarrow P(X > k | X > k-1) = \frac{k}{k+1}
+\]
 \susP{8.4}{5}
 (Minimum und Maximum, 5 Punkte).
 Betrachten Sie einmal mehr den gleichzeitigen Wurf zweier fairer Würfel.
 $X$ sei die minimale Augenzahl, $Y$ die maximale Augenzahl.
-Charakterisieren Sie die gemeinsame Verteilung von $(X,Y)$ durch Ausfüllen der Tabelle
+Charakterisieren Sie die gemeinsame Verteilung von $(X,Y)$ durch Ausfüllen der Tabelle. \\
+\\
+Annahme: Tupel (x,y) $\lor$ (y,x)
 \[
 	\begin{array}{|c|cccccc|}\hline
-	Y \setminus X	&	1	&	2	&	3	&	4	&	6	&	6	\\ \hline
-	1&&&&&&\\
-	2&&&&&&\\
-	3&&&&&&\\
-	4&&&&&&\\
-	5&&&&&&\\
-	6&&&&&&\\\hline
+	Y \setminus X	&	1	&	2	&	3	&	4	&	5	&	6	\\ \hline
+	1&\ilfrac{1}{36}&0&0&0&0&0\\
+	2&\ilfrac{2}{36}&\ilfrac{1}{36}&0&0&0&0\\
+	3&\ilfrac{2}{36}&\ilfrac{2}{36}&\ilfrac{1}{36}&0&0&0\\
+	4&\ilfrac{2}{36}&\ilfrac{2}{36}&\ilfrac{2}{36}&\ilfrac{1}{36}&0&0\\
+	5&\ilfrac{2}{36}&\ilfrac{2}{36}&\ilfrac{2}{36}&\ilfrac{2}{36}&\ilfrac{1}{36}&0\\
+	6&\ilfrac{2}{36}&\ilfrac{2}{36}&\ilfrac{2}{36}&\ilfrac{2}{36}&\ilfrac{2}{36}&\ilfrac{1}{36}\\\hline
+	\end{array}
+\]
+Annahme: Tupel (i,j); x <= i,j <= y
+\[
+	\begin{array}{|c|cccccc|}\hline
+	Y \setminus X	&	1	&	2	&	3	&	4	&	5	&	6	\\ \hline
+	1&\ilfrac{1}{36}&0&0&0&0&0\\
+	2&\ilfrac{4}{36}&\ilfrac{1}{36}&0&0&0&0\\
+	3&\ilfrac{9}{36}&\ilfrac{4}{36}&\ilfrac{1}{36}&0&0&0\\
+	4&\ilfrac{16}{36}&\ilfrac{9}{36}&\ilfrac{4}{36}&\ilfrac{1}{36}&0&0\\
+	5&\ilfrac{25}{36}&\ilfrac{16}{36}&\ilfrac{9}{36}&\ilfrac{4}{36}&\ilfrac{1}{36}&0\\
+	6&\ilfrac{36}{36}&\ilfrac{25}{36}&\ilfrac{16}{36}&\ilfrac{9}{36}&\ilfrac{4}{36}&\ilfrac{1}{36}\\\hline
 	\end{array}
 \]
 \vspace{.3cm}\\
