@@ -4,6 +4,8 @@
 \usepackage[ngerman]{babel}
 \usepackage[margin=2.5cm]{geometry}
 
+% urls and stuff
+\usepackage{hyperref}
 % import math packages
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -11,6 +13,8 @@
 \usepackage{amsthm}
 % contradiction lightning
 \usepackage{stmaryrd}
+% source code
+\usepackage{listings}
 % algorithms and pseudo code
 \usepackage{algorithmic}
 \usepackage{algorithm}
@@ -28,6 +32,16 @@
 % filler text
 \usepackage{lipsum}
 % macro commands
+%% ttt
+\newcommand{\ttt}[1]{%
+	\texttt{#1}
+}
+%% custom cell
+\renewcommand{\vector}[1]{%
+	\begin{tabular}{c}
+		#1
+	\end{tabular}
+}
 %% requires color package and the custom colors defined here 
 \newcommand{\todo}[1]{
 	\addcontentsline{toc}{subsubsection}{TODO: #1}
@@ -170,14 +184,108 @@
 \sect{4}{datum1}{08. Juni 2016}
 \subsection*{Aufgabe 1: Speicherverwaltung}
 \subsubsection*{a)}
+Die physikalische Addressierung besitzt 15 bit.
+Daher gibt es $2^{15} = 32768$ addressierbare Speicherzellen.
+Das sind 32 KB Arbeitsspeicher, den sich 16 Seiten teilen.
+Hierdurch ergibt sich eine Seitengröße von 2 KB.
 \subsubsection*{c)}
+Da die Tabelle nur 16 Seiten ($=2^4$) hat, werden die Seitennummern nur in den vorderen 4 Bits gespeichert.
+Der Rest ist Offset ($2^{12} = 4096$ Bit). \\
+\begin{tabular}{||c|c|p{.135\textwidth}||p{.5\textwidth}||}\hline
+	\textbf{Aufgabenteil}	&	\textbf{Hex-Wert}	&	\textbf{physikalische} \textbf{Adresse}	&	\textbf{Bemerkung}	\\ \hline
+	i	&	0x5FE8	&	0x1FE8	&	Seite 5 hat den Seitenrahmen 001, also werden die oberen 4 Bit durch diese Zahl als Hexadezimalzahl ersetzt.\\\hline
+	ii	&	0xFEEE	&	Seitenladefehler (page fault)	&	Seite 15 liegt nicht im Speicher, da das Present/Absent-Bit nicht gesetzt ist, weshalb ein Seitenladefehler entsteht.\\\hline
+	iii	&	0xA470	&	0x0470	&	Seite 10 hat den Seitenrahmen 000, also werden die oberen 4 Bit durch diese Zahl als Hexadezimalzahl ersetzt.\\\hline
+	iv	&	0x0101	&	0x5101	&	Seite 0 hat den Seitenrahmen 101, also werden die oberen 4 Bit durch diese Zahl als Hexadezimalzahl ersetzt.\\\hline
+\end{tabular}
 \subsubsection*{d)}
+\begin{minipage}[t]{.47\textwidth}
+	\hspace{.3cm}\textbf{Pro große Seiten}\\
+	\begin{center}\begin{enumerate}
+		\item Weniger Seiten müssen geladen werden.
+		Die Ladezeiten sind sehr viel größer als die Lesezeiten einer Seite.
+	\end{enumerate}\end{center}
+\end{minipage}
+\begin{minipage}[t]{.47\textwidth}
+	\hspace{.3cm}\textbf{Pro kleine Seiten}\\
+	\begin{center}\begin{enumerate}
+		\item Weniger ungenutzter Speicher, da die Allokation von Speicher zu Prozessen passgenauer ist.
+		Insbesondere relevant bei vielen Prozessen mit eher wenig Speicherbedarf.
+		\item Bei einer effizienten MMU und schnellen Festplatten kann durch viele kleine Seiten der Hauptspeicher besser genutzt werden, da wenig genutzte Seiten ausgelagert werden können.
+	\end{enumerate}\end{center}
+\end{minipage}
 \subsubsection*{e)}
-
+\todo{import Louis.Block;}
 \subsection*{Aufgabe 2: Seitenersetzungsalgorithmen}
 \subsubsection*{a)}
-
+\paragraph{i.}\-\\
+\begin{tabular}{||||p{.15\textwidth}|||c|c|c|c||c|c|c|c||c|c|c|c||||}\hline
+	\textbf{t}			&	1	&	2	&	3	&	4	&	5	&	6	&	7	&	8	&	9	&	10	&	11	&	12	\\ \hline \hline
+	Angeforderte Seite	&	1	&	2	&	3	&	4	&	2	&	1	&	2	&	5	&	6	&	2	&	6	&	3	\\	\hline
+	Zugriffsart			&	r	&	w	&	w	&	r	&	r	&	r	&	r	&	w	&	r	&	w	&	w	&	r	\\	\hline
+	Seitenalarm			&	j	&	j	&	j	&	j	&	j	&	n	&	n	&	j	&	j	&	n	&	n	&	j	\\	\hline
+	Seiten im Speicher	&	\vector{1}	&	\vector{1\\2}	&	\vector{1\\2\\3}&\vector{1\\3\\4}&\vector{1\\4\\2}&\vector{1\\4\\2}&\vector{1\\4\\2}&\vector{1\\2\\5}&\vector{1\\2\\6}&\vector{1\\2\\6}&\vector{1\\2\\6}&\vector{2\\6\\3}\\\hline
+\end{tabular}
+\paragraph{ii.}\-\\
+\begin{tabular}{||||p{.15\textwidth}|||c|c|c|c||c|c|c|c||c|c|c|c||||}\hline
+	\textbf{t}			&	1	&	2	&	3	&	4	&	5	&	6	&	7	&	8	&	9	&	10	&	11	&	12	\\ \hline \hline
+	Angeforderte Seite	&	1	&	2	&	3	&	4	&	2	&	1	&	2	&	5	&	6	&	2	&	6	&	3	\\	\hline
+	Zugriffsart			&	r	&	w	&	w	&	r	&	r	&	r	&	r	&	w	&	r	&	w	&	w	&	r	\\	\hline
+	Seitenalarm			&	j	&	j	&	j	&	j	&	n	&	j	&	n	&	j	&	j	&	n	&	n	&	j	\\	\hline
+	Seiten im Speicher	&	\vector{1}	&	\vector{1\\2}	&	\vector{1\\2\\3}&\vector{2\\3\\4}&\vector{2\\3\\4}&\vector{2\\4\\1}&\vector{2\\4\\1}&\vector{2\\1\\5}&\vector{2\\5\\6}&\vector{2\\5\\6}&\vector{2\\5\\6}&\vector{2\\6\\3}\\\hline
+\end{tabular}
 \subsection*{Aufgabe 3: Synchronisation}
 \subsubsection*{a)}
+\textbf{\ttt{processWriter():}}
+\begin{lstlisting}[language=Python]
+do:
+	wait()
+while number of readers active is greater than 0 OR W is equal to 0
+P(W)
+write()
+V(W)
+\end{lstlisting}
+\textbf{\ttt{processReader():}}
+\begin{lstlisting}
+do:
+	wait()
+while W is equal to 0
+do:
+	wait()
+while Mutex is equal 0
+P(Mutex)
+increment number of active readers
+V(Mutex)
+
+read()
+
+do:
+	wait()
+while Mutex is equal 0
+P(Mutex)
+increment number of active readers
+V(Mutex)
+\end{lstlisting}
 \subsubsection*{b)}
+Bei dieser Methode werden schreibende Prozesse benachteiligt, da sie nur auf den kritischen Abschnitt zugreifen können, sobald kein schreibender und kein lesender Prozess mehr darauf zugreift.Lesende Prozesse können 
+allerdings schon darauf zugreifen, wenn sich noch ein lesender Prozess im kritischen Abschnitt befindet.
+So kann es passieren, dass immer lesende Prozesse auf den kritischen Abschnitt zugreifen und die schreibenden unendlich lange warten müssen.
+
+Eine mögliche Lösung wäre, eine Warteschlange einzuführen, sodass die Prozesse anhand ihres Anfragezeitpunktes geordnet werden und nur weiterarbeiten können, sofern sie an der Reihe sind.
+Sollte also ein schreibender Prozess ankommen, würde verhindert werden, dass neu ankommende (also nicht solche, die schon vor den schreibenden Prozess angekommen sind) lesende Prozesse den kritischen Abschnitt benutzen könnten, bis der schreibende Prozess fertig ist. 
+\begin{thebibliography}{1}
+\bibitem{converter}	\url{http://www.matheretter.de/formeln/algebra/zahlenkonverter/}
+\bibitem{webcalc}	\url{http://web2.0rechner.de}
+\bibitem{wikinru}	\url{https://de.wikipedia.org/wiki/Not\_recently\_used}
+\bibitem{wikierr}	\url{https://de.wikipedia.org/wiki/Seitenfehler}
+\bibitem{wikipage}	\url{https://de.wikipedia.org/wiki/Speicherseite}
+\bibitem{wikipre}	\url{https://de.wikipedia.org/wiki/Bin\%C3\%A4rpr\%C3\%A4fix}
+\bibitem{wikisem}	\url{https://de.wikipedia.org/wiki/Semaphor\_(Informatik)}
+\bibitem{wikipag}	\url{https://de.wikipedia.org/wiki/Paging}
+\bibitem{hgesser}	\url{http://hm.gesser.de/bsws2006/folien/bs2esser054up.pdf}
+\bibitem{vsis}		\url{https://vsis-www.informatik.uni-hamburg.de/getDoc.php/lectures/4959/GSS-C01\_a.pdf}
+\bibitem{fbi}		\url{https://www.fbi.hda.de/\~a.schuette/Vorlesungen/Betriebssysteme/Skript/4\_Speicherverwaltung/Speicherverwaltung.pdf}
+\bibitem{flens}		\url{http://www.wi.fhflensburg.de/beispiel\_riggert0.html}
+\bibitem{tannenbaum} Tanenbaum, Andrew S., \textit{Modern Operating Systems}, 3rd Edition
+\end{thebibliography}
 \end{document}
