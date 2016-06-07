@@ -1421,17 +1421,18 @@ Annahme: Tupel (i,j); x <= i,j <= y
 \sect{9}{7. Juni 2016}{14. Juni 2016}
 \susP{9.1}{9}
 (Berechnung Kovarianz, 3+3+3 Punkte).
-Bestimmen Sie in folgenden Situationen \cov{X}{Y}.
+Bestimmen Sie in folgenden Situationen \cov{X}{Y}.\\
+\begin{minipage}[t]{0.48\textwidth}
 \begin{enumerate}
 	\item[a)]
 		\begin{tabular}{|cc|ccc|c|}\hline
 				&		&	&$X$			&				&\\
 				&		&0	&1				&2				&\\\hline
 				%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-				&0	{}	&0	&$\frac{1}{4}$	&0				&\\
-			$Y$	&1	{}	&0	&$\frac{1}{3}$	&0				&\\
-				&2	{}	&0	&0				&$\frac{1}{3}$	&\\\hline
-				&	{}	&	&				&				&\\\hline
+				&0	{}	&0				&$\frac{1}{4}$	&0				&\\
+			$Y$	&1	{}	&$\frac{1}{4}$	&0				&$\frac{1}{4}$	&\\
+				&2	{}	&0				&$\frac{1}{4}$	&				&\\\hline
+				&	{}	&				&				&				&\\\hline
 		\end{tabular}
 	\item[b)]
 		\begin{tabular}{|cc|ccc|c|}\hline
@@ -1454,34 +1455,143 @@ Bestimmen Sie in folgenden Situationen \cov{X}{Y}.
 				&	{}	&				&				&				&\\\hline
 		\end{tabular}
 \end{enumerate}
-
-
+\end{minipage} ~~
+\begin{minipage}[t]{0.48\textwidth}
+\begin{enumerate}
+	\item[a)]
+		\begin{tabular}{|cc|ccc|c|}\hline
+				&		&	&$X$			&				&\\
+				&		&0	&1				&2				&\\\hline
+				%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				&0	{}	&0						&$\frac{1}{4}$		&0					&$\ilfrac{1}{4}$\\
+			$Y$	&1	{}	&$\frac{1}{4}$			&0					&$\frac{1}{4}$		&$\ilfrac{2}{4}$\\
+				&2	{}	&0						&$\frac{1}{4}$		&0					&$\ilfrac{1}{4}$\\\hline
+				&	{}	&$\frac{1}{4}$			&$\ilfrac{2}{4}$	&$\ilfrac{1}{4}$	&\\\hline
+		\end{tabular}
+	\item[b)]
+		\begin{tabular}{|cc|ccc|c|}\hline
+				&		&	&$X$			&				&\\
+				&		&0	&1				&2				&\\\hline
+				%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				&0	{}	&$\frac{1}{3}$		&0					&0					&$\ilfrac{1}{3}$\\
+			$Y$	&1	{}	&0					&$\frac{1}{3}$		&0					&$\ilfrac{1}{3}$\\
+				&2	{}	&0					&0					&$\frac{1}{3}$		&$\ilfrac{1}{3}$\\\hline
+				&	{}	&$\ilfrac{1}{3}$	&$\ilfrac{1}{3}$	&$\ilfrac{1}{3}$	&\\\hline
+		\end{tabular}
+	\item[c)]
+		\begin{tabular}{|cc|ccc|c|}\hline
+				&		&	&$X$			&				&\\
+				&		&0	&1				&2				&\\\hline
+				%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				&0	{}	&0					&0					&$\frac{1}{3}$		&$\ilfrac{1}{3}$\\
+			$Y$	&1	{}	&0					&$\frac{1}{3}$		&0					&$\ilfrac{1}{3}$\\
+				&2	{}	&$\frac{1}{3}$		&0					&0					&$\ilfrac{1}{3}$\\\hline
+				&	{}	&$\ilfrac{1}{3}$	&$\ilfrac{1}{3}$	&$\ilfrac{1}{3}$	&\\\hline
+		\end{tabular}
+\end{enumerate}
+\end{minipage}\\
+\vspace{.3cm}\\
+\paragraph{a)}
+\cov{X}{Y}=\e{XY}-\e{X}\e{Y}.
+\begin{align*}
+	\Rightarrow \textbf{COV}[X,Y]	&= 0 \cdot P(XY=0) + 1 \cdot P(XY=1) + 2 \cdot P(XY=2) + 4 \cdot P(XY=4) \\
+									&-\left[ \left(0 \cdot P(X=0) + 1 \cdot P(X=1) + 2 \cdot P(X=2)\right) \cdot \left(0 \cdot P(Y=0) + 1 \cdot P(Y=1) + 2 \cdot P(Y=2)\right) \right]\\
+									&= 0\cdot0 + 1 \cdot 0 + 2 \cdot \frac{2}{4} + 4 \cdot 0 - \left[ \left(0 \cdot \frac{1}{4} + 1 \cdot \frac{2}{4} + 2 \cdot \frac{1}{4} \right) \cdot \left( 0 \cdot \frac{1}{4} + 1 \cdot \frac{2}{4} + 2 \cdot \frac{1}{4} \right) \right]\\
+									&= \frac{4}{4} - \left[\frac{4}{4} \cdot \frac{4}{4} \right]\\
+									&= 1 - 1 \cdot 1\\
+									&= 0
+\end{align*}
+\paragraph{b)}
+\begin{align*}
+	\textbf{COV}[X,Y]	&=	0+\frac{1}{3}+0+\frac{4}{3} - \left[ 3 \cdot \frac{1}{3} \cdot 3 \cdot \frac{1}{3} \right]\\
+						&= \frac{5}{3} - 1\\
+						&= \frac{2}{3}
+\end{align*}
+\paragraph{c)}
+\begin{align*}
+	\textbf{COV}[X,Y]	&=	0+\frac{1}{3}+0+0-\left[ 3 \cdot \frac{1}{3} \cdot 3 \cdot \frac{1}{3} \right]\\
+						&=	\frac{1}{3} - 1\\
+						&=	-\frac{2}{3}
+\end{align*}
 \susP{9.2}{4}
 (Vorzeichen Kovarianz, 2+2 Punkte).
 Der Vektor $(X,Y)$ sei auf der im jeweiligen Aufgabenteil dargestellten Punktemenge Laplace-Verteilt.
 Geben Sie - ohne Rechnung - eine begründete Vermutung für das Vorzeichen von \cov{X}{Y} bzw. das Vorzeichen des Korrelationskoeffizienten ab.\\
-\begin{minipage}[t]{0.48\textwidth}
-	\begin{enumerate}
-		\item[a)]
-			\begin{tikzpicture}
-				\draw
-						(0,0) coordinate (origin)
-						(4,0) coordinate (x-limit)
-						(4,2) coordinate (y-limit)
-						
-						(0.55,0.5)	coordinate (a) node {$\cdot$}
-						(0.55,1.05)	coordinate (b) node {$\cdot$}
-						(1.05,1.05)	coordinate (c) node {$\cdot$}
-					;					
-			\end{tikzpicture}
-	\end{enumerate}
-\end{minipage}
-~~
-\begin{minipage}[t]{0.48\textwidth}
-	\begin{enumerate}
-		\item[b)] .
-	\end{enumerate}
-\end{minipage}\\
+%\begin{minipage}[t]{0.48\textwidth}
+%	\begin{enumerate}
+%		\item[a)]
+%			\begin{tikzpicture}
+%				\draw
+%						(0,0) coordinate (origin)
+%						(5.3,0) coordinate (x-limit)
+%						(0,5.3) coordinate (y-limit)
+%						
+%						(0.55,0.5)	coordinate (a) node {•}
+%						(0.55,1.05)	coordinate (b) node {•}
+%						(1.05,1.05)	coordinate (c) node {•}
+%					;
+%				\draw (origin) -> (x-limit);
+%				\draw (origin) -> (y-limit);
+%			\end{tikzpicture}
+%	\end{enumerate}
+%\end{minipage}
+%~~
+%\begin{minipage}[t]{0.48\textwidth}
+%	\begin{enumerate}
+%		\item[b)] .
+%	\end{enumerate}
+%\end{minipage}\\
+\vspace{.3cm}
+\textit{Anmerkung:} Diesmal aus naheliegenden Gründen ohne Skizze. Kommt vielleicht noch, wenn ich vor Abgabedatum Lust darauf hab, das Ding zu malen...\\
+
+\susP{9.3}{6}
+(Die Summe Poisson-verteilter Zufallsvariablen, 6 Punkte).
+Es seien $X \textasciitilde Pois_{\lambda}$ und $Y \textasciitilde Pois_{\mu}$ unabhängig.
+Zeigen Sie, dass auch $X+Y$ Poisson-verteilt ist und bestimmen Sie den Parameter.\\
+\\
+\textit{Hinweis:} Der binomische Satz besagt
+\[
+	\sum_{k=0}^{n}\binom{n}{k}x^ky^{n-k}=(x+y)^n
+\]
+für alle $n \in \mathbb{N}_0$ sowie alle $x,y \in \mathbb{R}$.\\
+\vspace{.3cm}\\
+$Z = X + Y$.\\
+\[\begin{array}{lll}
+	P(Z=k)	&=	P(X+Y=k)																										\\
+			&=	\sum_{i=0}^{k}P(Z=k|Y=i) \cdot P(Y=i)																			\\
+			&=	\sum_{i=0}^{k}P(X=k-i) \cdot P(Y=i)																			\\
+			&=	\sum_{i=0}^{k}e^{-\lambda} \cdot \frac{\lambda^{k-i}}{(k-i)!} \cdot e^{-\mu} \cdot \frac{\mu^i}{i!}			&|~\text{Summe erweitern mit }\frac{k!}{k!}\\
+			&=	\sum_{i=0}^{k}e^{-(\lambda+\mu)} \cdot \frac{k! \cdot \lambda^{k-i} \cdot \mu^i}{k! \cdot (k-i)! \cdot i!}	&|~\text{Binomialkoeffizenten ausklammern}\\
+			&=	\sum_{i=0}^{k}e^{-(\lambda+\mu)} \cdot \binom{k}{i} \cdot \frac{\lambda^{k-i}\cdot\mu^i}{k!}					&|~\frac{1}{k!}\cdot e^{-(\lambda+\mu)}\text{ aus Summe rausziehen}\\
+			&=	\frac{1}{k!} \cdot e^{-(\lambda+\mu)} \cdot \sum_{i=0}^{k} \binom{k}{i} \cdot \lambda^{k-i}\cdot\mu^i		&|~\text{Hinweis einsetzen}\\
+			&=	\frac{1}{k!} \cdot e^{-(\lambda+\mu)} \cdot (\lambda+\mu)^k													\\
+			&=	\frac{(\lambda+\mu)^k}{k!} \cdot e^{-(\lambda+\mu)}															&\qed
+\end{array}\]
+
+
+\susP{9.4}{6}
+(Das Simpson-Paradox, 4+2 Punkte).
+Eine kleine Universität bietet nur zwei Studiengänge (A und B) an.
+Aus Erfahrung ist bekannt, dass sich 80\% aller Frauen für Studiengang A interessieren, aber nur 30\% aller Männer.
+Ebenfalls aus Erfahrung ist bekannt, dass die Erfolgsquote von Bewerbungen von Frauen bei Studiengang A bei 30\%, die von Männern bei 20\% liegt, bei Studiengang B werden sowohl Frauen als auch Männer mit einer Wahrscheinlichkeit von 70\% akzeptiert.
+\begin{enumerate}
+	\item[a)] Bestimmen Sie, welcher Anteil aller sich bewerbenden Frauen einen Studienplatz erhält, und bestimmen Sie, welcher Anteil aller sich bewerbenden Männer einen Studienplatz erhält.
+	\item[b)] Wenn Sie sich nciht verrechnet haben, werden Sie festgestellt haben, dass Frauen eine niedrigere Erfolgsquote bei der Bewerbung haben als Männer, obwohl sie bei jedem einzelnen Studiengang mindestens die gleiche Erfolgsquote haben.
+	Woran liegt das?
+\end{enumerate}
+\textit{Anmerkung:} Tatsächlich führte ähnliches Datenmaterial (mit mer als zwei Studiengängen) wegen ausschließlicher berachtung der totalen Erfolgsquoten bereits zu Diskriminierungsklagen (z.B. an der Universität Berkeley).
+\paragraph{a)}
+\subparagraph{Annahmen.}
+Unsere überprüfte Gruppe wird als 100\% angesehen.\\
+Jeder aus der Gruppe interessiert sich für genau 1 Studiengang.
+\subparagraph{Lösung.}
+Anteil der Frauen, die einen Studienplatz erhalten: $80\% \cdot 30\% + (100\%-80\%) \cdot 70\% = 38\%$.\\
+Anteil der Männer, die einen Studienplatz erhalten: $30\% \cdot 20\% + (100\%-30\%) \cdot 70\% = 55\%$.
+\paragraph{b)}
+Angebot und Nachfrage regieren hier.
+Die Nachfrage der Frauen ist deutlich größer als das Angebot der Universität, womit grundsätzlich die meisten nicht ihren Wunschstudiengang erhalten.
+
+Dem entgegen bewerben sich die meisten Männer bei einem Studiengang, dessen Angebot größer ist, wodurch insgesamt mehr angenommen werden.
 \fi
 \ifnum\ZettelZehn=\True
 \sect{10}{14. Juni 2016}{21. Juni 2016}
