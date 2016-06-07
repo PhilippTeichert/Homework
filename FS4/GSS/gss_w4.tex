@@ -215,7 +215,16 @@ Der Rest ist Offset ($2^{12} = 4096$ Bit). \\
 	\end{enumerate}\end{center}
 \end{minipage}
 \subsubsection*{e)}
-\todo{import Louis.Block;}
+Je kleiner die Seiten sind, desto weiter müssen Programme fragmentiert werden, um sie laden zu können.
+Zwar geht es durchaus, nur Programmfragmente im Arbeitsspeicher zu haben und diese zu bearbeiten, jedoch geht dies mit steigender Fragmentierungsintensität zu Lasten der Leistung und Effizienz.\\
+\vspace{.2cm}\\
+Die Prozessgröße wird als $p=4MiB= 4515000B$ definiert.\\
+Die Länge eines Seitentabelleneintrages wird als $L=8B$ definiert.\\
+Nach \cite{tannenbaum} gilt für die optimale Größe einer Seite:
+\[
+	s = \sqrt{2\cdot p \cdot L} = \lceil(\sqrt{2 \cdot 4515000 \cdot 8})\rceil B = \lceil8499.41\rceil B \hat{=} \lceil8.3\rceil KB = 9KB
+\]
+Demnach sollte die Seitengröße also bei 9KB oder, falls nur Größen in Zweierpotenzen zulässig sind, 16KB groß sein.
 \subsection*{Aufgabe 2: Seitenersetzungsalgorithmen}
 \subsubsection*{a)}
 \paragraph{i.}\-\\
