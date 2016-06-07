@@ -295,7 +295,7 @@
 	% group members
 	\memberOfGroup{\memOneName}{\memOneMail}{\memOneNr}
 	\memberOfGroup{\memTwoName}{\memTwoMail}{\memTwoNr}
-	\memberOfGroup{\memThreeName}{\memThreeMail}{\memThreeNr}
+%	\memberOfGroup{\memThreeName}{\memThreeMail}{\memThreeNr}
 %	\memberOfGroup{\memFourName}{\memFourMail}{\memFourNr}
 	% 1 cm to next element
 	\vspace{1cm}
@@ -1315,12 +1315,20 @@ Im Folgenden sind jeweils zwei Ereignisse $A,B$ gegeben.
 	$A$ sei das Ereignis, dass die Augensumme 6 ist, $B$ sei das Ereignis, dass mindestens ein Würfel eine 3 zeigt.
 \end{enumerate}
 \vspace{.3cm}\-\\
-\paragraph{a)}
-todo: zeigen
+\paragraph{a)} $P(A|B)$ ist die Wk. dafür, dass die Augenzahl sowohl gerade, als auch durch drei Teilbar ist.
+Dafür gibt es bei einem Würfel nur einen Fall, nämlich gerade die Augenzahl $6=2\cdot3$.
+Da der Würfel fair ist, gilt $P(A\cap B)=P(X=6)=\frac{1}{6}$.
+\[
+	P(A|B)=\frac{P(A\cap B)}{P(B)}=\frac{\frac{1}{6}}{\frac{1}{3}}=\frac{3}{6}=\frac{1}{2}=P(A)
+\]
 Definition von stoch. Unabhängigkeit:
 \[
 	P(A|B)=P(A) \Leftrightarrow P(A \cap B) = P(A) \cdot P(B)
 \]
+\[
+	P(A) \cdot P(B) = \frac{1}{2} \cdot \frac{1}{3} = \frac{1}{6} \overset{nach~oben}{=}P(A\cap B)
+\]
+Damit ist die Definition erfüllt, $A$ und $B$ sind also stoch. unabhängig.
 \paragraph{b)}
 $P(B)=\frac{11}{36}, P(A)=\frac{5}{36}$.
 \[
