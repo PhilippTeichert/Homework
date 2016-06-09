@@ -380,16 +380,24 @@ Es wurde auf das Fragezeichen geklickt und der Assistent durchgearbeitet.
 Währenddessen wurde als Name \say{localhost} und als IP-Adresse die eigene IP-Adresse gewählt.
 Danach würde auf das Stecker-Symbol gekilckt, die Daten eingegeben und \say{ok} betätigt.
 
-Es wurden keine Schwachstellen gefunden (exportierter Report enthält \say{Number of security holes: 0; Number of security warnings: 0}
+localhost hat 2 Sicherheitslücken, die sich laut OpenVAS beide durch Updates beheben lassen.
+Es werden Weblinks für weitere Nachforschungen zu diesen Sicherheitslücken gegeben.
 
-Note: OpenVAS-Scan-Server ist veraltet.
-
+Desweiteren werden 6 Security-Notes angegeben, es gibt 0 Security Warnings.
+\subsection{}
 Eingabe: File -> Scan Assistant -> Task: \$name -> Scope: \$name -> Targets: IP der MysteryVM (172.16.137.146) -> Execute
-\subsection{}
-MysteryVM hat eine Sicherheitslücke und zwei Sicherheitswarnungen.
 
-Login-Daten: root:password
+MysteryVM hat eine Sicherheitslücke, 3 Sicherheitswarnungen und 4 Security Notes.
+
+Sicherheitslücke: Login-Daten: root:password (Daten sind korrekt, wurden überprüft)
 \subsection{}
+\begin{itemize}
+	\item SSH-Daten wurden eingegeben
+	\item Eingabe in Global Settings und Scope-Settings
+	\item Neuen Scope aufgerufen und mit Login-Daten gestartet
+	\item Ergebnis ist gleich (1 Issue, 3 Warnings, 4 Notes)
+	\item $\Rightarrow$ OpenVAS erkennt Sicherheitslücken auch von außen
+\end{itemize}
 
 \newpage
 \section*{Anhang 1:}
