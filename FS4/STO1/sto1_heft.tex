@@ -1609,7 +1609,7 @@ Dem entgegen bewerben sich die meisten Männer bei einem Studiengang, dessen Ang
 		(Tschebyscheff und Binomialverteilung, Fortsetzung, 2+4+2+2 Punkte).
 		Es sei $Y_n$\textasciitilde$Bin_{n,0.5}$, insbesondere also \e{Y}=$\frac{n}{2}$ und \var{Y}=$\frac{n}{4}$.
 		\begin{enumerate}
-			\item[a)] Stellen Sie $P(Y_n=0)+P(Y_n=n)$ in der Form $P(|Y_n-$\e{Y_n}$|\geq \epsilon$ dar, d.h. geben Sie an, wie Sie $\epsilon$ wählen müssen.
+			\item[a)] Stellen Sie $P(Y_n=0)+P(Y_n=n)$ in der Form $P(|Y_n-$\e{Y_n}$|\geq \epsilon)$ dar, d.h. geben Sie an, wie Sie $\epsilon$ wählen müssen.
 			\item[b)] Welche Abschätzung erhalten Sie für $P(|Y_n-$\e{Y_n}$|\geq\epsilon)$ mit den Werten aus b) mit der Tschebyscheff-Ungleichung?
 			\item[c)] Bestimmen Sie $P(Y_n=0)+P(Y_n=n)$ exakt.
 			\item[d)] Wie bewerten Sie den Vergleich zwischen Abschätzung und exakter Wahrscheinlichkeit?
@@ -1641,9 +1641,21 @@ Dem entgegen bewerben sich die meisten Männer bei einem Studiengang, dessen Ang
 		\end{enumerate}
 		
 		\sss
-
+			\begin{equation*}
+				\begin{array}{lll}
+					\textbf{Var}[Y]	&=	\frac{(b-a)(b-a+2)}{12}	&\\
+									&=	\frac{b^2-ba+2b-ab+a^2-2a}{12}	&\\
+									&=	\frac{a^2-2ab+b^2+2a+2b}{12}	&\text{Grenzen einsetzen, } a:=-2n; b:=2n\\
+									&=	\frac{4n^2+8^n2+4n^2-4n+4n}{12}&\\
+									&=	\frac{16n^2}{12}				&\\
+									&=	\frac{4}{3}n^2
+				\end{array}
+			\end{equation*}
 		\sss
-		
+			\[
+				P(|Y-\textbf{E}[Y]|\geq \epsilon) \leq \frac{\textbf{Var}[Y]}{\epsilon^2} \overset{\epsilon := n}{\Leftrightarrow} P(|Y-\textbf{E}[Y]|\geq n) \leq \frac{\ilfrac{4}{3}n^2}{n^2} = \frac{4}{3} > 1
+			\]
+			Die obere Abschätzung ist größer als 1 und somit trivial.
 	\sus{6}
 		(Münzwerfen, 6 Punkte).
 		Ein (kreisförmiges) Geldstück mit $1cm$ Durchmesser wird zufällig auf ein Schachbrett geworfen, dessen (quadratische) Felder eine Seitenlänge von $4cm$ haben.
@@ -1651,17 +1663,35 @@ Dem entgegen bewerben sich die meisten Männer bei einem Studiengang, dessen Ang
 		(Ein Wurf wird nur als gültig betrachtet, wenn die Münze komplett auf dem Schachbrett zu liegen kommt, andernfalls wird er wiederholt.)\\
 		\\
 		\textit{Hinweis:} Charakterisieren Sie die Lage der Münze über ihren Mittelpunkt und treffen Sie für diesen eine geeignete Gleichverteilungsannahme.
-		\-\\\vspace{.3cm}\\
 		
+		\paragraph{Von den 64 Feldern} eines Schachbrettes sind 32 schwarz.\\
+		Wegen des Durchmessers (Radius=0.5cm) wird von jedem Feld ein Rand der Breite 0.5cm abgeschnitten; damit liegt der Mittelpunkt der Münze innerhalb eines Bereiches, in dem die ganze Münze in einem Feld liegt.
+		Dadurch ergibt sich für ein gültiges Feld eine Fläche von $(4-2\cdot0.5)cm\cdot(4-2\cdot0.5)cm=3cm\cdot3cm=9cm^2$.\\
+		Die gesamte gültige Fläche für einen 'erfolgreichen' (erfolgreich := Münze landet auf 'schwarz') Wurf bei $9cm^2\cdot32=288cm^2$.\\
+		Die gesamte Fläche des Schachbrettes beträgt $64\cdot4cm\cdot4cm=1024cm^2$.\\
+		Die Wahrscheinlichkeit eines gültigen Wurfes ist gleich dem Verhältnis der gültigen Fläche zur Gesamtfläche:
+		\[
+			P(X='schwarz')=\frac{A_{g"ultig}}{A_{gesamt}}=\frac{288cm^2}{1024cm^2}=0.28125\hat{=}28.13\%
+		\]
 	\sus{3}
 		(Die negative Binomialverteilung, 3 Punkte).
-		Sind die Zufallsvariablen $X_1,...,X_m$ unabhängig und identisch mit Parameter $p$ geometrisch verteilt, so kann die Zufallsvariable  $S=X_1+...X_m$ als Zeitpunkt des $m$-ten Erfolgs in einer Bernoulli-Kette mit Runden-Erfolgsparameter $p$ interpretiert werden.
+		Sind die Zufallsvariablen $X_1,...,X_m$ unabhängig und identisch mit Parameter $p$ geometrisch verteilt, so kann die Zufallsvariable  $S=X_1+...+X_m$ als Zeitpunkt des $m$-ten Erfolgs in einer Bernoulli-Kette mit Runden-Erfolgsparameter $p$ interpretiert werden.
 		Es lässt sich dann
 		\[
-			P(S=n)?\binom{n-1}{m-1}p^m(1-p)^{n-m}
+			P(S=n)=\binom{n-1}{m-1}p^m(1-p)^{n-m}
 		\]
 		zeigen, entweder über kombinatorische Argumente oder über sukzessives Aufsummieren und entsprechenden Induktionsbeweis.
 		Bestimmen Sie \e{S} und \var{S}.
+		
+		
+		\paragraph{\textbf{E}[S]}.
+		\[
+			\textbf{E}[S]=\sum_{i=1}^{m}p \cdot X_i = p \sum_{i=1}^{m} X_i
+		\]
+		\paragraph{\textbf{Var}[S]}
+		\[
+			\textbf{Var}[S]=\textbf{E}[S^2]-\textbf{E}[S]^2= - \left(p \sum_{i=1}^{m} X_i\right)^2
+		\]
 \fi
 \ifnum\ZettelElf=\True
 \sect{21. Juni 2016}{28. Juni 2016}
