@@ -366,9 +366,9 @@
 	\end{tabular}
 	\fi
 	\ifnum\ZettelZehn=\True
-	\begin{tabular}{c|c|c|c}
-	~10.1~&~10.2~&~10.3~&~$\Sigma$~	\\	\hline
-		 &	   &	 &
+	\begin{tabular}{c|c|c|c|c}
+	~10.1~&~10.2~&~10.3~&~10.4~&~$\Sigma$~	\\	\hline
+		 &	   &	 &		&
 	\end{tabular}
 	\fi
 	\ifnum\ZettelElf=\True
@@ -1599,8 +1599,69 @@ Die Nachfrage der Frauen ist deutlich größer als das Angebot der Universität,
 
 Dem entgegen bewerben sich die meisten Männer bei einem Studiengang, dessen Angebot größer ist, wodurch insgesamt mehr angenommen werden.
 \fi
+
+
+
+
 \ifnum\ZettelZehn=\True
 \sect{14. Juni 2016}{21. Juni 2016}
+	\sus{10}
+		(Tschebyscheff und Binomialverteilung, Fortsetzung, 2+4+2+2 Punkte).
+		Es sei $Y_n$\textasciitilde$Bin_{n,0.5}$, insbesondere also \e{Y}=$\frac{n}{2}$ und \var{Y}=$\frac{n}{4}$.
+		\begin{enumerate}
+			\item[a)] Stellen Sie $P(Y_n=0)+P(Y_n=n)$ in der Form $P(|Y_n-$\e{Y_n}$|\geq \epsilon$ dar, d.h. geben Sie an, wie Sie $\epsilon$ wählen müssen.
+			\item[b)] Welche Abschätzung erhalten Sie für $P(|Y_n-$\e{Y_n}$|\geq\epsilon)$ mit den Werten aus b) mit der Tschebyscheff-Ungleichung?
+			\item[c)] Bestimmen Sie $P(Y_n=0)+P(Y_n=n)$ exakt.
+			\item[d)] Wie bewerten Sie den Vergleich zwischen Abschätzung und exakter Wahrscheinlichkeit?
+		\end{enumerate}
+		\sss
+	
+		\sss
+	
+		\sss
+
+		\sss
+
+	\sus{6}
+		(Tschebyscheff und diskrete Gleichverteilung, 2+4 Punkte).
+		Es sei $Y$ auf $\{-2n,...,2n\}$ gleichverteilt.
+		\begin{enumerate}
+			\item[a)] Ist $X$ auf $\{a,...,b\}$ gleichverteilt, so haben Sie in vergangenen Übungen \e{X}=$\frac{a+b}{2}$ und \var{X}=$\frac{(b-a)(b-a+2)}{12}$ gezeigt.
+					Daraus folgt natürlich insbesondere \e{Y}=0.
+					Vereinfachen Sie den Term für \var{Y} geeignet.
+					\textit{Hinweis:} Der Bruch lässt sich soweit kürzen, dass der Nenner 3 übrigbleibt.
+		\item[b)] Wenden Sie die Tschebyscheff-Ungleichung zur Abschätzung von
+		\[
+			P(Y \in \{-2n,...,-n\} \cup \{n,...,2n\})=P(|Y-0| \geq n)
+		\]
+					an.
+					Ist diese Abschätzung trivial?
+					\textit{Erinnerung:} Wahrscheinlichkeiten liegen ohnehin immer im Intervall [0,1].
+					Eine obere Abschätzung $\geq 1$ wäre also trivial.
+		\end{enumerate}
+		
+		\sss
+
+		\sss
+		
+	\sus{6}
+		(Münzwerfen, 6 Punkte).
+		Ein (kreisförmiges) Geldstück mit $1cm$ Durchmesser wird zufällig auf ein Schachbrett geworfen, dessen (quadratische) Felder eine Seitenlänge von $4cm$ haben.
+		Wie groß ist die Wahrscheinlichkeit, dass die Münze komplett in einem schwarzen Feld zu liegen kommt?
+		(Ein Wurf wird nur als gültig betrachtet, wenn die Münze komplett auf dem Schachbrett zu liegen kommt, andernfalls wird er wiederholt.)\\
+		\\
+		\textit{Hinweis:} Charakterisieren Sie die Lage der Münze über ihren Mittelpunkt und treffen Sie für diesen eine geeignete Gleichverteilungsannahme.
+		\-\\\vspace{.3cm}\\
+		
+	\sus{3}
+		(Die negative Binomialverteilung, 3 Punkte).
+		Sind die Zufallsvariablen $X_1,...,X_m$ unabhängig und identisch mit Parameter $p$ geometrisch verteilt, so kann die Zufallsvariable  $S=X_1+...X_m$ als Zeitpunkt des $m$-ten Erfolgs in einer Bernoulli-Kette mit Runden-Erfolgsparameter $p$ interpretiert werden.
+		Es lässt sich dann
+		\[
+			P(S=n)?\binom{n-1}{m-1}p^m(1-p)^{n-m}
+		\]
+		zeigen, entweder über kombinatorische Argumente oder über sukzessives Aufsummieren und entsprechenden Induktionsbeweis.
+		Bestimmen Sie \e{S} und \var{S}.
 \fi
 \ifnum\ZettelElf=\True
 \sect{21. Juni 2016}{28. Juni 2016}
