@@ -58,39 +58,43 @@
 %#+-------------------------------------------------+#%
 
 
+%% counters
+\newcounter{zettel}
+\newcounter{aufgabe}[zettel]
+\newcounter{teilaufgabe}[aufgabe]
+
+
 %% requires color package and the custom colors defined here 
 \newcommand{\todo}[1]{
 	\addcontentsline{toc}{subsubsection}{TODO: #1}
 	\textcolor{pgreen}{\texttt{\-\\ \-\\//TODO: #1\-\\ \-\\}}
 }
-\newcommand{\sect}[3]{	%	custom section (level 1)
+\newcommand{\sect}[2]{	%	custom section (level 1)
 	\newpage
-	\addcontentsline{toc}{section}{Zettel #1 (#2)}
-	\section*{Zettel Nr. #1 (Ausgabe: #2, Abgabe: #3)}
-	\label{sec:#1}
-	\fancyfoot[LO,RE]{Abgabe: #3}
+	\stepcounter{zettel}
+	\section*{Zettel Nr. \arabic{zettel} (Ausgabe: #1, Abgabe: #1)}
+	\addcontentsline{toc}{section}{Zettel  \arabic{zettel}}
+	\label{sec:\arabic{zettel}}
+	\fancyfoot[LO,RE]{Abgabe: #2}
 }
 \newcommand{\sus}[1]{
-	\addcontentsline{toc}{subsection}{Hausübung #1}
-	\subsection*{Hausübung #1}
-	\label{ssec:\thesection.#1}
-}
-\newcommand{\susP}[2]{
-	\sus{#1}
-	\points{#2}
-}
-\newcommand{\sss}[1]{
-	\addcontentsline{toc}{subsubsection}{Teilaufgabe #1}
-	\subsubsection*{Teilaufgabe #1}
-	\label{sssec:\thesection.\thesubsection.#1}
-}
-\newcommand{\points}[1]{
+	\stepcounter{aufgabe}
+	\subsection*{Hausübung \arabic{zettel}.\arabic{aufgabe}}
+	\addcontentsline{toc}{subsection}{Hausübung \arabic{zettel}.\arabic{aufgabe}}
+	\label{ssec:\arabic{zettel}.\arabic{aufgabe}}
 	\begin{flushright}
 		\begin{Large}
 			[~~~~\string| ~#1~]
 		\end{Large}
 	\end{flushright}
 }
+\newcommand{\sss}{
+	\stepcounter{teilaufgabe}
+	\subsubsection*{Teilaufgabe \alph{teilaufgabe})}
+	\label{sssec:\arabic{zettel}.\arabic{aufgabe}.\alph{teilaufgabe}}
+	\addcontentsline{toc}{subsubsection}{Teilaufgabe \arabic{zettel}.\arabic{aufgabe}.\alph{teilaufgabe}}
+}
+
 %% custom short command for blue text
 \newcommand{\tcb}[1]{
 	\textcolor{blue}{#1}
@@ -137,43 +141,43 @@
 \Empty=1
 %% set to false to omit the table of contents
 \newcount\TOC
-\TOC=0
+\TOC=1
 %% set to false to omit the first task sheet
 \newcount\ZettelEins
-\ZettelEins=0
+\ZettelEins=1
 %% set to false to omit the second task sheet
 \newcount\ZettelZwei
-\ZettelZwei=0
+\ZettelZwei=1
 %% set to false to omit the third task sheet
 \newcount\ZettelDrei
-\ZettelDrei=0
+\ZettelDrei=1
 %% set to false to omit the fourth task sheet
 \newcount\ZettelVier
-\ZettelVier=0
+\ZettelVier=1
 %% set to false to omit the fifth task sheet
 \newcount\ZettelFuenf
-\ZettelFuenf=0
+\ZettelFuenf=1
 %% set to false to omit the sixth task sheet
 \newcount\ZettelSechs
-\ZettelSechs=0
+\ZettelSechs=1
 %% set to false to omit the seventh task sheet
 \newcount\ZettelSieben
-\ZettelSieben=0
+\ZettelSieben=1
 %% set to false to omit the eigth task sheet
 \newcount\ZettelAcht
-\ZettelAcht=0
+\ZettelAcht=1
 %% set to false to omit the ninth task sheet
 \newcount\ZettelNeun
 \ZettelNeun=1
 %% set to false to omit the tenth task sheet
 \newcount\ZettelZehn
-\ZettelZehn=0
+\ZettelZehn=1
 %% set to false to omit the eleventh task sheet
 \newcount\ZettelElf
-\ZettelElf=0
+\ZettelElf=1
 %% set to false to omit the twelfth task sheet
 \newcount\ZettelZwoelf
-\ZettelZwoelf=0
+\ZettelZwoelf=1
 
 
 % global variables
@@ -405,13 +409,13 @@
 %#+						ZETTEL 1					+#%
 %#+-------------------------------------------------+#%
 \ifnum\ZettelEins=\True
-\sect{1}{05. April 2016}{12. April 2016}
+\sect{05. April 2016}{12. April 2016}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %%%% Aufgabe 1
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\susP{1.1}{8}
+\sus{8}
 (Zufallsexperimente, 2+2+2+2 Punkte).
 Handelt es sich in den folgenden Situationen um Zufallsexperimente?
 Begründen Sie ihre Antwort.
@@ -445,7 +449,7 @@ Begründen Sie ihre Antwort.
 %%%% Aufgabe 2
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\susP{1.2}{12}
+\sus{12}
 (Zufall in der Praxis, 6+6 Punkte).
 Stellen Sie in den beiden folgenden Situationen dar, an welchen Stellen sich Zufallseinflüsse auswirken.
 Geben Sie darüber hinaus kurz an, welche Ziele (ggf. aus Sicht der unterschiedlichen Parteien) erreicht werden sollen.
@@ -489,7 +493,7 @@ Geben Sie darüber hinaus kurz an, welche Ziele (ggf. aus Sicht der unterschiedl
 %%%% Aufgabe 3
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\susP{1.3}{5}
+\sus{5}
 (Mengenoperationen und Venn-Diagramme, 1+1+1+2 Punkte).
 In einem Venn-Diagramm werden die Grundmengen symbolisch durch geometrische Objekte, meistens Kreise oder Ellipsen dargestellt.
 Die Resultate betrachteter Mengenverknüpfungen werden
@@ -583,8 +587,8 @@ Zeichnen Sie die entsprechenden Diagramme für die folgenden Operationen.
 %#+						ZETTEL 2					+#%
 %#+-------------------------------------------------+#%
 \ifnum\ZettelZwei=\True
-\sect{2}{12. April 2016}{19. April 2016}
-\susP{2.1}{6}
+\sect{12. April 2016}{19. April 2016}
+\sus{6}
 (Ereignisse und Mengen, 3+3 Punkte).
 Es sei $\Omega \neq \emptyset$ eine Ergebnismenge, außerdem seen $A,B,C \subset \Omega$ Ereignisse.
 \begin{enumerate}
@@ -602,7 +606,7 @@ Es sei $\Omega \neq \emptyset$ eine Ergebnismenge, außerdem seen $A,B,C \subset
 	\]
 \end{enumerate}
 
-\susP{2.2}{4}
+\sus{4}
 (Warten auf Zahl, 2+2 Punkte).
 In einem Zufallsexperiment wird eine Münze solange geworfen, bis zum ersten Mal \dq Zahl\dq ~erscheint, die möglichen Ausgänge sind die natürlichen Zahlen, d.h. $\mathbb{N}$ ist die Ergebnismenge.
 \begin{enumerate}
@@ -623,7 +627,7 @@ In einem Zufallsexperiment wird eine Münze solange geworfen, bis zum ersten Mal
 	$k$ ist die Anzahl der Würfe, nach denen zum ersten Mal \textit{Zahl} erscheint.
 \end{enumerate}
 
-\susP{2.3}{7}
+\sus{7}
 (Wahrscheinlichkeitsmaße, 2+5 Punkte).
 Über $\Omega=\{1,2,3\}$ soll ein Wahrscheinlichkeitsmaß $P$ definiert werden.
 \begin{enumerate}
@@ -657,7 +661,7 @@ In einem Zufallsexperiment wird eine Münze solange geworfen, bis zum ersten Mal
 	
 \end{enumerate}
 
-\susP{2.4}{8}
+\sus{8}
 (Rechnen mit Wahrscheinlichkeiten, 3+5 Punkte).
 Es werden zwei faire Würfel geworfen, dabei werden die folgenden Ereignisse betrachtet.
 \begin{itemize}
@@ -688,8 +692,8 @@ Es werden zwei faire Würfel geworfen, dabei werden die folgenden Ereignisse bet
 \fi
 
 \ifnum\ZettelDrei=\True
-\sect{3}{19. April 2016}{26. April 2016}
-\susP{3.1}{15}
+\sect{19. April 2016}{26. April 2016}
+\sus{15}
 (Die minimale Augenzahl, 5+5+3+2 Punkte).
 Es werden zwei faire Würfel geworfen, der Ergebnisraum ist $\Omega = \{1,2,3,4,5,6\}^2$, das Wahrscheinlichkeitsmaß durch $P(\{(i,j)\})=\frac{1}{36}$ für alle $(i,j) \in \Omega$ definiert.
 Die Zufallsvariable $X$ beschreibe nun das Merkmal \dq minimale Augenzahl\dq , d.h
@@ -725,7 +729,7 @@ mit $\Omega ' = \{1,2,3,4,5,6\}$.
 		\item Ja, da ein Abbild kein Urbild braucht ($X^{-1}(\{7\})=X^{-1}(\{8\})=X^{-1}(\{9\})=X^{-1}(\{10\})=\emptyset$).
 	\end{itemize}
 \end{enumerate}
-\susP{3.2}{10}
+\sus{10}
 (Archäologie, 10 Punkte).
 Bei Ausgrabungen in China haben Archäologen vor einigen Jahren einen Behälter entdeckt, in dem sich eine wohl 2400 Jahre alte \dq Suppe \dq ~befand.
 Die mit Knochen bestückte grünliche Flüssigkeit befand sich in einem Kessel, der in einem Grab in der Stadt Xian entdeckt wurde, wie die Zeitung \dq Global Times\dq berichtete.
@@ -767,8 +771,8 @@ Wie nach Aufgabe ist die Wahrscheinlichkeit dafür, dass alle drei Zutaten verwe
 
 
 \ifnum\ZettelVier=\True
-\sect{4}{26. April 2016}{3. Mai 2016}
-\susP{4.1}{10}
+\sect{26. April 2016}{3. Mai 2016}
+\sus{10}
 (Fußball, 4+3+3 Punkte).
 Der Trainer eines Fußballklubs hat in seinem Aufgebot drei Torhüter, sieben Verteidiger, acht Mittelfeldspieler und vier Stürmer.
 \paragraph{a.}
@@ -806,7 +810,7 @@ Auf wieviele Arten kann der Trainer die vier ausgewählten Verteidiger auf den v
 \]
 
 
-\susP{4.2}{7}
+\sus{7}
 (Ein neues Spiel 77, 3+4 Punkte).
 Sie arbeiten bei einer Lotterie.
 Diese möchte eine Variante der bekannten Fernsehlotterie ,,Spiel 77 '' auf den Markt bringen:
@@ -830,7 +834,7 @@ Dies ist bedingt durch den Umstand der Sortierung, womit z. B. die Ereignisse $X
 
 
 
-\susP{4.3}{8}
+\sus{8}
 (Zwei Wahrscheinlichkeitsmaße, 8 Punkte).
 Es sei $\Omega \neq \emptyset$ eine diskrete Menge, $P,Q: 2^{\Omega} \rightarrow \mathbb{R}$ seien zwei Wahrscheinlichkeitsmaße, und es sei $\alpha \in [0,1]$.
 Zeigen Sie, dass durch
@@ -863,8 +867,8 @@ Warum gilt dies für $\alpha \not \in [0,1]$ nicht?
 
 
 \ifnum\ZettelFuenf=\True
-\sect{5}{03. Mai 2016}{10. Mai 2016}
-\susP{5.1}{11}
+\sect{03. Mai 2016}{10. Mai 2016}
+\sus{11}
 	(Stichprobenentnahme, 5+6 Punkte).
 	Aufgrund von Ungenauigkeiten in der Produktion sind in jedem 1000er Pack einer bestimmten Sorte Schrauben immer 70 dabei, die nicht den Qualitätsanforderungen entsprechen.
 	Sie entnehmen einem vollen 1000er Pack acht Schrauben.
@@ -872,7 +876,7 @@ Warum gilt dies für $\alpha \not \in [0,1]$ nicht?
 	
 	\textit{Hinweis:} Sie werden einen Computer oder Taschenrechner benötigen.
 
-	\sss{a)}
+	\sss
 	Geben Sie die Parameter der hypergeometrischen Verteilung an, und bestimmen Sie die Wahrscheinlichkeit, dass höchstens zwei Schrauben defekt sind.
 	
 	\[
@@ -882,14 +886,14 @@ Warum gilt dies für $\alpha \not \in [0,1]$ nicht?
 		P(X \leq 2) = \mysum{0}{2} \frac{\binom{70}{i} \binom{1000-70}{8-i}}{\binom{1000}{8}}\approx 0.9857 \hat{=} 98.57\%
 	\]
 	
-	\sss{b)}
+	\sss
 	Verwenden Sie eine geeignete Binomialverteilung zur Approximation, und bestimmen Sie darauf basierend eine Näherung für die gesuchte Wahrscheinlichkeit.
 	Wie bewerten Sie die Approximation?
 	\[
 		P(X\leq 2) = \mysum{0}{2}\binom{8}{i}\cdot\left(\frac{70}{1000}\right)^i\cdot\left(1-\frac{70}{1000}\right)^{8-i} \approx 0.9853 \hat{=} 98.53\%
 	\]
 	Abweichung minimal; Binomialverteilung eignet sich als Näherung, wenn die Varianz größer als 9 ist (hier gegeben durch $V=1000\cdot0.01\cdot0.99=9.9$) und der Bruch $\ilfrac{n}{N}$ kleiner als 0.05 (hier gegeben durch $\ilfrac{n}{N}=\ilfrac{8}{1000}=0.008 \leq 0.05$).
-\susP{5.2}{10}
+\sus{10}
 	(Glücksspiel, 5+5 Punkte).
 	In einem Glücksspiel haben Sie eine Gewinnwahrscheinlichkeit von $\ilfrac{1}{100}$.
 	Sie spielen ein Jahr lang wöchentlich, also 52 mal.
@@ -897,7 +901,7 @@ Warum gilt dies für $\alpha \not \in [0,1]$ nicht?
 	
 	\textit{Hinweis:} Auch hier werden Sie einen Computer oder Taschenrechner benötigen.
 	
-	\sss{a)}
+	\sss
 	Welcher Verteilung folgt die Zufallsvariable $X$?
 	Bestimmen Sie die Wahrscheinlichkeit dafür, dass Sie
 	\begin{itemize}
@@ -915,7 +919,7 @@ Warum gilt dies für $\alpha \not \in [0,1]$ nicht?
 		\end{array}
 	\]
 	
-	\sss{b)}
+	\sss
 	Setzen Sie eine geeignete Poisson-Verteilung zur Approximation ein, und berechnen Sie mit dieser eine Näherung dafür, dass Sie mehr als einmal gewinnen.
 	\[
 		Pois_{\lambda}(k)=\frac{\lambda^k}{k!}e^{-\lambda}=\frac{\lambda^k}{k!} \cdot \frac{1}{\mysum{0}{\infty}\frac{\lambda^k}{k!}}
@@ -926,7 +930,7 @@ Warum gilt dies für $\alpha \not \in [0,1]$ nicht?
 	\[
 		Pois_{0.52}(i>1)=\mysum{2}{52}\ilfrac{0.52^i}{i!}~e^{-0.52}\approx0.0963 \hat{=} 9.63\%
 	\]
-\susP{5.3}{4}
+\sus{4}
 	(Eine Zähldichte, 4 Punkte).
 	Die Funktion $f:\{1,\dots,n\} \rightarrow \mathbb{R}$ mit $k \rightarrow p_k$ soll eine Zähldichte werden.
 	Äquivalent formuliert soll $(p_k)_{k=1}^{n}$ ein Wahrscheinlichkeitsvektor werden.
@@ -965,14 +969,14 @@ Warum gilt dies für $\alpha \not \in [0,1]$ nicht?
 	\]
 \fi
 \ifnum\ZettelSechs=\True
-\sect{6}{10. Mai 2016}{24. Mai 2016}
-\susP{6.1}{9}
+\sect{10. Mai 2016}{24. Mai 2016}
+\sus{9}
 (Roulette, 3+4+2 Punkte).
 Beim Roulette sind die möglichen Ausgänge die Zahlen {0, . . . , 36}, bei guten Roulette-Tischen ist eine Laplace-Annahme gerechtfertigt.
 Im Spiel können Sie auf verschiedene Gruppen von Zahlen (einzelne Zahlen, corner, split, rot/schwarz, . . . ) wetten, allen Wettmöglichkeiten ist gemeinsam, dass sie die (grüne) 0 nicht enthalten.
 Als allgemeine Auszahlungsregel gilt: Haben Sie auf eine Gruppe aus k Zahlen gesetzt, erhalten Sie (Ihren Einsatz mitgerechnet) das $\ilfrac{36}{k}$-fache Ihres Einsatzes zurück.
 Setzen Sie $n$ Geldeinheiten ein, so beträgt Ihr Gewinn im Erfolgsfall $n \cdot (\ilfrac{36}{k}-1)$, im Misserfolgsfall verlieren Sie ihren Einsatz, Ihr Gewinn beträgt also $-n$ Geldeinheiten.
-\sss{a)}
+\sss
 In der einfachsten Variante setzen sie auf ,,rot'' oder ,,schwarz''.
 Beide Zahlengruppen umfassen jeweils 18 der 37 möglichen Ereignisse.
 Setzen Sie $n$ Geldeinheiten ein, so können Sie im Erfolgsfall $n$ Geldeinheiten Gewinn machen, im Misserfolgsfall verlieren Sie $n$ Geldeinheiten.
@@ -980,12 +984,12 @@ Bestimmen Sie den Erwartungswert des Gewinns.
 \[
 	\mu(x) = n \cdot \left(\frac{36}{18}-1 \right) \cdot \frac{18}{37} - n \cdot \frac{18}{37} - n \cdot \frac{1}{37} \approx -0.027n
 \]
-\sss{b)}
+\sss
 Betrachten Sie nun den allgemeinen Fall mit dem Setzen auf $k$ Zahlen und bestimmen Sie auch hier den Erwartungswert Ihres Gewinns.
 \[
 	\mu(x) = n \cdot \left(\frac{36}{k}-1 \right) \cdot \frac{k}{37} - n \cdot \frac{37-k}{37} = 35n-\frac{2kn}{37} = n \cdot \left(35-\frac{2k}{37} \right)
 \]
-\sss{c)}
+\sss
 Wie hängt der Erwartungswert des Gewinns von $n$ ab?
 Wie hängt er von $k$ ab?\\
 \vspace{.2cm}\\
@@ -994,7 +998,7 @@ Der Faktor, mit dem der Gewinn ausgezahlt wird, ist $f(k)$, die Auszahlung ist v
 $n$ wirkt deutlich stärker in die Auszahlung als $k$.
 
 
-\susP{6.2}{7}
+\sus{7}
 (Die Varianz der Poisson-Verteilung, 7 Punkte).
 Es sei $Z$\textasciitilde$Pois_{\lambda}$.
 Bestimmen Sie \textbf{Var}[Z].
@@ -1015,7 +1019,7 @@ Demnach gilt also:
 
 $Var[Z] = \lambda \cdot \mysum{z=0}{\infty} z \cdot \frac{\lambda^{z}\cdot e^{-\lambda}}{z!} +  \lambda \cdot \mysum{z=0}{\infty} \frac{\lambda^{z}\cdot e^{-\lambda}}{z!} - \lambda^{2} = \lambda \cdot \lambda + \lambda \cdot 1 - \lambda^{2}= \lambda \Rightarrow Var[Z]=\lambda \qed$
 
-\susP{6.3}{9}
+\sus{9}
 (Noch ein Glücksspiel, 3+2+4 Punkte).
 Sie möchten ein neues Glücksspiel anbieten.
 Dazu stehen Ihnen geometrische Objekte zur Verfügung, die mit Wahrscheinlichkeit $\frac{1}{2},\frac{1}{3},\frac{1}{4},\frac{1}{5},\frac{1}{6}\dots$ jeweils einen Smiley anzeigen.
@@ -1046,7 +1050,7 @@ Demnach muss der Erwartungswert gleich dem Einsatz sein, damit ein Spiel fair is
 Es gilt: $\mu(X) = \mysum{1}{\infty}i\cdot p_i \overset{Distributivgesetz}{=}\Leftrightarrow \ilfrac{\mu(X)}{\mysum{1}{\infty}p_i} = \mysum{1}{\infty}i \overset{\mysum{1}{\infty}p_i=1}{\Leftrightarrow} \mu(X) = \mysum{1}{\infty}i$
 
 Es wird also jeweils der Erwartungswert bestimmt; der Einsatz ist diesem dann gleichzusetzen.
-\sss{a)}
+\sss
 \[
 	\frac{k}{k(k+1)}=\frac{1}{k+1}
 \]
@@ -1054,7 +1058,7 @@ Es wird also jeweils der Erwartungswert bestimmt; der Einsatz ist diesem dann gl
 	\mu(x)=1
 \]
 Der Einsatz sollte also \textbf{1 Geldeinheiten} betragen.
-\sss{b)}
+\sss
 \[
 	\frac{k^2}{k(k+1)}=\frac{k}{k+1}=k+1
 \]
@@ -1062,7 +1066,7 @@ Der Einsatz sollte also \textbf{1 Geldeinheiten} betragen.
 	\mu(x)=x
 \]
 Es lässt sich also \textbf{kein faires Spiel} erzeugen mit dieser Auszahlung.
-\sss{c)}
+\sss
 \[
 	\frac{\frac{8}{k+2}}{k(k+1)}=\frac{8}{k(k+1)(k+2)}=8\cdot\frac{1}{k(k+1)(k+2)}
 \]
@@ -1075,8 +1079,8 @@ Der Einsatz sollte also \textbf{2 Geldeinheiten} betragen.
 
 
 \ifnum\ZettelSieben=\True
-\sect{7}{24. Mai 2016}{31. Mai 2016}
-\susP{7.1}{4}
+\sect{24. Mai 2016}{31. Mai 2016}
+\sus{4}
 (Erwartungswerte müssen nicht existieren, 4 Punkte).
 Die Zufallsvariable $Z$ möge Werte in $\mathbb{Z} \setminus \{0\}$ annehmen können, dabei möge
 \[
@@ -1113,7 +1117,7 @@ Da man $\infty - \infty$ nicht genau bestimmen kann, hat diese Aufgabe keine Lö
 Somit konvergiert die Reihe auch nicht.
 
 
-\susP{7.2}{13}
+\sus{13}
 (Erwartungswert und Varianz der Gleichverteilung, 3+5+1+4 Punkte).
 Die Zufallsvariable $X$ mit Werten in der Menge $\{a,a+1,\dots,b\}$ sei gleichverteilt, d.h.
 \[
@@ -1140,7 +1144,7 @@ Die Zufallsvariable $X$ mit Werten in der Menge $\{a,a+1,\dots,b\}$ sei gleichve
 		\end{array}
 	\]
 \end{itemize}
-\sss{a)}
+\sss
 Sei $Y = X - a$.
 Dann gilt: $\Omega'' = \{0, 1, ..., b-a\}$.
 \begin{equation*}
@@ -1168,7 +1172,7 @@ Nun gilt nach anfänglicher Definition für $\mathbb{E}[X] =\mathbb{E}[Y] + a$.
     \end{array}
 \end{equation*}
 
-\sss{b)}
+\sss
 Sei $Y = X - a$.
 Dann gilt: $\Omega'' = \{0, 1, ..., b-a\}$.
 \begin{equation*}
@@ -1196,7 +1200,7 @@ Nun gilt nach anfänglicher Definition für $\textbf{Var}[X] =\textbf{Var}[Y]$, 
     \end{array}
 \end{equation*}
 
-\sss{c)}
+\sss
 \begin{equation*}
     \begin{array}{rlll}
         \mathbb{E}[W$\textit{ü}$rfel]&=    &\frac{b + a}{2}&/b=6;~a=1\\
@@ -1216,7 +1220,7 @@ Dieses Ergebnis stimmt mit dem aus der Vorlesung überein.
 \end{equation*}
 Dieses Ergebnis stimmt mit dem aus der Vorlesung nicht überein.
 
-\sss{d)}
+\sss
 
 \begin{equation*}
     \begin{array}{rlll}
@@ -1234,7 +1238,7 @@ Die Ergebnisse sind: $\mathbb{E}[X_1]=3.5$, $\mathbb{E}[X_2]=4.5$, $\mathbb{E}[X
 \end{equation*}
 Das Ergebnis lautet: $\mathbb{E}[Z] = 36$.
 
-\susP{7.3}{8}
+\sus{8}
 (Noch einmal der Zonk, 4+4 Punkte).
 In einer Gameshow wählt ein Kandidat zwischen den drei Toren 1, 2 und 3 aus, hinter zweien davon ist der Zonk (Trostpreis), hinter einem der Hauptgewinn.
 Das zugehörige Tor wird zu Beginn zufällig gleichverteilt ausgewählt.
@@ -1253,7 +1257,7 @@ Anschließend erhält der Kandidat immer die Möglichkeit, das Tor zu wechseln.
 \end{enumerate}
 Geben Sie für beide Kandidaten an, wie hoch die Gewinnwahrscheinlichkeit nach einer Umentscheidung in Folge des geöffneten Tors ist.
 
-\sss{a)}
+\sss
 Nach Hinweis 3 ist die Chance des Kandidaten auf einen Gewinn vor dem Wechseln 50\%.
 Nach dem Wechseln ändert sich diese Chance nicht.
 \[
@@ -1264,7 +1268,7 @@ Nach dem Wechseln ändert sich diese Chance nicht.
 \]
 Die Gewinnwahrscheinlichkeit für die Tore 1 und 2 ist gleich, nämlich 50\%.
 Somit ist es egal, ob er wechselt.
-\sss{b)}
+\sss
 Nach Hinweis 3 ist dies genau das, was er tun sollte.
 Denn demnach müsste der Hauptgewinn hinter Tor 3 liegen.
 Nach den Hinweisen 2 und 3 würde der Moderator Tor 3 öffnen, sofern dahinter ein Zonk läge.
@@ -1275,8 +1279,8 @@ Somit ist die Gewinnwahrscheinlichkeit bei einem Wechsel bei 100\%.
 \chead{}
 \rhead{\memTwoName\\\memTwoNr}
 \ifnum\ZettelAcht=\True
-\sect{8}{31. Mai 2016}{7. Juni 2016}
-\susP{8.1}{7}
+\sect{31. Mai 2016}{7. Juni 2016}
+\sus{7}
 (Bedingte Wahrscheinlichkeiten, 4+3 Punkte).
 Bei der digitalen Datenübertragung können aufgrund verrauschter Kanäle auf der physikalischen Ebene Fehler auftreten, die sich dann als Verfälschung übermittelter Datenpakete auswirken.
 Das neu entwickelte Verfahren DEPP (Detection of Error-in-Packet Probabilities), ein Verfahren zur Erkennung von
@@ -1307,7 +1311,7 @@ $P(B)$ wurde in a) ausgerechnet.
 \[
 	P(A|B)=\frac{0.99\cdot0.01}{0.01089}=\frac{10}{11}\hat{\approx}91\%
 \]
-\susP{8.2}{5}
+\sus{5}
 (Stochastische Unabhängigkeit, 2+3 Punkte).
 Im Folgenden sind jeweils zwei Ereignisse $A,B$ gegeben.
 Überprüfen Sie auf stochastische Unabhängigkeit.
@@ -1342,7 +1346,7 @@ $P(B)=\frac{11}{36}, P(A)=\frac{5}{36}$.
 \]
 Da $P(A|B) \neq P(A)$, sind sie nach Definition (vgl. oben) nicht stochastisch unabhängig.
 
-\susP{8.3}{8}
+\sus{8}
 (Smileys revisited, 3+3+2 Punkte).
 In einer früheren Aufgabe wurde folgendes Glücksspiel beschrieben:\\
 \vspace{.1cm}\\
@@ -1386,7 +1390,7 @@ Aus der Divergenz der harmonischen Reihe folgt:
 \[
 	\Rightarrow P(X > k | X > k-1) = \frac{k}{k+1}
 \]
-\susP{8.4}{5}
+\sus{5}
 (Minimum und Maximum, 5 Punkte).
 Betrachten Sie einmal mehr den gleichzeitigen Wurf zweier fairer Würfel.
 $X$ sei die minimale Augenzahl, $Y$ die maximale Augenzahl.
@@ -1419,8 +1423,8 @@ Annahme: Tupel (i,j); x <= i,j <= y
 \vspace{.3cm}\\
 \fi
 \ifnum\ZettelNeun=\True
-\sect{9}{7. Juni 2016}{14. Juni 2016}
-\susP{9.1}{9}
+\sect{7. Juni 2016}{14. Juni 2016}
+\sus{9}
 (Berechnung Kovarianz, 3+3+3 Punkte).
 Bestimmen Sie in folgenden Situationen \cov{X}{Y}.\\
 \begin{minipage}[t]{0.48\textwidth}
@@ -1467,7 +1471,7 @@ Bestimmen Sie in folgenden Situationen \cov{X}{Y}.\\
 				&0	{}	&0						&$\frac{1}{4}$		&0					&$\ilfrac{1}{4}$\\
 			$Y$	&1	{}	&$\frac{1}{4}$			&0					&$\frac{1}{4}$		&$\ilfrac{2}{4}$\\
 				&2	{}	&0						&$\frac{1}{4}$		&0					&$\ilfrac{1}{4}$\\\hline
-				&	{}	&$\frac{1}{4}$			&$\ilfrac{2}{4}$	&$\ilfrac{1}{4}$	&1\\\hline
+				&	{}	&$\ilfrac{1}{4}$			&$\ilfrac{2}{4}$	&$\ilfrac{1}{4}$	&1\\\hline
 		\end{tabular}
 	\item[b)]
 		\begin{tabular}{|cc|ccc|c|}\hline
@@ -1514,7 +1518,7 @@ Bestimmen Sie in folgenden Situationen \cov{X}{Y}.\\
 						&=	\frac{1}{3} - 1\\
 						&=	-\frac{2}{3}
 \end{align*}
-\susP{9.2}{4}
+\sus{4}
 (Vorzeichen Kovarianz, 2+2 Punkte).
 Der Vektor $(X,Y)$ sei auf der im jeweiligen Aufgabenteil dargestellten Punktemenge Laplace-Verteilt.
 Geben Sie - ohne Rechnung - eine begründete Vermutung für das Vorzeichen von \cov{X}{Y} bzw. das Vorzeichen des Korrelationskoeffizienten ab.\\
@@ -1546,7 +1550,7 @@ Geben Sie - ohne Rechnung - eine begründete Vermutung für das Vorzeichen von \
 \textit{Anmerkung:} Diesmal aus naheliegenden Gründen ohne Skizze. Kommt vielleicht noch, wenn ich vor Abgabedatum Lust darauf hab, das Ding zu malen...\\
 \paragraph{a)}Da, wenn $X$ steigt, $Y$ auch steigt, ist \cov{X}{Y} positiv.
 \paragraph{b)}Da, wenn $X$ steigt, $Y$ fällt, ist \cov{X}{Y} negativ.
-\susP{9.3}{6}
+\sus{6}
 (Die Summe Poisson-verteilter Zufallsvariablen, 6 Punkte).
 Es seien $X \textasciitilde Pois_{\lambda}$ und $Y \textasciitilde Pois_{\mu}$ unabhängig.
 Zeigen Sie, dass auch $X+Y$ Poisson-verteilt ist und bestimmen Sie den Parameter.\\
@@ -1571,7 +1575,7 @@ $Z = X + Y$.\\
 \end{array}\]
 
 
-\susP{9.4}{6}
+\sus{6}
 (Das Simpson-Paradox, 4+2 Punkte).
 Eine kleine Universität bietet nur zwei Studiengänge (A und B) an.
 Aus Erfahrung ist bekannt, dass sich 80\% aller Frauen für Studiengang A interessieren, aber nur 30\% aller Männer.
@@ -1596,13 +1600,13 @@ Die Nachfrage der Frauen ist deutlich größer als das Angebot der Universität,
 Dem entgegen bewerben sich die meisten Männer bei einem Studiengang, dessen Angebot größer ist, wodurch insgesamt mehr angenommen werden.
 \fi
 \ifnum\ZettelZehn=\True
-\sect{10}{14. Juni 2016}{21. Juni 2016}
+\sect{14. Juni 2016}{21. Juni 2016}
 \fi
 \ifnum\ZettelElf=\True
-\sect{11}{21. Juni 2016}{28. Juni 2016}
+\sect{21. Juni 2016}{28. Juni 2016}
 \fi
 \ifnum\ZettelZwoelf=\True
-\sect{12}{28. Juni 2016}{5. Juli 2016}
+\sect{28. Juni 2016}{5. Juli 2016}
 \fi
 
 \end{document}
