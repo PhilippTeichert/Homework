@@ -12,6 +12,8 @@
 
 \usepackage{xcolor}
 
+\usepackage{graphicx}
+
 \usepackage{hyperref}
 
 \newcommand{\say}[1]{%
@@ -20,6 +22,12 @@
 \newcommand{\ttt}[1]{%
 	\texttt{#1}%
 }
+\newcommand{\mref}[1]{[\nameref{#1} (S. \pageref{#1})]}
+\newcommand{\todo}[1]{\textcolor{red}{\begin{Huge}
+	\begin{center}
+		\textbf{TODO: #1}
+	\end{center}
+\end{Huge}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Source code inclusion
@@ -57,6 +65,7 @@ literate=%
 \fancyhead{}
 \fancyfoot{}
 \fancyhead[L]{Louis Kobras\\6658699}
+\fancyhead[C]{Abgabe:\\23. Juni 2016}
 \fancyhead[R]{Utz Pöhlmann\\6663579}
 \fancyfoot[RE,LO]{Seite \thepage}
 
@@ -65,7 +74,7 @@ literate=%
 \textbf{SVS Bachelor-Projekt Network Security}
 \end{Huge}\\\-\\
 \begin{Large}
-\textbf{Blatt 3: Datenkommunikation}
+\textbf{Blatt 5: Beschreibung der Experimentierumgebung}
 \end{Large}\\\-\\
 \begin{minipage}[t]{0.48\textwidth}
 \begin{center}\textbf{
@@ -81,10 +90,119 @@ literate=%
 \end{minipage}
 \end{center}
 
+\section{Netzwerkeinstellungen}
+\label{sec:network-settings}
+	\setcounter{subsection}{1}
+	\subsection{}
+	\label{ssec:1.2}
+	ClientVM:\\
+	\begin{center}\begin{tabular}{|p{.3\textwidth}|p{.3\textwidth}|p{.3\textwidth}|}\hline
+		\textbf{IP-Adresse} (\ttt{ifconfig -a}): 192.168.254.44&
+		\textbf{Standard-Gateway} (\ttt{route -n}): 192.168.254.2&
+		\textbf{DNS-Nameserver} (\ttt{nslookup ubuntu.com}): 10.1.1.1\\\hline
+	\end{tabular}\end{center}
+	RouterVM:\\
+	\begin{center}\begin{tabular}{|c|c|}\hline
+		eth0	&	eth1	\\\hline
+		172.16.137.222	&	192.168.254.2\\\hline
+	\end{tabular}\end{center}
+	ServerVM:\\
+	IP-Adresse der Server-VM: 172.16.137.144
+\section{Absichern eines Einzelplatzrechners mit iptables (ClientVM)}
+\label{sec:securing-workplace}
+	\subsection{}
+	\label{ssec:2.1}
+	Anzeigen der Firewall-Regeln mit \ttt{sudo iptables -L}; alle Regeln löschen mit \ttt{sudo iptables -F}\footnote{löscht alle Regeln nacheinander}; OpenSSH-Server nach Paketquellen-Update via apt-get installiert (automatisch gestartet).
+	\subsection{}
+	\label{ssec:2.2}
+	Regelwerk siehe \mref{2.2-1}.\\
+	\ttt{iptables} säubern mit \ttt{sudo iptables -F}, einladen der Regeln aus einem Textfile mit \ttt{sudo iptables-restore < \~/iptable} (Dateiinhalt im Anhang ebenda).
+	\subsection{}
+	\label{ssec:2.3}
+	\begin{itemize}
+		\item SSH-Verbindungsversuch von RouterVM mit \ttt{sudo ssh 192.168.254.44} erfolgreich
+		\item SSH-Verbindungsversuch in die andere Richtung nicht erfolgreich (Connection refused)
+		\item hosten eines Servers mit \ttt{netcat -l 5555} erfolgreich, Verbindung (\ttt{sudo netcat 192.168.254.44 5555}) erwartungsgemäß fehlgeschlagen
+		\item Firefox ist bei DROP schneller als bei REJECT
+	\end{itemize}
+	\subsection{}
+	\label{ssec:2.4}
+	Dynamische Regeln vgl. \mref{2.4-1}.\\
+	Man muss nicht jeden Port und jedes Protokoll einzelnd abdecken.
+	Stateful Filter sind effizienter, da sie sich nur die Paket-Header ansehen.
+\section{Absichern eines Netzwerks (RouterVM)}
+\label{sec:securing-network}
+	\subsection{}
+	\label{ssec:3.1}
+	Der Aufruf bedeutet (nach \cite{nat}): \say{Maskiere alles, was an eth0 ausgeht}.\\
+	Es wird die Adressumsetzung (NAT) aktiviert und die Schnittstelle markiert (\cite{ubuntu:nat}).\\
+	Source: 192.168.254.0; Maske: 24
+	\subsection{}
+	\label{ssec:3.2}
+	Die Client-VM kann die Server-VM anpingen; umgekehrt geht dies nicht.\\
+	\textit{Vermutung:} Die Client-VM ist von außen nicht direkt ansprechbar, da sie hinter der RouterVM versteckt ist.
+	\subsection{}
+	\label{ssec:3.3}
+	\subsection{}
+	\label{ssec:3.4}
+	\subsection{}.
+	\label{ssec:3.5}
+	\subsection{}.
+	\label{ssec:3.6}
+
+\section{SSH-Tunnel}
+\label{sec:ssh-tunnel}
+	\subsection{}.
+	\label{ssec:4.1}
+	\subsection{}.
+	\label{ssec:4.2}
+	\subsection{}.
+	\label{ssec:4.3}
+	\subsection{}.
+	\label{ssec:4.4}
+	
+\section{OpenVPN}
+\label{sec:openvpn}
+	\subsection{}.
+	\label{ssec:5.1}
+	\subsection{}.
+	\label{ssec:5.2}
+	\subsection{}.
+	\label{ssec:5.3}
+	\subsection{}.
+	\label{ssec:5.4}
+	\subsection{}.
+	\label{ssec:5.5}
+	\subsection{}.
+	\label{ssec:5.6}
+
+\section{HTTP-Tunnel}
+\label{sec:http-tunnel}
+	\subsection{}.
+	\label{ssec:6.1}
+	\subsection{}.
+	\label{ssec:6.2}
+	\subsection{}.
+	\label{ssec:6.3}
+	\subsection{}.
+	\label{ssec:6.4}
+	\subsection{}.
+	\label{ssec:6.5}
+	\subsection{}.
+	\label{ssec:6.6}
+
 
 \begin{thebibliography}{1}
-\bibitem{svscss}	\url{https://www.inf.uni-hamburg.de/assets/application-11e3b49e605\\ff8ba1f01d275bd36850edfdfc1fbbb8c22e55fae1baf643a00d0.css}
-\bibitem{javatcp}	\url{https://systembash.com/a-simple-java-tcp-server-and-tcp-client/}
+\bibitem{nat}			\url{www.netfilter.org/documentation/HOWTO/de/NAT-HOWTO-6.html}
+\bibitem{ubuntu:nat}	\url{https://wiki.ubuntuusers.de/Router/}
 \end{thebibliography}
-
+\newpage
+\section*{ANHANG}
+\label{sec:app}
+	\subsection*{2.2: ClientVM-Filterregeln}
+	\label{2.2-1}
+	\todo{textfile}
+	\subsection*{2.4: ClientVM Stateful Filtering}
+	\label{2.4-1}
+	\todo{textfile}
 \end{document}
