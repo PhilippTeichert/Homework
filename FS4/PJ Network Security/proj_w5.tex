@@ -143,10 +143,18 @@ literate=%
 	\textit{Vermutung:} Die Client-VM ist von außen nicht direkt ansprechbar, da sie hinter der RouterVM versteckt ist.
 	\subsection{}
 	\label{ssec:3.3}
+	Regelsatz im Anhang unter \mref{3.3-1}\\
+	\textbf{ACHTUNG:} Funktioniert nicht!
+	Ab hier alle Angaben theoretische Überlegungen
 	\subsection{}
 	\label{ssec:3.4}
-	\subsection{}.
+	Folgender Eintrag in der iptable *filter an Stelle [0] sollte den SSH-Tunnel zulassen: \ttt{-A FORWARD -d 172.16.137.144 -p tcp --port 22 -j ACCEPT}
+	\subsection{}
 	\label{ssec:3.5}
+	Folgende Regeln sollte die Aufgabe erfüllen:\\
+	\-~~~~\ttt{iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 5022 -j DNAT --to 192.168.254.44:22}\\
+	\-~~~~\ttt{iptables -A FORWARD -p tcp -d 192.168.254.44 --dport 22 -j ACCEPT}\\
+	Zusätzlich muss der öffentliche Port mithilfe von netcat geöffnet werden: \ttt{nc -l 5022}
 	\subsection{}.
 	\label{ssec:3.6}
 
@@ -205,4 +213,14 @@ literate=%
 	\subsection*{2.4: ClientVM Stateful Filtering}
 	\label{2.4-1}
 	\todo{textfile}
+	\subsection*{3.3: Filterregeln}
+	\label{3.3-1}
+	\begin{lstlisting}
+iptables -t filter -A FORWARD -d 10.1.1.2/32 -j DROP
+iptables -t filter -A FORWARD -d 10.0.0.0/8 -j DROP
+iptables -t filter -A FORWARD -p udp --dport 53 --sport 53 -J ACCEPT
+iptables -t filter -A FORWARD -i eth1 -m state --state NEW -j ACCEPT
+iptables -t filter -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -t filter -A FORWARD -p tcp -m multiport ! --ports 80,443,8080 -j DROP
+	\end{lstlisting}
 \end{document}
