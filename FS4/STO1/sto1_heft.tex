@@ -1652,22 +1652,22 @@ Dem entgegen bewerben sich die meisten Männer bei einem Studiengang, dessen Ang
 		    \begin{equation*}
 				\begin{array}{lll}
 					\textbf{Var}[Y]	&=	\frac{(b-a)(b-a+2)}{12}	&$\textbackslash Formel für \var{X}$\\
-									&=	\frac{b^2-ba+2b-ab+a^2-2a}{12}	&$\textbackslash ausmultiplizieren$\\
-									&=	\frac{a^2-2ab+b^2-2a+2b}{12}	&$\textbackslash umstellen$\\
-									&=	\frac{(-2n)^2-2(2n)(-2n)+(2n)^2-2(-2n)+2(2n)}{12}&$\textbackslash Grenzen einsetzen, $a:=-2n; b:=2n\\
-									&=	\frac{4n^2-(-8n^2)+4n^2-(-4n)+4n}{12}&$\textbackslash * auflösen$\\
-									&=	\frac{4n^2+8n^2+4n^2+4n+4n}{12}&$\textbackslash -$\land$+ auflösen$\\
-									&=	\frac{16n^2+8n}{12}&$\textbackslash zusammenfassen$\\
-									&=	\frac{8n(2n+1)}{12}&$\textbackslash 8n ausklammern$\\
-									&=	\frac{2n(2n+1)}{3}&$\textbackslash kürzen$\\
+									&=	\frac{b^2-ba+2b-ab+a^2-2a}{12}	&$\textbackslash ausmultipliziert$\\
+									&=	\frac{a^2-2ab+b^2-2a+2b}{12}	&$\textbackslash umgestellt$\\
+									&=	\frac{(-2n)^2-2(2n)(-2n)+(2n)^2-2(-2n)+2(2n)}{12}&$\textbackslash Grenzen eingesetzt, $a:=-2n; b:=2n\\
+									&=	\frac{4n^2-(-8n^2)+4n^2-(-4n)+4n}{12}&$\textbackslash * aufgelöst$\\
+									&=	\frac{4n^2+8n^2+4n^2+4n+4n}{12}&$\textbackslash - und + aufgelöst$\\
+									&=	\frac{16n^2+8n}{12}&$\textbackslash zusammengefasst$\\
+									&=	\frac{8n(2n+1)}{12}&$\textbackslash 8n ausgeklammert$\\
+									&=	\frac{2n(2n+1)}{3}&$\textbackslash gekürzt$\\
 				\end{array}
 			\end{equation*}
 		\sss
     \begin{equation*}
         \begin{array}{rlll}
-            P(|Y-0| \geq n) &\leq& \frac{\text{\var{Y}}}{n^2}&$\textbackslash Tschebyscheff Ungleichung$\\
-            &=&\frac{\frac{2\cdot n \cdot(2\cdot n +1)}{3}}{n^2}&$\textbackslash einsetzen$\\
-            &=&\frac{2 \cdot(2\cdot n +1)}{3\cdot n}&$\textbackslash kürzen$
+            P(|Y-0| \geq n) &\leq& \frac{\text{\var{Y}}}{n^2}&$\textbackslash Tschebyscheff-Ungleichung$\\
+            &=&\frac{\frac{2\cdot n \cdot(2\cdot n +1)}{3}}{n^2}&$\textbackslash eingesetzt$\\
+            &=&\frac{2 \cdot(2\cdot n +1)}{3\cdot n}&$\textbackslash gekürzt$
         \end{array}
     \end{equation*}
     Das Ergebnis ist nun von $n$ abhängig.\\
@@ -1680,7 +1680,6 @@ Dem entgegen bewerben sich die meisten Männer bei einem Studiengang, dessen Ang
 		(Ein Wurf wird nur als gültig betrachtet, wenn die Münze komplett auf dem Schachbrett zu liegen kommt, andernfalls wird er wiederholt.)\\
 		\\
 		\textit{Hinweis:} Charakterisieren Sie die Lage der Münze über ihren Mittelpunkt und treffen Sie für diesen eine geeignete Gleichverteilungsannahme.
-		\-\\\vspace{.3cm}\\
 		\begin{itemize}
 	        \item $r_{\text{Münze}} = \frac{d_{\text{Münze}}}{2}=\frac{1cm}{2}=0,5cm$
 	        \item $A_{\text{Schachbrettfeld}} = $\textit{Seitenlänge}$ \cdot$\textit{Seitenlänge}$ =4cm \cdot 4cm=16cm^2$
@@ -1713,13 +1712,12 @@ Dem entgegen bewerben sich die meisten Männer bei einem Studiengang, dessen Ang
 		\]
 		zeigen, entweder über kombinatorische Argumente oder über sukzessives Aufsummieren und entsprechenden Induktionsbeweis.
 		Bestimmen Sie \e{S} und \var{S}.
-		\-\\\vspace{.3cm}\\
 		\begin{equation*}
 		    \begin{array}{rlll}
 		        $\e{S}$&=&\sum_{n=m}^{\infty}\left(n\cdot\binom{n-1}{m-1}\cdot p^m\cdot (1-p)^{n-m}\right)&$\textbackslash $n\cdot\binom{n-1}{m-1}=m\cdot\binom{n}{m}\\
-		        &=&\sum_{n=m}^{\infty}\left(m\cdot\binom{n}{m}\cdot p^m\cdot (1-p)^{n-m}\right)&$\textbackslash Index erniedrigen$\\
+		        &=&\sum_{n=m}^{\infty}\left(m\cdot\binom{n}{m}\cdot p^m\cdot (1-p)^{n-m}\right)&$\textbackslash Index erniedrigt$\\
 		        &=&\sum_{n=0}^{\infty}\left(m\cdot\binom{n+m}{m}\cdot p^m\cdot p\cdot\frac{1}{p}\cdot (1-p)^{n+m-m}\right)&$\textbackslash $\cdot p \cdot\frac{1}{p}\\
-		        &=&m\cdot\frac{1}{p}\cdot\sum_{n=0}^{\infty}\left(\binom{n+m}{m}\cdot p^{m+1}\cdot (1-p)^{n}\right)&$\textbackslash $\frac{1}{p}$ aus der Summe ziehen$~\land~p^m\cdot p =p^{m+1}\\
+		        &=&m\cdot\frac{1}{p}\cdot\sum_{n=0}^{\infty}\left(\binom{n+m}{m}\cdot p^{m+1}\cdot (1-p)^{n}\right)&$\textbackslash $\frac{1}{p}$ aus der Summe gezogen; $~\land~p^m\cdot p =p^{m+1}\\
 		        &=&m\cdot\frac{1}{p}\cdot\sum_{n=0}^{\infty}\left(\binom{(n+1)+m-1}{m}\cdot p^{m+1}\cdot (1-p)^{n}\right)&$\textbackslash $\sum_{n=0}^{\infty}\left(\binom{(n+1)+m-1}{m}\cdot p^{m+1}\cdot (1-p)^{n}\right) = 1\\
 		        &=&m\cdot \frac{1}{p}\cdot 1\\
 		        &=&\frac{m}{p}
@@ -1729,18 +1727,18 @@ Dem entgegen bewerben sich die meisten Männer bei einem Studiengang, dessen Ang
 		    \begin{array}{rlll}
 		        $\var{S}$&=&$\e{S^2}$-($\e{S}$)^2&$\textbackslash Definition von \var{S}$\\
 		        &=&\left(\sum_{n=m}^{\infty}\left(n^2\cdot P(S=n)\right)\right)-\left(\sum_{n=m}^{\infty}\left(n\cdot P(S=n)\right)\right)^2&$\textbackslash Definition von \e{S}$\\
-		        &=&\left(\sum_{n=m}^{\infty}\left(n^2\cdot\binom{n-1}{m-1}\cdot p^m\cdot (1-p)^{n-m}\right)\right)-\left(\frac{m}{p}\right)^2&$\textbackslash einsetzen$\\
+		        &=&\left(\sum_{n=m}^{\infty}\left(n^2\cdot\binom{n-1}{m-1}\cdot p^m\cdot (1-p)^{n-m}\right)\right)-\left(\frac{m}{p}\right)^2&$\textbackslash eingesetzt$\\
 		        &=&\left(\sum_{n=m}^{\infty}\left(n\cdot m\cdot\binom{n}{m}\cdot p^m\cdot (1-p)^{n-m}\right)\right)-\left(\frac{m}{p}\right)^2&$\textbackslash $n\cdot\binom{n-1}{m-1}=m\cdot\binom{n}{m}\\
-		        &=&\left(\sum_{n=0}^{\infty}\left(n\cdot m\cdot\binom{n+m}{m}\cdot p^m\cdot (1-p)^{n+m-m}\right)\right)-\left(\frac{m}{p}\right)^2&$\textbackslash Index erniedrigen$\\
+		        &=&\left(\sum_{n=0}^{\infty}\left(n\cdot m\cdot\binom{n+m}{m}\cdot p^m\cdot (1-p)^{n+m-m}\right)\right)-\left(\frac{m}{p}\right)^2&$\textbackslash Index erniedrigt$\\
 		        &=&\left(\sum_{n=0}^{\infty}\left(n\cdot m\cdot\binom{n+m}{m}\cdot p^m\cdot p\cdot\frac{1}{p}\cdot (1-p)^{n+m-m}\right)\right)-\left(\frac{m}{p}\right)^2&$\textbackslash $\cdot p \cdot\frac{1}{p}\\
-		        &=&\left(m\cdot\frac{1}{p}\cdot\sum_{n=0}^{\infty}\left(n\cdot \binom{n+m}{m}\cdot p^m\cdot p\cdot (1-p)^{n}\right)\right)-\left(\frac{m}{p}\right)^2&$\textbackslash $\frac{1}{p}$ aus der Summe ziehen$\\
+		        &=&\left(m\cdot\frac{1}{p}\cdot\sum_{n=0}^{\infty}\left(n\cdot \binom{n+m}{m}\cdot p^m\cdot p\cdot (1-p)^{n}\right)\right)-\left(\frac{m}{p}\right)^2&$\textbackslash $\frac{1}{p}$ aus der Summe gezogen$\\
 		        &=&\left(m\cdot\frac{1}{p}\cdot\sum_{n=0}^{\infty}\left(n\cdot \binom{n+m}{m}\cdot p^{m+1}\cdot (1-p)^{n}\right)\right)-\left(\frac{m}{p}\right)^2&$\textbackslash $p^m\cdot p =p^{m+1}\\
 		        &=&\frac{m}{p}\cdot\frac{1-p+m}{p}-\frac{m^2}{p^2}&$\textbackslash $\sum_{n=0}^{\infty}(...) = \frac{1-p+m}{p}\\
-		        &=&\frac{m\cdot(1-p+m)}{p^2}-\frac{m^2}{p^2}&$\textbackslash $\cdot$ zusammenfassen$\\
-		        &=&\frac{m-m\cdot p+m^2}{p^2}-\frac{m^2}{p^2}&$\textbackslash Klammer auflösen$\\
-		        &=&\frac{m-m\cdot p+m^2-m^2}{p^2}&$\textbackslash - zusammenfassen$\\
-		        &=&\frac{m-m\cdot p}{p^2}&$\textbackslash vereinfachen$\\
-		        &=&\frac{m\cdot(1-p)}{p^2}&$\textbackslash ausklammern$
+		        &=&\frac{m\cdot(1-p+m)}{p^2}-\frac{m^2}{p^2}&$\textbackslash $\cdot$ zusammengefasst$\\
+		        &=&\frac{m-m\cdot p+m^2}{p^2}-\frac{m^2}{p^2}&$\textbackslash Klammer aufgelöst$\\
+		        &=&\frac{m-m\cdot p+m^2-m^2}{p^2}&$\textbackslash - zusammengefasst$\\
+		        &=&\frac{m-m\cdot p}{p^2}&$\textbackslash vereinfacht$\\
+		        &=&\frac{m\cdot(1-p)}{p^2}&$\textbackslash ausgeklammert$
 		    \end{array}
 		\end{equation*}
 \fi
