@@ -1744,6 +1744,53 @@ Dem entgegen bewerben sich die meisten Männer bei einem Studiengang, dessen Ang
 \fi
 \ifnum\ZettelElf=\True
 \sect{21. Juni 2016}{28. Juni 2016}
+
+\sus{8}
+Rechnen mit der Exponentialverteilung, 4+4 Punkte).
+Es sei $X$\textasciitilde$Exp_{\lambda}$.
+\begin{enumerate}
+		\item[a)] Begründen Sie
+			\[
+				P(X \leq x)=P(X \in (-\infty, x])=\begin{cases}
+														\begin{array}{ll}
+															1-e^{-\lambda x},	& x \geq 0,\\
+															0,					& 0 < 0.
+														\end{array}
+													\end{cases}
+			\]
+		\item[b)] Für welches $x \in \mathbb{R}$ gilt $P(X \leq x) = \frac{1}{2}$?
+\end{enumerate}
+		
+\sus{9}
+(Die Normalappxorimation, Fortsetzung, 3+3+3 Punkte).
+In der Situation aus Präsenzübung sei $X$ die Anzahl der Ausschussteile unter den 400 Schrauben.
+\begin{enumerate}
+	\item[a)] Bestimmen Sie $P(34 \leq X \leq 52)$ mit der Normalapproximation mit Stetigkeitskorrektur.
+	\item[b)] Bestimmen Sie $P(34 \leq X \leq 52)$ mit der Normalapproximation ohne Stetigkeitskorretur.
+	\item[c)] Bestimmen Sie $P(10 \leq X \leq 70)$ mit der Normalapproximation.
+\end{enumerate}
+
+
+\sus{8}
+(Normalapproximation für Einzelwahrscheinlichkeiten, 3+3+2 Punkte).
+Bei der Normalapproximation \textbf{mit} Stetigkeitskorrektur können auch Wahrscheinlichkeiten der Form $P(X=k)$ für $X$\textasciitilde$Bin_{n,p}$ und $k \in \{0,...,n\}$ approximiert werden:
+\[
+	P(X=k)=P(k \leq X \leq k)=P(k-0.5\leq X \leq k+0.5) \approx \Phi\left( \frac{k+0.5-np}{\sqrt{np(1-p)}} \right)-\Phi\left( \frac{k-0.5-np}{\sqrt{
+	np(1-p)}} \right).
+\]
+\begin{enumerate}
+	\item[a)] Betrachten Sie den Fall $n=10000$, $p=0.5$ und $k=5000$.
+		Dann gilt auf vier gelten[de] Stellen gerundet
+		\[
+			P(X=k)=\binom{10000}{5000}0.5^{10000}\approx0.007979.
+		\]
+		Berechnen Sie mit obiger Normalapproximation mit Stetigkeitskorrektur eine Näherung.
+	\item[b)] Es sei $n$ gerade, $p=0.5$ sowie $k=\frac{n}{2}$.
+		$P(X=k)$ wird nun einmal exakt und einmal über die Normalapproximation bestimmt.
+		Geben Sie jeweils die Größenordnung für die Anzahl durchzuführender Operationen an.
+		Gehen Sie dabei insbesondere darauf ein, wie diese Anzahl jeweils von $n$ abhängt.
+	\item[c)] Warum können sich die Formeln zur Normalapproximation \textbf{ohne} Stetigkeitskorrektur nicht eignen, um Näherungen für $P(X=k)=P(k \leq X \leq k)$ zu ermitteln?
+\end{enumerate}
 \fi
 \ifnum\ZettelZwoelf=\True
 \sect{28. Juni 2016}{5. Juli 2016}
