@@ -155,30 +155,51 @@ literate=%
 	\-~~~~\ttt{iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 5022 -j DNAT --to 192.168.254.44:22}\\
 	\-~~~~\ttt{iptables -A FORWARD -p tcp -d 192.168.254.44 --dport 22 -j ACCEPT}\\
 	Zusätzlich muss der öffentliche Port mithilfe von netcat geöffnet werden: \ttt{nc -l 5022}
-	\subsection{}.
+	\subsection{}
+	\begin{itemize}
+		\item Zuweisen der IP 172.16.137.42 mit \ttt{ifconfig eth0:1 172.16.137.42 netmask 255.255.255.0}
+		\item PREROUTING-Regel: \ttt{-A PREROUTING -i eth0 -j DNAT {-}{-}to 192.168.254.44}
+		\item FORWARD-Regel: \ttt{-A FORWARD -d 192.168.254.44 -j ACCEPT}
+		\item Login von der Server-VM mit \ttt{ssh user@172.16.137.42 -L 2000:172.16.137.42:22}
+		\item Testweise Client-VM von der Server-VM aus neugestartet
+	\end{itemize}
 	\label{ssec:3.6}
 
 \section{SSH-Tunnel}
 \label{sec:ssh-tunnel}
-	\subsection{}.
+	\subsection{}
 	\label{ssec:4.1}
-	\subsection{}.
+	iptables-Regeln vgl. \mref{a4-1}.
+	\subsection{}
 	\label{ssec:4.2}
-	\subsection{}.
+	Tunnelerzeugung mit \ttt{ssh user@172.16.137.42 -L 2000:172.16.137.42:80}\\
+	Beobachtung mit Wireshark ergibt TCP-Pakete, die an SSH weitergeleitet werden.
+	Auslesen ist nicht möglich, Gesprächspartner stimmen überein.
+	\subsection{}
 	\label{ssec:4.3}
-	\subsection{}.
+	Es ist erforderlich, den Zielserver zu kennen, sowie lokal einen Port zu öffnen und einen freien Port auf dem Server zu wissen.\\
+	Als Alternative bietet sich Dynamic Forwarding an (ssh-Aufruf um \ttt{-D} erweitern) \cite{ubuntu:ssh}.\\
+	Dem Browser muss mitgeteilt werden, einen Proxy zu verwenden (HOWTO: \cite{ubuntu:sshdyn}).
+	\subsection{}
 	\label{ssec:4.4}
+	Aufbauen einer Reverse-Verbindung von der Client-VM zur Server-VM: \ttt{ssh -R 5555:localhost:22 user@172.16.137.144}\\
+	Rücktunneln von der Server-VM: \ttt{ssh localhost -p 5555} \cite{reverse-ssh}
 	
 \section{OpenVPN}
 \label{sec:openvpn}
-	\subsection{}.
+	\subsection{}
 	\label{ssec:5.1}
-	\subsection{}.
+	Konfiguration vgl. \mref{a5-1}
+	\subsection{}
 	\label{ssec:5.2}
-	\subsection{}.
+	Key wird erzeugt durch \ttt{openvpn --genkey --secret static.key}.
+	Key liegt dann in \$pwd/static.key in ASCII.
+	\subsection{}
 	\label{ssec:5.3}
-	\subsection{}.
+	Konfiguration vgl. \mref{a5-3}. \textbf{Verbindung schlägt fehl.}
+	\subsection{}
 	\label{ssec:5.4}
+	Scheitern an OpenVPN-Server-Konfiguration und der Verbindungsherstellung.
 	\subsection{}.
 	\label{ssec:5.5}
 	\subsection{}.
@@ -186,12 +207,14 @@ literate=%
 
 \section{HTTP-Tunnel}
 \label{sec:http-tunnel}
-	\subsection{}.
+	\subsection{}
 	\label{ssec:6.1}
+	Einzelne Regel: \ttt{-A FORWARD -i eth1 -p tcp -m multiport ! --dports 80,53 -j DROP}
 	\subsection{}.
 	\label{ssec:6.2}
-	\subsection{}.
+	\subsection{}
 	\label{ssec:6.3}
+	Konfiguration vgl. \mref{a6-3}.
 	\subsection{}.
 	\label{ssec:6.4}
 	\subsection{}.
@@ -203,6 +226,9 @@ literate=%
 \begin{thebibliography}{1}
 \bibitem{nat}			\url{www.netfilter.org/documentation/HOWTO/de/NAT-HOWTO-6.html}
 \bibitem{ubuntu:nat}	\url{https://wiki.ubuntuusers.de/Router/}
+\bibitem{ubuntu:ssh}	\url{https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding}
+\bibitem{ubuntu:sshdyn}	\url{https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding\#Dynamic\_Port\_Forwarding}
+\bibitem{reverse-ssh}	\url{https://howtoforge.com/reverse-ssh-tunneling}
 \end{thebibliography}
 \newpage
 \section*{ANHANG}
@@ -223,4 +249,16 @@ iptables -t filter -A FORWARD -i eth1 -m state --state NEW -j ACCEPT
 iptables -t filter -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -t filter -A FORWARD -p tcp -m multiport ! --ports 80,443,8080 -j DROP
 	\end{lstlisting}
+	\subsection*{4.1: SSH-Ausgang}
+	\label{a4-1}
+	\todo{textfile}
+	\subsection*{5.1}
+	\label{a5-1}
+	\todo{textfile}
+	\subsection*{5.3}
+	\label{a5-3}
+	\todo{textfile}
+	\subsection*{6.3}
+	\label{a6-3}
+	\todo{textfile}
 \end{document}
