@@ -1760,7 +1760,44 @@ Es sei $X$\textasciitilde$Exp_{\lambda}$.
 			\]
 		\item[b)] Für welches $x \in \mathbb{R}$ gilt $P(X \leq x) = \frac{1}{2}$?
 \end{enumerate}
-		
+\sss
+    \begin{equation*}
+        \begin{array}{rcll}
+            P(X \in (-\infty, x]) &=& P(-\infty < X \leq x)&\\
+            &=& \int_{-\infty}^{x} \! f(y) \, \mathrm{d}y &$\textbackslash$ f(y) = \begin{cases}
+                                                                                                    \begin{array}{ll}
+                                                                                                        \lambda e^{-\lambda y}, & y \geq 0,\\
+                                                                                                        0, & sonst
+                                                                                                    \end{array}
+                                                                                                \end{cases}\\
+            &\stackrel{\int_{-\infty}^{0} \! f(x) \, \mathrm{d}x=0}{=}&\int_{0}^{x} \! \lambda e^{-\lambda y} \, \mathrm{d}y&\\
+            &=&[-e^{\lambda y}]_0^x&\\
+            &=&-e^{\lambda x} - (-e^{\lambda 0})&\\
+            &=&e^{\lambda 0} -e^{\lambda x}&\\
+            &=&1-e^{\lambda x}
+        \end{array}
+    \end{equation*}
+        Für $c \rightarrow -\infty \land d \geq 0$ gilt bei $\int_c^d \! f(x) \, \mathrm{d}x$:
+    \begin{equation*}
+        \begin{array}{rll}
+            P(X \leq x)&=&\int_{-\infty}^{x} \! f(y) \, \mathrm{d}y\\
+        \end{array}
+    \end{equation*}
+    Dies ist nun das gleiche Ergebnis, wie oben in Schritt 2.
+    Somit ist Gleichheit gezeigt.
+\sss
+    \begin{equation*}
+        \begin{array}{rlll}
+            P(X \leq x)&=&\frac{1}{2}&$\textbackslash aus a)$\\
+            1-e^{-\lambda x}&=&\frac{1}{2}&$\textbackslash $-1\\
+            -e^{-\lambda x}&=&-\frac{1}{2}&$\textbackslash $\cdot(-1)\\
+            e^{-\lambda x}&=&\frac{1}{2}&$\textbackslash $ln()\\
+            ln(e^{-\lambda x})&=&ln(\frac{1}{2})&$\textbackslash $\\
+            -\lambda x\cdot ln(e)&=&ln(\frac{1}{2})&$\textbackslash $ln(e) = 1\\
+            -\lambda x\cdot 1&=&ln(\frac{1}{2})&$\textbackslash $-\lambda\\
+            x&=&\frac{ln(\frac{1}{2})}{-\lambda}&
+        \end{array}
+    \end{equation*}
 \sus{9}
 (Die Normalappxorimation, Fortsetzung, 3+3+3 Punkte).
 In der Situation aus Präsenzübung sei $X$ die Anzahl der Ausschussteile unter den 400 Schrauben.
@@ -1769,8 +1806,41 @@ In der Situation aus Präsenzübung sei $X$ die Anzahl der Ausschussteile unter 
 	\item[b)] Bestimmen Sie $P(34 \leq X \leq 52)$ mit der Normalapproximation ohne Stetigkeitskorretur.
 	\item[c)] Bestimmen Sie $P(10 \leq X \leq 70)$ mit der Normalapproximation.
 \end{enumerate}
-
-
+\sss
+    \e{x}$=n\cdot p ~\land~$\var{X}$=$\e{X}$\cdot (1-p)$ werden aus Präsenzaufgabe 11.2 übernommen.
+    \begin{equation*}
+        \begin{array}{rll}
+            P(34 \leq X\leq 52)&=&\Phi\left(\frac{52.5-40}{6}\right)-\Phi\left(\frac{33.5-40}{6}\right)\\
+            &=&\Phi\left(\frac{12.5}{6}\right)-\Phi\left(\frac{-6.5}{6}\right)\\
+            &=&\Phi(2.08\overline{3})-\Phi(-1.08\overline{3})\\
+            &\approx&0.9812-(1-0.8599)\\
+            &=&0.9812+0.8599-1\\
+            &=&0.8411
+        \end{array}
+    \end{equation*}
+\sss
+    \begin{equation*}
+        \begin{array}{rll}
+            P(34 \leq X\leq 52)&=&\Phi\left(\frac{52-40}{6}\right)-\Phi\left(\frac{34-40}{6}\right)\\
+            &=&\Phi\left(\frac{12}{6}\right)-\Phi\left(\frac{-6}{6}\right)\\
+            &=&\Phi(2)-\Phi(-1)\\
+            &\approx&0.9772-(1-0.8413)\\
+            &=&0.9772+0.8413-1\\
+            &=&0.8185
+        \end{array}
+    \end{equation*}
+\sss
+    \begin{equation*}
+        \begin{array}{rll}
+            P(10 \leq X\leq 70)&=&\Phi\left(\frac{70-40}{6}\right)-\Phi\left(\frac{10-40}{6}\right)\\
+            &=&\Phi\left(\frac{30}{6}\right)-\Phi\left(\frac{-30}{6}\right)\\
+            &=&2\cdot\Phi\left(\frac{30}{6}\right)-1\\
+            &=&2\cdot\Phi(5)-1\\
+            &\approx&2\cdot 1-1\\
+            &=&2-1\\
+            &=&1
+        \end{array}
+    \end{equation*}
 \sus{8}
 (Normalapproximation für Einzelwahrscheinlichkeiten, 3+3+2 Punkte).
 Bei der Normalapproximation \textbf{mit} Stetigkeitskorrektur können auch Wahrscheinlichkeiten der Form $P(X=k)$ für $X$\textasciitilde$Bin_{n,p}$ und $k \in \{0,...,n\}$ approximiert werden:
@@ -1791,6 +1861,67 @@ Bei der Normalapproximation \textbf{mit} Stetigkeitskorrektur können auch Wahrs
 		Gehen Sie dabei insbesondere darauf ein, wie diese Anzahl jeweils von $n$ abhängt.
 	\item[c)] Warum können sich die Formeln zur Normalapproximation \textbf{ohne} Stetigkeitskorrektur nicht eignen, um Näherungen für $P(X=k)=P(k \leq X \leq k)$ zu ermitteln?
 \end{enumerate}
+\sss
+    \begin{equation*}
+        \begin{array}{rll}
+            P(X = 5000)&=&P(5000 \leq X \leq 5000)\\
+            &=&\Phi\left(\frac{5000.5 - 10000 \cdot 0.5}{\sqrt{10000\cdot 0.5 \cdot (1-0.5)}}\right)-\Phi\left(\frac{4999.5 - 10000 \cdot 0.5}{\sqrt{10000\cdot 0.5 \cdot (1-0.5)}}\right)\\
+            &=&\Phi\left(\frac{0.5}{50}\right)-\Phi\left(\frac{-0.5}{50}\right)\\
+            &=&\Phi\left(0.01\right)-(1-\Phi\left(0.01\right))\\
+            &=&2\cdot\Phi\left(0.01\right)-1\\
+            &=&2\cdot0.5040-1\\
+            &=&1.0080-1\\
+            &=&0.0080
+        \end{array}
+    \end{equation*}
+\sss
+    \begin{minipage}[t]{0.3\textwidth}
+    \begin{flushleft}
+        \textbf{exakte Bestimmung:}\\
+        $P(X= \frac{n}{2})=$\\
+        $\color{blue}\underbrace{\color{black}\binom{n}{\frac{n}{2}}}_{\color{black}\frac{\color{blue}n\text{ Operationen}\left\{\color{black}n!\right.~~~~~~~~~~~~~}{\color{blue}\underbrace{\color{black}\left(\frac{n}{2}\right)!}_{\frac{n}{2}\text{ Operationen}}\cdot\underbrace{\color{black}\left(n-\frac{n}{2}\right)!}_{\frac{n}{2}\text{ Operationen}}}}\cdot \underbrace{\color{black}0.5^n}_{n\text{ Operationen}}$\\
+        Das macht insgesamt:\\
+        $\begin{array}{rl}
+        &n$ Operationen$\\
+        +&\frac{n}{2}$ Operationen$\\
+        +&\frac{n}{2}$ Operationen$\\
+        +&n$ Operationen$\\
+        \hline
+        &3\cdot n$ Operationen$
+        \end{array}$\\
+    \end{flushleft}
+    Das macht insgesamt $3n$ Operationen $+$ die $3$ Operationen um sie zu verknüpfen.\\
+    Dies liegt in O($3n + 3$) und insbesondere in O($n$).
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.5\textwidth}
+    \begin{flushleft}
+        \textbf{Bestimmung über Normalapproximation:}\\
+        $P(X= \frac{n}{2})=$\\
+        $\Phi\left(\frac{\color{blue}\overbrace{\color{black}n+0.5}^{1\text{ Operation}}\color{black}-\color{blue}\overbrace{\color{black}(n\cdot0.5)}^{1\text{ Operation}}}{\color{blue}\underbrace{\color{black}(n\cdot0.5)}_{1\text{ Operation}}\color{black}\cdot\color{blue}\underbrace{\color{black}(1-0.5)}_{1\text{ Operation}}}\right)-\Phi\left(\frac{\color{blue}\overbrace{\color{black}n-0.5}^{1\text{ Operation}}\color{black}-\color{blue}\overbrace{\color{black}(n\cdot0.5)}^{1\text{ Operation}}}{\color{blue}\underbrace{\color{black}(n\cdot0.5)}_{1\text{ Operation}}\color{black}\cdot\color{blue}\underbrace{\color{black}(1-0.5)}_{1\text{ Operation}}}\right)$
+        Das macht insgesamt:\\
+        $\begin{array}{rl}
+        &1$ Operation$\\
+        +&1$ Operation$\\
+        +&1$ Operation$\\
+        +&1$ Operation$\\
+        +&1$ Operation$\\
+        +&1$ Operation$\\
+        +&1$ Operation$\\
+        +&1$ Operation$\\
+        \hline
+        &8$ Operationen$
+        \end{array}$\\
+    \end{flushleft}
+    Das macht insgesamt $8$ Operationen $+$ die $5$ Operationen um sie zu verknüpfen.\\
+    Dies liegt in O($13$) und insbesondere in O($1$).
+    \end{minipage}
+\sss
+    Ohne Stetigkeitskorrektur lautet die Gleichung:\\
+    $P(a\leq X\leq a) \approx \Phi\left(\frac{a-np}{\sqrt{np\cdot(1-p)}}\right)-\Phi\left(\frac{a-np}{\sqrt{np\cdot(1-p)}}\right)$\\
+    Da $Y-Y = 0$ ist, gilt auch $\Phi\left(\frac{a-np}{\sqrt{np\cdot(1-p)}}\right)-\Phi\left(\frac{a-np}{\sqrt{np\cdot(1-p)}}\right) = 0$\\
+    Somit würde immer $P(X = a) = P(a\leq X\leq a) = 0$ rauskommen.\\
+    Dies ist jedoch keine sinnvolle Näherung.
 \fi
 \ifnum\ZettelZwoelf=\True
 \sect{28. Juni 2016}{5. Juli 2016}
