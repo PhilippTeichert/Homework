@@ -199,14 +199,14 @@
 %#+-------------------------------------------------+#%
 %#+						ZETTEL 1					+#%
 %#+-------------------------------------------------+#%
-\sect{5}{datum1}{datum2}
+\sect{5}{13. Juni 2016}{22. Juni 2016}
 
 \subsection*{Aufgabe 1: Rechnersicherheit}
 \subsubsection*{1)}
 \sss{a)}
 Zugriffskontrolle:
 \begin{itemize}
-    \item Setzt die Zugangskontrolle voraus und gewährleistet Zugriff nur falls der Nutzer das Recht auf den Zugriff zu Objekt oder Ressource x hat
+    \item Setzt die Zugangskontrolle voraus und gewährleistet Zugriff nur, falls der Nutzer das Recht auf den Zugriff zu Objekt oder Ressource x hat
     \item Beispiel: Mandatory Access Control eines Unix-Systems
 \end{itemize}
 Zugangskontrolle:
@@ -283,7 +283,7 @@ Annahmen: wir gehen OBDA davon aus, dass wir wissen,
 \begin{itemize}
 	\item dass das Passwort höchstens 20 Zeichen lang ist.
 	\item dass es nur alphanumerische Zeichen enthält.
-	\item dass unser Passwort "password" ist.
+	\item dass unser Passwort ``password'' ist.
 	\item dass das Passwort mindestens 1 Zeichen lang ist.
 \end{itemize}
 Code:
@@ -353,15 +353,15 @@ Davon sind:
 Für jedes Zeichen gibt es 36 Möglichkeiten = $1^{36}$\\
 $\Rightarrow$ Für den gesamten Code gibt es 20 Zeichen = $20^{36}$ Möglichkeiten.
 Das sind ca. 68 Septilliarden Möglichkeiten.\\
-Die Wahrscheinlichkeit, einen gültigen Code zu erraten liegt bei 100 gültigen Codes durch $20^{36}$ mögliche Codes = $0.00$\%
+Die Wahrscheinlichkeit, einen gültigen Code zu erraten liegt bei 100 gültigen Codes durch $20^{36}$ mögliche Codes = $0.00^+$\%
 \subsubsection*{2)}
 Tatsächlicher Zeichenumfang:\\
 26 lateinische Buchstaben + 10 arabische Ziffern
 = $20^{36}$ verschiedene Passwortmöglichkeiten\\
 Angenommen, die bereits ausgegebenen Passwörter sind gleichmäßig auf diesen Bereich verteilt, dann müsste man, um mindestens 1 Passwort zu knacken im Durchschnitt mindestens $\frac{20^{36}}{100}$ Passwörter probieren.\\
 Das macht bei 1000 Passwörter pro Sekunde:\\
-$\frac{\frac{20^{36}}{100}}{1000}$ ca. 687 Sextilliarden $(32\cdot20^{31}\approx6.87\cdot10^{41})$ Sekunden $\approx 2.17\cdot10^{34}\approx22$ Quintilliarden Jahre\\
-\vspace{3,5cm}
+$\frac{\frac{20^{36}}{100}}{1000}$ ca. 687 Sextilliarden $(32\cdot20^{31}\approx6.87\cdot10^{41})$ Sekunden $\widehat{\approx} 2.17\cdot10^{34}\approx22$ Quintilliarden Jahre\\
+\newpage
 \subsection*{ANHANG:}
 \begin{lstlisting}[language=Java]
 package Blatt5.Aufgabe3;
