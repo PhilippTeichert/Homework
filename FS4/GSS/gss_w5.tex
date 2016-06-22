@@ -27,6 +27,38 @@
 \usepackage{fancyhdr}
 % filler text
 \usepackage{lipsum}
+% Code + Einhübschung
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\usepackage{listings}
+\lstset{ %
+  language=Java,                  % the language of the code
+  basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=4,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+  keywordstyle=\color{blue},          % keyword style
+  commentstyle=\color{dkgreen},       % comment style
+  stringstyle=\color{mauve},         % string literal style
+  escapeinside={\%*}{*)},            % if you want to add a comment within your code
+  morekeywords={*,...}               % if you want to add more keywords to the set
+}
 % macro commands
 %% requires color package and the custom colors defined here 
 \newcommand{\todo}[1]{
@@ -167,6 +199,288 @@
 %#+-------------------------------------------------+#%
 %#+						ZETTEL 1					+#%
 %#+-------------------------------------------------+#%
-\sect{n}{datum1}{datum2}
+\sect{5}{datum1}{datum2}
+
+\subsection*{Aufgabe 1: Rechnersicherheit}
+\subsubsection*{1)}
+\sss{a)}
+Zugriffskontrolle:
+\begin{itemize}
+    \item Setzt die Zugangskontrolle voraus und gewährleistet Zugriff nur falls der Nutzer das Recht auf den Zugriff zu Objekt oder Ressource x hat
+    \item Beispiel: Mandatory Access Control eines Unix-Systems
+\end{itemize}
+Zugangskontrolle:
+\begin{itemize}
+    \item Zugangskontrolle stellt in der Informatik sicher, dass ein Rechner Kommunikation nur mit berechtigten Benutzern oder Rechnern erlaubt
+    \item Beispiel: Login (Username/Passwort) an einer Workstation
+\end{itemize}
+\sss{b)}
+Es ist sinnvoll, sofern nur eine Person - oder nur Personen einer “Sicherheitsstufe”- Zugang zu dem IT-System haben, da die Zugangskontrolle dazu da ist, um sicherzustellen, dass es sich um einen berechtigten Nutzer handelt. Dann kann man sich allerdings unbekümmert an den Computer setzen und ausnahmslos alle Daten auslesen, editieren und/oder löschen.\\
+Somit ist es nicht sinnvoll, falls mehrere Personen mit unterschiedlichen “Sicherheitsstufen” an einem IT-System arbeiten und/oder man verhindern will, dass Personen auf vertrauliche Daten anderer zugreifen können.
+\sss{c)}
+Die Zugangskontrolle identifiziert eine Person, die Zugriffskontrolle verifiziert ob die Person auf ein bestimmtes Objekt zugreifen darf. Ohne eine Identifikation kann die Zugriffskontrolle keine Rechte überprüfen, da die Anfrage durch eine unbekannte Person erfolgt.
+\sss{d)}
+Man wird über die IP Identifiziert.\\
+Bzw. man kann nur über den Link auf ein Dokument zugreifen und der gibt man nicht einfach so weiter (vorausgesetzt, es besteht keine kriminelle Absicht der Leute, denen die Adresse anvertraut wurde).\\
+\\
+Weitere Erklärungen:
+\begin{itemize}
+    \item Man wird über die IP und das Wissen über die Link-Adresse identifiziert. Das ist die Zugangskontrolle
+    \item Der Link ist öffentlich, daher ist jeder Zugriff ein Zugriff eines Gastes, d.h. die Zugriffskontrolle hat Rechte für Gäste spezifiziert.
+\end{itemize}
+
+\subsubsection*{2)}
+\sss{a)}
+Es werden Bild und Fingerabdrücke gespeichert. Anhand der erkennbaren Muster kann eine biometrische Identifizierung erfolgen.
+\sss{b)}
+\begin{itemize}
+    \item Man könnte ein Foto vor die Webcam halten
+    \item Die Überprüfung wird lokal gemacht dort könnte man in die Software eingreifen und das Signal beeinflussen
+    \item Sicherungsmaßnahme um die Daten der Karte zu sichern: Die Karten sollte read-only sein (ROM) und zusätzlich versiegelt werden, sodass sie nur noch lesbar sind. Zudem verhindern, dass der Chip irgendwie ausgebaut werden kann.
+\end{itemize}
+
+\subsubsection*{3)}
+\sss{a)}
+$
+\begin{array}{rl}
+    $Schwachstellen:$&$die Tippmuster könnten ähnlich einer einer Unterschrift durch gutes Beobachten und$\\
+    &$Zuhören von einem Dritten nachgeahmt werden.$\\
+    $Verhalten:$&$passiv$\\
+    $Verbreitung:$&$keinen Zugriff auf die Datenbank der Tipp-Profile$\\
+    $Rolle:$&$Außenstehender$\\
+    $Ressourcen:$&$begrenzt (nicht genug um um den Algorithmus, der der Verfizierung zugrundeliegt zu$\\
+    &$knacken)$
+\end{array}
+$
+\sss{b)}
+\begin{itemize}
+    \item Zugangs- und Zugriffskontrolle der Datenbank
+    \item Verschlüsselter Datentransfer
+    \item sicherer Handshake bei der Authentifizierung
+\end{itemize}
+
+\subsubsection*{4)}
+\sss{a)}
+$
+\begin{array}{rl}
+    $Rolle:$&$Kunde$\\
+    $Verbreitung:$&$Zugriff auf den Dienst der Website$\\
+    $Verhalten:$&$passiv$\\
+    $Ressourcen:$&$Begrenzt (nicht genug, um die Website zu hacken und den Algorithmus auszulesen)$
+\end{array}
+$
+\sss{b)}
+\begin{itemize}
+    \item Barcodes werden in Kino selbst - eventuell zufällig - erzeugt (lokal)
+    \item Daten über erzeugte Barcodes werden lokal gespeichert (an anderer Stelle)
+    \item Prüfung des Barcodes erfolgt lokal (durch Zugriff auf den lokalen Rechner)
+    \item Erfolgreiche Barcodes werden gelöscht
+\end{itemize}
+
+\subsection*{Aufgabe 2: Timing-Attack}
+\subsubsection*{1)}
+Annahmen: wir gehen OBDA davon aus, dass wir wissen,
+\begin{itemize}
+	\item dass das Passwort höchstens 20 Zeichen lang ist.
+	\item dass es nur alphanumerische Zeichen enthält.
+	\item dass unser Passwort "password" ist.
+	\item dass das Passwort mindestens 1 Zeichen lang ist.
+\end{itemize}
+Code:
+s.u.
+\subsubsection*{2)}
+Das Programm prüft die erste Stelle des Passworts. Ist diese Korrekt, wird die nächste geprüft, sonst nicht. Somit bricht das Programm an unterscheidlichen Stellen ab und bearbeitet die Passwörter anhand ihrer Korrektheit unterscheidlich lange.
+\subsubsection*{3)}
+Gehe zu Schritt 1 mit X = 1 und Y leer.
+\begin{enumerate}
+    \item[Schritt 0:] (nur bei manchen Implementationen sinnvoll): Länge des Passwortes prüfen, indem verschieden lange Passwörter erzeugt und geprüft werden.
+Das Passwort, bei dem das Programm länger zum antworten braucht hatte die richtige Länge. Braucht das Programm jeweils in etwa gleich lange, kann man an dieser Stelle keine Rückschlüsse auf die Passwortlänge ziehen.
+    \item[Schritt 1:] alle Möglichkeiten für Stelle X generieren und den Anfang des Passwortes Y davorhängen und das Passwort dann prüfen. Der Rest des Passwortes ist egal.
+    \item[Schritt 2:] bei einem Passwort hat das Programm länger zum Antworten gebraucht. Dies ist die Richtige Stelle und wird an Y angehängt.
+    \item[Schritt 3:] wenn das Passwort noch nicht geknackt wurde, gehe zu Schritt 1 mit dem neuen Y und X= X+1
+\end{enumerate}
+\subsubsection*{4)}
+Annahme: counter setzen benötigt keine Zeit:
+\begin{lstlisting}[language=Java]
+boolean passwordCompare(char[] a, char[] b)
+{
+	int i;
+	int counter;
+	for(i = 0; i<a.size(); i++)
+	{
+		if(a[i] == b[i])
+		{
+			counter++;
+		}
+	}
+	return counter == b.size()
+}
+\end{lstlisting}
+Annahme: counter setzen benötigt Zeit:
+\begin{lstlisting}[language=Java]
+boolean passwordCompare(char[] a, char[] b)
+{
+	int i;
+	int counter = 0;
+	int fakeCounter = 0;
+	for(i = 0; i<a.size(); i++)
+	{
+		if(a[i] == b[i])
+		{
+			counter++;
+		}
+		else
+		{
+			fakeCounter++;
+		}
+	}
+	return counter == b.size()
+}
+\end{lstlisting}
+\subsection*{Aufgabe 3: Real-World-Brute-Force Angriff}
+\subsubsection*{1)}
+Code sieht folgendermaßen aus:
+\begin{itemize}
+    \item fffjj-DEMO-XXXXX-XXXXX-XXXXX-XXXXX
+\end{itemize}
+Davon sind:
+\begin{itemize}
+    \item 3 Zeichen Fach
+    \item 2  Zeichen Jahr
+    \item 1 Bindestrich Aufgabenblatt (hier 4 Zeichen: DEMO)
+    \item 20 Zeichen Code (4 Segmente zu 5 Zeichen, getrennt mit Bindestrich)
+\end{itemize}
+Für jedes Zeichen gibt es 36 Möglichkeiten = $1^{36}$\\
+$\Rightarrow$ Für den gesamten Code gibt es 20 Zeichen = $20^{36}$ Möglichkeiten.
+Das sind ca. 68 Septilliarden Möglichkeiten.\\
+Die Wahrscheinlichkeit, einen gültigen Code zu erraten liegt bei 100 gültigen Codes durch $20^{36}$ mögliche Codes = $0.00$\%
+\subsubsection*{2)}
+Tatsächlicher Zeichenumfang:\\
+26 lateinische Buchstaben + 10 arabische Ziffern
+= $20^{36}$ verschiedene Passwortmöglichkeiten\\
+Angenommen, die bereits ausgegebenen Passwörter sind gleichmäßig auf diesen Bereich verteilt, dann müsste man, um mindestens 1 Passwort zu knacken im Durchschnitt mindestens $\frac{20^{36}}{100}$ Passwörter probieren.\\
+Das macht bei 1000 Passwörter pro Sekunde:\\
+$\frac{\frac{20^{36}}{100}}{1000}$ ca. 687 Sextilliarden $(32\cdot20^{31}\approx6.87\cdot10^{41})$ Sekunden $\approx 2.17\cdot10^{34}\approx22$ Quintilliarden Jahre\\
+\vspace{3,5cm}
+\subsection*{ANHANG:}
+\begin{lstlisting}[language=Java]
+package Blatt5.Aufgabe3;
+
+public class Timer
+{
+	private final char[] _passwort = "abcdefgh".toCharArray();
+	private boolean _gefunden = false;
+	private int _passwortLaenge;
+	private final char[] _symbole = "abcdefghijklmnopqrstuvwxyz0123456789"
+    	.toCharArray();
+	private final int _maxPasswortLaenge = 20;
+
+	public static void main(String[] args)
+	{
+    	Timer timer = new Timer();
+    	timer._passwortLaenge = timer.findePasswortLaenge();
+    	System.out.println(timer._passwortLaenge);
+    	System.out.println(timer.findePasswort());
+	}
+
+	/**
+ 	* Findet das Passwort. Period.
+ 	* @return Das Passwort.
+ 	* @requirements: Die Passwortlaenge wurde bestimmt.
+ 	*/
+	private String findePasswort()
+	{
+    	String laufPasswort = "";
+    	String bisherigesPasswort = "";
+    	long[] zeiten = new long[_passwortLaenge];
+    	long startZeit;
+    	long endZeit;
+    	do
+    	{
+        	// Zaehlt einen Zaehler bis zur bestimmen Passwortlaenge
+        	for (int laenge = 0; laenge < _passwortLaenge; laenge++)
+        	{
+            	// Zaehlt einen Zaehler bis zur Laenge des Eingabealphabets
+            	for (int zaehler = 0; zaehler < _symbole.length; zaehler++)
+            	{
+                	// haengt das aktuelle Laufsymbol an das Passwort
+                	laufPasswort = bisherigesPasswort + _symbole[zaehler];
+                	startZeit = System.nanoTime();
+                	// Hier wird das Passwort geprueft
+                	_gefunden = passwordCompare(laufPasswort.toCharArray(), _passwort);
+                	endZeit = System.nanoTime();
+                	// Berechnet Zeitdifferenz fuer aktuelles Passwort
+                	zeiten[zaehler] = endZeit - startZeit;
+            	}
+            	// haengt an das bisherige Passwort dasjenige Symbol an, fuer welches die groesste Zeit gebraucht wurde
+            	bisherigesPasswort += _symbole[gibIndexVonMaximum(zeiten)];
+        	}
+    	}
+    	while (!_gefunden);
+    	return bisherigesPasswort;
+	}
+
+	/**
+ 	* Bestimmt die Laenge eines Passworts
+ 	* @return die Laenge eines Passworts
+ 	*/
+	private int findePasswortLaenge()
+	{
+    	String passwort = "";
+    	long[] zeiten = new long[_maxPasswortLaenge];
+    	long startZeit;
+    	long endZeit;
+    	System.out.println("Starte Schleife...");
+    	for (int zaehler = 1; zaehler < _maxPasswortLaenge; zaehler++)
+    	{
+        	passwort.concat("a");
+        	startZeit = System.nanoTime();
+//        	System.out.println("Startzeit: " + startZeit);
+        	// prueft, ob das Passwort korrekt ist
+        	passwordCompare(passwort.toCharArray(), _passwort);
+        	endZeit = System.nanoTime();
+//        	System.out.println("Endzeit: " + endZeit);
+        	zeiten[zaehler] = endZeit - startZeit;
+        	System.out.println("Zeitdifferenz: " + zeiten[zaehler]);
+    	}
+    	System.out.println("Nach Schleife");
+    	return gibIndexVonMaximum(zeiten);
+	}
+
+	/**
+ 	* Gibt den Index des hoechsten Wertes zurueck
+ 	* @param array Eingabe, das nach dem hoechsten Wert durchsucht werden soll
+ 	* @return den Index des hoechsten Wertes
+ 	*/
+	private int gibIndexVonMaximum(long[] array)
+	{
+    	int index = 0;
+    	for (int i = 0; i < array.length; i++)
+    	{
+        	if (array[i] > array[index])
+        	{
+            	index = i;
+        	}
+    	}
+    	return index;
+	}
+
+	/**
+ 	* Vergleicht zwei Char-Arrays
+ 	* @param a erstes Array
+ 	* @param b zweites Array
+ 	* @return true, wenn sie gleich sind; false sonst
+ 	*/
+	boolean passwordCompare(char[] a, char[] b)
+	{
+    	int i;
+    	if (a.length != b.length) return false;
+    	for (i = 0; i < a.length && a[i] == b[i]; i++)
+        	;
+    	return i == a.length;
+	}
+}
+\end{lstlisting}
+
 
 \end{document}
