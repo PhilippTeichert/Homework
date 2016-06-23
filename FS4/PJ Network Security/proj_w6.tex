@@ -6,7 +6,7 @@
 
 \usepackage{fancyhdr}
 
-\usepackage[margin=2.54cm]{geometry}
+\usepackage[margin=2.5cm]{geometry}
 
 \usepackage{listings}
 
@@ -20,6 +20,12 @@
 \newcommand{\ttt}[1]{%
 	\texttt{#1}%
 }
+\newcommand{\mref}[1]{[\nameref{#1} (S. \pageref{#1})]}
+\newcommand{\todo}[1]{\textcolor{red}{\begin{Huge}
+	\begin{center}
+		\textbf{TODO: #1}
+	\end{center}
+\end{Huge}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Source code inclusion
@@ -65,7 +71,7 @@ literate=%
 \textbf{SVS Bachelor-Projekt Network Security}
 \end{Huge}\\\-\\
 \begin{Large}
-\textbf{Blatt 3: Datenkommunikation}
+\textbf{Blatt 6: Kryptographie}
 \end{Large}\\\-\\
 \begin{minipage}[t]{0.48\textwidth}
 \begin{center}\textbf{
@@ -82,9 +88,74 @@ literate=%
 \end{center}
 
 
+\section{Absicherung des TCP-Chats mit SSL}
+	\label{sec:tcp}
+		
+
+\section{CAs und Webserver-Zertifikate}
+	\label{sec:zertifikate}
+	\stepcounter{subsection}
+	\subsection{Selbstsignierte Zertifikate}
+		\label{ssec:self-signed}
+		Es wurde in mehreren Läufen die Fallstudie durchgearbeitet.
+		Und zwar mehrmals und sowohl zusammen als auch einzeln und unabhängig voneinander.
+		Mit dem Ergebnis, dass der Apache2-Server nicht funktioniert.
+		Die Gruppe neben uns, denen wir inzwsichen bestimmt mega auf den Keks gehen und denen ich als Wiedergutmachung ein Eis mitgebracht habe, konnte uns leider auch nicht helfen.
+		Unsere certs und pems und reqs und keys und csrs wurden alle ordnungsgemäß erstellt und Schritt für Schritt, Wort für Wort nach der Fallstudie erzeugt und bearbeitet.
+		Es ist kaputt.
+		Selbst Reboots und Reinstallationen helfen nicht.
+		Folglich funktionieren Aufgabe 2.1ff nicht.
+		Mal wieder.
+		Sind wir echt so blöd oder liegt vielleicht ein Fehler auf unserer Maschine vor?
+	\subsection{HTTPS-Weiterleitung}
+		\label{ssec:https}
+		.
+	\subsection{sslstrip}
+		\label{ssec:sslstrip}
+		\textit{sslstrip} wurde nach \cite{sslstrip} installiert und gestartet.\\
+		Die Verbindung wurde am ``svs.informatik.uni-hamburg.de'' erkannt. (IP: 134.100.15.55)\\
+		Die Browsereinstellungen wurde unter \ttt{Edit $\rightarrow$ Preferences $\rightarrow$ Advanced $\rightarrow$ Network $\rightarrow$ Connection $\rightarrow$ Settings...} auf \ttt{localhost} und Port \ttt{8080} gesetzt.
+		Zudem wurden die \ttt{No Proxy for}-Einstellungen entfernt.\\
+		Der Inhalt der Datei: vgl. \mref{ssllog}
+		Die Lösung aus Aufgabe 2.3 ist somit definitiv ein Plus an Sicherheit.\\
+		Der Sinn von HSTS ist, sich vor sog. ``downgrade Attacks'' zu schützen.
+		Hierbei wird der Client dazu gewzungen statt einer ``modernen'' sicheren Verbindung eine ``alte'' unsichere Verbindung aufzubauen. (Bsp.: HTTP statt HTTPS)
+		Ein weiterer Nutzen ist, ``Session Hijacking'' zu unterbinden.
+		Hier wird ein Authentifikationscookie abgefangen und so ein Man-In-The-Middle-Angriff gestartet.
+		Da HSTS Webservern erlaubt, auf Browser den Zwang einer sicheren Verbindung (via HTTPS) auszuüben, sind alle Server, die diese Möglichkeit nutzen, auch sicher vor SSL-Stripping-Angriffen.
+		
+\section{Unsichere selbstentwickelte Verschlüsselungsalgorithmen}
+	\label{sec:encrypt}
+	\subsection{BaziCrypt}
+		\label{ssec:bazi}
+		.
+	\subsection{AdvaziCrypt - Denksport}
+		\label{ssec:advazi}
+		.
+	\subsection{AdvaziCrypt - Angriff implementieren}
+		\label{ssec:advazi2}
+		.
+		
+		
+\section{EasyAES}
+	\label{sec:easyaes}
+	
+	
+\section{Timing-Angriff auf Passwörter (Bonusaufgabe)}
+	\label{sec:timing}
+		
+
+
+
+
 \begin{thebibliography}{1}
-\bibitem{svscss}	\url{https://www.inf.uni-hamburg.de/assets/application-11e3b49e605\\ff8ba1f01d275bd36850edfdfc1fbbb8c22e55fae1baf643a00d0.css}
-\bibitem{javatcp}	\url{https://systembash.com/a-simple-java-tcp-server-and-tcp-client/}
+\bibitem{sslstrip}	\url{https://moxie.org/software/sslstrip/}
 \end{thebibliography}
+
+\newpage
+\section*{ANHANG}
+	\label{sec:anhang}
+	\subsection*{ssllog}
+		\label{ssllog}
 
 \end{document}
