@@ -116,14 +116,15 @@ literate=%
 	\subsection{}
 	\label{ssec:2.2}
 	Regelwerk siehe \mref{2.2-1}.\\
-	\ttt{iptables} säubern mit \ttt{sudo iptables -F}, einladen der Regeln aus einem Textfile mit \ttt{sudo iptables-restore < \~/iptable} (Dateiinhalt im Anhang ebenda).
+	\ttt{iptables} säubern mit \ttt{sudo iptables -F}, eingeben der Regeln aus dem Anhang als Root.
 	\subsection{}
 	\label{ssec:2.3}
 	\begin{itemize}
-		\item SSH-Verbindungsversuch von RouterVM mit \ttt{sudo ssh 192.168.254.44} erfolgreich
+		\item SSH-Verbindungsversuch von RouterVM mit \ttt{sudo ssh user@192.168.254.44} erfolgreich
 		\item SSH-Verbindungsversuch in die andere Richtung nicht erfolgreich (Connection refused)
 		\item hosten eines Servers mit \ttt{netcat -l 5555} erfolgreich, Verbindung (\ttt{sudo netcat 192.168.254.44 5555}) erwartungsgemäß fehlgeschlagen
-		\item Firefox ist bei DROP schneller als bei REJECT
+		\item Firefox ist bei DROP schneller als bei REJECT.
+			Bei REJECT erhält der Remote Host die Ablehnung als Antwort, während bei DROP das Paket nur verworfen wird, ohne dem Remote mitzuteilen, dass die Verbindung verweigert wird.
 	\end{itemize}
 	\subsection{}
 	\label{ssec:2.4}
@@ -143,18 +144,18 @@ literate=%
 	\textit{Vermutung:} Die Client-VM ist von außen nicht direkt ansprechbar, da sie hinter der RouterVM versteckt ist.
 	\subsection{}
 	\label{ssec:3.3}
-	Regelsatz im Anhang unter \mref{3.3-1}\\
-	\textbf{ACHTUNG:} Funktioniert nicht!
-	Ab hier alle Angaben theoretische Überlegungen
+	Regelsatz im Anhang unter \mref{3.3-1}
 	\subsection{}
 	\label{ssec:3.4}
-	Folgender Eintrag in der iptable *filter an Stelle [0] sollte den SSH-Tunnel zulassen: \ttt{-A FORWARD -d 172.16.137.144 -p tcp --port 22 -j ACCEPT}
+	Folgender Eintrag in der iptable *filter an Stelle [0] öffnet den SSH-Tunnel einseitig:
+	\ttt{FORWARD -p tcp --syn --dport 22 --destination 172.16.137.144 -m conntrack --cstate NEW -j ACCEPT}
 	\subsection{}
 	\label{ssec:3.5}
 	Folgende Regeln sollte die Aufgabe erfüllen:\\
 	\-~~~~\ttt{iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 5022 -j DNAT --to 192.168.254.44:22}\\
 	\-~~~~\ttt{iptables -A FORWARD -p tcp -d 192.168.254.44 --dport 22 -j ACCEPT}\\
-	Zusätzlich muss der öffentliche Port mithilfe von netcat geöffnet werden: \ttt{nc -l 5022}
+	Die erste Zeile erledigt die eigentliche Weiterleitung, während die zweite Zeile die Firewall für die umgeleiteten Pakete öffnet.
+	Zusätzlich muss der öffentliche Port mithilfe von netcat geöffnet werden: \ttt{nc -l 5022}.
 	\subsection{}
 	\begin{itemize}
 		\item Zuweisen der IP 172.16.137.42 mit \ttt{ifconfig eth0:1 172.16.137.42 netmask 255.255.255.0}
@@ -182,7 +183,7 @@ literate=%
 	Dem Browser muss mitgeteilt werden, einen Proxy zu verwenden (HOWTO: \cite{ubuntu:sshdyn}).
 	\subsection{}
 	\label{ssec:4.4}
-	Aufbauen einer Reverse-Verbindung von der Client-VM zur Server-VM: \ttt{ssh -R 5555:localhost:22 user@172.16.137.144}\\
+	Aufbauen einer Reverse-Verbindung von der Client-VM zur Server-VM: \ttt{ssh -R 5555:localhost:22 user@}\\\ttt{172.16.137.144}\\
 	Rücktunneln von der Server-VM: \ttt{ssh localhost -p 5555} \cite{reverse-ssh}
 	
 \section{OpenVPN}
@@ -193,34 +194,65 @@ literate=%
 	\subsection{}
 	\label{ssec:5.2}
 	Key wird erzeugt durch \ttt{openvpn --genkey --secret static.key}.
-	Key liegt dann in \$pwd/static.key in ASCII.
+	Key liegt dann in \$pwd/static.key in ASCII.\\
+	\textbf{server.conf:}
+	\begin{verbatim}
+	dev tun
+	ifconfig 192.168.1.2 192.168.1.1
+	secret static.key
+	\end{verbatim}
 	\subsection{}
 	\label{ssec:5.3}
 	Konfiguration vgl. \mref{a5-3}. \textbf{Verbindung schlägt fehl.}
 	\subsection{}
 	\label{ssec:5.4}
-	Scheitern an OpenVPN-Server-Konfiguration und der Verbindungsherstellung.
-	\subsection{}.
+	\textbf{client.conf:}
+	\begin{verbatim}
+	dev tun
+	remote 172.16.137.144
+	ifconfig 192.168.1.2 192.168.1.1
+	secret static.key
+	\end{verbatim}
+	\subsection{}
 	\label{ssec:5.5}
-	\subsection{}.
+	OpenVPN auf der ServerVM mit Link auf die Server-Config starten (tunneling interface):\\
+	\-~~~~\ttt{openvpn {-}{-}config servervm.conf {-}{-}dev tun}\\
+	OpenVPN auf der ClientVM mit Link auf die Client-Config starten (tunneling interface):\\
+	\-~~~~\ttt{openvpn {-}{-}config clientvm.conf {-}{-}dev tun}\\
+	Output im syslog in folgender Form:
+	\begin{verbatim}
+	<<Timestamp>> <<Version>> <<Meta-Infos>> <<Build>>
+	<<Timestamp>> <<Response>>
+	\end{verbatim}
+	\subsection{}
 	\label{ssec:5.6}
+	Server und Client benutzen das Interface \ttt{tun0}.
+	Eine SSH-Verbindung konnte aufgebaut werden.
 
 \section{HTTP-Tunnel}
 \label{sec:http-tunnel}
 	\subsection{}
 	\label{ssec:6.1}
-	Einzelne Regel: \ttt{-A FORWARD -i eth1 -p tcp -m multiport ! --dports 80,53 -j DROP}
-	\subsection{}.
+	Konfiguration vgl. \mref{a6-1}.
+	\subsection{}
 	\label{ssec:6.2}
+	Umgehen der Einschränkung durch Umleiten von SSH auf HTTP:\\
+	\-~~~~HTTP-Port freimachen (Daemon ausschalten): \ttt{daemon-start-stop -K httpd}
+	\-~~~~\ttt{/etc/ssh/ssh\_config}: Port auf 80 setzen\\
+	\-~~~~SSH-Service neu starten: \ttt{service ssh restart}\\
+	\-~~~~Verbindung testen: \ttt{ssh user@172.16.137.144 -p 80}
 	\subsection{}
 	\label{ssec:6.3}
 	Konfiguration vgl. \mref{a6-3}.
-	\subsection{}.
+	\subsection{}
 	\label{ssec:6.4}
-	\subsection{}.
+	Datei \ttt{/etc/squid/squid.conf} wurde angepasst, Proxy-Einstellungen im Browser wurden entsprechend vorgenommen (Preferences > Advanced > Network > Connection > Settings > Manual proxy configuration).
+	\subsection{}
 	\label{ssec:6.5}
-	\subsection{}.
+	Es sind wiederholt Probleme aufgetreten, weswegen die Zeit an dieser Stelle nicht mehr gereicht hat.
+	\subsection{}
 	\label{ssec:6.6}
+	s.o.
 
 
 \begin{thebibliography}{1}
@@ -235,30 +267,116 @@ literate=%
 \label{sec:app}
 	\subsection*{2.2: ClientVM-Filterregeln}
 	\label{2.2-1}
-	\todo{textfile}
+	\begin{lstlisting}[language=bash]
+# DNS
+iptables -i eth0 -I INPUT -p udp --sport 53 --source 10.1.1.1 -j ACCEPT
+iptables -o eth0 -I OUTPUT -p udp --dport 53 --destination 10.1.1.1 -j ACCEPT
+# HTTP, HTTPS, SSH
+iptables -i eth0 -I INPUT -p tcp -m multiport --sports 22,80,443 -j ACCEPT
+iptables -o eth0 -I OUTPUT -p tcp -m multiport --dports 22,80,443 -j ACCEPT
+# PING
+iptables -i eth0 -I INPUT -p icmp -j ACCEPT
+iptables -o eth0 -I OUTPUT -p icmp -j ACCEPT
+	\end{lstlisting}
 	\subsection*{2.4: ClientVM Stateful Filtering}
 	\label{2.4-1}
-	\todo{textfile}
+	\begin{lstlisting}[language=bash]
+# Antworten in beide Richtungen zulassen
+iptables -i eth0 -I INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -o eth0 -I INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+# HTTP und HTTPS
+iptables -o eth0 -I OUTPUT -p tcp -m multiport --dports 80,443 -j ACCEPT
+# DNS
+iptables -o eth0 -I OUTPUT -p udp --dport 53 --destination 10.1.1.1 -j ACCEPT
+# SSH
+iptables -i eth0 -I INPUT -p tcp --dport 22 --soure 192.168.254.1/24 -m conntrack --cstate NEW -j ACCEPT
+	\end{lstlisting}
 	\subsection*{3.3: Filterregeln}
 	\label{3.3-1}
-	\begin{lstlisting}
-iptables -t filter -A FORWARD -d 10.1.1.2/32 -j DROP
-iptables -t filter -A FORWARD -d 10.0.0.0/8 -j DROP
-iptables -t filter -A FORWARD -p udp --dport 53 --sport 53 -J ACCEPT
-iptables -t filter -A FORWARD -i eth1 -m state --state NEW -j ACCEPT
-iptables -t filter -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
-iptables -t filter -A FORWARD -p tcp -m multiport ! --ports 80,443,8080 -j DROP
+	\begin{lstlisting}[language=bash]
+# DNS auf 10.1.1.1 zulassen
+iptables -A FORWARD -p udp --dport 53 --destination 10.1.1.1 -m conntrack --cstate NEW -j ACCEPT
+# Labornetz sperren
+iptables -A FORWARD --destination 10.0.0.0/8 -j REJECT
+# HTTP und HTTPS zum Rest der Welt außer zur ServerVM zulassen
+iptables -A FORWARD -p tcp --syn -m multiport --dports 80,443 ! --destination 172.16.137.144 -m --conntrack --cstate NEW -j ACCEPT
 	\end{lstlisting}
 	\subsection*{4.1: SSH-Ausgang}
 	\label{a4-1}
-	\todo{textfile}
+	\begin{lstlisting}[language=bash]
+# Generated by iptables-save v1.4.4 on Thu Jun 16 12:48:17 2016
+*filter
+:INPUT ACCEPT [15:1139]
+:FORWARD ACCEPT [115:11372]
+:OUTPUT ACCEPT [15:1073]
+-A FORWARD -i eth1 -p tcp --sport 22 -d 172.16.137.144 -j ACCEPT
+-A FORWARD -i eth1 -p udp --sport 53 -j ACCEPT
+-A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+COMMIT
+# Completed on Thu Jun 16 12:48:17 2016
+# Generated by iptables-save v1.4.4 on Thu Jun 16 12:48:17 2016
+*nat
+:PREROUTING ACCEPT [15:952]
+:POSTROUTING ACCEPT [4:301]
+:OUTPUT ACCEPT [3:241]
+-A POSTROUTING -s 192.168.254.0/24 -o eth0 -j MASQUERADE 
+COMMIT
+# Completed on Thu Jun 16 12:48:17 2016
+	\end{lstlisting}
 	\subsection*{5.1}
 	\label{a5-1}
-	\todo{textfile}
+	\begin{lstlisting}[language=bash]
+# Generated by iptables-save v1.4.4 on Thu Jun 16 14:00:49 2016
+*filter
+:INPUT ACCEPT [3737:5146437]
+:FORWARD ACCEPT [347:23103]
+:OUTPUT ACCEPT [730:74822]
+-A FORWARD -s 192.168.2.0/24 -d 172.0.0.0/8 -j ACCEPT
+-A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A FORWARD -j REJECT
+COMMIT
+# Completed on Thu Jun 16 14:00:49 2016
+# Generated by iptables-save v1.4.4 on Thu Jun 16 14:00:49 2016
+*nat
+:PREROUTING ACCEPT [327:20291]
+:POSTROUTING ACCEPT [35:2494]
+:OUTPUT ACCEPT [35:2494]
+-A POSTROUTING -s 192.168.254.0/24 -o eth0 -j MASQUERADE 
+COMMIT
+# Completed on Thu Jun 16 14:00:49 2016
+	\end{lstlisting}
 	\subsection*{5.3}
 	\label{a5-3}
-	\todo{textfile}
+	\begin{lstlisting}
+iptables -i eth0 -I INPUT -p udp --dport 1194 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -o eth0 -I OUTPUT -p udp --sport 1194 -m state --state ESTABLISHED -j ACCEPT
+	\end{lstlisting}
+	\subsection*{6.1}
+	\label{a6-1}
+	\begin{lstlisting}[language=bash]
+# HTTP in beide Richtungen als Antwort öffnen
+-A FORWARD -p tcp --port 80 -m state --state ESTABLISHED,RELATED -j ACCEPT
+# ausgehende HTTP-Requests öffnen
+-A FORWARD -p tcp --dport 80 -m state --state NEW -j ACCEPT
+# DNS in beide Richtungen öffnen
+-A FORWARD -p udp --port 53 -m state --state NEW,ESTABLISHED -j ACCEPT
+	\end{lstlisting}
 	\subsection*{6.3}
 	\label{a6-3}
-	\todo{textfile}
+	\begin{lstlisting}[language=bash]
+## INPUT
+# Verbindungen auf Squid-Port öffnen
+-i eth1 -A INPUT -p tcp --dport 3128 -m state --state NEW,ESTABLISHED -j ACCEPT
+# HTTP und HTTPS Responses erlauben
+-i eth1 -A INPUT -p tcp -m multiport --sports 80,443 -m state --state ESTABLISHED -j ACCEPT
+# DNS
+-i eth1 -A OUTPUT -p udp --sport 53 -m state --state NEW,ESTABLISHED -j ACCEPT
+## OUTPUT
+# Verbindungen auf Squid-Port öffnen
+-o eth1 -A OUTPUT -p tcp --sport 3128 -m state --state ESTABLISHED -j ACCEPT
+# HTTP und HTTPS Responses erlauben
+-o eth1 -A OUTPUT -p tcp -m multiport --dports 80,443 -m state --state ESTABLISHED -j ACCEPT
+# DNS
+-o eth1 -A OUTPUT -p udp --dport 53 -m state --state ESTABLISHED -j ACCEPT
+	\end{lstlisting}
 \end{document}
