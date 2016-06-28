@@ -1926,6 +1926,86 @@ Bei der Normalapproximation \textbf{mit} Stetigkeitskorrektur können auch Wahrs
 \fi
 \ifnum\ZettelZwoelf=\True
 \sect{28. Juni 2016}{5. Juli 2016}
+
+\sus{10}
+(3+4+3 Punkte).
+Die Funktion $f: \mathbb{R} \rightarrow \mathbb{R}$ besitze den Funktionsterm
+\[
+	f(x)=\frac{1}{2}e^{-|x|},~~~~x \in \mathbb{R}.
+\]
+\begin{enumerate}
+	\item[a)]	Zeigen Sie, dass $f$ tatsächlich eine Dichte ist.
+				\textit{Hinweis:} Es empfiehlt sich, den Integrationsbereich $(-\infty, \infty)$ in $(-\infty, 0)$ und $[0, \infty)$ aufzuteilen.
+	\item[b)]	Die Verteilung der reellen Zufallsvariable $X$ besitze die Dichte $f$.
+				Außerdem seien $A=\{X \geq 0\}$ und $B=\{-1 \leq X \leq 1\}$.
+				Bestimmen Sie $P(A)$ und $P(B)$.
+				\textit{Hinweise:}
+				\begin{itemize}
+					\item	Als Zufallsvariable bildet die Funktion $X$ von einem Grundraum $\Omega$ in die reellen Zahlen ab.
+							Insofern ist formal vollständig $A=\{\omega \in \Omega: X(\omega) \leq 0\}$.
+							Mit den in der Stochastik üblichen Schreibweisen ist einfach $P(A)=P(X \geq 0)$ und entsprechend $P(B)=P(-1\leq X \leq 1)$ zu interpretieren.
+					\item	Zur Kontrolle sei hier auch das Ergebnis (wichtig ist der Rechenweg) $P(B)=1-e^{-1}$ angegeben.
+				\end{itemize}
+	\item[c)]	Bestimmen Sie auch $P(A \cap B)$ und entscheiden Sie, ob $A$ und $B$ unabhängig sind.
+\end{enumerate}
+%%%%%	a
+\sss
+
+%%%%%	b
+\sss
+
+%%%%%	c
+\sss
+
+
+\sus{11}
+(4+7 Punkte).
+Die Verteilung der reellen Zufallsvariable $X$ habe die Dichte $f: \mathbb{R} \rightarrow \mathbb{R}$, die der rellen Zufallsvariable $Y$ habe die Dichte $g: \mathbb{R} \rightarrow \mathbb{R}$.
+\begin{enumerate}
+	\item[a)]	Es ist bekannt, dass
+				\[
+					f(x) = \begin{cases}
+								\begin{array}{ll}
+									\gamma x,		&	0 \leq x \leq 1,\\
+									\gamma (2-x)	&	1 \leq x \leq 2,\\
+									0,				&	sonst
+								\end{array}	
+							\end{cases}
+				\]
+				mit einem Parameter $\gamma \in \mathbb{R}$ gilt.
+				Skizzieren Sie den Graphen von $f$ und bestimmen Sie $\gamma$ so, dass $f$ tatsächlich eine Dichte wird.
+	\item[b)]	Es ist bekannt, dass
+				\[
+					g(x) = \begin{cases}
+								\begin{array}{ll}
+									\frac{2(a-x)}{a^2}	&	0 \leq x \leq a,\\
+									0,					&	sonst
+								\end{array}	
+							\end{cases}
+				\]
+				gilt.
+				Zeigen Sie, dass $g$ für alle $a > 0$ eine Dichte ist, und bestimmen Sie $a$ so, dass $P(Y \leq \frac{1}{2}) = \frac{3}{4}$ wird.
+\end{enumerate}
+
+%%%%%	a
+\sss
+
+%%%%%	b
+\sss
+
+\sus{2}
+(2 Punkte).
+Die Funktion $h: \mathbb{R} \rightarrow \mathbb{R}$ sei durch
+\[
+	h(x) =	\begin{cases}
+				\begin{array}{ll}
+					\operatorname{sin}(x),	&	x \in [0, \frac{3}{2}\pi),\\
+					0,						&	sonst
+				\end{array}	
+			\end{cases}
+\]
+charakterisiert.
+Begründen Sie, dass $h$ keine Dichte ist.
 \fi
 
 \end{document}
