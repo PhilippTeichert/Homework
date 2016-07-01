@@ -1950,7 +1950,42 @@ Die Funktion $f: \mathbb{R} \rightarrow \mathbb{R}$ besitze den Funktionsterm
 \end{enumerate}
 %%%%%	a
 \sss
-
+Eine Dichte muss immer positiv sein:\\
+Durch das $-|x|$ wird der Ausdruck immer negativ (oder $0$).
+Nach Definition nimmt die natürliche Exponentialfunktion für $x=[-\infty,0]$ Werte zwischen $0$ und $1$ ein.
+Durch das $\cdot\frac{1}{2}$ wird dieses Intervall halbiert auf $[0,\frac{1}{2}]$.\\
+Somit gilt $f(x)\geq0$\\
+\\
+Des Weiteren muss für eine Dichte gelten: $\int_{-\infty}^{\infty}f(x)=1$\\
+\[
+    \begin{array}{rll}
+        \int_{-\infty}^{\infty}f(x)&=&\int_{-\infty}^{\infty}\frac{1}{2}e^{-|x|}\\
+            &=&\int_{-\infty}^{0}\frac{1}{2}e^{-|x|}+\int_{0}^{\infty}\frac{1}{2}e^{-|x|}\\
+            &=&\left[-\frac{1}{2}e^{-|x|}\right]_{-\infty}^{0}+\left[-\frac{1}{2}e^{-|x|}\right]_{0}^{\infty}\\
+            &=&-\frac{1}{2}e^{-|0|}-\lim_{x\rightarrow-\infty}-\frac{1}{2}e^{-|x|}+\lim_{x\rightarrow\infty}-\frac{1}{2}e^{-|x|}--\frac{1}{2}e^{-|0|}\\
+            &=&\lim_{x\rightarrow-\infty}-\frac{1}{2}e^{-|x|}+\lim_{x\rightarrow\infty}-\frac{1}{2}e^{-|x|}\\
+            &=&\lim_{x\rightarrow\infty}-\frac{1}{2}e^{-|x|}-\lim_{x\rightarrow-\infty}-\frac{1}{2}e^{-|x|}\\
+            &=&0-0\\
+            &=&0
+    \end{array}
+\]
+Offenbar ist $f(x)$ keine Dichte.\\
+\\
+NR:\\
+Bilden der Stammfunktion von $\frac{1}{2}e^{-|x|}$
+\[
+    \begin{array}{rlll}
+        \int f(x)&=&\int\frac{1}{2}e^{-|x|}dx&\\
+            &=&\frac{1}{2}\int e^{-|x|}dx&\text{\textbackslash $z=-|x|$}\\
+            &=&\frac{1}{2}\int e^{z}dx&\text{\textbackslash $\frac{dz}{dx}=(-|x|)'=-\frac{x}{|x|}\Leftrightarrow dx=-\frac{|x|}{x}dz$}\\
+            &=&\frac{1}{2}\int e^{z}\cdot-\frac{|x|}{x}dz&\text{\textbackslash $\frac{|x|}{x}\frac{d}{dz}=1$}\\
+            &=&\frac{1}{2}\int e^{z}\cdot-1dz&\text{\textbackslash $-$ aus dem Integral ziehen}\\
+            &=&-\frac{1}{2}\int e^{z}dz&\text{\textbackslash $\int e^z dz = e^z$}\\
+            &=&-\frac{1}{2}e^{z}&\text{\textbackslash $z=-|x|$}\\
+            &=&-\frac{1}{2}e^{-|x|}
+    \end{array}
+\]
+            
 %%%%%	b
 \sss
 
@@ -2006,6 +2041,28 @@ Die Funktion $h: \mathbb{R} \rightarrow \mathbb{R}$ sei durch
 \]
 charakterisiert.
 Begründen Sie, dass $h$ keine Dichte ist.
+
+
+\[
+    h(x)=\begin{cases}
+        \begin{array}{lll}
+            sin(x),	& x \in \left[0,\frac{2}{3}\Pi\right),&\text{\phantom{}\hspace{1.6cm}siehe Abbildung \ref{12.3.i}}\\
+            0					& \text{sonst}.&\text{\phantom{}\hspace{1.6cm}Dies ist offensichtlich $\geq 0$}
+        \end{array}
+    \end{cases}
+\]
+Nach Abbildung \ref{12.3.i} ist $sin(x)$ für $x \in \left[0,\frac{2}{3}\Pi\approx4.7\right)$ nicht überall $\geq 0$.
+Daher ist dies keine Dichte.
+
+\begin{figure}
+\begin{tikzpicture}[domain=0:5]
+\draw[very thin,color=gray] (-0.1,-1.1) grid (5.1,1.1);
+\draw[->] (-0.2,0) -- (5.2,0) node[right] {$x$}; \draw[->] (0,-1.2) -- (0,1.2) node[above] {$f(x)$};
+ \draw[color=blue, samples=150]   plot (\x,{sin(\x r)})   node[right] {$f(x) = \sin x$};
+\end{tikzpicture}
+\caption{Die Sinusfunktion für $x\in[0,5]$}
+\label{12.3.i}
+\end{figure}
 \fi
 
 \end{document}
