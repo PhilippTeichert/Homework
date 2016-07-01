@@ -1962,15 +1962,11 @@ Des Weiteren muss für eine Dichte gelten: $\int_{-\infty}^{\infty}f(x)=1$\\
     \begin{array}{rll}
         \int_{-\infty}^{\infty}f(x)&=&\int_{-\infty}^{\infty}\frac{1}{2}e^{-|x|}\\
             &=&\int_{-\infty}^{0}\frac{1}{2}e^{-|x|}+\int_{0}^{\infty}\frac{1}{2}e^{-|x|}\\
-            &=&\left[-\frac{1}{2}e^{-|x|}\right]_{-\infty}^{0}+\left[-\frac{1}{2}e^{-|x|}\right]_{0}^{\infty}\\
-            &=&-\frac{1}{2}e^{-|0|}-\lim_{x\rightarrow-\infty}-\frac{1}{2}e^{-|x|}+\lim_{x\rightarrow\infty}-\frac{1}{2}e^{-|x|}--\frac{1}{2}e^{-|0|}\\
-            &=&\lim_{x\rightarrow-\infty}-\frac{1}{2}e^{-|x|}+\lim_{x\rightarrow\infty}-\frac{1}{2}e^{-|x|}\\
-            &=&\lim_{x\rightarrow\infty}-\frac{1}{2}e^{-|x|}-\lim_{x\rightarrow-\infty}-\frac{1}{2}e^{-|x|}\\
-            &=&0-0\\
-            &=&0
+            &=&\left[-\frac{[x]}{2x}e^{-|x|}\right]_{-\infty}^{0}+\left[-\frac{[x]}{2x}e^{-|x|}\right]_{0}^{\infty}\\
+            &=&-\frac{[0]}{2\cdot0}e^{-|0|}-\lim_{a\rightarrow-\infty}-\frac{[a]}{2a}e^{-|a|}+\lim_{b\rightarrow\infty}-\frac{[b]}{2b}e^{-|b|}-\left(-\frac{[0]}{2\cdot0}e^{-|0|}\right)\\
     \end{array}
 \]
-Offenbar ist $f(x)$ keine Dichte.\\
+\todo{Rest von 12.1}
 \\
 NR:\\
 Bilden der Stammfunktion von $\frac{1}{2}e^{-|x|}$
@@ -1979,11 +1975,11 @@ Bilden der Stammfunktion von $\frac{1}{2}e^{-|x|}$
         \int f(x)&=&\int\frac{1}{2}e^{-|x|}dx&\\
             &=&\frac{1}{2}\int e^{-|x|}dx&\text{\textbackslash $z=-|x|$}\\
             &=&\frac{1}{2}\int e^{z}dx&\text{\textbackslash $\frac{dz}{dx}=(-|x|)'=-\frac{x}{|x|}\Leftrightarrow dx=-\frac{|x|}{x}dz$}\\
-            &=&\frac{1}{2}\int e^{z}\cdot-\frac{|x|}{x}dz&\text{\textbackslash $\frac{|x|}{x}\frac{d}{dz}=1$}\\
-            &=&\frac{1}{2}\int e^{z}\cdot-1dz&\text{\textbackslash $-$ aus dem Integral ziehen}\\
-            &=&-\frac{1}{2}\int e^{z}dz&\text{\textbackslash $\int e^z dz = e^z$}\\
-            &=&-\frac{1}{2}e^{z}&\text{\textbackslash $z=-|x|$}\\
-            &=&-\frac{1}{2}e^{-|x|}
+            &=&\frac{1}{2}\int e^{z}\cdot-\frac{|x|}{x}dz&\text{\textbackslash umstellen}\\
+            &=&\frac{1}{2}\int -\frac{|x|}{x}e^{z}dz&\text{\textbackslash $\int a\cdot e^z dz = a\cdot e^z$}\\
+            &=&\frac{1}{2}\cdot\left(-\frac{|x|}{x}e^{z}\right)&\text{\textbackslash ausmultiplizieren}\\
+            &=&-\frac{|x|}{2x}e^{z}&\text{\textbackslash $z$ einsetzen}\\
+            &=&-\frac{[x]}{2x}e^{-|x|}
     \end{array}
 \]
             
