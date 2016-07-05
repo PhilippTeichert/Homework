@@ -1,0 +1,30 @@
+1
+	1.1
+		symmetrisch:	- Schlüssel ist nur den am Gesrpäch legitim beteiligten Parteien bekannt
+				- Schlüssel wird sowohl zum ent- als auch zum verschlüsseln verwendet
+		asymmetrisch:	- Verwendung von personalisierten Schlüsselpaaren (public, private)
+				- jeder kennt den öffentlichen Schlüssel der anderen Gesprächsteilnehmer
+				- Verschlüsselung erfolgt mit öffentlichem Schlüssel
+				- Entschlüsselung kann nur mit privatem Schlüssel erfolgen
+	1.2
+		symmetrisch:	- bei n Personen muss jeder seinen Schlüssel an n-1 Personen weitergeben.
+				- Dies erfolgt mit n Schlüsseln.
+				- Folglich gibt es n*(n-1)=n²-n Schlüsseltäusche
+					([n²-2]/2, wenn in beide Gesprächsrichtungen der gleiche Schlüssel verwendet wird
+		asymmetrisch:	- jeder kennt n-1 public keys, die per Broadcast erfolgen, also n Broadcasts, also n Schlüsseltäusche
+	1.3
+		1.
+			hybride Kryptosysteme eignen sich bei großen Nachrichten, da symmetrische Verschlüsselung um mehrere Zehnerpotenzen schneller arbeiten als asymmetrische Verschlüsselungen. Durch die asymmetrische Verschlüsselung des vergleichsweise kurzen Keys (128-256 Bit) wird trotzdem die erhöhte Sicherheit gewährleistet, falls eine dritte Partei den übermittelten Schlüssel erhält (dieser kann durch die Asymmetrie nicht entschlüsselt werden außer vom legitimen Empfänger).
+		2.
+			sie verschlüsselt die Nachricht N symmetrisch mit dem Schlüssel S
+			den Schlüssel verschlüsselt sie asymmetrisch mit Bobs public Key K_p^B
+			sie übermittelt beide Datensätze
+			Bob entschlüsselt den Key mit seinem private Key K_s^B
+			mit dem enschlüsselten Key entschlüsselt er symmetrisch die Nachricht S(N) selber
+		3.
+			schließt sich aus 2: Nachricht ist Datentupel aus (K_p^N(S), S(N))
+2
+	2.1
+		
+	2.2
+	2.3
