@@ -39,6 +39,7 @@
 	backgrounds		% coloring and stuff
 }
 \usepackage{pgf}
+\usepackage{pgfplots}
 
 
 
@@ -1950,7 +1951,38 @@ Die Funktion $f: \mathbb{R} \rightarrow \mathbb{R}$ besitze den Funktionsterm
 \end{enumerate}
 %%%%%	a
 \sss
-
+Eine Dichte muss immer positiv sein:\\
+Durch das $-|x|$ wird der Ausdruck immer negativ (oder $0$).
+Nach Definition nimmt die natürliche Exponentialfunktion für $x=[-\infty,0]$ Werte zwischen $0$ und $1$ ein.
+Durch das $\cdot\frac{1}{2}$ wird dieses Intervall halbiert auf $[0,\frac{1}{2}]$.\\
+Somit gilt $f(x)\geq0$\\
+\\
+Des Weiteren muss für eine Dichte gelten: $\int_{-\infty}^{\infty}f(x)=1$\\
+\[
+    \begin{array}{rll}
+        \int_{-\infty}^{\infty}f(x)&=&\int_{-\infty}^{\infty}\frac{1}{2}e^{-|x|}\\
+            &=&\int_{-\infty}^{0}\frac{1}{2}e^{-|x|}+\int_{0}^{\infty}\frac{1}{2}e^{-|x|}\\
+            &=&\left[-\frac{[x]}{2x}e^{-|x|}\right]_{-\infty}^{0}+\left[-\frac{[x]}{2x}e^{-|x|}\right]_{0}^{\infty}\\
+            &=&-\frac{[0]}{2\cdot0}e^{-|0|}-\lim_{a\rightarrow-\infty}-\frac{[a]}{2a}e^{-|a|}+\lim_{b\rightarrow\infty}-\frac{[b]}{2b}e^{-|b|}-\left(-\frac{[0]}{2\cdot0}e^{-|0|}\right)\\
+    \end{array}
+\]
+\todo{Rest von 12.1}
+\\
+NR:\\
+Bilden der Stammfunktion von $\frac{1}{2}e^{-|x|}$
+\[
+    \begin{array}{rlll}
+        \int f(x)&=&\int\frac{1}{2}e^{-|x|}dx&\\
+            &=&\frac{1}{2}\int e^{-|x|}dx&\text{\textbackslash $z=-|x|$}\\
+            &=&\frac{1}{2}\int e^{z}dx&\text{\textbackslash $\frac{dz}{dx}=(-|x|)'=-\frac{x}{|x|}\Leftrightarrow dx=-\frac{|x|}{x}dz$}\\
+            &=&\frac{1}{2}\int e^{z}\cdot-\frac{|x|}{x}dz&\text{\textbackslash umstellen}\\
+            &=&\frac{1}{2}\int -\frac{|x|}{x}e^{z}dz&\text{\textbackslash $\int a\cdot e^z dz = a\cdot e^z$}\\
+            &=&\frac{1}{2}\cdot\left(-\frac{|x|}{x}e^{z}\right)&\text{\textbackslash ausmultiplizieren}\\
+            &=&-\frac{|x|}{2x}e^{z}&\text{\textbackslash $z$ einsetzen}\\
+            &=&-\frac{[x]}{2x}e^{-|x|}
+    \end{array}
+\]
+            
 %%%%%	b
 \sss
 
@@ -1989,9 +2021,132 @@ Die Verteilung der reellen Zufallsvariable $X$ habe die Dichte $f: \mathbb{R} \r
 
 %%%%%	a
 \sss
+Für Definition einer Dichte siehe Aufgabe 12.1 a)
+\[
+    \begin{array}{rll|l||rll|l}
+    0&\leq&\gamma x&&0&\leq&\gamma(2-x)&\\
+    \frac{0}{x}&\leq&\gamma&\text{Fall 1: }1\geq x>0&\frac{0}{2-x}&\leq&\gamma&\text{Fall 1: }1\leq x<2\\
+    0&\leq&\gamma&&0&\leq&\gamma&\\
+    \frac{0}{x}&\leq&\gamma&\text{Fall 2: }x=0&\frac{0}{2-x}&\leq&\gamma&\text{Fall 2: }x=2\\
+    0&\leq&\gamma 0&&0&\leq&\gamma(2-2)&\\
+    0&\leq&0&&0&\leq&\gamma0&\\
+    &&&&0&\leq&0&\\
+    \end{array}
+\]
+$\Rightarrow \gamma$ darf beliebig größergleich $0$ gewählt werden.\\
+\\
+\[
+    \begin{array}{rlll}
+        \int_{-\infty}^{\infty}f(x)&=&\int_{-\infty}^{0}0~dx+\int_{0}^{1}\gamma x~dx+\int_{1}^{2}\gamma(2-x)~dx+\int_{2}^{\infty}0~dx&\\
+        &=&0+\int_{0}^{1}\gamma x~dx+\int_{1}^{2}\gamma(2-x)~dx+0&\\
+        &=&\int_{0}^{1}\gamma x~dx+\int_{1}^{2}2\gamma-2x~dx&\\
+        &=&\left[\frac{\gamma}{2} x^2\right]_0^1+\left[2\gamma x -x^2\right]_{1}^{2}&\\
+        &=&\frac{\gamma}{2}1^2-\frac{\gamma}{2}0^2+2\gamma 2 -2^2-2\gamma 1 -1^2&\\
+        &=&0.5\gamma-0+4\gamma-4-2\gamma-1&\\
+        &=&2.5\gamma-5&\\
+    \end{array}
+\]
+Damit $f(x)$ eine Dichte wird muss $1$ herauskommen:
+\[
+    \begin{array}{rlll}
+        1&=&2.5\gamma-5&\text{\textbackslash $+5$}\\
+        6&=&2.5\gamma&\text{\textbackslash $:2.5$}\\
+        2.4&=&\gamma&
+    \end{array}
+\]
+Somit ist $\gamma=2.4$.\\
+Für die Skizze siehe Abbildung \ref{12.2.a}
 
+\begin{figure}
+\begin{tikzpicture}[domain=-1:3]
+    \draw[very thin,color=gray] (-1.1,-0.1) grid (3.1,3.1);
+    \draw[->] (-1.2,0) -- (3.2,0) node[right] {$x$}; \draw[->] (0,-0.2) -- (0,3.2) node[above] {$f(x)$};
+    \draw[color=blue, samples=150, domain=-1:0]   plot (\x,{0})   node[right] {};
+    \draw[color=blue, samples=150, domain=0:1]   plot (\x,{2.4*\x})   node[right] {};
+    \draw[color=blue, samples=150, domain=1:2]   plot (\x,{2.4*(2-\x)})   node[right] {};
+    \draw[color=blue, samples=150, domain=2:3]   plot (\x,{0})   node[right] {};
+    %\begin{axis}
+    %\addplot[color=red, domain=0:4] {1.3*ln(x+1)};
+    %\addplot[color=blue, domain=-1:1] {x};
+    %\end{axis}
+\end{tikzpicture}
+\caption{f(x) für $x\in[-1,3]$}
+\label{12.2.a}
+\end{figure}
 %%%%%	b
 \sss
+Nach Aufgabenstellung ist $a-x\geq0$
+\[
+    \begin{array}{rll|l}
+        0&\leq&\frac{2(a-x)}{a^2}&\text{Fall 1: a = 0}\\
+        0&\leq&\frac{2(0-x)}{0^2}&\\
+        0&\leq&\frac{-2x}{0}&\\
+        0&\leq&-&\text{Durch 0 darf nicht geteilt werden}\\
+        0&\leq&\frac{2(a-x)}{a^2}&\text{Fall 2: a > 0}\\
+    \end{array}
+\]
+Da $a>0$ angenommen wurde, gilt $\frac{2(a-x)}{a^2}\geq0$.\\
+Fall 3: $a<0$ ist laut Aufgabenstellung nicht möglich.\\
+\\
+Es wird im weiteren Verlauf also nur noch Fall 2 betrachtet:\\
+\[
+    \begin{array}{rlll}
+        \int_{-\infty}^{\infty}g(x)&=&\int_{-\infty}^{0}0~dx+\int_{0}^{a}\frac{2(a-x)}{a^2}~dx+\int_{a}^{\infty}0~dx&\\
+        &=&0+\int_{0}^{a}\frac{2(a-x)}{a^2}~dx+0&\\
+        &=&\int_{0}^{a}\frac{2(a-x)}{a^2}~dx&\\
+        &=&\int_{0}^{a}\frac{2}{a^2}(a-x)~dx&\\
+        &=&\frac{2}{a^2}\int_{0}^{a}(a-x)~dx&\\
+        &=&\frac{2}{a^2}\left(\int_{0}^{a}a~dx-\int_{0}^{a}x~dx\right)&\\
+        &=&\frac{2}{a^2}\left([a\cdot x]_{0}^{a}-[\frac{x^2}{2}]_{0}^{a}\right)&\text{\textbackslash Referenz für Aufgabenteil 2}\\
+        &=&\frac{2}{a^2}\left(a\cdot a-0\cdot a-(\frac{a^2}{2}-\frac{0^2}{2})\right)&\\
+        &=&\frac{2}{a^2}\left(a^2-0-\frac{a^2}{2}+0\right)&\\
+        &=&\frac{2}{a^2}\left(a^2-\frac{a^2}{2}\right)&\\
+        &=&\frac{2}{a^2}\cdot a^2-\frac{2}{a^2}\cdot\frac{a^2}{2}&\\
+        &=&2-1&\\
+        &=&1
+    \end{array}
+\]
+Da sich das $a$ rausgekürzt hat, ist $g(x)$ eine Dichte für alle $a<0$.\\
+\\
+\\
+Aufgabenteil 2:
+\[
+    \begin{array}{rlll}
+        P(Y\leq\frac{1}{2})&=&\int_{-\infty}^{\frac{1}{2}}g(x)~dx&\\
+        &=&\int_{-\infty}^{0}0~dx+\int_{0}^{\frac{1}{2}}\frac{2(a-x)}{a^2}~dx&\\
+        &=&0+\int_{0}^{\frac{1}{2}}\frac{2(a-x)}{a^2}~dx&\\
+        &=&\int_{0}^{\frac{1}{2}}\frac{2(a-x)}{a^2}~dx&\\
+        &=&\frac{2}{a^2}\left([a\cdot x]_{0}^{\frac{1}{2}}-[\frac{x^2}{2}]_{0}^{\frac{1}{2}}\right)&\text{\textbackslash Für Aufleitung siehe oben}\\
+        &=&\frac{2}{a^2}\left(\frac{1}{2}\cdot a-0\cdot a-(\frac{\frac{1}{2}^2}{2}-\frac{0^2}{2})\right)&\\
+        &=&\frac{2}{a^2}\left(\frac{a}{2}-0-\frac{1}{8}+0\right)&\\
+        &=&\frac{2}{a^2}\left(\frac{a}{2}-\frac{1}{8}\right)&\\
+        &=&\frac{2}{a^2}\cdot\frac{a}{2}-\frac{2}{a^2}\cdot\frac{1}{8}&\\
+        &=&\frac{1}{a}-\frac{1}{4a^2}&\\
+    \end{array}
+\]
+Da $P(Y\leq\frac{1}{2})=\frac{3}{4}$ sein soll, wird dieser Wert eingesetzt.
+\[
+    \begin{array}{rlll}
+        \frac{3}{4}&=&\frac{1}{a}-\frac{1}{4a^2}&\\
+        \frac{3}{4}&=&\frac{4a}{4a^2}-\frac{1}{4a^2}&\text{\textbackslash linken Bruch mit $4a$ erweitern}\\
+        \frac{3}{4}&=&\frac{4a-1}{4a^2}&\text{\textbackslash $\cdot a^2$}\\        
+        \frac{3}{4}a^2&=&\frac{4a-1}{4}&\text{\textbackslash kürzen}\\        
+        \frac{3}{4}a^2&=&a-\frac{1}{4}&\text{\textbackslash $-a+\frac{1}{4}$}\\        
+        \frac{3}{4}a^2-a+\frac{1}{4}&=&0&\text{\textbackslash $:\frac{3}{4}$}\\        
+        a^2-\frac{4}{3}a+\frac{1}{3}&=&0&\text{\textbackslash Anwenden der p-q-Formel}\\        
+    \end{array}
+\]
+\[
+    \begin{array}{rlll}
+        a_{1,2}&=&-\frac{-\frac{4}{3}}{2}\pm\sqrt{\left(\frac{-\frac{4}{3}}{2}\right)^2-\frac{1}{3}}&\\        
+        a_{1,2}&=&\frac{2}{3}\pm\sqrt{\frac{4}{9}-\frac{3}{9}}&\\        
+        a_{1,2}&=&\frac{2}{3}\pm\sqrt{\frac{1}{9}}&\\        
+        a_{1}&=&\frac{2}{3}+\frac{1}{3}=1&\\
+        a_{2}&=&\frac{2}{3}-\frac{1}{3}=\frac{1}{3}&\\        
+       
+    \end{array}
+\]
+$P(Y\leq\frac{1}{2})=\frac{3}{4}$ gilt für $a\in\{\frac{1}{3},1\}$
 
 \sus{2}
 (2 Punkte).
@@ -2006,6 +2161,28 @@ Die Funktion $h: \mathbb{R} \rightarrow \mathbb{R}$ sei durch
 \]
 charakterisiert.
 Begründen Sie, dass $h$ keine Dichte ist.
+
+
+\[
+    h(x)=\begin{cases}
+        \begin{array}{lll}
+            sin(x),	& x \in \left[0,\frac{2}{3}\Pi\right),&\text{\phantom{}\hspace{1.6cm}siehe Abbildung \ref{12.3.i}}\\
+            0					& \text{sonst}.&\text{\phantom{}\hspace{1.6cm}Dies ist offensichtlich $\geq 0$}
+        \end{array}
+    \end{cases}
+\]
+Nach Abbildung \ref{12.3.i} ist $sin(x)$ für $x \in \left[0,\frac{2}{3}\Pi\approx4.7\right)$ nicht überall $\geq 0$.
+Daher ist dies keine Dichte.
+
+\begin{figure}
+\begin{tikzpicture}[domain=0:5]
+    \draw[very thin,color=gray] (-0.1,-1.1) grid (5.1,1.1);
+    \draw[->] (-0.2,0) -- (5.2,0) node[right] {$x$}; \draw[->] (0,-1.2) -- (0,1.2) node[above] {$f(x)$};
+    \draw[color=blue, samples=150]   plot (\x,{sin(\x r)})   node[right] {$f(x) = \sin x$};
+\end{tikzpicture}
+\caption{Die Sinusfunktion für $x\in[0,5]$}
+\label{12.3.i}
+\end{figure}
 \fi
 
 \end{document}
