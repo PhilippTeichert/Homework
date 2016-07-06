@@ -442,13 +442,29 @@ Die entschlüsselten Zahlen sehen wie folgt\footnote{\textit{Anmerkung:} Es wurd
 	\[
 		\forall n \geq 2: \binom{n}{2} = \frac{n^2-n}{2}
 	\]
+Beweis durch vollständige Induktion.
 \paragraph{Induktionsanfang:}
 	\[
 		\binom{n}{2}=\frac{n!}{2!(n-2)!}=\frac{n\cdot(n-1)}{2}=\frac{n^2-n}{2}
 	\]
 Sei $n=2$:
 	\[
-		\frac{2^2-2}{2}=\frac{4-2}{2}=\frac{2}{2}=1=\frac{2!}{2!(2-2)!}=\frac{2!}{2!0!}=\binom{2}{2} \qed
+		\frac{2^2-2}{2}=\frac{4-2}{2}=\frac{2}{2}=1=\frac{2!}{2!0!}=\frac{2!}{2!(2-2)!}=\binom{2}{2} \qed
 	\]
-
+\paragraph{Induktionsannahme:}
+Sei $n$ beliebig, aber fest, dann gilt OBdA:
+	\[
+		\binom{n}{2}=\frac{n^2-n}{2} \Leftrightarrow \binom{n+1}{2} = \frac{(n+1)^2-(n+1)}{2}
+	\]
+\paragraph{Induktionsschritt:}
+	\begin{equation*}
+		\begin{array}{ll}
+			\binom{n+1}{2}&=\frac{(n+1)!}{(n+1-2)!2!}=\frac{(n+1)!}{(n-1)!2!}\\
+							&=\frac{n \cdot n + 1}{2} = \frac{n^2+n}{2}\\
+							&=\frac{n^2+n+n-n+1-1}{2}\\
+							&=\frac{n^2+2n-n+1-1}{2}\\
+							&=\frac{n^2+2n+1-n-1}{2}\\
+							&=\frac{(n+1)^2-(n+1)}{2}\qed
+		\end{array}
+	\end{equation*}
 \end{document}
