@@ -199,7 +199,7 @@ literate=%
 Für $n$ Personen gibt es $\binom{n}{2}$ Paare.
 \paragraph{symmetrisch:}
 Bei $n$ Personen muss jeder seinen Schlüssel an $n-1$ Personen weitergeben.
-Es gibt also $n$ Schlüssel, die $n-1$ mal weitergegeben werden, also $n*(n-1)=n^2-n$ Tauschaktionen.
+Es gibt also $n$ Schlüssel, die $n-1$ mal weitergegeben werden, also $n*(n-1)=n^2-n$ Tauschaktionen\footnote{Beweis siehe Anhang}.
 Falls die Kommunikation in paarweise beide Richtungen stets mit dem gleichen Schlüssel stattfindet, bleiben $\frac{n^2-n}{2}=\binom{n}{2}$ Schlüsseltauschaktionen.
 So viele Schlüssel muss es auch geben.
 \paragraph{asymmetrisch:}
@@ -209,7 +209,7 @@ Dies macht bei $n$ Personen $n$ 'Tausch'-Aktionen, bei $2n$ generierten Schlüss
 \subsubsection{Hybride Kryptosysteme (Pflicht; 3 Punkte)}
 \paragraph{Umstände:}
 Hybride Kryptosysteme eignen sich bei großen Nachrichten, da symmetrische Verschlüsselung um mehrere Zehnerpotenzen schneller arbeiten als asymmetrische Verschlüsselungen.
-Durch die asymmetrische Verschlüsselung des vergleichsweise kurzen Keys (i.d.R. 128-256 Bit) wird trotzdem die erhöhte Sicherheit gewährleistet, falls eine dritte Partei den übermittelten Schlüssel erhält (dieser kann durch die Asymmetrie nicht entschlüsselt werden außer vom legitimen Empfänger).
+Durch die asymmetrische Verschlüsselung des vergleichsweise kurzen Keys (i.d.R. 128-256 Bit für sichere Verschlüsselungen) wird trotzdem die erhöhte Sicherheit gewährleistet, falls eine dritte Partei den übermittelten Schlüssel erhält (dieser kann durch die Asymmetrie nicht entschlüsselt werden außer vom legitimen Empfänger).
 \paragraph{Detail-Verfahren:}
 \begin{enumerate}
 	\item sie verschlüsselt die Nachricht $N$ symmetrisch mit dem von ihr erzeugtem Schlüssel $S$
@@ -249,13 +249,57 @@ Der zweite Code von links ist immer identisch.
 	\end{savenotes}
 \end{center}
 \subsubsection{Umsetzung mit kryptographischen Techniken (Pflicht; 4 Punkte)}
+asymmetrische Verschlüsselung auf den Tickets:
 
+Der Ticketdruckautomat verschlüsselt seine Daten mit einem öffentlichen (vorher ins System eingespeisten) Schlüssel $S_p^T$.
+Der Ticketbezahlautomat hat dazu den privaten Schlüssel $S_s^T$ um die Daten wieder zu entschlüsseln.
+(Dies war wahrscheinlich schon bisher so.)
+Das System sollte Meta-Daten wie ''Startdatum'', ''Startzeit'', ''Freiparkzeit'', ''Stundenpreis für den heutigen Tag'', ''allgemeiner Stundenpreis'', ''Ticket ist bezahlt'', ''Ticket ist bezahlt Datum” und “Ticket ist bezahlt Zeit'' enthalten, die in nur einem Barcode verschlüsselt werden.
 
+Die Ladenbesitzer erhalten nun jeweils beide Schlüssel und können so das Ticket einlesen und den neuen Code draufschreiben.
+Dies ist allerdings debattierbar, dar es die Möglichkeit für Insider-Angriffe erweitert.
+Insider sind allerdings von unserem Angreifermodell ohnehin nicht abgedeckt.
+Man kann ein Ausnutzen verhindern, indem man die internen Abläufe komplett versteckt und den Ladenbesitzern nur einen besseren 'Stempel' in die Hand drückt, der das Ticket markiert.
+Dann kann ein Insider zwar immer noch für Lau parken, wenn er einkaufen geht, aber er kann das System nicht weiter manipulieren, um Gewinn zu machen  (was er könnte, wenn der Händler und das Kino die Ticket-Daten direkt bearbeiten könnten).
+
+Die Daten werden dann verschlüsselt und wieder auf das Ticket geschrieben, wobei steganographisch ein Flag im Barcode versteckt werden kann, dass die Änderung legitim erfolgt ist.
+
+Der Ticketbezahlautomat liest den im Code versteckten Flag und, sofern der Flag gesetzt ist,\footnote{
+		\[
+			\text{Zustand des Flags: }\begin{cases}
+				\begin{array}{ll}
+					1~~~~~~~~~~~&\text{, wenn im Laden oder im Kino editiert}	\\
+					0~~~~~~~~~~~&\text{, sofern keine Änderungen an den Daten vorgenommen wurden}	\\
+					\emptyset	&\text{, sonst (illegitime Änderung)}
+				\end{array}
+			\end{cases}
+		\]
+} rechnet nun den Gesamtpreis aus anhand der Daten (''Startdatum'', ''Startzeit'', ''Freiparkzeit'', ''Stundenpreis für den heutigen Tag'' und ''allgemeiner Stundenpreis'') und fordert einen entsprechenden Betrag vom Kunden.
+Nun verschlüsselt der Ticketbezahlautomat alle vorherigen Daten (''Startdatum'', ''Startzeit'', ''Freiparkzeit'', ''Stundenpreis für den heutigen Tag'' und ''allgemeiner Stundenpreis'') und seine Daten (''Ticket ist bezahlt'', ''Ticket ist bezahlt Datum'' und ''Ticket ist bezahlt Zeit'') mit einem öffentlichen (vorher ins System eingespeisten) Schlüssel $S_p^K$.
+Er druckt die neuen Daten als zusätzlichen Code auf das Ticket.
+Die Schrankenautomat liest mit $S_s^T$ und $S_s^K$ (die beiden privaten Schlüssel) die beiden Datenmengen aus und öffnet die Schranke nur dann, wenn das Ticket vor weniger als 10 Minuten bezahlt wurde und die Daten in beiden entschlüsselten Datensätzen überein stimmen.
 \subsection{Authentifizierungsprotokolle}
 \stepcounter{subsubsection}
 \subsubsection{Authentifikationssystem auf Basis indeterministischer symmetrischer Verschlüsselung (Pflicht; 2 Punkte)}
+\paragraph{verhindert:}
+\begin{itemize}
+	\item[-] Replay-Angriffe
+\end{itemize}
+\paragraph{weiterhin möglich:}
+\begin{itemize}
+	\item[-] Alle Arten von Man-in-the-Middle Angriffen (DoS, ARP-Spoofing, Sniffing...)
+	\item[-] Der Versuch, Daten abzufangen und zu entschlüsseln (erschwert durch verlängerte Nachricht und die Unklarheit, wo Zufallszahl aufhört / Nutzername anfängt)
+\end{itemize}
 \subsubsection{Challenge-Response-Authentifizierung (Pflicht; 2 Punkte) }
-
+\paragraph{verhindert:}
+\begin{itemize}
+	\item[-] Replay-Angriffe
+\end{itemize}
+\paragraph{weiterhin möglich:}
+\begin{itemize}
+	\item[-] MitM
+	\item[-] Chosen-Plaintext-Angriffe sind weiterhin möglich, wenn der Angreifer den Verschlüsselungsalgorithmus kennt und genügend MACs mitgelesen hat um den Schlüssel zu erraten (Brute Force, Dictionary Attack)
+\end{itemize}
 
 \stepcounter{subsection}
 \subsection{RSA-Verfahren}
@@ -263,7 +307,7 @@ Der zweite Code von links ist immer identisch.
 \subsubsection{Anwendung (Pflicht; 6 Punkte)}
 Folgender Python-Code berechnet die für RSA notwendigen Werte, liest die verschlüsselte Nachricht ein und speichert die entschlüsselte Nachricht in einem Textfile:
 \begin{lstlisting}[caption=\string$ python rsa.py msg.txt]
-from sys import argv  # to have access to console parameters
+from sys import 1argv  # to have access to console parameters
 
 
 def extended_gcd(aa, bb):
@@ -392,5 +436,19 @@ Die entschlüsselten Zahlen sehen wie folgt\footnote{\textit{Anmerkung:} Es wurd
 29889, 79877, 98756, 85888, 16540, 40095, 79877, 49708, 98797, 6073, 98756,
 85888, 29889, 79877, 16540, 6073, 43740, 88109, 22259, 
 \end{lstlisting}
+\newpage
+\subsection*{Anhang: Beweis zu 1.2.1}
+\paragraph{Behauptung:}
+	\[
+		\forall n \geq 2: \binom{n}{2} = \frac{n^2-n}{2}
+	\]
+\paragraph{Induktionsanfang:}
+	\[
+		\binom{n}{2}=\frac{n!}{2!(n-2)!}=\frac{n\cdot(n-1)}{2}=\frac{n^2-n}{2}
+	\]
+Sei $n=2$:
+	\[
+		\frac{2^2-2}{2}=\frac{4-2}{2}=\frac{2}{2}=1=\frac{2!}{2!(2-2)!}=\frac{2!}{2!0!}=\binom{2}{2} \qed
+	\]
 
 \end{document}
