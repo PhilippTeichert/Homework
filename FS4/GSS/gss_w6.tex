@@ -18,6 +18,7 @@
 % formatting and layout
 \usepackage{color}
 % settings
+\usepackage{footnote}
 \usepackage{perpage}
 \MakePerPage{footnote}
 % custom text colors
@@ -160,7 +161,7 @@
 %#+						ZETTEL 1					+#%
 %#+-------------------------------------------------+#%
 \sect{6}{27. Juni 2016}{06. Juli 2016}
-\setcounter{section}{5}
+\setcounter{section}{6}
 \subsection{Zentrale Begriffe der Kryptographie}
 \stepcounter{subsubsection}
 \subsubsection{Schlüsselaustausch (Pflicht; 2 Punkte)}
@@ -191,6 +192,29 @@ Folgt aus eben: $N' = \{(K_p^B(S),S(N))\}$, also die symmetrisch verschlüsselte
 \subsection{Parkhaus}
 \stepcounter{subsubsection}
 \subsubsection{Sicherheitsanalyse (Pflicht; 4 Punkte)}
+\paragraph{Schwächen:}
+Der links aufgedruckte Code ist für jeden Zweck jeweils immer identisch. (s. die Zahl darüber 32, 34, 36): Steht eine 32 darüber, wurde das Ticket vom Kino bearbeitet, bei 34 und bei 36 vom Händler.
+Der zweite Code von links ist immer identisch.
+\paragraph{Angreifermodell:}
+\begin{center}
+	\begin{savenotes}	% to display footnotes after the table has been processed
+		\begin{tabular}{rp{.8\textwidth}}
+			\textbf{Rolle}			&	Benutzer des Parkhauses, jedoch kein Kunde im Kino oder beim Einzelhändler	\\
+			\textbf{Verbreitung}	&	kann nur sein eigenes Ticket einsehen und hebt auch keine Tickets zum Verlgeich auf oder macht Fotografien o.Ä.\footnote{
+											Diese Einschätzung basiert darauf, dass das Angreifermodell denjenigen Angreifer darstelllen soll, gegen den das System noch geschützt ist.
+											Sollte der Angreifer mehrere Tickets vorliegen haben, kann er herausfinden, was wir oben mit den Präfizes herausgefunden haben, und sich so den gewünschten Präfix vorne auf sein eigenes Ticket drucken.
+											Dadurch wäre das System gebrochen.
+											Dieser Angreifer ist vom Angreifermodell also nicht abgedeckt.
+										}
+										Er probiert also nacheinander alle möglichen Barcodes durch.
+										
+										Ebenso kann er nicht selber Tickets editieren oder bearbeiten.	\\
+			\textbf{Verhalten}		&	aktiv: liest veränderte Tickets am Automaten ein	\\
+			\textbf{Ressourcen}		&	beschränkt: nicht genügend Rechenkapazität, um den Algorithmus zu knacken;
+										Er hat außer über die Barcodescanner keinen Zugriff auf das System, insbesondere stehen ihm keine weiteren Schnittstellen zur Verfügung
+		\end{tabular}
+	\end{savenotes}
+\end{center}
 \subsubsection{Umsetzung mit kryptographischen Techniken (Pflicht; 4 Punkte)}
 
 
