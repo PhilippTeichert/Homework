@@ -39,16 +39,8 @@
 	\section*{Zettel Nr. #1 (Ausgabe: #2, Abgabe: #3)}
 	\label{sec:#1}
 }
-\newcommand{\sus}[1]{	%	custom section (level 2)
-	\addcontentsline{toc}{subsection}{Übungsaufgabe #1}
-	\subsection*{Übungsaufgabe #1}
-	\label{ssec:#1}
-}
-\newcommand{\sss}[1]{	%	custom section (level 3)
-	\addcontentsline{toc}{subsubsection}{Aufgabe #1}
-	\subsubsection*{Aufgabe #1}
-	\label{sssec:#1}
-}
+\newcommand{\ttt}[1]{\texttt{#1}}
+
 % tikz
 \usepackage{tikz}
 \usetikzlibrary{arrows,automata,positioning}
@@ -167,6 +159,51 @@
 %#+-------------------------------------------------+#%
 %#+						ZETTEL 1					+#%
 %#+-------------------------------------------------+#%
-\sect{n}{datum1}{datum2}
+\sect{6}{27. Juni 2016}{06. Juli 2016}
+\setcounter{section}{5}
+\subsection{Zentrale Begriffe der Kryptographie}
+\stepcounter{subsubsection}
+\subsubsection{Schlüsselaustausch (Pflicht; 2 Punkte)}
+Für $n$ Personen gibt es $\binom{n}{2}$ Paare.
+\paragraph{symmetrisch:}
+Bei $n$ Personen muss jeder seinen Schlüssel an $n-1$ Personen weitergeben.
+Es gibt also $n$ Schlüssel, die $n-1$ mal weitergegeben werden, also $n*(n-1)=n^2-n$ Tauschaktionen.
+Falls die Kommunikation in paarweise beide Richtungen stets mit dem gleichen Schlüssel stattfindet, bleiben $\frac{n^2-n}{2}=\binom{n}{2}$ Schlüsseltauschaktionen.
+So viele Schlüssel muss es auch geben.
+\paragraph{asymmetrisch:}
+Jede Person muss ein Schlüsselpaar generieren, einen \ttt{private key} und einen \ttt{public key}.
+Der Public Key wird per Broadcast oder als automatisierter Mailanhang verschickt, somit ensteht für jeden \ttt{private key}-Halter genau eine Aktion betreffs Schlüsselweitergabe.
+Dies macht bei $n$ Personen $n$ 'Tausch'-Aktionen, bei $2n$ generierten Schlüsseln.
+\subsubsection{Hybride Kryptosysteme (Pflicht; 3 Punkte)}
+\paragraph{Umstände:}
+Hybride Kryptosysteme eignen sich bei großen Nachrichten, da symmetrische Verschlüsselung um mehrere Zehnerpotenzen schneller arbeiten als asymmetrische Verschlüsselungen.
+Durch die asymmetrische Verschlüsselung des vergleichsweise kurzen Keys (i.d.R. 128-256 Bit) wird trotzdem die erhöhte Sicherheit gewährleistet, falls eine dritte Partei den übermittelten Schlüssel erhält (dieser kann durch die Asymmetrie nicht entschlüsselt werden außer vom legitimen Empfänger).
+\paragraph{Detail-Verfahren:}
+\begin{enumerate}
+	\item sie verschlüsselt die Nachricht $N$ symmetrisch mit dem von ihr erzeugtem Schlüssel $S$
+	\item $S$ wird asymmetrisch mit Bobs public Key $K_p^B$ verschlüsselt
+	\item Alice übermittelt ($K_p^B(S)$, $S(N)$) an Bob
+	\item Bob entschlüsselt $K_p^B(S)$ mit $K_s^B$
+	\item Bob entschlüsselt $S(N)$ mit $S$ symmetrisch
+\end{enumerate}
+\paragraph{Nachricht:}
+Folgt aus eben: $N' = \{(K_p^B(S),S(N))\}$, also die symmetrisch verschlüsselte ursprüngliche Nachricht sowie der asymmetrisch verschlüsselte Key.
+\subsection{Parkhaus}
+\stepcounter{subsubsection}
+\subsubsection{Sicherheitsanalyse (Pflicht; 4 Punkte)}
+\subsubsection{Umsetzung mit kryptographischen Techniken (Pflicht; 4 Punkte)}
+
+
+\subsection{Authentifizierungsprotokolle}
+\stepcounter{subsubsection}
+\subsubsection{Authentifikationssystem auf Basis indeterministischer symmetrischer Verschlüsselung (Pflicht; 2 Punkte)}
+\subsubsection{Challenge-Response-Authentifizierung (Pflicht; 2 Punkte) }
+
+
+\stepcounter{subsection}
+\subsection{RSA-Verfahren}
+\stepcounter{subsubsection}
+\subsubsection{Anwendung (Pflicht; 6 Punkte)}
+
 
 \end{document}
