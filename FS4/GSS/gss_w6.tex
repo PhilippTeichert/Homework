@@ -24,10 +24,41 @@
 % custom text colors
 \definecolor{pblue}{rgb}{0.13,0.13,1}
 \definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{light-light-gray}{gray}{0.95}
 % header and footer
 \usepackage{fancyhdr}
 % filler text
 \usepackage{lipsum}
+% source code inclusion
+\usepackage{listings}
+\lstset{ %
+language=Java,   							% choose the language of the code
+basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
+numbers=left,                   			% where to put the line-numbers
+numbersep=5pt,                  			% how far the line-numbers are from the code
+backgroundcolor=\color{light-light-gray},   % choose the background color. You must add
+frame=lrtb,           						% adds a frame around the code
+tabsize=4,          						% sets default tabsize to 2 spaces
+captionpos=t,           					% sets the caption-position to top
+breaklines=true,        					% sets automatic line breaking
+breakatwhitespace=true,
+xleftmargin=1.5cm,							% space from the left paper edge
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+commentstyle=\color{pgreen},
+keywordstyle=\color{pblue},
+literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+\renewcommand{\lstlistingname}{Code}
 % macro commands
 %% requires color package and the custom colors defined here 
 \newcommand{\todo}[1]{
@@ -212,6 +243,8 @@ Der zweite Code von links ist immer identisch.
 			\textbf{Verhalten}		&	aktiv: liest veränderte Tickets am Automaten ein	\\
 			\textbf{Ressourcen}		&	beschränkt: nicht genügend Rechenkapazität, um den Algorithmus zu knacken;
 										Er hat außer über die Barcodescanner keinen Zugriff auf das System, insbesondere stehen ihm keine weiteren Schnittstellen zur Verfügung
+										
+										Wir gehen davon aus, dass die Ressourcen derart beschränkt sind, dass der Angreifer nicht in der Lage ist, durch Heuristiken, Kombinatorik, Inferenz oder Brute Force das Verfahren der Code-Generierung herauszufinden.
 		\end{tabular}
 	\end{savenotes}
 \end{center}
@@ -228,6 +261,136 @@ Der zweite Code von links ist immer identisch.
 \subsection{RSA-Verfahren}
 \stepcounter{subsubsection}
 \subsubsection{Anwendung (Pflicht; 6 Punkte)}
+Folgender Python-Code berechnet die für RSA notwendigen Werte, liest die verschlüsselte Nachricht ein und speichert die entschlüsselte Nachricht in einem Textfile:
+\begin{lstlisting}[caption=\string$ python rsa.py msg.txt]
+from sys import argv  # to have access to console parameters
 
+
+def extended_gcd(aa, bb):
+    """
+    SOURCE: http://rosettacode.org/wiki/Modular_inverse#Python
+    returns the modular multiplicative inverse of a number aa given to a base bb using the extended euclidean algorithm
+    :param aa: the number to invert
+    :param bb: the base
+    :return: the modular inverse to [aa]bb
+    """
+    lastremainder, remainder = abs(aa), abs(bb)
+    x, lastx, y, lasty = 0, 1, 1, 0
+    while remainder:
+        lastremainder, (quotient, remainder) = remainder, divmod(lastremainder, remainder)
+        x, lastx = lastx - quotient * x, x
+        y, lasty = lasty - quotient * y, y
+    return lastremainder, lastx * (-1 if aa < 0 else 1), lasty * (-1 if bb < 0 else 1)
+
+
+def modinv(a, m):
+    """
+    SOURCE: http://rosettacode.org/wiki/Modular_inverse#Python
+    returns the modular inverse of a given number to a given base, if there is one
+    :param a: the number to invert
+    :param m: the base
+    :return: the modular inverse to [a]m, if there is one, ValueError else
+    """
+    g, x, y = extended_gcd(a, m)
+    if g != 1:
+        raise ValueError
+    return x % m
+
+
+def getwords(file):
+    """
+    SOURCE: http://stackoverflow.com/questions/10264460/read-the-next-word-in-a- file-in-python (accepted answer)
+    This function was slightly modified compared to the source
+    """
+    with open(file) as wordfile:
+        wordgen = words(wordfile)
+        single_words = []
+        for word in wordgen:
+            if word.startswith(" "):
+                word = word[1:]
+            if len(word) > 0 and word != '\n':
+                single_words.append(word)
+        return single_words
+
+
+def words(fileobj):
+    """
+    SOURCE: http://stackoverflow.com/questions/10264460/read-the-next-word-in-a- file-in-python (accepted answer)
+    This function was slightly modified compared to the source
+    """
+    for line in fileobj:
+        for word in line.split(","):
+            yield word
+
+
+# read encrypted message into RAM (assuming the file contains nothing but the encrypted message)
+words = getwords(argv[1])
+# get encryption details
+p = 271
+q = 379
+e = 47
+phi = (p - 1) * (q - 1)
+
+# calculate decryption exponent
+d = modinv(e, phi)
+# casts the results, which are 'long', as 'int'
+res = map(lambda x: int(x),
+          # equivalent to: 'for all numbers in $words, raise them to $d and modulate them with $phi
+          map(lambda x: (int(x) ** d) % phi,
+              words))
+
+# for debugging purposes, show the decrypted numbers in the console
+print res
+
+# store the result in a text file
+out = open('(%s)-dec.txt' % argv[1], 'w')
+for e in res:
+    out.write(str(e))
+    out.write(", ") # separate each number by a comma and a whitespace
+out.close()
+
+\end{lstlisting}
+Die entschlüsselten Zahlen sehen wie folgt\footnote{\textit{Anmerkung:} Es wurden manuell Zeilenumbrüche eingefügt, die in der eigentlichen Ausgabedatei nicht enthalten waren} aus (nach Code):
+\begin{lstlisting}[caption=(msg.txt)-dec.txt]
+80919, 49559, 79877, 2603, 6073, 40095, 43740, 79877, 6073, 7469, 46204,
+46204, 88109, 67068, 49708, 85888, 49559, 71999, 49559, 2603, 6073, 71999,
+43740, 16540, 40095, 6073, 83029, 28431, 49708, 39320, 79877, 16540, 40095,
+79877, 6073, 81236, 98756, 79877, 37927, 79877, 16540, 6073, 94151, 43740,
+58492, 98756, 98797, 43740, 39320, 43740, 6073, 72071, 16540, 39320, 2603,
+79877, 43740, 83029, 79877, 2603, 37927, 28431, 40095, 79877, 49708, 49708,
+79877, 61965, 6073, 46204, 58492, 98756, 49559, 98797, 20896, 20896, 43740,
+79877, 49708, 79877, 61965, 6073, 1820, 85888, 43740, 16540, 29889, 28431,
+94151, 6073, 81236, 85888, 29889, 49708, 79877, 71999, 61965, 6073, 40095,
+43740, 79877, 6073, 43447, 96957, 16540, 88109, 22259, 46204, 43740, 58492,
+98756, 79877, 2603, 98756, 79877, 43740, 98797, 6073, 163, 28431, 16540,
+6073, 52488, 85888, 71999, 71999, 94151, 28431, 79877, 2603, 98797, 79877,
+2603, 16540, 6073, 49559, 16540, 40095, 6073, 40095, 85888, 20896, 49559,
+39320, 79877, 98756, 28431, 79877, 2603, 43740, 39320, 79877, 6073, 72071,
+16540, 39320, 2603, 43740, 83029, 83029, 79877, 61965, 6073, 55061, 49559,
+39320, 85888, 16540, 39320, 71999, 88109, 6073, 49559, 16540, 40095, 6073,
+55061, 49559, 39320, 2603, 43740, 83029, 83029, 71999, 45927, 28431, 16540,
+98797, 2603, 28431, 49708, 49708, 79877, 61965, 6073, 81236, 43740, 37927,
+43740, 16540, 39320, 88109, 72071, 98797, 98797, 85888, 58492, 45927, 6073,
+49559, 16540, 40095, 6073, 52488, 28431, 94151, 79877, 2603, 88109, 72071,
+16540, 85888, 49708, 82007, 71999, 43740, 71999, 61965, 6073, 78732, 43740,
+28431, 37927, 79877, 98797, 2603, 43740, 71999, 58492, 98756, 79877, 6073,
+26188, 79877, 2603, 83029, 85888, 98756, 2603, 79877, 16540, 61965, 6073,
+7469, 2603, 49559, 16540, 40095, 49708, 85888, 39320, 79877, 16540, 6073,
+40095, 79877, 2603, 6073, 67068, 2603, 82007, 92583, 98797, 28431, 39320,
+2603, 85888, 92583, 98756, 43740, 79877, 61965, 6073, 40095, 85888, 71999,
+6073, 1820, 46204, 72071, 88109, 26188, 79877, 2603, 83029, 85888, 98756,
+2603, 79877, 16540, 61965, 6073, 72071, 49559, 98797, 98756, 79877, 16540,
+98797, 43740, 83029, 43740, 45927, 85888, 98797, 43740, 28431, 16540, 71999,
+92583, 2603, 28431, 98797, 28431, 45927, 28431, 49708, 49708, 79877, 6073,
+49559, 16540, 40095, 6073, 16540, 85888, 98797, 49559, 79877, 2603, 49708,
+43740, 58492, 98756, 6073, 85888, 49708, 49708, 79877, 6073, 85888, 16540,
+40095, 79877, 2603, 79877, 16540, 6073, 24057, 16540, 98756, 85888, 49708,
+98797, 79877, 61965, 6073, 40095, 43740, 79877, 6073, 94151, 43740, 2603,
+6073, 43740, 16540, 6073, 40095, 79877, 2603, 6073, 96957, 79877, 29889,
+49559, 16540, 39320, 6073, 49559, 16540, 40095, 6073, 40095, 79877, 2603,
+6073, 26188, 28431, 2603, 49708, 79877, 71999, 49559, 16540, 39320, 6073,
+29889, 79877, 98756, 85888, 16540, 40095, 79877, 49708, 98797, 6073, 98756,
+85888, 29889, 79877, 16540, 6073, 43740, 88109, 22259, 
+\end{lstlisting}
 
 \end{document}
