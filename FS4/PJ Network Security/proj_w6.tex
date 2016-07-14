@@ -32,7 +32,7 @@
 \definecolor{pblue}{rgb}{0.13,0.13,1}
 \definecolor{pgreen}{rgb}{0,0.5,0}
 \lstset{ %
-language=Java,   							% choose the language of the code
+language=Python,   							% choose the language of the code
 basicstyle=\small\ttfamily,  				% the size of the fonts that are used for the code
 numbers=left,                   			% where to put the line-numbers
 numbersep=5pt,                  			% how far the line-numbers are from the code
@@ -90,7 +90,17 @@ literate=%
 
 \section{Absicherung des TCP-Chats mit SSL}
 	\label{sec:tcp}
+		\textit{Anmerkung:} Bei dieser Aufgabe haben wir uns Hilfe von \ttt{SS16G06} (Andre, Katharina) geholt, da wir nach wie vor keine funktionierende Chat-Implementierung hatten.
+		\begin{itemize}
+			\item Erstellen von Keys und Zertifikaten nach \cite{keytool}
+			\item I/O-Dialog vgl. \mref{keytool-dialog}
+			\item Sourcecode für Client und Server siehe ebenda.
+		\end{itemize}
+		Es wird ein Zertifikat für den Public Key des Servers benötigt.
+		Dieses wurde mit \ttt{keytool} erstellt.
 		
+		Es wird ein Zertifikat für die Verbindung des Clients zum Server benötigt.
+		Dieses wurde mit \ttt{openssl} erstellt.
 
 \section{CAs und Webserver-Zertifikate}
 	\label{sec:zertifikate}
@@ -109,7 +119,7 @@ literate=%
 		Sind wir echt so blöd oder liegt vielleicht ein Fehler auf unserer Maschine vor?
 	\subsection{HTTPS-Weiterleitung}
 		\label{ssec:https}
-		.
+		folgefehlend.
 	\subsection{sslstrip}
 		\label{ssec:sslstrip}
 		\textit{sslstrip} wurde nach \cite{sslstrip} installiert und gestartet.\\
@@ -128,33 +138,423 @@ literate=%
 	\label{sec:encrypt}
 	\subsection{BaziCrypt}
 		\label{ssec:bazi}
-		Quellcode siehe \mref{bazicrypt}
+		Quellcode siehe \mref{bazicrypt}.
+		
+		Das Programm nimmt die zu entschlüsselnden Dateien als Parameter entgegen:
+		\begin{verbatim}
+$ python bazidec.py n01.txt.enc n02.txt.enc n03.txt.enc
+message 1: Hallo Peter. Endlich koennen wir geheim kommunizieren! Bis bald, Max
+message 2: Hi Max! Super, Sicherheitsbewusstsein ist ja extrem wichtig! Schoene Gruesse, P
+eter.
+message 3: Hi Peter, hast du einen Geheimtipp fuer ein gutes Buch fuer mich? Gruss, Max
+
+Process finished with exit code 0
+		\end{verbatim}
 	\subsection{AdvaziCrypt - Denksport}
 		\label{ssec:advazi}
-		.
+Beim PKCS7-Padding wird jede zu verschlüsselnde Nachicht mit Länge $L_i$ auf eine konstante Länge $L_{max}$ aufgestockt.
+
+Die Pading-Bytes sind allerdings nicht 0-Bytes, wie bei Bazi-Crypt, sondern werden aus der Differenz von $L_{max}$ und $L_i$ berechnet.
+
+Beispiel:
+
+$L_max - L_i = 1$
+
+Pading-Bytes: 0x01
+
+$L_max - L_i = 2$
+
+Pading-Bytes: 0x0202
+
+$L_max - L_i = 3$
+
+Pading-Bytes: 0x030303
+
+$L_max - L_i = 4$
+
+Pading-Bytes: 0x04040404
+
+$L_max - L_i = 5$
+
+Pading-Bytes: 0x0505050505
+
+usw.
+
+Es gibt insgesamt $0xFF = 16 \cdot 16 = 2^4 \cdot 2^4 = 2^8 = 256$ verschiedene mögliche Padding-Bytes, sofern $L_{max}$ lang genug gewählt wurde.
+
 	\subsection{AdvaziCrypt - Angriff implementieren}
 		\label{ssec:advazi2}
-		.
+		Quellcode siehe \mref{advazicrypt}.
 		
+		Auch AdvaziDec nimmt die Dateien als Parameter entgegen.
+		Leider wird derzeit bei einem Aufruf von AdvaziDec auch BaziDec ausgeführt, weswegen zuerst alle Nachrichten einmal (fehlerhaft) mit BaziDec entschlüsselt ausgedruckt werden, bevor die korrekte Übersetzung erfolgt.
+		\begin{verbatim}
+$ python advazidec.py n04.txt.enc n05.txt.enc n06.txt.enc           
+message 1: Hi Max, natuerlich: Kryptologie von A. Beutelspacher ist super. Gruss Peter
+message 2: Hi Peter, worum geht es in dem Buch? Ciao, Max.
+message 3: Hi Max, das ist ein super Buch, das viele Krypto-Themen abdeckt. Gruss Peter
+
+Process finished with exit code 0
+		\end{verbatim}
+		Die BaziDec-Nachrichten wurden der Leserlichkeit halber ausgelassen.
+		Zusätzlich ist zu sagen, dass eigentlich die Nachricht aufgrund der Natur von AdvaziCrypt mit einem beliebigen Zeichen aufgefüllt wird, bis die Standardlänge erreicht ist.
+		Da \LaTeX ~diese Zeichen u.U. nicht codieren kann, wurden auch sie hier weggelassen.
 		
+		\paragraph{Fazit:} Max und Peter freuen sich über (pseudo)sichere Kommunikation.
+		Vielleicht sollten sie das Buch tatsächlich mal lesen, über das sie reden, dann fällt ihnen auf, wie leicht Bazi und Advazi zu knacken sind.
 \section{EasyAES}
 	\label{sec:easyaes}
+	Quellcode für diese Aufgabe vgl. \mref{AES}.
 	
+	Leider hatten wir keine Zeit mehr, den Code vernünftig auszuprobieren.
+	Wir haben nur begrenzt viel Rechenkapazität (mehr als 2GB RAM ist nicht drin) und damit hat es immer noch zu lange gedauert.
+	Wir hatten bei dem Brute-Force Angriff auf Zettel 2 Aufgabe 2.2 ja auch schon Laufzeitschwierigkeiten...
 	
+	Zum Starten die Klasse \ttt{AES.java} aufrufen.
 \section{Timing-Angriff auf Passwörter (Bonusaufgabe)}
 	\label{sec:timing}
-		
+		Quellcode für einen Timing-Angriff in Anlehnung an die gegebene Methode vgl. \mref{timing}.
+		Eine vertrauenswürdige Quelle hat uns gesagt, dass dieser Quellcode einen vollständigen Timing-Angriff durchführt.
 
 
 
 
 \begin{thebibliography}{1}
 \bibitem{sslstrip}	\url{https://moxie.org/software/sslstrip/}
+\bibitem{keytool}	\url{http://alvinalexander.com/java/java-keytool-keystore-certificates}
 \end{thebibliography}
 
 \newpage
 \section*{ANHANG}
 	\label{sec:anhang}
+	\subsection*{keytool-Dialog}
+		\label{keytool-dialog}
+		\subsubsection*{IO-Dialog}
+		\begin{lstlisting}[language=Bash]
+pwd
+# $(pwd) -> /home/apollo
+# generate directory
+mkdir PJNS
+mkdir SSL-Server
+cd PJNS/SSL-Server/
+pwd
+# $(pwd) -> /home/apollo/PJNS/SSL-Server
+# generate keystore
+keytool -genkey -alias server -keystore privateKeys.store
+#### password: 'foobar'
+#### first and last name: 'Louis Kobras'
+#### orga unit: 'SVS'
+#### organization: 'Uni Hamburg'
+#### City: 'Hamburg'
+#### State: 'Hamburg'
+#### two-letter country code: 'DE'
+#### correct: 'yes'
+#### key password: '123xyz'
+# generate temporary certificate
+keytool -export -alias server -file cert.crt -keystore privateKeys.store 
+#### keystore password: 'foobar'
+# import certificate in public keystore
+keytool -import -alias public-server -file cert.crt -keystore publicKeys.store
+#### store password: 'barfoo'
+#### do i trust this?: 'yes'
+# create openssl stuff
+## server stuff
+openssl genrsa -out server-ca.key 4096
+openssl req -new -x509 -days 365 -key server-ca.key -out server-ca.crt
+#### country code: 'DE'
+#### state: 'Hamburg'
+#### locale: 'Hamburg'
+#### organization: 'Uni Hamburg'
+#### unit: 'SVS'
+#### common name: 'localhost'
+#### email: '4kobras@inf...'
+## client stuff
+openssl genrsa -out client.key 4096
+openssl -req -new -key client.key -out client.crt
+openssl req -new -key client.key -out client.crt
+# sign certificate
+openssl x509 -req -days 365 -in client.crt -CA server-ca.crt -CAkey server-ca.key -set_serial 01 -out client-cert.crt
+# switch into java workspace and open connection
+cd /home/apollo/IntelliJProjects/FS4/src/PJNS/B06/A1/
+openssl s_client -connect localhost:1337 -cert ~/PJNS/SSL-Server/client-cert.crt -key ~/PJNS/SSL-Server/client.key -CAfile ~/PJNS/SSL-Server/server-ca.crt
+# start server program and connect to it with the client program
+		\end{lstlisting}
+		\subsubsection*{Server.java}
+		\begin{lstlisting}[language=Java]
+package PJNS.B06.A1;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.net.ssl.*;
+import javax.net.ServerSocketFactory;
+import javax.swing.*;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.concurrent.ConcurrentHashMap;
+import java.io.IOException;
+
+public class Server extends JFrame
+{
+
+    private static final int PORT = 1337;
+    private final JTextArea textArea = new JTextArea();
+    private SSLServerSocket server = null;
+    private final Map<String, Client> clients = new ConcurrentHashMap<>();
+
+    public Server() throws HeadlessException
+    {
+        super();
+        final JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        panel.setBackground(Color.white);
+        getContentPane().add(panel);
+        // UI auf deutsch weil ist benutzerfreundlicher in Deutschland
+        panel.add("North", new JLabel("Empfangener Text:"));
+        panel.add("Center", textArea);
+    }
+
+    private void listenSocket()
+    {
+        try
+        {
+            final ServerSocketFactory socketFactory = SSLServerSocketFactory.getDefault();
+            server = (SSLServerSocket) socketFactory.createServerSocket(PORT);
+            server.setNeedClientAuth(true);
+        }
+        catch (IOException e)
+        {
+            // Fehlermeldungen auf Englisch weil ist Profi
+            System.out.println("Could not listen on port " + PORT);
+            System.exit(- 1);
+        }
+        while (true)
+        {
+            accept();
+        }
+    }
+
+    private void accept()
+    {
+        Client w;
+        try
+        {
+            w = new Client((SSLSocket) server.accept(), textArea);
+            Thread t = new Thread(w);
+            t.start();
+        }
+        catch (IOException e)
+        {
+            System.out.println("Accept failed: " + PORT);
+            System.exit(- 1);
+        }
+    }
+
+    protected void finalize() throws Throwable
+    {
+        super.finalize();
+        try
+        {
+            server.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println("Could not close socket");
+            System.exit(- 1);
+        }
+    }
+
+    public void registerClient(final String clientName, final Client client)
+    {
+        clients.put(clientName, client);
+    }
+
+    protected boolean hasClient(final String clientName)
+    {
+        return clients.containsKey(clientName);
+    }
+
+    protected void broadcast(final String message)
+    {
+        final java.util.List<Client> clients = this.clients.entrySet()
+                                                       .stream()
+                                                       .map(Map.Entry::getValue)
+                                                       .collect(Collectors.toList());
+        for (final Client client : clients)
+        {
+            client.sendMessage(message);
+        }
+    }
+
+    public static void main(final String... args)
+    {
+        System.setProperty("javax.net.ssl.keyStore", "/Users/apollo/PJNS/SSL-Server/privateKeys.store");
+        System.setProperty("javax.net.ssl.keyStorePassword", "foobar");
+        System.setProperty("javax.net.ssl.trustStore", "/Users/apollo/PJNS/SSL-Server/publicKeys.store");
+        System.setProperty("javax.net.ssl.trustStorePassword", "barfoo");
+        Server socketServer = new Server();
+        socketServer.setTitle("Fancy SSL PJNS.B06.A1.Server");
+        WindowListener windowListener = new WindowAdapter()
+        {
+            public void windowClosing(WindowEvent e)
+            {
+                System.exit(0);
+            }
+        };
+        socketServer.addWindowListener(windowListener);
+        socketServer.pack();
+        socketServer.setVisible(true);
+        socketServer.listenSocket();
+
+    }
+
+}
+		\end{lstlisting}
+		\subsubsection*{Client.java}
+		\begin{lstlisting}
+package PJNS.B06.A1;
+
+import java.io.*;
+import java.util.logging.*;
+import javax.swing.*;
+import javax.naming.ldap.*;
+import javax.naming.InvalidNameException;
+import javax.net.ssl.*;
+import javax.security.cert.X509Certificate;
+
+public class Client implements Runnable
+{
+
+    private static final Logger LOGGER = Logger.getLogger("PJNS.B06.A1.Client");
+    private SSLSocket _sslSocket;
+    private JTextArea _text;
+    private PrintWriter _pwOut = null;
+    private String _client;
+    private Server _server = new Server();
+
+    public Client(SSLSocket socket, JTextArea textArea)
+    {
+        _sslSocket = socket;
+        _text = textArea;
+    }
+
+    @Override
+    public void run()
+    {
+        BufferedReader brIn;
+        final SSLSession sslSession = _sslSocket.getSession();
+        if (sslSession.isValid())
+        {
+            try
+            {
+                final InputStream is = _sslSocket.getInputStream();
+                brIn = new BufferedReader(new InputStreamReader(is));
+                _pwOut = new PrintWriter(_sslSocket.getOutputStream(), true);
+
+                getUsername(sslSession);
+                stuff(brIn);
+            }
+            catch (IOException | InvalidNameException e)
+            {
+                logError(e);
+            }
+        }
+    }
+
+    /**
+     * SOURCE: https://stackoverflow.com/questions/2914521/how-to-extract-cn-from-x509certificate-in-java
+     */
+    private void getUsername(SSLSession session) throws InvalidNameException
+    {
+        try
+        {
+            final X509Certificate[] x509Certificates = session.getPeerCertificateChain();
+            final String name = x509Certificates[0].getSubjectDN().getName();
+            final LdapName lname = new LdapName(name);
+            for (final Rdn round : lname.getRdns())
+            {
+                if (round.getType().equalsIgnoreCase("CN"))
+                {
+                    _client = (String) round.getValue();
+                    logInfo("Username is: " + _client);
+                }
+            }
+        }
+        catch (SSLPeerUnverifiedException e) {
+            logError(e);
+        }
+    }
+
+    private void stuff(BufferedReader brIn) throws IOException
+    {
+        String message;
+        if (_client != null && ! _client.isEmpty())
+        {
+            if (! _server.hasClient(_client))
+            {
+                _server.registerClient(_client, this);
+                while (true)
+                {
+                    message = brIn.readLine();
+                    if (message != null)
+                    {
+                        broadcast(message);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                logInfo("PJNS.B06.A1.Client already registered");
+            }
+        }
+    }
+
+    /**
+     * Log an Info message
+     *
+     * @param s Info to log
+     */
+    private void logInfo(String s)
+    {
+        LOGGER.log(Level.INFO, s);
+    }
+
+    /**
+     * Log an Error or an Exception as Severe
+     *
+     * @param e Error/Exception to log
+     */
+    private void logError(Exception e)
+    {
+        LOGGER.log(Level.SEVERE, "1", e);
+        System.exit(1);
+    }
+
+    /**
+     * Broadcasts a message to both yourself and the server
+     *
+     * @param msg the message to broadcast
+     */
+    private void broadcast(String msg)
+    {
+        _text.append(msg + "\n");
+        _server.broadcast(msg);
+    }
+
+    /**
+     * Sends a message to the output stream
+     *
+     * @param msg the message to send
+     */
+    public void sendMessage(final String msg)
+    {
+        _pwOut.println(msg);
+    }
+}
+		\end{lstlisting}
 	\subsection*{ssllog}
 		\label{ssllog}
 		\textit{Anmerkung:} Aufgrund der Länge der Zeilen wurden nachträglich manuell Zeilenumbrüche eingefügt.
@@ -185,10 +585,38 @@ goog-phish-shavar;a:448570-450992:s:268799-268858,268860-269092,269096-269182,
 username=admin&password=password
 
 \end{lstlisting}
-	\subsection*{3.1: Knacking BaziCrypt}
+	\subsection*{Knacking BaziCrypt}
 		\label{bazicrypt}
 		\begin{lstlisting}
 import sys
+
+
+def task_three_point_one(msg):
+    """
+    task_three_point_two function of the program. takes a HEX-encrypted message and decrypts it
+    :param msg: the message to decrypt
+    :return: the decrypted message
+    """
+    # find the key that was used to encrypt
+    """
+    absuses the nature of the encryption method used by taking the last 10 chars of the message, which are the key
+    """
+    key = msg[-20:]
+    return get_message(key, msg)
+
+
+def get_message(key, msg):
+    # decrypt the message using the found key
+    """
+        due to the nature of the encryption method used,t he message, being symmetrically encrypted,
+        can be decrypted by XORing the message with the encryption key.
+        So, bring the key to the same length as the message and xor them
+        """
+    key *= 10  # takes advantage of the fact that each key had a length of 10 chars
+    # and each message had a length of 100 chars, setting the length factor to 10
+    msg = xor(msg, key)
+    msg = get_chars(msg)
+    return ''.join(msg)
 
 
 def xor(first_string, second_string):
@@ -219,7 +647,47 @@ def xor(first_string, second_string):
     return result
 
 
-def task_three_point_one(msg):
+def get_chars(lst):
+    """
+    given a list of HEX values, this function returns the char values of each position
+    :param lst: a list of hex values
+    :return: a list of char values as integer
+    """
+    res = []
+    for i in xrange(0, len(lst) - 1, 2):
+        a = int(lst[i], 16)  # get first place as int
+        a *= 16  # multiply first place by 16
+        b = int(lst[i + 1], 16)  # get second place as int
+        b += a  # add values together to get ASCII char code
+        res.append(chr(b))
+    return res
+
+
+for j in range(1, len(sys.argv)):
+    f = open(sys.argv[j], 'r')
+    f = f.read()
+    f = f.encode('hex')
+    f = task_three_point_one(f)
+    print "message %d: %s" % (j, f)
+
+		\end{lstlisting}
+	\subsection*{advazicrypt-Angriff}
+		\label{advazicrypt}
+		\begin{lstlisting}
+from bazidec import xor
+from bazidec import get_message
+
+
+def key(i):
+    if i < 256:
+        appendix = hex(i)[2:]
+        if len(appendix) < 2:
+            appendix = '0%s' % appendix
+    dec = '0x%s' % (appendix * i)
+    return dec
+
+
+def task_three_point_three(msg, padding):
     """
     task_three_point_two function of the program. takes a HEX-encrypted message and decrypts it
     :param msg: the message to decrypt
@@ -229,43 +697,512 @@ def task_three_point_one(msg):
     """
     absuses the nature of the encryption method used by taking the last 10 chars of the message, which are the key
     """
-    key = msg[-20:]
-    # decrypt the message using the found key
-    """
-    due to the nature of the encryption method used,t he message, being symmetrically encrypted,
-    can be decrypted by XORing the message with the encryption key.
-    So, bring the key to the same length as the message and xor them
-    """
-    key *= 10  # takes advantage of the fact that each key had a length of 10 chars
-    # and each message had a length of 100 chars, setting the length factor to 10
-    msg = xor(msg, key)
-    msg = get_chars(msg)
-    return "message: {}".format(''.join(msg))
+    message_bytes = msg[-20:]
+    padding_bytes = padding[-20:]
+    key = xor(message_bytes, padding_bytes)
+    return get_message(key, msg)
 
 
-def get_chars(lst):
-    """
-    given a list of HEX values, this function returns the char values of each position
-    :param lst: a list of hex values
-    :return: a list of char values as integer
-    """
-    res = []
-    for i in xrange(0, len(lst) - 1, 2):
-        a = int(lst[i], 16)
-        a *= 16
-        b = int(lst[i + 1], 16)
-        b += a
-        res.append(chr(b))
-    return res
-
-
-for i in range(1, len(sys.argv)):
-    f = open(sys.argv[i], 'r')
-    f = f.read()
-    f = f.encode('hex')
-    f = task_three_point_one(f)
-    print f
+min_range = 10
+max_range = 100
+"""
+We can't get any intel about the first part of the key if the padding is smaller than the key length
+with only part of the key, we can only decrypt parts of the message in periodic intervals
+thus we start with a length of 10, which is required for a complete key
+the max range is the length of each message (all of them are 100 bytes long)
+to improve runtime, switch the for loops (the answers then have to be sorted manually)
+"""
+msgs = []
+for j in range(1, len(sys.argv)):
+    for key_iterator in range(min_range, max_range):
+        padding_bytes = key(key_iterator)[2:]
+        msg = open(sys.argv[j], 'r').read().encode('hex')
+        str = task_three_point_three(msg, padding_bytes)
+        if str.__contains__("Max") or str.__contains__("Peter"):
+            print "message %d: %s" % (j, str)
 
 		\end{lstlisting}
+		
+	\subsection*{EasyAES}
+		\label{AES}
+		\subsubsection*{SchluesselVersuchZwei.java}
+		\begin{lstlisting}[language=Java]
+package B06.A4;
 
+import java.util.ArrayList;
+
+public class SchluesselVersuchZwei
+{
+    private ArrayList<Key> key;
+
+    public SchluesselVersuchZwei()
+    {
+        key = generiereAlleSchluessel();
+        System.out.println(key); //TODO: wegen debug
+    }
+    
+    public static void main(String[] args)
+    {
+        new SchluesselVersuchZwei();
+    }
+
+    public ArrayList<Key> getKeys()
+    {
+        return key;
+    }
+
+    private ArrayList<Key> generiereAlleSchluessel()
+    {
+        ArrayList<Key> schluesselListe = new ArrayList<Key>();
+        Key schluessel = new Key();
+        schluesselListe.add(schluessel);//generiere schlüssel für 0 nichtNullBytes
+        ArrayList<Key> schluesselListe1 = generiereSchluessel1NNB();//generiere schlüssel für 1 nichtNullByte
+        ArrayList<Key> schluesselListe2 = generiereSchluessel2NNB();//generiere schlüssel für 2 nichtNullBytes
+        schluesselListe.addAll(schluesselListe1);
+        schluesselListe.addAll(schluesselListe2);
+        return schluesselListe;
+    }
+
+    private ArrayList<Key> generiereSchluessel1NNB()
+    {
+        ArrayList<Key> schluesselListe = new ArrayList<Key>();
+        for (int index = 0; index < 16; index++) //Für jedes Feld (0-15)
+        {
+            Key schluessel = new Key();
+            for (int wert = 1; wert < 256; wert++) //Für jeden Schlüsselwert (0x00 - 0xff)
+            {
+                schluessel.setKey(index, wert); //Gib Ergebnis
+                schluesselListe.add(schluessel);
+            }
+
+        }
+        return schluesselListe;
+    }
+
+    private ArrayList<Key> generiereSchluessel2NNB()
+    {
+        ArrayList<Key> schluesselListe = new ArrayList<Key>();
+        for (int index1 = 0; index1 < 16; index1++) //Für jedes Feld (0-14)
+        {
+            for (int wert1 = 1; wert1 < 256; wert1++) //Für jeden Schlüsselwert (0x00 - 0xff)
+            {
+                for (int index2 = index1+1; index2 < 16; index2++) //Für jedes Feld (0-15)
+                {
+                    for (int wert2 = 1; wert2 < 256; wert2++) //Für jeden Schlüsselwert (0x00 - 0xff)
+                    {
+                        Key schluessel = new Key();
+                        schluessel.setKey(index1, wert1); //Gib Ergebnis
+                        schluessel.setKey(index2, wert2); //Gib Ergebnis
+                        schluesselListe.add(schluessel);
+                    }
+
+                }
+            }
+
+        }
+        
+        return schluesselListe;
+    }
+
+}
+		\end{lstlisting}
+		\subsubsection*{Key.java}
+		\begin{lstlisting}[language=Java]
+package B06.A4;
+
+public class Key
+{
+
+    private Hex[] _key;
+
+    public Key()
+    {
+        _key = new Hex[16];
+        for (int index = 0; index < 16; index++)
+        {
+            _key[index] = new Hex(0);
+        }
+    }
+    
+    public static void main(String args[])
+    {
+        int[] werte = new int[16];
+        for(int i=0; i<werte.length; i++){
+            werte[i] = i;
+        }
+        System.out.println(new Key(werte).toString());
+    }
+
+    public Key(int[] werte)
+    {
+        assert werte.length == 16;
+        _key = new Hex[16];
+        for (int index = 0; index < 16; index++)
+        {
+            _key[index] = new Hex(werte[index]);
+        }
+    }
+
+    public void setKey(int index, int wert)
+    {
+        assert index < 16;
+        assert index > -1;
+        assert wert < 256;
+        assert wert > -1;
+        _key[index] = new Hex(wert);
+    }
+
+    public Hex getWert(int index)
+    {
+        assert index < 16;
+        assert index > -1;
+        return _key[index];
+    }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+        for (int index = 0; index < _key.length-1; index++)
+   {
+            sb.append(_key[index]);
+            sb.append(":");
+        }
+        sb.append(_key[_key.length-1]);
+
+        return sb.toString();
+    }
+
+}
+		\end{lstlisting}
+		\subsubsection*{Hex.java}
+		\begin{lstlisting}[language=Java]
+package B06.A4;
+
+public class Hex
+{
+    int _wert;
+    /**
+     * Es wird davon ausgegangen dass nur Werte zwischen 0 und 255 eigegeben werden.
+     * 
+     * @param wert
+     */
+    public Hex(int wert){
+        assert wert < 256;
+        assert wert > -1;
+        _wert = wert;
+    }
+    
+    public static void main(String args[])
+    {
+        System.out.println(new Hex(42).toString());
+    }
+    
+    @Override
+    public String toString(){
+        if(_wert < 16) return "0".concat(Integer.toHexString(_wert));
+        else return Integer.toHexString(_wert);
+    }
+}
+		\end{lstlisting}
+		\subsubsection*{AES.java}
+		\begin{lstlisting}[language=Java]
+package B06.A4;
+
+import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
+
+/**
+ * Eine Klasse, die eine doppelte AES-Verschlüsselung durch einen Meet-In-The-Middle-Angriff knackt
+ * gegeben einen Klartext und einen verschluesselten Schluesseltext
+ * 
+ * 
+ * @author Alexander Gräsel, Louis Kobras, Utz Pöhlmann
+ * Quelle: http://blog.axxg.de/java-aes-verschluesselung-mit-beispiel/
+ */
+public class AES
+{
+
+    private static final String _klartext = "Verschluesselung"; //Der Klartext
+    private final static String _schluesseltext = "be393d39ca4e18f41fa9d88a9d47a574"; //Der doppelt verschlüsselte Klartext
+    private SchluesselVersuchZwei _generator;
+
+    /**
+     * Versucht, die beiden Schlüssel E_k1 und E_k2 heauszufinden mit
+     * _schluesseltext = E_k2(E_k1(_klartext))
+     * und scheibt sie auf die Konsole
+     * 
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception
+    {
+        AES aes = new AES();
+        ArrayList<String> gefundeneSchluessel = aes.findeSchluessel(_klartext,
+                _schluesseltext);
+        System.out.println(gefundeneSchluessel);
+    }
+
+    /**
+     * Versucht, die beiden Schlüssel E_k1 und E_k2 heauszufinden mit
+     * _schluesseltext = E_k2(E_k1(_klartext))
+     * durch einen Meet-In-The-Middle-Angriff
+     * 
+     * @param klartext
+     * @param schluesseltext
+     * @return eine ArrayList von Typ String mit folgenden Elementen:
+     * 		"Folgende Schluessel wurden gefunden:"
+     * 		"E_k1: " + schluessel1.toString()
+     * 		"E_k2: " + schluessel2.toString()
+     * @throws Exception 
+     */
+    public ArrayList<String> findeSchluessel(String klartext,
+            String schluesselText)
+    {
+        String textStufeEins1;
+        String textStufeEins2;
+        ArrayList<String> ergebnis = new ArrayList<String>();
+        try
+        {
+            ArrayList<SecretKeySpec> schluesselListe = generiereSchluessel();
+            System.out.println(schluesselListe);
+            for (SecretKeySpec schluesselEnc : schluesselListe)
+            {
+                textStufeEins1 = verschluesseln(klartext, schluesselEnc);
+                for (SecretKeySpec schluesselDec : schluesselListe)
+                {
+                    textStufeEins2 = entschluesseln(schluesselText,
+                            schluesselDec);
+                    System.out.println(textStufeEins1 + ":" + textStufeEins2);
+                    if (textStufeEins1.equals(textStufeEins2))
+                    {
+                        ergebnis.add("Folgende Schluessel wurden gefunden:");
+                        ergebnis.add("E_k1: " + schluesselEnc.toString());
+                        ergebnis.add("E_k2: " + schluesselDec.toString());
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return ergebnis;
+    }
+
+    /**
+     * Generiert alle möglichen Schlüssel, auf die die Vorgaben (16 Byte, maximal an 2 Stellen keine 0-Bytes) zutreffen
+     * 
+     *  @return die Schluessel Liste als Liste von SecretKeySpec
+     * @throws Exception 
+     */
+    private ArrayList<SecretKeySpec> generiereSchluessel() throws Exception
+    {
+        ArrayList<SecretKeySpec> raffinierteSchluesselListe = new ArrayList<SecretKeySpec>();
+        _generator = new SchluesselVersuchZwei();
+        ArrayList<Key> schluesselListe = _generator.getKeys();
+        for (Key key : schluesselListe)
+        {
+            SecretKeySpec schluessel = bereiteSchluesselVor(key);
+            raffinierteSchluesselListe.add(schluessel);
+        }
+        return raffinierteSchluesselListe;
+    }
+
+    /**
+     * Bringt einen Schluessel in ein Format mit dem das Programm weiter arbeiten kann (SecretKeySpec)
+     * 
+     * @param schluessel
+     * @return der fertige Schluessel als SecretKeySpec
+     * @throws Exception 
+     */
+    private SecretKeySpec bereiteSchluesselVor(Key schluessel) throws Exception
+    {
+        // Das Passwort bzw der Schluesseltext
+        String schluesselString = schluessel.toString();
+        // byte-Array erzeugen
+        byte[] key = (schluesselString).getBytes("UTF-8");
+        // aus dem Array einen Hash-Wert erzeugen mit MD5 oder SHA
+        MessageDigest sha = MessageDigest.getInstance("SHA-256");
+        key = sha.digest(key);
+        // nur die ersten 128 bit nutzen
+        key = Arrays.copyOf(key, 16);
+        // der fertige Schluessel
+        return new SecretKeySpec(key, "AES");
+    }
+
+    /**
+     * Verschluesselt einen Klatext nach AES-Verfahren
+     * 
+     * @param klartext
+     * @return der verschluesselte Klartext
+     * @throws Exception 
+     */
+    private String verschluesseln(String klartext, SecretKeySpec schluessel)
+            throws Exception
+    {
+        // Verschluesseln
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.ENCRYPT_MODE, schluessel);
+        byte[] encrypted = cipher.doFinal(klartext.getBytes());
+
+        // bytes zu Base64-String konvertieren (dient der Lesbarkeit)
+        BASE64Encoder myEncoder = new BASE64Encoder();
+        return myEncoder.encode(encrypted);
+    }
+
+    /**
+     * Entschluesselt einen Klatext nach AES-Verfahren
+     * 
+     * @param schluesselText
+     * @return der entschluesselte schluesselText
+     * @throws Exception 
+     */
+    private String entschluesseln(String schluesselText,
+            SecretKeySpec schluessel) throws Exception
+    {
+        // BASE64 String zu Byte-Array konvertieren
+        BASE64Decoder myDecoder2 = new BASE64Decoder();
+        byte[] crypted2 = myDecoder2.decodeBuffer(schluesselText);
+
+        // Entschluesseln
+        Cipher cipher2 = Cipher.getInstance("AES");
+        cipher2.init(Cipher.DECRYPT_MODE, schluessel);
+        byte[] cipherData2 = cipher2.doFinal(crypted2);
+        return new String(cipherData2);
+    }
+
+}
+		\end{lstlisting}
+		
+	\subsection*{Timing-Angriff}
+		\label{timing}
+		\textit{Anmerkung:} String \textunderscore symbole enthält nicht die Sonderzeichen,
+		\begin{enumerate}
+			\item weil \LaTeX nicht alle codieren kann und
+			\item weil die Aufgabe schwammig gestellt ist.
+					Ich habe eine deutsche Tastatur, kann aber, weil Linux, deutlich mehr Sonderzeichen über AltGr erreichen als ein Windows Keyboard.
+					Außerdem kann man, sobald ein NumBlock angeschlossen ist, faktisch jedes ASCII-Zeichen über Tastatur erreichen.
+		\end{enumerate}
+\begin{lstlisting}[language=Java]
+public class Timer
+{
+	private final char[] _passwort = "abcdefgh".toCharArray();
+	private boolean _gefunden = false;
+	private int _passwortLaenge;
+	private final char[] _symbole = "abcdefghijklmnopqrstuvwxyz1234567890"
+    	.toCharArray();
+	private final int _maxPasswortLaenge = 20;
+
+	public static void main(String[] args)
+	{
+    	Timer timer = new Timer();
+    	timer._passwortLaenge = timer.findePasswortLaenge();
+    	System.out.println(timer._passwortLaenge);
+    	System.out.println(timer.findePasswort());
+	}
+
+	/**
+ 	* Findet das Passwort. Period.
+ 	* @return Das Passwort.
+ 	* @requirements: Die Passwortlaenge wurde bestimmt.
+ 	*/
+	private String findePasswort()
+	{
+    	String laufPasswort = "";
+    	String bisherigesPasswort = "";
+    	long[] zeiten = new long[_passwortLaenge];
+    	long startZeit;
+    	long endZeit;
+    	do
+    	{
+        	// Zaehlt einen Zaehler bis zur bestimmen Passwortlaenge
+        	for (int laenge = 0; laenge < _passwortLaenge; laenge++)
+        	{
+            	// Zaehlt einen Zaehler bis zur Laenge des Eingabealphabets
+            	for (int zaehler = 0; zaehler < _symbole.length; zaehler++)
+            	{
+                	// haengt das aktuelle Laufsymbol an das Passwort
+                	laufPasswort = bisherigesPasswort + _symbole[zaehler];
+                	startZeit = System.nanoTime();
+                	// Hier wird das Passwort geprueft
+                	_gefunden = passwordCompare(laufPasswort.toCharArray(), _passwort);
+                	endZeit = System.nanoTime();
+                	// Berechnet Zeitdifferenz fuer aktuelles Passwort
+                	zeiten[zaehler] = endZeit - startZeit;
+            	}
+            	// haengt an das bisherige Passwort dasjenige Symbol an, fuer welches die groesste Zeit gebraucht wurde
+            	bisherigesPasswort += _symbole[gibIndexVonMaximum(zeiten)];
+        	}
+    	}
+    	while (!_gefunden);
+    	return bisherigesPasswort;
+	}
+
+	/**
+ 	* Bestimmt die Laenge eines Passworts
+ 	* @return die Laenge eines Passworts
+ 	*/
+	private int findePasswortLaenge()
+	{
+    	String passwort = "";
+    	long[] zeiten = new long[_maxPasswortLaenge];
+    	long startZeit;
+    	long endZeit;
+    	for (int zaehler = 1; zaehler < _maxPasswortLaenge; zaehler++)
+    	{
+        	passwort.concat("a");
+        	startZeit = System.nanoTime();
+//        	System.out.println("Startzeit: " + startZeit);
+        	// prueft, ob das Passwort korrekt ist
+        	passwordCompare(passwort.toCharArray(), _passwort);
+        	endZeit = System.nanoTime();
+//        	System.out.println("Endzeit: " + endZeit);
+        	zeiten[zaehler] = endZeit - startZeit;
+        	System.out.println("Zeitdifferenz: " + zeiten[zaehler]);
+    	}
+    	return gibIndexVonMaximum(zeiten);
+	}
+
+	/**
+ 	* Gibt den Index des hoechsten Wertes zurueck
+ 	* @param array Eingabe, das nach dem hoechsten Wert durchsucht werden soll
+ 	* @return den Index des hoechsten Wertes
+ 	*/
+	private int gibIndexVonMaximum(long[] array)
+	{
+    	int index = 0;
+    	for (int i = 0; i < array.length; i++)
+    	{
+        	if (array[i] > array[index])
+        	{
+            	index = i;
+        	}
+    	}
+    	return index;
+	}
+
+	/**
+ 	* Vergleicht zwei Char-Arrays
+ 	* @param a erstes Array
+ 	* @param b zweites Array
+ 	* @return true, wenn sie gleich sind; false sonst
+ 	*/
+	boolean passwordCompare(char[] a, char[] b)
+	{
+    	int i;
+    	if (a.length != b.length) return false;
+    	for (i = 0; i < a.length && a[i] == b[i]; i++)
+        	;
+    	return i == a.length;
+	}
+}
+\end{lstlisting}
 \end{document}

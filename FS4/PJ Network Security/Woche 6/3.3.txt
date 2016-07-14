@@ -1,0 +1,15 @@
+Beim PKCS7-Padding wird jede zu verschlüsselnde Nachicht mit Länge L_i auf eine konstante Länge L_max aufgestockt.
+Die Pading-Bytes sind allerdings nicht 0-Bytes, wie bei Bazi-Crypt, sondern werden aus der Differenz von L_max und L_i berechnet.
+Beispiel:
+L_max - L_i = 1
+Pading-Bytes: 0x01
+L_max - L_i = 2
+Pading-Bytes: 0x0202
+L_max - L_i = 3
+Pading-Bytes: 0x030303
+L_max - L_i = 4
+Pading-Bytes: 0x04040404
+L_max - L_i = 5
+Pading-Bytes: 0x0505050505
+usw.
+Es gibt insgesamt 0xFF=16*16=36+60+60+100=256 verschiedene Mögliche Padding-Bytes, sofern L_max lang genug gewählt wurde.
