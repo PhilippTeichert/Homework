@@ -1,0 +1,79 @@
+%!TEX root = ./main.tex
+%   
+% @author Lawrence Cabac
+% @date   March 2006
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[10pt,a4paper]{llncs}
+
+\usepackage{ngerman}
+\usepackage[utf8]{inputenc}
+\usepackage{rotating}
+\usepackage[dvips]{epsfig}
+\usepackage{graphicx}
+\usepackage{acronym}
+\usepackage{index}
+
+
+\usepackage[T1]{fontenc}
+
+\usepackage{hyperref}  
+%\usepackage[pagebackref]{hyperref}  
+
+\date{\today}
+\newcommand{\netscale}{.75}
+\pagestyle{myheadings}
+\setcounter{tocdepth}{2}
+\input{../makros}
+
+%---------- Index erstellen ------------
+\makeindex
+%---------------------------------------
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%------------- TITEL ---------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      
+\title{Projektabläufe und Scheduling}
+\titlerunning{Scheduling}      
+
+\author{Louis Kobras}
+
+\institute{Department  Informatik, TGI, University of Hamburg\\
+   http://www.informatik.uni-hamburg.de/TGI/%% hier lieber email adressen
+ }
+\institute{\href{http://www.informatik.uni-hamburg.de/TGI/}{Fachbereich Informatik, TGI, Universität Hamburg}}
+      
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%------------- DOCUMENT -------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Bitte nur die englische oder nur die deutsche Fassung im Hauptverzeichnis einbinden. 
+
+\newpage
+%Deutsche Fassung:
+\include{mult}
+
+%\bibliographystyle{gerplain}
+\bibliographystyle{plain}
+%% add your temporary bib file here (white spaces do not work)
+%%\bibliography{../defs,../cap,mynamebib} 
+\bibliography{../defs,../aose} 
+\printindex
+
+\end{document}
+
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 

@@ -1,0 +1,7 @@
+\begin{figure}
+\begin{center}
+\includegraphics[scale=.5]{../images/waterfall.png}
+\caption{Modifiziertes Wasserfallmodell}
+\label{img:waterfall}
+\end{center}
+\end{figure}
