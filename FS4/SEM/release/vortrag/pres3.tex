@@ -12,19 +12,26 @@
 
 \usepackage{p4}
 
-%\usetheme[compress]{Dresden}
-%\usecolortheme{beaver}
-
 
 \author{Louis Kobras}
 \title{Projektstrukturierungstechniken}
 \renewcommand{\date}{08. Juli 2016}
 
+\newcommand{\sewiki}{[SEBonn]}
 \newcommand{\waterfall}{[Royce1970]}
 \newcommand{\waterfallmodel}{[OXAgile]}
+\newcommand{\tblegacy}{[TBLegacy]}
+\newcommand{\agimh}{[AgiHis]}
 \newcommand{\cpm}{[CPM]}
+\newcommand{\cpa}{[CPMAna]}
+\newcommand{\cpb}{[CPMBen]}
+\newcommand{\polaris}{[POLARIS]}
+\newcommand{\pert}{[CritPath]}
+\newcommand{\netmba}{[NetMBA]}
 \newcommand{\howtogantt}{[Smartdraw]}
 \newcommand{\pmhut}{[PM-Hut]}
+\newcommand{\kanban}{[Kanban]}
+\newcommand{\magna}{[Magnatag]}
 \newcommand{\daily}{[AgileDaily]}
 \newcommand{\tq}{[Agile3Q]}
 
@@ -64,7 +71,7 @@
 		\begin{frame}
 			\begin{itemize}
 				\item Beginn als Wasserfallmodell\pause
-				\item entlehnt aus Ingenieurswesen\pause
+				\item entlehnt aus Ingenieurswesen \sewiki\pause
 				\item nicht sinnvoll für Software anwendbar\pause
 			\end{itemize}
 			\pause
@@ -87,7 +94,7 @@
 	\subsection{Flexible Modelle}
 		\begin{frame}
 			\begin{itemize}
-				\item Anfänge späte 80er frühe 90er\pause
+				\item Anfänge späte 80er frühe 90er \tblegacy\pause
 				\item Fokus auf Flexibilität\pause
 				\item Ablehnung ``schwergewichtiger'' dokumentationslastiger Softwareentwicklung\pause
 				\item Entwicklung von Prototyping, Spiralmodell, Scrum, XP et. al.\pause
@@ -97,10 +104,10 @@
 	\subsection{Agile Entwicklung}
 		\begin{frame}
 			\begin{itemize}
-				\item Treffen 2001
-				\item Festlegung auf gemeinsame Prinzipien
-				\item ``Agiles Manifest''
-				\item 4 Grundsätze, 12 Prinzipien
+				\item Treffen 2001 \agimh\pause
+				\item Festlegung auf gemeinsame Prinzipien\pause
+				\item ``Agiles Manifest''\pause
+				\item 4 Grundsätze, 12 Prinzipien\pause
 				\item unterschrieben von u.A. den Scrum-Entwicklern und den XP-Entwicklern
 			\end{itemize}
 		\end{frame}
@@ -116,7 +123,7 @@
 				\item Individuen und Interaktionen mehr als Prozesse und Werkzeuge
 				\item Funktionierende Software mehr als umfassende Dokumentation
 				\item Zusammenarbeit mit dem Kunden mehr als Vertragsverhandlung
-				\item Reagieren auf Veränderung mehr als das Befolgen eines Plans
+				\item \textbf{Reagieren auf Veränderung mehr als das Befolgen eines Plans}
 			\end{itemize}
 			\pause
 			\begin{center}
@@ -132,7 +139,7 @@
 			\begin{itemize}
 				\item Techniken aus dem Projektmanagement\pause
 				\item Überblick über das gesamte Projekt\pause
-				\item Engpässe erkennen, Ressourcen verwalten, Deadlines im Auge behalten\pause
+				\item Engpässe erkennen, Ressourcen verwalten, Deadlines im Auge behalten
 			\end{itemize}
 		\end{frame}
 		
@@ -140,23 +147,24 @@
 		\begin{frame}
 			\frametitle{Hintergrund}
 			\begin{itemize}
-				\item Fabrikkonstruktion in den USA 195n
-				\item \textit{kritischer Pfad}, ohne den ein Projekt nicht abgeschlossen werden kann
+				\item Fabrikkonstruktion in den USA 195n \cpm\pause
+				\item \textit{kritischer Pfad}, ohne den ein Projekt nicht abgeschlossen werden kann\pause
 				\item berücksichtigt Abhängigkeiten und Fehlertoleranz
 			\end{itemize}
-		\end{frame}
+1		\end{frame}
 		
 		\begin{frame}
-			\frametitle{Critical Path Analysis (CPA)}
+			\frametitle{Critical Path Analysis (CPA)} \cpa
 			\begin{enumerate}
 				\item Aufgaben nach Abhängigkeiten in Flowchart sortiert\pause
 				\item Zeitanforderungen aller Pfade vergleichen\pause
-				\item Pfad mit größter Zeitanforderung ist Critical Path\pause
+				\item Pfad mit größter Zeitanforderung ist Critical Path
 			\end{enumerate}
 		\end{frame}
 		
 		\begin{frame}
 			\frametitle{Pro und Contra}
+			\cpb\\
 			\begin{minipage}[t]{.48\textwidth}
 				Pro:
 				\begin{itemize}
@@ -189,29 +197,30 @@
 		\begin{frame}
 			\frametitle{Einführung}
 			\begin{itemize}
-				\item Von der US-Navy für Atom-U-Boote kreiert\pause
-				\item Alternative zu CPM mit mehr analytischem Ansatz\pause
-				\item Milestones und Aktivitäten statt Tasks
+				\item Von der US-Navy für Atom-U-Boote kreiert \polaris\pause
+				\item Alternative zu CPM mit mehr analytischem Ansatz \pert\pause
+				\item Milestones und Aktivitäten statt Tasks \netmba
 			\end{itemize}
 		\end{frame}
 		
 		\begin{frame}
 			\frametitle{Konstruktion}
 			\begin{itemize}
-				\item Zeit einer Aktivität lässt sich durch Formel approximieren\pause
+				\item Zeit einer Aktivität lässt sich durch Formel approximieren \pert\pause
 			\end{itemize}
 			\[
 				E = \frac{B +4\cdot A+W}{6}
 			\]\pause
 			\begin{itemize}
 				\item Berücksichtigt Extremfälle, legt aber mehr Gewicht auf Normalfall\pause
-				\item Anordnen der Milestones und Aktivitäten in Flowchart\pause
+				\item Anordnen der Milestones und Aktivitäten in Flowchart \netmba\pause
 				\item Kritischer Pfad aus Diagramm ablesbar
 			\end{itemize}
 		\end{frame}
 		
 		\begin{frame}
 			\frametitle{Pro und Contra}
+			\netmba\\
 			\begin{minipage}[t]{.48\textwidth}
 				Pro:
 				\begin{itemize}
@@ -220,6 +229,7 @@
 					\item gute Übersicht über Abhängigkeiten
 				\end{itemize}
 			\end{minipage}
+			\pause
 			\begin{minipage}[t]{.48\textwidth}
 				Contra:
 				\begin{itemize}
@@ -244,8 +254,7 @@
 		\begin{frame}
 			\frametitle{Einführung}
 			\begin{itemize}
-				\item Offiziell 191n von Henry Gantt entwickelt \pause
-				\item ähnliches System 1896 von Karol Adamiecki verwendet, allerdings erst 1931 veröffentlicht\pause
+				\item Offiziell 191n von Henry Gantt entwickelt\pause
 				\item stellt Zeiten im Projekt dar\pause, moderne Darstellungen stellen auch Abhängigkeiten dar\pause
 				\item unterstützt PERT und CPM
 			\end{itemize}
@@ -264,13 +273,14 @@
 		
 		\begin{frame}
 			\frametitle{Pro und Contra}
+			\pmhut\\
 			\begin{minipage}[t]{.48\textwidth}
 				Pro:
 				\begin{itemize}
 					\item Sortieren von Projektdetails
 					\item einfaches Darstellen komplexer Zusammenhänge
 					\item unterstützt bei Erstellung,Einhaltung und Überarbeitung von Deadlines
-					\item Außenstehende erhalten leicht einen Überblick \pmhut
+					\item Außenstehende erhalten leicht einen Überblick
 				\end{itemize}
 			\end{minipage}
 			\begin{minipage}[t]{.48\textwidth}
@@ -308,19 +318,20 @@
 		\begin{frame}
 			\frametitle{Einführung}
 			\begin{itemize}
-				\item Entnommen aus Lean
+				\item Entnommen aus Lean \kanban
 				\item Technik zur Autofertigung
 				\item beschleunigt und vereinfacht Produktion
-				\item justierbar für persönliche Vorlieben(?)
+				\item justierbar für persönliche Präferenzen
 			\end{itemize}
 		\end{frame}
 		
 		\begin{frame}
 			\frametitle{Verwendung}
 			\begin{itemize}
-				\item Auswahl von sinnvollen Kategorien (Backlog, Todo, Doing, Revision, Finished)
-				\item Tasks in die entsprechenden Kategorien hängen
-				\item zu Beginn jeder Iteration Tasks in die nächste Kategorie hängen
+				\item Auswahl von sinnvollen Kategorien (Backlog, Todo, Doing, Revision, Finished)\pause
+				\item Tasks in die entsprechenden Kategorien hängen\pause
+				\item fertige Tasks weiterhängen, neuen Task annehmen\pause
+				\item kontinuierliche Releases statt Sprints\pause
 				\item optional: auf WIP-Limit achten
 			\end{itemize}
 		\end{frame}
@@ -328,7 +339,7 @@
 		\begin{frame}
 			\frametitle{Pro und Contra}
 			\begin{minipage}[t]{.48\textwidth}
-				Pro:
+				Pro: \magna
 				\begin{itemize}
 					\item Überblick über Iterationsstatus
 					\item Klare Erfassung von Subtasks
@@ -379,43 +390,50 @@
 		\end{frame}
 		
 		\begin{frame}
-			\frametitle{Vorteile}
-			\begin{itemize}
-				\item alle wissen alles wichtige
-				\item jeder hat einen Projektüberblick
-				\item soziale Vernetzung
-				\item weiche Kontrolle über den Projektstatus
-			\end{itemize}
+			\frametitle{Vorteile und Probleme}
+			\daily\\
+			\begin{minipage}[t]{.48\textwidth}
+				Vorteile:
+				\begin{itemize}
+					\item alle wissen alles wichtige
+					\item jeder hat einen Projektüberblick
+					\item soziale Vernetzung
+					\item weiche Kontrolle über den Projektstatus
+				\end{itemize}
+			\end{minipage}
+			\pause
+			\begin{minipage}[t]{.48\textwidth}
+				Probleme:
+				\begin{itemize}
+					\item ``Scrum-Zombie''-ness
+					\item Meeting wird zum Statusbericht
+					\item Überlänge
+				\end{itemize}
+			\end{minipage}
 		\end{frame}
 		
-		\begin{frame}
-			\frametitle{Probleme}
-			\begin{itemize}
-				\item ``Scrum-Zombie''-ness
-				\item Meeting wird zum Statusbericht
-				\item Überlänge
-			\end{itemize}
-		\end{frame}
-		
-\section{}
+\section{Abschluss}
 	\subsection{}
-		\begin{frame}
-			\frametitle{Fazit}
-			\begin{itemize}
-				\item Zum besseren Ergebnis Techniken kombinieren
-				\item Grenzen verschwimmen, eigener Stil zur besseren Arbeit
-				\item Früher war eben nicht alles besser
-				\item Mögliche Kombination: CP, Kanban, Daily Scrum, Schätzpoker
-			\end{itemize}
-		\end{frame}
 		\begin{frame}
 			\frametitle{Zusammenfassung}
 			\begin{itemize}
 				\item Urpsrünge der SE in Ingenieurswissenschaft
 				\item Aufgrund von Unzulänglichkeiten Entwicklung des Agilen Modells
 				\item Einbezug von Projektmanagement (CP, PERT, Gantt) und Automobilfabrikation (Kanban)
+				\item Vorstellung der jeweiligen Techniken sowie deren Vor- und Nachteile
 			\end{itemize}
 		\end{frame}
+		\begin{frame}
+			\frametitle{Fazit}
+			\begin{itemize}
+				\item Zum besseren Ergebnis \href{https://www.agilealliance.org/agile101/subway-map-to-agile-practices/}{Techniken} kombinieren
+				\item Grenzen verschwimmen, eigener Stil zur besseren Arbeit
+				\item Früher war eben nicht alles besser
+				\item Mögliche Kombination: CP, Kanban, Daily Scrum, Schätzpoker
+			\end{itemize}
+		\end{frame}
+		
+	\subsection{Anhang}
 		\begin{frame}
 			\frametitle{Grafikenverzeichnis}
 			\begin{tabular}{r|p{.85\textwidth}}
@@ -428,6 +446,7 @@
 			\end{tabular}
 		\end{frame}
 		\begin{frame}
+			\frametitle{Grafikenverzeichnis (cont.)}
 			\begin{tabular}{r|p{.85\textwidth}}
 				\textbf{Nummer}		&	\textbf{Quelle}	\\ \hline
 				\ref{img:pert}		&	\textbf{Grafik:} \url{https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Pert_chart_colored.svg/1000px-Pert_chart_colored.svg.png},
@@ -437,6 +456,7 @@
 			\end{tabular}
 		\end{frame}
 		\begin{frame}
+			\frametitle{Grafikenverzeichnis (cont.)}
 			\begin{tabular}{r|p{.85\textwidth}}
 				\textbf{Nummer}		&	\textbf{Quelle}	\\ \hline
 				\ref{img:kanban}	&	\textbf{Grafik:} \url{http://blog.novatec-gmbh.de/wp-content/uploads/2013/05/kanban-board.jpg}, 
@@ -445,7 +465,49 @@
 		\end{frame}
 		\begin{frame}
 			\frametitle{Quellenverzeichnis}
-			todo...
+			(Nach Referenzreihenfolge)
+			\begin{tabular}{rp{.7\framewidth}}
+				\sewiki			&	\url{https://sewiki.iai.uni-bonn.de/teaching/labs/xp/2009b/seminar/history} \\
+				\waterfall		&	\url{http://www.cs.umd.edu/class/spring2003/cmsc838p/Process/waterfall.pdf}	\\
+				\waterfallmodel	&	\url{http://www.oxagile.com/company/blog/the-waterfall-model/}\\
+				\tblegacy		&	\url{http://techbeacon.com/agility-beyond-history\%E2\%80\%94-legacy\%E2\%80\%94-agile-development}\\
+				\agimh			&	\url{http://agilemanifesto.org/history.html}\\
+				\cpm			&	\url{http://www.criticalpathmethod.net/}
+			\end{tabular}
 		\end{frame}
+		
+		\begin{frame}
+			\frametitle{Quellenverzeichnis (cont.)}
+			\begin{tabular}{rp{.7\framewidth}}
+				\cpa			&	\url{http://www.criticalpathmethod.net/Critical-Path-Analysis.html}\\
+				\cpb			&	\url{http://www.criticalpathmethod.net/Critical-Path-Method-Benefits.html}\\
+				\polaris		&	\url{http://www.academia.edu/11933878/PERT\_The\_Polaris\_Missile\_Project\_Case}\\
+				\pert			&	\url{https://www.mindtools.com/critpath.html}\\
+				\netmba			&	\url{http://www.netmba.com/operations/project/pert/}\\
+				\howtogantt		&	\url{https://www.smartdraw.com/gantt-chart/steps-to-managing-projects-with-gantt-charts.htm}
+			\end{tabular}
+		\end{frame}
+		
+		\begin{frame}
+			\frametitle{Quellenverzeichnis (cont.)}
+			\begin{tabular}{rp{.7\framewidth}}
+				\pmhut			&	\url{http://www.pmhut.com/advantages-and-disadvantages-of-gantt-charts}\\
+				\kanban			&	\url{http://kanbanblog.com/explained/index.html}\\
+				\magna			&	\url{https://www.magnatag.com/blog/2014/09/16/benefits-of-kanban-card-board-systems-in-the-workplace/}\\
+				\daily			&	\url{https://www.agilealliance.org/glossary/daily-meeting/}\\
+				\tq				&	\url{}https://www.agilealliance.org/glossary/three-qs/
+			\end{tabular}
+		\end{frame}
+		
+%		\begin{frame}
+%			\frametitle{Quellenverzeichnis (cont.)}
+%			\begin{tabular}{rp{.7\framewidth}}
+%			\end{tabular}
+%		\end{frame}
 	
+%\newcommand{\cpm}{[CPM]}
+%\newcommand{\howtogantt}{[Smartdraw]}
+%\newcommand{\pmhut}{[PM-Hut]}
+%\newcommand{\daily}{[AgileDaily]}
+%\newcommand{\tq}{[Agile3Q]}
 \end{document}
